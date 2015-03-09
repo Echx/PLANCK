@@ -8,7 +8,7 @@
 
 import UIKit
 
-class XPhoton {
+class XPhoton: XNode {
     var illuminance: CGFloat
     var color: XColor
     
