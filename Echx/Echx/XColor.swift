@@ -8,7 +8,7 @@
 
 import UIKit
 
-struct XColor {
+struct XColor : Equatable {
     internal var containsRed: Bool
     internal var containsGreen: Bool
     internal var containsBlue: Bool
@@ -26,9 +26,9 @@ struct XColor {
     }
     
     init (containsRed: Bool, containsGreen: Bool, containsBlue: Bool) {
-        self.containsRed = false
-        self.containsGreen = false
-        self.containsBlue = false
+        self.containsRed = containsRed
+        self.containsGreen = containsGreen
+        self.containsBlue = containsBlue
     }
     
     func containsColor(color: XColor) -> Bool {
@@ -37,6 +37,7 @@ struct XColor {
         let containsBlue = self.containsBlue || !color.containsBlue
         return containsRed && containsGreen && containsBlue
     }
+    
 }
 
 func + (left: XColor, right: XColor) -> XColor {
@@ -53,4 +54,14 @@ func - (left: XColor, right: XColor) -> XColor {
     let containsGreen = left.containsGreen && !right.containsGreen
     let containsBlue = left.containsBlue && !right.containsBlue
     return XColor(containsRed: containsRed, containsGreen: containsGreen, containsBlue: containsBlue)
+}
+
+func == (left: XColor, right: XColor) -> Bool {
+    if (left.containsRed == right.containsRed &&
+        left.containsBlue == right.containsBlue &&
+        left.containsGreen == right.containsGreen) {
+            return true
+    } else {
+        return false
+    }
 }
