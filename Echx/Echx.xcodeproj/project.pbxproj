@@ -20,7 +20,8 @@
 		62D4269A1AADE699000DBD45 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 62D426981AADE699000DBD45 /* Main.storyboard */; };
 		62D4269C1AADE699000DBD45 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 62D4269B1AADE699000DBD45 /* Images.xcassets */; };
 		62D4269F1AADE699000DBD45 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 62D4269D1AADE699000DBD45 /* LaunchScreen.xib */; };
-		62D426AB1AADE699000DBD45 /* EchxTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 62D426AA1AADE699000DBD45 /* EchxTests.swift */; };
+		98F242BA1AAE026D00A5D4F3 /* XColorTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 98F242B91AAE026D00A5D4F3 /* XColorTest.swift */; };
+		98F242BB1AAE03FC00A5D4F3 /* XColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6227FB131AADFAA9007F49EA /* XColor.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -51,7 +52,7 @@
 		62D4269E1AADE699000DBD45 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/LaunchScreen.xib; sourceTree = "<group>"; };
 		62D426A41AADE699000DBD45 /* EchxTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = EchxTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		62D426A91AADE699000DBD45 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		62D426AA1AADE699000DBD45 /* EchxTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EchxTests.swift; sourceTree = "<group>"; };
+		98F242B91AAE026D00A5D4F3 /* XColorTest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = XColorTest.swift; path = Model/XColorTest.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -146,7 +147,7 @@
 		62D426A71AADE699000DBD45 /* EchxTests */ = {
 			isa = PBXGroup;
 			children = (
-				62D426AA1AADE699000DBD45 /* EchxTests.swift */,
+				98F242B81AAE024800A5D4F3 /* Models */,
 				62D426A81AADE699000DBD45 /* Supporting Files */,
 			);
 			path = EchxTests;
@@ -158,6 +159,14 @@
 				62D426A91AADE699000DBD45 /* Info.plist */,
 			);
 			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		98F242B81AAE024800A5D4F3 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				98F242B91AAE026D00A5D4F3 /* XColorTest.swift */,
+			);
+			name = Models;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -277,7 +286,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				62D426AB1AADE699000DBD45 /* EchxTests.swift in Sources */,
+				98F242BB1AAE03FC00A5D4F3 /* XColor.swift in Sources */,
+				98F242BA1AAE026D00A5D4F3 /* XColorTest.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
