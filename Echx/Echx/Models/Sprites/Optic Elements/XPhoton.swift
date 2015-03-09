@@ -10,16 +10,16 @@ import UIKit
 
 class XPhoton: XNode {
     var illuminance: CGFloat
-    var color: XColor
+    var appearanceColor: XColor
     
-    init() {
+    override init() {
         illuminance = 0.0
-        color = XColor()
+        appearanceColor = XColor()
     }
     
     init(illuminance: CGFloat, color: XColor) {
         self.illuminance = illuminance
-        self.color = color
+        self.appearanceColor = color
     }
     
     func getSpeedInMedium(medium: XMedium) -> CGFloat {
