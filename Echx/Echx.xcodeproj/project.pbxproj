@@ -7,6 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		6227FB141AADFAA9007F49EA /* XColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6227FB131AADFAA9007F49EA /* XColor.swift */; };
+		6227FB161AADFC36007F49EA /* XPhoton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6227FB151AADFC36007F49EA /* XPhoton.swift */; };
+		6227FB181AADFC5B007F49EA /* XNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6227FB171AADFC5B007F49EA /* XNode.swift */; };
 		62D426911AADE699000DBD45 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 62D426901AADE699000DBD45 /* AppDelegate.swift */; };
 		62D426931AADE699000DBD45 /* GameScene.sks in Resources */ = {isa = PBXBuildFile; fileRef = 62D426921AADE699000DBD45 /* GameScene.sks */; };
 		62D426951AADE699000DBD45 /* GameScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = 62D426941AADE699000DBD45 /* GameScene.swift */; };
@@ -28,6 +31,9 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		6227FB131AADFAA9007F49EA /* XColor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = XColor.swift; sourceTree = "<group>"; };
+		6227FB151AADFC36007F49EA /* XPhoton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = XPhoton.swift; sourceTree = "<group>"; };
+		6227FB171AADFC5B007F49EA /* XNode.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = XNode.swift; sourceTree = "<group>"; };
 		62D4268B1AADE699000DBD45 /* Echx.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Echx.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		62D4268F1AADE699000DBD45 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		62D426901AADE699000DBD45 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -60,6 +66,32 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		6227FB101AADFA3B007F49EA /* Sprites */ = {
+			isa = PBXGroup;
+			children = (
+				6227FB151AADFC36007F49EA /* XPhoton.swift */,
+				6227FB171AADFC5B007F49EA /* XNode.swift */,
+			);
+			name = Sprites;
+			sourceTree = "<group>";
+		};
+		6227FB111AADFA45007F49EA /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				6227FB121AADFA54007F49EA /* Utilities */,
+				6227FB101AADFA3B007F49EA /* Sprites */,
+			);
+			name = Models;
+			sourceTree = "<group>";
+		};
+		6227FB121AADFA54007F49EA /* Utilities */ = {
+			isa = PBXGroup;
+			children = (
+				6227FB131AADFAA9007F49EA /* XColor.swift */,
+			);
+			name = Utilities;
+			sourceTree = "<group>";
+		};
 		62D426821AADE699000DBD45 = {
 			isa = PBXGroup;
 			children = (
@@ -81,6 +113,7 @@
 		62D4268D1AADE699000DBD45 /* Echx */ = {
 			isa = PBXGroup;
 			children = (
+				6227FB111AADFA45007F49EA /* Models */,
 				62D426901AADE699000DBD45 /* AppDelegate.swift */,
 				62D426921AADE699000DBD45 /* GameScene.sks */,
 				62D426941AADE699000DBD45 /* GameScene.swift */,
@@ -221,7 +254,10 @@
 			files = (
 				62D426951AADE699000DBD45 /* GameScene.swift in Sources */,
 				62D426971AADE699000DBD45 /* GameViewController.swift in Sources */,
+				6227FB181AADFC5B007F49EA /* XNode.swift in Sources */,
+				6227FB141AADFAA9007F49EA /* XColor.swift in Sources */,
 				62D426911AADE699000DBD45 /* AppDelegate.swift in Sources */,
+				6227FB161AADFC36007F49EA /* XPhoton.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -415,6 +451,7 @@
 				62D426B01AADE699000DBD45 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		62D426B11AADE699000DBD45 /* Build configuration list for PBXNativeTarget "EchxTests" */ = {
 			isa = XCConfigurationList;
@@ -423,6 +460,7 @@
 				62D426B31AADE699000DBD45 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
