@@ -26,9 +26,9 @@ struct XColor {
     }
     
     init (containsRed: Bool, containsGreen: Bool, containsBlue: Bool) {
-        self.containsRed = false
-        self.containsGreen = false
-        self.containsBlue = false
+        self.containsRed = containsRed
+        self.containsGreen = containsGreen
+        self.containsBlue = containsBlue
     }
     
     func containsColor(color: XColor) -> Bool {
