@@ -16,5 +16,14 @@ class XPhoton {
         illuminance = 0.0
         color = XColor()
     }
+    
+    init(illuminance: CGFloat, color: XColor) {
+        self.illuminance = illuminance
+        self.color = color
+    }
+    
+    func getSpeedInMedium(medium: XMedium) -> CGFloat {
+        return XConstant.lightSpeedBase / medium.getRefractiveIndex()
+    }
 }
 
