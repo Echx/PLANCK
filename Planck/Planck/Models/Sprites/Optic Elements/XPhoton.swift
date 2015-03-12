@@ -27,6 +27,7 @@ class XPhoton: XNode {
         )
         
         self.name = NodeName.xPhoton
+        self.runAction(SKAction.rotateToAngle(direction.angleFromNorm, duration: 0.0));
     }
     
     init(appearanceColor: XColor, direction: CGVector) {
@@ -36,12 +37,14 @@ class XPhoton: XNode {
         
         //designated initializer, only this one can be used in subclasses of SKNode
         super.init(
-            texture: SKTexture(imageNamed: PhotonDefaults.textureImageName),
-            color: PhotonDefaults.textureColor,
+            texture: nil,
+            color: appearanceColor.displayColor,
             size: CGSizeMake(PhotonDefaults.diameter, PhotonDefaults.diameter)
         );
         
+        
         self.name = NodeName.xPhoton
+        self.runAction(SKAction.rotateToAngle(direction.angleFromNorm, duration: 0.0));
     }
     
     
@@ -59,6 +62,7 @@ class XPhoton: XNode {
         
         //name is useful during enumeration (like tag of UIViews)
         self.name = NodeName.xPhoton
+        self.runAction(SKAction.rotateToAngle(direction.angleFromNorm, duration: 0.0));
     }
     
     
