@@ -13,7 +13,12 @@ class XFlatMirror: XMirror {
     var direction: CGVector
     
     init(direction: CGVector) {
-        self.direction = direction
+        if direction.dy < 0 || (direction.dx == -1 && direction.dy == 0){
+            self.direction = CGVectorMake(-direction.dx, -direction.dy)
+        } else {
+            self.direction = direction
+        }
+
         super.init(
             texture: nil,
             color: MirrorDefaults.textureColor,
@@ -21,6 +26,23 @@ class XFlatMirror: XMirror {
         );
         
         self.setUp()
+    }
+    
+    override func getNewDirectionAfterReflect(directionIn: CGVector) -> CGVector {
+        var mirrorAngle = self.direction.angleFromXPlus
+        var inAngle = directionIn.angleFromXPlus
+        var outAngle = 2 * self.direction.angleFromXPlus - directionIn.angleFromXPlus
+        
+        var vector = CGVector.vectorFromRadius(outAngle)
+        if (inAngle - mirrorAngle) * (outAngle - mirrorAngle) < 0 {
+            vector = CGVector(dx: -vector.dx, dy: -vector.dy)
+        }
+        
+        if (directionIn.dx < 0) {
+            vector = CGVector(dx: -vector.dx, dy: -vector.dy)
+        }
+        
+        return vector
     }
     
     private func setUp() {

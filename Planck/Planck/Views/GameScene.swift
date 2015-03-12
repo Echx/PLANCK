@@ -23,13 +23,13 @@ class GameScene: SKScene, XEmitterDelegate, SKPhysicsContactDelegate {
             let location = touch.locationInNode(self)
             
             if self.count == 0 {
-                let mirror = XFlatMirror(direction: CGVector(dx: -1, dy: 1))
+                let mirror = XFlatMirror(direction: CGVector(dx: 1, dy: 1))
                 mirror.position = location
                 self.addChild(mirror)
                 mirror.zPosition = 999
                 count++
             } else {
-                let emitter = XEmitter(appearanceColor: XColor(index: random()%8), direction: CGVector(dx: 1, dy: 0))
+                let emitter = XEmitter(appearanceColor: XColor(index: random()%8), direction: CGVector(dx: 0, dy: -1))
                 emitter.position = location
                 self.addChild(emitter)
                 emitter.zPosition = 1000
@@ -95,7 +95,8 @@ class GameScene: SKScene, XEmitterDelegate, SKPhysicsContactDelegate {
                 var mirror = firstBody.node as XFlatMirror
                 var photon = secondBody.node as XPhoton
                 photon.removeActionForKey(ActionKey.photonActionLinear)
-                let direction = CGVector(dx: 0, dy: -1)
+//                let direction = CGVector(dx: 0, dy: -1)
+                let direction = mirror.getNewDirectionAfterReflect(photon.direction)
                 photon.setDirection(direction)
                 photon.runAction(SKAction.repeatActionForever(photon.getAction()), withKey: ActionKey.photonActionLinear)
         }

@@ -10,4 +10,7 @@ import UIKit
 import SpriteKit
 
 class XMirror: XInsrtument {
+    func getNewDirectionAfterReflect(direction: CGVector) -> CGVector {
+        return CGVector.zeroVector
+    }
 }

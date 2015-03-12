@@ -199,11 +199,11 @@
 			isa = PBXGroup;
 			children = (
 				6227FBFF1AAE28E7007F49EA /* XLens.swift */,
-				6227FBF91AAE28E7007F49EA /* XConcaveMirror.swift */,
 				6227FBFC1AAE28E7007F49EA /* XFlatLens.swift */,
 				6227FBF81AAE28E7007F49EA /* XConcaveLens.swift */,
 				6227FBFA1AAE28E7007F49EA /* XConvexLens.swift */,
 				6227FC001AAE28E7007F49EA /* XMirror.swift */,
+				6227FBF91AAE28E7007F49EA /* XConcaveMirror.swift */,
 				6227FBFB1AAE28E7007F49EA /* XConvexMirror.swift */,
 				6227FBFD1AAE28E7007F49EA /* XFlatMirror.swift */,
 				6227FBFE1AAE28E7007F49EA /* XInstrument.swift */,
