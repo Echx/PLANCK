@@ -35,3 +35,15 @@ struct EmitterDefualts {
     static let diameter: CGFloat = 50
     static let fireFrequency: Double = 500 //measured in photons/second
 }
+
+struct MirrorDefaults {
+    static let flatMirrorSize = CGSizeMake(20, 100)
+    static let textureColor = UIColor.blackColor()
+}
+
+struct PhysicsCategory {
+    static let none: UInt32 = 0
+    static let all: UInt32 = 0x1 << 31
+    static let photon: UInt32 = 0x1 << 0
+    static let flatMirror: UInt32 = 0x1 << 1
+}
