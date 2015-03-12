@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		267EC2D41AB1DA01002FE745 /* CGVector+Length.swift in Sources */ = {isa = PBXBuildFile; fileRef = 267EC2D31AB1DA01002FE745 /* CGVector+Length.swift */; };
 		6227FB6E1AAE285C007F49EA /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6227FB6D1AAE285C007F49EA /* AppDelegate.swift */; };
 		6227FB771AAE285C007F49EA /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 6227FB751AAE285C007F49EA /* Main.storyboard */; };
 		6227FB791AAE285C007F49EA /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 6227FB781AAE285C007F49EA /* Images.xcassets */; };
@@ -47,6 +48,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		267EC2D31AB1DA01002FE745 /* CGVector+Length.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "CGVector+Length.swift"; sourceTree = "<group>"; };
 		6227FB681AAE285C007F49EA /* Planck.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Planck.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		6227FB6C1AAE285C007F49EA /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		6227FB6D1AAE285C007F49EA /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -213,6 +215,7 @@
 		6227FC031AAE28E7007F49EA /* Utilities */ = {
 			isa = PBXGroup;
 			children = (
+				267EC2D31AB1DA01002FE745 /* CGVector+Length.swift */,
 				6227FC041AAE28E7007F49EA /* XColor.swift */,
 				6227FC051AAE28E7007F49EA /* XConstant.swift */,
 				6227FC061AAE28E7007F49EA /* XMedium.swift */,
@@ -339,6 +342,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				6227FC151AAE28E7007F49EA /* XLens.swift in Sources */,
+				267EC2D41AB1DA01002FE745 /* CGVector+Length.swift in Sources */,
 				6227FC111AAE28E7007F49EA /* XConvexMirror.swift in Sources */,
 				6227FC131AAE28E7007F49EA /* XFlatMirror.swift in Sources */,
 				6227FC121AAE28E7007F49EA /* XFlatLens.swift in Sources */,
