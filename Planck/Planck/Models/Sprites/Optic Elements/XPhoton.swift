@@ -24,7 +24,7 @@ class XPhoton: XNode {
             texture: SKTexture(imageNamed: PhotonDefaults.textureImageName),
             color: PhotonDefaults.textureColor,
             size: CGSizeMake(PhotonDefaults.diameter, PhotonDefaults.diameter)
-        );
+        )
         
         self.name = NodeName.xPhoton
     }
