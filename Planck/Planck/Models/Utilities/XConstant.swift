@@ -3,11 +3,35 @@
 //  Planck
 //
 //  Created by Lei Mingyu on 10/03/15.
-//  Copyright (c) 2015年 Echx. All rights reserved.
+//  Copyright (c) 2015 Echx. All rights reserved.
 //
 
 import UIKit
 
-struct XConstant {
-    static let lightSpeedBase: CGFloat = 20
+struct Constant {
+    static let lightSpeedBase: CGFloat = 1000 //points per second
+}
+
+struct ActionKey {
+    static let photonActionLinear = "PHOTON_ACTION_KEY_LINEAR"
+}
+
+struct NodeName {
+    static let xPhoton = "X_PHOTON"
+}
+
+struct PhotonDefaults {
+    static let diameter: CGFloat = 10    //measured in points
+    static let illuminance: CGFloat = 1.0   //0.0 to 1.0
+    static let appearanceColor = XColor()
+    static let direction = CGVector.zeroVector
+    static let textureImageName = "photon"
+    static let textureColor = UIColor.blackColor()
+}
+
+struct EmitterDefualts {
+    static let textureImageName = "emitter"
+    static let textureColor = UIColor.blackColor()
+    static let diameter: CGFloat = 50
+    static let fireFrequency: Double = 500 //measured in photons/second
 }
