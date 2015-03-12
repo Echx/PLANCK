@@ -201,8 +201,8 @@
 				6227FBFC1AAE28E7007F49EA /* XFlatLens.swift */,
 				6227FBF81AAE28E7007F49EA /* XConcaveLens.swift */,
 				6227FBFA1AAE28E7007F49EA /* XConvexLens.swift */,
-				6227FBFB1AAE28E7007F49EA /* XConvexMirror.swift */,
 				6227FC001AAE28E7007F49EA /* XMirror.swift */,
+				6227FBFB1AAE28E7007F49EA /* XConvexMirror.swift */,
 				6227FBFD1AAE28E7007F49EA /* XFlatMirror.swift */,
 				6227FBFE1AAE28E7007F49EA /* XInstrument.swift */,
 				6227FC011AAE28E7007F49EA /* XWall.swift */,
@@ -553,6 +553,7 @@
 				6227FB8D1AAE285C007F49EA /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		6227FB8E1AAE285C007F49EA /* Build configuration list for PBXNativeTarget "PlanckTests" */ = {
 			isa = XCConfigurationList;
@@ -561,6 +562,7 @@
 				6227FB901AAE285C007F49EA /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
