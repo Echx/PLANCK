@@ -9,20 +9,49 @@
 import UIKit
 
 struct XColor : Equatable {
-    internal var containsRed: Bool
-    internal var containsGreen: Bool
-    internal var containsBlue: Bool
-    internal var displayColor: UIColor {
+    
+    static let displayColors = [UIColor(red: 0, green: 0, blue: 0, alpha: 1),
+        UIColor(red: 0, green: 0, blue: 1, alpha: 1),
+        UIColor(red: 0, green: 1, blue: 0, alpha: 1),
+        UIColor(red: 0, green: 1, blue: 1, alpha: 1),
+        UIColor(red: 1, green: 0, blue: 0, alpha: 1),
+        UIColor(red: 1, green: 0, blue: 1, alpha: 1),
+        UIColor(red: 1, green: 1, blue: 0, alpha: 1),
+        UIColor(red: 1, green: 1, blue: 1, alpha: 1)]
+    
+    var containsRed: Bool
+    var containsGreen: Bool
+    var containsBlue: Bool
+    var displayColor: UIColor {
         get {
-            // TODO
-            return UIColor.clearColor()
+            var index = 0
+            
+            if self.containsRed {
+                index += 4
+            }
+            
+            if self.containsGreen {
+                index += 2
+            }
+            
+            if self.containsBlue {
+                index += 1
+            }
+            
+            return XColor.displayColors[index];
         }
     }
     
     init () {
         self.containsRed = false
-        self.containsGreen = false
+        self.containsGreen = true
         self.containsBlue = false
+    }
+    
+    init (index: NSInteger) {
+        self.containsRed = (index / 4) == 1
+        self.containsGreen = (index % 4) / 2 == 1
+        self.containsBlue = (index % 2) == 1
     }
     
     init (containsRed: Bool, containsGreen: Bool, containsBlue: Bool) {
@@ -37,7 +66,6 @@ struct XColor : Equatable {
         let containsBlue = self.containsBlue || !color.containsBlue
         return containsRed && containsGreen && containsBlue
     }
-    
 }
 
 func + (left: XColor, right: XColor) -> XColor {
