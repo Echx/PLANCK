@@ -9,7 +9,7 @@
 import UIKit
 
 struct Constant {
-    static let lightSpeedBase: CGFloat = 800 //points per second
+    static let lightSpeedBase: CGFloat = 1000 //points per second
 }
 
 struct ActionKey {
@@ -27,4 +27,11 @@ struct PhotonDefaults {
     static let direction = CGVector.zeroVector
     static let textureImageName = "photon"
     static let textureColor = UIColor.blackColor()
+}
+
+struct EmitterDefualts {
+    static let textureImageName = "emitter"
+    static let textureColor = UIColor.blackColor()
+    static let diameter: CGFloat = 50
+    static let fireFrequency: Double = 500 //measured in photons/second
 }
