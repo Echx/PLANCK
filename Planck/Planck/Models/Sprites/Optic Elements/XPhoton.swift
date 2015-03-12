@@ -29,6 +29,21 @@ class XPhoton: XNode {
         self.name = NodeName.xPhoton
     }
     
+    init(appearanceColor: XColor, direction: CGVector) {
+        self.illuminance = PhotonDefaults.illuminance
+        self.appearanceColor = appearanceColor
+        self.direction = direction
+        
+        //designated initializer, only this one can be used in subclasses of SKNode
+        super.init(
+            texture: SKTexture(imageNamed: PhotonDefaults.textureImageName),
+            color: PhotonDefaults.textureColor,
+            size: CGSizeMake(PhotonDefaults.diameter, PhotonDefaults.diameter)
+        );
+        
+        self.name = NodeName.xPhoton
+    }
+    
     
     init(illuminance: CGFloat, color: XColor, direction: CGVector) {
         self.illuminance = illuminance
