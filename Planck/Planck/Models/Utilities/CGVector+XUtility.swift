@@ -15,16 +15,58 @@ extension CGVector {
         }
     }
     
-    var angleFromNorm: CGFloat {
+    //give result in [-PI, PI)
+    var angleFromYPlus: CGFloat {
         get {
-            return CGFloat(-atan(self.dx / self.dy))
+            var rawAngle = CGFloat(atan(self.dx / self.dy))
+            
+            if self.dx > 0 && self.dy > 0 {
+                return rawAngle
+            } else if self.dx < 0 && self.dy > 0 {
+                return rawAngle
+            } else if self.dx < 0 && self.dy < 0 {
+                return CGFloat(-M_PI/2) - rawAngle
+            } else if self.dx > 0 && self.dy < 0 {
+                return CGFloat(M_PI/2) - rawAngle
+            } else if self.dx == 0 && self.dy < 0 {
+                return CGFloat(-M_PI)
+            } else if self.dx == 0 && self.dy > 0 {
+                return CGFloat(0)
+            } else if self.dy == 0 && self.dx < 0 {
+                return CGFloat(-M_PI/2)
+            } else if self.dy == 0 && self.dx > 0 {
+                return CGFloat(M_PI/2)
+            } else {
+                fatalError("undefined angle")
+            }
         }
     }
     
+    
+    //give result in (-PI, PI]
     var angleFromXPlus: CGFloat {
         get {
-            var angle = CGFloat(atan(self.dy / self.dx))
-            return angle > 0 ? angle : angle + CGFloat(M_PI)
+            var rawAngle = CGFloat(atan(self.dy / self.dx))
+            
+            if self.dx > 0 && self.dy > 0 {
+                return rawAngle
+            } else if self.dx < 0 && self.dy > 0 {
+                return CGFloat(M_PI) + rawAngle
+            } else if self.dx < 0 && self.dy < 0 {
+                return CGFloat(-M_PI) + rawAngle
+            } else if self.dx > 0 && self.dy < 0 {
+                return rawAngle
+            } else if self.dx == 0 && self.dy < 0 {
+                return CGFloat(-M_PI/2)
+            } else if self.dx == 0 && self.dy > 0 {
+                return CGFloat(M_PI/2)
+            } else if self.dy == 0 && self.dx < 0 {
+                return CGFloat(-M_PI)
+            } else if self.dy == 0 && self.dx > 0 {
+                return CGFloat(0)
+            } else {
+                fatalError("undefined angle")
+            }
         }
     }
     
