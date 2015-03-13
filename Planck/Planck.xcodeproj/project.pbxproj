@@ -36,6 +36,7 @@
 		6227FC1D1AAE28E7007F49EA /* GameScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6227FC091AAE28E7007F49EA /* GameScene.swift */; };
 		6227FC201AAE291F007F49EA /* XColorTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6227FC1F1AAE291F007F49EA /* XColorTest.swift */; };
 		6227FC211AAE2937007F49EA /* XColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6227FC041AAE28E7007F49EA /* XColor.swift */; };
+		62988FD41AB2FA3400FD9AFF /* CGVector+XUtilityTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 62988FD31AB2FA3400FD9AFF /* CGVector+XUtilityTest.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -81,6 +82,7 @@
 		6227FC081AAE28E7007F49EA /* GameScene.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = GameScene.sks; sourceTree = "<group>"; };
 		6227FC091AAE28E7007F49EA /* GameScene.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GameScene.swift; sourceTree = "<group>"; };
 		6227FC1F1AAE291F007F49EA /* XColorTest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = XColorTest.swift; sourceTree = "<group>"; };
+		62988FD31AB2FA3400FD9AFF /* CGVector+XUtilityTest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "CGVector+XUtilityTest.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -238,6 +240,7 @@
 		6227FC1E1AAE291F007F49EA /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				62988FD31AB2FA3400FD9AFF /* CGVector+XUtilityTest.swift */,
 				6227FC1F1AAE291F007F49EA /* XColorTest.swift */,
 			);
 			path = Model;
@@ -375,6 +378,7 @@
 			files = (
 				6227FC211AAE2937007F49EA /* XColor.swift in Sources */,
 				6227FC201AAE291F007F49EA /* XColorTest.swift in Sources */,
+				62988FD41AB2FA3400FD9AFF /* CGVector+XUtilityTest.swift in Sources */,
 				6227FB881AAE285C007F49EA /* PlanckTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
