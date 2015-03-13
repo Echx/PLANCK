@@ -13,12 +13,7 @@ class XFlatMirror: XMirror {
     var direction: CGVector
     
     init(direction: CGVector) {
-        if direction.dy < 0 || (direction.dx == -1 && direction.dy == 0){
-            self.direction = CGVectorMake(-direction.dx, -direction.dy)
-        } else {
-            self.direction = direction
-        }
-
+        self.direction = CGVector.vectorFromRadius(direction.angleFromXPlusScalar)
         super.init(
             texture: nil,
             color: MirrorDefaults.textureColor,
@@ -29,24 +24,15 @@ class XFlatMirror: XMirror {
     }
     
     override func getNewDirectionAfterReflect(directionIn: CGVector) -> CGVector {
-        var mirrorAngle = self.direction.angleFromXPlus
+        var mirrorAngle = self.direction.angleFromXPlusScalar
         var inAngle = directionIn.angleFromXPlus
         var outAngle = 2 * self.direction.angleFromXPlus - directionIn.angleFromXPlus
-        
-        var vector = CGVector.vectorFromRadius(outAngle)
-        if (inAngle - mirrorAngle) * (outAngle - mirrorAngle) < 0 {
-            vector = CGVector(dx: -vector.dx, dy: -vector.dy)
-        }
-        
-        if (directionIn.dx < 0) {
-            vector = CGVector(dx: -vector.dx, dy: -vector.dy)
-        }
-        
-        return vector
+        return CGVector.vectorFromRadius(outAngle)
     }
     
     private func setUp() {
-        self.runAction(SKAction.rotateToAngle(direction.angleFromNorm, duration: 0.0));
+        println("\(direction.angleFromYPlus)")
+        self.runAction(SKAction.rotateToAngle(-direction.angleFromYPlus, duration: 0.0));
         self.setUpPhysicsProperties()
     }
     
