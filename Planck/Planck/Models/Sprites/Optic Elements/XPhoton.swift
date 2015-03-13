@@ -62,7 +62,7 @@ class XPhoton: XNode {
     private func setUp() {
         //name is useful during enumeration (like tag of UIViews)
         self.name = NodeName.xPhoton
-        self.runAction(SKAction.rotateToAngle(direction.angleFromNorm, duration: 0.0));
+        self.runAction(SKAction.rotateToAngle(direction.angleFromYPlus, duration: 0.0));
         self.setUpPhotonPhysicsProperty()
     }
     
