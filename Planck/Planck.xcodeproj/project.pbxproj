@@ -55,6 +55,9 @@
 		62988FF71AB2FA8800FD9AFF /* XConstant.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6227FC051AAE28E7007F49EA /* XConstant.swift */; };
 		62988FF81AB2FA8800FD9AFF /* XMedium.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6227FC061AAE28E7007F49EA /* XMedium.swift */; };
 		62988FF91AB2FA8800FD9AFF /* XNote.swift in Sources */ = {isa = PBXBuildFile; fileRef = 620BD4451AB2E69800267C7B /* XNote.swift */; };
+		62BC35541AB3096400B0B6F7 /* XContactableNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 62CB1FC11AB3068D00DC8EB8 /* XContactableNode.swift */; };
+		62BC35551AB3096900B0B6F7 /* GameScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6227FC091AAE28E7007F49EA /* GameScene.swift */; };
+		62CB1FC21AB3068D00DC8EB8 /* XContactableNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 62CB1FC11AB3068D00DC8EB8 /* XContactableNode.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -69,7 +72,7 @@
 
 /* Begin PBXFileReference section */
 		267EC2D31AB1DA01002FE745 /* CGVector+XUtility.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "CGVector+XUtility.swift"; sourceTree = "<group>"; };
-        620BD4451AB2E69800267C7B /* XNote.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = XNote.swift; sourceTree = "<group>"; };
+		620BD4451AB2E69800267C7B /* XNote.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = XNote.swift; sourceTree = "<group>"; };
 		6227FB681AAE285C007F49EA /* Planck.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Planck.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		6227FB6C1AAE285C007F49EA /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		6227FB6D1AAE285C007F49EA /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -101,6 +104,7 @@
 		6227FC091AAE28E7007F49EA /* GameScene.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GameScene.swift; sourceTree = "<group>"; };
 		6227FC1F1AAE291F007F49EA /* XColorTest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = XColorTest.swift; sourceTree = "<group>"; };
 		62988FD31AB2FA3400FD9AFF /* CGVector+XUtilityTest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "CGVector+XUtilityTest.swift"; sourceTree = "<group>"; };
+		62CB1FC11AB3068D00DC8EB8 /* XContactableNode.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = XContactableNode.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -203,6 +207,7 @@
 				6227FBF31AAE28E7007F49EA /* Optic Elements */,
 				6227FBF71AAE28E7007F49EA /* Optic Instruments */,
 				6227FC021AAE28E7007F49EA /* XNode.swift */,
+				62CB1FC11AB3068D00DC8EB8 /* XContactableNode.swift */,
 			);
 			path = Sprites;
 			sourceTree = "<group>";
@@ -260,7 +265,6 @@
 			children = (
 				62988FD31AB2FA3400FD9AFF /* CGVector+XUtilityTest.swift */,
 				6227FC1F1AAE291F007F49EA /* XColorTest.swift */,
-				2693F7301AB2E3DE00A1F32F /* CGVector+XUtilityTest.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -382,6 +386,7 @@
 				6227FC0C1AAE28E7007F49EA /* XPhoton.swift in Sources */,
 				6227FC0B1AAE28E7007F49EA /* XEmitter.swift in Sources */,
 				6227FC0A1AAE28E7007F49EA /* GameViewController.swift in Sources */,
+				62CB1FC21AB3068D00DC8EB8 /* XContactableNode.swift in Sources */,
 				6227FC0D1AAE28E7007F49EA /* XPlanck.swift in Sources */,
 				6227FB6E1AAE285C007F49EA /* AppDelegate.swift in Sources */,
 				6227FC161AAE28E7007F49EA /* XMirror.swift in Sources */,
@@ -411,7 +416,9 @@
 				62988FF41AB2FA8800FD9AFF /* XNode.swift in Sources */,
 				62988FEB1AB2FA8800FD9AFF /* XFlatLens.swift in Sources */,
 				62988FEA1AB2FA8800FD9AFF /* XLens.swift in Sources */,
+				62BC35541AB3096400B0B6F7 /* XContactableNode.swift in Sources */,
 				62988FE91AB2FA8800FD9AFF /* XPlanck.swift in Sources */,
+				62BC35551AB3096900B0B6F7 /* GameScene.swift in Sources */,
 				62988FE71AB2FA8800FD9AFF /* XEmitter.swift in Sources */,
 				62988FF31AB2FA8800FD9AFF /* XWall.swift in Sources */,
 				62988FF81AB2FA8800FD9AFF /* XMedium.swift in Sources */,

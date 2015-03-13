@@ -49,3 +49,12 @@ class XFlatMirror: XMirror {
         self.physicsBody!.usesPreciseCollisionDetection = true
     }
 }
+
+extension XFlatMirror: XContactable {
+    func contactWithPhoton(photon: XPhoton) {
+        photon.removeActionForKey(ActionKey.photonActionLinear)
+        let direction = self.getNewDirectionAfterReflect(photon.direction)
+        photon.setDirection(direction)
+        photon.runAction(SKAction.repeatActionForever(photon.getAction()), withKey: ActionKey.photonActionLinear)
+    }
+}

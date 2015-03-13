@@ -91,6 +91,7 @@ class GameScene: SKScene, XEmitterDelegate, SKPhysicsContactDelegate {
     // MARK - SKPhysicsContactDelegate
 
     func didBeginContact(contact: SKPhysicsContact) {
+        var contactableNode: XContactable!
         var firstBody: SKPhysicsBody
         var secondBody: SKPhysicsBody
         if contact.bodyA.categoryBitMask > contact.bodyB.categoryBitMask {
@@ -101,33 +102,23 @@ class GameScene: SKScene, XEmitterDelegate, SKPhysicsContactDelegate {
             secondBody = contact.bodyA
         }
         
-        // flat mirror and photon contact
         if ((firstBody.categoryBitMask & PhysicsCategory.flatMirror != 0) &&
             (secondBody.categoryBitMask & PhysicsCategory.photon != 0)) {
-                var mirror = firstBody.node as XFlatMirror
-                var photon = secondBody.node as XPhoton
-                photon.removeActionForKey(ActionKey.photonActionLinear)
-//                let direction = CGVector(dx: 0, dy: -1)
-                let direction = mirror.getNewDirectionAfterReflect(photon.direction)
-                photon.setDirection(direction)
-                photon.runAction(SKAction.repeatActionForever(photon.getAction()), withKey: ActionKey.photonActionLinear)
+                contactableNode = firstBody.node as XFlatMirror
         }
         
         // receptor and photon contact
         if ((firstBody.categoryBitMask & PhysicsCategory.planck != 0) &&
             (secondBody.categoryBitMask & PhysicsCategory.photon != 0)) {
-                var planck = firstBody.node as XPlanck
-                var photon = secondBody.node as XPhoton
-                planck.checkPhoton(photon)
-                photon.removeFromParent()
+                contactableNode = firstBody.node as XPlanck
         }
         
         // wall and photon contact
         if ((firstBody.categoryBitMask & PhysicsCategory.wall != 0) &&
             (secondBody.categoryBitMask & PhysicsCategory.photon != 0)) {
-                var photon = secondBody.node as XPhoton
-                photon.removeFromParent()
+                contactableNode = firstBody.node as XWall
         }
+        contactableNode.contactWithPhoton(secondBody.node as XPhoton)
     }
     
     // MARK - XEmitterDelegate

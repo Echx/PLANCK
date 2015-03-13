@@ -38,3 +38,9 @@ class XWall: XInsrtument {
         self.physicsBody!.usesPreciseCollisionDetection = true
     }
 }
+
+extension XWall: XContactable {
+    func contactWithPhoton(photon: XPhoton) {
+        photon.removeFromParent()
+    }
+}

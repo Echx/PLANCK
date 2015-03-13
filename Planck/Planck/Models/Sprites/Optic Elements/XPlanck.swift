@@ -55,3 +55,10 @@ class XPlanck: XInsrtument {
         }
     }
 }
+
+extension XPlanck: XContactable {
+    func contactWithPhoton(photon: XPhoton) {
+        self.checkPhoton(photon)
+        photon.removeFromParent()
+    }
+}
