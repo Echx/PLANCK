@@ -41,11 +41,18 @@ struct MirrorDefaults {
     static let textureColor = UIColor.blackColor()
 }
 
+struct PlanckDefaults {
+    static let planckRadius: CGFloat = 20
+    static let planckSize = CGSizeMake(PlanckDefaults.planckRadius * 2, PlanckDefaults.planckRadius * 2)
+    static let textureColor = UIColor.blackColor()
+}
+
 struct PhysicsCategory {
     static let none: UInt32 = 0
     static let all: UInt32 = 0x1 << 31
     static let photon: UInt32 = 0x1 << 0
     static let flatMirror: UInt32 = 0x1 << 1
+    static let planck: UInt32 = 0x1 << 2
 }
 
 struct MediumDescription {

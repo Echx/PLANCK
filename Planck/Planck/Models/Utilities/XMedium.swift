@@ -36,7 +36,6 @@ enum XMedium: Int {
     }
     
     func getDescription() -> String {
-        // TODO
         switch self {
             
         case .Vacuum:

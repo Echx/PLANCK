@@ -28,6 +28,12 @@ class GameScene: SKScene, XEmitterDelegate, SKPhysicsContactDelegate {
                 self.addChild(mirror)
                 mirror.zPosition = 999
                 count++
+            } else if self.count == 1 {
+                let planck = XPlanck(mapping: [(XColor(index: 1), XNote.Null)])
+                planck.position = location
+                self.addChild(planck)
+                planck.zPosition = 998
+                count++
             } else {
                 let emitter = XEmitter(appearanceColor: XColor(index: random()%8), direction: CGVector(dx: 0, dy: -1))
                 emitter.position = location
@@ -90,6 +96,7 @@ class GameScene: SKScene, XEmitterDelegate, SKPhysicsContactDelegate {
             secondBody = contact.bodyA
         }
         
+        // flat mirror and photon contact
         if ((firstBody.categoryBitMask & PhysicsCategory.flatMirror != 0) &&
             (secondBody.categoryBitMask & PhysicsCategory.photon != 0)) {
                 var mirror = firstBody.node as XFlatMirror
@@ -99,6 +106,15 @@ class GameScene: SKScene, XEmitterDelegate, SKPhysicsContactDelegate {
                 let direction = mirror.getNewDirectionAfterReflect(photon.direction)
                 photon.setDirection(direction)
                 photon.runAction(SKAction.repeatActionForever(photon.getAction()), withKey: ActionKey.photonActionLinear)
+        }
+        
+        // receptor and photon contact
+        if ((firstBody.categoryBitMask & PhysicsCategory.planck != 0) &&
+            (secondBody.categoryBitMask & PhysicsCategory.photon != 0)) {
+                var planck = firstBody.node as XPlanck
+                var photon = secondBody.node as XPhoton
+                planck.checkPhoton(photon)
+                photon.removeFromParent()
         }
     }
     
