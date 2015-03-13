@@ -24,6 +24,11 @@ class XFlatMirror: XMirror {
     }
     
     override func getNewDirectionAfterReflect(directionIn: CGVector) -> CGVector {
+        if round(directionIn.angleFromXPlusScalar * Constant.angleCalculationPrecision) / Constant.angleCalculationPrecision
+            == round(self.direction.angleFromXPlusScalar * Constant.angleCalculationPrecision) / Constant.angleCalculationPrecision {
+            return CGVectorMake(-directionIn.dx, -directionIn.dy)
+        }
+        
         var mirrorAngle = self.direction.angleFromXPlusScalar
         var inAngle = directionIn.angleFromXPlus
         var outAngle = 2 * self.direction.angleFromXPlus - directionIn.angleFromXPlus
@@ -31,7 +36,6 @@ class XFlatMirror: XMirror {
     }
     
     private func setUp() {
-        println("\(direction.angleFromYPlus)")
         self.runAction(SKAction.rotateToAngle(-direction.angleFromYPlus, duration: 0.0));
         self.setUpPhysicsProperties()
     }
