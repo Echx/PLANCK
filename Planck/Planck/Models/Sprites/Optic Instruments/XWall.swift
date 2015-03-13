@@ -24,7 +24,6 @@ class XWall: XInsrtument {
     }
     
     private func setUp() {
-        println("\(direction.angleFromYPlus)")
         self.runAction(SKAction.rotateToAngle(-direction.angleFromYPlus, duration: 0.0));
         self.setUpPhysicsProperties()
 
