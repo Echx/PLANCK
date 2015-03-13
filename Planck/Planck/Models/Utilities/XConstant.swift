@@ -47,3 +47,13 @@ struct PhysicsCategory {
     static let photon: UInt32 = 0x1 << 0
     static let flatMirror: UInt32 = 0x1 << 1
 }
+
+struct MediumDescription {
+    static let vacuumDescription: String = "Vacuum is space that is devoid of matter."
+    static let airDesciption: String = "Air is a layer of gases surrounding the planet Earth that is retained by Earth's gravity."
+    static let waterDescription: String = "Water is a transparent fluid which forms the world's streams, lakes, oceans and rain."
+    static let oliveOilDescription: String = "Olive oil is a fat obtained from the the fruit of Olea europaea, a traditional tree crop of the Mediterranean Basin."
+    static let crownGlassDescription: String = "Crown glass is a type of optical glass used in lenses and other optical components. It has relatively low refractive index (≈1.52) and low dispersion (with Abbe numbers around 60). Crown glass is produced from alkali-lime (RCH) silicates containing approximately 10% potassium oxide and is one of the earliest low dispersion glasses."
+    static let flintGlassDescription: String = "Flint glass is optical glass that has relatively high refractive index and low Abbe number (high dispersion). Flint glasses are arbitrarily defined as having an Abbe number of 50 to 55 or less. The currently known flint glasses have refractive indices ranging between 1.45 and 2.00."
+    
+}

@@ -37,6 +37,25 @@ enum XMedium: Int {
     
     func getDescription() -> String {
         // TODO
-        return ""
+        switch self {
+            
+        case .Vacuum:
+            return MediumDescription.vacuumDescription
+            
+        case .Air:
+            return MediumDescription.airDesciption
+            
+        case .Water:
+            return MediumDescription.waterDescription
+            
+        case .OliveOil:
+            return MediumDescription.oliveOilDescription
+            
+        case .CrownGlass:
+            return MediumDescription.crownGlassDescription
+            
+        case .FlintGlass:
+            return MediumDescription.flintGlassDescription
+        }
     }
 }
