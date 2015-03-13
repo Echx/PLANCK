@@ -121,6 +121,13 @@ class GameScene: SKScene, XEmitterDelegate, SKPhysicsContactDelegate {
                 planck.checkPhoton(photon)
                 photon.removeFromParent()
         }
+        
+        // wall and photon contact
+        if ((firstBody.categoryBitMask & PhysicsCategory.wall != 0) &&
+            (secondBody.categoryBitMask & PhysicsCategory.photon != 0)) {
+                var photon = secondBody.node as XPhoton
+                photon.removeFromParent()
+        }
     }
     
     // MARK - XEmitterDelegate
