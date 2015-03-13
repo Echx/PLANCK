@@ -25,9 +25,7 @@ class XPhoton: XNode {
             color: PhotonDefaults.textureColor,
             size: CGSizeMake(PhotonDefaults.diameter, PhotonDefaults.diameter)
         )
-        
-        self.name = NodeName.xPhoton
-        self.runAction(SKAction.rotateToAngle(direction.angleFromNorm, duration: 0.0));
+        self.setUp()
     }
     
     init(appearanceColor: XColor, direction: CGVector) {
@@ -42,9 +40,7 @@ class XPhoton: XNode {
             size: CGSizeMake(PhotonDefaults.diameter, PhotonDefaults.diameter)
         );
         
-        
-        self.name = NodeName.xPhoton
-        self.runAction(SKAction.rotateToAngle(direction.angleFromNorm, duration: 0.0));
+        self.setUp()
     }
     
     
@@ -60,9 +56,14 @@ class XPhoton: XNode {
             size: CGSizeMake(PhotonDefaults.diameter, PhotonDefaults.diameter)
         );
         
+        self.setUp()
+    }
+    
+    private func setUp() {
         //name is useful during enumeration (like tag of UIViews)
         self.name = NodeName.xPhoton
         self.runAction(SKAction.rotateToAngle(direction.angleFromNorm, duration: 0.0));
+        self.setUpPhotonPhysicsProperty()
     }
     
     
@@ -94,16 +95,20 @@ class XPhoton: XNode {
     }
     
     
-//    private func setUpPhotonPhysicsProperty() {
-//        self.physicsBody = SKPhysicsBody(circleOfRadius: PhotonDefaults.diameter);
-//        
-//        //No speed loss when reflected
-//        self.physicsBody!.restitution = 1.0 //max bounceness
-//        self.physicsBody!.linearDamping = 0.0 //not reduce linear velocity over time
-//        self.physicsBody!.friction = 0.0 //no friction
-//        
-//        // TODO
-//        // not finished yet
-//    }
+    private func setUpPhotonPhysicsProperty() {
+        self.physicsBody = SKPhysicsBody(rectangleOfSize: CGSizeMake(PhotonDefaults.diameter, PhotonDefaults.diameter))
+        self.physicsBody!.dynamic = true
+        
+        //collision detection use
+        self.physicsBody!.categoryBitMask = PhysicsCategory.photon
+        self.physicsBody!.contactTestBitMask = PhysicsCategory.flatMirror
+        self.physicsBody!.collisionBitMask = PhysicsCategory.none
+        self.physicsBody!.usesPreciseCollisionDetection = true
+        
+        //No speed loss when reflected
+        self.physicsBody!.restitution = 1.0 //max bounceness
+        self.physicsBody!.linearDamping = 0.0 //not reduce linear velocity over time
+        self.physicsBody!.friction = 0.0 //no friction
+    }
 }
 

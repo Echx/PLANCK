@@ -27,6 +27,10 @@ class XEmitter: XNode {
             color: EmitterDefualts.textureColor,
             size: CGSizeMake(EmitterDefualts.diameter, EmitterDefualts.diameter)
         );
+        self.setUp()
+    }
+    
+    private func setUp() {
         self.runAction(SKAction.rotateToAngle(direction.angleFromNorm, duration: 0.0));
     }
     
