@@ -43,7 +43,7 @@ extension CGVector {
     }
     
     
-    //give result in (-PI, PI]
+    //give result in [-PI, PI)
     var angleFromXPlus: CGFloat {
         get {
             var rawAngle = CGFloat(atan(self.dy / self.dx))
@@ -67,6 +67,17 @@ extension CGVector {
             } else {
                 fatalError("undefined angle")
             }
+        }
+    }
+    
+    //give result in [-0, PI)
+    var angleFromXPlusScalar: CGFloat {
+        get {
+            var angleFromXPlus = self.angleFromXPlus
+            if angleFromXPlus < 0 {
+                angleFromXPlus += CGFloat(M_PI)
+            }
+            return angleFromXPlus
         }
     }
     

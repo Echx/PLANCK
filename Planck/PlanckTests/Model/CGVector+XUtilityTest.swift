@@ -34,15 +34,30 @@ class CGVector_XUtilityTest: XCTestCase {
     }
     
     func testAngleFromXPlus() {
-        XCTAssertEqual(CGFloat(-M_PI), CGVectorMake(-1, 0).angleFromXPlus, "testAngleFromYPlus failed");
-        XCTAssertEqual(CGFloat(0), CGVectorMake(1, 0).angleFromXPlus, "testAngleFromYPlus failed");
-        XCTAssertEqual(CGFloat(M_PI/2), CGVectorMake(0, 1).angleFromXPlus, "testAngleFromYPlus failed");
-        XCTAssertEqual(CGFloat(-M_PI/2), CGVectorMake(0, -1).angleFromXPlus, "testAngleFromYPlus failed");
+        XCTAssertEqual(CGFloat(-M_PI), CGVectorMake(-1, 0).angleFromXPlus, "testAngleFromXPlus failed");
+        XCTAssertEqual(CGFloat(0), CGVectorMake(1, 0).angleFromXPlus, "testAngleFromXPlus failed");
+        XCTAssertEqual(CGFloat(M_PI/2), CGVectorMake(0, 1).angleFromXPlus, "testAngleFromXPlus failed");
+        XCTAssertEqual(CGFloat(-M_PI/2), CGVectorMake(0, -1).angleFromXPlus, "testAngleFromXPlus failed");
         
-        XCTAssertEqual(CGFloat(M_PI/4), CGVectorMake(1, 1).angleFromXPlus, "testAngleFromYPlus failed");
-        XCTAssertEqual(CGFloat(M_PI/4 * 3), CGVectorMake(-1, 1).angleFromXPlus, "testAngleFromYPlus failed");
-        XCTAssertEqual(CGFloat(-M_PI/4), CGVectorMake(1, -1).angleFromXPlus, "testAngleFromYPlus failed");
-        XCTAssertEqual(CGFloat(-M_PI/4 * 3), CGVectorMake(-1, -1).angleFromXPlus, "testAngleFromYPlus failed");
+        XCTAssertEqual(CGFloat(M_PI/4), CGVectorMake(1, 1).angleFromXPlus, "testAngleFromXPlus failed");
+        XCTAssertEqual(CGFloat(M_PI/4 * 3), CGVectorMake(-1, 1).angleFromXPlus, "testAngleFromXPlus failed");
+        XCTAssertEqual(CGFloat(-M_PI/4), CGVectorMake(1, -1).angleFromXPlus, "testAngleFromXPlus failed");
+        XCTAssertEqual(CGFloat(-M_PI/4 * 3), CGVectorMake(-1, -1).angleFromXPlus, "testAngleFromXPlus failed");
+    }
+    
+    func testAngleFromXPlusScalar() {
+        XCTAssertEqual(CGFloat(0), CGVectorMake(-1, 0).angleFromXPlusScalar, "testAngleFromXPlusScalar failed");
+        XCTAssertEqual(CGFloat(0), CGVectorMake(1, 0).angleFromXPlusScalar, "testAngleFromXPlusScalar failed");
+        
+        
+        XCTAssertEqual(CGFloat(M_PI/2), CGVectorMake(0, 1).angleFromXPlusScalar, "testAngleFromXPlusScalar failed");
+        XCTAssertEqual(CGFloat(M_PI/2), CGVectorMake(0, -1).angleFromXPlusScalar, "testAngleFromXPlusScalar failed");
+    
+        XCTAssertEqual(CGFloat(M_PI/4 * 3), CGVectorMake(1, -1).angleFromXPlusScalar, "testAngleFromXPlusScalar failed");
+        XCTAssertEqual(CGFloat(M_PI/4 * 3), CGVectorMake(-1, 1).angleFromXPlusScalar, "testAngleFromXPlusScalar failed");
+
+        XCTAssertEqual(CGFloat(M_PI/4), CGVectorMake(1, 1).angleFromXPlusScalar, "testAngleFromXPlusScalar failed");
+        XCTAssertEqual(CGFloat(M_PI/4), CGVectorMake(-1, -1).angleFromXPlusScalar, "testAngleFromXPlusScalar failed");
     }
 
     func testPerformanceExample() {
