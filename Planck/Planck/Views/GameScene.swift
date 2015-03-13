@@ -34,6 +34,11 @@ class GameScene: SKScene, XEmitterDelegate, SKPhysicsContactDelegate {
                 self.addChild(planck)
                 planck.zPosition = 998
                 count++
+            } else if self.count == 2 {
+                let wall = XWall(direction: CGVector(dx: -1, dy: 0))
+                wall.position = location
+                self.addChild(wall)
+                count++
             } else {
                 let emitter = XEmitter(appearanceColor: XColor(index: random()%8), direction: CGVector(dx: 0, dy: -1))
                 emitter.position = location
