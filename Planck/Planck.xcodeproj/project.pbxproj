@@ -8,26 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		267EC2D41AB1DA01002FE745 /* CGVector+XUtility.swift in Sources */ = {isa = PBXBuildFile; fileRef = 267EC2D31AB1DA01002FE745 /* CGVector+XUtility.swift */; };
-		2693F70F1AB2DFA700A1F32F /* XFlatMirrorTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2693F70E1AB2DFA700A1F32F /* XFlatMirrorTest.swift */; };
-		2693F7111AB2E09900A1F32F /* XEmitter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6227FBF41AAE28E7007F49EA /* XEmitter.swift */; };
-		2693F7121AB2E09C00A1F32F /* XPhoton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6227FBF51AAE28E7007F49EA /* XPhoton.swift */; };
-		2693F7131AB2E09F00A1F32F /* XPlanck.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6227FBF61AAE28E7007F49EA /* XPlanck.swift */; };
-		2693F71E1AB2E0A400A1F32F /* XLens.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6227FBFF1AAE28E7007F49EA /* XLens.swift */; };
-		2693F71F1AB2E0A400A1F32F /* XFlatLens.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6227FBFC1AAE28E7007F49EA /* XFlatLens.swift */; };
-		2693F7201AB2E0A400A1F32F /* XConcaveLens.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6227FBF81AAE28E7007F49EA /* XConcaveLens.swift */; };
-		2693F7211AB2E0A400A1F32F /* XConvexLens.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6227FBFA1AAE28E7007F49EA /* XConvexLens.swift */; };
-		2693F7221AB2E0A400A1F32F /* XMirror.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6227FC001AAE28E7007F49EA /* XMirror.swift */; };
-		2693F7231AB2E0A400A1F32F /* XConcaveMirror.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6227FBF91AAE28E7007F49EA /* XConcaveMirror.swift */; };
-		2693F7241AB2E0A400A1F32F /* XConvexMirror.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6227FBFB1AAE28E7007F49EA /* XConvexMirror.swift */; };
-		2693F7251AB2E0A400A1F32F /* XFlatMirror.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6227FBFD1AAE28E7007F49EA /* XFlatMirror.swift */; };
-		2693F7261AB2E0A400A1F32F /* XInstrument.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6227FBFE1AAE28E7007F49EA /* XInstrument.swift */; };
-		2693F7271AB2E0A400A1F32F /* XWall.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6227FC011AAE28E7007F49EA /* XWall.swift */; };
-		2693F7281AB2E0A400A1F32F /* XNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6227FC021AAE28E7007F49EA /* XNode.swift */; };
-		2693F72C1AB2E0AC00A1F32F /* CGVector+XUtility.swift in Sources */ = {isa = PBXBuildFile; fileRef = 267EC2D31AB1DA01002FE745 /* CGVector+XUtility.swift */; };
-		2693F72D1AB2E0AC00A1F32F /* XColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6227FC041AAE28E7007F49EA /* XColor.swift */; };
-		2693F72E1AB2E0AC00A1F32F /* XConstant.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6227FC051AAE28E7007F49EA /* XConstant.swift */; };
-		2693F72F1AB2E0AC00A1F32F /* XMedium.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6227FC061AAE28E7007F49EA /* XMedium.swift */; };
-		2693F7311AB2E3DE00A1F32F /* CGVector+XUtilityTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2693F7301AB2E3DE00A1F32F /* CGVector+XUtilityTest.swift */; };
+		620BD4461AB2E69800267C7B /* XNote.swift in Sources */ = {isa = PBXBuildFile; fileRef = 620BD4451AB2E69800267C7B /* XNote.swift */; };
 		6227FB6E1AAE285C007F49EA /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6227FB6D1AAE285C007F49EA /* AppDelegate.swift */; };
 		6227FB771AAE285C007F49EA /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 6227FB751AAE285C007F49EA /* Main.storyboard */; };
 		6227FB791AAE285C007F49EA /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 6227FB781AAE285C007F49EA /* Images.xcassets */; };
@@ -54,6 +35,26 @@
 		6227FC1C1AAE28E7007F49EA /* GameScene.sks in Resources */ = {isa = PBXBuildFile; fileRef = 6227FC081AAE28E7007F49EA /* GameScene.sks */; };
 		6227FC1D1AAE28E7007F49EA /* GameScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6227FC091AAE28E7007F49EA /* GameScene.swift */; };
 		6227FC201AAE291F007F49EA /* XColorTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6227FC1F1AAE291F007F49EA /* XColorTest.swift */; };
+		62988FD41AB2FA3400FD9AFF /* CGVector+XUtilityTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 62988FD31AB2FA3400FD9AFF /* CGVector+XUtilityTest.swift */; };
+		62988FE71AB2FA8800FD9AFF /* XEmitter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6227FBF41AAE28E7007F49EA /* XEmitter.swift */; };
+		62988FE81AB2FA8800FD9AFF /* XPhoton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6227FBF51AAE28E7007F49EA /* XPhoton.swift */; };
+		62988FE91AB2FA8800FD9AFF /* XPlanck.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6227FBF61AAE28E7007F49EA /* XPlanck.swift */; };
+		62988FEA1AB2FA8800FD9AFF /* XLens.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6227FBFF1AAE28E7007F49EA /* XLens.swift */; };
+		62988FEB1AB2FA8800FD9AFF /* XFlatLens.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6227FBFC1AAE28E7007F49EA /* XFlatLens.swift */; };
+		62988FEC1AB2FA8800FD9AFF /* XConcaveLens.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6227FBF81AAE28E7007F49EA /* XConcaveLens.swift */; };
+		62988FED1AB2FA8800FD9AFF /* XConvexLens.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6227FBFA1AAE28E7007F49EA /* XConvexLens.swift */; };
+		62988FEE1AB2FA8800FD9AFF /* XMirror.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6227FC001AAE28E7007F49EA /* XMirror.swift */; };
+		62988FEF1AB2FA8800FD9AFF /* XConcaveMirror.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6227FBF91AAE28E7007F49EA /* XConcaveMirror.swift */; };
+		62988FF01AB2FA8800FD9AFF /* XConvexMirror.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6227FBFB1AAE28E7007F49EA /* XConvexMirror.swift */; };
+		62988FF11AB2FA8800FD9AFF /* XFlatMirror.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6227FBFD1AAE28E7007F49EA /* XFlatMirror.swift */; };
+		62988FF21AB2FA8800FD9AFF /* XInstrument.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6227FBFE1AAE28E7007F49EA /* XInstrument.swift */; };
+		62988FF31AB2FA8800FD9AFF /* XWall.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6227FC011AAE28E7007F49EA /* XWall.swift */; };
+		62988FF41AB2FA8800FD9AFF /* XNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6227FC021AAE28E7007F49EA /* XNode.swift */; };
+		62988FF51AB2FA8800FD9AFF /* CGVector+XUtility.swift in Sources */ = {isa = PBXBuildFile; fileRef = 267EC2D31AB1DA01002FE745 /* CGVector+XUtility.swift */; };
+		62988FF61AB2FA8800FD9AFF /* XColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6227FC041AAE28E7007F49EA /* XColor.swift */; };
+		62988FF71AB2FA8800FD9AFF /* XConstant.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6227FC051AAE28E7007F49EA /* XConstant.swift */; };
+		62988FF81AB2FA8800FD9AFF /* XMedium.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6227FC061AAE28E7007F49EA /* XMedium.swift */; };
+		62988FF91AB2FA8800FD9AFF /* XNote.swift in Sources */ = {isa = PBXBuildFile; fileRef = 620BD4451AB2E69800267C7B /* XNote.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -68,8 +69,7 @@
 
 /* Begin PBXFileReference section */
 		267EC2D31AB1DA01002FE745 /* CGVector+XUtility.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "CGVector+XUtility.swift"; sourceTree = "<group>"; };
-		2693F70E1AB2DFA700A1F32F /* XFlatMirrorTest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = XFlatMirrorTest.swift; sourceTree = "<group>"; };
-		2693F7301AB2E3DE00A1F32F /* CGVector+XUtilityTest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "CGVector+XUtilityTest.swift"; sourceTree = "<group>"; };
+        620BD4451AB2E69800267C7B /* XNote.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = XNote.swift; sourceTree = "<group>"; };
 		6227FB681AAE285C007F49EA /* Planck.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Planck.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		6227FB6C1AAE285C007F49EA /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		6227FB6D1AAE285C007F49EA /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -100,6 +100,7 @@
 		6227FC081AAE28E7007F49EA /* GameScene.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = GameScene.sks; sourceTree = "<group>"; };
 		6227FC091AAE28E7007F49EA /* GameScene.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GameScene.swift; sourceTree = "<group>"; };
 		6227FC1F1AAE291F007F49EA /* XColorTest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = XColorTest.swift; sourceTree = "<group>"; };
+		62988FD31AB2FA3400FD9AFF /* CGVector+XUtilityTest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "CGVector+XUtilityTest.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -240,6 +241,7 @@
 				6227FC041AAE28E7007F49EA /* XColor.swift */,
 				6227FC051AAE28E7007F49EA /* XConstant.swift */,
 				6227FC061AAE28E7007F49EA /* XMedium.swift */,
+				620BD4451AB2E69800267C7B /* XNote.swift */,
 			);
 			path = Utilities;
 			sourceTree = "<group>";
@@ -256,7 +258,7 @@
 		6227FC1E1AAE291F007F49EA /* Model */ = {
 			isa = PBXGroup;
 			children = (
-				2693F70E1AB2DFA700A1F32F /* XFlatMirrorTest.swift */,
+				62988FD31AB2FA3400FD9AFF /* CGVector+XUtilityTest.swift */,
 				6227FC1F1AAE291F007F49EA /* XColorTest.swift */,
 				2693F7301AB2E3DE00A1F32F /* CGVector+XUtilityTest.swift */,
 			);
@@ -384,6 +386,7 @@
 				6227FB6E1AAE285C007F49EA /* AppDelegate.swift in Sources */,
 				6227FC161AAE28E7007F49EA /* XMirror.swift in Sources */,
 				6227FC191AAE28E7007F49EA /* XColor.swift in Sources */,
+				620BD4461AB2E69800267C7B /* XNote.swift in Sources */,
 				6227FC171AAE28E7007F49EA /* XWall.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -392,28 +395,28 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				2693F7251AB2E0A400A1F32F /* XFlatMirror.swift in Sources */,
-				2693F71E1AB2E0A400A1F32F /* XLens.swift in Sources */,
-				2693F7311AB2E3DE00A1F32F /* CGVector+XUtilityTest.swift in Sources */,
-				2693F7281AB2E0A400A1F32F /* XNode.swift in Sources */,
-				2693F7131AB2E09F00A1F32F /* XPlanck.swift in Sources */,
-				2693F7121AB2E09C00A1F32F /* XPhoton.swift in Sources */,
-				2693F7221AB2E0A400A1F32F /* XMirror.swift in Sources */,
-				2693F72C1AB2E0AC00A1F32F /* CGVector+XUtility.swift in Sources */,
-				2693F7201AB2E0A400A1F32F /* XConcaveLens.swift in Sources */,
-				2693F72E1AB2E0AC00A1F32F /* XConstant.swift in Sources */,
-				2693F7241AB2E0A400A1F32F /* XConvexMirror.swift in Sources */,
-				2693F72D1AB2E0AC00A1F32F /* XColor.swift in Sources */,
-				2693F71F1AB2E0A400A1F32F /* XFlatLens.swift in Sources */,
 				6227FC201AAE291F007F49EA /* XColorTest.swift in Sources */,
-				2693F7231AB2E0A400A1F32F /* XConcaveMirror.swift in Sources */,
-				2693F7271AB2E0A400A1F32F /* XWall.swift in Sources */,
-				2693F7111AB2E09900A1F32F /* XEmitter.swift in Sources */,
-				2693F7211AB2E0A400A1F32F /* XConvexLens.swift in Sources */,
-				2693F7261AB2E0A400A1F32F /* XInstrument.swift in Sources */,
-				2693F70F1AB2DFA700A1F32F /* XFlatMirrorTest.swift in Sources */,
-				2693F72F1AB2E0AC00A1F32F /* XMedium.swift in Sources */,
+				62988FED1AB2FA8800FD9AFF /* XConvexLens.swift in Sources */,
+				62988FD41AB2FA3400FD9AFF /* CGVector+XUtilityTest.swift in Sources */,
 				6227FB881AAE285C007F49EA /* PlanckTests.swift in Sources */,
+				62988FEE1AB2FA8800FD9AFF /* XMirror.swift in Sources */,
+				62988FF21AB2FA8800FD9AFF /* XInstrument.swift in Sources */,
+				62988FF51AB2FA8800FD9AFF /* CGVector+XUtility.swift in Sources */,
+				62988FEF1AB2FA8800FD9AFF /* XConcaveMirror.swift in Sources */,
+				62988FF71AB2FA8800FD9AFF /* XConstant.swift in Sources */,
+				62988FF11AB2FA8800FD9AFF /* XFlatMirror.swift in Sources */,
+				62988FF61AB2FA8800FD9AFF /* XColor.swift in Sources */,
+				62988FF01AB2FA8800FD9AFF /* XConvexMirror.swift in Sources */,
+				62988FEC1AB2FA8800FD9AFF /* XConcaveLens.swift in Sources */,
+				62988FF41AB2FA8800FD9AFF /* XNode.swift in Sources */,
+				62988FEB1AB2FA8800FD9AFF /* XFlatLens.swift in Sources */,
+				62988FEA1AB2FA8800FD9AFF /* XLens.swift in Sources */,
+				62988FE91AB2FA8800FD9AFF /* XPlanck.swift in Sources */,
+				62988FE71AB2FA8800FD9AFF /* XEmitter.swift in Sources */,
+				62988FF31AB2FA8800FD9AFF /* XWall.swift in Sources */,
+				62988FF81AB2FA8800FD9AFF /* XMedium.swift in Sources */,
+				62988FF91AB2FA8800FD9AFF /* XNote.swift in Sources */,
+				62988FE81AB2FA8800FD9AFF /* XPhoton.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

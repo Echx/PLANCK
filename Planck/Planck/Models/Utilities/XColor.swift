@@ -8,7 +8,7 @@
 
 import UIKit
 
-struct XColor : Equatable {
+struct XColor : Hashable {
     
     static let displayColors = [UIColor(red: 0, green: 0, blue: 0, alpha: 1),
         UIColor(red: 0, green: 0, blue: 1, alpha: 1),
@@ -22,6 +22,10 @@ struct XColor : Equatable {
     var containsRed: Bool
     var containsGreen: Bool
     var containsBlue: Bool
+    var hashValue: Int {
+        return displayColor.hashValue
+    }
+    
     var displayColor: UIColor {
         get {
             var index = 0

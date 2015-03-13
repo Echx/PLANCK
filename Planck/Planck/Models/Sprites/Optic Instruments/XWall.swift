@@ -7,7 +7,35 @@
 //
 
 import UIKit
+import SpriteKit
 
 class XWall: XInsrtument {
+    var direction: CGVector
     
+    init(direction: CGVector) {
+        self.direction = CGVector.vectorFromRadius(direction.angleFromXPlusScalar)
+        super.init(
+            texture: nil,
+            color: WallDefaults.textureColor,
+            size: WallDefaults.wallSize
+        );
+        
+        self.setUp()
+    }
+    
+    private func setUp() {
+        println("\(direction.angleFromYPlus)")
+        self.runAction(SKAction.rotateToAngle(-direction.angleFromYPlus, duration: 0.0));
+        self.setUpPhysicsProperties()
+
+    }
+    
+    private func setUpPhysicsProperties() {
+        self.physicsBody = SKPhysicsBody(rectangleOfSize: WallDefaults.wallSize)
+        self.physicsBody!.dynamic = true
+        self.physicsBody!.categoryBitMask = PhysicsCategory.wall
+        self.physicsBody!.contactTestBitMask = PhysicsCategory.photon
+        self.physicsBody!.collisionBitMask = PhysicsCategory.none
+        self.physicsBody!.usesPreciseCollisionDetection = true
+    }
 }
