@@ -70,53 +70,55 @@ class GameScene: SKScene, XEmitterDelegate, SKPhysicsContactDelegate {
         for touch: AnyObject in touches {
             let location = touch.locationInNode(self)
             
-            switch self.currentOpticalDeviceMode {
-            case LevelDesignerDefaults.buttonNameFlatMirror:
-                let mirror = XFlatMirror(direction: CGVector(dx: 1, dy: -1))
-                mirror.position = location
-                self.addChild(mirror)
-                mirror.zPosition = 999
-
-            case LevelDesignerDefaults.buttonNameEmitter:
-                let emitter = XEmitter(appearanceColor: XColor(index: random()%8), direction: CGVector(dx: 1, dy: 0))
-                emitter.position = location
-                self.addChild(emitter)
-                emitter.zPosition = 1000
-                emitter.delegate = self
-                emitter.fire()
-            case LevelDesignerDefaults.buttonNameWall:
-                let wall = XWall(direction: CGVector(dx: -1, dy: 0))
-                wall.position = location
-                self.addChild(wall)
-            case LevelDesignerDefaults.buttonNamePlanck:
-                let planck = XPlanck(mapping: [(XColor(index: 1), XNote.Null)])
-                planck.position = location
-                self.addChild(planck)
-                planck.zPosition = 998
-                
-            case LevelDesignerDefaults.buttonNameConvexLens:
-                let convexLen = XConvexLens(focus: 5, direction: CGVector(dx: 0, dy: 1))
-                convexLen.position = location
-                self.addChild(convexLen)
-//                convexLen.zPosition = 997
-                
-            case LevelDesignerDefaults.buttonNameEraser:
-                let eraserFrame = CGRectMake(
-                    location.x - LevelDesignerDefaults.eraserSize/2,
-                    location.y - LevelDesignerDefaults.eraserSize/2,
-                    LevelDesignerDefaults.eraserSize,
-                    LevelDesignerDefaults.eraserSize);
-                for node in self.children {
-                    if CGRectIntersectsRect(node.calculateAccumulatedFrame(), eraserFrame) {
-                        if let xNode = node as? XNode {
-                            node.removeFromParent();
+            if location.y > LevelDesignerDefaults.buttonHeight + LevelDesignerDefaults.interButtonSpace * 2 {
+                switch self.currentOpticalDeviceMode {
+                case LevelDesignerDefaults.buttonNameFlatMirror:
+                    let mirror = XFlatMirror(direction: CGVector(dx: 1, dy: -1))
+                    mirror.position = location
+                    self.addChild(mirror)
+                    mirror.zPosition = 999
+                    
+                case LevelDesignerDefaults.buttonNameEmitter:
+                    let emitter = XEmitter(appearanceColor: XColor(index: random()%8), direction: CGVector(dx: 1, dy: 0))
+                    emitter.position = location
+                    self.addChild(emitter)
+                    emitter.zPosition = 1000
+                    emitter.delegate = self
+                    emitter.fire()
+                case LevelDesignerDefaults.buttonNameWall:
+                    let wall = XWall(direction: CGVector(dx: -1, dy: 0))
+                    wall.position = location
+                    self.addChild(wall)
+                case LevelDesignerDefaults.buttonNamePlanck:
+                    let planck = XPlanck(mapping: [(XColor(index: 1), XNote.Null)])
+                    planck.position = location
+                    self.addChild(planck)
+                    planck.zPosition = 998
+                    
+                case LevelDesignerDefaults.buttonNameConvexLens:
+                    let convexLen = XConvexLens(focus: 5, direction: CGVector(dx: 0, dy: 1))
+                    convexLen.position = location
+                    self.addChild(convexLen)
+                    //                convexLen.zPosition = 997
+                    
+                case LevelDesignerDefaults.buttonNameEraser:
+                    let eraserFrame = CGRectMake(
+                        location.x - LevelDesignerDefaults.eraserSize/2,
+                        location.y - LevelDesignerDefaults.eraserSize/2,
+                        LevelDesignerDefaults.eraserSize,
+                        LevelDesignerDefaults.eraserSize);
+                    for node in self.children {
+                        if CGRectIntersectsRect(node.calculateAccumulatedFrame(), eraserFrame) {
+                            if let xNode = node as? XNode {
+                                node.removeFromParent();
+                            }
                         }
                     }
+                    
+                default:
+                    fatalError("optical device mode not recognized")
+                    
                 }
-                
-            default:
-                fatalError("optical device mode not recognized")
-                
             }
         }
     }
