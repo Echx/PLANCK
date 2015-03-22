@@ -23,6 +23,7 @@ typedef NS_OPTIONS(NSInteger, AGButtonControlEvent)
 @property (setter = setExclusiveTouch:, getter = isExclusiveTouch) BOOL exclusiveTouch;
 
 @property (strong, nonatomic) SKLabelNode *label;
+@property  NSInteger tag;
 
 
 //CLASS METHODS FOR CREATING BUTTON

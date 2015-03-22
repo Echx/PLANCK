@@ -78,12 +78,13 @@ struct MediumDescription {
 }
 
 struct LevelDesignerDefaults {
-    static let selectorButtonClicked: Selector = "buttonDidClickedWithName:"
+    static let selectorButtonClicked: Selector = "buttonDidClicked:"
     
-    static let buttonWidth: CGFloat = 200;
-    static let buttonHeight: CGFloat = 100;
+    static let buttonHeight: CGFloat = 60;
     static let buttonBackgroundColor: UIColor = UIColor.darkGrayColor()
     static let buttonLabelColor: UIColor = UIColor.lightGrayColor()
+    
+    static let interButtonSpace: CGFloat = 5;
     
     static let buttonNames = ["flat mirror", "emitter", "wall", "planck", "convex lens"]
     static let buttonNameFlatMirror = LevelDesignerDefaults.buttonNames[0]

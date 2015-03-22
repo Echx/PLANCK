@@ -9,7 +9,8 @@
 import SpriteKit
 
 class GameScene: SKScene, XEmitterDelegate, SKPhysicsContactDelegate {
-    let emitterButton = AGSpriteButton()
+    var panelButtons = [AGSpriteButton]()
+    let totalNumberOfDevices = LevelDesignerDefaults.buttonNames.count
     var currentOpticalDeviceMode: String = LevelDesignerDefaults.buttonNames[0]
     
     override func didMoveToView(view: SKView) {
@@ -17,36 +18,48 @@ class GameScene: SKScene, XEmitterDelegate, SKPhysicsContactDelegate {
         self.physicsWorld.contactDelegate = self
         
         self.setUpButtonPanel()
-        
+        self.updateButtonAppearance(selectedButton: self.panelButtons[0])
     }
     
     func setUpButtonPanel() {
-        let buttonInterSpace: CGFloat = CGFloat(UIScreen.mainScreen().bounds.width - CGFloat(LevelDesignerDefaults.buttonNames.count) * LevelDesignerDefaults.buttonWidth) / CGFloat(LevelDesignerDefaults.buttonNames.count + 1)
+        let buttonWidth = (UIScreen.mainScreen().bounds.width - CGFloat(self.totalNumberOfDevices + 1) * LevelDesignerDefaults.interButtonSpace)/CGFloat(self.totalNumberOfDevices)
         
-        for var i = 0; i < LevelDesignerDefaults.buttonNames.count; i++ {
+        for var i = 0; i < self.totalNumberOfDevices; i++ {
             let button = AGSpriteButton(
                 color: LevelDesignerDefaults.buttonBackgroundColor,
                 andSize: CGSize(
-                    width: LevelDesignerDefaults.buttonWidth,
+                    width: buttonWidth,
                     height: LevelDesignerDefaults.buttonHeight
                 )
             )
             
-            let positionX = CGFloat(i + 1) * buttonInterSpace + (CGFloat(i) + 0.5) * LevelDesignerDefaults.buttonWidth
-            let positionY = LevelDesignerDefaults.buttonHeight/2 + buttonInterSpace
+            let positionX = CGFloat(i + 1) * LevelDesignerDefaults.interButtonSpace + (CGFloat(i) + 0.5) * buttonWidth
+            let positionY = LevelDesignerDefaults.buttonHeight/2 + LevelDesignerDefaults.interButtonSpace
             
             button.position = CGPoint(x: positionX, y: positionY)
             button.setLabelWithText(LevelDesignerDefaults.buttonNames[i], andFont: nil, withColor: LevelDesignerDefaults.buttonLabelColor)
             button.name = LevelDesignerDefaults.buttonNames[i]
-            button.addTarget(self, selector: LevelDesignerDefaults.selectorButtonClicked, withObject: button.name, forControlEvent: AGButtonControlEvent.TouchUpInside)
+            button.addTarget(self, selector: LevelDesignerDefaults.selectorButtonClicked, withObject: button, forControlEvent: AGButtonControlEvent.TouchUpInside)
+            self.panelButtons.append(button)
             
             self.addChild(button)
         }
     }
     
-    func buttonDidClickedWithName(name: String?) {
-        if let selectedButtonName = name {
+    func buttonDidClicked(sender: AGSpriteButton?) {
+        if let selectedButtonName = sender?.name {
             self.currentOpticalDeviceMode = selectedButtonName;
+            updateButtonAppearance(selectedButton: sender);
+        }
+    }
+    
+    func updateButtonAppearance(#selectedButton: AGSpriteButton?) {
+        for button in self.panelButtons {
+            if button == selectedButton {
+                button.alpha = 1;
+            } else {
+                button.alpha = 0.5;
+            }
         }
     }
 

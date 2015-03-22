@@ -105,9 +105,9 @@
 {
     self.userInteractionEnabled = YES;
     self.exclusiveTouch = YES;
-    
-    actionTouchDown = [SKAction scaleBy:0.8 duration:0.1];
-    actionTouchUp = [SKAction scaleBy:1.25 duration:0.1];
+
+    actionTouchDown = [SKAction scaleTo:0.90 duration:0.1];
+    actionTouchUp = [SKAction scaleTo:1 duration:0.1];
     
 }
 
