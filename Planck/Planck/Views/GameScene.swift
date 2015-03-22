@@ -183,6 +183,11 @@ class GameScene: SKScene, XEmitterDelegate, SKPhysicsContactDelegate {
                             LevelDesignerDefaults.eraserSize);
                         for node in self.children {
                             if CGRectIntersectsRect(node.calculateAccumulatedFrame(), eraserFrame) {
+                                if let xNode = node as? XEmitter {
+                                    xNode.photon?.lightBeam.removeFromParent()
+                                    xNode.photon?.removeFromParent()
+                                }
+                                
                                 if let xNode = node as? XNode {
                                     node.removeFromParent();
                                 }

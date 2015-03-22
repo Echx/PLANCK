@@ -18,6 +18,7 @@ class XEmitter: XNode, NSCoding {
     var delegate: XEmitterDelegate?
     var appearanceColor: XColor
     var direction: CGVector
+    var photon: XPhoton?
     
     init(appearanceColor: XColor, direction: CGVector) {
         self.appearanceColor = appearanceColor
@@ -59,10 +60,11 @@ class XEmitter: XNode, NSCoding {
     }
     
     private func generateOpticalPath() {
-        let photon = XPhoton(appearanceColor: self.appearanceColor, direction: self.direction)
-        photon.position = self.position
-        CGPathMoveToPoint(photon.opticalPath, nil, photon.position.x, photon.position.y)
-        let action = SKAction.repeatActionForever(photon.getAction())
-        self.delegate?.emitterDidGenerateNewPhoton(self, photon: photon, andAction: action)
+        self.photon = XPhoton(appearanceColor: self.appearanceColor, direction: self.direction)
+        self.photon!.position = self.position
+        CGPathMoveToPoint(self.photon!.opticalPath, nil, self.photon!.position.x,
+            self.photon!.position.y)
+        let action = SKAction.repeatActionForever(self.photon!.getAction())
+        self.delegate?.emitterDidGenerateNewPhoton(self, photon: self.photon!, andAction: action)
     }
 }
