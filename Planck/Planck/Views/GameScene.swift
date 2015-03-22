@@ -39,6 +39,12 @@ class GameScene: SKScene, XEmitterDelegate, SKPhysicsContactDelegate {
                 wall.position = location
                 self.addChild(wall)
                 count++
+            } else if self.count == 3 {
+                let convexLen = XConvexLens(focus: 5, direction: CGVector(dx: 0, dy: 1))
+                convexLen.position = location
+                self.addChild(convexLen)
+//                convexLen.zPosition = 997
+                count++
             } else {
                 let emitter = XEmitter(appearanceColor: XColor(index: random()%8), direction: CGVector(dx: 1, dy: 0))
                 emitter.position = location
@@ -89,7 +95,6 @@ class GameScene: SKScene, XEmitterDelegate, SKPhysicsContactDelegate {
     
     
     // MARK - SKPhysicsContactDelegate
-
     func didBeginContact(contact: SKPhysicsContact) {
         var contactableNode: XContactable!
         var firstBody: SKPhysicsBody
@@ -105,6 +110,11 @@ class GameScene: SKScene, XEmitterDelegate, SKPhysicsContactDelegate {
         if ((firstBody.categoryBitMask & PhysicsCategory.flatMirror != 0) &&
             (secondBody.categoryBitMask & PhysicsCategory.photon != 0)) {
                 contactableNode = firstBody.node as XFlatMirror
+        }
+        
+        if ((firstBody.categoryBitMask & PhysicsCategory.convexLen != 0) &&
+            (secondBody.categoryBitMask & PhysicsCategory.photon != 0)) {
+                contactableNode = firstBody.node as XConvexLens
         }
         
         // receptor and photon contact

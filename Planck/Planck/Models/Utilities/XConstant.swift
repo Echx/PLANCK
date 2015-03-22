@@ -42,6 +42,11 @@ struct MirrorDefaults {
     static let textureColor = UIColor.blackColor()
 }
 
+struct LensDefaults {
+    static let convexLenSize = CGSizeMake(20, 100)
+    static let textureColor = UIColor.greenColor()
+}
+
 struct WallDefaults {
     static let wallSize = CGSizeMake(20, 500)
     static let textureColor = UIColor.blackColor()
@@ -60,6 +65,7 @@ struct PhysicsCategory {
     static let flatMirror: UInt32 = 0x1 << 1
     static let planck: UInt32 = 0x1 << 2
     static let wall: UInt32 = 0x1 << 3
+    static let convexLen: UInt32 = 0x1 << 4
 }
 
 struct MediumDescription {
