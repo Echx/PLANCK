@@ -52,6 +52,7 @@ struct PhotonDefaults {
 }
 
 struct EmitterDefualts {
+    static let nodeName = "emitter"
     static let textureImageName = "emitter"
     static let textureColor = UIColor.blackColor()
     static let diameter: CGFloat = 50

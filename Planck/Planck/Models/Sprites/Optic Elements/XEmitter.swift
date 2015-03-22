@@ -19,6 +19,7 @@ class XEmitter: XNode, NSCoding {
     var appearanceColor: XColor
     var direction: CGVector
     var photon: XPhoton?
+    var canFire = true
     
     init(appearanceColor: XColor, direction: CGVector) {
         self.appearanceColor = appearanceColor
