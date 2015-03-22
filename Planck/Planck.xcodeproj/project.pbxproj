@@ -60,6 +60,7 @@
 		62BC35541AB3096400B0B6F7 /* XContactableNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 62CB1FC11AB3068D00DC8EB8 /* XContactableNode.swift */; };
 		62BC35551AB3096900B0B6F7 /* GameScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6227FC091AAE28E7007F49EA /* GameScene.swift */; };
 		62CB1FC21AB3068D00DC8EB8 /* XContactableNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 62CB1FC11AB3068D00DC8EB8 /* XContactableNode.swift */; };
+		984F35D81ABF09F1008816C9 /* InstrumentNSCodingTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 984F35D71ABF09F1008816C9 /* InstrumentNSCodingTests.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -110,6 +111,7 @@
 		6227FC1F1AAE291F007F49EA /* XColorTest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = XColorTest.swift; sourceTree = "<group>"; };
 		62988FD31AB2FA3400FD9AFF /* CGVector+XUtilityTest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "CGVector+XUtilityTest.swift"; sourceTree = "<group>"; };
 		62CB1FC11AB3068D00DC8EB8 /* XContactableNode.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = XContactableNode.swift; sourceTree = "<group>"; };
+		984F35D71ABF09F1008816C9 /* InstrumentNSCodingTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InstrumentNSCodingTests.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -196,6 +198,7 @@
 				6227FC1E1AAE291F007F49EA /* Model */,
 				6227FB871AAE285C007F49EA /* PlanckTests.swift */,
 				6227FB851AAE285C007F49EA /* Supporting Files */,
+				984F35D71ABF09F1008816C9 /* InstrumentNSCodingTests.swift */,
 			);
 			path = PlanckTests;
 			sourceTree = "<group>";
@@ -219,6 +222,7 @@
 		6227FBF11AAE28E7007F49EA /* Models */ = {
 			isa = PBXGroup;
 			children = (
+				98D55F9C1ABF126700B3E86A /* Storage */,
 				6227FBF21AAE28E7007F49EA /* Sprites */,
 				6227FC031AAE28E7007F49EA /* Utilities */,
 			);
@@ -291,6 +295,13 @@
 				6227FC1F1AAE291F007F49EA /* XColorTest.swift */,
 			);
 			path = Model;
+			sourceTree = "<group>";
+		};
+		98D55F9C1ABF126700B3E86A /* Storage */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Storage;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -445,6 +456,7 @@
 				62BC35541AB3096400B0B6F7 /* XContactableNode.swift in Sources */,
 				62988FE91AB2FA8800FD9AFF /* XPlanck.swift in Sources */,
 				62BC35551AB3096900B0B6F7 /* GameScene.swift in Sources */,
+				984F35D81ABF09F1008816C9 /* InstrumentNSCodingTests.swift in Sources */,
 				62988FE71AB2FA8800FD9AFF /* XEmitter.swift in Sources */,
 				62988FF31AB2FA8800FD9AFF /* XWall.swift in Sources */,
 				62988FF81AB2FA8800FD9AFF /* XMedium.swift in Sources */,

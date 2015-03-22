@@ -26,6 +26,22 @@ class XConvexLens: XLens {
         
         self.setUp()
     }
+
+    required convenience override init(coder aDecoder: NSCoder) {
+        let direction = aDecoder.decodeCGVectorForKey(NSCodingKey.Direction)
+        let focus:CGFloat = CGFloat(aDecoder.decodeFloatForKey(NSCodingKey.Focus))
+        let rawEnumString = aDecoder.decodeObjectForKey(NSCodingKey.Medium1)! as Int
+        let medium = XMedium(rawValue: rawEnumString)!
+        self.init(focus: focus, direction: direction, medium: medium)
+        self.position = aDecoder.decodeCGPointForKey(NSCodingKey.Position)
+    }
+    
+    override func encodeWithCoder(aCoder: NSCoder) {
+        aCoder.encodeCGVector(direction, forKey: NSCodingKey.Direction)
+        aCoder.encodeCGPoint(self.position, forKey: NSCodingKey.Position)
+        aCoder.encodeFloat(Float(self.focus), forKey: NSCodingKey.Focus)
+        aCoder.encodeObject(self.medium.rawValue, forKey: NSCodingKey.Medium1)
+    }
     
     private func setUp() {
         self.runAction(SKAction.rotateToAngle(-direction.angleFromYPlus, duration: 0.0));

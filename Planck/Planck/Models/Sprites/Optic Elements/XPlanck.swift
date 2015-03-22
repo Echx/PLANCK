@@ -9,7 +9,7 @@
 import UIKit
 import SpriteKit
 
-class XPlanck: XInsrtument {
+class XPlanck: XInsrtument, NSCoding {
     private var colorNoteMapping = Dictionary<XColor, XNote>()
     override init() {
         super.init(
@@ -32,6 +32,15 @@ class XPlanck: XInsrtument {
         );
         
         self.setUp()
+    }
+
+    required convenience override init(coder aDecoder: NSCoder) {
+        self.init()
+        self.position = aDecoder.decodeCGPointForKey(NSCodingKey.Position)
+    }
+    
+    override func encodeWithCoder(aCoder: NSCoder) {
+        aCoder.encodeCGPoint(self.position, forKey: NSCodingKey.Position)
     }
     
     

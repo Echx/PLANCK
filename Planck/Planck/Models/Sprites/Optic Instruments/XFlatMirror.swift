@@ -22,6 +22,17 @@ class XFlatMirror: XMirror {
         
         self.setUp()
     }
+
+    required convenience override init(coder aDecoder: NSCoder) {
+        let direction = aDecoder.decodeCGVectorForKey(NSCodingKey.Direction)
+        self.init(direction: direction)
+        self.position = aDecoder.decodeCGPointForKey(NSCodingKey.Position)
+    }
+    
+    override func encodeWithCoder(aCoder: NSCoder) {
+        aCoder.encodeCGVector(direction, forKey: NSCodingKey.Direction)
+        aCoder.encodeCGPoint(self.position, forKey: NSCodingKey.Position)
+    }
     
     override func getNewDirectionAfterReflect(directionIn: CGVector) -> CGVector {
         if round(directionIn.angleFromXPlusScalar * Constant.angleCalculationPrecision) / Constant.angleCalculationPrecision

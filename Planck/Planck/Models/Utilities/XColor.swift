@@ -8,9 +8,9 @@
 
 import UIKit
 
-struct XColor : Hashable {
+class XColor : NSObject, Hashable, NSCoding {
     
-    static let displayColors = [UIColor(red: 0, green: 0, blue: 0, alpha: 1),
+    let displayColors = [UIColor(red: 0, green: 0, blue: 0, alpha: 1),
         UIColor(red: 0, green: 0, blue: 1, alpha: 1),
         UIColor(red: 0, green: 1, blue: 0, alpha: 1),
         UIColor(red: 0, green: 1, blue: 1, alpha: 1),
@@ -22,7 +22,7 @@ struct XColor : Hashable {
     var containsRed: Bool
     var containsGreen: Bool
     var containsBlue: Bool
-    var hashValue: Int {
+    override var hashValue: Int {
         return displayColor.hashValue
     }
     
@@ -42,11 +42,11 @@ struct XColor : Hashable {
                 index += 1
             }
             
-            return XColor.displayColors[index];
+            return displayColors[index];
         }
     }
     
-    init () {
+    override init () {
         self.containsRed = false
         self.containsGreen = true
         self.containsBlue = false
@@ -62,6 +62,20 @@ struct XColor : Hashable {
         self.containsRed = containsRed
         self.containsGreen = containsGreen
         self.containsBlue = containsBlue
+    }
+    
+    required convenience init(coder aDecoder: NSCoder) {
+        self.init()
+        self.containsRed = aDecoder.decodeBoolForKey(NSCodingKey.ColorRed)
+        self.containsGreen = aDecoder.decodeBoolForKey(NSCodingKey.ColorGreen)
+        self.containsBlue = aDecoder.decodeBoolForKey(NSCodingKey.ColorBlue)
+        
+    }
+    
+    func encodeWithCoder(aCoder: NSCoder) {
+        aCoder.encodeBool(self.containsRed, forKey: NSCodingKey.ColorRed)
+        aCoder.encodeBool(self.containsGreen, forKey: NSCodingKey.ColorGreen)
+        aCoder.encodeBool(self.containsBlue, forKey: NSCodingKey.ColorBlue)
     }
     
     func containsColor(color: XColor) -> Bool {
