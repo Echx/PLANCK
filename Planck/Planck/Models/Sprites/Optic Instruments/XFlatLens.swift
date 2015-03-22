@@ -24,7 +24,7 @@ class XFlatLens: XLens {
         self.setUp()
     }
 
-    required convenience override init(coder aDecoder: NSCoder) {
+    required convenience init(coder aDecoder: NSCoder) {
         let direction = aDecoder.decodeCGVectorForKey(NSCodingKey.Direction)
         let rawEnumString1 = aDecoder.decodeObjectForKey(NSCodingKey.Medium1)! as Int
         let rawEnumString2 = aDecoder.decodeObjectForKey(NSCodingKey.Medium2)! as Int

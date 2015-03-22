@@ -25,7 +25,7 @@ class XConvexLens: XLens {
         self.setUp()
     }
 
-    required convenience override init(coder aDecoder: NSCoder) {
+    required convenience init(coder aDecoder: NSCoder) {
         let direction = aDecoder.decodeCGVectorForKey(NSCodingKey.Direction)
         let focus:CGFloat = CGFloat(aDecoder.decodeFloatForKey(NSCodingKey.Focus))
         let rawEnumString = aDecoder.decodeObjectForKey(NSCodingKey.Medium1)! as Int

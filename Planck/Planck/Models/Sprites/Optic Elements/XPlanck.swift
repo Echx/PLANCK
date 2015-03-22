@@ -34,7 +34,7 @@ class XPlanck: XInsrtument, NSCoding {
         self.setUp()
     }
 
-    required convenience override init(coder aDecoder: NSCoder) {
+    required convenience init(coder aDecoder: NSCoder) {
         self.init()
         self.position = aDecoder.decodeCGPointForKey(NSCodingKey.Position)
     }

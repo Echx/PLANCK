@@ -20,7 +20,7 @@ class XWall: XInsrtument {
         self.setUp()
     }
 
-    required convenience override init(coder aDecoder: NSCoder) {
+    required convenience init(coder aDecoder: NSCoder) {
         let direction = aDecoder.decodeCGVectorForKey(NSCodingKey.Direction)
         self.init(direction: direction)
         self.position = aDecoder.decodeCGPointForKey(NSCodingKey.Position)
