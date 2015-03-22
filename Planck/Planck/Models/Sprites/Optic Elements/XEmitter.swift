@@ -5,7 +5,7 @@
 //  Created by Lei Mingyu on 10/03/15.
 //  Copyright (c) 2015 Echx. All rights reserved.
 //
-
+import Foundation
 import UIKit
 import SpriteKit
 
@@ -13,7 +13,7 @@ protocol XEmitterDelegate {
     func emitterDidGenerateNewPhoton(emitter: XEmitter, photon: XPhoton, andAction action: SKAction)
 }
 
-class XEmitter: XNode {
+class XEmitter: XInsrtument, NSCoding {
     
     var delegate: XEmitterDelegate?
     var appearanceColor: XColor
@@ -28,6 +28,19 @@ class XEmitter: XNode {
             size: CGSizeMake(EmitterDefualts.diameter, EmitterDefualts.diameter)
         );
         self.setUp()
+    }
+
+    required convenience override init(coder aDecoder: NSCoder) {
+        let color = aDecoder.decodeObjectForKey(NSCodingKey.ApperanceColor)! as XColor
+        let direction = aDecoder.decodeCGVectorForKey(NSCodingKey.Direction)
+        self.init(appearanceColor: color, direction: direction)
+        self.position = aDecoder.decodeCGPointForKey(NSCodingKey.Position)
+    }
+    
+    override func encodeWithCoder(aCoder: NSCoder) {
+        aCoder.encodeObject(self.appearanceColor, forKey: NSCodingKey.ApperanceColor)
+        aCoder.encodeCGVector(self.direction, forKey: NSCodingKey.Direction)
+        aCoder.encodeCGPoint(self.position, forKey: NSCodingKey.Position)
     }
     
     private func setUp() {

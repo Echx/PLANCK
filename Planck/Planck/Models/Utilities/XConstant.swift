@@ -13,6 +13,20 @@ struct Constant {
     static let angleCalculationPrecision: CGFloat = 1000 //1000 is 3 bit precision
 }
 
+struct NSCodingKey {
+    static let ColorRed = "RED"
+    static let ColorGreen = "GREEN"
+    static let ColorBlue = "BLUE"
+    
+    static let Position = "POSITION"
+    static let Direction = "DIRECTION"
+    static let ApperanceColor = "APPERANCE_COLOR"
+    static let Medium1 = "MEDIUM1"
+    static let Medium2 = "MEDIUM2"
+    
+    static let Focus = "FOCUS"
+}
+
 struct ActionKey {
     static let photonActionLinear = "PHOTON_ACTION_KEY_LINEAR"
     static let nodeActionShake = "NODE_ACTION_KEY_SHAKE"
