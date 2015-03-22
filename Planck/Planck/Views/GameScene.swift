@@ -12,6 +12,9 @@ class GameScene: SKScene, XEmitterDelegate, SKPhysicsContactDelegate {
     override func didMoveToView(view: SKView) {
         self.physicsWorld.gravity = CGVectorMake(0, 0)
         self.physicsWorld.contactDelegate = self
+        let button = AGSpriteButton(color: UIColor.greenColor(), andSize: CGSize(width: 200, height: 60))
+        button.position = CGPoint(x: self.size.width / 2, y: self.size.height / 2)
+        self.addChild(button)
     }
 
     var count = 0;

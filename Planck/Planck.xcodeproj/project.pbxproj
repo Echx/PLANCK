@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		262BE1A61ABE9A9000ABE965 /* AGSpriteButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 262BE1A51ABE9A9000ABE965 /* AGSpriteButton.m */; };
+		2635804A1ABE9F4000F87563 /* AGSpriteButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 262BE1A51ABE9A9000ABE965 /* AGSpriteButton.m */; };
 		267EC2D41AB1DA01002FE745 /* CGVector+XUtility.swift in Sources */ = {isa = PBXBuildFile; fileRef = 267EC2D31AB1DA01002FE745 /* CGVector+XUtility.swift */; };
 		620BD4461AB2E69800267C7B /* XNote.swift in Sources */ = {isa = PBXBuildFile; fileRef = 620BD4451AB2E69800267C7B /* XNote.swift */; };
 		6227FB6E1AAE285C007F49EA /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6227FB6D1AAE285C007F49EA /* AppDelegate.swift */; };
@@ -71,6 +73,9 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		262BE19F1ABE9A5D00ABE965 /* Planck-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Planck-Bridging-Header.h"; sourceTree = SOURCE_ROOT; };
+		262BE1A41ABE9A9000ABE965 /* AGSpriteButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AGSpriteButton.h; sourceTree = "<group>"; };
+		262BE1A51ABE9A9000ABE965 /* AGSpriteButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AGSpriteButton.m; sourceTree = "<group>"; };
 		267EC2D31AB1DA01002FE745 /* CGVector+XUtility.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "CGVector+XUtility.swift"; sourceTree = "<group>"; };
 		620BD4451AB2E69800267C7B /* XNote.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = XNote.swift; sourceTree = "<group>"; };
 		6227FB681AAE285C007F49EA /* Planck.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Planck.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -125,6 +130,23 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		262BE1A21ABE9A9000ABE965 /* Library */ = {
+			isa = PBXGroup;
+			children = (
+				262BE1A31ABE9A9000ABE965 /* AGSpriteButton */,
+			);
+			path = Library;
+			sourceTree = "<group>";
+		};
+		262BE1A31ABE9A9000ABE965 /* AGSpriteButton */ = {
+			isa = PBXGroup;
+			children = (
+				262BE1A41ABE9A9000ABE965 /* AGSpriteButton.h */,
+				262BE1A51ABE9A9000ABE965 /* AGSpriteButton.m */,
+			);
+			path = AGSpriteButton;
+			sourceTree = "<group>";
+		};
 		6227FB5F1AAE285C007F49EA = {
 			isa = PBXGroup;
 			children = (
@@ -146,10 +168,12 @@
 		6227FB6A1AAE285C007F49EA /* Planck */ = {
 			isa = PBXGroup;
 			children = (
+				262BE1A21ABE9A9000ABE965 /* Library */,
 				6227FBEF1AAE28E7007F49EA /* Controllers */,
 				6227FBF11AAE28E7007F49EA /* Models */,
 				6227FC071AAE28E7007F49EA /* Views */,
 				6227FB6D1AAE285C007F49EA /* AppDelegate.swift */,
+				262BE19F1ABE9A5D00ABE965 /* Planck-Bridging-Header.h */,
 				6227FB751AAE285C007F49EA /* Main.storyboard */,
 				6227FB781AAE285C007F49EA /* Images.xcassets */,
 				6227FB7A1AAE285C007F49EA /* LaunchScreen.xib */,
@@ -392,6 +416,7 @@
 				6227FC161AAE28E7007F49EA /* XMirror.swift in Sources */,
 				6227FC191AAE28E7007F49EA /* XColor.swift in Sources */,
 				620BD4461AB2E69800267C7B /* XNote.swift in Sources */,
+				262BE1A61ABE9A9000ABE965 /* AGSpriteButton.m in Sources */,
 				6227FC171AAE28E7007F49EA /* XWall.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -407,6 +432,7 @@
 				62988FEE1AB2FA8800FD9AFF /* XMirror.swift in Sources */,
 				62988FF21AB2FA8800FD9AFF /* XInstrument.swift in Sources */,
 				62988FF51AB2FA8800FD9AFF /* CGVector+XUtility.swift in Sources */,
+				2635804A1ABE9F4000F87563 /* AGSpriteButton.m in Sources */,
 				62988FEF1AB2FA8800FD9AFF /* XConcaveMirror.swift in Sources */,
 				62988FF71AB2FA8800FD9AFF /* XConstant.swift in Sources */,
 				62988FF11AB2FA8800FD9AFF /* XFlatMirror.swift in Sources */,
@@ -495,6 +521,7 @@
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = iphoneos;
+				SWIFT_OBJC_BRIDGING_HEADER = "Planck-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				TARGETED_DEVICE_FAMILY = 2;
 			};
@@ -531,6 +558,7 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 8.1;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				SDKROOT = iphoneos;
+				SWIFT_OBJC_BRIDGING_HEADER = "Planck-Bridging-Header.h";
 				TARGETED_DEVICE_FAMILY = 2;
 				VALIDATE_PRODUCT = YES;
 			};
@@ -540,10 +568,13 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_MODULES = YES;
 				INFOPLIST_FILE = Planck/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.1;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "Planck-Bridging-Header.h";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 			};
 			name = Debug;
 		};
@@ -551,10 +582,12 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_MODULES = YES;
 				INFOPLIST_FILE = Planck/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.1;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "Planck-Bridging-Header.h";
 			};
 			name = Release;
 		};
