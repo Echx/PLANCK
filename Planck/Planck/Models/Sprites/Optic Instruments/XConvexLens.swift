@@ -33,7 +33,7 @@ class XConvexLens: XLens {
     }
     
     private func setUpPhysicsProperties() {
-        self.physicsBody = SKPhysicsBody(rectangleOfSize: MirrorDefaults.flatMirrorSize)
+        self.physicsBody = SKPhysicsBody(rectangleOfSize: LensDefaults.convexLenSize)
         self.physicsBody!.dynamic = false
         self.physicsBody!.categoryBitMask = PhysicsCategory.convexLen
         self.physicsBody!.contactTestBitMask = PhysicsCategory.photon

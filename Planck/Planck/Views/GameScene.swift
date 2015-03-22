@@ -93,12 +93,11 @@ class GameScene: SKScene, XEmitterDelegate, SKPhysicsContactDelegate {
                     planck.position = location
                     self.addChild(planck)
                     planck.zPosition = 998
-                    
-                case LevelDesignerDefaults.buttonNameConvexLens:
-                    let convexLen = XConvexLens(focus: 5, direction: CGVector(dx: 0, dy: 1), medium: .Vacuum)
-                    convexLen.position = location
-                    self.addChild(convexLen)
-                    //                convexLen.zPosition = 997
+                case LevelDesignerDefaults.buttonNameFlatLen:
+                    let flatLen = XFlatLens(direction: CGVector(dx: 0, dy: 1), medium1: .Vacuum, medium2: .Water)
+                    flatLen.position = location
+                    self.addChild(flatLen)
+                    flatLen.zPosition = 997
                     
                 case LevelDesignerDefaults.buttonNameEraser:
                     let eraserFrame = CGRectMake(
@@ -178,9 +177,9 @@ class GameScene: SKScene, XEmitterDelegate, SKPhysicsContactDelegate {
                 contactableNode = firstBody.node as XFlatMirror
         }
         
-        if ((firstBody.categoryBitMask & PhysicsCategory.convexLen != 0) &&
+        if ((firstBody.categoryBitMask & PhysicsCategory.flatLen != 0) &&
             (secondBody.categoryBitMask & PhysicsCategory.photon != 0)) {
-                contactableNode = firstBody.node as XConvexLens
+                contactableNode = firstBody.node as XFlatLens
         }
         
         // receptor and photon contact
