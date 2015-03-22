@@ -11,7 +11,7 @@ import SpriteKit
 
 class XPlanck: XInsrtument {
     private var colorNoteMapping = Dictionary<XColor, XNote>()
-    override init() {
+    init() {
         super.init(
             texture: nil,
             color: PlanckDefaults.textureColor,

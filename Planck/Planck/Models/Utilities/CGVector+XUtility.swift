@@ -81,8 +81,13 @@ extension CGVector {
         }
     }
     
+    //start from x plus
     static func vectorFromRadius(radius: CGFloat) -> CGVector{
         return CGVectorMake(cos(radius), sin(radius))
+    }
+    
+    static func vectorFromYPlusRadius(radius: CGFloat) -> CGVector {
+        return CGVectorMake(sin(radius), cos(radius))
     }
     
     static func dot(v1: CGVector, v2: CGVector) -> CGFloat {

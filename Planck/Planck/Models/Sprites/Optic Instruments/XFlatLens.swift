@@ -25,7 +25,6 @@ class XFlatLens: XLens {
     }
     
     private func setUp() {
-        self.runAction(SKAction.rotateToAngle(-direction.angleFromYPlus, duration: 0.0));
         self.setUpPhysicsProperties()
     }
     

@@ -22,6 +22,10 @@ struct NodeName {
     static let xPhoton = "X_PHOTON"
 }
 
+struct InstrumentDefaults {
+    static let direction = CGVectorMake(0, 1)
+}
+
 struct PhotonDefaults {
     static let diameter: CGFloat = 10    //measured in points
     static let illuminance: CGFloat = 1.0   //0.0 to 1.0
@@ -91,6 +95,7 @@ struct MediumDescription {
 
 struct LevelDesignerDefaults {
     static let selectorButtonClicked: Selector = "buttonDidClicked:"
+    static let selectorFunctionalButtonClicked: Selector = "functionalButtonDidClicked:"
     
     static let buttonHeight: CGFloat = 60;
     static let buttonBackgroundColor: UIColor = UIColor.darkGrayColor()
@@ -105,6 +110,9 @@ struct LevelDesignerDefaults {
     static let buttonNamePlanck = LevelDesignerDefaults.buttonNames[3]
     static let buttonNameInterface = LevelDesignerDefaults.buttonNames[4]
     static let buttonNameEraser = LevelDesignerDefaults.buttonNames[5]
+    
+    static let functionalButtonNames = ["add item"]
+    static let functionalButtonNameAddItem = LevelDesignerDefaults.functionalButtonNames[0]
     
     static let eraserSize: CGFloat = 20;
 }
