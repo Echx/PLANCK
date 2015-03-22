@@ -1,7 +1,7 @@
 language: objective-c
 before_script:
     - brew update && brew upgrade xctool
-xcode_workspace: /Planck/Planck.xcodeproj
+xcode_project: /Planck/Planck.xcodeproj
 xcode_scheme: Planck
 xcode_sdk: iphonesimulator
 notifications:
