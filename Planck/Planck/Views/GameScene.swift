@@ -16,7 +16,11 @@ class GameScene: SKScene, XEmitterDelegate, SKPhysicsContactDelegate {
         self.physicsWorld.gravity = CGVectorMake(0, 0)
         self.physicsWorld.contactDelegate = self
         
+        self.setUpButtonPanel()
         
+    }
+    
+    func setUpButtonPanel() {
         let buttonInterSpace: CGFloat = CGFloat(UIScreen.mainScreen().bounds.width - CGFloat(LevelDesignerDefaults.buttonNames.count) * LevelDesignerDefaults.buttonWidth) / CGFloat(LevelDesignerDefaults.buttonNames.count + 1)
         
         for var i = 0; i < LevelDesignerDefaults.buttonNames.count; i++ {
@@ -34,12 +38,11 @@ class GameScene: SKScene, XEmitterDelegate, SKPhysicsContactDelegate {
             button.position = CGPoint(x: positionX, y: positionY)
             button.setLabelWithText(LevelDesignerDefaults.buttonNames[i], andFont: nil, withColor: LevelDesignerDefaults.buttonLabelColor)
             button.name = LevelDesignerDefaults.buttonNames[i]
-            button.addTarget(self, selector: "buttonDidClickedWithName:", withObject: button.name, forControlEvent: AGButtonControlEvent.TouchUpInside)
+            button.addTarget(self, selector: LevelDesignerDefaults.selectorButtonClicked, withObject: button.name, forControlEvent: AGButtonControlEvent.TouchUpInside)
             
             self.addChild(button)
         }
     }
-    
     
     func buttonDidClickedWithName(name: String?) {
         if let selectedButtonName = name {

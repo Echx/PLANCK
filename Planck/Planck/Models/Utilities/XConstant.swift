@@ -72,6 +72,8 @@ struct MediumDescription {
 }
 
 struct LevelDesignerDefaults {
+    static let selectorButtonClicked: Selector = "buttonDidClickedWithName:"
+    
     static let buttonWidth: CGFloat = 200;
     static let buttonHeight: CGFloat = 100;
     static let buttonBackgroundColor: UIColor = UIColor.darkGrayColor()
