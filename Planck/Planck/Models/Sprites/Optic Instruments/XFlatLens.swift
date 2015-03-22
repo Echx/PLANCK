@@ -40,7 +40,8 @@ class XFlatLens: XLens {
         self.physicsBody!.usesPreciseCollisionDetection = true
     }
     
-    override func getNewDirectionAfterRefract(direction: CGVector) -> CGVector {
+    override func getNewDirectionAfterRefract(position: CGPoint, direction: CGVector) -> CGVector {
+        
         return CGVector(dx: 0.5, dy: 0.5);
     }
 }
@@ -48,8 +49,10 @@ class XFlatLens: XLens {
 extension XFlatLens: XContactable {
     func contactWithPhoton(photon: XPhoton) {
         photon.removeActionForKey(ActionKey.photonActionLinear)
-        let direction = self.getNewDirectionAfterRefract(photon.direction)
+        let direction = self.getNewDirectionAfterRefract(photon.position,
+                                                         direction: photon.direction)
         photon.setDirection(direction)
-        photon.runAction(SKAction.repeatActionForever(photon.getAction()), withKey: ActionKey.photonActionLinear)
+        photon.runAction(SKAction.repeatActionForever(photon.getAction()),
+                                    withKey: ActionKey.photonActionLinear)
     }
 }

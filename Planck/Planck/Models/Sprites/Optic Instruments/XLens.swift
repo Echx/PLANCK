@@ -10,7 +10,7 @@ import UIKit
 import SpriteKit
 
 class XLens: XInsrtument {
-    func getNewDirectionAfterRefract(direction: CGVector) -> CGVector {
+    func getNewDirectionAfterRefract(position: CGPoint, direction: CGVector) -> CGVector {
         return CGVector.zeroVector
     }
 }
