@@ -13,7 +13,7 @@ protocol XEmitterDelegate {
     func emitterDidGenerateNewPhoton(emitter: XEmitter, photon: XPhoton, andAction action: SKAction)
 }
 
-class XEmitter: XInsrtument, NSCoding {
+class XEmitter: XNode, NSCoding {
     
     var delegate: XEmitterDelegate?
     var appearanceColor: XColor

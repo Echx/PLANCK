@@ -36,6 +36,10 @@ struct NodeName {
     static let xPhoton = "X_PHOTON"
 }
 
+struct InstrumentDefaults {
+    static let direction = CGVectorMake(0, 1)
+}
+
 struct PhotonDefaults {
     static let diameter: CGFloat = 10    //measured in points
     static let illuminance: CGFloat = 1.0   //0.0 to 1.0
@@ -55,6 +59,12 @@ struct EmitterDefualts {
 struct MirrorDefaults {
     static let flatMirrorSize = CGSizeMake(20, 100)
     static let textureColor = UIColor.blackColor()
+}
+
+struct InterfaceDefaults {
+    static let thickness: CGFloat = 2
+    static let length: CGFloat = 200
+    static let color = UIColor.blackColor()
 }
 
 struct LensDefaults {
@@ -83,8 +93,9 @@ struct PhysicsCategory {
     static let flatMirror: UInt32 = 0x1 << 1
     static let planck: UInt32 = 0x1 << 2
     static let wall: UInt32 = 0x1 << 3
-    static let flatLen: UInt32 = 0x1 << 4
-    static let convexLen: UInt32 = 0x1 << 5
+    static let interface: UInt32 = 0x1 << 4
+    static let flatLen: UInt32 = 0x1 << 5
+    static let convexLen: UInt32 = 0x1 << 6
 }
 
 struct MediumDescription {
@@ -98,6 +109,7 @@ struct MediumDescription {
 
 struct LevelDesignerDefaults {
     static let selectorButtonClicked: Selector = "buttonDidClicked:"
+    static let selectorFunctionalButtonClicked: Selector = "functionalButtonDidClicked:"
     
     static let buttonHeight: CGFloat = 60;
     static let buttonBackgroundColor: UIColor = UIColor.darkGrayColor()
@@ -105,13 +117,16 @@ struct LevelDesignerDefaults {
     
     static let interButtonSpace: CGFloat = 5;
     
-    static let buttonNames = ["flat mirror", "emitter", "wall", "planck", "Flat Len", "eraser"]
+    static let buttonNames = ["flat mirror", "emitter", "wall", "planck", "interface", "eraser"]
     static let buttonNameFlatMirror = LevelDesignerDefaults.buttonNames[0]
     static let buttonNameEmitter = LevelDesignerDefaults.buttonNames[1]
     static let buttonNameWall = LevelDesignerDefaults.buttonNames[2]
     static let buttonNamePlanck = LevelDesignerDefaults.buttonNames[3]
-    static let buttonNameFlatLen = LevelDesignerDefaults.buttonNames[4]
+    static let buttonNameInterface = LevelDesignerDefaults.buttonNames[4]
     static let buttonNameEraser = LevelDesignerDefaults.buttonNames[5]
+    
+    static let functionalButtonNames = ["add item"]
+    static let functionalButtonNameAddItem = LevelDesignerDefaults.functionalButtonNames[0]
     
     static let eraserSize: CGFloat = 20;
 }

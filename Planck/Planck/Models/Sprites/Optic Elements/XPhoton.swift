@@ -91,7 +91,7 @@ class XPhoton: XNode {
     
     //get the light speed in the provide medium
     private func getSpeedInMedium(medium: XMedium) -> CGFloat {
-        return Constant.lightSpeedBase / medium.getRefractiveIndex()
+        return Constant.lightSpeedBase / medium.refractiveIndex
     }
     
     

@@ -11,23 +11,21 @@ import SpriteKit
 
 class XConvexLens: XLens {
     var focus:CGFloat
-    var direction: CGVector
     var medium: XMedium
     
     init(focus: CGFloat, direction: CGVector, medium: XMedium) {
         self.focus = focus
-        self.direction = CGVector.vectorFromRadius(direction.angleFromXPlusScalar)
         self.medium = medium
         super.init(
             texture: nil,
             color: LensDefaults.textureColor,
             size: LensDefaults.convexLenSize
         );
-        
+        self.direction = CGVector.vectorFromRadius(direction.angleFromXPlusScalar)
         self.setUp()
     }
 
-    required convenience override init(coder aDecoder: NSCoder) {
+    required convenience init(coder aDecoder: NSCoder) {
         let direction = aDecoder.decodeCGVectorForKey(NSCodingKey.Direction)
         let focus:CGFloat = CGFloat(aDecoder.decodeFloatForKey(NSCodingKey.Focus))
         let rawEnumString = aDecoder.decodeObjectForKey(NSCodingKey.Medium1)! as Int
@@ -44,7 +42,6 @@ class XConvexLens: XLens {
     }
     
     private func setUp() {
-        self.runAction(SKAction.rotateToAngle(-direction.angleFromYPlus, duration: 0.0));
         self.setUpPhysicsProperties()
     }
     

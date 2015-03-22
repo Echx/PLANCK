@@ -10,20 +10,17 @@ import UIKit
 import SpriteKit
 
 class XFlatMirror: XMirror {
-    var direction: CGVector
-    
     init(direction: CGVector) {
-        self.direction = CGVector.vectorFromRadius(direction.angleFromXPlusScalar)
         super.init(
             texture: nil,
             color: MirrorDefaults.textureColor,
             size: MirrorDefaults.flatMirrorSize
         );
-        
+        self.direction = CGVector.vectorFromRadius(direction.angleFromXPlusScalar)
         self.setUp()
     }
 
-    required convenience override init(coder aDecoder: NSCoder) {
+    required convenience init(coder aDecoder: NSCoder) {
         let direction = aDecoder.decodeCGVectorForKey(NSCodingKey.Direction)
         self.init(direction: direction)
         self.position = aDecoder.decodeCGPointForKey(NSCodingKey.Position)
@@ -47,7 +44,6 @@ class XFlatMirror: XMirror {
     }
     
     private func setUp() {
-        self.runAction(SKAction.rotateToAngle(-direction.angleFromYPlus, duration: 0.0));
         self.setUpPhysicsProperties()
     }
     

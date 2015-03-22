@@ -11,7 +11,7 @@ import SpriteKit
 
 class XPlanck: XInsrtument, NSCoding {
     private var colorNoteMapping = Dictionary<XColor, XNote>()
-    override init() {
+    init() {
         super.init(
             texture: nil,
             color: PlanckDefaults.textureColor,
@@ -34,7 +34,7 @@ class XPlanck: XInsrtument, NSCoding {
         self.setUp()
     }
 
-    required convenience override init(coder aDecoder: NSCoder) {
+    required convenience init(coder aDecoder: NSCoder) {
         self.init()
         self.position = aDecoder.decodeCGPointForKey(NSCodingKey.Position)
     }

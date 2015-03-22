@@ -10,20 +10,17 @@ import UIKit
 import SpriteKit
 
 class XWall: XInsrtument {
-    var direction: CGVector
-    
     init(direction: CGVector) {
-        self.direction = CGVector.vectorFromRadius(direction.angleFromXPlusScalar)
         super.init(
             texture: nil,
             color: WallDefaults.textureColor,
             size: WallDefaults.wallSize
         );
-        
+        self.direction = CGVector.vectorFromRadius(direction.angleFromXPlusScalar)
         self.setUp()
     }
 
-    required convenience override init(coder aDecoder: NSCoder) {
+    required convenience init(coder aDecoder: NSCoder) {
         let direction = aDecoder.decodeCGVectorForKey(NSCodingKey.Direction)
         self.init(direction: direction)
         self.position = aDecoder.decodeCGPointForKey(NSCodingKey.Position)

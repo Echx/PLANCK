@@ -12,7 +12,13 @@ enum XMedium: Int {
     case Vacuum = 0
     case Air, Water, OliveOil, CrownGlass, FlintGlass
     
-    func getRefractiveIndex() -> CGFloat {
+    var refractiveIndex: CGFloat {
+        get {
+            return self.getRefractiveIndex()
+        }
+    }
+    
+    private func getRefractiveIndex() -> CGFloat {
         switch self {
             
         case .Vacuum:

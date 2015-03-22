@@ -9,12 +9,10 @@
 import UIKit
 
 class XFlatLens: XLens {
-    var direction: CGVector
     var medium1: XMedium
     var medium2: XMedium
     
     init(direction: CGVector, medium1: XMedium, medium2: XMedium) {
-        self.direction = CGVector.vectorFromRadius(direction.angleFromXPlusScalar)
         self.medium1 = medium1
         self.medium2 = medium2
         super.init(
@@ -22,11 +20,11 @@ class XFlatLens: XLens {
             color: LensDefaults.flatLenColor,
             size: LensDefaults.flatLenSize
         );
-        
+        self.direction = CGVector.vectorFromRadius(direction.angleFromXPlusScalar)
         self.setUp()
     }
 
-    required convenience override init(coder aDecoder: NSCoder) {
+    required convenience init(coder aDecoder: NSCoder) {
         let direction = aDecoder.decodeCGVectorForKey(NSCodingKey.Direction)
         let rawEnumString1 = aDecoder.decodeObjectForKey(NSCodingKey.Medium1)! as Int
         let rawEnumString2 = aDecoder.decodeObjectForKey(NSCodingKey.Medium2)! as Int
@@ -45,7 +43,6 @@ class XFlatLens: XLens {
 
     
     private func setUp() {
-        self.runAction(SKAction.rotateToAngle(-direction.angleFromYPlus, duration: 0.0));
         self.setUpPhysicsProperties()
     }
     
