@@ -12,16 +12,66 @@ class GameScene: SKScene, XEmitterDelegate, SKPhysicsContactDelegate {
     var panelButtons = [AGSpriteButton]()
     let totalNumberOfDevices = LevelDesignerDefaults.buttonNames.count
     var currentOpticalDeviceMode: String = LevelDesignerDefaults.buttonNames[0]
+    var selectedNode: XNode?
     
     override func didMoveToView(view: SKView) {
         self.physicsWorld.gravity = CGVectorMake(0, 0)
         self.physicsWorld.contactDelegate = self
-        
         self.setUpButtonPanel()
-        self.updateButtonAppearance(selectedButton: self.panelButtons[0])
+        self.setUpPanGestureRecognizer()
+        
+        let emitter = XEmitter(appearanceColor: XColor(index: random()%8), direction: CGVector(dx: 1, dy: 0))
+        emitter.position = CGPointMake(self.size.width/2, self.size.height/2)
+        self.addChild(emitter)
+        emitter.zPosition = 1000
+        emitter.delegate = self
+        emitter.fire()
+        
+    }
+
+    private func setUpPanGestureRecognizer() {
+        let panGestureRecognizer = UIPanGestureRecognizer(target: self, action: "handlePanGesture:")
+        self.view?.addGestureRecognizer(panGestureRecognizer)
     }
     
-    func setUpButtonPanel() {
+    private func selectNodeAtPosition(position: CGPoint) -> Bool{
+        if let touchedNode = self.nodeAtPoint(position) as? XNode {
+            if touchedNode != self.selectedNode {
+                self.selectedNode = touchedNode
+            }
+            return true
+        }
+        return false
+    }
+    
+    private func radius(degree: CGFloat) -> CGFloat {
+        return  degree / 180.0  * CGFloat(M_PI)
+    }
+    
+    
+    func handlePanGesture(sender: UIPanGestureRecognizer) {
+        let position = sender.locationInView(sender.view);
+        if sender.state == UIGestureRecognizerState.Began {
+            self.selectNodeAtPosition(self.convertPointFromView(position))
+        } else if sender.state == UIGestureRecognizerState.Changed {
+            var translation = sender.translationInView(sender.view!)
+            translation = CGPointMake(translation.x, -translation.y)
+            self.panForTranslation(translation)
+            sender.setTranslation(CGPointZero, inView: sender.view)
+        } else if sender.state == UIGestureRecognizerState.Ended {
+        }
+
+    }
+    
+    private func panForTranslation(translation: CGPoint) {
+        if let selectedNode = self.selectedNode {
+            let position = selectedNode.position
+            self.selectedNode?.position = CGPointMake(position.x + translation.x, position.y + translation.y)
+        }
+
+    }
+    
+    private func setUpButtonPanel() {
         let buttonWidth = (UIScreen.mainScreen().bounds.width - CGFloat(self.totalNumberOfDevices + 1) * LevelDesignerDefaults.interButtonSpace)/CGFloat(self.totalNumberOfDevices)
         
         for var i = 0; i < self.totalNumberOfDevices; i++ {
@@ -44,6 +94,7 @@ class GameScene: SKScene, XEmitterDelegate, SKPhysicsContactDelegate {
             
             self.addChild(button)
         }
+        self.updateButtonAppearance(selectedButton: self.panelButtons[0])
     }
     
     func buttonDidClicked(sender: AGSpriteButton?) {
@@ -53,7 +104,7 @@ class GameScene: SKScene, XEmitterDelegate, SKPhysicsContactDelegate {
         }
     }
     
-    func updateButtonAppearance(#selectedButton: AGSpriteButton?) {
+    private func updateButtonAppearance(#selectedButton: AGSpriteButton?) {
         for button in self.panelButtons {
             if button == selectedButton {
                 button.alpha = 1;
@@ -69,6 +120,12 @@ class GameScene: SKScene, XEmitterDelegate, SKPhysicsContactDelegate {
         
         for touch: AnyObject in touches {
             let location = touch.locationInNode(self)
+            
+            if self.selectNodeAtPosition(location) &&
+                self.currentOpticalDeviceMode != LevelDesignerDefaults.buttonNameEraser {
+                return
+            }
+            
             if location.y > LevelDesignerDefaults.buttonHeight + LevelDesignerDefaults.interButtonSpace * 2 {
                 switch self.currentOpticalDeviceMode {
                 case LevelDesignerDefaults.buttonNameFlatMirror:
@@ -193,7 +250,10 @@ class GameScene: SKScene, XEmitterDelegate, SKPhysicsContactDelegate {
             (secondBody.categoryBitMask & PhysicsCategory.photon != 0)) {
                 contactableNode = firstBody.node as XWall
         }
-        contactableNode.contactWithPhoton(secondBody.node as XPhoton)
+        
+        if let photon = secondBody.node as? XPhoton {
+            contactableNode.contactWithPhoton(photon)
+        }
     }
     
     // MARK - XEmitterDelegate

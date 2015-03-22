@@ -15,6 +15,7 @@ struct Constant {
 
 struct ActionKey {
     static let photonActionLinear = "PHOTON_ACTION_KEY_LINEAR"
+    static let nodeActionShake = "NODE_ACTION_KEY_SHAKE"
 }
 
 struct NodeName {
