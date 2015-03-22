@@ -35,12 +35,26 @@ class GameScene: SKScene, XEmitterDelegate, SKPhysicsContactDelegate {
     private func selectNodeAtPosition(position: CGPoint) -> Bool{
         if let touchedNode = self.nodeAtPoint(position) as? XNode {
             if touchedNode != self.selectedNode {
+                self.deselectCurrentNode()
                 self.selectedNode = touchedNode
+                
+                let shakeAction = SKAction.sequence([
+                        SKAction.rotateByAngle(self.radius(-4), duration: 0.1),
+                        SKAction.rotateByAngle(self.radius(0), duration: 0.1),
+                        SKAction.rotateByAngle(self.radius(4), duration: 0.1)
+                    ])
+                self.selectedNode?.runAction(SKAction.repeatActionForever(shakeAction), withKey: ActionKey.nodeActionShake)
             }
             return true
         }
         return false
     }
+    
+    private func deselectCurrentNode() {
+        self.selectedNode?.removeActionForKey(ActionKey.nodeActionShake)
+        self.selectedNode?.runAction(SKAction.rotateToAngle(0, duration: 0.1))
+    }
+    
     
     private func radius(degree: CGFloat) -> CGFloat {
         return  degree / 180.0  * CGFloat(M_PI)
@@ -194,6 +208,12 @@ class GameScene: SKScene, XEmitterDelegate, SKPhysicsContactDelegate {
                         
                     }
                 }
+            }
+        } else {
+            for touch: AnyObject in touches {
+                let location = touch.locationInNode(self)
+                self.selectNodeAtPosition(location)
+                break
             }
         }
     }
