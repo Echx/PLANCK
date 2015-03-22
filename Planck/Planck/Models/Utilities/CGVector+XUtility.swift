@@ -88,4 +88,25 @@ extension CGVector {
     static func dot(v1: CGVector, v2: CGVector) -> CGFloat {
         return v1.dx * v2.dx + v1.dy * v2.dy
     }
+    
+    static func angleBetween(v1: CGVector, v2: CGVector) -> CGFloat {
+        let dotProduct = dot(v1, v2: v2)
+        let magnitude = v1.length * v2.length
+        
+        if (magnitude == 0) {
+            return 0;
+        }
+        
+        var temp = dotProduct / magnitude
+        if (temp > 1.0) {
+            temp = 1.0
+        } else if (temp < -1.0) {
+            temp = -1.0
+        }
+        return acos(temp)
+    }
+    
+    func makePerpendicularVector() -> CGVector {
+        return CGVectorMake(-self.dy, self.dx);
+    }
 }
