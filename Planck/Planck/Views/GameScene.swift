@@ -100,6 +100,20 @@ class GameScene: SKScene, XEmitterDelegate, SKPhysicsContactDelegate {
                 self.addChild(convexLen)
 //                convexLen.zPosition = 997
                 
+            case LevelDesignerDefaults.buttonNameEraser:
+                let eraserFrame = CGRectMake(
+                    location.x - LevelDesignerDefaults.eraserSize/2,
+                    location.y - LevelDesignerDefaults.eraserSize/2,
+                    LevelDesignerDefaults.eraserSize,
+                    LevelDesignerDefaults.eraserSize);
+                for node in self.children {
+                    if CGRectIntersectsRect(node.calculateAccumulatedFrame(), eraserFrame) {
+                        if let xNode = node as? XNode {
+                            node.removeFromParent();
+                        }
+                    }
+                }
+                
             default:
                 fatalError("optical device mode not recognized")
                 

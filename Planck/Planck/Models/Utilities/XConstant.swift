@@ -86,10 +86,13 @@ struct LevelDesignerDefaults {
     
     static let interButtonSpace: CGFloat = 5;
     
-    static let buttonNames = ["flat mirror", "emitter", "wall", "planck", "convex lens"]
+    static let buttonNames = ["flat mirror", "emitter", "wall", "planck", "convex lens", "eraser"]
     static let buttonNameFlatMirror = LevelDesignerDefaults.buttonNames[0]
     static let buttonNameEmitter = LevelDesignerDefaults.buttonNames[1]
     static let buttonNameWall = LevelDesignerDefaults.buttonNames[2]
     static let buttonNamePlanck = LevelDesignerDefaults.buttonNames[3]
     static let buttonNameConvexLens = LevelDesignerDefaults.buttonNames[4]
+    static let buttonNameEraser = LevelDesignerDefaults.buttonNames[5]
+    
+    static let eraserSize: CGFloat = 20;
 }
