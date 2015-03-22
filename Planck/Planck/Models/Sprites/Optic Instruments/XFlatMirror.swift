@@ -10,16 +10,13 @@ import UIKit
 import SpriteKit
 
 class XFlatMirror: XMirror {
-    var direction: CGVector
-    
     init(direction: CGVector) {
-        self.direction = CGVector.vectorFromRadius(direction.angleFromXPlusScalar)
         super.init(
             texture: nil,
             color: MirrorDefaults.textureColor,
             size: MirrorDefaults.flatMirrorSize
         );
-        
+        self.direction = CGVector.vectorFromRadius(direction.angleFromXPlusScalar)
         self.setUp()
     }
     

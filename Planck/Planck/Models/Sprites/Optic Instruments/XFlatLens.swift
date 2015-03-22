@@ -9,12 +9,10 @@
 import UIKit
 
 class XFlatLens: XLens {
-    var direction: CGVector
     var medium1: XMedium
     var medium2: XMedium
     
     init(direction: CGVector, medium1: XMedium, medium2: XMedium) {
-        self.direction = CGVector.vectorFromRadius(direction.angleFromXPlusScalar)
         self.medium1 = medium1
         self.medium2 = medium2
         super.init(
@@ -22,7 +20,7 @@ class XFlatLens: XLens {
             color: LensDefaults.flatLenColor,
             size: LensDefaults.flatLenSize
         );
-        
+        self.direction = CGVector.vectorFromRadius(direction.angleFromXPlusScalar)
         self.setUp()
     }
     

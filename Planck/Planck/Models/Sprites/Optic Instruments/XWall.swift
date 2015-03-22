@@ -10,16 +10,13 @@ import UIKit
 import SpriteKit
 
 class XWall: XInsrtument {
-    var direction: CGVector
-    
     init(direction: CGVector) {
-        self.direction = CGVector.vectorFromRadius(direction.angleFromXPlusScalar)
         super.init(
             texture: nil,
             color: WallDefaults.textureColor,
             size: WallDefaults.wallSize
         );
-        
+        self.direction = CGVector.vectorFromRadius(direction.angleFromXPlusScalar)
         self.setUp()
     }
     

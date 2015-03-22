@@ -70,7 +70,7 @@ extension CGVector {
         }
     }
     
-    //give result in [-0, PI)
+    //give result in [0, PI)
     var angleFromXPlusScalar: CGFloat {
         get {
             var angleFromXPlus = self.angleFromXPlus

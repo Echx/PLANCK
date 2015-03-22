@@ -43,6 +43,12 @@ struct MirrorDefaults {
     static let textureColor = UIColor.blackColor()
 }
 
+struct InterfaceDefaults {
+    static let thickness: CGFloat = 2
+    static let length: CGFloat = 200
+    static let color = UIColor.blackColor()
+}
+
 struct LensDefaults {
     static let flatLenSize = CGSizeMake(30, 80)
     static let flatLenColor = UIColor.greenColor()
@@ -69,8 +75,9 @@ struct PhysicsCategory {
     static let flatMirror: UInt32 = 0x1 << 1
     static let planck: UInt32 = 0x1 << 2
     static let wall: UInt32 = 0x1 << 3
-    static let flatLen: UInt32 = 0x1 << 4
-    static let convexLen: UInt32 = 0x1 << 5
+    static let interface: UInt32 = 0x1 << 4
+    static let flatLen: UInt32 = 0x1 << 5
+    static let convexLen: UInt32 = 0x1 << 6
 }
 
 struct MediumDescription {
@@ -91,12 +98,12 @@ struct LevelDesignerDefaults {
     
     static let interButtonSpace: CGFloat = 5;
     
-    static let buttonNames = ["flat mirror", "emitter", "wall", "planck", "Flat Len", "eraser"]
+    static let buttonNames = ["flat mirror", "emitter", "wall", "planck", "interface", "eraser"]
     static let buttonNameFlatMirror = LevelDesignerDefaults.buttonNames[0]
     static let buttonNameEmitter = LevelDesignerDefaults.buttonNames[1]
     static let buttonNameWall = LevelDesignerDefaults.buttonNames[2]
     static let buttonNamePlanck = LevelDesignerDefaults.buttonNames[3]
-    static let buttonNameFlatLen = LevelDesignerDefaults.buttonNames[4]
+    static let buttonNameInterface = LevelDesignerDefaults.buttonNames[4]
     static let buttonNameEraser = LevelDesignerDefaults.buttonNames[5]
     
     static let eraserSize: CGFloat = 20;

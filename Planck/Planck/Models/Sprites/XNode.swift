@@ -10,5 +10,4 @@ import UIKit
 import SpriteKit
 
 class XNode: SKSpriteNode {
-    
 }

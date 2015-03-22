@@ -32,6 +32,9 @@ class GameScene: SKScene, XEmitterDelegate, SKPhysicsContactDelegate {
     private func setUpPanGestureRecognizer() {
         let panGestureRecognizer = UIPanGestureRecognizer(target: self, action: "handlePanGesture:")
         self.view?.addGestureRecognizer(panGestureRecognizer)
+        
+        let rotationGestureRecognizer = UIRotationGestureRecognizer(target: self, action: "handleRotationGesture:")
+        self.view?.addGestureRecognizer(rotationGestureRecognizer)
     }
     
     private func selectNodeAtPosition(position: CGPoint) -> Bool{
@@ -61,6 +64,11 @@ class GameScene: SKScene, XEmitterDelegate, SKPhysicsContactDelegate {
         } else if sender.state == UIGestureRecognizerState.Ended {
         }
 
+    }
+    
+    func handleRotationGesture(sender: UIRotationGestureRecognizer) {
+        println(sender.rotation)
+        
     }
     
     private func panForTranslation(translation: CGPoint) {
@@ -123,6 +131,7 @@ class GameScene: SKScene, XEmitterDelegate, SKPhysicsContactDelegate {
             
             if self.selectNodeAtPosition(location) &&
                 self.currentOpticalDeviceMode != LevelDesignerDefaults.buttonNameEraser {
+                    
                 return
             }
             
@@ -150,11 +159,11 @@ class GameScene: SKScene, XEmitterDelegate, SKPhysicsContactDelegate {
                     planck.position = location
                     self.addChild(planck)
                     planck.zPosition = 998
-                case LevelDesignerDefaults.buttonNameFlatLen:
-                    let flatLen = XFlatLens(direction: CGVector(dx: 0, dy: 1), medium1: .Vacuum, medium2: .Water)
-                    flatLen.position = location
-                    self.addChild(flatLen)
-                    flatLen.zPosition = 997
+                case LevelDesignerDefaults.buttonNameInterface:
+                    let interface = XInterface(direction: CGVectorMake(1, -1), medium1: XMedium.Air, medium2: XMedium.Water)
+                    interface.position = location
+                    self.addChild(interface)
+                    interface.zPosition = 997
                     
                 case LevelDesignerDefaults.buttonNameEraser:
                     let eraserFrame = CGRectMake(
@@ -234,11 +243,6 @@ class GameScene: SKScene, XEmitterDelegate, SKPhysicsContactDelegate {
                 contactableNode = firstBody.node as XFlatMirror
         }
         
-        if ((firstBody.categoryBitMask & PhysicsCategory.flatLen != 0) &&
-            (secondBody.categoryBitMask & PhysicsCategory.photon != 0)) {
-                contactableNode = firstBody.node as XFlatLens
-        }
-        
         // receptor and photon contact
         if ((firstBody.categoryBitMask & PhysicsCategory.planck != 0) &&
             (secondBody.categoryBitMask & PhysicsCategory.photon != 0)) {
@@ -249,6 +253,11 @@ class GameScene: SKScene, XEmitterDelegate, SKPhysicsContactDelegate {
         if ((firstBody.categoryBitMask & PhysicsCategory.wall != 0) &&
             (secondBody.categoryBitMask & PhysicsCategory.photon != 0)) {
                 contactableNode = firstBody.node as XWall
+        }
+        
+        if ((firstBody.categoryBitMask & PhysicsCategory.interface != 0) &&
+            (secondBody.categoryBitMask & PhysicsCategory.photon != 0)) {
+                contactableNode = firstBody.node as XInterface
         }
         
         if let photon = secondBody.node as? XPhoton {

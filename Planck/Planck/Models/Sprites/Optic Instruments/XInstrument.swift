@@ -9,5 +9,5 @@
 import UIKit
 
 class XInsrtument: XNode {
-    
+    var direction = CGVector.zeroVector;
 }
