@@ -13,6 +13,10 @@ protocol XContactable {
     func contactWithPhoton(photon: XPhoton)
 }
 
+protocol XContactableLens {
+    func contactWithPhoton(photon: XPhoton, lensCenter:CGPoint)
+}
+
 class XContactableNode: XNode {
     
 }

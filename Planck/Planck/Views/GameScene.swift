@@ -82,11 +82,11 @@ class GameScene: SKScene, XEmitterDelegate, SKPhysicsContactDelegate {
                 planck.zPosition = 998
                 
             case LevelDesignerDefaults.buttonNameConvexLens:
-                let convexLen = XConvexLens(focus: 5, direction: CGVector(dx: 0, dy: 1))
+                let convexLen = XConvexLens(focus: 5, direction: CGVector(dx: 0, dy: 1), medium: .Vacuum)
                 convexLen.position = location
                 self.addChild(convexLen)
-//                convexLen.zPosition = 997
-                
+                convexLen.zPosition = 997
+                println(convexLen.position)
             default:
                 fatalError("optical device mode not recognized")
                 

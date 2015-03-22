@@ -12,10 +12,12 @@ import SpriteKit
 class XConvexLens: XLens {
     var focus:CGFloat
     var direction: CGVector
+    var medium: XMedium
     
-    init(focus: CGFloat, direction: CGVector) {
+    init(focus: CGFloat, direction: CGVector, medium: XMedium) {
         self.focus = focus
         self.direction = CGVector.vectorFromRadius(direction.angleFromXPlusScalar)
+        self.medium = medium
         super.init(
             texture: nil,
             color: LensDefaults.textureColor,
@@ -38,13 +40,15 @@ class XConvexLens: XLens {
         self.physicsBody!.collisionBitMask = PhysicsCategory.none
         self.physicsBody!.usesPreciseCollisionDetection = true
     }
-
+    
+    private func calculateFocusPoint(lensCenter: CGPoint) -> CGPoint{
+        return CGPoint(x: lensCenter.x + focus + self.size.width / 2, y: lensCenter.y);
+    }
 }
 
 extension XConvexLens: XContactable {
     func contactWithPhoton(photon: XPhoton) {
-        println("\(photon.direction.dx) and \(photon.direction.dy)")
+        
         photon.removeFromParent()
-        println("LOL")
     }
 }
