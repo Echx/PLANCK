@@ -48,18 +48,20 @@ class XEmitter: XNode, NSCoding {
     }
     
     func fire() {
-        runAction(SKAction.repeatActionForever(
-            SKAction.sequence([
-                SKAction.runBlock(generateNewPhoton),
-                SKAction.waitForDuration(1 / EmitterDefualts.fireFrequency)
-                ])
-            )
-        )
+        runAction(SKAction.runBlock(generateOpticalPath))
+//        runAction(SKAction.repeatActionForever(
+//            SKAction.sequence([
+//                SKAction.runBlock(generateNewPhoton),
+//                SKAction.waitForDuration(1 / EmitterDefualts.fireFrequency)
+//                ])
+//            )
+//        )
     }
     
-    private func generateNewPhoton() {
+    private func generateOpticalPath() {
         let photon = XPhoton(appearanceColor: self.appearanceColor, direction: self.direction)
         photon.position = self.position
+        CGPathMoveToPoint(photon.opticalPath, nil, photon.position.x, photon.position.y)
         let action = SKAction.repeatActionForever(photon.getAction())
         self.delegate?.emitterDidGenerateNewPhoton(self, photon: photon, andAction: action)
     }
