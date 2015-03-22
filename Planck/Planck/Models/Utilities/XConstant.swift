@@ -34,7 +34,7 @@ struct EmitterDefualts {
     static let textureImageName = "emitter"
     static let textureColor = UIColor.blackColor()
     static let diameter: CGFloat = 50
-    static let fireFrequency: Double = 20 //measured in photons/second
+    static let fireFrequency: Double = 1 //measured in photons/second
 }
 
 struct MirrorDefaults {
