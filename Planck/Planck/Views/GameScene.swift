@@ -57,6 +57,7 @@ class GameScene: SKScene, XEmitterDelegate, SKPhysicsContactDelegate {
             self.panForTranslation(translation)
             sender.setTranslation(CGPointZero, inView: sender.view)
         } else if sender.state == UIGestureRecognizerState.Ended {
+            self.updateOpticalPath()
         }
 
     }
