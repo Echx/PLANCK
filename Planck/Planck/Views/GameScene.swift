@@ -9,15 +9,44 @@
 import SpriteKit
 
 class GameScene: SKScene, XEmitterDelegate, SKPhysicsContactDelegate {
+    let emitterButton = AGSpriteButton()
+    var currentOpticalDeviceMode: String = LevelDesignerDefaults.buttonNames[0]
+    
     override func didMoveToView(view: SKView) {
         self.physicsWorld.gravity = CGVectorMake(0, 0)
         self.physicsWorld.contactDelegate = self
-        let button = AGSpriteButton(color: UIColor.greenColor(), andSize: CGSize(width: 200, height: 60))
-        button.position = CGPoint(x: self.size.width / 2, y: self.size.height / 2)
-        self.addChild(button)
+        
+        
+        let buttonInterSpace: CGFloat = CGFloat(UIScreen.mainScreen().bounds.width - CGFloat(LevelDesignerDefaults.buttonNames.count) * LevelDesignerDefaults.buttonWidth) / CGFloat(LevelDesignerDefaults.buttonNames.count + 1)
+        
+        for var i = 0; i < LevelDesignerDefaults.buttonNames.count; i++ {
+            let button = AGSpriteButton(
+                color: LevelDesignerDefaults.buttonBackgroundColor,
+                andSize: CGSize(
+                    width: LevelDesignerDefaults.buttonWidth,
+                    height: LevelDesignerDefaults.buttonHeight
+                )
+            )
+            
+            let positionX = CGFloat(i + 1) * buttonInterSpace + (CGFloat(i) + 0.5) * LevelDesignerDefaults.buttonWidth
+            let positionY = LevelDesignerDefaults.buttonHeight/2 + buttonInterSpace
+            
+            button.position = CGPoint(x: positionX, y: positionY)
+            button.setLabelWithText(LevelDesignerDefaults.buttonNames[i], andFont: nil, withColor: LevelDesignerDefaults.buttonLabelColor)
+            button.name = LevelDesignerDefaults.buttonNames[i]
+            button.addTarget(self, selector: "buttonDidClickedWithName:", withObject: button.name, forControlEvent: AGButtonControlEvent.TouchUpInside)
+            
+            self.addChild(button)
+        }
+    }
+    
+    
+    func buttonDidClickedWithName(name: String?) {
+        if let selectedButtonName = name {
+            self.currentOpticalDeviceMode = selectedButtonName;
+        }
     }
 
-    var count = 0;
     
     override func touchesBegan(touches: NSSet, withEvent event: UIEvent) {
         /* Called when a touch begins */
@@ -25,30 +54,31 @@ class GameScene: SKScene, XEmitterDelegate, SKPhysicsContactDelegate {
         for touch: AnyObject in touches {
             let location = touch.locationInNode(self)
             
-            if self.count == 0 {
+            switch self.currentOpticalDeviceMode {
+            case LevelDesignerDefaults.buttonNameFlatMirror:
                 let mirror = XFlatMirror(direction: CGVector(dx: 1, dy: -1))
                 mirror.position = location
                 self.addChild(mirror)
                 mirror.zPosition = 999
-                count++
-            } else if self.count == 1 {
-                let planck = XPlanck(mapping: [(XColor(index: 1), XNote.Null)])
-                planck.position = location
-                self.addChild(planck)
-                planck.zPosition = 998
-                count++
-            } else if self.count == 2 {
-                let wall = XWall(direction: CGVector(dx: -1, dy: 0))
-                wall.position = location
-                self.addChild(wall)
-                count++
-            } else {
+            case LevelDesignerDefaults.buttonNameEmitter:
                 let emitter = XEmitter(appearanceColor: XColor(index: random()%8), direction: CGVector(dx: 1, dy: 0))
                 emitter.position = location
                 self.addChild(emitter)
                 emitter.zPosition = 1000
                 emitter.delegate = self
                 emitter.fire()
+            case LevelDesignerDefaults.buttonNameWall:
+                let wall = XWall(direction: CGVector(dx: -1, dy: 0))
+                wall.position = location
+                self.addChild(wall)
+            case LevelDesignerDefaults.buttonNamePlanck:
+                let planck = XPlanck(mapping: [(XColor(index: 1), XNote.Null)])
+                planck.position = location
+                self.addChild(planck)
+                planck.zPosition = 998
+            default:
+                fatalError("optical device mode not recognized")
+                
             }
         }
     }

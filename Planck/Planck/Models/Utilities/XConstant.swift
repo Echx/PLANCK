@@ -69,5 +69,17 @@ struct MediumDescription {
     static let oliveOilDescription: String = "Olive oil is a fat obtained from the the fruit of Olea europaea, a traditional tree crop of the Mediterranean Basin."
     static let crownGlassDescription: String = "Crown glass is a type of optical glass used in lenses and other optical components. It has relatively low refractive index (≈1.52) and low dispersion (with Abbe numbers around 60). Crown glass is produced from alkali-lime (RCH) silicates containing approximately 10% potassium oxide and is one of the earliest low dispersion glasses."
     static let flintGlassDescription: String = "Flint glass is optical glass that has relatively high refractive index and low Abbe number (high dispersion). Flint glasses are arbitrarily defined as having an Abbe number of 50 to 55 or less. The currently known flint glasses have refractive indices ranging between 1.45 and 2.00."
+}
+
+struct LevelDesignerDefaults {
+    static let buttonWidth: CGFloat = 200;
+    static let buttonHeight: CGFloat = 100;
+    static let buttonBackgroundColor: UIColor = UIColor.darkGrayColor()
+    static let buttonLabelColor: UIColor = UIColor.lightGrayColor()
     
+    static let buttonNames = ["flat mirror", "emitter", "wall", "planck"]
+    static let buttonNameFlatMirror = LevelDesignerDefaults.buttonNames[0]
+    static let buttonNameEmitter = LevelDesignerDefaults.buttonNames[1]
+    static let buttonNameWall = LevelDesignerDefaults.buttonNames[2]
+    static let buttonNamePlanck = LevelDesignerDefaults.buttonNames[3]
 }
