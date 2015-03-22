@@ -11,6 +11,8 @@ import UIKit
 struct Constant {
     static let lightSpeedBase: CGFloat = 1000 //points per second
     static let angleCalculationPrecision: CGFloat = 1000 //1000 is 3 bit precision
+    
+    static let vectorUnitLength: CGFloat = 1
 }
 
 struct NSCodingKey {
@@ -50,10 +52,11 @@ struct PhotonDefaults {
 }
 
 struct EmitterDefualts {
+    static let nodeName = "emitter"
     static let textureImageName = "emitter"
     static let textureColor = UIColor.blackColor()
     static let diameter: CGFloat = 50
-    static let fireFrequency: Double = 1 //measured in photons/second
+    static let fireFrequency: Double = 10 //measured in photons/second
 }
 
 struct MirrorDefaults {

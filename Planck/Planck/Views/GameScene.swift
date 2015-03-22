@@ -71,6 +71,7 @@ class GameScene: SKScene, XEmitterDelegate, SKPhysicsContactDelegate {
             self.panForTranslation(translation)
             sender.setTranslation(CGPointZero, inView: sender.view)
         } else if sender.state == UIGestureRecognizerState.Ended {
+            self.updateOpticalPath()
         }
 
     }
@@ -144,6 +145,18 @@ class GameScene: SKScene, XEmitterDelegate, SKPhysicsContactDelegate {
             }
         }
     }
+    
+    private func updateOpticalPath() {
+        self.enumerateChildNodesWithName(EmitterDefualts.nodeName) {
+            node, stop in
+            let emitter = node as? XEmitter
+            emitter?.photon?.lightBeam.removeFromParent()
+            emitter?.photon?.removeFromParent()
+            if emitter?.canFire == true {
+                emitter?.fire()
+            }
+        }
+    }
 
     
     override func touchesBegan(touches: NSSet, withEvent event: UIEvent) {
@@ -170,19 +183,22 @@ class GameScene: SKScene, XEmitterDelegate, SKPhysicsContactDelegate {
                     case LevelDesignerDefaults.buttonNameEmitter:
                         let emitter = XEmitter(appearanceColor: XColor(index: random()%8), direction: CGVector(dx: 1, dy: 0))
                         emitter.position = location
+                        emitter.name = EmitterDefualts.nodeName
                         self.addChild(emitter)
                         emitter.zPosition = 1000
                         emitter.delegate = self
-                        emitter.fire()
+                    
                     case LevelDesignerDefaults.buttonNameWall:
                         let wall = XWall(direction: CGVector(dx: -1, dy: 0))
                         wall.position = location
                         self.addChild(wall)
+                        
                     case LevelDesignerDefaults.buttonNamePlanck:
                         let planck = XPlanck(mapping: [(XColor(index: 1), XNote.Null)])
                         planck.position = location
                         self.addChild(planck)
                         planck.zPosition = 998
+                        
                     case LevelDesignerDefaults.buttonNameInterface:
                         let interface = XInterface(direction: CGVectorMake(1, -1), medium1: XMedium.Air, medium2: XMedium.Water)
                         interface.position = location
@@ -197,6 +213,14 @@ class GameScene: SKScene, XEmitterDelegate, SKPhysicsContactDelegate {
                             LevelDesignerDefaults.eraserSize);
                         for node in self.children {
                             if CGRectIntersectsRect(node.calculateAccumulatedFrame(), eraserFrame) {
+                                if let xNode = node as? XEmitter {
+                                    xNode.photon?.lightBeam.removeFromParent()
+                                    xNode.photon?.removeFromParent()
+                                    (node as XEmitter).canFire = false
+                                }
+                                
+                                let x = node as? XEmitter
+                                
                                 if let xNode = node as? XNode {
                                     node.removeFromParent();
                                 }
@@ -207,6 +231,7 @@ class GameScene: SKScene, XEmitterDelegate, SKPhysicsContactDelegate {
                         fatalError("optical device mode not recognized")
                         
                     }
+                    self.updateOpticalPath()
                 }
             }
         } else {
@@ -222,6 +247,9 @@ class GameScene: SKScene, XEmitterDelegate, SKPhysicsContactDelegate {
         self.enumerateChildNodesWithName(NodeName.xPhoton, usingBlock:  {
             (node: SKNode!, stop: UnsafeMutablePointer <ObjCBool>) -> Void in
             var sprite = node as XPhoton
+            CGPathAddLineToPoint(sprite.opticalPath, nil, sprite.position.x, sprite.position.y)
+            sprite.lightBeam.path = sprite.opticalPath
+            sprite.lightBeam.strokeColor = sprite.appearanceColor.displayColor
             if sprite.parent != nil {
                 if sprite.position.x < 0 || sprite.position.x > 1024 {
 //                    sprite.removeActionForKey(ActionKey.photonActionLinear)
@@ -238,8 +266,8 @@ class GameScene: SKScene, XEmitterDelegate, SKPhysicsContactDelegate {
                 }
                 
                 if sprite.position.y < 0 || sprite.position.y > 768 {
-                    sprite.removeActionForKey(ActionKey.photonActionLinear)
-                    sprite.removeFromParent()
+//                    sprite.removeActionForKey(ActionKey.photonActionLinear)
+//                    sprite.removeFromParent()
 //                    let direction = CGVector(dx: sprite.direction.dx, dy: -sprite.direction.dy)
 //                    sprite.setDirection(direction)
 //                    var position = sprite.position;
@@ -300,5 +328,6 @@ class GameScene: SKScene, XEmitterDelegate, SKPhysicsContactDelegate {
     func emitterDidGenerateNewPhoton(emitter: XEmitter, photon: XPhoton, andAction action: SKAction) {
         photon.runAction(action, withKey: ActionKey.photonActionLinear)
         self.insertChild(photon, atIndex: 1)
+        self.insertChild(photon.lightBeam, atIndex: 1)
     }
 }

@@ -13,11 +13,15 @@ class XPhoton: XNode {
     var illuminance: CGFloat
     var appearanceColor: XColor
     var direction: CGVector
+    var opticalPath: CGMutablePathRef
+    var lightBeam: SKShapeNode
     
     override init() {
         self.illuminance = PhotonDefaults.illuminance
         self.appearanceColor = PhotonDefaults.appearanceColor
-        self.direction = PhotonDefaults.direction
+        self.direction = PhotonDefaults.direction.normalize()
+        self.opticalPath = CGPathCreateMutable()
+        self.lightBeam = SKShapeNode()
         
         //designated initializer, only this one can be used in subclasses of SKNode
         super.init(
@@ -31,7 +35,9 @@ class XPhoton: XNode {
     init(appearanceColor: XColor, direction: CGVector) {
         self.illuminance = PhotonDefaults.illuminance
         self.appearanceColor = appearanceColor
-        self.direction = direction
+        self.direction = direction.normalize()
+        self.opticalPath = CGPathCreateMutable()
+        self.lightBeam = SKShapeNode()
         
         //designated initializer, only this one can be used in subclasses of SKNode
         super.init(
@@ -47,7 +53,9 @@ class XPhoton: XNode {
     init(illuminance: CGFloat, color: XColor, direction: CGVector) {
         self.illuminance = illuminance
         self.appearanceColor = color
-        self.direction = direction
+        self.direction = direction.normalize()
+        self.opticalPath = CGPathCreateMutable()
+        self.lightBeam = SKShapeNode()
         
         //designated initializer, only this one can be used in subclasses of SKNode
         super.init(
@@ -70,8 +78,7 @@ class XPhoton: XNode {
     //return an action calculated from self.direction
     //move in self.direction with speed of light in vacuum
     func getAction() -> SKAction {
-        var action = SKAction.moveBy(self.direction, duration: Double(self.direction.length / Constant.lightSpeedBase));
-        return action
+        return getAction(medium: XMedium.Vacuum)
     }
     
     
@@ -85,7 +92,7 @@ class XPhoton: XNode {
     //methods used for updating direction
     //useful for optic instruments to modify the state of the node
     func setDirection(newDirection: CGVector) {
-        self.direction = newDirection
+        self.direction = newDirection.normalize()
     }
     
     

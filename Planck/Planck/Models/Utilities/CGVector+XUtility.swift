@@ -114,4 +114,10 @@ extension CGVector {
     func makePerpendicularVector() -> CGVector {
         return CGVectorMake(-self.dy, self.dx);
     }
+    
+    func normalize() -> CGVector {
+        let dx = Constant.vectorUnitLength / self.length * self.dx
+        let dy = Constant.vectorUnitLength / self.length * self.dy
+        return CGVector(dx: dx, dy: dy)
+    }
 }
