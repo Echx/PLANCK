@@ -103,7 +103,7 @@ class XPhoton: XNode {
     
     
     private func setUpPhotonPhysicsProperty() {
-        self.physicsBody = SKPhysicsBody(rectangleOfSize: CGSizeMake(PhotonDefaults.diameter, PhotonDefaults.diameter))
+        self.physicsBody = SKPhysicsBody(circleOfRadius: PhotonDefaults.diameter)
         self.physicsBody!.dynamic = true
         
         //collision detection use

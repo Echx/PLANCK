@@ -43,7 +43,7 @@ struct InstrumentDefaults {
 }
 
 struct PhotonDefaults {
-    static let diameter: CGFloat = 10    //measured in points
+    static let diameter: CGFloat = 5    //measured in points
     static let illuminance: CGFloat = 1.0   //0.0 to 1.0
     static let appearanceColor = XColor()
     static let direction = CGVector.zeroVector

@@ -77,9 +77,10 @@ class GameScene: SKScene, XEmitterDelegate, SKPhysicsContactDelegate {
         if let selectedInstrument = self.selectedNode as? XInsrtument {
             
         } else {
-            self.selectedNode?.runAction(SKAction.rotateToAngle(0, duration: 0.1))
+            self.selectedNode?.runAction(SKAction.rotateToAngle(CGFloat(-M_PI/2), duration: 0.1))
         }
         self.selectedNode = nil
+        self.selectedNodeOriginalDirection = nil
     }
     
     
@@ -99,14 +100,26 @@ class GameScene: SKScene, XEmitterDelegate, SKPhysicsContactDelegate {
             sender.setTranslation(CGPointZero, inView: sender.view)
         } else if sender.state == UIGestureRecognizerState.Ended {
             self.updateOpticalPath()
+            self.deselectCurrentNode()
         }
 
     }
     
     func handleRotationGesture(sender: UIRotationGestureRecognizer) {
-        if let instrument = self.selectedNode as? XInsrtument {
-            instrument.setDirection(sender.rotation)
+        if let currentNodeDirection = (self.selectedNode as? XInsrtument)?.direction {
+            if sender.state == UIGestureRecognizerState.Began {
+                self.selectedNodeOriginalDirection = currentNodeDirection
+            } else if sender.state == UIGestureRecognizerState.Changed {
+                if let instrument = self.selectedNode as? XInsrtument {
+                    let rotation = sender.rotation + self.selectedNodeOriginalDirection!.angleFromYPlus;
+                    instrument.setDirection(rotation)
+                }
+            } else if sender.state == UIGestureRecognizerState.Ended {
+                self.updateOpticalPath()
+                self.deselectCurrentNode()
+            }
         }
+        
     }
     
     private func panForTranslation(translation: CGPoint) {
