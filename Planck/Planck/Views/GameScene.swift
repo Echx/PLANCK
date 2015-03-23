@@ -34,37 +34,52 @@ class GameScene: SKScene, XEmitterDelegate, SKPhysicsContactDelegate {
     }
     
     private func selectNodeAtPosition(position: CGPoint) -> Bool{
-        if let touchedNode = self.nodeAtPoint(position) as? XNode {
-            if touchedNode != self.selectedNode {
-                self.deselectCurrentNode()
-                
-                if let touchedInstrument = touchedNode as? XInsrtument {
-                    self.selectedNodeOriginalDirection = touchedInstrument.direction
-                }
-                
-                self.selectedNode = touchedNode
-                
-                let shakeAction = SKAction.sequence([
-                        SKAction.rotateByAngle(self.radius(-4), duration: 0.1),
-                        SKAction.rotateByAngle(self.radius(0), duration: 0.1),
-                        SKAction.rotateByAngle(self.radius(4), duration: 0.1)
-                    ])
-                self.selectedNode?.runAction(SKAction.repeatActionForever(shakeAction), withKey: ActionKey.nodeActionShake)
-            }
-            return true
+        if self.needAddItems {
+            self.deselectCurrentNode()
+            return false;
         }
+        
+        let senseFrame = CGRectMake(
+            position.x - LevelDesignerDefaults.selectionAreaSize/2,
+            position.y - LevelDesignerDefaults.selectionAreaSize/2,
+            LevelDesignerDefaults.selectionAreaSize,
+            LevelDesignerDefaults.selectionAreaSize)
+        
+        for node in self.children {
+            if CGRectIntersectsRect(node.calculateAccumulatedFrame(), senseFrame) {
+                if let touchedNode = node as? XNode {
+                    if touchedNode != self.selectedNode {
+                        self.deselectCurrentNode()
+                        
+                        if let touchedInstrument = touchedNode as? XInsrtument {
+                            self.selectedNodeOriginalDirection = touchedInstrument.direction
+                        }
+                        
+                        self.selectedNode = touchedNode
+                        
+                        let shakeAction = SKAction.sequence([
+                            SKAction.rotateByAngle(self.radius(-4), duration: 0.1),
+                            SKAction.rotateByAngle(self.radius(0), duration: 0.1),
+                            SKAction.rotateByAngle(self.radius(4), duration: 0.1)
+                            ])
+                        self.selectedNode?.runAction(SKAction.repeatActionForever(shakeAction), withKey: ActionKey.nodeActionShake)
+                    }
+                    return true
+                }
+            }
+        }
+        
         return false
     }
     
     private func deselectCurrentNode() {
         self.selectedNode?.removeActionForKey(ActionKey.nodeActionShake)
         if let selectedInstrument = self.selectedNode as? XInsrtument {
-            if let originalDirection = self.selectedNodeOriginalDirection {
-//                (self.selectedNode as XInsrtument).direction = originalDirection
-            }
+            
         } else {
             self.selectedNode?.runAction(SKAction.rotateToAngle(0, duration: 0.1))
         }
+        self.selectedNode = nil
     }
     
     
@@ -92,7 +107,6 @@ class GameScene: SKScene, XEmitterDelegate, SKPhysicsContactDelegate {
         if let instrument = self.selectedNode as? XInsrtument {
             instrument.setDirection(sender.rotation)
         }
-        
     }
     
     private func panForTranslation(translation: CGPoint) {
@@ -100,7 +114,6 @@ class GameScene: SKScene, XEmitterDelegate, SKPhysicsContactDelegate {
             let position = selectedNode.position
             self.selectedNode?.position = CGPointMake(position.x + translation.x, position.y + translation.y)
         }
-
     }
     
     private func setUpButtons(buttonNames: [String], selector: Selector, isOnTop: Bool) {
@@ -137,6 +150,7 @@ class GameScene: SKScene, XEmitterDelegate, SKPhysicsContactDelegate {
     }
     
     func functionalButtonDidClicked(sender: AGSpriteButton?) {
+        self.deselectCurrentNode()
         self.needAddItems = !self.needAddItems
         sender?.alpha = self.needAddItems ? 1.0 : 0.5
     }
@@ -176,13 +190,6 @@ class GameScene: SKScene, XEmitterDelegate, SKPhysicsContactDelegate {
         if self.needAddItems {
             for touch: AnyObject in touches {
                 let location = touch.locationInNode(self)
-                let nodeExistAtCurrentDirection = self.selectNodeAtPosition(location)
-                
-                if nodeExistAtCurrentDirection &&
-                    self.currentOpticalDeviceMode != LevelDesignerDefaults.buttonNameEraser {
-                        
-                        return
-                }
                 
                 if location.y > LevelDesignerDefaults.buttonHeight + LevelDesignerDefaults.interButtonSpace * 2 {
                     switch self.currentOpticalDeviceMode {

@@ -132,4 +132,5 @@ struct LevelDesignerDefaults {
     static let functionalButtonNameAddItem = LevelDesignerDefaults.functionalButtonNames[0]
     
     static let eraserSize: CGFloat = 20;
+    static let selectionAreaSize: CGFloat = 20;
 }
