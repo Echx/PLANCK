@@ -15,6 +15,7 @@ class GameScene: SKScene, XEmitterDelegate, SKPhysicsContactDelegate {
     var currentOpticalDeviceMode: String = LevelDesignerDefaults.buttonNames[0]
     var needAddItems = true
     var selectedNode: XNode?
+    var selectedNodeOriginalDirection: CGVector?
     
     override func didMoveToView(view: SKView) {
         self.physicsWorld.gravity = CGVectorMake(0, 0)
@@ -36,6 +37,11 @@ class GameScene: SKScene, XEmitterDelegate, SKPhysicsContactDelegate {
         if let touchedNode = self.nodeAtPoint(position) as? XNode {
             if touchedNode != self.selectedNode {
                 self.deselectCurrentNode()
+                
+                if let touchedInstrument = touchedNode as? XInsrtument {
+                    self.selectedNodeOriginalDirection = touchedInstrument.direction
+                }
+                
                 self.selectedNode = touchedNode
                 
                 let shakeAction = SKAction.sequence([
@@ -52,7 +58,13 @@ class GameScene: SKScene, XEmitterDelegate, SKPhysicsContactDelegate {
     
     private func deselectCurrentNode() {
         self.selectedNode?.removeActionForKey(ActionKey.nodeActionShake)
-        self.selectedNode?.runAction(SKAction.rotateToAngle(0, duration: 0.1))
+        if let selectedInstrument = self.selectedNode as? XInsrtument {
+            if let originalDirection = self.selectedNodeOriginalDirection {
+//                (self.selectedNode as XInsrtument).direction = originalDirection
+            }
+        } else {
+            self.selectedNode?.runAction(SKAction.rotateToAngle(0, duration: 0.1))
+        }
     }
     
     
