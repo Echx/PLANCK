@@ -320,6 +320,7 @@ class GameScene: SKScene, XEmitterDelegate, SKPhysicsContactDelegate {
     
     // MARK - SKPhysicsContactDelegate
     func didBeginContact(contact: SKPhysicsContact) {
+        println("collision")
         var contactableNode: XContactable!
         var firstBody: SKPhysicsBody
         var secondBody: SKPhysicsBody
@@ -334,6 +335,8 @@ class GameScene: SKScene, XEmitterDelegate, SKPhysicsContactDelegate {
         if ((firstBody.categoryBitMask & PhysicsCategory.flatMirror != 0) &&
             (secondBody.categoryBitMask & PhysicsCategory.photon != 0)) {
                 contactableNode = firstBody.node as XFlatMirror
+                let sprite: XPhoton = secondBody.node as XPhoton
+                CGPathAddLineToPoint(sprite.opticalPath, nil, sprite.position.x, sprite.position.y)
         }
         
         // receptor and photon contact
@@ -351,17 +354,20 @@ class GameScene: SKScene, XEmitterDelegate, SKPhysicsContactDelegate {
         if ((firstBody.categoryBitMask & PhysicsCategory.interface != 0) &&
             (secondBody.categoryBitMask & PhysicsCategory.photon != 0)) {
                 contactableNode = firstBody.node as XInterface
+                secondBody.node?.physicsBody?.applyImpulse(CGVectorMake(0, -1))
         }
         
-        if let photon = secondBody.node as? XPhoton {
-            contactableNode.contactWithPhoton(photon)
-        }
+        
+//        if let photon = secondBody.node as? XPhoton {
+//            contactableNode.contactWithPhoton(photon)
+//        }
     }
     
     // MARK - XEmitterDelegate
     func emitterDidGenerateNewPhoton(emitter: XEmitter, photon: XPhoton, andAction action: SKAction) {
-        photon.runAction(action, withKey: ActionKey.photonActionLinear)
+//        photon.runAction(action, withKey: ActionKey.photonActionLinear)
         self.insertChild(photon, atIndex: 1)
+        photon.physicsBody?.applyImpulse(CGVectorMake(Constant.lightSpeedBase, 0))
         self.insertChild(photon.lightBeam, atIndex: 1)
     }
 }

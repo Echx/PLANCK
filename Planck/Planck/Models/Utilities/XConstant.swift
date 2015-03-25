@@ -9,7 +9,7 @@
 import UIKit
 
 struct Constant {
-    static let lightSpeedBase: CGFloat = 1000 //points per second
+    static let lightSpeedBase: CGFloat = 1 //points per second
     static let angleCalculationPrecision: CGFloat = 1000 //1000 is 3 bit precision
     
     static let vectorUnitLength: CGFloat = 1
@@ -43,7 +43,7 @@ struct InstrumentDefaults {
 }
 
 struct PhotonDefaults {
-    static let diameter: CGFloat = 5    //measured in points
+    static let diameter: CGFloat = 2    //measured in points
     static let illuminance: CGFloat = 1.0   //0.0 to 1.0
     static let appearanceColor = XColor()
     static let direction = CGVector.zeroVector

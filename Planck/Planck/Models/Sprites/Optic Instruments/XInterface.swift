@@ -31,7 +31,7 @@ class XInterface: XInsrtument {
     
     private func setUpPhysicsProperties() {
         self.physicsBody = SKPhysicsBody(rectangleOfSize: self.frame.size)
-        self.physicsBody!.dynamic = false
+        self.physicsBody!.dynamic = true
         self.physicsBody!.categoryBitMask = PhysicsCategory.interface
         self.physicsBody!.contactTestBitMask = PhysicsCategory.photon
         self.physicsBody!.collisionBitMask = PhysicsCategory.none

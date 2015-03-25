@@ -108,8 +108,8 @@ class XPhoton: XNode {
         
         //collision detection use
         self.physicsBody!.categoryBitMask = PhysicsCategory.photon
-        self.physicsBody!.contactTestBitMask = PhysicsCategory.flatMirror
-        self.physicsBody!.collisionBitMask = PhysicsCategory.none
+        self.physicsBody!.contactTestBitMask = PhysicsCategory.none
+        self.physicsBody!.collisionBitMask = PhysicsCategory.flatMirror
         self.physicsBody!.usesPreciseCollisionDetection = true
         
         //No speed loss when reflected
