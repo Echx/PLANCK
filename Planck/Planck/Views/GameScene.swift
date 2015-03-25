@@ -23,6 +23,7 @@ class GameScene: SKScene, XEmitterDelegate, SKPhysicsContactDelegate {
         self.setUpButtons(LevelDesignerDefaults.buttonNames, selector: LevelDesignerDefaults.selectorButtonClicked, isOnTop: false)
         self.setUpButtons(LevelDesignerDefaults.functionalButtonNames, selector: LevelDesignerDefaults.selectorFunctionalButtonClicked, isOnTop: true)
         self.setUpGestureRecognizer()
+        self.view?.showsPhysics = true;
     }
 
     private func setUpGestureRecognizer() {
@@ -265,6 +266,7 @@ class GameScene: SKScene, XEmitterDelegate, SKPhysicsContactDelegate {
                     }
                     self.updateOpticalPath()
                 }
+                break
             }
         } else {
             for touch: AnyObject in touches {
