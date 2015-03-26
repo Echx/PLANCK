@@ -17,6 +17,71 @@ class XNote: NSObject {
         self.noteGroup = noteGroup
     }
     
+    func getMIDINote() -> Int {
+        var note: Int = (self.noteGroup + 1) * 12 // base MIDI note
+        let baseNote: Int = self.noteName.rawValue / 4
+        let accidental: Int = self.noteName.rawValue % 4
+        
+        switch baseNote {
+        case 0:
+            // C
+            note += 0
+            
+        case 1:
+            // D
+            note += 2
+            
+        case 2:
+            // E
+            note += 4
+            
+        case 3:
+            // F
+            note += 5
+            
+        case 4:
+            // G
+            note += 7
+            
+        case 5:
+            // A
+            note += 9
+            
+        case 6:
+            // B
+            note += 11
+            
+        default:
+            fatalError("invalid note")
+        }
+        
+        switch accidental {
+        case 0:
+            // natural
+            note += 0
+            
+        case 1:
+            // flat
+            note -= 1
+            
+        case 2:
+            // double flat
+            note -= 2
+            
+        case 3:
+            // sharp
+            note += 1
+            
+        case 4:
+            // double sharp
+            note += 2
+            
+        default:
+            fatalError("invalid note")
+        }
+        
+        return note
+    }
 }
 
 enum XNoteName: Int {

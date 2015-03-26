@@ -62,7 +62,8 @@ class XPlanck: XInsrtument, NSCoding {
     internal func checkPhoton(photon: XPhoton) {
         let photonColor = photon.appearanceColor
         if contains(self.colorNoteMapping.keys, photonColor) {
-            self.runAction(SKAction.playSoundFileNamed("piano-72.m4a", waitForCompletion: false))
+            var soundFileName = NSString(format: "piano-%d.m4a", self.colorNoteMapping[photonColor]!.getMIDINote())
+            self.runAction(SKAction.playSoundFileNamed(soundFileName, waitForCompletion: false))
         }
     }
 }
