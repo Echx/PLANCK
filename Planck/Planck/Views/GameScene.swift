@@ -225,6 +225,7 @@ class GameScene: SKScene, XEmitterDelegate, SKPhysicsContactDelegate {
                         let wall = XWall(direction: CGVector(dx: -1, dy: 0))
                         wall.position = location
                         self.addChild(wall)
+                        wall.zPosition = 996
                         
                     case LevelDesignerDefaults.buttonNamePlanck:
                         let planck = XPlanck(mapping: [(XColor(index: 1), XNote.Null)])
@@ -337,11 +338,6 @@ class GameScene: SKScene, XEmitterDelegate, SKPhysicsContactDelegate {
         if ((firstBody.categoryBitMask & PhysicsCategory.flatMirror != 0) &&
             (secondBody.categoryBitMask & PhysicsCategory.photon != 0)) {
                 contactableNode = firstBody.node as XFlatMirror
-                let sprite: XPhoton = secondBody.node as XPhoton
-                CGPathAddLineToPoint(sprite.opticalPath, nil, contact.contactPoint.x, contact.contactPoint.y + 1)
-                print(contact.contactPoint.x)
-                print(",")
-                println(contact.contactPoint.y)
         }
         
         // receptor and photon contact
@@ -354,6 +350,7 @@ class GameScene: SKScene, XEmitterDelegate, SKPhysicsContactDelegate {
         if ((firstBody.categoryBitMask & PhysicsCategory.wall != 0) &&
             (secondBody.categoryBitMask & PhysicsCategory.photon != 0)) {
                 contactableNode = firstBody.node as XWall
+                
         }
         
         if ((firstBody.categoryBitMask & PhysicsCategory.interface != 0) &&
@@ -363,9 +360,11 @@ class GameScene: SKScene, XEmitterDelegate, SKPhysicsContactDelegate {
         }
         
         
-//        if let photon = secondBody.node as? XPhoton {
-//            contactableNode.contactWithPhoton(photon)
-//        }
+        if let photon = secondBody.node as? XPhoton {
+            CGPathAddLineToPoint(photon.opticalPath, nil, contact.contactPoint.x, contact.contactPoint.y + 1)
+            photon.lightBeam.path = photon.opticalPath
+            contactableNode.contactWithPhoton(photon)
+        }
     }
     
     // MARK - XEmitterDelegate
