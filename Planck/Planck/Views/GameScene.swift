@@ -214,7 +214,8 @@ class GameScene: SKScene, XEmitterDelegate, SKPhysicsContactDelegate {
                         mirror.zPosition = 999
                         
                     case LevelDesignerDefaults.buttonNameEmitter:
-                        let emitter = XEmitter(appearanceColor: XColor(index: random()%8), direction: CGVector(dx: 1, dy: 0))
+                        let emitter = XEmitter(appearanceColor: XColor(index: random()%8),
+                            direction: CGVector(dx: 1, dy: 0))
                         emitter.position = location
                         emitter.name = EmitterDefualts.nodeName
                         self.addChild(emitter)
@@ -228,13 +229,15 @@ class GameScene: SKScene, XEmitterDelegate, SKPhysicsContactDelegate {
                         wall.zPosition = 996
                         
                     case LevelDesignerDefaults.buttonNamePlanck:
-                        let planck = XPlanck(mapping: [(XColor(index: 1), XNote.Null)])
+                        let planck = XPlanck(mapping: [(XColor(index: 7),
+                            XNote(noteName: XNoteName.C, noteGroup: 5))])
                         planck.position = location
                         self.addChild(planck)
                         planck.zPosition = 998
                         
                     case LevelDesignerDefaults.buttonNameInterface:
-                        let interface = XInterface(direction: CGVectorMake(1, -1), medium1: XMedium.Air, medium2: XMedium.Water)
+                        let interface = XInterface(direction: CGVectorMake(1, -1),
+                            medium1: XMedium.Air, medium2: XMedium.Water)
                         interface.position = location
                         self.addChild(interface)
                         interface.zPosition = 997

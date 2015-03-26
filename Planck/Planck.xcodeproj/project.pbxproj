@@ -62,6 +62,7 @@
 		62BC35541AB3096400B0B6F7 /* XContactableNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 62CB1FC11AB3068D00DC8EB8 /* XContactableNode.swift */; };
 		62BC35551AB3096900B0B6F7 /* GameScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6227FC091AAE28E7007F49EA /* GameScene.swift */; };
 		62CB1FC21AB3068D00DC8EB8 /* XContactableNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 62CB1FC11AB3068D00DC8EB8 /* XContactableNode.swift */; };
+		62E00C771AC4671900F10F10 /* piano-72.m4a in Resources */ = {isa = PBXBuildFile; fileRef = 62E00C761AC4671900F10F10 /* piano-72.m4a */; };
 		984F35D81ABF09F1008816C9 /* InstrumentNSCodingTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 984F35D71ABF09F1008816C9 /* InstrumentNSCodingTests.swift */; };
 		98D55F9E1ABF133000B3E86A /* StorageManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 98D55F9D1ABF133000B3E86A /* StorageManager.swift */; };
 /* End PBXBuildFile section */
@@ -115,6 +116,7 @@
 		6227FC1F1AAE291F007F49EA /* XColorTest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = XColorTest.swift; sourceTree = "<group>"; };
 		62988FD31AB2FA3400FD9AFF /* CGVector+XUtilityTest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "CGVector+XUtilityTest.swift"; sourceTree = "<group>"; };
 		62CB1FC11AB3068D00DC8EB8 /* XContactableNode.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = XContactableNode.swift; sourceTree = "<group>"; };
+		62E00C761AC4671900F10F10 /* piano-72.m4a */ = {isa = PBXFileReference; lastKnownFileType = file; path = "piano-72.m4a"; sourceTree = "<group>"; };
 		984F35D71ABF09F1008816C9 /* InstrumentNSCodingTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InstrumentNSCodingTests.swift; sourceTree = "<group>"; };
 		98D55F9D1ABF133000B3E86A /* StorageManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = StorageManager.swift; path = Storage/StorageManager.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -192,6 +194,7 @@
 		6227FB6B1AAE285C007F49EA /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				62E00C751AC466E800F10F10 /* Sound */,
 				6227FB6C1AAE285C007F49EA /* Info.plist */,
 			);
 			name = "Supporting Files";
@@ -303,6 +306,14 @@
 			path = Model;
 			sourceTree = "<group>";
 		};
+		62E00C751AC466E800F10F10 /* Sound */ = {
+			isa = PBXGroup;
+			children = (
+				62E00C761AC4671900F10F10 /* piano-72.m4a */,
+			);
+			name = Sound;
+			sourceTree = "<group>";
+		};
 		98D55F9C1ABF126700B3E86A /* Storage */ = {
 			isa = PBXGroup;
 			children = (
@@ -395,6 +406,7 @@
 				6227FB7C1AAE285C007F49EA /* LaunchScreen.xib in Resources */,
 				6227FB791AAE285C007F49EA /* Images.xcassets in Resources */,
 				6227FB771AAE285C007F49EA /* Main.storyboard in Resources */,
+				62E00C771AC4671900F10F10 /* piano-72.m4a in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

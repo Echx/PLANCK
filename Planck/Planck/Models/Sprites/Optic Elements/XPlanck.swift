@@ -45,6 +45,8 @@ class XPlanck: XInsrtument, NSCoding {
     
     
     private func setUp() {
+        self.color = self.colorNoteMapping.keys.array[0].displayColor
+        self.colorBlendFactor = 1
         self.setUpPhysicsProperties()
     }
     
@@ -60,7 +62,7 @@ class XPlanck: XInsrtument, NSCoding {
     internal func checkPhoton(photon: XPhoton) {
         let photonColor = photon.appearanceColor
         if contains(self.colorNoteMapping.keys, photonColor) {
-            println("HA")
+            self.runAction(SKAction.playSoundFileNamed("piano-72.m4a", waitForCompletion: false))
         }
     }
 }
