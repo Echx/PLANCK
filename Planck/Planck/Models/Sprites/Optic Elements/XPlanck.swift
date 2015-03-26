@@ -47,6 +47,7 @@ class XPlanck: XInsrtument, NSCoding {
     private func setUp() {
         self.color = self.colorNoteMapping.keys.array[0].displayColor
         self.colorBlendFactor = 1
+        self.texture = SKTexture(imageNamed: self.colorNoteMapping.values.array[0].getImageFileName())
         self.setUpPhysicsProperties()
     }
     
@@ -62,8 +63,7 @@ class XPlanck: XInsrtument, NSCoding {
     internal func checkPhoton(photon: XPhoton) {
         let photonColor = photon.appearanceColor
         if contains(self.colorNoteMapping.keys, photonColor) {
-            var soundFileName = NSString(format: "piano-%d.m4a", self.colorNoteMapping[photonColor]!.getMIDINote())
-            self.runAction(SKAction.playSoundFileNamed(soundFileName, waitForCompletion: false))
+            self.runAction(SKAction.playSoundFileNamed(self.colorNoteMapping[photonColor]!.getAudioFileName(), waitForCompletion: false))
         }
     }
 }

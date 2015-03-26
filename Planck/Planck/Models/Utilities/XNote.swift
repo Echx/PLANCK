@@ -82,6 +82,79 @@ class XNote: NSObject {
         
         return note
     }
+    
+    func getImageFileName() -> String {
+        var fileName: String = "planck-"
+        let baseNote: Int = self.noteName.rawValue / 4
+        let accidental: Int = self.noteName.rawValue % 4
+        
+        switch baseNote {
+        case 0:
+            // C
+            fileName += "c"
+            
+        case 1:
+            // D
+            fileName += "d"
+            
+        case 2:
+            // E
+            fileName += "e"
+            
+        case 3:
+            // F
+            fileName += "f"
+            
+        case 4:
+            // G
+            fileName += "g"
+            
+        case 5:
+            // A
+            fileName += "a"
+            
+        case 6:
+            // B
+            fileName += "b"
+            
+        default:
+            fatalError("invalid note")
+        }
+        
+        switch accidental {
+        case 0:
+            // natural
+            fileName += ""
+            
+        case 1:
+            // flat
+            fileName += "b"
+            
+        case 2:
+            // double flat
+            fileName += "bb"
+            
+        case 3:
+            // sharp
+            fileName += "#"
+            
+        case 4:
+            // double sharp
+            fileName += "x"
+            
+        default:
+            fatalError("invalid note")
+        }
+        
+        fileName += String(self.noteGroup)
+        
+        return fileName
+        
+    }
+    
+    func getAudioFileName() -> String {
+        return NSString(format: "piano-%d.m4a", self.getMIDINote())
+    }
 }
 
 enum XNoteName: Int {
