@@ -46,6 +46,8 @@ class XEmitter: XNode, NSCoding {
     }
     
     private func setUp() {
+        self.color = self.appearanceColor.displayColor
+        self.colorBlendFactor = 1
         self.runAction(SKAction.rotateToAngle(-direction.angleFromYPlus, duration: 0.0));
     }
     

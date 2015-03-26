@@ -283,8 +283,10 @@ class GameScene: SKScene, XEmitterDelegate, SKPhysicsContactDelegate {
             var sprite = node as XPhoton
             CGPathAddLineToPoint(sprite.opticalPath, nil, sprite.position.x, sprite.position.y)
             sprite.lightBeam.path = sprite.opticalPath
+            sprite.lightBeam.lineWidth = 16
             sprite.lightBeam.strokeColor = sprite.appearanceColor.displayColor
             if sprite.parent != nil {
+                
                 if sprite.position.x < 0 || sprite.position.x > 1024 {
 //                    sprite.removeActionForKey(ActionKey.photonActionLinear)
 //                    let direction = CGVector(dx: -sprite.direction.dx, dy: sprite.direction.dy)
