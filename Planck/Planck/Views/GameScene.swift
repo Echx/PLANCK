@@ -320,7 +320,7 @@ class GameScene: SKScene, XEmitterDelegate, SKPhysicsContactDelegate {
     
     // MARK - SKPhysicsContactDelegate
     func didBeginContact(contact: SKPhysicsContact) {
-        println("collision")
+//        println("collision")
         var contactableNode: XContactable!
         var firstBody: SKPhysicsBody
         var secondBody: SKPhysicsBody
@@ -336,7 +336,10 @@ class GameScene: SKScene, XEmitterDelegate, SKPhysicsContactDelegate {
             (secondBody.categoryBitMask & PhysicsCategory.photon != 0)) {
                 contactableNode = firstBody.node as XFlatMirror
                 let sprite: XPhoton = secondBody.node as XPhoton
-                CGPathAddLineToPoint(sprite.opticalPath, nil, sprite.position.x, sprite.position.y)
+                CGPathAddLineToPoint(sprite.opticalPath, nil, contact.contactPoint.x, contact.contactPoint.y + 1)
+                print(contact.contactPoint.x)
+                print(",")
+                println(contact.contactPoint.y)
         }
         
         // receptor and photon contact
