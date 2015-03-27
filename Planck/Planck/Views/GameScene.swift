@@ -252,6 +252,19 @@ class GameScene: SKScene, XEmitterDelegate, SKPhysicsContactDelegate {
                             }
                         }
                         
+                    case LevelDesignerDefaults.buttonNameClear:
+                        for node in self.children {
+                            if let xNode = node as? XEmitter {
+                                xNode.photon?.lightBeam.removeFromParent()
+                                xNode.photon?.removeFromParent()
+                                (node as XEmitter).canFire = false
+                            }
+                            
+                            if let xNode = node as? XNode {
+                                node.removeFromParent();
+                            }
+                        }
+                        
                     default:
                         fatalError("optical device mode not recognized")
                         
