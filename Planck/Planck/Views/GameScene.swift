@@ -17,20 +17,18 @@ class GameScene: SKScene, XEmitterDelegate, SKPhysicsContactDelegate {
     var selectedNode: XNode?
     var selectedNodeOriginalDirection: CGVector?
     
+    
+    var touchMoved = false
+    var touchBackground = false
+    var touchInitialPosition: CGPoint?
+    var selectedNodeInitialPosition: CGPoint?
+    
+    
     override func didMoveToView(view: SKView) {
         self.physicsWorld.gravity = CGVectorMake(0, 0)
         self.physicsWorld.contactDelegate = self
         self.setUpButtons(LevelDesignerDefaults.buttonNames, selector: LevelDesignerDefaults.selectorButtonClicked, isOnTop: false)
         self.setUpButtons(LevelDesignerDefaults.functionalButtonNames, selector: LevelDesignerDefaults.selectorFunctionalButtonClicked, isOnTop: true)
-        self.setUpGestureRecognizer()
-    }
-
-    private func setUpGestureRecognizer() {
-        let panGestureRecognizer = UIPanGestureRecognizer(target: self, action: "handlePanGesture:")
-        self.view?.addGestureRecognizer(panGestureRecognizer)
-        
-        let rotationGestureRecognizer = UIRotationGestureRecognizer(target: self, action: "handleRotationGesture:")
-        self.view?.addGestureRecognizer(rotationGestureRecognizer)
     }
     
     private func selectNodeAtPosition(position: CGPoint) -> Bool{
@@ -62,8 +60,24 @@ class GameScene: SKScene, XEmitterDelegate, SKPhysicsContactDelegate {
                 }
             }
         }
-        
         return false
+    }
+    
+    private func getNodeAtPosition(position: CGPoint) -> XNode? {
+        let senseFrame = CGRectMake(
+            position.x - LevelDesignerDefaults.selectionAreaSize/2,
+            position.y - LevelDesignerDefaults.selectionAreaSize/2,
+            LevelDesignerDefaults.selectionAreaSize,
+            LevelDesignerDefaults.selectionAreaSize)
+        
+        for node in self.children {
+            if CGRectIntersectsRect(node.calculateAccumulatedFrame(), senseFrame) {
+                if let touchedNode = node as? XNode {
+                    return touchedNode
+                }
+            }
+        }
+        return nil
     }
     
     private func deselectCurrentNode() {
@@ -76,41 +90,7 @@ class GameScene: SKScene, XEmitterDelegate, SKPhysicsContactDelegate {
     private func radius(degree: CGFloat) -> CGFloat {
         return  degree / 180.0  * CGFloat(M_PI)
     }
-    
-    
-    func handlePanGesture(sender: UIPanGestureRecognizer) {
-        let position = sender.locationInView(sender.view);
-        if sender.state == UIGestureRecognizerState.Began {
-            self.selectNodeAtPosition(self.convertPointFromView(position))
-        } else if sender.state == UIGestureRecognizerState.Changed {
-            var translation = sender.translationInView(sender.view!)
-            translation = CGPointMake(translation.x, -translation.y)
-            self.panForTranslation(translation)
-            sender.setTranslation(CGPointZero, inView: sender.view)
-        } else if sender.state == UIGestureRecognizerState.Ended {
-            self.updateOpticalPath()
-            self.deselectCurrentNode()
-        }
 
-    }
-    
-    func handleRotationGesture(sender: UIRotationGestureRecognizer) {
-        if let currentNodeDirection = (self.selectedNode as? XInsrtument)?.direction {
-            if sender.state == UIGestureRecognizerState.Began {
-                self.selectedNodeOriginalDirection = currentNodeDirection
-            } else if sender.state == UIGestureRecognizerState.Changed {
-                if let instrument = self.selectedNode as? XInsrtument {
-                    let rotation = sender.rotation + self.selectedNodeOriginalDirection!.angleFromYPlus;
-                    instrument.setDirection(rotation)
-                }
-            } else if sender.state == UIGestureRecognizerState.Ended {
-                self.updateOpticalPath()
-                self.deselectCurrentNode()
-            }
-        }
-        
-    }
-    
     private func panForTranslation(translation: CGPoint) {
         if let selectedNode = self.selectedNode {
             let position = selectedNode.position
@@ -263,10 +243,41 @@ class GameScene: SKScene, XEmitterDelegate, SKPhysicsContactDelegate {
         } else {
             for touch: AnyObject in touches {
                 let location = touch.locationInNode(self)
-                self.selectNodeAtPosition(location)
+                self.touchBackground = !self.selectNodeAtPosition(location)
+                self.selectedNodeInitialPosition = self.selectedNode?.position
+                self.touchInitialPosition = location
                 break
             }
         }
+    }
+    
+    override func touchesMoved(touches: NSSet, withEvent event: UIEvent) {
+        self.touchMoved = true
+        for touch: AnyObject in touches {
+            let location = touch.locationInNode(self)
+            if !touchBackground && self.touchInitialPosition != nil {
+                //initial touch is on the node, perform dragging
+                var translation = CGPointMake(location.x - self.touchInitialPosition!.x, location.y - self.touchInitialPosition!.y)
+                self.panForTranslation(translation)
+                self.selectedNode?.position = CGPointMake(self.selectedNodeInitialPosition!.x + translation.x, self.selectedNodeInitialPosition!.y + translation.y)
+            } else {
+                //initial touch is on the background, perform rotating
+                if let anchorPoint = self.selectedNodeInitialPosition {
+                    if let instrument = selectedNode as? XInsrtument {
+                        let currentVector = CGVectorMake(location.x - anchorPoint.x, location.y - anchorPoint.y)
+                        instrument.setDirection(CGFloat(M_PI/2)-currentVector.angleFromXPlus)
+                    }
+                }
+            }
+        }
+    }
+    
+    override func touchesEnded(touches: NSSet, withEvent event: UIEvent) {
+        if !self.touchMoved && self.touchBackground {
+            self.deselectCurrentNode()
+        }
+        self.updateOpticalPath()
+        self.touchMoved = false;
     }
    
     override func update(currentTime: CFTimeInterval) {
