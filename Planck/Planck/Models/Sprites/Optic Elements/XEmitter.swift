@@ -13,26 +13,29 @@ protocol XEmitterDelegate {
     func emitterDidGenerateNewPhoton(emitter: XEmitter, photon: XPhoton, andAction action: SKAction)
 }
 
-class XEmitter: XNode, NSCoding {
+class XEmitter: XInsrtument, NSCoding {
     
     var delegate: XEmitterDelegate?
     var appearanceColor: XColor
-    var direction: CGVector
     var photon: XPhoton?
     var canFire = true
     
     init(appearanceColor: XColor, direction: CGVector) {
         self.appearanceColor = appearanceColor
-        self.direction = direction
         super.init(
             texture: SKTexture(imageNamed: EmitterDefualts.textureImageName),
             color: EmitterDefualts.textureColor,
             size: CGSizeMake(EmitterDefualts.diameter, EmitterDefualts.diameter)
         );
+        self.direction = direction
         self.setUp()
     }
 
-    required convenience override init(coder aDecoder: NSCoder) {
+    override func setDirection(angleFromYPlus: CGFloat) {
+        super.setDirection(angleFromYPlus)
+    }
+    
+    required convenience init(coder aDecoder: NSCoder) {
         let color = aDecoder.decodeObjectForKey(NSCodingKey.ApperanceColor)! as XColor
         let direction = aDecoder.decodeCGVectorForKey(NSCodingKey.Direction)
         self.init(appearanceColor: color, direction: direction)
@@ -48,7 +51,6 @@ class XEmitter: XNode, NSCoding {
     private func setUp() {
         self.color = self.appearanceColor.displayColor
         self.colorBlendFactor = 1
-        self.runAction(SKAction.rotateToAngle(-direction.angleFromYPlus, duration: 0.0));
     }
     
     func fire() {
@@ -63,6 +65,7 @@ class XEmitter: XNode, NSCoding {
     }
     
     private func generateOpticalPath() {
+        println("(\(self.direction.dx), \(self.direction.dy))");
         self.photon = XPhoton(appearanceColor: self.appearanceColor, direction: self.direction)
         self.photon!.position = self.position
         CGPathMoveToPoint(self.photon!.opticalPath, nil, self.photon!.position.x,
