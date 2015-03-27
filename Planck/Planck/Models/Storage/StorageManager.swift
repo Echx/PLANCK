@@ -19,13 +19,31 @@ class StorageManager:NSObject  {
     private let levelDataFileType = ".dat"
     
     // MARK: - Save & Load
-    func saveCurrentLevel() {
-        
+    func saveCurrentLevel(level:NSMutableArray) {
+        let data = NSMutableData()
+        let archiver = NSKeyedArchiver(forWritingWithMutableData: data)
+        archiver.encodeObject(level, forKey: keyForArchieve)
+        println(level.count)
+        archiver.finishEncoding()
+        let documentsPath = NSSearchPathForDirectoriesInDomains(.DocumentDirectory,
+            .UserDomainMask, true)[0] as NSString
+        let levelName = "haha" + levelDataFileType
+        // the dat name should be set by user
+        var filePath : NSString = documentsPath.stringByAppendingPathComponent(levelName)
+        data.writeToFile(filePath, atomically: true)
+        println("Success")
     }
     
     // load the level based on the file name
-    func loadLevel(filename:NSString) {
-        
+    func loadLevel(filename:NSString) -> NSMutableArray {
+        let documentsPath = NSSearchPathForDirectoriesInDomains(.DocumentDirectory,
+            .UserDomainMask, true)[0] as NSString
+        // the dat name should be set by user
+        var filePath : NSString = documentsPath.stringByAppendingPathComponent(filename)
+        println(filePath)
+        let data = NSData(contentsOfFile: filePath)
+        let unarchiver = NSKeyedUnarchiver(forReadingWithData: data!)
+        return unarchiver.decodeObjectForKey(keyForArchieve) as NSMutableArray
     }
     
 }

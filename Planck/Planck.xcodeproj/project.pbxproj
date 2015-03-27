@@ -79,6 +79,7 @@
 		62E00C921AC46A5C00F10F10 /* piano-71.m4a in Resources */ = {isa = PBXBuildFile; fileRef = 62E00C851AC46A5C00F10F10 /* piano-71.m4a */; };
 		62E00C931AC46A5C00F10F10 /* piano-72.m4a in Resources */ = {isa = PBXBuildFile; fileRef = 62E00C861AC46A5C00F10F10 /* piano-72.m4a */; };
 		984F35D81ABF09F1008816C9 /* InstrumentNSCodingTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 984F35D71ABF09F1008816C9 /* InstrumentNSCodingTests.swift */; };
+		986E5DA31AC55604008EF3CE /* StorageManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 98D55F9D1ABF133000B3E86A /* StorageManager.swift */; };
 		98D55F9E1ABF133000B3E86A /* StorageManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 98D55F9D1ABF133000B3E86A /* StorageManager.swift */; };
 /* End PBXBuildFile section */
 
@@ -528,6 +529,7 @@
 				6227FC201AAE291F007F49EA /* XColorTest.swift in Sources */,
 				62988FED1AB2FA8800FD9AFF /* XConvexLens.swift in Sources */,
 				62988FD41AB2FA3400FD9AFF /* CGVector+XUtilityTest.swift in Sources */,
+				986E5DA31AC55604008EF3CE /* StorageManager.swift in Sources */,
 				6227FB881AAE285C007F49EA /* PlanckTests.swift in Sources */,
 				62988FEE1AB2FA8800FD9AFF /* XMirror.swift in Sources */,
 				62988FF21AB2FA8800FD9AFF /* XInstrument.swift in Sources */,

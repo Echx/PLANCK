@@ -87,7 +87,6 @@ class XColor : NSObject, Hashable, NSCoding {
 }
 
 func + (left: XColor, right: XColor) -> XColor {
-    // TODO
     let containsRed = left.containsRed || right.containsRed
     let containsGreen = left.containsGreen || right.containsGreen
     let containsBlue = left.containsBlue || right.containsBlue
@@ -95,7 +94,6 @@ func + (left: XColor, right: XColor) -> XColor {
 }
 
 func - (left: XColor, right: XColor) -> XColor {
-    // TODO
     let containsRed = left.containsRed && !right.containsRed
     let containsGreen = left.containsGreen && !right.containsGreen
     let containsBlue = left.containsBlue && !right.containsBlue

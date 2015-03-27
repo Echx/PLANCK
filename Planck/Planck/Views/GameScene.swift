@@ -7,6 +7,7 @@
 //
 
 import SpriteKit
+import Foundation
 
 class GameScene: SKScene, XEmitterDelegate, SKPhysicsContactDelegate {
     var topPanelButtons = [AGSpriteButton]()
@@ -159,8 +160,25 @@ class GameScene: SKScene, XEmitterDelegate, SKPhysicsContactDelegate {
     
     func buttonDidClicked(sender: AGSpriteButton?) {
         if let selectedButtonName = sender?.name {
-            self.currentOpticalDeviceMode = selectedButtonName;
-            updateButtonAppearance(selectedButton: sender);
+            if (selectedButtonName == "save") {
+                println("Press save")
+                var instruments = self.children.filter({$0 is XInsrtument})
+                var arrayForSave = NSMutableArray(array: instruments)
+                let fileManager = StorageManager.defaultManager
+                fileManager.saveCurrentLevel(arrayForSave)
+            } else if (selectedButtonName == "load") {
+                println("Press load")
+                self.removeChildrenInArray(self.children.filter({
+                    $0 is XNode
+                }))
+                let fileManager = StorageManager.defaultManager
+                var level = fileManager.loadLevel("haha.dat")
+                println(level.count)
+            } else {
+                self.currentOpticalDeviceMode = selectedButtonName
+                updateButtonAppearance(selectedButton: sender)
+            }
+            
         }
     }
     
