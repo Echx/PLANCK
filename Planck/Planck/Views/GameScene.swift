@@ -16,12 +16,16 @@ class GameScene: SKScene, XEmitterDelegate, SKPhysicsContactDelegate {
     var needAddItems = true
     var selectedNode: XNode?
     var selectedNodeOriginalDirection: CGVector?
+    var colorSlider: UISlider?
     
     override func didMoveToView(view: SKView) {
         self.physicsWorld.gravity = CGVectorMake(0, 0)
         self.physicsWorld.contactDelegate = self
         self.setUpButtons(LevelDesignerDefaults.buttonNames, selector: LevelDesignerDefaults.selectorButtonClicked, isOnTop: false)
         self.setUpButtons(LevelDesignerDefaults.functionalButtonNames, selector: LevelDesignerDefaults.selectorFunctionalButtonClicked, isOnTop: true)
+
+        self.colorSlider = UISlider()
+
         self.setUpGestureRecognizer()
     }
 
@@ -161,6 +165,8 @@ class GameScene: SKScene, XEmitterDelegate, SKPhysicsContactDelegate {
         if let selectedButtonName = sender?.name {
             self.currentOpticalDeviceMode = selectedButtonName;
             updateButtonAppearance(selectedButton: sender);
+            
+            self.view!.addSubview(self.colorSlider!)
         }
     }
     
