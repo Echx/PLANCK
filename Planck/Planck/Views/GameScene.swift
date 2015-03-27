@@ -219,7 +219,7 @@ class GameScene: SKScene, XEmitterDelegate, SKPhysicsContactDelegate {
                         
                     case LevelDesignerDefaults.buttonNamePlanck:
                         let planck = XPlanck(mapping: [(XColor(index: 7),
-                            XNote(noteName: XNoteName.cymbal, noteGroup: 0))])
+                            XNote(noteName: XNoteName.snareDrum, noteGroup: 0))])
                         planck.position = location
                         self.addChild(planck)
                         planck.zPosition = 998
@@ -281,6 +281,7 @@ class GameScene: SKScene, XEmitterDelegate, SKPhysicsContactDelegate {
             if sprite.parent != nil {
                 
                 if sprite.position.x < 0 || sprite.position.x > 1024 {
+                    sprite.physicsBody?.velocity = CGVector.zeroVector
 //                    sprite.removeActionForKey(ActionKey.photonActionLinear)
 //                    let direction = CGVector(dx: -sprite.direction.dx, dy: sprite.direction.dy)
 //                    sprite.setDirection(direction)
@@ -295,6 +296,7 @@ class GameScene: SKScene, XEmitterDelegate, SKPhysicsContactDelegate {
                 }
                 
                 if sprite.position.y < 0 || sprite.position.y > 768 {
+                    sprite.physicsBody?.velocity = CGVector.zeroVector
 //                    sprite.removeActionForKey(ActionKey.photonActionLinear)
 //                    sprite.removeFromParent()
 //                    let direction = CGVector(dx: sprite.direction.dx, dy: -sprite.direction.dy)
