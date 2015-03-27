@@ -23,7 +23,6 @@ class GameScene: SKScene, XEmitterDelegate, SKPhysicsContactDelegate {
         self.setUpButtons(LevelDesignerDefaults.buttonNames, selector: LevelDesignerDefaults.selectorButtonClicked, isOnTop: false)
         self.setUpButtons(LevelDesignerDefaults.functionalButtonNames, selector: LevelDesignerDefaults.selectorFunctionalButtonClicked, isOnTop: true)
         self.setUpGestureRecognizer()
-        self.view?.showsPhysics = true;
     }
 
     private func setUpGestureRecognizer() {
@@ -58,12 +57,7 @@ class GameScene: SKScene, XEmitterDelegate, SKPhysicsContactDelegate {
                         
                         self.selectedNode = touchedNode
                         
-                        let shakeAction = SKAction.sequence([
-                            SKAction.rotateByAngle(self.radius(-4), duration: 0.1),
-                            SKAction.rotateByAngle(self.radius(0), duration: 0.1),
-                            SKAction.rotateByAngle(self.radius(4), duration: 0.1)
-                            ])
-                        self.selectedNode?.runAction(SKAction.repeatActionForever(shakeAction), withKey: ActionKey.nodeActionShake)
+                        selectedNode?.alpha = 0.5;
                     }
                     return true
                 }
@@ -74,12 +68,7 @@ class GameScene: SKScene, XEmitterDelegate, SKPhysicsContactDelegate {
     }
     
     private func deselectCurrentNode() {
-        self.selectedNode?.removeActionForKey(ActionKey.nodeActionShake)
-        if let selectedInstrument = self.selectedNode as? XInsrtument {
-            
-        } else {
-            self.selectedNode?.runAction(SKAction.rotateToAngle(CGFloat(-M_PI/2), duration: 0.1))
-        }
+        selectedNode?.alpha = 1;
         self.selectedNode = nil
         self.selectedNodeOriginalDirection = nil
     }
@@ -214,7 +203,7 @@ class GameScene: SKScene, XEmitterDelegate, SKPhysicsContactDelegate {
                         mirror.zPosition = 999
                         
                     case LevelDesignerDefaults.buttonNameEmitter:
-                        let emitter = XEmitter(appearanceColor: XColor(index: random()%8),
+                        let emitter = XEmitter(appearanceColor: XColor(index: 7),
                             direction: CGVector(dx: 1, dy: 0))
                         emitter.position = location
                         emitter.name = EmitterDefualts.nodeName
