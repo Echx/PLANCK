@@ -188,7 +188,7 @@ class XNote: NSObject {
                 return "snare-drum.m4a"
                 
             case .cymbal:
-                return "cymbal."
+                return "cymbal.m4a"
                 
             default:
                 fatalError("impossible")
