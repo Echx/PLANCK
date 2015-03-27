@@ -27,6 +27,13 @@ struct NSCodingKey {
     static let Medium2 = "MEDIUM2"
     
     static let Focus = "FOCUS"
+    static let ColorMapping = "COLOR_MAPPING"
+
+    static let CanFire = "CAN_FIRE"
+    
+    static let NoteName = "NOTENAME"
+    static let NoteGroup = "NOTEGRP"
+    static let isPitchedNote = "ISPITCH"
 }
 
 struct ActionKey {

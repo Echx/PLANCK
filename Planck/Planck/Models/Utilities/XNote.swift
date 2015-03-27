@@ -7,8 +7,9 @@
 //
 
 import UIKit
+import Foundation
 
-class XNote: NSObject {
+class XNote: NSObject, NSCoding {
     var noteName: XNoteName
     var noteGroup: Int
     var isPitchedNote: Bool
@@ -20,6 +21,18 @@ class XNote: NSObject {
         if contains([XNoteName.cymbal, XNoteName.snareDrum, XNoteName.bassDrum], self.noteName) {
             self.isPitchedNote = false
         }
+    }
+    
+    required convenience init(coder aDecoder: NSCoder) {
+        let noteNameRaw = aDecoder.decodeObjectForKey(NSCodingKey.NoteName)! as Int
+        let noteName = XNoteName(rawValue: noteNameRaw)!
+        let noteGroup = aDecoder.decodeObjectForKey(NSCodingKey.NoteGroup)! as Int
+        self.init(noteName: noteName, noteGroup: noteGroup)
+    }
+    
+    func encodeWithCoder(aCoder: NSCoder) {
+        aCoder.encodeObject(self.noteName.rawValue, forKey: NSCodingKey.NoteName)
+        aCoder.encodeObject(self.noteGroup, forKey: NSCodingKey.NoteGroup)
     }
     
     func getMIDINote() -> Int {

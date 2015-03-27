@@ -162,18 +162,34 @@ class GameScene: SKScene, XEmitterDelegate, SKPhysicsContactDelegate {
         if let selectedButtonName = sender?.name {
             if (selectedButtonName == "save") {
                 println("Press save")
-                var instruments = self.children.filter({$0 is XInsrtument})
+                // only save non-planck instruments for now
+                var instruments = self.children.filter({
+                    $0 is XInsrtument && !($0 is XPlanck)
+                })
                 var arrayForSave = NSMutableArray(array: instruments)
                 let fileManager = StorageManager.defaultManager
                 fileManager.saveCurrentLevel(arrayForSave)
             } else if (selectedButtonName == "load") {
                 println("Press load")
-                self.removeChildrenInArray(self.children.filter({
-                    $0 is XNode
-                }))
+                clearNodeInScene()
                 let fileManager = StorageManager.defaultManager
                 var level = fileManager.loadLevel("haha.dat")
-                println(level.count)
+                for node in level {
+                    // treat emitter as a speicla case.
+                    if (node is XEmitter) {
+                        let storeEmitter = node as XEmitter
+                        let emitter = XEmitter(appearanceColor: storeEmitter.appearanceColor,
+                            direction: storeEmitter.direction)
+                        emitter.position = storeEmitter.position
+                        emitter.name = EmitterDefualts.nodeName
+                        self.addChild(emitter)
+                        emitter.zPosition = 1000
+                        emitter.delegate = self
+                        emitter.fire()
+                    } else {
+                        self.addChild(node as XInsrtument)
+                    }
+                }
             } else {
                 self.currentOpticalDeviceMode = selectedButtonName
                 updateButtonAppearance(selectedButton: sender)
@@ -195,12 +211,18 @@ class GameScene: SKScene, XEmitterDelegate, SKPhysicsContactDelegate {
     private func updateOpticalPath() {
         self.enumerateChildNodesWithName(EmitterDefualts.nodeName) {
             node, stop in
-            let emitter = node as? XEmitter
-            emitter?.photon?.lightBeam.removeFromParent()
-            emitter?.photon?.removeFromParent()
-            if emitter?.canFire == true {
-                emitter?.fire()
+            println(node)
+            if let emitter = node as? XEmitter {
+                emitter.photon?.lightBeam.removeFromParent()
+                emitter.photon?.removeFromParent()
+                if emitter.canFire == true {
+                    println("Update and fire!")
+                    emitter.fire()
+                }
+            } else {
+                println("cannot convert!")
             }
+            
         }
     }
 
@@ -271,17 +293,7 @@ class GameScene: SKScene, XEmitterDelegate, SKPhysicsContactDelegate {
                         }
                         
                     case LevelDesignerDefaults.buttonNameClear:
-                        for node in self.children {
-                            if let xNode = node as? XEmitter {
-                                xNode.photon?.lightBeam.removeFromParent()
-                                xNode.photon?.removeFromParent()
-                                (node as XEmitter).canFire = false
-                            }
-                            
-                            if let xNode = node as? XNode {
-                                node.removeFromParent();
-                            }
-                        }
+                        clearNodeInScene()
                         
                     default:
                         fatalError("optical device mode not recognized")
@@ -397,5 +409,20 @@ class GameScene: SKScene, XEmitterDelegate, SKPhysicsContactDelegate {
         self.insertChild(photon, atIndex: 1)
         photon.physicsBody?.applyImpulse(CGVectorMake(Constant.lightSpeedBase * photon.direction.dx, Constant.lightSpeedBase * photon.direction.dy))
         self.insertChild(photon.lightBeam, atIndex: 1)
+    }
+    
+    
+    private func clearNodeInScene() {
+        for node in self.children {
+            if let xNode = node as? XEmitter {
+                xNode.photon?.lightBeam.removeFromParent()
+                xNode.photon?.removeFromParent()
+                (node as XEmitter).canFire = false
+            }
+            
+            if let xNode = node as? XNode {
+                node.removeFromParent();
+            }
+        }
     }
 }

@@ -40,12 +40,14 @@ class XEmitter: XInsrtument, NSCoding {
         let direction = aDecoder.decodeCGVectorForKey(NSCodingKey.Direction)
         self.init(appearanceColor: color, direction: direction)
         self.position = aDecoder.decodeCGPointForKey(NSCodingKey.Position)
+        self.canFire = aDecoder.decodeBoolForKey(NSCodingKey.CanFire)
     }
     
     override func encodeWithCoder(aCoder: NSCoder) {
         aCoder.encodeObject(self.appearanceColor, forKey: NSCodingKey.ApperanceColor)
         aCoder.encodeCGVector(self.direction, forKey: NSCodingKey.Direction)
         aCoder.encodeCGPoint(self.position, forKey: NSCodingKey.Position)
+        aCoder.encodeBool(self.canFire, forKey: NSCodingKey.CanFire)
     }
     
     private func setUp() {
