@@ -218,7 +218,7 @@ class GameScene: SKScene, XEmitterDelegate, SKPhysicsContactDelegate {
                         
                     case LevelDesignerDefaults.buttonNamePlanck:
                         let planck = XPlanck(mapping: [(XColor(index: 7),
-                            XNote(noteName: XNoteName.C, noteGroup: 4))])
+                            XNote(noteName: XNoteName.cymbal, noteGroup: 0))])
                         planck.position = location
                         self.addChild(planck)
                         planck.zPosition = 998

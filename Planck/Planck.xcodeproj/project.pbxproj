@@ -13,6 +13,9 @@
 		267B00901ABEE4DF000F35DD /* XInterface.swift in Sources */ = {isa = PBXBuildFile; fileRef = 267B008F1ABEE4DF000F35DD /* XInterface.swift */; };
 		267EC2D41AB1DA01002FE745 /* CGVector+XUtility.swift in Sources */ = {isa = PBXBuildFile; fileRef = 267EC2D31AB1DA01002FE745 /* CGVector+XUtility.swift */; };
 		620BD4461AB2E69800267C7B /* XNote.swift in Sources */ = {isa = PBXBuildFile; fileRef = 620BD4451AB2E69800267C7B /* XNote.swift */; };
+		622556A61AC5348300DA47AF /* bass-drum.m4a in Resources */ = {isa = PBXBuildFile; fileRef = 622556A31AC5348300DA47AF /* bass-drum.m4a */; };
+		622556A71AC5348300DA47AF /* cymbal.m4a in Resources */ = {isa = PBXBuildFile; fileRef = 622556A41AC5348300DA47AF /* cymbal.m4a */; };
+		622556A81AC5348300DA47AF /* snare-drum.m4a in Resources */ = {isa = PBXBuildFile; fileRef = 622556A51AC5348300DA47AF /* snare-drum.m4a */; };
 		6227FB6E1AAE285C007F49EA /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6227FB6D1AAE285C007F49EA /* AppDelegate.swift */; };
 		6227FB771AAE285C007F49EA /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 6227FB751AAE285C007F49EA /* Main.storyboard */; };
 		6227FB791AAE285C007F49EA /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 6227FB781AAE285C007F49EA /* Images.xcassets */; };
@@ -96,6 +99,9 @@
 		267B008F1ABEE4DF000F35DD /* XInterface.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = XInterface.swift; sourceTree = "<group>"; };
 		267EC2D31AB1DA01002FE745 /* CGVector+XUtility.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "CGVector+XUtility.swift"; sourceTree = "<group>"; };
 		620BD4451AB2E69800267C7B /* XNote.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = XNote.swift; sourceTree = "<group>"; };
+		622556A31AC5348300DA47AF /* bass-drum.m4a */ = {isa = PBXFileReference; lastKnownFileType = file; path = "bass-drum.m4a"; sourceTree = "<group>"; };
+		622556A41AC5348300DA47AF /* cymbal.m4a */ = {isa = PBXFileReference; lastKnownFileType = file; path = cymbal.m4a; sourceTree = "<group>"; };
+		622556A51AC5348300DA47AF /* snare-drum.m4a */ = {isa = PBXFileReference; lastKnownFileType = file; path = "snare-drum.m4a"; sourceTree = "<group>"; };
 		6227FB681AAE285C007F49EA /* Planck.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Planck.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		6227FB6C1AAE285C007F49EA /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		6227FB6D1AAE285C007F49EA /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -178,6 +184,16 @@
 				262BE1A51ABE9A9000ABE965 /* AGSpriteButton.m */,
 			);
 			path = AGSpriteButton;
+			sourceTree = "<group>";
+		};
+		622556A21AC5345600DA47AF /* Percussion */ = {
+			isa = PBXGroup;
+			children = (
+				622556A31AC5348300DA47AF /* bass-drum.m4a */,
+				622556A41AC5348300DA47AF /* cymbal.m4a */,
+				622556A51AC5348300DA47AF /* snare-drum.m4a */,
+			);
+			name = Percussion;
 			sourceTree = "<group>";
 		};
 		6227FB5F1AAE285C007F49EA = {
@@ -333,6 +349,7 @@
 		62E00C751AC466E800F10F10 /* Sound */ = {
 			isa = PBXGroup;
 			children = (
+				622556A21AC5345600DA47AF /* Percussion */,
 				62E00C7A1AC46A5C00F10F10 /* piano-60.m4a */,
 				62E00C7B1AC46A5C00F10F10 /* piano-61.m4a */,
 				62E00C7C1AC46A5C00F10F10 /* piano-62.m4a */,
@@ -439,8 +456,10 @@
 			buildActionMask = 2147483647;
 			files = (
 				6227FC1C1AAE28E7007F49EA /* GameScene.sks in Resources */,
+				622556A71AC5348300DA47AF /* cymbal.m4a in Resources */,
 				62E00C8A1AC46A5C00F10F10 /* piano-63.m4a in Resources */,
 				62E00C8F1AC46A5C00F10F10 /* piano-68.m4a in Resources */,
+				622556A81AC5348300DA47AF /* snare-drum.m4a in Resources */,
 				62E00C931AC46A5C00F10F10 /* piano-72.m4a in Resources */,
 				62E00C8D1AC46A5C00F10F10 /* piano-66.m4a in Resources */,
 				6227FB7C1AAE285C007F49EA /* LaunchScreen.xib in Resources */,
@@ -455,6 +474,7 @@
 				62E00C901AC46A5C00F10F10 /* piano-69.m4a in Resources */,
 				62E00C871AC46A5C00F10F10 /* piano-60.m4a in Resources */,
 				62E00C8C1AC46A5C00F10F10 /* piano-65.m4a in Resources */,
+				622556A61AC5348300DA47AF /* bass-drum.m4a in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

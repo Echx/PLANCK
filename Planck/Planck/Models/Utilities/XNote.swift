@@ -11,16 +11,25 @@ import UIKit
 class XNote: NSObject {
     var noteName: XNoteName
     var noteGroup: Int
+    var isPitchedNote: Bool
     
     init(noteName: XNoteName, noteGroup: Int) {
         self.noteName = noteName
         self.noteGroup = noteGroup
+        self.isPitchedNote = true
+        if contains([XNoteName.cymbal, XNoteName.snareDrum, XNoteName.bassDrum], self.noteName) {
+            self.isPitchedNote = false
+        }
     }
     
     func getMIDINote() -> Int {
+        if !self.isPitchedNote {
+            return -1
+        }
+        
         var note: Int = (self.noteGroup + 1) * 12 // base MIDI note
-        let baseNote: Int = self.noteName.rawValue / 4
-        let accidental: Int = self.noteName.rawValue % 4
+        let baseNote: Int = self.noteName.rawValue / 5
+        let accidental: Int = self.noteName.rawValue % 5
         
         switch baseNote {
         case 0:
@@ -84,6 +93,22 @@ class XNote: NSObject {
     }
     
     func getImageFileName() -> String {
+        if !self.isPitchedNote {
+            switch self.noteName {
+            case .bassDrum:
+                return "bass-drum"
+                
+            case .snareDrum:
+                return "snare-drum"
+                
+            case .cymbal:
+                return "cymbal"
+                
+            default:
+                fatalError("impossible")
+            }
+        }
+        
         var fileName: String = "planck-"
         let baseNote: Int = self.noteName.rawValue / 4
         let accidental: Int = self.noteName.rawValue % 4
@@ -153,6 +178,23 @@ class XNote: NSObject {
     }
     
     func getAudioFileName() -> String {
+        
+        if !self.isPitchedNote {
+            switch self.noteName {
+            case .bassDrum:
+                return "bass-drum.m4a"
+                
+            case .snareDrum:
+                return "snare-drum.m4a"
+                
+            case .cymbal:
+                return "cymbal.m4a"
+                
+            default:
+                fatalError("impossible")
+            }
+        }
+
         return NSString(format: "piano-%d.m4a", self.getMIDINote())
     }
 }
@@ -165,4 +207,5 @@ enum XNoteName: Int {
     case G, GFlat, GDoubleFlat, GSharp, GDoubleSharp
     case A, AFlat, ADoubleFlat, ASharp, ADoubleSharp
     case B, BFlat, BDoubleFlat, BSharp, BDoubleSharp
+    case snareDrum, bassDrum, cymbal
 }
