@@ -359,9 +359,8 @@ class GameScene: SKScene, XEmitterDelegate, SKPhysicsContactDelegate {
         if ((firstBody.categoryBitMask & PhysicsCategory.interface != 0) &&
             (secondBody.categoryBitMask & PhysicsCategory.photon != 0)) {
                 contactableNode = firstBody.node as XInterface
-                secondBody.node?.physicsBody?.applyImpulse(CGVectorMake(0, -1))
+                secondBody.node?.physicsBody?.applyImpulse(CGVectorMake(0, -0.01))
         }
-        
         
         if let photon = secondBody.node as? XPhoton {
             CGPathAddLineToPoint(photon.opticalPath, nil, contact.contactPoint.x, contact.contactPoint.y + 1)
@@ -369,6 +368,7 @@ class GameScene: SKScene, XEmitterDelegate, SKPhysicsContactDelegate {
             contactableNode.contactWithPhoton(photon)
         }
     }
+
     
     // MARK - XEmitterDelegate
     func emitterDidGenerateNewPhoton(emitter: XEmitter, photon: XPhoton, andAction action: SKAction) {
