@@ -25,6 +25,23 @@ class XInterface: XInsrtument {
         self.setUp()
     }
     
+    required convenience init(coder aDecoder: NSCoder) {
+        let direction = aDecoder.decodeCGVectorForKey(NSCodingKey.Direction)
+        let rawEnumString1 = aDecoder.decodeObjectForKey(NSCodingKey.Medium1)! as Int
+        let rawEnumString2 = aDecoder.decodeObjectForKey(NSCodingKey.Medium2)! as Int
+        let medium1 = XMedium(rawValue: rawEnumString1)!
+        let medium2 = XMedium(rawValue: rawEnumString2)!
+        self.init(direction: direction, medium1: medium1, medium2: medium2)
+        self.position = aDecoder.decodeCGPointForKey(NSCodingKey.Position)
+    }
+    
+    override func encodeWithCoder(aCoder: NSCoder) {
+        aCoder.encodeCGVector(direction, forKey: NSCodingKey.Direction)
+        aCoder.encodeObject(self.medium1.rawValue, forKey: NSCodingKey.Medium1)
+        aCoder.encodeObject(self.medium2.rawValue, forKey: NSCodingKey.Medium2)
+        aCoder.encodeCGPoint(self.position, forKey: NSCodingKey.Position)
+    }
+
     private func setUp() {
         self.setUpPhysicsProperties()
     }
