@@ -11,6 +11,7 @@ import SpriteKit
 
 class XPlanck: XInsrtument, NSCoding {
     private var colorNoteMapping = Dictionary<XColor, XNote>()
+    private var playSound: SKAction?
     init() {
         super.init(
             texture: nil,
@@ -48,6 +49,7 @@ class XPlanck: XInsrtument, NSCoding {
         self.color = self.colorNoteMapping.keys.array[0].displayColor
         self.colorBlendFactor = 1
         self.texture = SKTexture(imageNamed: self.colorNoteMapping.values.array[0].getImageFileName())
+        self.playSound = SKAction.playSoundFileNamed(self.colorNoteMapping.values.array[0].getAudioFileName(), waitForCompletion: false)
         self.setUpPhysicsProperties()
     }
     
@@ -63,7 +65,7 @@ class XPlanck: XInsrtument, NSCoding {
     internal func checkPhoton(photon: XPhoton) {
         let photonColor = photon.appearanceColor
         if contains(self.colorNoteMapping.keys, photonColor) {
-            self.runAction(SKAction.playSoundFileNamed(self.colorNoteMapping[photonColor]!.getAudioFileName(), waitForCompletion: false))
+            self.runAction(self.playSound)
         }
     }
 }
