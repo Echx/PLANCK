@@ -7,6 +7,7 @@
 //
 
 import SpriteKit
+import Foundation
 
 class GameScene: SKScene, XEmitterDelegate, SKPhysicsContactDelegate {
     var topPanelButtons = [AGSpriteButton]()
@@ -139,8 +140,25 @@ class GameScene: SKScene, XEmitterDelegate, SKPhysicsContactDelegate {
     
     func buttonDidClicked(sender: AGSpriteButton?) {
         if let selectedButtonName = sender?.name {
-            self.currentOpticalDeviceMode = selectedButtonName;
-            updateButtonAppearance(selectedButton: sender);
+            if (selectedButtonName == "save") {
+                println("Press save")
+                var instruments = self.children.filter({$0 is XInsrtument})
+                var arrayForSave = NSMutableArray(array: instruments)
+                let fileManager = StorageManager.defaultManager
+                fileManager.saveCurrentLevel(arrayForSave)
+            } else if (selectedButtonName == "load") {
+                println("Press load")
+                self.removeChildrenInArray(self.children.filter({
+                    $0 is XNode
+                }))
+                let fileManager = StorageManager.defaultManager
+                var level = fileManager.loadLevel("haha.dat")
+                println(level.count)
+            } else {
+                self.currentOpticalDeviceMode = selectedButtonName
+                updateButtonAppearance(selectedButton: sender)
+            }
+            
         }
     }
     
@@ -198,7 +216,7 @@ class GameScene: SKScene, XEmitterDelegate, SKPhysicsContactDelegate {
                         
                     case LevelDesignerDefaults.buttonNamePlanck:
                         let planck = XPlanck(mapping: [(XColor(index: 7),
-                            XNote(noteName: XNoteName.cymbal, noteGroup: 0))])
+                            XNote(noteName: XNoteName.snareDrum, noteGroup: 0))])
                         planck.position = location
                         self.addChild(planck)
                         planck.zPosition = 998
@@ -229,6 +247,19 @@ class GameScene: SKScene, XEmitterDelegate, SKPhysicsContactDelegate {
                                 if let xNode = node as? XNode {
                                     node.removeFromParent();
                                 }
+                            }
+                        }
+                        
+                    case LevelDesignerDefaults.buttonNameClear:
+                        for node in self.children {
+                            if let xNode = node as? XEmitter {
+                                xNode.photon?.lightBeam.removeFromParent()
+                                xNode.photon?.removeFromParent()
+                                (node as XEmitter).canFire = false
+                            }
+                            
+                            if let xNode = node as? XNode {
+                                node.removeFromParent();
                             }
                         }
                         
@@ -291,6 +322,7 @@ class GameScene: SKScene, XEmitterDelegate, SKPhysicsContactDelegate {
             if sprite.parent != nil {
                 
                 if sprite.position.x < 0 || sprite.position.x > 1024 {
+                    sprite.physicsBody?.velocity = CGVector.zeroVector
 //                    sprite.removeActionForKey(ActionKey.photonActionLinear)
 //                    let direction = CGVector(dx: -sprite.direction.dx, dy: sprite.direction.dy)
 //                    sprite.setDirection(direction)
@@ -305,6 +337,7 @@ class GameScene: SKScene, XEmitterDelegate, SKPhysicsContactDelegate {
                 }
                 
                 if sprite.position.y < 0 || sprite.position.y > 768 {
+                    sprite.physicsBody?.velocity = CGVector.zeroVector
 //                    sprite.removeActionForKey(ActionKey.photonActionLinear)
 //                    sprite.removeFromParent()
 //                    let direction = CGVector(dx: sprite.direction.dx, dy: -sprite.direction.dy)
