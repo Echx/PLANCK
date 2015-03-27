@@ -65,7 +65,6 @@ class XEmitter: XInsrtument, NSCoding {
     }
     
     private func generateOpticalPath() {
-        println("(\(self.direction.dx), \(self.direction.dy))");
         self.photon = XPhoton(appearanceColor: self.appearanceColor, direction: self.direction)
         self.photon!.position = self.position
         CGPathMoveToPoint(self.photon!.opticalPath, nil, self.photon!.position.x,
