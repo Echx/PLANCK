@@ -56,7 +56,6 @@ class GameScene: SKScene, XEmitterDelegate, SKPhysicsContactDelegate {
                         }
                         
                         self.selectedNode = touchedNode
-                        
                         selectedNode?.alpha = 0.5;
                     }
                     return true
@@ -363,7 +362,7 @@ class GameScene: SKScene, XEmitterDelegate, SKPhysicsContactDelegate {
     func emitterDidGenerateNewPhoton(emitter: XEmitter, photon: XPhoton, andAction action: SKAction) {
 //        photon.runAction(action, withKey: ActionKey.photonActionLinear)
         self.insertChild(photon, atIndex: 1)
-        photon.physicsBody?.applyImpulse(CGVectorMake(Constant.lightSpeedBase, 0))
+        photon.physicsBody?.applyImpulse(CGVectorMake(Constant.lightSpeedBase * photon.direction.dx, Constant.lightSpeedBase * photon.direction.dy))
         self.insertChild(photon.lightBeam, atIndex: 1)
     }
 }
