@@ -9,7 +9,7 @@
 import UIKit
 
 struct Constant {
-    static let lightSpeedBase: CGFloat = 0.08 //points per second
+    static let lightSpeedBase: CGFloat = 0.05 //points per second
     static let angleCalculationPrecision: CGFloat = 1000 //1000 is 3 bit precision
     
     static let vectorUnitLength: CGFloat = 1
