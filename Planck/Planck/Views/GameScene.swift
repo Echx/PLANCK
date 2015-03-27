@@ -150,7 +150,6 @@ class GameScene: SKScene, XEmitterDelegate, SKPhysicsContactDelegate {
             
             self.view!.addSubview(self.colorSlider!)
             if (selectedButtonName == "save") {
-                println("Press save")
                 // only save non-planck instruments for now
                 var instruments = self.children.filter({
                     $0 is XInsrtument && !($0 is XPlanck)
@@ -159,7 +158,6 @@ class GameScene: SKScene, XEmitterDelegate, SKPhysicsContactDelegate {
                 let fileManager = StorageManager.defaultManager
                 fileManager.saveCurrentLevel(arrayForSave)
             } else if (selectedButtonName == "load") {
-                println("Press load")
                 clearNodeInScene()
                 let fileManager = StorageManager.defaultManager
                 var level = fileManager.loadLevel("haha.dat")
@@ -200,18 +198,13 @@ class GameScene: SKScene, XEmitterDelegate, SKPhysicsContactDelegate {
     private func updateOpticalPath() {
         self.enumerateChildNodesWithName(EmitterDefualts.nodeName) {
             node, stop in
-            println(node)
             if let emitter = node as? XEmitter {
                 emitter.photon?.lightBeam.removeFromParent()
                 emitter.photon?.removeFromParent()
                 if emitter.canFire == true {
-                    println("Update and fire!")
                     emitter.fire()
                 }
-            } else {
-                println("cannot convert!")
             }
-            
         }
     }
 
