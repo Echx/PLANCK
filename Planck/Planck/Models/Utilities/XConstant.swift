@@ -84,7 +84,9 @@ struct WallDefaults {
 }
 
 struct PlanckDefaults {
-    static let planckRadius: CGFloat = 20
+    static let textureImageName = "planck-c5"
+    static let planckRadius: CGFloat = 40
+    static let planckPhisicsRadius: CGFloat = 30
     static let planckSize = CGSizeMake(PlanckDefaults.planckRadius * 2, PlanckDefaults.planckRadius * 2)
     static let textureColor = UIColor.blackColor()
 }

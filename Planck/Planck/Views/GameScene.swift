@@ -214,7 +214,8 @@ class GameScene: SKScene, XEmitterDelegate, SKPhysicsContactDelegate {
                         mirror.zPosition = 999
                         
                     case LevelDesignerDefaults.buttonNameEmitter:
-                        let emitter = XEmitter(appearanceColor: XColor(index: random()%8), direction: CGVector(dx: 1, dy: 0))
+                        let emitter = XEmitter(appearanceColor: XColor(index: random()%8),
+                            direction: CGVector(dx: 1, dy: 0))
                         emitter.position = location
                         emitter.name = EmitterDefualts.nodeName
                         self.addChild(emitter)
@@ -225,15 +226,18 @@ class GameScene: SKScene, XEmitterDelegate, SKPhysicsContactDelegate {
                         let wall = XWall(direction: CGVector(dx: -1, dy: 0))
                         wall.position = location
                         self.addChild(wall)
+                        wall.zPosition = 996
                         
                     case LevelDesignerDefaults.buttonNamePlanck:
-                        let planck = XPlanck(mapping: [(XColor(index: 1), XNote.Null)])
+                        let planck = XPlanck(mapping: [(XColor(index: 7),
+                            XNote(noteName: XNoteName.C, noteGroup: 4))])
                         planck.position = location
                         self.addChild(planck)
                         planck.zPosition = 998
                         
                     case LevelDesignerDefaults.buttonNameInterface:
-                        let interface = XInterface(direction: CGVectorMake(1, -1), medium1: XMedium.Air, medium2: XMedium.Water)
+                        let interface = XInterface(direction: CGVectorMake(1, -1),
+                            medium1: XMedium.Air, medium2: XMedium.Water)
                         interface.position = location
                         self.addChild(interface)
                         interface.zPosition = 997
@@ -337,11 +341,6 @@ class GameScene: SKScene, XEmitterDelegate, SKPhysicsContactDelegate {
         if ((firstBody.categoryBitMask & PhysicsCategory.flatMirror != 0) &&
             (secondBody.categoryBitMask & PhysicsCategory.photon != 0)) {
                 contactableNode = firstBody.node as XFlatMirror
-                let sprite: XPhoton = secondBody.node as XPhoton
-                CGPathAddLineToPoint(sprite.opticalPath, nil, contact.contactPoint.x, contact.contactPoint.y + 1)
-                print(contact.contactPoint.x)
-                print(",")
-                println(contact.contactPoint.y)
         }
         
         // receptor and photon contact
@@ -354,6 +353,7 @@ class GameScene: SKScene, XEmitterDelegate, SKPhysicsContactDelegate {
         if ((firstBody.categoryBitMask & PhysicsCategory.wall != 0) &&
             (secondBody.categoryBitMask & PhysicsCategory.photon != 0)) {
                 contactableNode = firstBody.node as XWall
+                
         }
         
         if ((firstBody.categoryBitMask & PhysicsCategory.interface != 0) &&
@@ -362,8 +362,13 @@ class GameScene: SKScene, XEmitterDelegate, SKPhysicsContactDelegate {
                 secondBody.node?.physicsBody?.applyImpulse(CGVectorMake(0, -0.01))
         }
         
-        
- 6    }
+        if let photon = secondBody.node as? XPhoton {
+            CGPathAddLineToPoint(photon.opticalPath, nil, contact.contactPoint.x, contact.contactPoint.y + 1)
+            photon.lightBeam.path = photon.opticalPath
+            contactableNode.contactWithPhoton(photon)
+        }
+    }
+
     
     // MARK - XEmitterDelegate
     func emitterDidGenerateNewPhoton(emitter: XEmitter, photon: XPhoton, andAction action: SKAction) {

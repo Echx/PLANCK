@@ -26,7 +26,7 @@ class XPlanck: XInsrtument, NSCoding {
             self.colorNoteMapping[colorNotePair.0] = colorNotePair.1
         }
         super.init(
-            texture: nil,
+            texture: SKTexture(imageNamed: PlanckDefaults.textureImageName),
             color: PlanckDefaults.textureColor,
             size: PlanckDefaults.planckSize
         );
@@ -45,11 +45,14 @@ class XPlanck: XInsrtument, NSCoding {
     
     
     private func setUp() {
+        self.color = self.colorNoteMapping.keys.array[0].displayColor
+        self.colorBlendFactor = 1
+        self.texture = SKTexture(imageNamed: self.colorNoteMapping.values.array[0].getImageFileName())
         self.setUpPhysicsProperties()
     }
     
     private func setUpPhysicsProperties() {
-        self.physicsBody = SKPhysicsBody(circleOfRadius: PlanckDefaults.planckRadius)
+        self.physicsBody = SKPhysicsBody(circleOfRadius: PlanckDefaults.planckPhisicsRadius)
         self.physicsBody!.dynamic = true
         self.physicsBody!.categoryBitMask = PhysicsCategory.planck
         self.physicsBody!.contactTestBitMask = PhysicsCategory.photon
@@ -60,7 +63,7 @@ class XPlanck: XInsrtument, NSCoding {
     internal func checkPhoton(photon: XPhoton) {
         let photonColor = photon.appearanceColor
         if contains(self.colorNoteMapping.keys, photonColor) {
-            println("HA")
+            self.runAction(SKAction.playSoundFileNamed(self.colorNoteMapping[photonColor]!.getAudioFileName(), waitForCompletion: false))
         }
     }
 }
