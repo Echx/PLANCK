@@ -42,6 +42,7 @@ class XPlanck: XInsrtument, NSCoding {
     
     override func encodeWithCoder(aCoder: NSCoder) {
         aCoder.encodeCGPoint(self.position, forKey: NSCodingKey.Position)
+//        aCoder.encodeObject(self.colorNoteMapping, forKey: NSCodingKey.ColorMapping)
     }
     
     

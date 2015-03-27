@@ -9,7 +9,7 @@
 import UIKit
 
 struct Constant {
-    static let lightSpeedBase: CGFloat = 0.08 //points per second
+    static let lightSpeedBase: CGFloat = 0.05 //points per second
     static let angleCalculationPrecision: CGFloat = 1000 //1000 is 3 bit precision
     
     static let vectorUnitLength: CGFloat = 1
@@ -27,6 +27,13 @@ struct NSCodingKey {
     static let Medium2 = "MEDIUM2"
     
     static let Focus = "FOCUS"
+    static let ColorMapping = "COLOR_MAPPING"
+
+    static let CanFire = "CAN_FIRE"
+    
+    static let NoteName = "NOTENAME"
+    static let NoteGroup = "NOTEGRP"
+    static let isPitchedNote = "ISPITCH"
 }
 
 struct ActionKey {
@@ -122,7 +129,7 @@ struct LevelDesignerDefaults {
     
     static let interButtonSpace: CGFloat = 5;
     
-    static let buttonNames = ["flat mirror", "emitter", "wall", "planck", "interface", "eraser", "clear"]
+    static let buttonNames = ["flat mirror", "emitter", "wall", "planck", "interface", "eraser", "clear", "save", "load"]
     static let buttonNameFlatMirror = LevelDesignerDefaults.buttonNames[0]
     static let buttonNameEmitter = LevelDesignerDefaults.buttonNames[1]
     static let buttonNameWall = LevelDesignerDefaults.buttonNames[2]
@@ -130,6 +137,9 @@ struct LevelDesignerDefaults {
     static let buttonNameInterface = LevelDesignerDefaults.buttonNames[4]
     static let buttonNameEraser = LevelDesignerDefaults.buttonNames[5]
     static let buttonNameClear = LevelDesignerDefaults.buttonNames[6]
+    static let buttonNameSave = LevelDesignerDefaults.buttonNames[7]
+    static let buttonNameLoad = LevelDesignerDefaults.buttonNames[8]
+
     
     static let functionalButtonNames = ["add item"]
     static let functionalButtonNameAddItem = LevelDesignerDefaults.functionalButtonNames[0]

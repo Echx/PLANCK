@@ -9,7 +9,7 @@
 import UIKit
 import SpriteKit
 
-class XInterface: XInsrtument {
+class XInterface: XInsrtument, NSCoding {
     var medium1: XMedium
     var medium2: XMedium
     

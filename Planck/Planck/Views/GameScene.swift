@@ -7,6 +7,7 @@
 //
 
 import SpriteKit
+import Foundation
 
 class GameScene: SKScene, XEmitterDelegate, SKPhysicsContactDelegate {
     var topPanelButtons = [AGSpriteButton]()
@@ -18,6 +19,13 @@ class GameScene: SKScene, XEmitterDelegate, SKPhysicsContactDelegate {
     var selectedNodeOriginalDirection: CGVector?
     var colorSlider: UISlider?
     
+    
+    var touchMoved = false
+    var touchBackground = false
+    var touchInitialPosition: CGPoint?
+    var selectedNodeInitialPosition: CGPoint?
+    
+    
     override func didMoveToView(view: SKView) {
         self.physicsWorld.gravity = CGVectorMake(0, 0)
         self.physicsWorld.contactDelegate = self
@@ -26,15 +34,7 @@ class GameScene: SKScene, XEmitterDelegate, SKPhysicsContactDelegate {
 
         self.colorSlider = UISlider()
 
-        self.setUpGestureRecognizer()
-    }
-
-    private func setUpGestureRecognizer() {
-        let panGestureRecognizer = UIPanGestureRecognizer(target: self, action: "handlePanGesture:")
-        self.view?.addGestureRecognizer(panGestureRecognizer)
-        
-        let rotationGestureRecognizer = UIRotationGestureRecognizer(target: self, action: "handleRotationGesture:")
-        self.view?.addGestureRecognizer(rotationGestureRecognizer)
+    
     }
     
     private func selectNodeAtPosition(position: CGPoint) -> Bool{
@@ -66,8 +66,24 @@ class GameScene: SKScene, XEmitterDelegate, SKPhysicsContactDelegate {
                 }
             }
         }
-        
         return false
+    }
+    
+    private func getNodeAtPosition(position: CGPoint) -> XNode? {
+        let senseFrame = CGRectMake(
+            position.x - LevelDesignerDefaults.selectionAreaSize/2,
+            position.y - LevelDesignerDefaults.selectionAreaSize/2,
+            LevelDesignerDefaults.selectionAreaSize,
+            LevelDesignerDefaults.selectionAreaSize)
+        
+        for node in self.children {
+            if CGRectIntersectsRect(node.calculateAccumulatedFrame(), senseFrame) {
+                if let touchedNode = node as? XNode {
+                    return touchedNode
+                }
+            }
+        }
+        return nil
     }
     
     private func deselectCurrentNode() {
@@ -80,41 +96,7 @@ class GameScene: SKScene, XEmitterDelegate, SKPhysicsContactDelegate {
     private func radius(degree: CGFloat) -> CGFloat {
         return  degree / 180.0  * CGFloat(M_PI)
     }
-    
-    
-    func handlePanGesture(sender: UIPanGestureRecognizer) {
-        let position = sender.locationInView(sender.view);
-        if sender.state == UIGestureRecognizerState.Began {
-            self.selectNodeAtPosition(self.convertPointFromView(position))
-        } else if sender.state == UIGestureRecognizerState.Changed {
-            var translation = sender.translationInView(sender.view!)
-            translation = CGPointMake(translation.x, -translation.y)
-            self.panForTranslation(translation)
-            sender.setTranslation(CGPointZero, inView: sender.view)
-        } else if sender.state == UIGestureRecognizerState.Ended {
-            self.updateOpticalPath()
-            self.deselectCurrentNode()
-        }
 
-    }
-    
-    func handleRotationGesture(sender: UIRotationGestureRecognizer) {
-        if let currentNodeDirection = (self.selectedNode as? XInsrtument)?.direction {
-            if sender.state == UIGestureRecognizerState.Began {
-                self.selectedNodeOriginalDirection = currentNodeDirection
-            } else if sender.state == UIGestureRecognizerState.Changed {
-                if let instrument = self.selectedNode as? XInsrtument {
-                    let rotation = sender.rotation + self.selectedNodeOriginalDirection!.angleFromYPlus;
-                    instrument.setDirection(rotation)
-                }
-            } else if sender.state == UIGestureRecognizerState.Ended {
-                self.updateOpticalPath()
-                self.deselectCurrentNode()
-            }
-        }
-        
-    }
-    
     private func panForTranslation(translation: CGPoint) {
         if let selectedNode = self.selectedNode {
             let position = selectedNode.position
@@ -167,6 +149,41 @@ class GameScene: SKScene, XEmitterDelegate, SKPhysicsContactDelegate {
             updateButtonAppearance(selectedButton: sender);
             
             self.view!.addSubview(self.colorSlider!)
+            if (selectedButtonName == "save") {
+                println("Press save")
+                // only save non-planck instruments for now
+                var instruments = self.children.filter({
+                    $0 is XInsrtument && !($0 is XPlanck)
+                })
+                var arrayForSave = NSMutableArray(array: instruments)
+                let fileManager = StorageManager.defaultManager
+                fileManager.saveCurrentLevel(arrayForSave)
+            } else if (selectedButtonName == "load") {
+                println("Press load")
+                clearNodeInScene()
+                let fileManager = StorageManager.defaultManager
+                var level = fileManager.loadLevel("haha.dat")
+                for node in level {
+                    // treat emitter as a speicla case.
+                    if (node is XEmitter) {
+                        let storeEmitter = node as XEmitter
+                        let emitter = XEmitter(appearanceColor: storeEmitter.appearanceColor,
+                            direction: storeEmitter.direction)
+                        emitter.position = storeEmitter.position
+                        emitter.name = EmitterDefualts.nodeName
+                        self.addChild(emitter)
+                        emitter.zPosition = 1000
+                        emitter.delegate = self
+                        emitter.fire()
+                    } else {
+                        self.addChild(node as XInsrtument)
+                    }
+                }
+            } else {
+                self.currentOpticalDeviceMode = selectedButtonName
+                updateButtonAppearance(selectedButton: sender)
+            }
+            
         }
     }
     
@@ -183,12 +200,18 @@ class GameScene: SKScene, XEmitterDelegate, SKPhysicsContactDelegate {
     private func updateOpticalPath() {
         self.enumerateChildNodesWithName(EmitterDefualts.nodeName) {
             node, stop in
-            let emitter = node as? XEmitter
-            emitter?.photon?.lightBeam.removeFromParent()
-            emitter?.photon?.removeFromParent()
-            if emitter?.canFire == true {
-                emitter?.fire()
+            println(node)
+            if let emitter = node as? XEmitter {
+                emitter.photon?.lightBeam.removeFromParent()
+                emitter.photon?.removeFromParent()
+                if emitter.canFire == true {
+                    println("Update and fire!")
+                    emitter.fire()
+                }
+            } else {
+                println("cannot convert!")
             }
+            
         }
     }
 
@@ -259,17 +282,7 @@ class GameScene: SKScene, XEmitterDelegate, SKPhysicsContactDelegate {
                         }
                         
                     case LevelDesignerDefaults.buttonNameClear:
-                        for node in self.children {
-                            if let xNode = node as? XEmitter {
-                                xNode.photon?.lightBeam.removeFromParent()
-                                xNode.photon?.removeFromParent()
-                                (node as XEmitter).canFire = false
-                            }
-                            
-                            if let xNode = node as? XNode {
-                                node.removeFromParent();
-                            }
-                        }
+                        clearNodeInScene()
                         
                     default:
                         fatalError("optical device mode not recognized")
@@ -282,10 +295,41 @@ class GameScene: SKScene, XEmitterDelegate, SKPhysicsContactDelegate {
         } else {
             for touch: AnyObject in touches {
                 let location = touch.locationInNode(self)
-                self.selectNodeAtPosition(location)
+                self.touchBackground = !self.selectNodeAtPosition(location)
+                self.selectedNodeInitialPosition = self.selectedNode?.position
+                self.touchInitialPosition = location
                 break
             }
         }
+    }
+    
+    override func touchesMoved(touches: NSSet, withEvent event: UIEvent) {
+        self.touchMoved = true
+        for touch: AnyObject in touches {
+            let location = touch.locationInNode(self)
+            if !touchBackground && self.touchInitialPosition != nil {
+                //initial touch is on the node, perform dragging
+                var translation = CGPointMake(location.x - self.touchInitialPosition!.x, location.y - self.touchInitialPosition!.y)
+                self.panForTranslation(translation)
+                self.selectedNode?.position = CGPointMake(self.selectedNodeInitialPosition!.x + translation.x, self.selectedNodeInitialPosition!.y + translation.y)
+            } else {
+                //initial touch is on the background, perform rotating
+                if let anchorPoint = self.selectedNodeInitialPosition {
+                    if let instrument = selectedNode as? XInsrtument {
+                        let currentVector = CGVectorMake(location.x - anchorPoint.x, location.y - anchorPoint.y)
+                        instrument.setDirection(CGFloat(M_PI/2)-currentVector.angleFromXPlus)
+                    }
+                }
+            }
+        }
+    }
+    
+    override func touchesEnded(touches: NSSet, withEvent event: UIEvent) {
+        if !self.touchMoved && self.touchBackground {
+            self.deselectCurrentNode()
+        }
+        self.updateOpticalPath()
+        self.touchMoved = false;
     }
    
     override func update(currentTime: CFTimeInterval) {
@@ -385,5 +429,20 @@ class GameScene: SKScene, XEmitterDelegate, SKPhysicsContactDelegate {
         self.insertChild(photon, atIndex: 1)
         photon.physicsBody?.applyImpulse(CGVectorMake(Constant.lightSpeedBase * photon.direction.dx, Constant.lightSpeedBase * photon.direction.dy))
         self.insertChild(photon.lightBeam, atIndex: 1)
+    }
+    
+    
+    private func clearNodeInScene() {
+        for node in self.children {
+            if let xNode = node as? XEmitter {
+                xNode.photon?.lightBeam.removeFromParent()
+                xNode.photon?.removeFromParent()
+                (node as XEmitter).canFire = false
+            }
+            
+            if let xNode = node as? XNode {
+                node.removeFromParent();
+            }
+        }
     }
 }
