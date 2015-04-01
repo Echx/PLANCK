@@ -1,0 +1,14 @@
+PODS:
+  - GridOptic (0.0.1)
+
+DEPENDENCIES:
+  - GridOptic (from `https://raw.githubusercontent.com/Echx/GridOptic/master/GridOptic/GridOptic.podspec`)
+
+EXTERNAL SOURCES:
+  GridOptic:
+    :podspec: https://raw.githubusercontent.com/Echx/GridOptic/master/GridOptic/GridOptic.podspec
+
+SPEC CHECKSUMS:
+  GridOptic: ad6cd426809a5be7a2d5e5844b7d33b87d6c5f6e
+
+COCOAPODS: 0.35.0
