@@ -1,4 +1,0 @@
-source 'https://github.com/CocoaPods/Specs.git'
-platform :ios, '8.0'
-
-pod 'GridOptic', :podspec => 'https://raw.githubusercontent.com/Echx/GridOptic/master/GridOptic/GridOptic.podspec'
