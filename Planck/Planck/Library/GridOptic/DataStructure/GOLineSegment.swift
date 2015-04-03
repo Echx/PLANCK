@@ -68,8 +68,8 @@ class GOLineSegment: GOSegment {
             let bottomY = start.y < end.y ? end.y : start.y
             
             //if the intersection point is not within [leftX, rightX], then there is no intersection point
-            if abs(lineIntersection.x - ray.startPoint.x) < Constant.overallPrecision &&
-                abs(lineIntersection.y - ray.startPoint.y) < Constant.overallPrecision {
+            if abs(lineIntersection.x - ray.startPoint.x) < GOConstant.overallPrecision &&
+                abs(lineIntersection.y - ray.startPoint.y) < GOConstant.overallPrecision {
                 return nil
             } else if lineIntersection.x < leftX ||
                 lineIntersection.x > rightX ||

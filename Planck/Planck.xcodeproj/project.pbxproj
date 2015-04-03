@@ -30,6 +30,11 @@
 		263B09C71ACEEE1100E7C99E /* CGVector+GOUtilities.swift in Sources */ = {isa = PBXBuildFile; fileRef = 263B09C21ACEEE1100E7C99E /* CGVector+GOUtilities.swift */; };
 		263B09C81ACEEE1100E7C99E /* GOConstant.swift in Sources */ = {isa = PBXBuildFile; fileRef = 263B09C31ACEEE1100E7C99E /* GOConstant.swift */; };
 		263B09C91ACEEE1100E7C99E /* GOUtilities.swift in Sources */ = {isa = PBXBuildFile; fileRef = 263B09C41ACEEE1100E7C99E /* GOUtilities.swift */; };
+		263B09CA1ACEEF9600E7C99E /* CGFLoat+GOUtilities.swift in Sources */ = {isa = PBXBuildFile; fileRef = 263B09C01ACEEE1100E7C99E /* CGFLoat+GOUtilities.swift */; };
+		263B09CB1ACEEF9600E7C99E /* CGPoint+GOUtilities.swift in Sources */ = {isa = PBXBuildFile; fileRef = 263B09C11ACEEE1100E7C99E /* CGPoint+GOUtilities.swift */; };
+		263B09CC1ACEEF9600E7C99E /* CGVector+GOUtilities.swift in Sources */ = {isa = PBXBuildFile; fileRef = 263B09C21ACEEE1100E7C99E /* CGVector+GOUtilities.swift */; };
+		263B09CD1ACEEF9600E7C99E /* GOConstant.swift in Sources */ = {isa = PBXBuildFile; fileRef = 263B09C31ACEEE1100E7C99E /* GOConstant.swift */; };
+		263B09CE1ACEEF9600E7C99E /* GOUtilities.swift in Sources */ = {isa = PBXBuildFile; fileRef = 263B09C41ACEEE1100E7C99E /* GOUtilities.swift */; };
 		264F935E1ABEE8E900744B1A /* XInterface.swift in Sources */ = {isa = PBXBuildFile; fileRef = 267B008F1ABEE4DF000F35DD /* XInterface.swift */; };
 		267B00901ABEE4DF000F35DD /* XInterface.swift in Sources */ = {isa = PBXBuildFile; fileRef = 267B008F1ABEE4DF000F35DD /* XInterface.swift */; };
 		267EC2D41AB1DA01002FE745 /* CGVector+XUtility.swift in Sources */ = {isa = PBXBuildFile; fileRef = 267EC2D31AB1DA01002FE745 /* CGVector+XUtility.swift */; };
@@ -657,7 +662,9 @@
 				62988FF21AB2FA8800FD9AFF /* XInstrument.swift in Sources */,
 				62988FF51AB2FA8800FD9AFF /* CGVector+XUtility.swift in Sources */,
 				2635804A1ABE9F4000F87563 /* AGSpriteButton.m in Sources */,
+				263B09CA1ACEEF9600E7C99E /* CGFLoat+GOUtilities.swift in Sources */,
 				62988FEF1AB2FA8800FD9AFF /* XConcaveMirror.swift in Sources */,
+				263B09CD1ACEEF9600E7C99E /* GOConstant.swift in Sources */,
 				62988FF71AB2FA8800FD9AFF /* XConstant.swift in Sources */,
 				62988FF11AB2FA8800FD9AFF /* XFlatMirror.swift in Sources */,
 				62988FF61AB2FA8800FD9AFF /* XColor.swift in Sources */,
@@ -665,7 +672,9 @@
 				62988FEC1AB2FA8800FD9AFF /* XConcaveLens.swift in Sources */,
 				62988FF41AB2FA8800FD9AFF /* XNode.swift in Sources */,
 				62988FEB1AB2FA8800FD9AFF /* XFlatLens.swift in Sources */,
+				263B09CE1ACEEF9600E7C99E /* GOUtilities.swift in Sources */,
 				62988FEA1AB2FA8800FD9AFF /* XLens.swift in Sources */,
+				263B09CB1ACEEF9600E7C99E /* CGPoint+GOUtilities.swift in Sources */,
 				62BC35541AB3096400B0B6F7 /* XContactableNode.swift in Sources */,
 				62988FE91AB2FA8800FD9AFF /* XPlanck.swift in Sources */,
 				62BC35551AB3096900B0B6F7 /* GameScene.swift in Sources */,
@@ -675,6 +684,7 @@
 				62988FF81AB2FA8800FD9AFF /* XMedium.swift in Sources */,
 				62988FF91AB2FA8800FD9AFF /* XNote.swift in Sources */,
 				264F935E1ABEE8E900744B1A /* XInterface.swift in Sources */,
+				263B09CC1ACEEF9600E7C99E /* CGVector+GOUtilities.swift in Sources */,
 				62988FE81AB2FA8800FD9AFF /* XPhoton.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

@@ -14,7 +14,7 @@ class GOLine: NSObject {
     var direction: CGVector
     var slope: CGFloat {
         get {
-            if self.direction.dx.abs < Constant.overallPrecision {
+            if self.direction.dx.abs < GOConstant.overallPrecision {
                 return CGFloat.max
             }
             
@@ -72,7 +72,7 @@ class GOLine: NSObject {
     }
     
     class func getIntersection(#line1: GOLine, line2: GOLine) -> CGPoint? {
-        if abs(line1.slope - line2.slope) < Constant.overallPrecision {
+        if abs(line1.slope - line2.slope) < GOConstant.overallPrecision {
             return nil
         } else if line1.slope == CGFloat.max {
             var x = line1.anyPoint.x

@@ -12,8 +12,8 @@ extension CGPoint {
     
     func getPointAfterRotation(#about: CGPoint, toAngle: CGFloat) -> CGPoint{
         let distance = self.getDistanceToPoint(about)
-        let newX = round(distance * cos(toAngle) * Constant.angleCalculationPrecision) / Constant.angleCalculationPrecision
-        let newY = round(distance * sin(toAngle) * Constant.angleCalculationPrecision) / Constant.angleCalculationPrecision
+        let newX = round(distance * cos(toAngle) * GOConstant.angleCalculationPrecision) / GOConstant.angleCalculationPrecision
+        let newY = round(distance * sin(toAngle) * GOConstant.angleCalculationPrecision) / GOConstant.angleCalculationPrecision
         return CGPointMake(about.x + newX, about.y + newY)
     }
     
@@ -21,8 +21,8 @@ extension CGPoint {
         let distance = self.getDistanceToPoint(about)
         let currentAngle = CGVectorMake(self.x - about.x, self.y - about.y).angleFromXPlus
         let toAngle = currentAngle + byAngle
-        let newX = round(distance * cos(toAngle) * Constant.angleCalculationPrecision) / Constant.angleCalculationPrecision
-        let newY = round(distance * sin(toAngle) * Constant.angleCalculationPrecision) / Constant.angleCalculationPrecision
+        let newX = round(distance * cos(toAngle) * GOConstant.angleCalculationPrecision) / GOConstant.angleCalculationPrecision
+        let newY = round(distance * sin(toAngle) * GOConstant.angleCalculationPrecision) / GOConstant.angleCalculationPrecision
         return CGPointMake(about.x + newX, about.y + newY)
     }
     
@@ -41,7 +41,7 @@ extension CGPoint {
     }
     
     func isNearEnough(point: CGPoint) -> Bool {
-        return (self.x - point.x).abs < Constant.overallPrecision &&
-            (self.y - point.y).abs < Constant.overallPrecision
+        return (self.x - point.x).abs < GOConstant.overallPrecision &&
+            (self.y - point.y).abs < GOConstant.overallPrecision
     }
 }

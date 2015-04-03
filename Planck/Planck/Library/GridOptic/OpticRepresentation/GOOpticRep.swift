@@ -28,7 +28,7 @@ class GOOpticRep: NSObject {
         }
     }
     
-    var refractionIndex : CGFloat = Constant.vacuumRefractionIndex
+    var refractionIndex : CGFloat = GOConstant.vacuumRefractionIndex
 
     
     init(id: String) {

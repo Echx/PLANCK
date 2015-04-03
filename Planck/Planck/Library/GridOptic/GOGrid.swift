@@ -46,12 +46,12 @@ class GOGrid: NSObject {
             var boundaries = [GOLineSegment]()
             
             let bottomBound = GOLineSegment(center: CGPoint(x: origin.x + CGFloat(width / 2),
-                y: origin.y - Constant.boundaryOffset), length: CGFloat(width), direction: CGVector(dx: 1, dy: 0))
+                y: origin.y - GOConstant.boundaryOffset), length: CGFloat(width), direction: CGVector(dx: 1, dy: 0))
             let upperBound = GOLineSegment(center: CGPoint(x: origin.x + CGFloat(width / 2),
-                y: origin.y + CGFloat(height) + Constant.boundaryOffset), length: CGFloat(width), direction: CGVector(dx: 1, dy: 0))
-            let leftBound = GOLineSegment(center: CGPoint(x: origin.x - Constant.boundaryOffset,
+                y: origin.y + CGFloat(height) + GOConstant.boundaryOffset), length: CGFloat(width), direction: CGVector(dx: 1, dy: 0))
+            let leftBound = GOLineSegment(center: CGPoint(x: origin.x - GOConstant.boundaryOffset,
                 y: origin.y + CGFloat(height / 2)), length: CGFloat(height), direction: CGVector(dx: 0, dy: 1))
-            let rightBound = GOLineSegment(center: CGPoint(x: origin.x + CGFloat(width) + Constant.boundaryOffset,
+            let rightBound = GOLineSegment(center: CGPoint(x: origin.x + CGFloat(width) + GOConstant.boundaryOffset,
                 y: origin.y + CGFloat(height / 2)), length: CGFloat(height), direction: CGVector(dx: 0, dy: 1))
             
             boundaries.append(bottomBound)
@@ -278,8 +278,8 @@ class GOGrid: NSObject {
                 // check the point is in the visible space
                 // heigh: [0, height]
                 // width: [0, width]
-                if point.x >= (-Constant.boundaryOffset) && point.x <= CGFloat(width) + Constant.boundaryOffset &&
-                    point.y >= (-Constant.boundaryOffset) && point.y <= CGFloat(height) + Constant.boundaryOffset {
+                if point.x >= (-GOConstant.boundaryOffset) && point.x <= CGFloat(width) + GOConstant.boundaryOffset &&
+                    point.y >= (-GOConstant.boundaryOffset) && point.y <= CGFloat(height) + GOConstant.boundaryOffset {
                         return point
                 }
             }

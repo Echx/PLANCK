@@ -9,11 +9,11 @@
 import CoreGraphics
 
 extension CGVector {
-    var length: CGFloat {
-        get {
-            return sqrt(self.dx * self.dx + self.dy * self.dy)
-        }
-    }
+//    var length: CGFloat {
+//        get {
+//            return sqrt(self.dx * self.dx + self.dy * self.dy)
+//        }
+//    }
     
     //give result in [-PI, PI)
     var angleFromYPlus: CGFloat {
@@ -44,31 +44,31 @@ extension CGVector {
     
     
     //give result in [-PI, PI)
-    var angleFromXPlus: CGFloat {
-        get {
-            var rawAngle = CGFloat(atan(self.dy / self.dx))
-            
-            if self.dx > 0 && self.dy > 0 {
-                return rawAngle
-            } else if self.dx < 0 && self.dy > 0 {
-                return CGFloat(M_PI) + rawAngle
-            } else if self.dx < 0 && self.dy < 0 {
-                return CGFloat(-M_PI) + rawAngle
-            } else if self.dx > 0 && self.dy < 0 {
-                return rawAngle
-            } else if self.dx == 0 && self.dy < 0 {
-                return CGFloat(-M_PI/2)
-            } else if self.dx == 0 && self.dy > 0 {
-                return CGFloat(M_PI/2)
-            } else if self.dy == 0 && self.dx < 0 {
-                return CGFloat(-M_PI)
-            } else if self.dy == 0 && self.dx > 0 {
-                return CGFloat(0)
-            } else {
-                fatalError("undefined angle")
-            }
-        }
-    }
+//    var angleFromXPlus: CGFloat {
+//        get {
+//            var rawAngle = CGFloat(atan(self.dy / self.dx))
+//            
+//            if self.dx > 0 && self.dy > 0 {
+//                return rawAngle
+//            } else if self.dx < 0 && self.dy > 0 {
+//                return CGFloat(M_PI) + rawAngle
+//            } else if self.dx < 0 && self.dy < 0 {
+//                return CGFloat(-M_PI) + rawAngle
+//            } else if self.dx > 0 && self.dy < 0 {
+//                return rawAngle
+//            } else if self.dx == 0 && self.dy < 0 {
+//                return CGFloat(-M_PI/2)
+//            } else if self.dx == 0 && self.dy > 0 {
+//                return CGFloat(M_PI/2)
+//            } else if self.dy == 0 && self.dx < 0 {
+//                return CGFloat(-M_PI)
+//            } else if self.dy == 0 && self.dx > 0 {
+//                return CGFloat(0)
+//            } else {
+//                fatalError("undefined angle")
+//            }
+//        }
+//    }
     
     //give result in [0, PI)
     var angleFromXPlusScalar: CGFloat {
@@ -90,9 +90,9 @@ extension CGVector {
         return CGVectorMake(sin(radius), cos(radius))
     }
     
-    static func dot(v1: CGVector, v2: CGVector) -> CGFloat {
-        return v1.dx * v2.dx + v1.dy * v2.dy
-    }
+//    static func dot(v1: CGVector, v2: CGVector) -> CGFloat {
+//        return v1.dx * v2.dx + v1.dy * v2.dy
+//    }
     
     static func angleBetween(v1: CGVector, v2: CGVector) -> CGFloat {
         let dotProduct = dot(v1, v2: v2)

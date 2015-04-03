@@ -8,7 +8,7 @@
 
 import UIKit
 
-struct Constant {
+struct GOConstant {
     static let angleCalculationPrecision:CGFloat = 1000
     static let overallPrecision: CGFloat = 0.00001
     static let boundaryOffset : CGFloat = 1
