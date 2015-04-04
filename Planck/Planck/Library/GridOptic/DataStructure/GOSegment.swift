@@ -8,8 +8,7 @@
 
 import UIKit
 
-class GOSegment {
-    
+class GOSegment : NSObject, NSCoding {
     //if both are true, only take refract (ignore the reflect ray)
     var willRefract: Bool = false
     var willReflect: Bool = false
@@ -42,6 +41,35 @@ class GOSegment {
         get {
             fatalError("endPoint needed by overriden by child classes")
         }
+    }
+    
+    required convenience init(coder aDecoder: NSCoder) {
+        let willRefract = aDecoder.decodeBoolForKey(GOCodingKey.segment_willRef)
+        let willReflect = aDecoder.decodeBoolForKey(GOCodingKey.segment_willRel)
+        
+        let center = aDecoder.decodeCGPointForKey(GOCodingKey.segment_center)
+        let tag = aDecoder.decodeObjectForKey(GOCodingKey.segment_tag) as NSInteger
+        
+        let parent = aDecoder.decodeObjectForKey(GOCodingKey.segment_parent) as String
+        
+        let direction = aDecoder.decodeCGVectorForKey(GOCodingKey.segment_direction)
+        
+        self.init()
+        self.willReflect = willReflect
+        self.willRefract = willRefract
+        self.center = center
+        self.tag = tag
+        self.parent = parent
+        self.direction = direction
+    }
+    
+    func encodeWithCoder(aCoder: NSCoder) {
+        aCoder.encodeBool(willRefract, forKey: GOCodingKey.segment_willRef)
+        aCoder.encodeBool(willReflect, forKey: GOCodingKey.segment_willRel)
+        aCoder.encodeCGPoint(center, forKey: GOCodingKey.segment_center)
+        aCoder.encodeCGVector(direction, forKey: GOCodingKey.segment_direction)
+        aCoder.encodeObject(tag, forKey: GOCodingKey.segment_tag)
+        aCoder.encodeObject(parent, forKey: GOCodingKey.segment_parent)
     }
     
     func getIntersectionPoint(ray: GORay) -> CGPoint? {

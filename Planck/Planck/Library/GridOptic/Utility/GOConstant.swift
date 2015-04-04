@@ -31,6 +31,17 @@ struct GOCodingKey {
     static let coord_x = "COORD_X"
     static let coord_y = "COORD_Y"
     
+    static let segment_willRef = "SEG_REF"
+    static let segment_willRel = "SEG_REL"
+    static let segment_center = "SEG_CENTER"
+    static let segment_tag = "SEG_TAG"
+    static let segment_parent = "SEG_PARENT"
+    static let segment_direction = "SEG_DIRECTION"
+    static let segment_radius = "SEG_RADIUS"
+    static let segment_radian = "SEG_RADIAN"
+    static let segment_normalDir = "SEG_NORMAL"
+    static let segment_length = "SEG_LENGTH"
+
     static let optic_id = "OPTIC_ID"
     static let optic_edges = "OPTIC_EDGES"
     static let optic_type = "OPTIC_TYPE"
@@ -42,5 +53,6 @@ struct GOCodingKey {
     static let optic_thickCenter = "OPTIC_THICK_CENTER"
     static let optic_thickEdge = "OPTIC_THICK_EDGE"
     static let optic_curvatureRadius = "OPTIC_CUR_RADIUS"
+    
 
 }
