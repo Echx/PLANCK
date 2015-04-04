@@ -11,7 +11,7 @@ import UIKit
 class LevelDesignerViewController: UIViewController {
 
     @IBOutlet var deviceSegment: UISegmentedControl!
-    @IBOutlet var inputModeSegment: UISegmentedControl!
+
     
     struct Selectors {
         static let segmentValueDidChangeAction: Selector = "segmentValueDidChange:"
@@ -34,7 +34,6 @@ class LevelDesignerViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.inputModeSegment.addTarget(self, action: Selectors.segmentValueDidChangeAction, forControlEvents: UIControlEvents.ValueChanged)
     }
     
     //MARK - tap gesture handler
@@ -64,13 +63,6 @@ class LevelDesignerViewController: UIViewController {
         println("pan detected");
     }
     
-    func segmentValueDidChange(sender: UISegmentedControl) {
-        if self.inputModeSegment.selectedSegmentIndex != InputModeSegmentIndex.add {
-            self.deviceSegment.enabled = false;
-        } else {
-            self.deviceSegment.enabled = true;
-        }
-    }
     
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
