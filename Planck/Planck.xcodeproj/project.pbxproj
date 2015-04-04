@@ -7,7 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		26067DB01AC5A51A0055C422 /* GameKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 26067DAF1AC5A51A0055C422 /* GameKit.framework */; };
 		262BE1A61ABE9A9000ABE965 /* AGSpriteButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 262BE1A51ABE9A9000ABE965 /* AGSpriteButton.m */; };
 		2635804A1ABE9F4000F87563 /* AGSpriteButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 262BE1A51ABE9A9000ABE965 /* AGSpriteButton.m */; };
 		263B09AB1ACEEDD800E7C99E /* GOArcSegment.swift in Sources */ = {isa = PBXBuildFile; fileRef = 263B09951ACEEDD800E7C99E /* GOArcSegment.swift */; };
@@ -125,7 +124,6 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		26067DAF1AC5A51A0055C422 /* GameKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = GameKit.framework; path = System/Library/Frameworks/GameKit.framework; sourceTree = SDKROOT; };
 		262BE19F1ABE9A5D00ABE965 /* Planck-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Planck-Bridging-Header.h"; sourceTree = SOURCE_ROOT; };
 		262BE1A41ABE9A9000ABE965 /* AGSpriteButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AGSpriteButton.h; sourceTree = "<group>"; };
 		262BE1A51ABE9A9000ABE965 /* AGSpriteButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AGSpriteButton.m; sourceTree = "<group>"; };
@@ -214,7 +212,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				26067DB01AC5A51A0055C422 /* GameKit.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -312,7 +309,6 @@
 		6227FB5F1AAE285C007F49EA = {
 			isa = PBXGroup;
 			children = (
-				26067DAF1AC5A51A0055C422 /* GameKit.framework */,
 				6227FB6A1AAE285C007F49EA /* Planck */,
 				6227FB841AAE285C007F49EA /* PlanckTests */,
 				6227FB691AAE285C007F49EA /* Products */,
@@ -541,10 +537,10 @@
 				TargetAttributes = {
 					6227FB671AAE285C007F49EA = {
 						CreatedOnToolsVersion = 6.1.1;
-						DevelopmentTeam = DJHPY9N63F;
+						DevelopmentTeam = W76H98A34A;
 						SystemCapabilities = {
 							com.apple.GameCenter = {
-								enabled = 1;
+								enabled = 0;
 							};
 						};
 					};
