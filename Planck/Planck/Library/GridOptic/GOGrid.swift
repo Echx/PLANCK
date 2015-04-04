@@ -136,6 +136,7 @@ class GOGrid: NSObject {
         
         for point in criticalPoints {
             println("\n\(point)")
+            path.storeCriticalPoint(point)
             path.addLineToPoint(point)
         }
         path.applyTransform(self.transformToDisplay)
