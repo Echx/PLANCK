@@ -61,17 +61,19 @@ class GOFlatOpticRep: GOOpticRep {
         self.updateEdgesParent()
     }
     
-    override func containsPoint(point: CGPoint) {
-        let areaRect = self.length * self.thickness
-        let vertexA = self.edges[0].startPoint
-        let vertexB = self.edges[0].startPoint
-        
-        let vertexC = self.edges[1].startPoint
-        let vertexD = self.edges[1].startPoint
-        
-        let vertexE = point
-        
-//        let areaABE = 
+    override func containsPoint(point: CGPoint) -> Bool{
+        let areaHalfRect = self.length * self.thickness * 0.5
+        for edge in self.edges {
+            let vertexA = edge.startPoint
+            let vertexB = edge.endPoint
+            let vertexC = point
+            let areaABC = GOUtilities.areaOfTriangle(first: vertexA, second: vertexB, third: vertexC)
+            if areaABC > areaHalfRect {
+                println("edge")
+                return false
+            }
+        }
+        return true
     }
     
     private func setUpEdges() {
