@@ -69,7 +69,6 @@ class GOFlatOpticRep: GOOpticRep {
             let vertexC = point
             let areaABC = GOUtilities.areaOfTriangle(first: vertexA, second: vertexB, third: vertexC)
             if areaABC > areaHalfRect {
-                println("edge")
                 return false
             }
         }
