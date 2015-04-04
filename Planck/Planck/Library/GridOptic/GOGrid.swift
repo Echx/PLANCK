@@ -12,7 +12,7 @@ protocol GOGridDelegate {
     
 }
 
-class GOGrid: NSObject {
+class GOGrid: NSObject, NSCoding {
     let unitLength: CGFloat
     let width: NSInteger
     let height: NSInteger
@@ -75,6 +75,22 @@ class GOGrid: NSObject {
         self.height = coordinate.y
         self.unitLength = unitLength
         super.init()
+    }
+    
+    required convenience init(coder aDecoder: NSCoder) {
+        let unitLength = aDecoder.decodeObjectForKey(GOCodingKey.grid_unitLength) as CGFloat
+        let width = aDecoder.decodeObjectForKey(GOCodingKey.grid_width) as NSInteger
+        let height = aDecoder.decodeObjectForKey(GOCodingKey.grid_height) as NSInteger
+        self.init(width: width, height: height, andUnitLength: unitLength)
+        self.instruments =  aDecoder.decodeObjectForKey(GOCodingKey.grid_instruments) as [String : GOOpticRep]
+    }
+    
+    func encodeWithCoder(aCoder: NSCoder) {
+        aCoder.encodeObject(unitLength, forKey: GOCodingKey.grid_unitLength)
+        aCoder.encodeObject(width, forKey: GOCodingKey.grid_width)
+        aCoder.encodeObject(height, forKey: GOCodingKey.grid_height)
+        
+        aCoder.encodeObject(instruments, forKey: GOCodingKey.grid_instruments)
     }
     
     func clearInstruments() {
