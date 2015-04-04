@@ -155,7 +155,9 @@ class LevelDesignerViewController: UIViewController {
     
     //MARK - pan gesture handler
     @IBAction func viewDidPanned(sender: UIPanGestureRecognizer) {
-        println("pan detected")
+        let location = sender.locationInView(sender.view)
+        let instrument = self.grid.getInstrumentAtPoint(location)
+        println(instrument)
     }
     
     
