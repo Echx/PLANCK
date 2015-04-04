@@ -76,7 +76,7 @@ class LevelDesignerViewController: UIViewController {
 
         self.rayLayers.append(layer)
         
-        let path = self.grid.getRayPath(ray)
+        let path = self.grid.getRayPath(ray).bezierPath
         layer.path = path.CGPath
         self.view.layer.addSublayer(layer)
         
@@ -103,6 +103,9 @@ class LevelDesignerViewController: UIViewController {
         case DeviceSegmentIndex.flatMirror:
             let mirror = GOFlatMirrorRep(center: coordinate, thickness: 2, length: 8, direction: CGVectorMake(0, 1), id: String.generateRandomString(self.identifierLength))
             self.addInstrument(mirror, strokeColor: DeviceColor.mirror)
+            
+            println("contains point: \(mirror.containsPoint(CGPointMake(CGFloat(mirror.center.x), CGFloat(mirror.center.y))))")
+            
             
         case DeviceSegmentIndex.flatLens:
             let flatLens = GOFlatLensRep(center: coordinate, thickness: 2, length: 8, direction: CGVectorMake(0, 1), refractionIndex: 1.5, id: String.generateRandomString(self.identifierLength))

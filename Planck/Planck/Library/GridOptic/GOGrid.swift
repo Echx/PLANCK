@@ -79,7 +79,7 @@ class GOGrid: NSObject {
     
     func clearInstruments() {
         self.instruments = [String: GOOpticRep]()
-        self.refractionEdgeParentStack = GOStack<String>()
+        refractionEdgeParentStack = GOStack<String>()
     }
     
     func addInstrument(instrument: GOOpticRep) -> Bool{
@@ -129,18 +129,22 @@ class GOGrid: NSObject {
     }
     
     //the ray is in the grid coordinate system
-    func getRayPath(ray: GORay) -> UIBezierPath {
+    func getRayPath(ray: GORay) -> GOPath {
         var path = UIBezierPath()
         path.moveToPoint(ray.startPoint)
         let criticalPoints = self.getRayPathCriticalPoints(ray)
+        var points = [CGPoint]()
         
         for point in criticalPoints {
             println("\n\(point)")
             path.addLineToPoint(point)
+            points.append(self.getGridPointForDisplayPoint(point))
         }
         path.applyTransform(self.transformToDisplay)
-        return path
+        
+        return GOPath(bezierPath: path, criticalPoints: points)
     }
+
 
     //given a ray to start, this method will return every critical point of the path (i.e. the contact points between light paths and instruments)
     func getRayPathCriticalPoints(ray: GORay) -> [CGPoint] {

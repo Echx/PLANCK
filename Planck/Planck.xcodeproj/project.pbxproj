@@ -40,6 +40,7 @@
 		267EC2D41AB1DA01002FE745 /* CGVector+XUtility.swift in Sources */ = {isa = PBXBuildFile; fileRef = 267EC2D31AB1DA01002FE745 /* CGVector+XUtility.swift */; };
 		26C8ADDA1AD00437008ADACB /* LevelDesignerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26C8ADD91AD00437008ADACB /* LevelDesignerViewController.swift */; };
 		26C8ADDC1AD01A52008ADACB /* String+XUtility.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26C8ADDB1AD01A52008ADACB /* String+XUtility.swift */; };
+		26C8ADE01AD045D8008ADACB /* GOPath.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26C8ADDF1AD045D8008ADACB /* GOPath.swift */; };
 		620BD4461AB2E69800267C7B /* XNote.swift in Sources */ = {isa = PBXBuildFile; fileRef = 620BD4451AB2E69800267C7B /* XNote.swift */; };
 		622556A61AC5348300DA47AF /* bass-drum.m4a in Resources */ = {isa = PBXBuildFile; fileRef = 622556A31AC5348300DA47AF /* bass-drum.m4a */; };
 		622556A71AC5348300DA47AF /* cymbal.m4a in Resources */ = {isa = PBXBuildFile; fileRef = 622556A41AC5348300DA47AF /* cymbal.m4a */; };
@@ -150,6 +151,7 @@
 		267EC2D31AB1DA01002FE745 /* CGVector+XUtility.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "CGVector+XUtility.swift"; sourceTree = "<group>"; };
 		26C8ADD91AD00437008ADACB /* LevelDesignerViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LevelDesignerViewController.swift; sourceTree = "<group>"; };
 		26C8ADDB1AD01A52008ADACB /* String+XUtility.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "String+XUtility.swift"; sourceTree = "<group>"; };
+		26C8ADDF1AD045D8008ADACB /* GOPath.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GOPath.swift; sourceTree = "<group>"; };
 		620BD4451AB2E69800267C7B /* XNote.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = XNote.swift; sourceTree = "<group>"; };
 		622556A31AC5348300DA47AF /* bass-drum.m4a */ = {isa = PBXFileReference; lastKnownFileType = file; path = "bass-drum.m4a"; sourceTree = "<group>"; };
 		622556A41AC5348300DA47AF /* cymbal.m4a */ = {isa = PBXFileReference; lastKnownFileType = file; path = cymbal.m4a; sourceTree = "<group>"; };
@@ -261,6 +263,7 @@
 				263B09991ACEEDD800E7C99E /* GORay.swift */,
 				263B099A1ACEEDD800E7C99E /* GOSegment.swift */,
 				263B099B1ACEEDD800E7C99E /* GOStack.swift */,
+				26C8ADDF1AD045D8008ADACB /* GOPath.swift */,
 			);
 			path = DataStructure;
 			sourceTree = "<group>";
@@ -270,9 +273,9 @@
 			children = (
 				263B09A41ACEEDD800E7C99E /* GOConcaveLensRep.swift */,
 				263B09A51ACEEDD800E7C99E /* GOConvexLensRep.swift */,
+				263B09A81ACEEDD800E7C99E /* GOFlatOpticRep.swift */,
 				263B09A61ACEEDD800E7C99E /* GOFlatLensRep.swift */,
 				263B09A71ACEEDD800E7C99E /* GOFlatMirrorRep.swift */,
-				263B09A81ACEEDD800E7C99E /* GOFlatOpticRep.swift */,
 				263B09A91ACEEDD800E7C99E /* GOFlatWallRep.swift */,
 				263B09AA1ACEEDD800E7C99E /* GOOpticRep.swift */,
 			);
@@ -646,6 +649,7 @@
 				6227FC161AAE28E7007F49EA /* XMirror.swift in Sources */,
 				6227FC191AAE28E7007F49EA /* XColor.swift in Sources */,
 				263B09BA1ACEEDD800E7C99E /* GOFlatLensRep.swift in Sources */,
+				26C8ADE01AD045D8008ADACB /* GOPath.swift in Sources */,
 				263B09AB1ACEEDD800E7C99E /* GOArcSegment.swift in Sources */,
 				263B09BE1ACEEDD800E7C99E /* GOOpticRep.swift in Sources */,
 				620BD4461AB2E69800267C7B /* XNote.swift in Sources */,
