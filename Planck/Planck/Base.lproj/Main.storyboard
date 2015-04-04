@@ -52,6 +52,7 @@
                         <connections>
                             <outletCollection property="gestureRecognizers" destination="yWe-Aa-Kcf" appends="YES" id="Mbn-T3-MxD"/>
                             <outletCollection property="gestureRecognizers" destination="ApR-Eh-3eQ" appends="YES" id="3j2-fy-egG"/>
+                            <outletCollection property="gestureRecognizers" destination="Txt-zX-WDV" appends="YES" id="pjc-59-2om"/>
                         </connections>
                     </view>
                     <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
@@ -71,6 +72,11 @@
                         <action selector="viewDidPanned:" destination="ICT-TY-Uh1" id="Oz4-vv-Tap"/>
                     </connections>
                 </panGestureRecognizer>
+                <pongPressGestureRecognizer allowableMovement="10" minimumPressDuration="0.5" id="Txt-zX-WDV">
+                    <connections>
+                        <action selector="viewDidLongPressed:" destination="ICT-TY-Uh1" id="BEe-RM-cd6"/>
+                    </connections>
+                </pongPressGestureRecognizer>
             </objects>
             <point key="canvasLocation" x="487" y="-437"/>
         </scene>

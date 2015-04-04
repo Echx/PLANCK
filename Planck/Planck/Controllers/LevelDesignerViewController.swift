@@ -131,9 +131,13 @@ class LevelDesignerViewController: UIViewController {
     
     //MARK - pan gesture handler
     @IBAction func viewDidPanned(sender: UIPanGestureRecognizer) {
-        println("pan detected");
+        println("pan detected")
     }
     
+    
+    @IBAction func viewDidLongPressed(sender: UILongPressGestureRecognizer) {
+        println("longPressed")
+    }
     
     @IBAction func clearButtonDidClicked(sender: UIBarButtonItem) {
         self.grid.clearInstruments()
