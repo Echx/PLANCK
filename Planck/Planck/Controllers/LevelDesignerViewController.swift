@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import AVFoundation
 
 class LevelDesignerViewController: UIViewController {
 
@@ -23,6 +24,8 @@ class LevelDesignerViewController: UIViewController {
             return self.selectedNode != nil
         }
     }
+    
+    var audioPlayer: AVAudioPlayer!
     
     let grid: GOGrid
     let identifierLength = 20;
@@ -283,8 +286,26 @@ class LevelDesignerViewController: UIViewController {
     }
     
     private func processPoints(points: [CGPoint]) {
-        for point in points {
-            // TODO check device
+        if points.count > 2 {
+            var bounceSound = NSURL(fileURLWithPath: NSBundle.mainBundle().pathForResource("cymbal", ofType: "m4a")!)
+            var prevPoint = points[0]
+            var distance: CGFloat = 0
+            for i in 1...points.count - 1 {
+                distance += points[i].getDistanceToPoint(prevPoint)
+                prevPoint = points[i]
+                if let device = self.grid.getInstrumentAtGridPoint(points[i]) {
+                    switch device.type {
+                    case DeviceType.Mirror :
+                        self.audioPlayer = AVAudioPlayer(contentsOfURL: bounceSound, error: nil)
+                        self.audioPlayer.prepareToPlay()
+                        let wait = NSTimeInterval(distance / Constant.lightSpeedBase + Constant.audioDelay)
+                        self.audioPlayer.playAtTime(wait + self.audioPlayer.deviceCurrentTime)
+
+                    default :
+                        1
+                    }
+                }
+            }
         }
     }
     

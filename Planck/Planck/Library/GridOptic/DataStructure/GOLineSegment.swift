@@ -32,6 +32,38 @@ class GOLineSegment: GOSegment {
         self.direction = direction
     }
     
+    required convenience init(coder aDecoder: NSCoder) {
+        let willRefract = aDecoder.decodeBoolForKey(GOCodingKey.segment_willRef)
+        let willReflect = aDecoder.decodeBoolForKey(GOCodingKey.segment_willRel)
+        
+        let center = aDecoder.decodeCGPointForKey(GOCodingKey.segment_center)
+        let tag = aDecoder.decodeObjectForKey(GOCodingKey.segment_tag) as NSInteger
+        
+        let parent = aDecoder.decodeObjectForKey(GOCodingKey.segment_parent) as String
+        
+        let length = aDecoder.decodeObjectForKey(GOCodingKey.segment_length) as CGFloat
+        
+        let direction = aDecoder.decodeCGVectorForKey(GOCodingKey.segment_direction)
+        
+        self.init(center: center, length: length, direction: direction)
+        self.willReflect = willReflect
+        self.willRefract = willRefract
+
+        self.tag = tag
+        self.parent = parent
+    }
+    
+    override func encodeWithCoder(aCoder: NSCoder) {
+        aCoder.encodeBool(willRefract, forKey: GOCodingKey.segment_willRef)
+        aCoder.encodeBool(willReflect, forKey: GOCodingKey.segment_willRel)
+        aCoder.encodeCGPoint(center, forKey: GOCodingKey.segment_center)
+        aCoder.encodeCGVector(direction, forKey: GOCodingKey.segment_direction)
+        aCoder.encodeObject(tag, forKey: GOCodingKey.segment_tag)
+        aCoder.encodeObject(parent, forKey: GOCodingKey.segment_parent)
+        
+        aCoder.encodeObject(length, forKey: GOCodingKey.segment_length)
+    }
+    
     var directionInRadianFromXPlus: CGFloat {
         get {
             return self.direction.angleFromXPlus

@@ -14,16 +14,6 @@ class GOArcSegment: GOSegment {
     
     override var bezierPath: UIBezierPath {
         get {
-//            println("\n\n\n\n")
-//            println("start:         \(self.startPoint)")
-//            println("end:           \(self.startPoint)")
-//            println("center:        \(self.center)")
-//            println("radius:        \(self.radius)")
-//            println("radian:        \(self.radian)")
-//            println("startA:        \(self.startRadian)")
-//            println("endA:          \(self.endRadian)")
-//            println("direction:     \(self.direction)")
-//            println("directionA:    \(self.direction.angleFromXPlus)")
             var path = UIBezierPath()
             path.addArcWithCenter(self.center, radius: self.radius, startAngle: self.endRadian, endAngle: self.startRadian, clockwise: false)
             return path
@@ -36,6 +26,43 @@ class GOArcSegment: GOSegment {
         super.init()
         self.normalDirection = normalDirection
         self.center = center
+    }
+    
+    required convenience init(coder aDecoder: NSCoder) {
+        let radius = aDecoder.decodeObjectForKey(GOCodingKey.segment_radius) as CGFloat
+        let radian = aDecoder.decodeObjectForKey(GOCodingKey.segment_radian) as CGFloat
+        
+        let willRefract = aDecoder.decodeBoolForKey(GOCodingKey.segment_willRef)
+        let willReflect = aDecoder.decodeBoolForKey(GOCodingKey.segment_willRel)
+        
+        let center = aDecoder.decodeCGPointForKey(GOCodingKey.segment_center)
+        let tag = aDecoder.decodeObjectForKey(GOCodingKey.segment_tag) as NSInteger
+        
+        let parent = aDecoder.decodeObjectForKey(GOCodingKey.segment_parent) as String
+        
+        let direction = aDecoder.decodeCGVectorForKey(GOCodingKey.segment_direction)
+        let normalDirection = aDecoder.decodeCGVectorForKey(GOCodingKey.segment_normalDir)
+        
+        self.init(center: center, radius: radius, radian: radian, normalDirection: normalDirection)
+        self.willReflect = willReflect
+        self.willRefract = willRefract
+
+        self.tag = tag
+        self.parent = parent
+    }
+    
+    override func encodeWithCoder(aCoder: NSCoder) {
+        aCoder.encodeObject(radius, forKey: GOCodingKey.segment_radius)
+        aCoder.encodeObject(radian, forKey: GOCodingKey.segment_radian)
+        
+        aCoder.encodeBool(willRefract, forKey: GOCodingKey.segment_willRef)
+        aCoder.encodeBool(willReflect, forKey: GOCodingKey.segment_willRel)
+        aCoder.encodeCGPoint(center, forKey: GOCodingKey.segment_center)
+
+        aCoder.encodeObject(tag, forKey: GOCodingKey.segment_tag)
+        aCoder.encodeObject(parent, forKey: GOCodingKey.segment_parent)
+        
+        aCoder.encodeCGVector(normalDirection, forKey: GOCodingKey.segment_normalDir)
     }
     
     var scaledStartVector: CGVector {

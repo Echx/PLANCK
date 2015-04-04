@@ -8,7 +8,7 @@
 
 import UIKit
 
-class GOOpticRep: NSObject {
+class GOOpticRep: NSObject, NSCoding {
     var id: String
     var center: GOCoordinate
     var edges = [GOSegment]()
@@ -57,6 +57,29 @@ class GOOpticRep: NSObject {
     
     func setUpEdges() {
         fatalError("setUpEdges must be overridden by child classes")
+    }
+    
+    required convenience init(coder aDecoder: NSCoder) {
+        let id = aDecoder.decodeObjectForKey(GOCodingKey.optic_id) as String
+        let edges = aDecoder.decodeObjectForKey(GOCodingKey.optic_edges) as [GOSegment]
+        let typeRaw = aDecoder.decodeObjectForKey(GOCodingKey.optic_type) as Int
+        let type = DeviceType(rawValue: typeRaw)
+        let center = aDecoder.decodeObjectForKey(GOCodingKey.optic_center) as GOCoordinate
+        
+        let refIndex = aDecoder.decodeObjectForKey(GOCodingKey.optic_refractionIndex) as CGFloat
+        
+        self.init(refractionIndex: refIndex, id: id, center: center)
+        self.type = type!
+        self.edges = edges
+    }
+    
+    func encodeWithCoder(aCoder: NSCoder) {
+        aCoder.encodeObject(id, forKey: GOCodingKey.optic_id)
+        aCoder.encodeObject(edges, forKey: GOCodingKey.optic_edges)
+        aCoder.encodeObject(type.rawValue, forKey: GOCodingKey.optic_type)
+        aCoder.encodeObject(center, forKey: GOCodingKey.optic_center)
+
+        aCoder.encodeObject(refractionIndex, forKey: GOCodingKey.optic_refractionIndex)
     }
     
     func setDirection(direction: CGVector) {
