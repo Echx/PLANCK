@@ -12,7 +12,7 @@
                         <viewControllerLayoutGuide type="top" id="3GY-3F-e3c"/>
                         <viewControllerLayoutGuide type="bottom" id="Wib-TG-yhB"/>
                     </layoutGuides>
-                    <view key="view" contentMode="scaleToFill" id="rrK-D2-hUU" customClass="Lev">
+                    <view key="view" contentMode="scaleToFill" id="rrK-D2-hUU">
                         <rect key="frame" x="0.0" y="0.0" width="1024" height="768"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
@@ -53,6 +53,11 @@
                             </toolbar>
                         </subviews>
                         <color key="backgroundColor" red="0.26274509800000001" green="0.36862745099999999" blue="0.46274509800000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <gestureRecognizers/>
+                        <connections>
+                            <outletCollection property="gestureRecognizers" destination="yWe-Aa-Kcf" appends="YES" id="Mbn-T3-MxD"/>
+                            <outletCollection property="gestureRecognizers" destination="ApR-Eh-3eQ" appends="YES" id="3j2-fy-egG"/>
+                        </connections>
                     </view>
                     <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
                     <size key="freeformSize" width="1024" height="768"/>
@@ -62,6 +67,16 @@
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Qbb-eo-w3q" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <tapGestureRecognizer id="yWe-Aa-Kcf">
+                    <connections>
+                        <action selector="viewDidTapped:" destination="ICT-TY-Uh1" id="O5F-78-XNA"/>
+                    </connections>
+                </tapGestureRecognizer>
+                <panGestureRecognizer minimumNumberOfTouches="1" id="ApR-Eh-3eQ">
+                    <connections>
+                        <action selector="viewDidPanned:" destination="ICT-TY-Uh1" id="Oz4-vv-Tap"/>
+                    </connections>
+                </panGestureRecognizer>
             </objects>
             <point key="canvasLocation" x="483" y="-412.5"/>
         </scene>

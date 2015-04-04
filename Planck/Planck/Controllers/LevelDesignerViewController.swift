@@ -20,26 +20,16 @@ class LevelDesignerViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.setUpGestureRecognizers()
     }
-    
-    private func setUpGestureRecognizers() {
-        let tapGestureRecognizer = UITapGestureRecognizer(target: self, action: Selectors.tapAction)
-        self.view.addGestureRecognizer(tapGestureRecognizer)
-        
-        let panGestureRecognizer = UIPanGestureRecognizer(target: self, action: Selectors.panAction)
-        self.view.addGestureRecognizer(tapGestureRecognizer)
-    }
-
     
     //MARK - tap gesture handler
-    func viewDidTapped(sender: UITapGestureRecognizer) {
-        
+    @IBAction func viewDidTapped(sender: UITapGestureRecognizer) {
+        println("tap detected");
     }
     
     //MARK - pan gesture handler
-    func viewDidPanned(sender: UIPanGestureRecognizer) {
-        
+    @IBAction func viewDidPanned(sender: UIPanGestureRecognizer) {
+        println("pan detected");
     }
     
     override func didReceiveMemoryWarning() {
