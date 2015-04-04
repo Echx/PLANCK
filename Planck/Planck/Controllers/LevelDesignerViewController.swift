@@ -32,6 +32,7 @@ class LevelDesignerViewController: UIViewController {
         static let mirror = UIColor.whiteColor()
         static let lens = UIColor(red: 190/255.0, green: 1, blue: 1, alpha: 1)
         static let wall = UIColor.blackColor()
+        static let planck = UIColor.yellowColor()
     }
     
     struct DeviceSegmentIndex {
@@ -77,6 +78,7 @@ class LevelDesignerViewController: UIViewController {
         self.rayLayers.append(layer)
         
         let path = self.grid.getRayPath(ray)
+        let points = path.criticalPoints
         layer.path = path.CGPath
         self.view.layer.addSublayer(layer)
         
@@ -122,7 +124,7 @@ class LevelDesignerViewController: UIViewController {
             
         case DeviceSegmentIndex.planck:
             let planck = GOFlatWallRep(center: coordinate, thickness: 6, length: 6, direction: CGVectorMake(0, 1), id: String.generateRandomString(self.identifierLength))
-            self.addInstrument(planck, strokeColor: DeviceColor.wall)
+            self.addInstrument(planck, strokeColor: DeviceColor.planck)
             
         default:
             fatalError("SegmentNotRecognized")
