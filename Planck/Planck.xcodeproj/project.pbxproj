@@ -110,6 +110,7 @@
 		62E00C931AC46A5C00F10F10 /* piano-72.m4a in Resources */ = {isa = PBXBuildFile; fileRef = 62E00C861AC46A5C00F10F10 /* piano-72.m4a */; };
 		984F35D81ABF09F1008816C9 /* InstrumentNSCodingTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 984F35D71ABF09F1008816C9 /* InstrumentNSCodingTests.swift */; };
 		986E5DA31AC55604008EF3CE /* StorageManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 98D55F9D1ABF133000B3E86A /* StorageManager.swift */; };
+		98754ADC1AD0587F00817319 /* GameLevel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 98754ADB1AD0587F00817319 /* GameLevel.swift */; };
 		98D55F9E1ABF133000B3E86A /* StorageManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 98D55F9D1ABF133000B3E86A /* StorageManager.swift */; };
 /* End PBXBuildFile section */
 
@@ -204,6 +205,7 @@
 		62E00C851AC46A5C00F10F10 /* piano-71.m4a */ = {isa = PBXFileReference; lastKnownFileType = file; path = "piano-71.m4a"; sourceTree = "<group>"; };
 		62E00C861AC46A5C00F10F10 /* piano-72.m4a */ = {isa = PBXFileReference; lastKnownFileType = file; path = "piano-72.m4a"; sourceTree = "<group>"; };
 		984F35D71ABF09F1008816C9 /* InstrumentNSCodingTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InstrumentNSCodingTests.swift; sourceTree = "<group>"; };
+		98754ADB1AD0587F00817319 /* GameLevel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GameLevel.swift; sourceTree = "<group>"; };
 		98D55F9D1ABF133000B3E86A /* StorageManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = StorageManager.swift; path = Storage/StorageManager.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -386,6 +388,7 @@
 				98D55F9C1ABF126700B3E86A /* Storage */,
 				6227FBF21AAE28E7007F49EA /* Sprites */,
 				6227FC031AAE28E7007F49EA /* Utilities */,
+				98754ADB1AD0587F00817319 /* GameLevel.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -661,6 +664,7 @@
 				263B09C91ACEEE1100E7C99E /* GOUtilities.swift in Sources */,
 				262BE1A61ABE9A9000ABE965 /* AGSpriteButton.m in Sources */,
 				6227FC171AAE28E7007F49EA /* XWall.swift in Sources */,
+				98754ADC1AD0587F00817319 /* GameLevel.swift in Sources */,
 				263B09C71ACEEE1100E7C99E /* CGVector+GOUtilities.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
