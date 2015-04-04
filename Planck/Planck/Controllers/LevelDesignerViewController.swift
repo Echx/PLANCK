@@ -99,7 +99,10 @@ class LevelDesignerViewController: UIViewController {
     private func shootRay() {
         for (name, item) in self.grid.instruments {
             if item.type == DeviceType.Emitter {
-                self.addRay((item as GOEmitterRep).center.point)
+                let coordinate = (item as GOEmitterRep).center
+                let shootingCoordinate = GOCoordinate(x: coordinate.x + 1, y: coordinate.y)
+                let shootingPoint = self.grid.getPointForGridCoordinate(shootingCoordinate)
+                self.addRay(shootingPoint)
             }
             
         }
