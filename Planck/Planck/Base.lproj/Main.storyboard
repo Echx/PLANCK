@@ -67,12 +67,12 @@
                     </connections>
                 </panGestureRecognizer>
             </objects>
-            <point key="canvasLocation" x="483" y="-413"/>
+            <point key="canvasLocation" x="487" y="-437"/>
         </scene>
-        <!--Game View Controller-->
+        <!--GamePlanck-->
         <scene sceneID="tXr-a1-R10">
             <objects>
-                <viewController id="BV1-FR-VrT" customClass="GameViewController" customModule="Planck" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController title="GamePlanck" id="BV1-FR-VrT" customClass="GameViewController" customModule="Planck" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="maK-i9-Uhn"/>
                         <viewControllerLayoutGuide type="bottom" id="khH-OB-KpY"/>

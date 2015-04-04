@@ -11,7 +11,17 @@ import UIKit
 class LevelDesignerViewController: UIViewController {
 
     @IBOutlet var deviceSegment: UISegmentedControl!
-
+    
+    //store the layer we draw the various optic devices
+    //key is the id of the instrument
+    var deviceLayers = [String: CAShapeLayer]()
+    
+    let grid: GOGrid
+    let identifierLength = 20;
+    required init(coder aDecoder: NSCoder) {
+        self.grid = GOGrid(width: 128, height: 96, andUnitLength: 8)
+        super.init(coder: aDecoder)
+    }
     
     struct Selectors {
         static let segmentValueDidChangeAction: Selector = "segmentValueDidChange:"
@@ -36,23 +46,74 @@ class LevelDesignerViewController: UIViewController {
         super.viewDidLoad()
     }
     
+    private func addInstrument(instrument: GOOpticRep) {
+        self.grid.addInstrument(instrument)
+        let layer = CAShapeLayer()
+        layer.strokeEnd = 1.0
+        layer.strokeColor = UIColor.whiteColor().CGColor
+        layer.fillColor = UIColor.clearColor().CGColor
+        layer.lineWidth = 2.0
+        self.deviceLayers[instrument.id] = layer
+        layer.path = self.grid.getInstrumentDisplayPathForID(instrument.id)?.CGPath
+        self.view.layer.addSublayer(layer)
+    }
+    
+    private func addRay(point: CGPoint) {
+        let ray = GORay(startPoint: self.grid.getGridPointForDisplayPoint(point), direction: CGVector(dx: 1, dy: 0))
+        let layer = CAShapeLayer()
+        layer.strokeEnd = 1.0
+        layer.strokeColor = UIColor.whiteColor().CGColor
+        layer.fillColor = UIColor.clearColor().CGColor
+        layer.lineWidth = 2.0
+
+        let path = self.grid.getRayPath(ray)
+        layer.path = path.CGPath
+        self.view.layer.addSublayer(layer)
+        
+        let pathAnimation = CABasicAnimation(keyPath: "strokeEnd")
+        pathAnimation.fromValue = 0.0;
+        pathAnimation.toValue = 1.0;
+        pathAnimation.duration = 3.0;
+        pathAnimation.repeatCount = 1.0
+        pathAnimation.fillMode = kCAFillModeForwards
+        pathAnimation.timingFunction = CAMediaTimingFunction(name: kCAMediaTimingFunctionLinear)
+        
+        layer.addAnimation(pathAnimation, forKey: "strokeEnd")
+    }
+    
     //MARK - tap gesture handler
     @IBAction func viewDidTapped(sender: UITapGestureRecognizer) {
+        let location = sender.locationInView(sender.view)
+        let coordinate = self.grid.getGridCoordinateForPoint(location)
+        
         switch(self.deviceSegment.selectedSegmentIndex) {
         case DeviceSegmentIndex.emitter:
-            println("tap detected: emitter");
+            self.addRay(location)
+            
         case DeviceSegmentIndex.flatMirror:
-            println("tap detected: flat mirror");
+            let mirror = GOFlatMirrorRep(center: coordinate, thickness: 2, length: 8, direction: CGVectorMake(0, 1), id: String.generateRandomString(self.identifierLength))
+            self.addInstrument(mirror)
+            
         case DeviceSegmentIndex.flatLens:
-            println("tap detected: flat lens");
+            let flatLens = GOFlatLensRep(center: coordinate, thickness: 2, length: 8, direction: CGVectorMake(0, 1), refractionIndex: 1.5, id: String.generateRandomString(self.identifierLength))
+            self.addInstrument(flatLens)
+            
         case DeviceSegmentIndex.flatWall:
-            println("tap detected: flat wall");
+            let wall = GOFlatWallRep(center: coordinate, thickness: 2, length: 8, direction: CGVectorMake(0, 1), id: String.generateRandomString(self.identifierLength))
+            self.addInstrument(wall)
+            
         case DeviceSegmentIndex.concaveLens:
-            println("tap detected: concave lens");
+            let concaveLens = GOConcaveLensRep(center: coordinate, direction: CGVectorMake(0, 1), thicknessCenter: 1, thicknessEdge: 3, curvatureRadius: 10, id: String.generateRandomString(self.identifierLength), refractionIndex: 1.5)
+            self.addInstrument(concaveLens)
+            
         case DeviceSegmentIndex.convexLens:
-            println("tap detected: convex lens");
+            let convexLens = GOConvexLensRep(center: coordinate, direction: CGVectorMake(0, 1), thickness: 2, curvatureRadius: 10, id: String.generateRandomString(self.identifierLength), refractionIndex: 1.5)
+            self.addInstrument(convexLens)
+            
         case DeviceSegmentIndex.planck:
-            println("tap detected: planck");
+            let planck = GOFlatWallRep(center: coordinate, thickness: 6, length: 6, direction: CGVectorMake(0, 1), id: String.generateRandomString(self.identifierLength))
+            self.addInstrument(planck)
+            
         default:
             fatalError("SegmentNotRecognized")
         }
@@ -68,6 +129,7 @@ class LevelDesignerViewController: UIViewController {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
+    
     
 
     /*

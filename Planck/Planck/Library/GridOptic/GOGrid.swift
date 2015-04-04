@@ -109,9 +109,10 @@ class GOGrid: NSObject {
                            origin.y + CGFloat(coordinate.y) * self.unitLength)
     }
     
-    func getGridCoordinateForPoint(point: CGPoint) {
+    func getGridCoordinateForPoint(point: CGPoint) -> GOCoordinate {
         var x = round(point.x / self.unitLength)
         var y = round(point.y / self.unitLength)
+        return GOCoordinate(x: Int(x), y: Int(y))
     }
     
     func getDisplayPointForGridPoint(point: CGPoint) -> CGPoint {
