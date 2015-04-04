@@ -17,6 +17,5 @@ struct GOConstant {
 
 enum DeviceType: Int {
     case Lens = 0
-    case Mirror, Wall
+    case Mirror, Wall, Emitter
 }
-

@@ -33,6 +33,7 @@ class LevelDesignerViewController: UIViewController {
         static let lens = UIColor(red: 190/255.0, green: 1, blue: 1, alpha: 1)
         static let wall = UIColor.blackColor()
         static let planck = UIColor.yellowColor()
+        static let emitter = UIColor.greenColor()
     }
     
     struct DeviceSegmentIndex {
@@ -95,6 +96,18 @@ class LevelDesignerViewController: UIViewController {
         layer.addAnimation(pathAnimation, forKey: "strokeEnd")
     }
     
+    private func shootRay() {
+        for (name, item) in self.grid.instruments {
+            if item.type == DeviceType.Emitter {
+                let coordinate = (item as GOEmitterRep).center
+                let shootingCoordinate = GOCoordinate(x: coordinate.x + 1, y: coordinate.y)
+                let shootingPoint = self.grid.getPointForGridCoordinate(shootingCoordinate)
+                self.addRay(shootingPoint)
+            }
+            
+        }
+    }
+    
     //MARK - tap gesture handler
     @IBAction func viewDidTapped(sender: UITapGestureRecognizer) {
         let location = sender.locationInView(sender.view)
@@ -102,7 +115,8 @@ class LevelDesignerViewController: UIViewController {
         
         switch(self.deviceSegment.selectedSegmentIndex) {
         case DeviceSegmentIndex.emitter:
-            self.addRay(location)
+            let emitter = GOEmitterRep(center: coordinate, thickness: 2, length: 8, direction: CGVectorMake(0, 1), id: String.generateRandomString(self.identifierLength))
+            self.addInstrument(emitter, strokeColor: DeviceColor.emitter)
             
         case DeviceSegmentIndex.flatMirror:
             let mirror = GOFlatMirrorRep(center: coordinate, thickness: 2, length: 8, direction: CGVectorMake(0, 1), id: String.generateRandomString(self.identifierLength))
@@ -134,6 +148,7 @@ class LevelDesignerViewController: UIViewController {
         default:
             fatalError("SegmentNotRecognized")
         }
+        self.shootRay()
     }
     
     //MARK - pan gesture handler

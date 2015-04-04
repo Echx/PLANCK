@@ -120,6 +120,12 @@ class GOGrid: NSObject {
         return GOCoordinate(x: Int(x), y: Int(y))
     }
     
+    func getPointForGridCoordinate(coordinate: GOCoordinate) -> CGPoint {
+        var x = CGFloat(coordinate.x) * self.unitLength
+        var y = CGFloat(coordinate.y) * self.unitLength
+        return CGPoint(x: x, y: y)
+    }
+    
     func getDisplayPointForGridPoint(point: CGPoint) -> CGPoint {
         return CGPointApplyAffineTransform(point, self.transformToDisplay)
     }
