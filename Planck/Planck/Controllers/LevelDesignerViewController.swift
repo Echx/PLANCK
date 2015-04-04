@@ -32,6 +32,7 @@ class LevelDesignerViewController: UIViewController {
         static let mirror = UIColor.whiteColor()
         static let lens = UIColor(red: 190/255.0, green: 1, blue: 1, alpha: 1)
         static let wall = UIColor.blackColor()
+        static let planck = UIColor.yellowColor()
     }
     
     struct DeviceSegmentIndex {
@@ -76,7 +77,10 @@ class LevelDesignerViewController: UIViewController {
 
         self.rayLayers.append(layer)
         
-        let path = self.grid.getRayPath(ray).bezierPath
+        let goPath = self.grid.getRayPath(ray)
+        let path = goPath.bezierPath
+        let points = goPath.criticalPoints
+        self.processPoints(points)
         layer.path = path.CGPath
         self.view.layer.addSublayer(layer)
         
@@ -125,7 +129,7 @@ class LevelDesignerViewController: UIViewController {
             
         case DeviceSegmentIndex.planck:
             let planck = GOFlatWallRep(center: coordinate, thickness: 6, length: 6, direction: CGVectorMake(0, 1), id: String.generateRandomString(self.identifierLength))
-            self.addInstrument(planck, strokeColor: DeviceColor.wall)
+            self.addInstrument(planck, strokeColor: DeviceColor.planck)
             
         default:
             fatalError("SegmentNotRecognized")
@@ -154,6 +158,10 @@ class LevelDesignerViewController: UIViewController {
         for layer in self.rayLayers {
             layer.removeFromSuperlayer()
         }
+    }
+    
+    private func processPoints(points: [CGPoint]) {
+    
     }
     
     override func didReceiveMemoryWarning() {
