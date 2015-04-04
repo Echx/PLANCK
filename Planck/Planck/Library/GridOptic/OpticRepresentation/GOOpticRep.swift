@@ -8,7 +8,7 @@
 
 import UIKit
 
-class GOOpticRep: NSObject {
+class GOOpticRep: NSObject, NSCoding {
     var id: String
     var edges = [GOSegment]()
     var type = DeviceType.Mirror
@@ -41,6 +41,27 @@ class GOOpticRep: NSObject {
         self.refractionIndex = refractionIndex
         super.init()
         self.updateEdgesParent()
+    }
+    
+    required convenience init(coder aDecoder: NSCoder) {
+        let id = aDecoder.decodeObjectForKey(GOCodingKey.optic_id) as String
+        let edges = aDecoder.decodeObjectForKey(GOCodingKey.optic_edges) as [GOSegment]
+        let typeRaw = aDecoder.decodeObjectForKey(GOCodingKey.optic_type) as Int
+        let type = DeviceType(rawValue: typeRaw)
+        
+        let refIndex = aDecoder.decodeObjectForKey(GOCodingKey.optic_refractionIndex) as CGFloat
+        
+        self.init(refractionIndex: refIndex, id: id)
+        self.type = type!
+        self.edges = edges
+    }
+    
+    func encodeWithCoder(aCoder: NSCoder) {
+        aCoder.encodeObject(id, forKey: GOCodingKey.optic_id)
+        aCoder.encodeObject(edges, forKey: GOCodingKey.optic_edges)
+        aCoder.encodeObject(type.rawValue, forKey: GOCodingKey.optic_type)
+
+        aCoder.encodeObject(refractionIndex, forKey: GOCodingKey.optic_refractionIndex)
     }
     
     func setDirection(direction: CGVector) {

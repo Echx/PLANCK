@@ -67,6 +67,43 @@ class GOConcaveLensRep: GOOpticRep {
         self.updateEdgesParent()
     }
     
+    required convenience init(coder aDecoder: NSCoder) {
+        let id = aDecoder.decodeObjectForKey(GOCodingKey.optic_id) as String
+        let edges = aDecoder.decodeObjectForKey(GOCodingKey.optic_edges) as [GOSegment]
+        let typeRaw = aDecoder.decodeObjectForKey(GOCodingKey.optic_type) as Int
+        let type = DeviceType(rawValue: typeRaw)
+        
+        let thickCenter = aDecoder.decodeObjectForKey(GOCodingKey.optic_thickCenter) as CGFloat
+        let thickEdge = aDecoder.decodeObjectForKey(GOCodingKey.optic_thickEdge) as CGFloat
+        let curvatureRadius = aDecoder.decodeObjectForKey(GOCodingKey.optic_curvatureRadius) as CGFloat
+
+        let length = aDecoder.decodeObjectForKey(GOCodingKey.optic_length) as CGFloat
+        let center = aDecoder.decodeObjectForKey(GOCodingKey.optic_center) as GOCoordinate
+        let direction = aDecoder.decodeCGVectorForKey(GOCodingKey.optic_direction)
+        let refIndex = aDecoder.decodeObjectForKey(GOCodingKey.optic_refractionIndex) as CGFloat
+        
+        self.init(center: center, direction: direction, thicknessCenter: thickCenter,
+                    thicknessEdge: thickEdge, curvatureRadius: curvatureRadius, id: id,
+                    refractionIndex: refIndex)
+        self.type = type!
+        self.edges = edges
+    }
+    
+    override func encodeWithCoder(aCoder: NSCoder) {
+        aCoder.encodeObject(id, forKey: GOCodingKey.optic_id)
+        aCoder.encodeObject(edges, forKey: GOCodingKey.optic_edges)
+        aCoder.encodeObject(type.rawValue, forKey: GOCodingKey.optic_type)
+        
+        aCoder.encodeObject(thicknessCenter, forKey: GOCodingKey.optic_thickCenter)
+        aCoder.encodeObject(thicknessEdge, forKey: GOCodingKey.optic_thickEdge)
+        aCoder.encodeObject(curvatureRadius, forKey: GOCodingKey.optic_curvatureRadius)
+        
+        aCoder.encodeObject(length, forKey: GOCodingKey.optic_length)
+        aCoder.encodeObject(center, forKey: GOCodingKey.optic_center)
+        aCoder.encodeCGVector(direction, forKey: GOCodingKey.optic_direction)
+        aCoder.encodeObject(refractionIndex, forKey: GOCodingKey.optic_refractionIndex)
+    }
+    
     private func setUpEdges() {
         let radianSpan = acos((self.curvatureRadius - self.thicknessDifference/2) / self.curvatureRadius) * 2
         
