@@ -156,7 +156,7 @@ class LevelDesignerViewController: UIViewController {
         }
     }
     
-    private processPoints(points: [CGPoint]) {
+    private func processPoints(points: [CGPoint]) {
     
     }
     
