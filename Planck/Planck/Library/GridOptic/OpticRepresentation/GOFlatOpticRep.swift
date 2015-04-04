@@ -11,7 +11,6 @@ import UIKit
 class GOFlatOpticRep: GOOpticRep {
     var thickness: CGFloat = 1
     var length: CGFloat = 6
-    var direction: CGVector = CGVectorMake(0, 1)
     var normalDirection: CGVector {
         get {
             return CGVectorMake(self.direction.dy, -self.direction.dx)
@@ -71,7 +70,7 @@ class GOFlatOpticRep: GOOpticRep {
         return true
     }
     
-    private func setUpEdges() {
+    override func setUpEdges() {
         //top edge
         let centerTopEdge = CGPointMake(CGFloat(self.center.x), CGFloat(self.center.y) + CGFloat(self.length)/2)
         let topEdge = GOLineSegment(center: centerTopEdge, length: self.thickness, direction: self.inversedNormalDirection)

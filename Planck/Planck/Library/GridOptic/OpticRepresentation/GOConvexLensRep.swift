@@ -11,7 +11,6 @@ import UIKit
 class GOConvexLensRep: GOOpticRep {
     var thickness: CGFloat = 1
     var curvatureRadius: CGFloat = 5
-    var direction: CGVector = CGVectorMake(0, 1)
     var normalDirection: CGVector {
         get {
             return CGVectorMake(self.direction.dy, -self.direction.dx)
@@ -58,7 +57,7 @@ class GOConvexLensRep: GOOpticRep {
         self.updateEdgesParent()
     }
     
-    private func setUpEdges() {
+    override func setUpEdges() {
         let radianSpan = acos((self.curvatureRadius - self.thickness/2) / self.curvatureRadius) * 2
         
         //left arc

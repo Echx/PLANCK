@@ -26,3 +26,11 @@ class GOCoordinate: NSObject {
         return GOCoordinate(x: x, y: y)
     }
 }
+
+extension GOCoordinate: Printable {
+    override var description: String {
+        get {
+            return "Coordinate: (\(self.x), \(self.y))"
+        }
+    }
+}

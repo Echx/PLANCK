@@ -13,6 +13,7 @@ class GOOpticRep: NSObject {
     var center: GOCoordinate
     var edges = [GOSegment]()
     var type = DeviceType.Mirror
+    var direction: CGVector = CGVectorMake(0, 1)
     var bezierPath: UIBezierPath {
         get {
             var path = UIBezierPath()
@@ -44,6 +45,18 @@ class GOOpticRep: NSObject {
         self.center = center
         super.init()
         self.updateEdgesParent()
+    }
+    
+    func setCenter(center: GOCoordinate) {
+        self.center = center
+        self.edges = [GOSegment]()
+        self.setUpEdges()
+        self.setDirection(self.direction)
+        self.updateEdgesParent()
+    }
+    
+    func setUpEdges() {
+        fatalError("setUpEdges must be overridden by child classes")
     }
     
     func setDirection(direction: CGVector) {

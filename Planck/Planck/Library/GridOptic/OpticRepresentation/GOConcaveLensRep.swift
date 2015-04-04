@@ -17,7 +17,6 @@ class GOConcaveLensRep: GOOpticRep {
         }
     }
     var curvatureRadius: CGFloat = 5
-    var direction: CGVector = CGVectorMake(0, 1)
     var normalDirection: CGVector {
         get {
             return CGVectorMake(self.direction.dy, -self.direction.dx)
@@ -63,7 +62,7 @@ class GOConcaveLensRep: GOOpticRep {
         self.updateEdgesParent()
     }
     
-    private func setUpEdges() {
+    override func setUpEdges() {
         let radianSpan = acos((self.curvatureRadius - self.thicknessDifference/2) / self.curvatureRadius) * 2
         
         //top line segment
