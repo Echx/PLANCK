@@ -56,6 +56,10 @@
                     </view>
                     <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
                     <size key="freeformSize" width="1024" height="768"/>
+                    <connections>
+                        <outlet property="deviceSegment" destination="9gO-qO-sAS" id="quA-kf-yuz"/>
+                        <outlet property="inputModeSegment" destination="gzj-oL-ZqN" id="KJz-FL-AUC"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Qbb-eo-w3q" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
