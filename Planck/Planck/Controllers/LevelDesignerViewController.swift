@@ -28,6 +28,12 @@ class LevelDesignerViewController: UIViewController {
         static let segmentValueDidChangeAction: Selector = "segmentValueDidChange:"
     }
     
+    struct DeviceColor {
+        static let mirror = UIColor.whiteColor()
+        static let lens = UIColor(red: 190/255.0, green: 1, blue: 1, alpha: 1)
+        static let wall = UIColor.blackColor()
+    }
+    
     struct DeviceSegmentIndex {
         static let emitter = 0;
         static let flatMirror = 1;
@@ -47,12 +53,12 @@ class LevelDesignerViewController: UIViewController {
         super.viewDidLoad()
     }
     
-    private func addInstrument(instrument: GOOpticRep) {
+    private func addInstrument(instrument: GOOpticRep, strokeColor: UIColor) {
         self.clearRay()
         self.grid.addInstrument(instrument)
         let layer = CAShapeLayer()
         layer.strokeEnd = 1.0
-        layer.strokeColor = UIColor.whiteColor().CGColor
+        layer.strokeColor = strokeColor.CGColor
         layer.fillColor = UIColor.clearColor().CGColor
         layer.lineWidth = 2.0
         self.deviceLayers[instrument.id] = layer
@@ -96,27 +102,27 @@ class LevelDesignerViewController: UIViewController {
             
         case DeviceSegmentIndex.flatMirror:
             let mirror = GOFlatMirrorRep(center: coordinate, thickness: 2, length: 8, direction: CGVectorMake(0, 1), id: String.generateRandomString(self.identifierLength))
-            self.addInstrument(mirror)
+            self.addInstrument(mirror, strokeColor: DeviceColor.mirror)
             
         case DeviceSegmentIndex.flatLens:
             let flatLens = GOFlatLensRep(center: coordinate, thickness: 2, length: 8, direction: CGVectorMake(0, 1), refractionIndex: 1.5, id: String.generateRandomString(self.identifierLength))
-            self.addInstrument(flatLens)
+            self.addInstrument(flatLens, strokeColor: DeviceColor.lens)
             
         case DeviceSegmentIndex.flatWall:
             let wall = GOFlatWallRep(center: coordinate, thickness: 2, length: 8, direction: CGVectorMake(0, 1), id: String.generateRandomString(self.identifierLength))
-            self.addInstrument(wall)
+            self.addInstrument(wall, strokeColor: DeviceColor.wall)
             
         case DeviceSegmentIndex.concaveLens:
             let concaveLens = GOConcaveLensRep(center: coordinate, direction: CGVectorMake(0, 1), thicknessCenter: 1, thicknessEdge: 3, curvatureRadius: 10, id: String.generateRandomString(self.identifierLength), refractionIndex: 1.5)
-            self.addInstrument(concaveLens)
+            self.addInstrument(concaveLens, strokeColor: DeviceColor.lens)
             
         case DeviceSegmentIndex.convexLens:
             let convexLens = GOConvexLensRep(center: coordinate, direction: CGVectorMake(0, 1), thickness: 2, curvatureRadius: 10, id: String.generateRandomString(self.identifierLength), refractionIndex: 1.5)
-            self.addInstrument(convexLens)
+            self.addInstrument(convexLens, strokeColor: DeviceColor.lens)
             
         case DeviceSegmentIndex.planck:
             let planck = GOFlatWallRep(center: coordinate, thickness: 6, length: 6, direction: CGVectorMake(0, 1), id: String.generateRandomString(self.identifierLength))
-            self.addInstrument(planck)
+            self.addInstrument(planck, strokeColor: DeviceColor.wall)
             
         default:
             fatalError("SegmentNotRecognized")
