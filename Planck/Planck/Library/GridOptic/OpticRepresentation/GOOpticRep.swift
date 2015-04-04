@@ -52,7 +52,7 @@ class GOOpticRep: NSObject {
         self.updateEdgesType()
     }
     
-    func containsPoint(point: CGPoint) {
+    func containsPoint(point: CGPoint) -> Bool {
         fatalError("containsPoint must be overriden by child classes")
     }
     

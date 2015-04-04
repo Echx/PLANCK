@@ -32,4 +32,8 @@ class GOUtilities {
     class func vectorFromRadius(radius: CGFloat) -> CGVector{
         return CGVectorMake(cos(radius), sin(radius))
     }
+    
+    class func areaOfTriangle(#first: CGPoint, second: CGPoint, third: CGPoint) -> CGFloat{
+        return 0.5 * (first.x * (second.y - third.y) + second.x * (third.y - first.y) + third.x * (first.y - second.y))
+    }
 }
