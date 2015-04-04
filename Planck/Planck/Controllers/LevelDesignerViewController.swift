@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import AVFoundation
 
 class LevelDesignerViewController: UIViewController {
 
@@ -179,8 +180,18 @@ class LevelDesignerViewController: UIViewController {
     }
     
     private func processPoints(points: [CGPoint]) {
+        var bounceSound = NSURL(fileURLWithPath: NSBundle.mainBundle().pathForResource("cymbal", ofType: "m4a")!)
         for point in points {
-            // TODO check device
+            if let device = self.grid.getInstrumentAtPoint(point) {
+                switch device.type {
+                case DeviceType.Mirror :
+                    let audioPlayer = AVAudioPlayer(contentsOfURL: bounceSound, error: nil)
+                    audioPlayer.prepareToPlay()
+                    audioPlayer.play()
+                default :
+                    1
+                }
+            }
         }
     }
     

@@ -313,7 +313,7 @@ class GOGrid: NSObject, NSCoding {
         return output
     }
     
-    func getDeviceAtPoint(point: CGPoint) -> GOOpticRep? {
+    func getInstrumentAtPoint(point: CGPoint) -> GOOpticRep? {
         for (string, item) in self.instruments {
             if item.containsPoint(point) {
                 return item
