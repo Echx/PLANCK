@@ -10,26 +10,66 @@ import UIKit
 
 class LevelDesignerViewController: UIViewController {
 
-    @IBOutlet var deviceSegment: UISegmentedControl?
-    @IBOutlet var inputModeSegment: UISegmentedControl?
+    @IBOutlet var deviceSegment: UISegmentedControl!
+    @IBOutlet var inputModeSegment: UISegmentedControl!
     
     struct Selectors {
-        static let tapAction: Selector = "viewDidTapped:"
-        static let panAction: Selector = "viewDidPanned:"
+        static let segmentValueDidChangeAction: Selector = "segmentValueDidChange:"
+    }
+    
+    struct DeviceSegmentIndex {
+        static let emitter = 0;
+        static let flatMirror = 1;
+        static let flatLens = 2;
+        static let flatWall = 3;
+        static let concaveLens = 4;
+        static let convexLens = 5;
+        static let planck = 6;
+    }
+    
+    struct InputModeSegmentIndex {
+        static let add = 0;
+        static let edit = 1;
     }
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.inputModeSegment.addTarget(self, action: Selectors.segmentValueDidChangeAction, forControlEvents: UIControlEvents.ValueChanged)
     }
     
     //MARK - tap gesture handler
     @IBAction func viewDidTapped(sender: UITapGestureRecognizer) {
-        println("tap detected");
+        switch(self.deviceSegment.selectedSegmentIndex) {
+        case DeviceSegmentIndex.emitter:
+            println("tap detected: emitter");
+        case DeviceSegmentIndex.flatMirror:
+            println("tap detected: flat mirror");
+        case DeviceSegmentIndex.flatLens:
+            println("tap detected: flat lens");
+        case DeviceSegmentIndex.flatWall:
+            println("tap detected: flat wall");
+        case DeviceSegmentIndex.concaveLens:
+            println("tap detected: concave lens");
+        case DeviceSegmentIndex.convexLens:
+            println("tap detected: convex lens");
+        case DeviceSegmentIndex.planck:
+            println("tap detected: planck");
+        default:
+            fatalError("SegmentNotRecognized")
+        }
     }
     
     //MARK - pan gesture handler
     @IBAction func viewDidPanned(sender: UIPanGestureRecognizer) {
         println("pan detected");
+    }
+    
+    func segmentValueDidChange(sender: UISegmentedControl) {
+        if self.inputModeSegment.selectedSegmentIndex != InputModeSegmentIndex.add {
+            self.deviceSegment.enabled = false;
+        } else {
+            self.deviceSegment.enabled = true;
+        }
     }
     
     override func didReceiveMemoryWarning() {
