@@ -152,6 +152,10 @@ class GOGrid: NSObject, NSCoding {
     
     func getInstrumentAtPoint(displayPoint: CGPoint) -> GOOpticRep? {
         let gridPoint = self.getGridPointForDisplayPoint(displayPoint)
+        return getInstrumentAtGridPoint(gridPoint)
+    }
+    
+    func getInstrumentAtGridPoint(gridPoint: CGPoint) -> GOOpticRep? {
         for (id, instrument) in self.instruments {
             if instrument.containsPoint(gridPoint) {
                 return instrument
@@ -169,7 +173,7 @@ class GOGrid: NSObject, NSCoding {
         
         for point in criticalPoints {
             path.addLineToPoint(point)
-            points.append(self.getGridPointForDisplayPoint(point))
+            points.append(point)
         }
         path.applyTransform(self.transformToDisplay)
         
