@@ -78,7 +78,8 @@ class LevelDesignerViewController: UIViewController {
         self.rayLayers.append(layer)
         
         let path = self.grid.getRayPath(ray)
-        let points = path.criticalPoints
+        let points = self.grid.getRayPathCriticalPoints(ray)
+        self.processPoints(points)
         layer.path = path.CGPath
         self.view.layer.addSublayer(layer)
         
@@ -153,6 +154,10 @@ class LevelDesignerViewController: UIViewController {
         for layer in self.rayLayers {
             layer.removeFromSuperlayer()
         }
+    }
+    
+    private processPoints(points: [CGPoint]) {
+    
     }
     
     override func didReceiveMemoryWarning() {
