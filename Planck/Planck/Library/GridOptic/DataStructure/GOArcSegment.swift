@@ -56,7 +56,7 @@ class GOArcSegment: GOSegment {
         return endVector.scaleTo(self.radius)
     }
     
-    var startPoint: CGPoint {
+    override var startPoint: CGPoint {
         get {
             return CGPoint(
                 x: CGFloat(center.x) + self.scaledStartVector.dx,
@@ -65,7 +65,7 @@ class GOArcSegment: GOSegment {
         }
     }
     
-    var endPoint: CGPoint {
+    override var endPoint: CGPoint {
         get {
             return CGPoint(
                 x: CGFloat(center.x) + self.scaledEndVector.dx,

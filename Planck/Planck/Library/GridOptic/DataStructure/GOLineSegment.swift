@@ -38,7 +38,7 @@ class GOLineSegment: GOSegment {
         }
     }
     
-    var startPoint: CGPoint {
+    override var startPoint: CGPoint {
         get {
             let radDirection = self.directionInRadianFromXPlus
             let deltaX = -0.5 * self.length * cos(radDirection)
@@ -47,7 +47,7 @@ class GOLineSegment: GOSegment {
         }
     }
     
-    var endPoint: CGPoint {
+    override var endPoint: CGPoint {
         get {
             let radDirection = self.directionInRadianFromXPlus
             let deltaX = 0.5 * self.length * cos(radDirection)

@@ -32,6 +32,17 @@ class GOSegment {
             return CGVectorMake(self.direction.dy, -self.direction.dx)
         }
     }
+    var startPoint: CGPoint {
+        get {
+            fatalError("startPoint needed by overriden by child classes")
+        }
+    }
+    
+    var endPoint: CGPoint {
+        get {
+            fatalError("endPoint needed by overriden by child classes")
+        }
+    }
     
     func getIntersectionPoint(ray: GORay) -> CGPoint? {
         fatalError("getIntersectionPoint must by overriden")
