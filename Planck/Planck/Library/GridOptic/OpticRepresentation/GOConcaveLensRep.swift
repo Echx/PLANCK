@@ -96,6 +96,30 @@ class GOConcaveLensRep: GOOpticRep {
         self.edges.append(leftArc)
     }
     
+    override func containsPoint(point: CGPoint) -> Bool {
+        for edge in self.edges {
+            if let arcEdge = edge as? GOArcSegment {
+                if edge.center.getDistanceToPoint(point) < arcEdge.radius {
+                    return false
+                }
+            }
+        }
+        
+        let areaHalfRect = self.length * self.thicknessEdge * 0.5
+        for edge in self.edges {
+            let vertexA = edge.startPoint
+            let vertexB = edge.endPoint
+            let vertexC = point
+            let areaABC = GOUtilities.areaOfTriangle(first: vertexA, second: vertexB, third: vertexC)
+            if areaABC > areaHalfRect {
+                return false
+            }
+        }
+
+        
+        return true
+    }
+    
     override func setDirection(direction: CGVector) {
         let directionDifference = direction.angleFromXPlus - self.direction.angleFromXPlus
         self.direction = direction

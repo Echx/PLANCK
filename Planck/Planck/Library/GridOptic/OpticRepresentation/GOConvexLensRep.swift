@@ -80,8 +80,10 @@ class GOConvexLensRep: GOOpticRep {
     
     override func containsPoint(point: CGPoint) -> Bool {
         for edge in self.edges {
-            if edge.center.getDistanceToPoint(point) > self.curvatureRadius {
-                return false
+            if let arcEdge = edge as? GOArcSegment {
+                if edge.center.getDistanceToPoint(point) > arcEdge.radius {
+                    return false
+                }
             }
         }
         
