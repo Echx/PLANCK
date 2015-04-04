@@ -11,7 +11,6 @@ import UIKit
 class GOConvexLensRep: GOOpticRep {
     var thickness: CGFloat = 1
     var curvatureRadius: CGFloat = 5
-    var center: GOCoordinate
     var direction: CGVector = CGVectorMake(0, 1)
     var normalDirection: CGVector {
         get {
@@ -33,8 +32,7 @@ class GOConvexLensRep: GOOpticRep {
     init(center: GOCoordinate, direction: CGVector, thickness: CGFloat, curvatureRadius: CGFloat, id: String, refractionIndex: CGFloat) {
         self.thickness = thickness
         self.curvatureRadius = curvatureRadius
-        self.center = center
-        super.init(id: id)
+        super.init(id: id, center: center)
         self.refractionIndex = refractionIndex
         self.setUpEdges()
         self.setDirection(direction)
@@ -43,8 +41,7 @@ class GOConvexLensRep: GOOpticRep {
     }
     
     init(center: GOCoordinate, direction: CGVector, id: String, refractionIndex: CGFloat) {
-        self.center = center
-        super.init(id: id)
+        super.init(id: id, center: center)
         self.refractionIndex = refractionIndex
         self.setUpEdges()
         self.setDirection(direction)
@@ -53,8 +50,7 @@ class GOConvexLensRep: GOOpticRep {
     }
     
     init(center: GOCoordinate, id: String, refractionIndex: CGFloat) {
-        self.center = center
-        super.init(id: id)
+        super.init(id: id, center: center)
         self.refractionIndex = refractionIndex
         self.setUpEdges()
         self.setDirection(self.direction)

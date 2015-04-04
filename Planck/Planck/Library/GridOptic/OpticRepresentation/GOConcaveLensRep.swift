@@ -17,7 +17,6 @@ class GOConcaveLensRep: GOOpticRep {
         }
     }
     var curvatureRadius: CGFloat = 5
-    var center: GOCoordinate
     var direction: CGVector = CGVectorMake(0, 1)
     var normalDirection: CGVector {
         get {
@@ -40,8 +39,7 @@ class GOConcaveLensRep: GOOpticRep {
         self.thicknessCenter = thicknessCenter
         self.thicknessEdge = thicknessEdge
         self.curvatureRadius = curvatureRadius
-        self.center = center
-        super.init(id: id)
+        super.init(id: id, center: center)
         self.refractionIndex = refractionIndex
         self.setUpEdges()
         self.setDirection(direction)
@@ -50,8 +48,7 @@ class GOConcaveLensRep: GOOpticRep {
     }
     
     init(center: GOCoordinate, direction: CGVector, id: String, refractionIndex: CGFloat) {
-        self.center = center
-        super.init(id: id)
+        super.init(id: id, center: center)
         self.refractionIndex = refractionIndex
         self.setUpEdges()
         self.setDirection(direction)
@@ -59,8 +56,7 @@ class GOConcaveLensRep: GOOpticRep {
     }
     
     init(center: GOCoordinate, id: String, refractionIndex: CGFloat) {
-        self.center = center
-        super.init(id: id)
+        super.init(id: id, center: center)
         self.refractionIndex = refractionIndex
         self.setUpEdges()
         self.setDirection(self.direction)

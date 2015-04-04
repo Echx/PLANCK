@@ -11,7 +11,6 @@ import UIKit
 class GOFlatOpticRep: GOOpticRep {
     var thickness: CGFloat = 1
     var length: CGFloat = 6
-    var center: GOCoordinate
     var direction: CGVector = CGVectorMake(0, 1)
     var normalDirection: CGVector {
         get {
@@ -33,10 +32,9 @@ class GOFlatOpticRep: GOOpticRep {
     
     
     init(center: GOCoordinate, thickness: CGFloat, length: CGFloat, direction: CGVector, refractionIndex: CGFloat, id: String) {
-        self.center = center
         self.thickness = thickness
         self.length = length
-        super.init(refractionIndex: refractionIndex, id: id)
+        super.init(refractionIndex: refractionIndex, id: id, center: center)
         self.setUpEdges()
         self.setDirection(direction)
         self.updateEdgesParent()
@@ -44,18 +42,16 @@ class GOFlatOpticRep: GOOpticRep {
     
     
     init(center: GOCoordinate, thickness: CGFloat, length: CGFloat, direction: CGVector, id: String) {
-        self.center = center
         self.thickness = thickness
         self.length = length
-        super.init(id: id)
+        super.init(id: id, center: center)
         self.setUpEdges()
         self.setDirection(direction)
         self.updateEdgesParent()
     }
     
     init(center: GOCoordinate, id: String) {
-        self.center = center
-        super.init(id: id)
+        super.init(id: id, center: center)
         self.setUpEdges()
         self.setDirection(self.direction)
         self.updateEdgesParent()

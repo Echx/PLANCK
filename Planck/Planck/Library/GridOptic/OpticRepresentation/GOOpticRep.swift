@@ -10,6 +10,7 @@ import UIKit
 
 class GOOpticRep: NSObject {
     var id: String
+    var center: GOCoordinate
     var edges = [GOSegment]()
     var type = DeviceType.Mirror
     var bezierPath: UIBezierPath {
@@ -31,14 +32,16 @@ class GOOpticRep: NSObject {
     var refractionIndex : CGFloat = GOConstant.vacuumRefractionIndex
 
     
-    init(id: String) {
+    init(id: String, center: GOCoordinate) {
         self.id = id
+        self.center = center
         super.init()
     }
     
-    init(refractionIndex: CGFloat, id: String) {
+    init(refractionIndex: CGFloat, id: String, center: GOCoordinate) {
         self.id = id
         self.refractionIndex = refractionIndex
+        self.center = center
         super.init()
         self.updateEdgesParent()
     }

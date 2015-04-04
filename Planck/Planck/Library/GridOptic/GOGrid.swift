@@ -79,7 +79,6 @@ class GOGrid: NSObject {
     
     func clearInstruments() {
         self.instruments = [String: GOOpticRep]()
-        refractionEdgeParentStack = GOStack<String>()
     }
     
     func addInstrument(instrument: GOOpticRep) -> Bool{
@@ -107,6 +106,10 @@ class GOGrid: NSObject {
     
     func getInstrumentForID(id: String) -> GOOpticRep? {
         return self.instruments[id]
+    }
+    
+    func removeInstrumentForID(id: String) {
+        self.instruments[id] = nil
     }
     
     func getCenterForGridCell(coordinate: GOCoordinate) -> CGPoint {
@@ -163,6 +166,7 @@ class GOGrid: NSObject {
 
     //given a ray to start, this method will return every critical point of the path (i.e. the contact points between light paths and instruments)
     func getRayPathCriticalPoints(ray: GORay) -> [CGPoint] {
+        self.refractionEdgeParentStack = GOStack<String>()
         var criticalPoints = [CGPoint]()
         
         // first add the start point of the ray
