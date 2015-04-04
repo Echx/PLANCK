@@ -134,6 +134,16 @@ class GOGrid: NSObject {
         return CGPointApplyAffineTransform(point, self.transformToGrid)
     }
     
+    func getInstrumentAtPoint(displayPoint: CGPoint) -> GOOpticRep? {
+        let gridPoint = self.getGridPointForDisplayPoint(displayPoint)
+        for (id, instrument) in self.instruments {
+            if instrument.containsPoint(gridPoint) {
+                return instrument
+            }
+        }
+        return nil
+    }
+    
     //the ray is in the grid coordinate system
     func getRayPath(ray: GORay) -> GOPath {
         var path = UIBezierPath()
@@ -142,7 +152,6 @@ class GOGrid: NSObject {
         var points = [CGPoint]()
         
         for point in criticalPoints {
-            println("\n\(point)")
             path.addLineToPoint(point)
             points.append(self.getGridPointForDisplayPoint(point))
         }
