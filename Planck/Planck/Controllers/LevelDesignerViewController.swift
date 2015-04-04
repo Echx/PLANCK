@@ -15,6 +15,7 @@ class LevelDesignerViewController: UIViewController {
     //store the layer we draw the various optic devices
     //key is the id of the instrument
     var deviceLayers = [String: CAShapeLayer]()
+    var rayLayers = [CAShapeLayer]()
     
     let grid: GOGrid
     let identifierLength = 20;
@@ -47,6 +48,7 @@ class LevelDesignerViewController: UIViewController {
     }
     
     private func addInstrument(instrument: GOOpticRep) {
+        self.clearRay()
         self.grid.addInstrument(instrument)
         let layer = CAShapeLayer()
         layer.strokeEnd = 1.0
@@ -66,6 +68,8 @@ class LevelDesignerViewController: UIViewController {
         layer.fillColor = UIColor.clearColor().CGColor
         layer.lineWidth = 2.0
 
+        self.rayLayers.append(layer)
+        
         let path = self.grid.getRayPath(ray)
         layer.path = path.CGPath
         self.view.layer.addSublayer(layer)
@@ -124,6 +128,20 @@ class LevelDesignerViewController: UIViewController {
         println("pan detected");
     }
     
+    
+    @IBAction func clearButtonDidClicked(sender: UIBarButtonItem) {
+        self.grid.clearInstruments()
+        for (id, layer) in self.deviceLayers {
+            layer.removeFromSuperlayer()
+        }
+        self.clearRay()
+    }
+    
+    private func clearRay() {
+        for layer in self.rayLayers {
+            layer.removeFromSuperlayer()
+        }
+    }
     
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()

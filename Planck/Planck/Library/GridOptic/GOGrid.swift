@@ -77,6 +77,11 @@ class GOGrid: NSObject {
         super.init()
     }
     
+    func clearInstruments() {
+        self.instruments = [String: GOOpticRep]()
+        self.refractionEdgeParentStack = GOStack<String>()
+    }
+    
     func addInstrument(instrument: GOOpticRep) -> Bool{
         if self.instruments[instrument.id] == nil {
             self.instruments[instrument.id] = instrument
