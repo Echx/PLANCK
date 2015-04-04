@@ -53,6 +53,7 @@ class GOOpticRep: NSObject, NSCoding {
         self.setUpEdges()
         self.setDirection(self.direction)
         self.updateEdgesParent()
+        self.updateEdgesType()
     }
     
     func setUpEdges() {
