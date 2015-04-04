@@ -9,7 +9,7 @@
 import UIKit
 import Foundation
 
-class GameLevel: NSObject, NSCoding {
+class GameLevel: NSObject {
     
     var grid:GOGrid
     
@@ -23,13 +23,13 @@ class GameLevel: NSObject, NSCoding {
         self.grid = grid
     }
     
-    required convenience init(coder aDecoder: NSCoder) {
-        
-    }
-    
-    func encodeWithCoder(aCoder: NSCoder) {
-        
-    }
+//    required convenience init(coder aDecoder: NSCoder) {
+//        self.init()
+//    }
+//    
+//    func encodeWithCoder(aCoder: NSCoder) {
+//        
+//    }
     
     
 }
