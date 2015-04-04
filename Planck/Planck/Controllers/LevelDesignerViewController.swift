@@ -177,7 +177,9 @@ class LevelDesignerViewController: UIViewController {
     }
     
     private func processPoints(points: [CGPoint]) {
-    
+        for point in points {
+            // TODO check device
+        }
     }
     
     override func didReceiveMemoryWarning() {
