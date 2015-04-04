@@ -7,15 +7,29 @@
 //
 
 import UIKit
+import Foundation
 
-class GameLevel: NSObject {
+class GameLevel: NSObject, NSCoding {
     
     var grid:GOGrid
     
     var name:String
     
-    init(levelName:String, grid:GOGrid) {
+    var index:Int
+    
+    init(levelName:String, levelIndex: Int, grid:GOGrid) {
         self.name = levelName
+        self.index = levelIndex
         self.grid = grid
     }
+    
+    required convenience init(coder aDecoder: NSCoder) {
+        
+    }
+    
+    func encodeWithCoder(aCoder: NSCoder) {
+        
+    }
+    
+    
 }
