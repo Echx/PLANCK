@@ -70,6 +70,9 @@ class GOOpticRep: NSObject {
             case DeviceType.Wall:
                 edge.willReflect = false
                 edge.willRefract = false
+            case DeviceType.Emitter:
+                edge.willReflect = false
+                edge.willRefract = false
             default:
                 fatalError("Device Type Not Defined")
             }
