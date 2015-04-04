@@ -18,6 +18,8 @@ class LevelDesignerViewController: UIViewController {
     var deviceLayers = [String: CAShapeLayer]()
     var rayLayers = [CAShapeLayer]()
     
+    var audioPlayer: AVAudioPlayer!
+    
     let grid: GOGrid
     let identifierLength = 20;
     required init(coder aDecoder: NSCoder) {
@@ -181,13 +183,14 @@ class LevelDesignerViewController: UIViewController {
     
     private func processPoints(points: [CGPoint]) {
         var bounceSound = NSURL(fileURLWithPath: NSBundle.mainBundle().pathForResource("cymbal", ofType: "m4a")!)
+        
         for point in points {
-            if let device = self.grid.getInstrumentAtPoint(point) {
+            if let device = self.grid.getInstrumentAtGridPoint(point) {
                 switch device.type {
                 case DeviceType.Mirror :
-                    let audioPlayer = AVAudioPlayer(contentsOfURL: bounceSound, error: nil)
-                    audioPlayer.prepareToPlay()
-                    audioPlayer.play()
+                    self.audioPlayer = AVAudioPlayer(contentsOfURL: bounceSound, error: nil)
+                    self.audioPlayer.prepareToPlay()
+                    self.audioPlayer.play()
                 default :
                     1
                 }
