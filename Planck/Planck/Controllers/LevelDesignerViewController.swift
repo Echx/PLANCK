@@ -182,17 +182,24 @@ class LevelDesignerViewController: UIViewController {
     }
     
     private func processPoints(points: [CGPoint]) {
-        var bounceSound = NSURL(fileURLWithPath: NSBundle.mainBundle().pathForResource("cymbal", ofType: "m4a")!)
-        
-        for point in points {
-            if let device = self.grid.getInstrumentAtGridPoint(point) {
-                switch device.type {
-                case DeviceType.Mirror :
-                    self.audioPlayer = AVAudioPlayer(contentsOfURL: bounceSound, error: nil)
-                    self.audioPlayer.prepareToPlay()
-                    self.audioPlayer.play()
-                default :
-                    1
+        if points.count > 2 {
+            var bounceSound = NSURL(fileURLWithPath: NSBundle.mainBundle().pathForResource("cymbal", ofType: "m4a")!)
+            var prevPoint = points[0]
+            var distance: CGFloat = 0
+            for i in 1...points.count - 1 {
+                distance += points[i].getDistanceToPoint(prevPoint)
+                prevPoint = points[i]
+                if let device = self.grid.getInstrumentAtGridPoint(points[i]) {
+                    switch device.type {
+                    case DeviceType.Mirror :
+                        self.audioPlayer = AVAudioPlayer(contentsOfURL: bounceSound, error: nil)
+                        self.audioPlayer.prepareToPlay()
+                        let wait = NSTimeInterval(distance / Constant.lightSpeedBase + Constant.audioDelay)
+                        self.audioPlayer.playAtTime(wait + self.audioPlayer.deviceCurrentTime)
+
+                    default :
+                        1
+                    }
                 }
             }
         }
