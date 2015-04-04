@@ -16,11 +16,18 @@ class LevelDesignerViewController: UIViewController {
     //key is the id of the instrument
     var deviceLayers = [String: CAShapeLayer]()
     var rayLayers = [CAShapeLayer]()
+    var deviceViews = [String: UIView]()
+    var selectedNode: GOOpticRep?
+    var onSelection: Bool {
+        get {
+            return self.selectedNode != nil
+        }
+    }
     
     let grid: GOGrid
     let identifierLength = 20;
     required init(coder aDecoder: NSCoder) {
-        self.grid = GOGrid(width: 128, height: 96, andUnitLength: 8)
+        self.grid = GOGrid(width: 64, height: 48, andUnitLength: 16)
         super.init(coder: aDecoder)
     }
     
@@ -55,17 +62,22 @@ class LevelDesignerViewController: UIViewController {
         super.viewDidLoad()
     }
     
-    private func addInstrument(instrument: GOOpticRep, strokeColor: UIColor) {
+    private func addNode(node: GOOpticRep, strokeColor: UIColor) {
         self.clearRay()
-        self.grid.addInstrument(instrument)
+        self.grid.addInstrument(node)
         let layer = CAShapeLayer()
         layer.strokeEnd = 1.0
         layer.strokeColor = strokeColor.CGColor
         layer.fillColor = UIColor.clearColor().CGColor
         layer.lineWidth = 2.0
-        self.deviceLayers[instrument.id] = layer
-        layer.path = self.grid.getInstrumentDisplayPathForID(instrument.id)?.CGPath
-        self.view.layer.addSublayer(layer)
+        self.deviceLayers[node.id] = layer
+        layer.path = self.grid.getInstrumentDisplayPathForID(node.id)?.CGPath
+        
+        let view = UIView(frame: CGRectMake(0, 0, self.view.frame.width, self.view.frame.height))
+        view.backgroundColor = UIColor.clearColor()
+        view.layer.addSublayer(layer)
+        self.deviceViews[node.id] = view
+        self.view.insertSubview(view, atIndex: 0)
     }
     
     private func addRay(point: CGPoint) {
@@ -111,40 +123,42 @@ class LevelDesignerViewController: UIViewController {
     
     //MARK - tap gesture handler
     @IBAction func viewDidTapped(sender: UITapGestureRecognizer) {
+        if self.onSelection {
+            self.deselectNode()
+            return
+        }
+        
         let location = sender.locationInView(sender.view)
         let coordinate = self.grid.getGridCoordinateForPoint(location)
         
         switch(self.deviceSegment.selectedSegmentIndex) {
         case DeviceSegmentIndex.emitter:
             let emitter = GOEmitterRep(center: coordinate, thickness: 2, length: 2, direction: CGVectorMake(0, 1), id: String.generateRandomString(self.identifierLength))
-            self.addInstrument(emitter, strokeColor: DeviceColor.emitter)
+            self.addNode(emitter, strokeColor: DeviceColor.emitter)
             
         case DeviceSegmentIndex.flatMirror:
             let mirror = GOFlatMirrorRep(center: coordinate, thickness: 2, length: 8, direction: CGVectorMake(0, 1), id: String.generateRandomString(self.identifierLength))
-            self.addInstrument(mirror, strokeColor: DeviceColor.mirror)
-            
-            println("contains point: \(mirror.containsPoint(CGPointMake(CGFloat(mirror.center.x), CGFloat(mirror.center.y))))")
-            
+            self.addNode(mirror, strokeColor: DeviceColor.mirror)
             
         case DeviceSegmentIndex.flatLens:
             let flatLens = GOFlatLensRep(center: coordinate, thickness: 2, length: 8, direction: CGVectorMake(0, 1), refractionIndex: 1.5, id: String.generateRandomString(self.identifierLength))
-            self.addInstrument(flatLens, strokeColor: DeviceColor.lens)
+            self.addNode(flatLens, strokeColor: DeviceColor.lens)
             
         case DeviceSegmentIndex.flatWall:
             let wall = GOFlatWallRep(center: coordinate, thickness: 2, length: 8, direction: CGVectorMake(0, 1), id: String.generateRandomString(self.identifierLength))
-            self.addInstrument(wall, strokeColor: DeviceColor.wall)
+            self.addNode(wall, strokeColor: DeviceColor.wall)
             
         case DeviceSegmentIndex.concaveLens:
             let concaveLens = GOConcaveLensRep(center: coordinate, direction: CGVectorMake(0, 1), thicknessCenter: 1, thicknessEdge: 3, curvatureRadius: 10, id: String.generateRandomString(self.identifierLength), refractionIndex: 1.5)
-            self.addInstrument(concaveLens, strokeColor: DeviceColor.lens)
+            self.addNode(concaveLens, strokeColor: DeviceColor.lens)
             
         case DeviceSegmentIndex.convexLens:
             let convexLens = GOConvexLensRep(center: coordinate, direction: CGVectorMake(0, 1), thickness: 2, curvatureRadius: 10, id: String.generateRandomString(self.identifierLength), refractionIndex: 1.5)
-            self.addInstrument(convexLens, strokeColor: DeviceColor.lens)
+            self.addNode(convexLens, strokeColor: DeviceColor.lens)
             
         case DeviceSegmentIndex.planck:
             let planck = GOFlatWallRep(center: coordinate, thickness: 6, length: 6, direction: CGVectorMake(0, 1), id: String.generateRandomString(self.identifierLength))
-            self.addInstrument(planck, strokeColor: DeviceColor.planck)
+            self.addNode(planck, strokeColor: DeviceColor.planck)
             
         default:
             fatalError("SegmentNotRecognized")
@@ -153,15 +167,58 @@ class LevelDesignerViewController: UIViewController {
     }
     
     //MARK - pan gesture handler
+    var firstLocation: CGPoint?
+    var lastLocation: CGPoint?
+    var firstViewCenter: CGPoint?
+    var touchedNode: GOOpticRep?
     @IBAction func viewDidPanned(sender: UIPanGestureRecognizer) {
-        let location = sender.locationInView(sender.view)
-        let instrument = self.grid.getInstrumentAtPoint(location)
-        println(instrument)
+        let location = sender.locationInView(self.view)
+        
+        if sender.state == UIGestureRecognizerState.Began || touchedNode == nil {
+            firstLocation = location
+            lastLocation = location
+            touchedNode = self.grid.getInstrumentAtPoint(location)
+            if let node = touchedNode {
+                firstViewCenter = self.deviceViews[node.id]!.center
+                self.clearRay()
+            }
+        }
+        
+        if let node = touchedNode {
+            let view = self.deviceViews[node.id]!
+            view.center = CGPointMake(view.center.x + location.x - lastLocation!.x, view.center.y + location.y - lastLocation!.y)
+            lastLocation = location
+            
+            
+            if sender.state == UIGestureRecognizerState.Ended {
+                
+                let offsetX = location.x - firstLocation!.x
+                let offsetY = location.y - firstLocation!.y
+                
+                let originalDisplayPoint = self.grid.getCenterForGridCell(node.center)
+                let effectDisplayPoint = CGPointMake(originalDisplayPoint.x + offsetX, originalDisplayPoint.y + offsetY)
+                
+                node.setCenter(self.grid.getGridCoordinateForPoint(effectDisplayPoint))
+                
+                let view = self.deviceViews[node.id]!
+                let finalDisplayPoint = self.grid.getCenterForGridCell(node.center)
+                let finalX = finalDisplayPoint.x - originalDisplayPoint.x + firstViewCenter!.x
+                let finalY = finalDisplayPoint.y - originalDisplayPoint.y + firstViewCenter!.y
+                
+                view.center = CGPointMake(finalX, finalY)
+                
+                lastLocation = nil
+                firstLocation = nil
+                firstViewCenter = nil
+                self.shootRay()
+            }
+        }
     }
     
     
     @IBAction func viewDidLongPressed(sender: UILongPressGestureRecognizer) {
-        println("longPressed")
+        let location = sender.locationInView(sender.view)
+        self.selectNode(self.grid.getInstrumentAtPoint(location))
     }
     
     @IBAction func clearButtonDidClicked(sender: UIBarButtonItem) {
@@ -169,7 +226,54 @@ class LevelDesignerViewController: UIViewController {
         for (id, layer) in self.deviceLayers {
             layer.removeFromSuperlayer()
         }
+        
+        for (id, view) in self.deviceViews {
+            view.removeFromSuperview()
+        }
+        
         self.clearRay()
+    }
+    
+    private func getColorForNode(node: GOOpticRep) -> UIColor {
+        switch node.type {
+        case .Emitter:
+            return DeviceColor.emitter
+        case .Lens:
+            return DeviceColor.lens
+        case .Mirror:
+            return DeviceColor.mirror
+        case .Wall:
+            return DeviceColor.planck
+            
+        default:
+            return UIColor.whiteColor()
+        }
+    }
+    
+    private func removeNode(node: GOOpticRep) {
+        self.deviceLayers[node.id] = nil
+        self.deviceViews[node.id] = nil
+        self.grid.removeInstrumentForID(node.id)
+    }
+    
+    private func selectNode(optionalNode: GOOpticRep?) {
+        if let node = optionalNode {
+            self.selectedNode = node
+            if let view = self.deviceViews[node.id] {
+                view.alpha = 0.5
+            }
+        } else {
+            self.deselectNode()
+        }
+    }
+    
+    private func deselectNode() {
+        if let node = self.selectedNode {
+            if let view = self.deviceViews[node.id] {
+                view.alpha = 1
+            }
+        }
+        self.selectedNode = nil
     }
     
     private func clearRay() {
