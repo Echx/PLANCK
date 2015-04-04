@@ -81,6 +81,7 @@ class LevelDesignerViewController: UIViewController {
         let goPath = self.grid.getRayPath(ray)
         let path = goPath.bezierPath
         let points = goPath.criticalPoints
+        let distance = goPath.pathLength
         self.processPoints(points)
         layer.path = path.CGPath
         self.view.layer.addSublayer(layer)
@@ -88,7 +89,7 @@ class LevelDesignerViewController: UIViewController {
         let pathAnimation = CABasicAnimation(keyPath: "strokeEnd")
         pathAnimation.fromValue = 0.0;
         pathAnimation.toValue = 1.0;
-        pathAnimation.duration = 3.0;
+        pathAnimation.duration = CFTimeInterval(distance / Constant.lightSpeedBase);
         pathAnimation.repeatCount = 1.0
         pathAnimation.fillMode = kCAFillModeForwards
         pathAnimation.timingFunction = CAMediaTimingFunction(name: kCAMediaTimingFunctionLinear)
@@ -115,7 +116,7 @@ class LevelDesignerViewController: UIViewController {
         
         switch(self.deviceSegment.selectedSegmentIndex) {
         case DeviceSegmentIndex.emitter:
-            let emitter = GOEmitterRep(center: coordinate, thickness: 2, length: 8, direction: CGVectorMake(0, 1), id: String.generateRandomString(self.identifierLength))
+            let emitter = GOEmitterRep(center: coordinate, thickness: 2, length: 2, direction: CGVectorMake(0, 1), id: String.generateRandomString(self.identifierLength))
             self.addInstrument(emitter, strokeColor: DeviceColor.emitter)
             
         case DeviceSegmentIndex.flatMirror:
@@ -176,7 +177,9 @@ class LevelDesignerViewController: UIViewController {
     }
     
     private func processPoints(points: [CGPoint]) {
-    
+        for point in points {
+            // TODO check device
+        }
     }
     
     override func didReceiveMemoryWarning() {

@@ -188,8 +188,9 @@ class GOGrid: NSObject {
         if willEndAtBoundary {
             // found out the intersection with the boundary
             // we treat boundary as 4 line segments
-            criticalPoints.append(getIntersectionWithBoundary(ray: currentRay)!)
-
+            if let finalPoint = getIntersectionWithBoundary(ray: currentRay) {
+                criticalPoints.append(finalPoint)
+            }
         }
         return criticalPoints
     }
