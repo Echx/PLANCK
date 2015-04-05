@@ -135,10 +135,17 @@ class LevelDesignerViewController: UIViewController {
     
     //MARK - tap gesture handler
     @IBAction func viewDidTapped(sender: UITapGestureRecognizer) {
-        if self.onSelection {
-            self.deselectNode()
+        if sender.numberOfTapsRequired == 1 {
+            if self.onSelection {
+                self.deselectNode()
+            } else {
+                let location = sender.locationInView(sender.view)
+                self.deselectNode()
+                self.selectNode(self.grid.getInstrumentAtPoint(location))
+            }
             return
         }
+
         
         let location = sender.locationInView(sender.view)
         let coordinate = self.grid.getGridCoordinateForPoint(location)
@@ -240,6 +247,7 @@ class LevelDesignerViewController: UIViewController {
         }
         
         if sender.state == UIGestureRecognizerState.Ended {
+            self.clearRay()
             self.shootRay()
         }
     }
@@ -264,7 +272,9 @@ class LevelDesignerViewController: UIViewController {
     
     @IBAction func viewDidLongPressed(sender: UILongPressGestureRecognizer) {
         let location = sender.locationInView(sender.view)
-        self.selectNode(self.grid.getInstrumentAtPoint(location))
+        if let node = self.grid.getInstrumentAtPoint(location) {
+            self.removeNode(node)
+        }
     }
     
     @IBAction func clearButtonDidClicked(sender: UIBarButtonItem) {
@@ -297,9 +307,12 @@ class LevelDesignerViewController: UIViewController {
     }
     
     private func removeNode(node: GOOpticRep) {
+        self.deviceViews[node.id]?.removeFromSuperview()
         self.deviceLayers[node.id] = nil
         self.deviceViews[node.id] = nil
         self.grid.removeInstrumentForID(node.id)
+        self.clearRay()
+        self.shootRay()
     }
     
     private func selectNode(optionalNode: GOOpticRep?) {

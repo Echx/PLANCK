@@ -53,6 +53,7 @@
                             <outletCollection property="gestureRecognizers" destination="yWe-Aa-Kcf" appends="YES" id="Mbn-T3-MxD"/>
                             <outletCollection property="gestureRecognizers" destination="ApR-Eh-3eQ" appends="YES" id="3j2-fy-egG"/>
                             <outletCollection property="gestureRecognizers" destination="Txt-zX-WDV" appends="YES" id="pjc-59-2om"/>
+                            <outletCollection property="gestureRecognizers" destination="stW-1L-XFP" appends="YES" id="5d1-MI-wfC"/>
                         </connections>
                     </view>
                     <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
@@ -62,7 +63,7 @@
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Qbb-eo-w3q" userLabel="First Responder" sceneMemberID="firstResponder"/>
-                <tapGestureRecognizer id="yWe-Aa-Kcf">
+                <tapGestureRecognizer numberOfTapsRequired="2" id="yWe-Aa-Kcf">
                     <connections>
                         <action selector="viewDidTapped:" destination="ICT-TY-Uh1" id="O5F-78-XNA"/>
                     </connections>
@@ -77,6 +78,11 @@
                         <action selector="viewDidLongPressed:" destination="ICT-TY-Uh1" id="BEe-RM-cd6"/>
                     </connections>
                 </pongPressGestureRecognizer>
+                <tapGestureRecognizer id="stW-1L-XFP">
+                    <connections>
+                        <action selector="viewDidTapped:" destination="ICT-TY-Uh1" id="YRU-VP-I4e"/>
+                    </connections>
+                </tapGestureRecognizer>
             </objects>
             <point key="canvasLocation" x="487" y="-437"/>
         </scene>
