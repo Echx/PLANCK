@@ -60,7 +60,7 @@ class LevelDesignerViewController: UIViewController {
     private var deviceViews = [String: UIView]()
     private var rayLayers = [CAShapeLayer]()
     private var selectedNode: GOOpticRep?
-    private var audioPlayer: AVAudioPlayer!
+    private var audioPlayerList = [AVAudioPlayer]()
     private var grid: GOGrid
     
     private let identifierLength = 20
@@ -315,7 +315,11 @@ class LevelDesignerViewController: UIViewController {
     }
     
     @IBAction func updateSelectedNode() {
+        if let node = self.selectedNode {
+            self.updateCenterFromInput()
+        }
         
+        self.shootRay()
     }
     
     @IBAction func saveButtonDidClicked(sender: AnyObject) {
@@ -347,6 +351,23 @@ class LevelDesignerViewController: UIViewController {
 //------------------------------------------------------------------------------
 //    Private Methods
 //------------------------------------------------------------------------------
+    private func updateCenterFromInput() {
+        if let node = self.selectedNode {
+            let x: Int? = self.textFieldCenterX.text.toInt()
+            let y: Int? = self.textFieldCenterY.text.toInt()
+            
+            if x != nil && y != nil {
+                self.moveNode(node, to: GOCoordinate(x: x!, y: y!))
+            }
+        }
+    }
+    
+    private func checkDirectionInput() -> CGVector? {
+        let i: Int? = self.textFieldDirection.text.toInt()
+        if let index = i {
+        }
+        return nil
+    }
     
     private func toggleInputPanel() {
         if self.inputPanel.userInteractionEnabled {
@@ -362,7 +383,7 @@ class LevelDesignerViewController: UIViewController {
         if let node = self.selectedNode {
             self.textFieldCenterX.text = "\(node.center.x)"
             self.textFieldCenterY.text = "\(node.center.y)"
-            self.textFieldDirection.text = "\(round(node.direction.angleFromXPlus / (CGFloat(M_PI/6))))"
+            self.textFieldDirection.text = "\(Int(round(node.direction.angleFromXPlus / (CGFloat(M_PI/12)))))"
             
             if let flatNode = node as? GOFlatOpticRep {
                 self.textFieldThickness.text = "\(flatNode.thickness)"
@@ -470,6 +491,15 @@ class LevelDesignerViewController: UIViewController {
         
         view.center = CGPointMake(finalX, finalY)
     }
+    
+    private func moveNode(node: GOOpticRep, to: GOCoordinate) {
+        let originalCenter = self.grid.getCenterForGridCell(node.center)
+        let finalCenter = self.grid.getCenterForGridCell(to)
+        let offsetX = finalCenter.x - originalCenter.x
+        let offsetY = finalCenter.y - originalCenter.y
+        let offset = CGPointMake(offsetX, offsetY)
+        self.moveNode(node, from: originalCenter, offset: offset)
+    }
 
     private func removeNode(node: GOOpticRep) {
         self.deviceViews[node.id]?.removeFromSuperview()
@@ -524,6 +554,7 @@ class LevelDesignerViewController: UIViewController {
         for layer in self.rayLayers {
             layer.removeFromSuperlayer()
         }
+        self.audioPlayerList.removeAll(keepCapacity: false)
     }
     
     private func getColorForNode(node: GOOpticRep) -> UIColor {
@@ -544,7 +575,7 @@ class LevelDesignerViewController: UIViewController {
     
     private func processPoints(points: [CGPoint]) {
         if points.count > 2 {
-            var bounceSound = NSURL(fileURLWithPath: NSBundle.mainBundle().pathForResource("cymbal", ofType: "m4a")!)
+            var bounceSound = NSURL(fileURLWithPath: NSBundle.mainBundle().pathForResource("snare-drum", ofType: "m4a")!)
             var prevPoint = points[0]
             var distance: CGFloat = 0
             for i in 1...points.count - 1 {
@@ -553,10 +584,11 @@ class LevelDesignerViewController: UIViewController {
                 if let device = self.grid.getInstrumentAtGridPoint(points[i]) {
                     switch device.type {
                     case DeviceType.Mirror :
-                        self.audioPlayer = AVAudioPlayer(contentsOfURL: bounceSound, error: nil)
-                        self.audioPlayer.prepareToPlay()
+                        let audioPlayer = AVAudioPlayer(contentsOfURL: bounceSound, error: nil)
+                        self.audioPlayerList.append(audioPlayer)
+                        audioPlayer.prepareToPlay()
                         let wait = NSTimeInterval(distance / Constant.lightSpeedBase + Constant.audioDelay)
-                        self.audioPlayer.playAtTime(wait + self.audioPlayer.deviceCurrentTime)
+                        audioPlayer.playAtTime(wait + audioPlayer.deviceCurrentTime)
 
                     default :
                         1
