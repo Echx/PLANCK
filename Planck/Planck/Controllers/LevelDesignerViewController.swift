@@ -33,6 +33,13 @@ class LevelDesignerViewController: UIViewController {
     @IBOutlet var labelDirection: UILabel!
     @IBOutlet var labelLength: UILabel!
     
+    @IBOutlet var planckInputPanel: UIView!
+    @IBOutlet var colorPicker: UIPickerView!
+    @IBOutlet var notePicker: UIPickerView!
+    @IBOutlet var accidentalPicker: UIPickerView!
+    @IBOutlet var groupPicker: UIPickerView!
+    
+    
     var paramenterFields: [UITextField] {
         get {
             return [textFieldCenterX,
@@ -116,9 +123,15 @@ class LevelDesignerViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.inputPanel.alpha = 0;
+        
+        self.inputPanel.alpha = 0
         self.inputPanel.userInteractionEnabled = false
         self.inputPanel.layer.cornerRadius = 20
+        
+        self.planckInputPanel.alpha = 0
+        self.planckInputPanel.userInteractionEnabled = false
+        self.planckInputPanel.layer.cornerRadius = 20
+        
         self.deviceSegment.addTarget(self, action: Selectors.segmentValueDidChangeAction, forControlEvents: UIControlEvents.ValueChanged)
         self.segmentValueDidChange(self.deviceSegment)
     }
@@ -173,7 +186,17 @@ class LevelDesignerViewController: UIViewController {
     @IBAction func viewDidTapped(sender: UITapGestureRecognizer) {
         if sender.numberOfTapsRequired == 1 {
             if sender.numberOfTouchesRequired == 2 {
-                self.toggleInputPanel()
+                if self.deviceSegment.selectedSegmentIndex == DeviceSegmentIndex.planck {
+                    if self.inputPanel.userInteractionEnabled {
+                       self.toggleInputPanel()
+                    }
+                    self.togglePlanckInputPanel()
+                } else {
+                    if self.planckInputPanel.userInteractionEnabled {
+                        self.togglePlanckInputPanel()
+                    }
+                    self.toggleInputPanel()
+                }
                 return
             }
             
@@ -400,6 +423,16 @@ class LevelDesignerViewController: UIViewController {
         }
     }
     
+    private func togglePlanckInputPanel() {
+        if self.planckInputPanel.userInteractionEnabled {
+            self.planckInputPanel.userInteractionEnabled = false
+            self.planckInputPanel.alpha = 0
+        } else {
+            self.planckInputPanel.userInteractionEnabled = true
+            self.planckInputPanel.alpha = 0.9
+        }
+    }
+    
     private func updateTextFieldInformation() {
         if let node = self.selectedNode {
             self.textFieldCenterX.text = "\(node.center.x)"
@@ -620,7 +653,6 @@ class LevelDesignerViewController: UIViewController {
     }
     
     
-
     /*
     // MARK: - Navigation
 

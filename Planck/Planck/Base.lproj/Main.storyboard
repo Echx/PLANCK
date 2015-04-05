@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6751" systemVersion="14C1514" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="ICT-TY-Uh1">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6751" systemVersion="14D98g" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="ICT-TY-Uh1">
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6736"/>
     </dependencies>
@@ -58,6 +58,61 @@
                             <view multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="EoB-ZE-bU7">
                                 <rect key="frame" x="0.0" y="0.0" width="1024" height="724"/>
                                 <subviews>
+                                    <view alpha="0.89999997615814209" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="PcM-6l-K8S">
+                                        <rect key="frame" x="32" y="41" width="958" height="175"/>
+                                        <subviews>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Color:" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="p30-Sl-Tok">
+                                                <rect key="frame" x="28" y="13" width="61" height="21"/>
+                                                <fontDescription key="fontDescription" name="GillSans" family="Gill Sans" pointSize="12"/>
+                                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Note:" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="mio-DR-qlh">
+                                                <rect key="frame" x="225" y="13" width="68" height="21"/>
+                                                <fontDescription key="fontDescription" name="GillSans" family="Gill Sans" pointSize="12"/>
+                                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Accidental:" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="2SH-59-jhC">
+                                                <rect key="frame" x="419" y="13" width="121" height="21"/>
+                                                <fontDescription key="fontDescription" name="GillSans" family="Gill Sans" pointSize="12"/>
+                                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="KwT-Iu-qzf">
+                                                <rect key="frame" x="804" y="67" width="112" height="42"/>
+                                                <fontDescription key="fontDescription" name="GillSans" family="Gill Sans" pointSize="25"/>
+                                                <color key="tintColor" red="0.26274509800000001" green="0.36862745099999999" blue="0.46274509800000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                <state key="normal" title="UPDATE">
+                                                    <color key="titleColor" red="0.26274509800000001" green="0.36862745099999999" blue="0.46274509800000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                                </state>
+                                                <connections>
+                                                    <action selector="updateSelectedNode" destination="ICT-TY-Uh1" eventType="touchUpInside" id="RT7-8m-INK"/>
+                                                </connections>
+                                            </button>
+                                            <pickerView contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="ZhU-C2-ov8">
+                                                <rect key="frame" x="8" y="19" width="158" height="162"/>
+                                            </pickerView>
+                                            <pickerView contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="eb2-aC-rEe">
+                                                <rect key="frame" x="206" y="19" width="158" height="162"/>
+                                            </pickerView>
+                                            <pickerView contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="UxK-0m-h8g">
+                                                <rect key="frame" x="400" y="19" width="158" height="162"/>
+                                            </pickerView>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Group:" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="nFO-Eo-Wpr">
+                                                <rect key="frame" x="612" y="13" width="121" height="21"/>
+                                                <fontDescription key="fontDescription" name="GillSans" family="Gill Sans" pointSize="12"/>
+                                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                            <pickerView contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="gHU-uu-uP1">
+                                                <rect key="frame" x="593" y="19" width="158" height="162"/>
+                                            </pickerView>
+                                        </subviews>
+                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                        <gestureRecognizers/>
+                                    </view>
                                     <view alpha="0.89999999999999991" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="4BT-L2-RuS">
                                         <rect key="frame" x="33" y="40" width="958" height="175"/>
                                         <subviews>
@@ -188,7 +243,10 @@
                     <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
                     <size key="freeformSize" width="1024" height="768"/>
                     <connections>
+                        <outlet property="accidentalPicker" destination="UxK-0m-h8g" id="xhk-vE-Hyh"/>
+                        <outlet property="colorPicker" destination="ZhU-C2-ov8" id="RZ6-p6-a3Z"/>
                         <outlet property="deviceSegment" destination="9gO-qO-sAS" id="quA-kf-yuz"/>
+                        <outlet property="groupPicker" destination="gHU-uu-uP1" id="ioD-zs-qHx"/>
                         <outlet property="inputPanel" destination="4BT-L2-RuS" id="0Xr-mn-ErZ"/>
                         <outlet property="labelCenterX" destination="Ckj-1b-o6D" id="UxH-4g-DhD"/>
                         <outlet property="labelCurvatureRadius" destination="AEx-O5-ASB" id="dLS-Uw-SWT"/>
@@ -198,6 +256,8 @@
                         <outlet property="labelThickness" destination="Pfw-ca-9Fp" id="Lm7-qg-eYq"/>
                         <outlet property="labelThicknessCenter" destination="0jj-Z4-gHq" id="ceg-JN-kdz"/>
                         <outlet property="labelThicknessEdge" destination="MR2-2G-ysM" id="bRV-FX-inI"/>
+                        <outlet property="notePicker" destination="eb2-aC-rEe" id="Rcs-zy-sjv"/>
+                        <outlet property="planckInputPanel" destination="PcM-6l-K8S" id="GVn-iN-Wj6"/>
                         <outlet property="textFieldCenterX" destination="8e6-CP-bI1" id="YRA-4D-Z5I"/>
                         <outlet property="textFieldCenterY" destination="J9A-rf-tP5" id="N8r-tq-CtH"/>
                         <outlet property="textFieldCurvatureRadius" destination="TPT-r4-OZD" id="0G2-dj-Z31"/>
@@ -236,25 +296,7 @@
                     </connections>
                 </tapGestureRecognizer>
             </objects>
-            <point key="canvasLocation" x="487" y="-437"/>
-        </scene>
-        <!--GamePlanck-->
-        <scene sceneID="tXr-a1-R10">
-            <objects>
-                <viewController title="GamePlanck" id="BV1-FR-VrT" customClass="GameViewController" customModule="Planck" customModuleProvider="target" sceneMemberID="viewController">
-                    <layoutGuides>
-                        <viewControllerLayoutGuide type="top" id="maK-i9-Uhn"/>
-                        <viewControllerLayoutGuide type="bottom" id="khH-OB-KpY"/>
-                    </layoutGuides>
-                    <view key="view" contentMode="scaleToFill" id="3se-qz-xqx" customClass="SKView">
-                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
-                    </view>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="SZV-WD-TEh" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="487" y="320"/>
+            <point key="canvasLocation" x="509" y="-473"/>
         </scene>
     </scenes>
 </document>
