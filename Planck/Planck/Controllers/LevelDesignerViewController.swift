@@ -499,6 +499,7 @@ class LevelDesignerViewController: UIViewController {
         for layer in self.rayLayers {
             layer.removeFromSuperlayer()
         }
+        self.audioPlayerList.removeAll(keepCapacity: false)
     }
     
     private func getColorForNode(node: GOOpticRep) -> UIColor {
