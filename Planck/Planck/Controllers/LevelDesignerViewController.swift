@@ -12,6 +12,7 @@ import AVFoundation
 class LevelDesignerViewController: UIViewController {
 
     @IBOutlet var deviceSegment: UISegmentedControl!
+    @IBOutlet var inputPanel: UIView!
     
     //store the views we draw the various optic devices
     //key is the id of the instrument
@@ -25,6 +26,7 @@ class LevelDesignerViewController: UIViewController {
     private let gridWidth = 64
     private let gridHeight = 48
     private let gridUnitLength: CGFloat = 16
+    
     
     struct Selectors {
         static let segmentValueDidChangeAction: Selector = "segmentValueDidChange:"
@@ -60,11 +62,19 @@ class LevelDesignerViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.inputPanel.alpha = 0;
+        self.inputPanel.userInteractionEnabled = false
+        self.inputPanel.layer.cornerRadius = 20
     }
     
     //MARK - tap gesture handler
     @IBAction func viewDidTapped(sender: UITapGestureRecognizer) {
         if sender.numberOfTapsRequired == 1 {
+            if sender.numberOfTouchesRequired == 2 {
+                self.toggleInputPanel()
+                return
+            }
+            
             if self.selectedNode != nil {
                 self.deselectNode()
             } else {
@@ -204,6 +214,16 @@ class LevelDesignerViewController: UIViewController {
 //------------------------------------------------------------------------------
 //    Private Methods
 //------------------------------------------------------------------------------
+    
+    private func toggleInputPanel() {
+        if self.inputPanel.userInteractionEnabled {
+            self.inputPanel.userInteractionEnabled = false
+            self.inputPanel.alpha = 0
+        } else {
+            self.inputPanel.userInteractionEnabled = true
+            self.inputPanel.alpha = 0.9
+        }
+    }
     
     private func selectNode(optionalNode: GOOpticRep?) {
         if let node = optionalNode {
