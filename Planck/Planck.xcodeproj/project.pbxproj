@@ -111,6 +111,24 @@
 		986E5DA31AC55604008EF3CE /* StorageManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 98D55F9D1ABF133000B3E86A /* StorageManager.swift */; };
 		98754ADC1AD0587F00817319 /* GameLevel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 98754ADB1AD0587F00817319 /* GameLevel.swift */; };
 		98D55F9E1ABF133000B3E86A /* StorageManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 98D55F9D1ABF133000B3E86A /* StorageManager.swift */; };
+		98F63A941AD163C70096A32E /* GOGridArchiveTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 98F63A931AD163C70096A32E /* GOGridArchiveTest.swift */; };
+		98F63A951AD165070096A32E /* GOConcaveLensRep.swift in Sources */ = {isa = PBXBuildFile; fileRef = 263B09A41ACEEDD800E7C99E /* GOConcaveLensRep.swift */; };
+		98F63A961AD165070096A32E /* GOConvexLensRep.swift in Sources */ = {isa = PBXBuildFile; fileRef = 263B09A51ACEEDD800E7C99E /* GOConvexLensRep.swift */; };
+		98F63A971AD165070096A32E /* GOFlatOpticRep.swift in Sources */ = {isa = PBXBuildFile; fileRef = 263B09A81ACEEDD800E7C99E /* GOFlatOpticRep.swift */; };
+		98F63A981AD165070096A32E /* GOFlatLensRep.swift in Sources */ = {isa = PBXBuildFile; fileRef = 263B09A61ACEEDD800E7C99E /* GOFlatLensRep.swift */; };
+		98F63A991AD165070096A32E /* GOFlatMirrorRep.swift in Sources */ = {isa = PBXBuildFile; fileRef = 263B09A71ACEEDD800E7C99E /* GOFlatMirrorRep.swift */; };
+		98F63A9A1AD165070096A32E /* GOFlatWallRep.swift in Sources */ = {isa = PBXBuildFile; fileRef = 263B09A91ACEEDD800E7C99E /* GOFlatWallRep.swift */; };
+		98F63A9B1AD165070096A32E /* GOOpticRep.swift in Sources */ = {isa = PBXBuildFile; fileRef = 263B09AA1ACEEDD800E7C99E /* GOOpticRep.swift */; };
+		98F63A9C1AD165070096A32E /* GOEmitterRep.swift in Sources */ = {isa = PBXBuildFile; fileRef = 629F42521AD046C600EFBABD /* GOEmitterRep.swift */; };
+		98F63A9D1AD165070096A32E /* GOGrid.swift in Sources */ = {isa = PBXBuildFile; fileRef = 263B09A11ACEEDD800E7C99E /* GOGrid.swift */; };
+		98F63A9E1AD1650F0096A32E /* GOArcSegment.swift in Sources */ = {isa = PBXBuildFile; fileRef = 263B09951ACEEDD800E7C99E /* GOArcSegment.swift */; };
+		98F63A9F1AD1650F0096A32E /* GOCoordinate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 263B09961ACEEDD800E7C99E /* GOCoordinate.swift */; };
+		98F63AA01AD1650F0096A32E /* GOLine.swift in Sources */ = {isa = PBXBuildFile; fileRef = 263B09971ACEEDD800E7C99E /* GOLine.swift */; };
+		98F63AA11AD1650F0096A32E /* GOLineSegment.swift in Sources */ = {isa = PBXBuildFile; fileRef = 263B09981ACEEDD800E7C99E /* GOLineSegment.swift */; };
+		98F63AA21AD1650F0096A32E /* GORay.swift in Sources */ = {isa = PBXBuildFile; fileRef = 263B09991ACEEDD800E7C99E /* GORay.swift */; };
+		98F63AA31AD1650F0096A32E /* GOSegment.swift in Sources */ = {isa = PBXBuildFile; fileRef = 263B099A1ACEEDD800E7C99E /* GOSegment.swift */; };
+		98F63AA41AD1650F0096A32E /* GOStack.swift in Sources */ = {isa = PBXBuildFile; fileRef = 263B099B1ACEEDD800E7C99E /* GOStack.swift */; };
+		98F63AA51AD1650F0096A32E /* GOPath.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26C8ADDF1AD045D8008ADACB /* GOPath.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -205,6 +223,7 @@
 		984F35D71ABF09F1008816C9 /* InstrumentNSCodingTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InstrumentNSCodingTests.swift; sourceTree = "<group>"; };
 		98754ADB1AD0587F00817319 /* GameLevel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GameLevel.swift; sourceTree = "<group>"; };
 		98D55F9D1ABF133000B3E86A /* StorageManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = StorageManager.swift; path = Storage/StorageManager.swift; sourceTree = "<group>"; };
+		98F63A931AD163C70096A32E /* GOGridArchiveTest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = GOGridArchiveTest.swift; path = Model/GOGridArchiveTest.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -357,6 +376,7 @@
 				6227FB871AAE285C007F49EA /* PlanckTests.swift */,
 				6227FB851AAE285C007F49EA /* Supporting Files */,
 				984F35D71ABF09F1008816C9 /* InstrumentNSCodingTests.swift */,
+				98F63A931AD163C70096A32E /* GOGridArchiveTest.swift */,
 			);
 			path = PlanckTests;
 			sourceTree = "<group>";
@@ -675,32 +695,50 @@
 				986E5DA31AC55604008EF3CE /* StorageManager.swift in Sources */,
 				6227FB881AAE285C007F49EA /* PlanckTests.swift in Sources */,
 				62988FEE1AB2FA8800FD9AFF /* XMirror.swift in Sources */,
+				98F63AA51AD1650F0096A32E /* GOPath.swift in Sources */,
 				62988FF21AB2FA8800FD9AFF /* XInstrument.swift in Sources */,
+				98F63AA31AD1650F0096A32E /* GOSegment.swift in Sources */,
 				62988FF51AB2FA8800FD9AFF /* CGVector+XUtility.swift in Sources */,
+				98F63A9D1AD165070096A32E /* GOGrid.swift in Sources */,
 				2635804A1ABE9F4000F87563 /* AGSpriteButton.m in Sources */,
+				98F63A991AD165070096A32E /* GOFlatMirrorRep.swift in Sources */,
+				98F63A9A1AD165070096A32E /* GOFlatWallRep.swift in Sources */,
 				263B09CA1ACEEF9600E7C99E /* CGFLoat+GOUtilities.swift in Sources */,
 				62988FEF1AB2FA8800FD9AFF /* XConcaveMirror.swift in Sources */,
 				263B09CD1ACEEF9600E7C99E /* GOConstant.swift in Sources */,
 				62988FF71AB2FA8800FD9AFF /* XConstant.swift in Sources */,
+				98F63A951AD165070096A32E /* GOConcaveLensRep.swift in Sources */,
+				98F63A961AD165070096A32E /* GOConvexLensRep.swift in Sources */,
 				62988FF11AB2FA8800FD9AFF /* XFlatMirror.swift in Sources */,
 				62988FF61AB2FA8800FD9AFF /* XColor.swift in Sources */,
+				98F63A9F1AD1650F0096A32E /* GOCoordinate.swift in Sources */,
+				98F63A9E1AD1650F0096A32E /* GOArcSegment.swift in Sources */,
 				62988FF01AB2FA8800FD9AFF /* XConvexMirror.swift in Sources */,
 				62988FEC1AB2FA8800FD9AFF /* XConcaveLens.swift in Sources */,
+				98F63AA21AD1650F0096A32E /* GORay.swift in Sources */,
+				98F63A9B1AD165070096A32E /* GOOpticRep.swift in Sources */,
 				62988FF41AB2FA8800FD9AFF /* XNode.swift in Sources */,
 				62988FEB1AB2FA8800FD9AFF /* XFlatLens.swift in Sources */,
+				98F63AA11AD1650F0096A32E /* GOLineSegment.swift in Sources */,
 				263B09CE1ACEEF9600E7C99E /* GOUtilities.swift in Sources */,
+				98F63A941AD163C70096A32E /* GOGridArchiveTest.swift in Sources */,
+				98F63AA01AD1650F0096A32E /* GOLine.swift in Sources */,
 				62988FEA1AB2FA8800FD9AFF /* XLens.swift in Sources */,
+				98F63AA41AD1650F0096A32E /* GOStack.swift in Sources */,
 				263B09CB1ACEEF9600E7C99E /* CGPoint+GOUtilities.swift in Sources */,
 				62BC35541AB3096400B0B6F7 /* XContactableNode.swift in Sources */,
 				62988FE91AB2FA8800FD9AFF /* XPlanck.swift in Sources */,
 				62BC35551AB3096900B0B6F7 /* GameScene.swift in Sources */,
 				984F35D81ABF09F1008816C9 /* InstrumentNSCodingTests.swift in Sources */,
+				98F63A9C1AD165070096A32E /* GOEmitterRep.swift in Sources */,
 				62988FE71AB2FA8800FD9AFF /* XEmitter.swift in Sources */,
 				62988FF31AB2FA8800FD9AFF /* XWall.swift in Sources */,
 				62988FF81AB2FA8800FD9AFF /* XMedium.swift in Sources */,
 				62988FF91AB2FA8800FD9AFF /* XNote.swift in Sources */,
 				264F935E1ABEE8E900744B1A /* XInterface.swift in Sources */,
 				263B09CC1ACEEF9600E7C99E /* CGVector+GOUtilities.swift in Sources */,
+				98F63A971AD165070096A32E /* GOFlatOpticRep.swift in Sources */,
+				98F63A981AD165070096A32E /* GOFlatLensRep.swift in Sources */,
 				62988FE81AB2FA8800FD9AFF /* XPhoton.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

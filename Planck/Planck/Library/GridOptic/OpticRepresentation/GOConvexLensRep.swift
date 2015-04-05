@@ -63,7 +63,7 @@ class GOConvexLensRep: GOOpticRep {
         let typeRaw = aDecoder.decodeObjectForKey(GOCodingKey.optic_type) as Int
         let type = DeviceType(rawValue: typeRaw)
         
-        let thickness = aDecoder.decodeObjectForKey(GOCodingKey.optic_thickCenter) as CGFloat
+        let thickness = aDecoder.decodeObjectForKey(GOCodingKey.optic_thickness) as CGFloat
         let curvatureRadius = aDecoder.decodeObjectForKey(GOCodingKey.optic_curvatureRadius) as CGFloat
         
         let length = aDecoder.decodeObjectForKey(GOCodingKey.optic_length) as CGFloat
