@@ -197,7 +197,7 @@ class LevelDesignerViewController: UIViewController {
             self.addNode(emitter, strokeColor: DeviceColor.emitter)
             
         case DeviceSegmentIndex.flatMirror:
-            let mirror = GOFlatMirrorRep(center: coordinate, thickness: 2, length: 8, direction: CGVectorMake(0, 1), id: String.generateRandomString(self.identifierLength))
+            let mirror = XFlatMirror(center: coordinate, thickness: 2, length: 8, direction: CGVectorMake(0, 1), id: String.generateRandomString(self.identifierLength))
             self.addNode(mirror, strokeColor: DeviceColor.mirror)
             
         case DeviceSegmentIndex.flatLens:
@@ -205,15 +205,15 @@ class LevelDesignerViewController: UIViewController {
             self.addNode(flatLens, strokeColor: DeviceColor.lens)
             
         case DeviceSegmentIndex.flatWall:
-            let wall = GOFlatWallRep(center: coordinate, thickness: 2, length: 8, direction: CGVectorMake(0, 1), id: String.generateRandomString(self.identifierLength))
+            let wall = XWall(center: coordinate, thickness: 2, length: 8, direction: CGVectorMake(0, 1), id: String.generateRandomString(self.identifierLength))
             self.addNode(wall, strokeColor: DeviceColor.wall)
             
         case DeviceSegmentIndex.concaveLens:
-            let concaveLens = GOConcaveLensRep(center: coordinate, direction: CGVectorMake(0, 1), thicknessCenter: 1, thicknessEdge: 3, curvatureRadius: 10, id: String.generateRandomString(self.identifierLength), refractionIndex: 1.5)
+            let concaveLens = XConcaveLens(center: coordinate, direction: CGVectorMake(0, 1), thicknessCenter: 1, thicknessEdge: 3, curvatureRadius: 10, id: String.generateRandomString(self.identifierLength), refractionIndex: 1.5)
             self.addNode(concaveLens, strokeColor: DeviceColor.lens)
             
         case DeviceSegmentIndex.convexLens:
-            let convexLens = GOConvexLensRep(center: coordinate, direction: CGVectorMake(0, 1), thickness: 2, curvatureRadius: 10, id: String.generateRandomString(self.identifierLength), refractionIndex: 1.5)
+            let convexLens = XConvexLens(center: coordinate, direction: CGVectorMake(0, 1), thickness: 2, curvatureRadius: 10, id: String.generateRandomString(self.identifierLength), refractionIndex: 1.5)
             self.addNode(convexLens, strokeColor: DeviceColor.lens)
             
         case DeviceSegmentIndex.planck:
@@ -293,6 +293,8 @@ class LevelDesignerViewController: UIViewController {
         }
     }
     
+
+    
     
     //MARK - long press gesture handler
     @IBAction func viewDidLongPressed(sender: UILongPressGestureRecognizer) {
@@ -317,6 +319,7 @@ class LevelDesignerViewController: UIViewController {
     @IBAction func updateSelectedNode() {
         if let node = self.selectedNode {
             self.updateCenterFromInput()
+            self.updateDirectionFromInput()
         }
         
         self.shootRay()
@@ -362,11 +365,29 @@ class LevelDesignerViewController: UIViewController {
         }
     }
     
-    private func checkDirectionInput() -> CGVector? {
-        let i: Int? = self.textFieldDirection.text.toInt()
-        if let index = i {
+    private func updateDirectionFromInput() {
+        if let node = self.selectedNode {
+            let i: Int? = self.textFieldDirection.text.toInt()
+            if let index = i {
+                let originalDirection = node.direction
+                let effectDirection = CGVector.vectorFromXPlusRadius(CGFloat(index) * self.grid.unitDegree)
+                self.updateDirection(node, startVector: originalDirection, currentVector: effectDirection)
+            }
         }
-        return nil
+    }
+    
+    private func updateDirection(node: GOOpticRep, startVector: CGVector, currentVector: CGVector) {
+        var angle = CGVector.angleFrom(startVector, to: currentVector)
+        let nodeAngle = node.direction.angleFromXPlus
+        let effectAngle = angle + nodeAngle
+        let count = round(effectAngle / self.grid.unitDegree)
+        let finalAngle = self.grid.unitDegree * count
+        angle = finalAngle - nodeAngle
+        node.setDirection(CGVector.vectorFromXPlusRadius(finalAngle))
+        if let view = self.deviceViews[node.id] {
+            var layerTransform = CATransform3DRotate(view.layer.transform, angle, 0, 0, 1)
+            view.layer.transform = layerTransform
+        }
     }
     
     private func toggleInputPanel() {
@@ -383,7 +404,7 @@ class LevelDesignerViewController: UIViewController {
         if let node = self.selectedNode {
             self.textFieldCenterX.text = "\(node.center.x)"
             self.textFieldCenterY.text = "\(node.center.y)"
-            self.textFieldDirection.text = "\(Int(round(node.direction.angleFromXPlus / (CGFloat(M_PI/12)))))"
+            self.textFieldDirection.text = "\(Int(round(node.direction.angleFromXPlus / self.grid.unitDegree)))"
             
             if let flatNode = node as? GOFlatOpticRep {
                 self.textFieldThickness.text = "\(flatNode.thickness)"
@@ -575,23 +596,18 @@ class LevelDesignerViewController: UIViewController {
     
     private func processPoints(points: [CGPoint]) {
         if points.count > 2 {
-            var bounceSound = NSURL(fileURLWithPath: NSBundle.mainBundle().pathForResource("snare-drum", ofType: "m4a")!)
             var prevPoint = points[0]
             var distance: CGFloat = 0
             for i in 1...points.count - 1 {
                 distance += points[i].getDistanceToPoint(prevPoint)
                 prevPoint = points[i]
                 if let device = self.grid.getInstrumentAtGridPoint(points[i]) {
-                    switch device.type {
-                    case DeviceType.Mirror :
-                        let audioPlayer = AVAudioPlayer(contentsOfURL: bounceSound, error: nil)
+                    if let sound = device.getSound() {
+                        let audioPlayer = AVAudioPlayer(contentsOfURL: sound, error: nil)
                         self.audioPlayerList.append(audioPlayer)
                         audioPlayer.prepareToPlay()
                         let wait = NSTimeInterval(distance / Constant.lightSpeedBase + Constant.audioDelay)
                         audioPlayer.playAtTime(wait + audioPlayer.deviceCurrentTime)
-
-                    default :
-                        1
                     }
                 }
             }
