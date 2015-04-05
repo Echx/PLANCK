@@ -197,7 +197,7 @@ class LevelDesignerViewController: UIViewController {
             self.addNode(emitter, strokeColor: DeviceColor.emitter)
             
         case DeviceSegmentIndex.flatMirror:
-            let mirror = GOFlatMirrorRep(center: coordinate, thickness: 2, length: 8, direction: CGVectorMake(0, 1), id: String.generateRandomString(self.identifierLength))
+            let mirror = XFlatMirror(center: coordinate, thickness: 2, length: 8, direction: CGVectorMake(0, 1), id: String.generateRandomString(self.identifierLength))
             self.addNode(mirror, strokeColor: DeviceColor.mirror)
             
         case DeviceSegmentIndex.flatLens:
@@ -596,23 +596,18 @@ class LevelDesignerViewController: UIViewController {
     
     private func processPoints(points: [CGPoint]) {
         if points.count > 2 {
-            var bounceSound = NSURL(fileURLWithPath: NSBundle.mainBundle().pathForResource("snare-drum", ofType: "m4a")!)
             var prevPoint = points[0]
             var distance: CGFloat = 0
             for i in 1...points.count - 1 {
                 distance += points[i].getDistanceToPoint(prevPoint)
                 prevPoint = points[i]
                 if let device = self.grid.getInstrumentAtGridPoint(points[i]) {
-                    switch device.type {
-                    case DeviceType.Mirror :
-                        let audioPlayer = AVAudioPlayer(contentsOfURL: bounceSound, error: nil)
+                    if let sound = device.getSound() {
+                        let audioPlayer = AVAudioPlayer(contentsOfURL: sound, error: nil)
                         self.audioPlayerList.append(audioPlayer)
                         audioPlayer.prepareToPlay()
                         let wait = NSTimeInterval(distance / Constant.lightSpeedBase + Constant.audioDelay)
                         audioPlayer.playAtTime(wait + audioPlayer.deviceCurrentTime)
-
-                    default :
-                        1
                     }
                 }
             }

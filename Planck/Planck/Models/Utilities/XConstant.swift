@@ -148,3 +148,7 @@ struct LevelDesignerDefaults {
     static let eraserSize: CGFloat = 20;
     static let selectionAreaSize: CGFloat = 20;
 }
+
+struct SoundFiles {
+    static let snareDrumSound = NSURL(fileURLWithPath: NSBundle.mainBundle().pathForResource("snare-drum", ofType: "m4a")!)
+}
