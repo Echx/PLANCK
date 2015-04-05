@@ -163,7 +163,7 @@ class LevelDesignerViewController: UIViewController {
     @IBAction func viewDidTapped(sender: UITapGestureRecognizer) {
         if sender.numberOfTapsRequired == 1 {
             if sender.numberOfTouchesRequired == 2 {
-                if self.deviceSegment.selectedSegmentIndex == DeviceSegmentIndex.planck {
+                if ((self.selectedNode != nil) && (self.selectedNode!.isKindOfClass(XConvexLens))) {
                     if self.inputPanel.userInteractionEnabled {
                        self.toggleInputPanel()
                     }

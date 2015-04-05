@@ -254,8 +254,8 @@ class GOGrid: NSObject, NSCoding {
             }
         }
         
-        println("indexIn:   \(indexIn)")
-        println("indexOut:  \(indexOut)")
+//        println("indexIn:   \(indexIn)")
+//        println("indexOut:  \(indexOut)")
         return edge.getOutcomeRay(rayIn: ray, indexIn: indexIn, indexOut: indexOut)
     }
     
@@ -327,7 +327,7 @@ class GOGrid: NSObject, NSCoding {
     private func getIntersectionWithBoundary(#ray:GORay) -> CGPoint? {
         for bound in boundaries {
             if let point = bound.getIntersectionPoint(ray) {
-                println(point)
+//                println(point)
                 // check the point is in the visible space
                 // heigh: [0, height]
                 // width: [0, width]
