@@ -122,6 +122,7 @@ class LevelDesignerViewController: UIViewController {
     }
     
     private func shootRay() {
+        self.clearRay()
         for (name, item) in self.grid.instruments {
             if item.type == DeviceType.Emitter {
                 let coordinate = (item as GOEmitterRep).center
@@ -247,7 +248,6 @@ class LevelDesignerViewController: UIViewController {
         }
         
         if sender.state == UIGestureRecognizerState.Ended {
-            self.clearRay()
             self.shootRay()
         }
     }
@@ -311,7 +311,6 @@ class LevelDesignerViewController: UIViewController {
         self.deviceLayers[node.id] = nil
         self.deviceViews[node.id] = nil
         self.grid.removeInstrumentForID(node.id)
-        self.clearRay()
         self.shootRay()
     }
     
