@@ -155,6 +155,10 @@ class LevelDesignerViewController: UIViewController {
         }
     }
     
+    @IBAction func refresh(sender: UIBarButtonItem) {
+        self.shootRay()
+    }
+    
     //MARK - tap gesture handler
     @IBAction func viewDidTapped(sender: UITapGestureRecognizer) {
         if sender.numberOfTapsRequired == 1 {
