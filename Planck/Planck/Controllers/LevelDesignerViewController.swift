@@ -13,22 +13,15 @@ class LevelDesignerViewController: UIViewController {
 
     @IBOutlet var deviceSegment: UISegmentedControl!
     
-    //store the layer we draw the various optic devices
+    //store the views we draw the various optic devices
     //key is the id of the instrument
-    var deviceLayers = [String: CAShapeLayer]()
-    var rayLayers = [CAShapeLayer]()
-    var deviceViews = [String: UIView]()
-    var selectedNode: GOOpticRep?
-    var onSelection: Bool {
-        get {
-            return self.selectedNode != nil
-        }
-    }
+    private var deviceViews = [String: UIView]()
+    private var rayLayers = [CAShapeLayer]()
+    private var selectedNode: GOOpticRep?
+    private var audioPlayer: AVAudioPlayer!
     
-    var audioPlayer: AVAudioPlayer!
-    
-    let grid: GOGrid
-    let identifierLength = 20;
+    private let grid: GOGrid
+    private let identifierLength = 20;
     required init(coder aDecoder: NSCoder) {
         self.grid = GOGrid(width: 64, height: 48, andUnitLength: 16)
         super.init(coder: aDecoder)
@@ -68,7 +61,7 @@ class LevelDesignerViewController: UIViewController {
     //MARK - tap gesture handler
     @IBAction func viewDidTapped(sender: UITapGestureRecognizer) {
         if sender.numberOfTapsRequired == 1 {
-            if self.onSelection {
+            if self.selectedNode != nil {
                 self.deselectNode()
             } else {
                 let location = sender.locationInView(sender.view)
@@ -118,11 +111,11 @@ class LevelDesignerViewController: UIViewController {
     }
     
     //MARK - pan gesture handler
-    var firstLocation: CGPoint?
-    var lastLocation: CGPoint?
-    var firstViewCenter: CGPoint?
-    var firstViewTransform: CATransform3D?
-    var touchedNode: GOOpticRep?
+    private var firstLocation: CGPoint?
+    private var lastLocation: CGPoint?
+    private var firstViewCenter: CGPoint?
+    private var firstViewTransform: CATransform3D?
+    private var touchedNode: GOOpticRep?
     @IBAction func viewDidPanned(sender: UIPanGestureRecognizer) {
         let location = sender.locationInView(self.view)
         
@@ -195,10 +188,6 @@ class LevelDesignerViewController: UIViewController {
     //MARK - bar button handler
     @IBAction func clearButtonDidClicked(sender: UIBarButtonItem) {
         self.grid.clearInstruments()
-        for (id, layer) in self.deviceLayers {
-            layer.removeFromSuperlayer()
-        }
-        
         for (id, view) in self.deviceViews {
             view.removeFromSuperview()
         }
@@ -238,7 +227,6 @@ class LevelDesignerViewController: UIViewController {
         layer.strokeColor = strokeColor.CGColor
         layer.fillColor = UIColor.clearColor().CGColor
         layer.lineWidth = 2.0
-        self.deviceLayers[node.id] = layer
         layer.path = self.grid.getInstrumentDisplayPathForID(node.id)?.CGPath
         
         let view = UIView(frame: CGRectMake(0, 0, self.view.frame.width, self.view.frame.height))
@@ -274,7 +262,6 @@ class LevelDesignerViewController: UIViewController {
 
     private func removeNode(node: GOOpticRep) {
         self.deviceViews[node.id]?.removeFromSuperview()
-        self.deviceLayers[node.id] = nil
         self.deviceViews[node.id] = nil
         self.grid.removeInstrumentForID(node.id)
         self.shootRay()
