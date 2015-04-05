@@ -13,6 +13,47 @@ class LevelDesignerViewController: UIViewController {
 
     @IBOutlet var deviceSegment: UISegmentedControl!
     @IBOutlet var inputPanel: UIView!
+    @IBOutlet var textFieldCenterX: UITextField!
+    @IBOutlet var textFieldCenterY: UITextField!
+    @IBOutlet var textFieldCurvatureRadius: UITextField!
+    @IBOutlet var textFieldRefractionIndex: UITextField!
+    @IBOutlet var textFieldThicknessEdge: UITextField!
+    @IBOutlet var textFieldThicknessCenter: UITextField!
+    @IBOutlet var textFieldThickness: UITextField!
+    @IBOutlet var textFieldDirection: UITextField!
+    @IBOutlet var textFieldLength: UITextField!
+    
+    @IBOutlet var labelCenterX: UILabel!
+    @IBOutlet var labelCenterY: UILabel!
+    @IBOutlet var labelCurvatureRadius: UILabel!
+    @IBOutlet var labelRefractionIndex: UILabel!
+    @IBOutlet var labelThicknessEdge: UILabel!
+    @IBOutlet var labelThicknessCenter: UILabel!
+    @IBOutlet var labelThickness: UILabel!
+    @IBOutlet var labelDirection: UILabel!
+    @IBOutlet var labelLength: UILabel!
+    
+    var paramenterFields: [UITextField] {
+        get {
+            return [textFieldCenterX,
+                textFieldCenterY,
+                textFieldDirection,
+                textFieldThickness,
+                textFieldThicknessCenter,
+                textFieldThicknessEdge,
+                textFieldRefractionIndex,
+                textFieldCurvatureRadius,
+                textFieldLength]
+        }
+    }
+    
+    var parameterLabels: [UILabel] {
+        get {
+            return [labelCenterX, labelCenterY, labelCurvatureRadius,
+                labelRefractionIndex, labelThicknessEdge, labelThicknessCenter, labelThickness,
+                labelDirection, labelLength]
+        }
+    }
     
     //store the views we draw the various optic devices
     //key is the id of the instrument
@@ -50,6 +91,19 @@ class LevelDesignerViewController: UIViewController {
         static let planck = 6;
     }
     
+    struct InputTextFieldIndex {
+        static let centerX = 0
+        static let centerY = 1
+        static let direction = 2
+        static let thickness = 3
+        static let thicknessCenter = 4
+        static let thicknessEdge = 5
+        static let refractionIndex = 6
+        static let curvatureRadius = 7
+        static let length = 8
+        
+    }
+    
     struct InputModeSegmentIndex {
         static let add = 0;
         static let edit = 1;
@@ -65,6 +119,54 @@ class LevelDesignerViewController: UIViewController {
         self.inputPanel.alpha = 0;
         self.inputPanel.userInteractionEnabled = false
         self.inputPanel.layer.cornerRadius = 20
+        self.deviceSegment.addTarget(self, action: Selectors.segmentValueDidChangeAction, forControlEvents: UIControlEvents.ValueChanged)
+        self.segmentValueDidChange(self.deviceSegment)
+    }
+    
+    func segmentValueDidChange(sender: UISegmentedControl) {
+        var input = [Bool]()
+        switch sender.selectedSegmentIndex {
+        case DeviceSegmentIndex.emitter:
+            input = [true, true, true, true, false, false, false, false, true]
+            
+        case DeviceSegmentIndex.flatMirror, DeviceSegmentIndex.flatWall, DeviceSegmentIndex.planck:
+            input = [true, true, true, true, false, false, false, false, true]
+            
+        case DeviceSegmentIndex.flatLens:
+            input = [true, true, true, false, false, false, true, false, true]
+            
+        case DeviceSegmentIndex.concaveLens:
+            input = [true, true, true, false, true, true, true, true, false]
+            
+        case DeviceSegmentIndex.convexLens:
+            input = [true, true, true, true, false, false, true, true, false]
+            
+        default:
+            fatalError("Segment Index Not Recogonized")
+        }
+        self.updateControlPanelValidItems(input)
+    }
+    
+    func updateControlPanelValidItems(input: [Bool]) {
+        for var i = 0; i < input.count; i++ {
+            self.paramenterFields[i].enabled = input[i]
+        }
+    }
+    
+    func updateControlPanelAppearence() {
+        for var i = 0; i < self.paramenterFields.count; i++ {
+            if self.paramenterFields[i].enabled {
+                self.paramenterFields[i].layer.borderColor = UIColor.blackColor().CGColor
+                self.paramenterFields[i].alpha = 1
+                self.parameterLabels[i].textColor = UIColor.blackColor()
+                self.parameterLabels[i].alpha = 1
+            } else {
+                self.paramenterFields[i].layer.borderColor = UIColor.grayColor().CGColor
+                self.paramenterFields[i].alpha = 0.5
+                self.parameterLabels[i].textColor = UIColor.grayColor()
+                self.parameterLabels[i].alpha = 0.5
+            }
+        }
     }
     
     //MARK - tap gesture handler
@@ -186,6 +288,7 @@ class LevelDesignerViewController: UIViewController {
         }
         
         if sender.state == UIGestureRecognizerState.Ended {
+            self.updateTextFieldInformation()
             self.shootRay()
         }
     }
@@ -195,6 +298,7 @@ class LevelDesignerViewController: UIViewController {
     @IBAction func viewDidLongPressed(sender: UILongPressGestureRecognizer) {
         let location = sender.locationInView(sender.view)
         if let node = self.grid.getInstrumentAtPoint(location) {
+            self.updateTextFieldInformation()
             self.removeNode(node)
         }
     }
@@ -207,8 +311,12 @@ class LevelDesignerViewController: UIViewController {
         }
         
         self.clearRay()
+        self.updateTextFieldInformation()
     }
     
+    @IBAction func updateSelectedNode() {
+        
+    }
     
     
 //------------------------------------------------------------------------------
@@ -225,6 +333,52 @@ class LevelDesignerViewController: UIViewController {
         }
     }
     
+    private func updateTextFieldInformation() {
+        if let node = self.selectedNode {
+            self.textFieldCenterX.text = "\(node.center.x)"
+            self.textFieldCenterY.text = "\(node.center.y)"
+            self.textFieldDirection.text = "\(round(node.direction.angleFromXPlus / (CGFloat(M_PI/6))))"
+            
+            if let flatNode = node as? GOFlatOpticRep {
+                self.textFieldThickness.text = "\(flatNode.thickness)"
+                self.textFieldLength.text = "\(flatNode.length)"
+                
+                if let flatLens = flatNode as? GOFlatLensRep {
+                    self.textFieldRefractionIndex.text = "\(flatLens.refractionIndex)"
+                } else {
+                    self.textFieldRefractionIndex.text = ""
+                }
+                self.textFieldThicknessCenter.text = ""
+                self.textFieldThicknessEdge.text = ""
+                self.textFieldCurvatureRadius.text = ""
+            } else if let concaveLens = node as? GOConcaveLensRep {
+                self.textFieldThicknessCenter.text = "\(concaveLens.thicknessCenter)"
+                self.textFieldThicknessEdge.text = "\(concaveLens.thicknessEdge)"
+                self.textFieldRefractionIndex.text = "\(concaveLens.refractionIndex)"
+                self.textFieldCurvatureRadius.text = "\(concaveLens.curvatureRadius)"
+                self.textFieldThickness.text = ""
+                self.textFieldLength.text = ""
+            } else if let convexLens = node as? GOConvexLensRep {
+                self.textFieldThickness.text = "\(convexLens.thickness)"
+                self.textFieldRefractionIndex.text = "\(convexLens.refractionIndex)"
+                self.textFieldCurvatureRadius.text = "\(convexLens.curvatureRadius)"
+                self.textFieldThicknessCenter.text = ""
+                self.textFieldThicknessEdge.text = ""
+                self.textFieldLength.text = ""
+            }
+        } else {
+            self.textFieldCenterX.text = ""
+            self.textFieldCenterY.text = ""
+            self.textFieldDirection.text = ""
+            self.textFieldThickness.text = ""
+            self.textFieldRefractionIndex.text = ""
+            self.textFieldCurvatureRadius.text = ""
+            self.textFieldThicknessCenter.text = ""
+            self.textFieldThicknessEdge.text = ""
+            self.textFieldLength.text = ""
+        }
+    }
+    
     private func selectNode(optionalNode: GOOpticRep?) {
         if let node = optionalNode {
             self.selectedNode = node
@@ -234,6 +388,8 @@ class LevelDesignerViewController: UIViewController {
         } else {
             self.deselectNode()
         }
+        
+        self.updateTextFieldInformation()
     }
     
     private func deselectNode() {
@@ -243,6 +399,7 @@ class LevelDesignerViewController: UIViewController {
             }
         }
         self.selectedNode = nil
+        self.updateTextFieldInformation()
     }
     
     private func addNode(node: GOOpticRep, strokeColor: UIColor) {
