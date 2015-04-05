@@ -65,75 +65,6 @@ class LevelDesignerViewController: UIViewController {
         super.viewDidLoad()
     }
     
-    private func addNode(node: GOOpticRep, strokeColor: UIColor) {
-        self.clearRay()
-        var coordinateBackup = node.center
-        node.setCenter(GOCoordinate(x: self.grid.width/2, y: self.grid.height/2))
-        
-        self.grid.addInstrument(node)
-        let layer = CAShapeLayer()
-        layer.strokeEnd = 1.0
-        layer.strokeColor = strokeColor.CGColor
-        layer.fillColor = UIColor.clearColor().CGColor
-        layer.lineWidth = 2.0
-        self.deviceLayers[node.id] = layer
-        layer.path = self.grid.getInstrumentDisplayPathForID(node.id)?.CGPath
-        
-        let view = UIView(frame: CGRectMake(0, 0, self.view.frame.width, self.view.frame.height))
-        view.backgroundColor = UIColor.clearColor()
-        view.layer.addSublayer(layer)
-        self.deviceViews[node.id] = view
-        self.view.insertSubview(view, atIndex: 0)
-        
-        var offsetX = CGFloat(coordinateBackup.x - node.center.x) * self.grid.unitLength
-        var offsetY = CGFloat(coordinateBackup.y - node.center.y) * self.grid.unitLength
-        var offset = CGPointMake(offsetX, offsetY)
-        
-        self.moveNode(node, from: self.view.center, offset: offset)
-    }
-    
-    private func addRay(point: CGPoint) {
-        let ray = GORay(startPoint: self.grid.getGridPointForDisplayPoint(point), direction: CGVector(dx: 1, dy: 0))
-        let layer = CAShapeLayer()
-        layer.strokeEnd = 1.0
-        layer.strokeColor = UIColor.whiteColor().CGColor
-        layer.fillColor = UIColor.clearColor().CGColor
-        layer.lineWidth = 2.0
-
-        self.rayLayers.append(layer)
-        
-        let goPath = self.grid.getRayPath(ray)
-        let path = goPath.bezierPath
-        let points = goPath.criticalPoints
-        let distance = goPath.pathLength
-        self.processPoints(points)
-        layer.path = path.CGPath
-        self.view.layer.addSublayer(layer)
-        
-        let pathAnimation = CABasicAnimation(keyPath: "strokeEnd")
-        pathAnimation.fromValue = 0.0;
-        pathAnimation.toValue = 1.0;
-        pathAnimation.duration = CFTimeInterval(distance / Constant.lightSpeedBase);
-        pathAnimation.repeatCount = 1.0
-        pathAnimation.fillMode = kCAFillModeForwards
-        pathAnimation.timingFunction = CAMediaTimingFunction(name: kCAMediaTimingFunctionLinear)
-        
-        layer.addAnimation(pathAnimation, forKey: "strokeEnd")
-    }
-    
-    private func shootRay() {
-        self.clearRay()
-        for (name, item) in self.grid.instruments {
-            if item.type == DeviceType.Emitter {
-                let coordinate = (item as GOEmitterRep).center
-                let shootingCoordinate = GOCoordinate(x: coordinate.x + 1, y: coordinate.y)
-                let shootingPoint = self.grid.getPointForGridCoordinate(shootingCoordinate)
-                self.addRay(shootingPoint)
-            }
-            
-        }
-    }
-    
     //MARK - tap gesture handler
     @IBAction func viewDidTapped(sender: UITapGestureRecognizer) {
         if sender.numberOfTapsRequired == 1 {
@@ -252,24 +183,8 @@ class LevelDesignerViewController: UIViewController {
         }
     }
     
-    private func moveNode(node: GOOpticRep, from: CGPoint,offset: CGPoint) {
-        let offsetX = offset.x
-        let offsetY = offset.y
-        
-        let originalDisplayPoint = self.grid.getCenterForGridCell(node.center)
-        let effectDisplayPoint = CGPointMake(originalDisplayPoint.x + offsetX, originalDisplayPoint.y + offsetY)
-        
-        node.setCenter(self.grid.getGridCoordinateForPoint(effectDisplayPoint))
-        
-        let view = self.deviceViews[node.id]!
-        let finalDisplayPoint = self.grid.getCenterForGridCell(node.center)
-        let finalX = finalDisplayPoint.x - originalDisplayPoint.x + from.x
-        let finalY = finalDisplayPoint.y - originalDisplayPoint.y + from.y
-        
-        view.center = CGPointMake(finalX, finalY)
-    }
     
-    
+    //MARK - long press gesture handler
     @IBAction func viewDidLongPressed(sender: UILongPressGestureRecognizer) {
         let location = sender.locationInView(sender.view)
         if let node = self.grid.getInstrumentAtPoint(location) {
@@ -277,6 +192,7 @@ class LevelDesignerViewController: UIViewController {
         }
     }
     
+    //MARK - bar button handler
     @IBAction func clearButtonDidClicked(sender: UIBarButtonItem) {
         self.grid.clearInstruments()
         for (id, layer) in self.deviceLayers {
@@ -290,29 +206,6 @@ class LevelDesignerViewController: UIViewController {
         self.clearRay()
     }
     
-    private func getColorForNode(node: GOOpticRep) -> UIColor {
-        switch node.type {
-        case .Emitter:
-            return DeviceColor.emitter
-        case .Lens:
-            return DeviceColor.lens
-        case .Mirror:
-            return DeviceColor.mirror
-        case .Wall:
-            return DeviceColor.planck
-            
-        default:
-            return UIColor.whiteColor()
-        }
-    }
-    
-    private func removeNode(node: GOOpticRep) {
-        self.deviceViews[node.id]?.removeFromSuperview()
-        self.deviceLayers[node.id] = nil
-        self.deviceViews[node.id] = nil
-        self.grid.removeInstrumentForID(node.id)
-        self.shootRay()
-    }
     
     private func selectNode(optionalNode: GOOpticRep?) {
         if let node = optionalNode {
@@ -334,9 +227,120 @@ class LevelDesignerViewController: UIViewController {
         self.selectedNode = nil
     }
     
+    private func addNode(node: GOOpticRep, strokeColor: UIColor) {
+        self.clearRay()
+        var coordinateBackup = node.center
+        node.setCenter(GOCoordinate(x: self.grid.width/2, y: self.grid.height/2))
+        
+        self.grid.addInstrument(node)
+        let layer = CAShapeLayer()
+        layer.strokeEnd = 1.0
+        layer.strokeColor = strokeColor.CGColor
+        layer.fillColor = UIColor.clearColor().CGColor
+        layer.lineWidth = 2.0
+        self.deviceLayers[node.id] = layer
+        layer.path = self.grid.getInstrumentDisplayPathForID(node.id)?.CGPath
+        
+        let view = UIView(frame: CGRectMake(0, 0, self.view.frame.width, self.view.frame.height))
+        view.backgroundColor = UIColor.clearColor()
+        view.layer.addSublayer(layer)
+        self.deviceViews[node.id] = view
+        self.view.insertSubview(view, atIndex: 0)
+        
+        var offsetX = CGFloat(coordinateBackup.x - node.center.x) * self.grid.unitLength
+        var offsetY = CGFloat(coordinateBackup.y - node.center.y) * self.grid.unitLength
+        var offset = CGPointMake(offsetX, offsetY)
+        
+        self.moveNode(node, from: self.view.center, offset: offset)
+    }
+
+    
+    private func moveNode(node: GOOpticRep, from: CGPoint,offset: CGPoint) {
+        let offsetX = offset.x
+        let offsetY = offset.y
+        
+        let originalDisplayPoint = self.grid.getCenterForGridCell(node.center)
+        let effectDisplayPoint = CGPointMake(originalDisplayPoint.x + offsetX, originalDisplayPoint.y + offsetY)
+        
+        node.setCenter(self.grid.getGridCoordinateForPoint(effectDisplayPoint))
+        
+        let view = self.deviceViews[node.id]!
+        let finalDisplayPoint = self.grid.getCenterForGridCell(node.center)
+        let finalX = finalDisplayPoint.x - originalDisplayPoint.x + from.x
+        let finalY = finalDisplayPoint.y - originalDisplayPoint.y + from.y
+        
+        view.center = CGPointMake(finalX, finalY)
+    }
+
+    private func removeNode(node: GOOpticRep) {
+        self.deviceViews[node.id]?.removeFromSuperview()
+        self.deviceLayers[node.id] = nil
+        self.deviceViews[node.id] = nil
+        self.grid.removeInstrumentForID(node.id)
+        self.shootRay()
+    }
+    
+    private func addRay(point: CGPoint) {
+        let ray = GORay(startPoint: self.grid.getGridPointForDisplayPoint(point), direction: CGVector(dx: 1, dy: 0))
+        let layer = CAShapeLayer()
+        layer.strokeEnd = 1.0
+        layer.strokeColor = UIColor.whiteColor().CGColor
+        layer.fillColor = UIColor.clearColor().CGColor
+        layer.lineWidth = 2.0
+        
+        self.rayLayers.append(layer)
+        
+        let goPath = self.grid.getRayPath(ray)
+        let path = goPath.bezierPath
+        let points = goPath.criticalPoints
+        let distance = goPath.pathLength
+        self.processPoints(points)
+        layer.path = path.CGPath
+        self.view.layer.addSublayer(layer)
+        
+        let pathAnimation = CABasicAnimation(keyPath: "strokeEnd")
+        pathAnimation.fromValue = 0.0;
+        pathAnimation.toValue = 1.0;
+        pathAnimation.duration = CFTimeInterval(distance / Constant.lightSpeedBase);
+        pathAnimation.repeatCount = 1.0
+        pathAnimation.fillMode = kCAFillModeForwards
+        pathAnimation.timingFunction = CAMediaTimingFunction(name: kCAMediaTimingFunctionLinear)
+        
+        layer.addAnimation(pathAnimation, forKey: "strokeEnd")
+    }
+    
+    private func shootRay() {
+        self.clearRay()
+        for (name, item) in self.grid.instruments {
+            if item.type == DeviceType.Emitter {
+                let coordinate = (item as GOEmitterRep).center
+                let shootingCoordinate = GOCoordinate(x: coordinate.x + 1, y: coordinate.y)
+                let shootingPoint = self.grid.getPointForGridCoordinate(shootingCoordinate)
+                self.addRay(shootingPoint)
+            }
+            
+        }
+    }
+    
     private func clearRay() {
         for layer in self.rayLayers {
             layer.removeFromSuperlayer()
+        }
+    }
+    
+    private func getColorForNode(node: GOOpticRep) -> UIColor {
+        switch node.type {
+        case .Emitter:
+            return DeviceColor.emitter
+        case .Lens:
+            return DeviceColor.lens
+        case .Mirror:
+            return DeviceColor.mirror
+        case .Wall:
+            return DeviceColor.planck
+            
+        default:
+            return UIColor.whiteColor()
         }
     }
     
