@@ -288,6 +288,7 @@ class LevelDesignerViewController: UIViewController {
         }
         
         if sender.state == UIGestureRecognizerState.Ended {
+            self.updateTextFieldInformation()
             self.shootRay()
         }
     }
@@ -297,6 +298,7 @@ class LevelDesignerViewController: UIViewController {
     @IBAction func viewDidLongPressed(sender: UILongPressGestureRecognizer) {
         let location = sender.locationInView(sender.view)
         if let node = self.grid.getInstrumentAtPoint(location) {
+            self.updateTextFieldInformation()
             self.removeNode(node)
         }
     }
@@ -309,8 +311,12 @@ class LevelDesignerViewController: UIViewController {
         }
         
         self.clearRay()
+        self.updateTextFieldInformation()
     }
     
+    @IBAction func updateSelectedNode() {
+        
+    }
     
     
 //------------------------------------------------------------------------------
@@ -327,6 +333,52 @@ class LevelDesignerViewController: UIViewController {
         }
     }
     
+    private func updateTextFieldInformation() {
+        if let node = self.selectedNode {
+            self.textFieldCenterX.text = "\(node.center.x)"
+            self.textFieldCenterY.text = "\(node.center.y)"
+            self.textFieldDirection.text = "\(round(node.direction.angleFromXPlus / (CGFloat(M_PI/6))))"
+            
+            if let flatNode = node as? GOFlatOpticRep {
+                self.textFieldThickness.text = "\(flatNode.thickness)"
+                self.textFieldLength.text = "\(flatNode.length)"
+                
+                if let flatLens = flatNode as? GOFlatLensRep {
+                    self.textFieldRefractionIndex.text = "\(flatLens.refractionIndex)"
+                } else {
+                    self.textFieldRefractionIndex.text = ""
+                }
+                self.textFieldThicknessCenter.text = ""
+                self.textFieldThicknessEdge.text = ""
+                self.textFieldCurvatureRadius.text = ""
+            } else if let concaveLens = node as? GOConcaveLensRep {
+                self.textFieldThicknessCenter.text = "\(concaveLens.thicknessCenter)"
+                self.textFieldThicknessEdge.text = "\(concaveLens.thicknessEdge)"
+                self.textFieldRefractionIndex.text = "\(concaveLens.refractionIndex)"
+                self.textFieldCurvatureRadius.text = "\(concaveLens.curvatureRadius)"
+                self.textFieldThickness.text = ""
+                self.textFieldLength.text = ""
+            } else if let convexLens = node as? GOConvexLensRep {
+                self.textFieldThickness.text = "\(convexLens.thickness)"
+                self.textFieldRefractionIndex.text = "\(convexLens.refractionIndex)"
+                self.textFieldCurvatureRadius.text = "\(convexLens.curvatureRadius)"
+                self.textFieldThicknessCenter.text = ""
+                self.textFieldThicknessEdge.text = ""
+                self.textFieldLength.text = ""
+            }
+        } else {
+            self.textFieldCenterX.text = ""
+            self.textFieldCenterY.text = ""
+            self.textFieldDirection.text = ""
+            self.textFieldThickness.text = ""
+            self.textFieldRefractionIndex.text = ""
+            self.textFieldCurvatureRadius.text = ""
+            self.textFieldThicknessCenter.text = ""
+            self.textFieldThicknessEdge.text = ""
+            self.textFieldLength.text = ""
+        }
+    }
+    
     private func selectNode(optionalNode: GOOpticRep?) {
         if let node = optionalNode {
             self.selectedNode = node
@@ -336,6 +388,8 @@ class LevelDesignerViewController: UIViewController {
         } else {
             self.deselectNode()
         }
+        
+        self.updateTextFieldInformation()
     }
     
     private func deselectNode() {
@@ -345,6 +399,7 @@ class LevelDesignerViewController: UIViewController {
             }
         }
         self.selectedNode = nil
+        self.updateTextFieldInformation()
     }
     
     private func addNode(node: GOOpticRep, strokeColor: UIColor) {
