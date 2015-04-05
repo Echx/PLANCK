@@ -315,13 +315,34 @@ class LevelDesignerViewController: UIViewController {
     }
     
     @IBAction func updateSelectedNode() {
+        if let node = self.selectedNode {
+            self.updateCenterFromInput()
+        }
         
+        self.shootRay()
     }
     
     
 //------------------------------------------------------------------------------
 //    Private Methods
 //------------------------------------------------------------------------------
+    private func updateCenterFromInput() {
+        if let node = self.selectedNode {
+            let x: Int? = self.textFieldCenterX.text.toInt()
+            let y: Int? = self.textFieldCenterY.text.toInt()
+            
+            if x != nil && y != nil {
+                self.moveNode(node, to: GOCoordinate(x: x!, y: y!))
+            }
+        }
+    }
+    
+    private func checkDirectionInput() -> CGVector? {
+        let i: Int? = self.textFieldDirection.text.toInt()
+        if let index = i {
+        }
+        return nil
+    }
     
     private func toggleInputPanel() {
         if self.inputPanel.userInteractionEnabled {
@@ -337,7 +358,7 @@ class LevelDesignerViewController: UIViewController {
         if let node = self.selectedNode {
             self.textFieldCenterX.text = "\(node.center.x)"
             self.textFieldCenterY.text = "\(node.center.y)"
-            self.textFieldDirection.text = "\(round(node.direction.angleFromXPlus / (CGFloat(M_PI/6))))"
+            self.textFieldDirection.text = "\(Int(round(node.direction.angleFromXPlus / (CGFloat(M_PI/12)))))"
             
             if let flatNode = node as? GOFlatOpticRep {
                 self.textFieldThickness.text = "\(flatNode.thickness)"
@@ -444,6 +465,15 @@ class LevelDesignerViewController: UIViewController {
         let finalY = finalDisplayPoint.y - originalDisplayPoint.y + from.y
         
         view.center = CGPointMake(finalX, finalY)
+    }
+    
+    private func moveNode(node: GOOpticRep, to: GOCoordinate) {
+        let originalCenter = self.grid.getCenterForGridCell(node.center)
+        let finalCenter = self.grid.getCenterForGridCell(to)
+        let offsetX = finalCenter.x - originalCenter.x
+        let offsetY = finalCenter.y - originalCenter.y
+        let offset = CGPointMake(offsetX, offsetY)
+        self.moveNode(node, from: originalCenter, offset: offset)
     }
 
     private func removeNode(node: GOOpticRep) {
