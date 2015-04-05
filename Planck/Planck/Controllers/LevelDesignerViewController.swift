@@ -519,7 +519,7 @@ class LevelDesignerViewController: UIViewController {
     
     private func processPoints(points: [CGPoint]) {
         if points.count > 2 {
-            var bounceSound = NSURL(fileURLWithPath: NSBundle.mainBundle().pathForResource("cymbal", ofType: "m4a")!)
+            var bounceSound = NSURL(fileURLWithPath: NSBundle.mainBundle().pathForResource("snare-drum", ofType: "m4a")!)
             var prevPoint = points[0]
             var distance: CGFloat = 0
             for i in 1...points.count - 1 {
