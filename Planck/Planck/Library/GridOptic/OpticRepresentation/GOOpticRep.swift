@@ -49,11 +49,11 @@ class GOOpticRep: NSObject, NSCoding {
     
     func setCenter(center: GOCoordinate) {
         self.center = center
-        self.edges = [GOSegment]()
+        let direction = self.direction
+        self.direction = CGVectorMake(0, 1)
         self.setUpEdges()
-        self.setDirection(self.direction)
+        self.setDirection(direction)
         self.updateEdgesParent()
-        self.updateEdgesType()
     }
     
     func setUpEdges() {

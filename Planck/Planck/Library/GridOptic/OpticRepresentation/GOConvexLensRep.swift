@@ -93,6 +93,7 @@ class GOConvexLensRep: GOOpticRep {
     
     
     override func setUpEdges() {
+        self.edges = [GOSegment]()
         let radianSpan = acos((self.curvatureRadius - self.thickness/2) / self.curvatureRadius) * 2
         
         //left arc

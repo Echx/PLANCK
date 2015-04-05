@@ -206,10 +206,10 @@ class GOGrid: NSObject, NSCoding {
 
             
             if let outcomeRay = getOutcomeRay(currentRay, edge: edge!) {
-                println("\n\n\n\n\n\n")
-                println("currentRay:    \(currentRay.direction) from \(currentRay.startPoint)")
-                println("edge:          \(edge?.parent)  center: \(edge?.center)   direction: \(edge?.direction))")
-                println("outcomeRay:    \(outcomeRay.direction) from \(outcomeRay.startPoint)")
+//                println("\n\n\n\n\n\n")
+//                println("currentRay:    \(currentRay.direction) from \(currentRay.startPoint)")
+//                println("edge:          \(edge?.parent)  center: \(edge?.center)   direction: \(edge?.direction))")
+//                println("outcomeRay:    \(outcomeRay.direction) from \(outcomeRay.startPoint)")
                 edge = getNearestEdgeOnDirection(outcomeRay)
                 currentRay = outcomeRay
             } else {

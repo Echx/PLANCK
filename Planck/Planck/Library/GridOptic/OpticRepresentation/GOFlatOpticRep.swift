@@ -98,6 +98,7 @@ class GOFlatOpticRep: GOOpticRep {
     }
     
     override func setUpEdges() {
+        self.edges = [GOSegment]()
         //top edge
         let centerTopEdge = CGPointMake(CGFloat(self.center.x), CGFloat(self.center.y) + CGFloat(self.length)/2)
         let topEdge = GOLineSegment(center: centerTopEdge, length: self.thickness, direction: self.inversedNormalDirection)
