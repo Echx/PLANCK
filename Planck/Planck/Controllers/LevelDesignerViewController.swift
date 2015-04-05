@@ -60,7 +60,7 @@ class LevelDesignerViewController: UIViewController {
     private var deviceViews = [String: UIView]()
     private var rayLayers = [CAShapeLayer]()
     private var selectedNode: GOOpticRep?
-    private var audioPlayer: AVAudioPlayer!
+    private var audioPlayerList = [AVAudioPlayer]()
     private var grid: GOGrid
     
     private let identifierLength = 20
@@ -528,10 +528,11 @@ class LevelDesignerViewController: UIViewController {
                 if let device = self.grid.getInstrumentAtGridPoint(points[i]) {
                     switch device.type {
                     case DeviceType.Mirror :
-                        self.audioPlayer = AVAudioPlayer(contentsOfURL: bounceSound, error: nil)
-                        self.audioPlayer.prepareToPlay()
+                        let audioPlayer = AVAudioPlayer(contentsOfURL: bounceSound, error: nil)
+                        self.audioPlayerList.append(audioPlayer)
+                        audioPlayer.prepareToPlay()
                         let wait = NSTimeInterval(distance / Constant.lightSpeedBase + Constant.audioDelay)
-                        self.audioPlayer.playAtTime(wait + self.audioPlayer.deviceCurrentTime)
+                        audioPlayer.playAtTime(wait + audioPlayer.deviceCurrentTime)
 
                     default :
                         1
