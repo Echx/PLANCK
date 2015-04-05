@@ -131,8 +131,6 @@ class LevelDesignerViewController: UIViewController {
         self.planckInputPanel.alpha = 0
         self.planckInputPanel.userInteractionEnabled = false
         self.planckInputPanel.layer.cornerRadius = 20
-        
-        self.deviceSegment.addTarget(self, action: Selectors.segmentValueDidChangeAction, forControlEvents: UIControlEvents.ValueChanged)
     }
     
     func updateControlPanelValidItems(input: [Bool]) {
