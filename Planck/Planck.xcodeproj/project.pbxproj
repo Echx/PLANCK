@@ -34,80 +34,48 @@
 		263B09CC1ACEEF9600E7C99E /* CGVector+GOUtilities.swift in Sources */ = {isa = PBXBuildFile; fileRef = 263B09C21ACEEE1100E7C99E /* CGVector+GOUtilities.swift */; };
 		263B09CD1ACEEF9600E7C99E /* GOConstant.swift in Sources */ = {isa = PBXBuildFile; fileRef = 263B09C31ACEEE1100E7C99E /* GOConstant.swift */; };
 		263B09CE1ACEEF9600E7C99E /* GOUtilities.swift in Sources */ = {isa = PBXBuildFile; fileRef = 263B09C41ACEEE1100E7C99E /* GOUtilities.swift */; };
-		264F935E1ABEE8E900744B1A /* XInterface.swift in Sources */ = {isa = PBXBuildFile; fileRef = 267B008F1ABEE4DF000F35DD /* XInterface.swift */; };
-		267B00901ABEE4DF000F35DD /* XInterface.swift in Sources */ = {isa = PBXBuildFile; fileRef = 267B008F1ABEE4DF000F35DD /* XInterface.swift */; };
 		267EC2D41AB1DA01002FE745 /* CGVector+XUtility.swift in Sources */ = {isa = PBXBuildFile; fileRef = 267EC2D31AB1DA01002FE745 /* CGVector+XUtility.swift */; };
 		26C8ADDA1AD00437008ADACB /* LevelDesignerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26C8ADD91AD00437008ADACB /* LevelDesignerViewController.swift */; };
 		26C8ADDC1AD01A52008ADACB /* String+XUtility.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26C8ADDB1AD01A52008ADACB /* String+XUtility.swift */; };
 		26C8ADE01AD045D8008ADACB /* GOPath.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26C8ADDF1AD045D8008ADACB /* GOPath.swift */; };
 		620BD4461AB2E69800267C7B /* XNote.swift in Sources */ = {isa = PBXBuildFile; fileRef = 620BD4451AB2E69800267C7B /* XNote.swift */; };
-		622556A61AC5348300DA47AF /* bass-drum.m4a in Resources */ = {isa = PBXBuildFile; fileRef = 622556A31AC5348300DA47AF /* bass-drum.m4a */; };
-		622556A71AC5348300DA47AF /* cymbal.m4a in Resources */ = {isa = PBXBuildFile; fileRef = 622556A41AC5348300DA47AF /* cymbal.m4a */; };
-		622556A81AC5348300DA47AF /* snare-drum.m4a in Resources */ = {isa = PBXBuildFile; fileRef = 622556A51AC5348300DA47AF /* snare-drum.m4a */; };
 		6227FB6E1AAE285C007F49EA /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6227FB6D1AAE285C007F49EA /* AppDelegate.swift */; };
 		6227FB771AAE285C007F49EA /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 6227FB751AAE285C007F49EA /* Main.storyboard */; };
 		6227FB791AAE285C007F49EA /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 6227FB781AAE285C007F49EA /* Images.xcassets */; };
 		6227FB7C1AAE285C007F49EA /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6227FB7A1AAE285C007F49EA /* LaunchScreen.xib */; };
 		6227FB881AAE285C007F49EA /* PlanckTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6227FB871AAE285C007F49EA /* PlanckTests.swift */; };
-		6227FC0A1AAE28E7007F49EA /* GameViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6227FBF01AAE28E7007F49EA /* GameViewController.swift */; };
-		6227FC0B1AAE28E7007F49EA /* XEmitter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6227FBF41AAE28E7007F49EA /* XEmitter.swift */; };
-		6227FC0C1AAE28E7007F49EA /* XPhoton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6227FBF51AAE28E7007F49EA /* XPhoton.swift */; };
-		6227FC0D1AAE28E7007F49EA /* XPlanck.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6227FBF61AAE28E7007F49EA /* XPlanck.swift */; };
-		6227FC0E1AAE28E7007F49EA /* XConcaveLens.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6227FBF81AAE28E7007F49EA /* XConcaveLens.swift */; };
-		6227FC0F1AAE28E7007F49EA /* XConcaveMirror.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6227FBF91AAE28E7007F49EA /* XConcaveMirror.swift */; };
-		6227FC101AAE28E7007F49EA /* XConvexLens.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6227FBFA1AAE28E7007F49EA /* XConvexLens.swift */; };
-		6227FC111AAE28E7007F49EA /* XConvexMirror.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6227FBFB1AAE28E7007F49EA /* XConvexMirror.swift */; };
-		6227FC121AAE28E7007F49EA /* XFlatLens.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6227FBFC1AAE28E7007F49EA /* XFlatLens.swift */; };
-		6227FC131AAE28E7007F49EA /* XFlatMirror.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6227FBFD1AAE28E7007F49EA /* XFlatMirror.swift */; };
-		6227FC141AAE28E7007F49EA /* XInstrument.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6227FBFE1AAE28E7007F49EA /* XInstrument.swift */; };
-		6227FC151AAE28E7007F49EA /* XLens.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6227FBFF1AAE28E7007F49EA /* XLens.swift */; };
-		6227FC161AAE28E7007F49EA /* XMirror.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6227FC001AAE28E7007F49EA /* XMirror.swift */; };
-		6227FC171AAE28E7007F49EA /* XWall.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6227FC011AAE28E7007F49EA /* XWall.swift */; };
-		6227FC181AAE28E7007F49EA /* XNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6227FC021AAE28E7007F49EA /* XNode.swift */; };
 		6227FC191AAE28E7007F49EA /* XColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6227FC041AAE28E7007F49EA /* XColor.swift */; };
 		6227FC1A1AAE28E7007F49EA /* XConstant.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6227FC051AAE28E7007F49EA /* XConstant.swift */; };
 		6227FC1B1AAE28E7007F49EA /* XMedium.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6227FC061AAE28E7007F49EA /* XMedium.swift */; };
-		6227FC1C1AAE28E7007F49EA /* GameScene.sks in Resources */ = {isa = PBXBuildFile; fileRef = 6227FC081AAE28E7007F49EA /* GameScene.sks */; };
-		6227FC1D1AAE28E7007F49EA /* GameScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6227FC091AAE28E7007F49EA /* GameScene.swift */; };
 		6227FC201AAE291F007F49EA /* XColorTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6227FC1F1AAE291F007F49EA /* XColorTest.swift */; };
 		62988FD41AB2FA3400FD9AFF /* CGVector+XUtilityTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 62988FD31AB2FA3400FD9AFF /* CGVector+XUtilityTest.swift */; };
-		62988FE71AB2FA8800FD9AFF /* XEmitter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6227FBF41AAE28E7007F49EA /* XEmitter.swift */; };
-		62988FE81AB2FA8800FD9AFF /* XPhoton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6227FBF51AAE28E7007F49EA /* XPhoton.swift */; };
-		62988FE91AB2FA8800FD9AFF /* XPlanck.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6227FBF61AAE28E7007F49EA /* XPlanck.swift */; };
-		62988FEA1AB2FA8800FD9AFF /* XLens.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6227FBFF1AAE28E7007F49EA /* XLens.swift */; };
-		62988FEB1AB2FA8800FD9AFF /* XFlatLens.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6227FBFC1AAE28E7007F49EA /* XFlatLens.swift */; };
-		62988FEC1AB2FA8800FD9AFF /* XConcaveLens.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6227FBF81AAE28E7007F49EA /* XConcaveLens.swift */; };
-		62988FED1AB2FA8800FD9AFF /* XConvexLens.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6227FBFA1AAE28E7007F49EA /* XConvexLens.swift */; };
-		62988FEE1AB2FA8800FD9AFF /* XMirror.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6227FC001AAE28E7007F49EA /* XMirror.swift */; };
-		62988FEF1AB2FA8800FD9AFF /* XConcaveMirror.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6227FBF91AAE28E7007F49EA /* XConcaveMirror.swift */; };
-		62988FF01AB2FA8800FD9AFF /* XConvexMirror.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6227FBFB1AAE28E7007F49EA /* XConvexMirror.swift */; };
-		62988FF11AB2FA8800FD9AFF /* XFlatMirror.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6227FBFD1AAE28E7007F49EA /* XFlatMirror.swift */; };
-		62988FF21AB2FA8800FD9AFF /* XInstrument.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6227FBFE1AAE28E7007F49EA /* XInstrument.swift */; };
-		62988FF31AB2FA8800FD9AFF /* XWall.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6227FC011AAE28E7007F49EA /* XWall.swift */; };
-		62988FF41AB2FA8800FD9AFF /* XNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6227FC021AAE28E7007F49EA /* XNode.swift */; };
 		62988FF51AB2FA8800FD9AFF /* CGVector+XUtility.swift in Sources */ = {isa = PBXBuildFile; fileRef = 267EC2D31AB1DA01002FE745 /* CGVector+XUtility.swift */; };
 		62988FF61AB2FA8800FD9AFF /* XColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6227FC041AAE28E7007F49EA /* XColor.swift */; };
 		62988FF71AB2FA8800FD9AFF /* XConstant.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6227FC051AAE28E7007F49EA /* XConstant.swift */; };
 		62988FF81AB2FA8800FD9AFF /* XMedium.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6227FC061AAE28E7007F49EA /* XMedium.swift */; };
 		62988FF91AB2FA8800FD9AFF /* XNote.swift in Sources */ = {isa = PBXBuildFile; fileRef = 620BD4451AB2E69800267C7B /* XNote.swift */; };
 		629F42531AD046C600EFBABD /* GOEmitterRep.swift in Sources */ = {isa = PBXBuildFile; fileRef = 629F42521AD046C600EFBABD /* GOEmitterRep.swift */; };
-		62BC35541AB3096400B0B6F7 /* XContactableNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 62CB1FC11AB3068D00DC8EB8 /* XContactableNode.swift */; };
-		62BC35551AB3096900B0B6F7 /* GameScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6227FC091AAE28E7007F49EA /* GameScene.swift */; };
-		62CB1FC21AB3068D00DC8EB8 /* XContactableNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 62CB1FC11AB3068D00DC8EB8 /* XContactableNode.swift */; };
-		62E00C871AC46A5C00F10F10 /* piano-60.m4a in Resources */ = {isa = PBXBuildFile; fileRef = 62E00C7A1AC46A5C00F10F10 /* piano-60.m4a */; };
-		62E00C881AC46A5C00F10F10 /* piano-61.m4a in Resources */ = {isa = PBXBuildFile; fileRef = 62E00C7B1AC46A5C00F10F10 /* piano-61.m4a */; };
-		62E00C891AC46A5C00F10F10 /* piano-62.m4a in Resources */ = {isa = PBXBuildFile; fileRef = 62E00C7C1AC46A5C00F10F10 /* piano-62.m4a */; };
-		62E00C8A1AC46A5C00F10F10 /* piano-63.m4a in Resources */ = {isa = PBXBuildFile; fileRef = 62E00C7D1AC46A5C00F10F10 /* piano-63.m4a */; };
-		62E00C8B1AC46A5C00F10F10 /* piano-64.m4a in Resources */ = {isa = PBXBuildFile; fileRef = 62E00C7E1AC46A5C00F10F10 /* piano-64.m4a */; };
-		62E00C8C1AC46A5C00F10F10 /* piano-65.m4a in Resources */ = {isa = PBXBuildFile; fileRef = 62E00C7F1AC46A5C00F10F10 /* piano-65.m4a */; };
-		62E00C8D1AC46A5C00F10F10 /* piano-66.m4a in Resources */ = {isa = PBXBuildFile; fileRef = 62E00C801AC46A5C00F10F10 /* piano-66.m4a */; };
-		62E00C8E1AC46A5C00F10F10 /* piano-67.m4a in Resources */ = {isa = PBXBuildFile; fileRef = 62E00C811AC46A5C00F10F10 /* piano-67.m4a */; };
-		62E00C8F1AC46A5C00F10F10 /* piano-68.m4a in Resources */ = {isa = PBXBuildFile; fileRef = 62E00C821AC46A5C00F10F10 /* piano-68.m4a */; };
-		62E00C901AC46A5C00F10F10 /* piano-69.m4a in Resources */ = {isa = PBXBuildFile; fileRef = 62E00C831AC46A5C00F10F10 /* piano-69.m4a */; };
-		62E00C911AC46A5C00F10F10 /* piano-70.m4a in Resources */ = {isa = PBXBuildFile; fileRef = 62E00C841AC46A5C00F10F10 /* piano-70.m4a */; };
-		62E00C921AC46A5C00F10F10 /* piano-71.m4a in Resources */ = {isa = PBXBuildFile; fileRef = 62E00C851AC46A5C00F10F10 /* piano-71.m4a */; };
-		62E00C931AC46A5C00F10F10 /* piano-72.m4a in Resources */ = {isa = PBXBuildFile; fileRef = 62E00C861AC46A5C00F10F10 /* piano-72.m4a */; };
-		984F35D81ABF09F1008816C9 /* InstrumentNSCodingTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 984F35D71ABF09F1008816C9 /* InstrumentNSCodingTests.swift */; };
+		62D2833F1AD17D3C00A583FA /* XFlatMirror.swift in Sources */ = {isa = PBXBuildFile; fileRef = 62D2833E1AD17D3C00A583FA /* XFlatMirror.swift */; };
+		62D283411AD1823D00A583FA /* GOOpticRep+XUtility.swift in Sources */ = {isa = PBXBuildFile; fileRef = 62D283401AD1823D00A583FA /* GOOpticRep+XUtility.swift */; };
+		62D283451AD1852300A583FA /* bass-drum.m4a in Resources */ = {isa = PBXBuildFile; fileRef = 62D283421AD1852300A583FA /* bass-drum.m4a */; };
+		62D283461AD1852300A583FA /* cymbal.m4a in Resources */ = {isa = PBXBuildFile; fileRef = 62D283431AD1852300A583FA /* cymbal.m4a */; };
+		62D283471AD1852300A583FA /* snare-drum.m4a in Resources */ = {isa = PBXBuildFile; fileRef = 62D283441AD1852300A583FA /* snare-drum.m4a */; };
+		62D283561AD1853700A583FA /* piano-60.m4a in Resources */ = {isa = PBXBuildFile; fileRef = 62D283491AD1853700A583FA /* piano-60.m4a */; };
+		62D283571AD1853700A583FA /* piano-61.m4a in Resources */ = {isa = PBXBuildFile; fileRef = 62D2834A1AD1853700A583FA /* piano-61.m4a */; };
+		62D283581AD1853700A583FA /* piano-62.m4a in Resources */ = {isa = PBXBuildFile; fileRef = 62D2834B1AD1853700A583FA /* piano-62.m4a */; };
+		62D283591AD1853700A583FA /* piano-63.m4a in Resources */ = {isa = PBXBuildFile; fileRef = 62D2834C1AD1853700A583FA /* piano-63.m4a */; };
+		62D2835A1AD1853700A583FA /* piano-64.m4a in Resources */ = {isa = PBXBuildFile; fileRef = 62D2834D1AD1853700A583FA /* piano-64.m4a */; };
+		62D2835B1AD1853700A583FA /* piano-65.m4a in Resources */ = {isa = PBXBuildFile; fileRef = 62D2834E1AD1853700A583FA /* piano-65.m4a */; };
+		62D2835C1AD1853700A583FA /* piano-66.m4a in Resources */ = {isa = PBXBuildFile; fileRef = 62D2834F1AD1853700A583FA /* piano-66.m4a */; };
+		62D2835D1AD1853700A583FA /* piano-67.m4a in Resources */ = {isa = PBXBuildFile; fileRef = 62D283501AD1853700A583FA /* piano-67.m4a */; };
+		62D2835E1AD1853700A583FA /* piano-68.m4a in Resources */ = {isa = PBXBuildFile; fileRef = 62D283511AD1853700A583FA /* piano-68.m4a */; };
+		62D2835F1AD1853700A583FA /* piano-69.m4a in Resources */ = {isa = PBXBuildFile; fileRef = 62D283521AD1853700A583FA /* piano-69.m4a */; };
+		62D283601AD1853700A583FA /* piano-70.m4a in Resources */ = {isa = PBXBuildFile; fileRef = 62D283531AD1853700A583FA /* piano-70.m4a */; };
+		62D283611AD1853700A583FA /* piano-71.m4a in Resources */ = {isa = PBXBuildFile; fileRef = 62D283541AD1853700A583FA /* piano-71.m4a */; };
+		62D283621AD1853700A583FA /* piano-72.m4a in Resources */ = {isa = PBXBuildFile; fileRef = 62D283551AD1853700A583FA /* piano-72.m4a */; };
+		62D2836A1AD1890900A583FA /* XWall.swift in Sources */ = {isa = PBXBuildFile; fileRef = 62D283691AD1890900A583FA /* XWall.swift */; };
+		62D2836D1AD1892400A583FA /* XConvexLens.swift in Sources */ = {isa = PBXBuildFile; fileRef = 62D2836B1AD1892400A583FA /* XConvexLens.swift */; };
+		62D2836E1AD1892400A583FA /* XConcanveLens.swift in Sources */ = {isa = PBXBuildFile; fileRef = 62D2836C1AD1892400A583FA /* XConcanveLens.swift */; };
 		986E5DA31AC55604008EF3CE /* StorageManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 98D55F9D1ABF133000B3E86A /* StorageManager.swift */; };
 		98754ADC1AD0587F00817319 /* GameLevel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 98754ADB1AD0587F00817319 /* GameLevel.swift */; };
 		9885E76F1AD174500089325D /* GameLevel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 98754ADB1AD0587F00817319 /* GameLevel.swift */; };
@@ -166,15 +134,11 @@
 		263B09C21ACEEE1100E7C99E /* CGVector+GOUtilities.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "CGVector+GOUtilities.swift"; sourceTree = "<group>"; };
 		263B09C31ACEEE1100E7C99E /* GOConstant.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GOConstant.swift; sourceTree = "<group>"; };
 		263B09C41ACEEE1100E7C99E /* GOUtilities.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GOUtilities.swift; sourceTree = "<group>"; };
-		267B008F1ABEE4DF000F35DD /* XInterface.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = XInterface.swift; sourceTree = "<group>"; };
 		267EC2D31AB1DA01002FE745 /* CGVector+XUtility.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "CGVector+XUtility.swift"; sourceTree = "<group>"; };
 		26C8ADD91AD00437008ADACB /* LevelDesignerViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LevelDesignerViewController.swift; sourceTree = "<group>"; };
 		26C8ADDB1AD01A52008ADACB /* String+XUtility.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "String+XUtility.swift"; sourceTree = "<group>"; };
 		26C8ADDF1AD045D8008ADACB /* GOPath.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GOPath.swift; sourceTree = "<group>"; };
 		620BD4451AB2E69800267C7B /* XNote.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = XNote.swift; sourceTree = "<group>"; };
-		622556A31AC5348300DA47AF /* bass-drum.m4a */ = {isa = PBXFileReference; lastKnownFileType = file; path = "bass-drum.m4a"; sourceTree = "<group>"; };
-		622556A41AC5348300DA47AF /* cymbal.m4a */ = {isa = PBXFileReference; lastKnownFileType = file; path = cymbal.m4a; sourceTree = "<group>"; };
-		622556A51AC5348300DA47AF /* snare-drum.m4a */ = {isa = PBXFileReference; lastKnownFileType = file; path = "snare-drum.m4a"; sourceTree = "<group>"; };
 		6227FB681AAE285C007F49EA /* Planck.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Planck.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		6227FB6C1AAE285C007F49EA /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		6227FB6D1AAE285C007F49EA /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -184,44 +148,33 @@
 		6227FB811AAE285C007F49EA /* PlanckTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = PlanckTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		6227FB861AAE285C007F49EA /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		6227FB871AAE285C007F49EA /* PlanckTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlanckTests.swift; sourceTree = "<group>"; };
-		6227FBF01AAE28E7007F49EA /* GameViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GameViewController.swift; sourceTree = "<group>"; };
-		6227FBF41AAE28E7007F49EA /* XEmitter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = XEmitter.swift; sourceTree = "<group>"; };
-		6227FBF51AAE28E7007F49EA /* XPhoton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = XPhoton.swift; sourceTree = "<group>"; };
-		6227FBF61AAE28E7007F49EA /* XPlanck.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = XPlanck.swift; sourceTree = "<group>"; };
-		6227FBF81AAE28E7007F49EA /* XConcaveLens.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = XConcaveLens.swift; sourceTree = "<group>"; };
-		6227FBF91AAE28E7007F49EA /* XConcaveMirror.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = XConcaveMirror.swift; sourceTree = "<group>"; };
-		6227FBFA1AAE28E7007F49EA /* XConvexLens.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = XConvexLens.swift; sourceTree = "<group>"; };
-		6227FBFB1AAE28E7007F49EA /* XConvexMirror.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = XConvexMirror.swift; sourceTree = "<group>"; };
-		6227FBFC1AAE28E7007F49EA /* XFlatLens.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = XFlatLens.swift; sourceTree = "<group>"; };
-		6227FBFD1AAE28E7007F49EA /* XFlatMirror.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = XFlatMirror.swift; sourceTree = "<group>"; };
-		6227FBFE1AAE28E7007F49EA /* XInstrument.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = XInstrument.swift; sourceTree = "<group>"; };
-		6227FBFF1AAE28E7007F49EA /* XLens.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = XLens.swift; sourceTree = "<group>"; };
-		6227FC001AAE28E7007F49EA /* XMirror.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = XMirror.swift; sourceTree = "<group>"; };
-		6227FC011AAE28E7007F49EA /* XWall.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = XWall.swift; sourceTree = "<group>"; };
-		6227FC021AAE28E7007F49EA /* XNode.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = XNode.swift; sourceTree = "<group>"; };
 		6227FC041AAE28E7007F49EA /* XColor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = XColor.swift; sourceTree = "<group>"; };
 		6227FC051AAE28E7007F49EA /* XConstant.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = XConstant.swift; sourceTree = "<group>"; };
 		6227FC061AAE28E7007F49EA /* XMedium.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = XMedium.swift; sourceTree = "<group>"; };
-		6227FC081AAE28E7007F49EA /* GameScene.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = GameScene.sks; sourceTree = "<group>"; };
-		6227FC091AAE28E7007F49EA /* GameScene.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GameScene.swift; sourceTree = "<group>"; };
 		6227FC1F1AAE291F007F49EA /* XColorTest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = XColorTest.swift; sourceTree = "<group>"; };
 		62988FD31AB2FA3400FD9AFF /* CGVector+XUtilityTest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "CGVector+XUtilityTest.swift"; sourceTree = "<group>"; };
 		629F42521AD046C600EFBABD /* GOEmitterRep.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GOEmitterRep.swift; sourceTree = "<group>"; };
-		62CB1FC11AB3068D00DC8EB8 /* XContactableNode.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = XContactableNode.swift; sourceTree = "<group>"; };
-		62E00C7A1AC46A5C00F10F10 /* piano-60.m4a */ = {isa = PBXFileReference; lastKnownFileType = file; path = "piano-60.m4a"; sourceTree = "<group>"; };
-		62E00C7B1AC46A5C00F10F10 /* piano-61.m4a */ = {isa = PBXFileReference; lastKnownFileType = file; path = "piano-61.m4a"; sourceTree = "<group>"; };
-		62E00C7C1AC46A5C00F10F10 /* piano-62.m4a */ = {isa = PBXFileReference; lastKnownFileType = file; path = "piano-62.m4a"; sourceTree = "<group>"; };
-		62E00C7D1AC46A5C00F10F10 /* piano-63.m4a */ = {isa = PBXFileReference; lastKnownFileType = file; path = "piano-63.m4a"; sourceTree = "<group>"; };
-		62E00C7E1AC46A5C00F10F10 /* piano-64.m4a */ = {isa = PBXFileReference; lastKnownFileType = file; path = "piano-64.m4a"; sourceTree = "<group>"; };
-		62E00C7F1AC46A5C00F10F10 /* piano-65.m4a */ = {isa = PBXFileReference; lastKnownFileType = file; path = "piano-65.m4a"; sourceTree = "<group>"; };
-		62E00C801AC46A5C00F10F10 /* piano-66.m4a */ = {isa = PBXFileReference; lastKnownFileType = file; path = "piano-66.m4a"; sourceTree = "<group>"; };
-		62E00C811AC46A5C00F10F10 /* piano-67.m4a */ = {isa = PBXFileReference; lastKnownFileType = file; path = "piano-67.m4a"; sourceTree = "<group>"; };
-		62E00C821AC46A5C00F10F10 /* piano-68.m4a */ = {isa = PBXFileReference; lastKnownFileType = file; path = "piano-68.m4a"; sourceTree = "<group>"; };
-		62E00C831AC46A5C00F10F10 /* piano-69.m4a */ = {isa = PBXFileReference; lastKnownFileType = file; path = "piano-69.m4a"; sourceTree = "<group>"; };
-		62E00C841AC46A5C00F10F10 /* piano-70.m4a */ = {isa = PBXFileReference; lastKnownFileType = file; path = "piano-70.m4a"; sourceTree = "<group>"; };
-		62E00C851AC46A5C00F10F10 /* piano-71.m4a */ = {isa = PBXFileReference; lastKnownFileType = file; path = "piano-71.m4a"; sourceTree = "<group>"; };
-		62E00C861AC46A5C00F10F10 /* piano-72.m4a */ = {isa = PBXFileReference; lastKnownFileType = file; path = "piano-72.m4a"; sourceTree = "<group>"; };
-		984F35D71ABF09F1008816C9 /* InstrumentNSCodingTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InstrumentNSCodingTests.swift; sourceTree = "<group>"; };
+		62D2833E1AD17D3C00A583FA /* XFlatMirror.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = XFlatMirror.swift; path = Optics/XFlatMirror.swift; sourceTree = "<group>"; };
+		62D283401AD1823D00A583FA /* GOOpticRep+XUtility.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "GOOpticRep+XUtility.swift"; sourceTree = "<group>"; };
+		62D283421AD1852300A583FA /* bass-drum.m4a */ = {isa = PBXFileReference; lastKnownFileType = file; name = "bass-drum.m4a"; path = "Sounds/Percussion/bass-drum.m4a"; sourceTree = "<group>"; };
+		62D283431AD1852300A583FA /* cymbal.m4a */ = {isa = PBXFileReference; lastKnownFileType = file; name = cymbal.m4a; path = Sounds/Percussion/cymbal.m4a; sourceTree = "<group>"; };
+		62D283441AD1852300A583FA /* snare-drum.m4a */ = {isa = PBXFileReference; lastKnownFileType = file; name = "snare-drum.m4a"; path = "Sounds/Percussion/snare-drum.m4a"; sourceTree = "<group>"; };
+		62D283491AD1853700A583FA /* piano-60.m4a */ = {isa = PBXFileReference; lastKnownFileType = file; name = "piano-60.m4a"; path = "Sounds/Piano/piano-60.m4a"; sourceTree = "<group>"; };
+		62D2834A1AD1853700A583FA /* piano-61.m4a */ = {isa = PBXFileReference; lastKnownFileType = file; name = "piano-61.m4a"; path = "Sounds/Piano/piano-61.m4a"; sourceTree = "<group>"; };
+		62D2834B1AD1853700A583FA /* piano-62.m4a */ = {isa = PBXFileReference; lastKnownFileType = file; name = "piano-62.m4a"; path = "Sounds/Piano/piano-62.m4a"; sourceTree = "<group>"; };
+		62D2834C1AD1853700A583FA /* piano-63.m4a */ = {isa = PBXFileReference; lastKnownFileType = file; name = "piano-63.m4a"; path = "Sounds/Piano/piano-63.m4a"; sourceTree = "<group>"; };
+		62D2834D1AD1853700A583FA /* piano-64.m4a */ = {isa = PBXFileReference; lastKnownFileType = file; name = "piano-64.m4a"; path = "Sounds/Piano/piano-64.m4a"; sourceTree = "<group>"; };
+		62D2834E1AD1853700A583FA /* piano-65.m4a */ = {isa = PBXFileReference; lastKnownFileType = file; name = "piano-65.m4a"; path = "Sounds/Piano/piano-65.m4a"; sourceTree = "<group>"; };
+		62D2834F1AD1853700A583FA /* piano-66.m4a */ = {isa = PBXFileReference; lastKnownFileType = file; name = "piano-66.m4a"; path = "Sounds/Piano/piano-66.m4a"; sourceTree = "<group>"; };
+		62D283501AD1853700A583FA /* piano-67.m4a */ = {isa = PBXFileReference; lastKnownFileType = file; name = "piano-67.m4a"; path = "Sounds/Piano/piano-67.m4a"; sourceTree = "<group>"; };
+		62D283511AD1853700A583FA /* piano-68.m4a */ = {isa = PBXFileReference; lastKnownFileType = file; name = "piano-68.m4a"; path = "Sounds/Piano/piano-68.m4a"; sourceTree = "<group>"; };
+		62D283521AD1853700A583FA /* piano-69.m4a */ = {isa = PBXFileReference; lastKnownFileType = file; name = "piano-69.m4a"; path = "Sounds/Piano/piano-69.m4a"; sourceTree = "<group>"; };
+		62D283531AD1853700A583FA /* piano-70.m4a */ = {isa = PBXFileReference; lastKnownFileType = file; name = "piano-70.m4a"; path = "Sounds/Piano/piano-70.m4a"; sourceTree = "<group>"; };
+		62D283541AD1853700A583FA /* piano-71.m4a */ = {isa = PBXFileReference; lastKnownFileType = file; name = "piano-71.m4a"; path = "Sounds/Piano/piano-71.m4a"; sourceTree = "<group>"; };
+		62D283551AD1853700A583FA /* piano-72.m4a */ = {isa = PBXFileReference; lastKnownFileType = file; name = "piano-72.m4a"; path = "Sounds/Piano/piano-72.m4a"; sourceTree = "<group>"; };
+		62D283691AD1890900A583FA /* XWall.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = XWall.swift; path = Optics/XWall.swift; sourceTree = "<group>"; };
+		62D2836B1AD1892400A583FA /* XConvexLens.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = XConvexLens.swift; path = Optics/XConvexLens.swift; sourceTree = "<group>"; };
+		62D2836C1AD1892400A583FA /* XConcanveLens.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = XConcanveLens.swift; path = Optics/XConcanveLens.swift; sourceTree = "<group>"; };
 		98754ADB1AD0587F00817319 /* GameLevel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GameLevel.swift; sourceTree = "<group>"; };
 		98D55F9D1ABF133000B3E86A /* StorageManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = StorageManager.swift; path = Storage/StorageManager.swift; sourceTree = "<group>"; };
 		98F63A931AD163C70096A32E /* ArchiveTest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ArchiveTest.swift; path = Model/ArchiveTest.swift; sourceTree = "<group>"; };
@@ -319,9 +272,9 @@
 		622556A21AC5345600DA47AF /* Percussion */ = {
 			isa = PBXGroup;
 			children = (
-				622556A31AC5348300DA47AF /* bass-drum.m4a */,
-				622556A41AC5348300DA47AF /* cymbal.m4a */,
-				622556A51AC5348300DA47AF /* snare-drum.m4a */,
+				62D283421AD1852300A583FA /* bass-drum.m4a */,
+				62D283431AD1852300A583FA /* cymbal.m4a */,
+				62D283441AD1852300A583FA /* snare-drum.m4a */,
 			);
 			name = Percussion;
 			sourceTree = "<group>";
@@ -376,7 +329,6 @@
 				6227FC1E1AAE291F007F49EA /* Model */,
 				6227FB871AAE285C007F49EA /* PlanckTests.swift */,
 				6227FB851AAE285C007F49EA /* Supporting Files */,
-				984F35D71ABF09F1008816C9 /* InstrumentNSCodingTests.swift */,
 				98F63A931AD163C70096A32E /* ArchiveTest.swift */,
 			);
 			path = PlanckTests;
@@ -393,7 +345,6 @@
 		6227FBEF1AAE28E7007F49EA /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
-				6227FBF01AAE28E7007F49EA /* GameViewController.swift */,
 				26C8ADD91AD00437008ADACB /* LevelDesignerViewController.swift */,
 			);
 			path = Controllers;
@@ -402,51 +353,12 @@
 		6227FBF11AAE28E7007F49EA /* Models */ = {
 			isa = PBXGroup;
 			children = (
+				62D2833D1AD17D0300A583FA /* Optics */,
 				98D55F9C1ABF126700B3E86A /* Storage */,
-				6227FBF21AAE28E7007F49EA /* Sprites */,
 				6227FC031AAE28E7007F49EA /* Utilities */,
 				98754ADB1AD0587F00817319 /* GameLevel.swift */,
 			);
 			path = Models;
-			sourceTree = "<group>";
-		};
-		6227FBF21AAE28E7007F49EA /* Sprites */ = {
-			isa = PBXGroup;
-			children = (
-				6227FBF31AAE28E7007F49EA /* Optic Elements */,
-				6227FBF71AAE28E7007F49EA /* Optic Instruments */,
-				6227FC021AAE28E7007F49EA /* XNode.swift */,
-				62CB1FC11AB3068D00DC8EB8 /* XContactableNode.swift */,
-			);
-			path = Sprites;
-			sourceTree = "<group>";
-		};
-		6227FBF31AAE28E7007F49EA /* Optic Elements */ = {
-			isa = PBXGroup;
-			children = (
-				6227FBF41AAE28E7007F49EA /* XEmitter.swift */,
-				6227FBF51AAE28E7007F49EA /* XPhoton.swift */,
-				6227FBF61AAE28E7007F49EA /* XPlanck.swift */,
-			);
-			path = "Optic Elements";
-			sourceTree = "<group>";
-		};
-		6227FBF71AAE28E7007F49EA /* Optic Instruments */ = {
-			isa = PBXGroup;
-			children = (
-				6227FBFF1AAE28E7007F49EA /* XLens.swift */,
-				267B008F1ABEE4DF000F35DD /* XInterface.swift */,
-				6227FBFC1AAE28E7007F49EA /* XFlatLens.swift */,
-				6227FBF81AAE28E7007F49EA /* XConcaveLens.swift */,
-				6227FBFA1AAE28E7007F49EA /* XConvexLens.swift */,
-				6227FC001AAE28E7007F49EA /* XMirror.swift */,
-				6227FBF91AAE28E7007F49EA /* XConcaveMirror.swift */,
-				6227FBFB1AAE28E7007F49EA /* XConvexMirror.swift */,
-				6227FBFD1AAE28E7007F49EA /* XFlatMirror.swift */,
-				6227FBFE1AAE28E7007F49EA /* XInstrument.swift */,
-				6227FC011AAE28E7007F49EA /* XWall.swift */,
-			);
-			path = "Optic Instruments";
 			sourceTree = "<group>";
 		};
 		6227FC031AAE28E7007F49EA /* Utilities */ = {
@@ -458,6 +370,7 @@
 				6227FC061AAE28E7007F49EA /* XMedium.swift */,
 				620BD4451AB2E69800267C7B /* XNote.swift */,
 				26C8ADDB1AD01A52008ADACB /* String+XUtility.swift */,
+				62D283401AD1823D00A583FA /* GOOpticRep+XUtility.swift */,
 			);
 			path = Utilities;
 			sourceTree = "<group>";
@@ -465,8 +378,6 @@
 		6227FC071AAE28E7007F49EA /* Views */ = {
 			isa = PBXGroup;
 			children = (
-				6227FC081AAE28E7007F49EA /* GameScene.sks */,
-				6227FC091AAE28E7007F49EA /* GameScene.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -480,23 +391,42 @@
 			path = Model;
 			sourceTree = "<group>";
 		};
+		62D2833D1AD17D0300A583FA /* Optics */ = {
+			isa = PBXGroup;
+			children = (
+				62D2836B1AD1892400A583FA /* XConvexLens.swift */,
+				62D2836C1AD1892400A583FA /* XConcanveLens.swift */,
+				62D2833E1AD17D3C00A583FA /* XFlatMirror.swift */,
+				62D283691AD1890900A583FA /* XWall.swift */,
+			);
+			name = Optics;
+			sourceTree = "<group>";
+		};
+		62D283481AD1852900A583FA /* Piano */ = {
+			isa = PBXGroup;
+			children = (
+				62D283491AD1853700A583FA /* piano-60.m4a */,
+				62D2834A1AD1853700A583FA /* piano-61.m4a */,
+				62D2834B1AD1853700A583FA /* piano-62.m4a */,
+				62D2834C1AD1853700A583FA /* piano-63.m4a */,
+				62D2834D1AD1853700A583FA /* piano-64.m4a */,
+				62D2834E1AD1853700A583FA /* piano-65.m4a */,
+				62D2834F1AD1853700A583FA /* piano-66.m4a */,
+				62D283501AD1853700A583FA /* piano-67.m4a */,
+				62D283511AD1853700A583FA /* piano-68.m4a */,
+				62D283521AD1853700A583FA /* piano-69.m4a */,
+				62D283531AD1853700A583FA /* piano-70.m4a */,
+				62D283541AD1853700A583FA /* piano-71.m4a */,
+				62D283551AD1853700A583FA /* piano-72.m4a */,
+			);
+			name = Piano;
+			sourceTree = "<group>";
+		};
 		62E00C751AC466E800F10F10 /* Sound */ = {
 			isa = PBXGroup;
 			children = (
+				62D283481AD1852900A583FA /* Piano */,
 				622556A21AC5345600DA47AF /* Percussion */,
-				62E00C7A1AC46A5C00F10F10 /* piano-60.m4a */,
-				62E00C7B1AC46A5C00F10F10 /* piano-61.m4a */,
-				62E00C7C1AC46A5C00F10F10 /* piano-62.m4a */,
-				62E00C7D1AC46A5C00F10F10 /* piano-63.m4a */,
-				62E00C7E1AC46A5C00F10F10 /* piano-64.m4a */,
-				62E00C7F1AC46A5C00F10F10 /* piano-65.m4a */,
-				62E00C801AC46A5C00F10F10 /* piano-66.m4a */,
-				62E00C811AC46A5C00F10F10 /* piano-67.m4a */,
-				62E00C821AC46A5C00F10F10 /* piano-68.m4a */,
-				62E00C831AC46A5C00F10F10 /* piano-69.m4a */,
-				62E00C841AC46A5C00F10F10 /* piano-70.m4a */,
-				62E00C851AC46A5C00F10F10 /* piano-71.m4a */,
-				62E00C861AC46A5C00F10F10 /* piano-72.m4a */,
 			);
 			name = Sound;
 			sourceTree = "<group>";
@@ -558,7 +488,7 @@
 				TargetAttributes = {
 					6227FB671AAE285C007F49EA = {
 						CreatedOnToolsVersion = 6.1.1;
-						DevelopmentTeam = DJHPY9N63F;
+						DevelopmentTeam = W76H98A34A;
 						SystemCapabilities = {
 							com.apple.GameCenter = {
 								enabled = 0;
@@ -595,26 +525,25 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				6227FC1C1AAE28E7007F49EA /* GameScene.sks in Resources */,
-				622556A71AC5348300DA47AF /* cymbal.m4a in Resources */,
-				62E00C8A1AC46A5C00F10F10 /* piano-63.m4a in Resources */,
-				62E00C8F1AC46A5C00F10F10 /* piano-68.m4a in Resources */,
-				622556A81AC5348300DA47AF /* snare-drum.m4a in Resources */,
-				62E00C931AC46A5C00F10F10 /* piano-72.m4a in Resources */,
-				62E00C8D1AC46A5C00F10F10 /* piano-66.m4a in Resources */,
+				62D2835C1AD1853700A583FA /* piano-66.m4a in Resources */,
+				62D283471AD1852300A583FA /* snare-drum.m4a in Resources */,
+				62D2835A1AD1853700A583FA /* piano-64.m4a in Resources */,
+				62D283601AD1853700A583FA /* piano-70.m4a in Resources */,
 				6227FB7C1AAE285C007F49EA /* LaunchScreen.xib in Resources */,
+				62D2835B1AD1853700A583FA /* piano-65.m4a in Resources */,
+				62D283611AD1853700A583FA /* piano-71.m4a in Resources */,
+				62D2835D1AD1853700A583FA /* piano-67.m4a in Resources */,
+				62D283461AD1852300A583FA /* cymbal.m4a in Resources */,
 				6227FB791AAE285C007F49EA /* Images.xcassets in Resources */,
-				62E00C881AC46A5C00F10F10 /* piano-61.m4a in Resources */,
-				62E00C891AC46A5C00F10F10 /* piano-62.m4a in Resources */,
-				62E00C921AC46A5C00F10F10 /* piano-71.m4a in Resources */,
-				62E00C8B1AC46A5C00F10F10 /* piano-64.m4a in Resources */,
-				62E00C911AC46A5C00F10F10 /* piano-70.m4a in Resources */,
 				6227FB771AAE285C007F49EA /* Main.storyboard in Resources */,
-				62E00C8E1AC46A5C00F10F10 /* piano-67.m4a in Resources */,
-				62E00C901AC46A5C00F10F10 /* piano-69.m4a in Resources */,
-				62E00C871AC46A5C00F10F10 /* piano-60.m4a in Resources */,
-				62E00C8C1AC46A5C00F10F10 /* piano-65.m4a in Resources */,
-				622556A61AC5348300DA47AF /* bass-drum.m4a in Resources */,
+				62D2835E1AD1853700A583FA /* piano-68.m4a in Resources */,
+				62D283561AD1853700A583FA /* piano-60.m4a in Resources */,
+				62D283581AD1853700A583FA /* piano-62.m4a in Resources */,
+				62D283451AD1852300A583FA /* bass-drum.m4a in Resources */,
+				62D283571AD1853700A583FA /* piano-61.m4a in Resources */,
+				62D283591AD1853700A583FA /* piano-63.m4a in Resources */,
+				62D2835F1AD1853700A583FA /* piano-69.m4a in Resources */,
+				62D283621AD1853700A583FA /* piano-72.m4a in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -635,44 +564,31 @@
 				263B09B11ACEEDD800E7C99E /* GOStack.swift in Sources */,
 				263B09C61ACEEE1100E7C99E /* CGPoint+GOUtilities.swift in Sources */,
 				6227FC1A1AAE28E7007F49EA /* XConstant.swift in Sources */,
-				6227FC151AAE28E7007F49EA /* XLens.swift in Sources */,
 				98D55F9E1ABF133000B3E86A /* StorageManager.swift in Sources */,
 				263B09AC1ACEEDD800E7C99E /* GOCoordinate.swift in Sources */,
 				267EC2D41AB1DA01002FE745 /* CGVector+XUtility.swift in Sources */,
-				6227FC111AAE28E7007F49EA /* XConvexMirror.swift in Sources */,
 				26C8ADDA1AD00437008ADACB /* LevelDesignerViewController.swift in Sources */,
-				6227FC131AAE28E7007F49EA /* XFlatMirror.swift in Sources */,
-				6227FC121AAE28E7007F49EA /* XFlatLens.swift in Sources */,
-				6227FC181AAE28E7007F49EA /* XNode.swift in Sources */,
 				263B09BC1ACEEDD800E7C99E /* GOFlatOpticRep.swift in Sources */,
 				6227FC1B1AAE28E7007F49EA /* XMedium.swift in Sources */,
-				6227FC0F1AAE28E7007F49EA /* XConcaveMirror.swift in Sources */,
 				263B09AE1ACEEDD800E7C99E /* GOLineSegment.swift in Sources */,
 				263B09AF1ACEEDD800E7C99E /* GORay.swift in Sources */,
-				6227FC101AAE28E7007F49EA /* XConvexLens.swift in Sources */,
-				6227FC141AAE28E7007F49EA /* XInstrument.swift in Sources */,
-				6227FC1D1AAE28E7007F49EA /* GameScene.swift in Sources */,
-				267B00901ABEE4DF000F35DD /* XInterface.swift in Sources */,
 				263B09B61ACEEDD800E7C99E /* GOGrid.swift in Sources */,
-				6227FC0E1AAE28E7007F49EA /* XConcaveLens.swift in Sources */,
-				6227FC0C1AAE28E7007F49EA /* XPhoton.swift in Sources */,
 				263B09BB1ACEEDD800E7C99E /* GOFlatMirrorRep.swift in Sources */,
 				263B09B81ACEEDD800E7C99E /* GOConcaveLensRep.swift in Sources */,
 				263B09B01ACEEDD800E7C99E /* GOSegment.swift in Sources */,
-				6227FC0B1AAE28E7007F49EA /* XEmitter.swift in Sources */,
-				6227FC0A1AAE28E7007F49EA /* GameViewController.swift in Sources */,
 				629F42531AD046C600EFBABD /* GOEmitterRep.swift in Sources */,
 				263B09BD1ACEEDD800E7C99E /* GOFlatWallRep.swift in Sources */,
 				26C8ADDC1AD01A52008ADACB /* String+XUtility.swift in Sources */,
 				263B09AD1ACEEDD800E7C99E /* GOLine.swift in Sources */,
-				62CB1FC21AB3068D00DC8EB8 /* XContactableNode.swift in Sources */,
 				263B09B91ACEEDD800E7C99E /* GOConvexLensRep.swift in Sources */,
-				6227FC0D1AAE28E7007F49EA /* XPlanck.swift in Sources */,
+				62D2833F1AD17D3C00A583FA /* XFlatMirror.swift in Sources */,
+				62D283411AD1823D00A583FA /* GOOpticRep+XUtility.swift in Sources */,
+				62D2836D1AD1892400A583FA /* XConvexLens.swift in Sources */,
 				6227FB6E1AAE285C007F49EA /* AppDelegate.swift in Sources */,
 				263B09C81ACEEE1100E7C99E /* GOConstant.swift in Sources */,
-				6227FC161AAE28E7007F49EA /* XMirror.swift in Sources */,
 				6227FC191AAE28E7007F49EA /* XColor.swift in Sources */,
 				263B09BA1ACEEDD800E7C99E /* GOFlatLensRep.swift in Sources */,
+				62D2836E1AD1892400A583FA /* XConcanveLens.swift in Sources */,
 				26C8ADE01AD045D8008ADACB /* GOPath.swift in Sources */,
 				263B09AB1ACEEDD800E7C99E /* GOArcSegment.swift in Sources */,
 				263B09BE1ACEEDD800E7C99E /* GOOpticRep.swift in Sources */,
@@ -680,8 +596,8 @@
 				263B09C51ACEEE1100E7C99E /* CGFLoat+GOUtilities.swift in Sources */,
 				263B09C91ACEEE1100E7C99E /* GOUtilities.swift in Sources */,
 				262BE1A61ABE9A9000ABE965 /* AGSpriteButton.m in Sources */,
-				6227FC171AAE28E7007F49EA /* XWall.swift in Sources */,
 				98754ADC1AD0587F00817319 /* GameLevel.swift in Sources */,
+				62D2836A1AD1890900A583FA /* XWall.swift in Sources */,
 				263B09C71ACEEE1100E7C99E /* CGVector+GOUtilities.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -691,13 +607,10 @@
 			buildActionMask = 2147483647;
 			files = (
 				6227FC201AAE291F007F49EA /* XColorTest.swift in Sources */,
-				62988FED1AB2FA8800FD9AFF /* XConvexLens.swift in Sources */,
 				62988FD41AB2FA3400FD9AFF /* CGVector+XUtilityTest.swift in Sources */,
 				986E5DA31AC55604008EF3CE /* StorageManager.swift in Sources */,
 				6227FB881AAE285C007F49EA /* PlanckTests.swift in Sources */,
-				62988FEE1AB2FA8800FD9AFF /* XMirror.swift in Sources */,
 				98F63AA51AD1650F0096A32E /* GOPath.swift in Sources */,
-				62988FF21AB2FA8800FD9AFF /* XInstrument.swift in Sources */,
 				98F63AA31AD1650F0096A32E /* GOSegment.swift in Sources */,
 				62988FF51AB2FA8800FD9AFF /* CGVector+XUtility.swift in Sources */,
 				98F63A9D1AD165070096A32E /* GOGrid.swift in Sources */,
@@ -705,43 +618,28 @@
 				98F63A991AD165070096A32E /* GOFlatMirrorRep.swift in Sources */,
 				98F63A9A1AD165070096A32E /* GOFlatWallRep.swift in Sources */,
 				263B09CA1ACEEF9600E7C99E /* CGFLoat+GOUtilities.swift in Sources */,
-				62988FEF1AB2FA8800FD9AFF /* XConcaveMirror.swift in Sources */,
 				263B09CD1ACEEF9600E7C99E /* GOConstant.swift in Sources */,
 				62988FF71AB2FA8800FD9AFF /* XConstant.swift in Sources */,
 				98F63A951AD165070096A32E /* GOConcaveLensRep.swift in Sources */,
 				98F63A961AD165070096A32E /* GOConvexLensRep.swift in Sources */,
-				62988FF11AB2FA8800FD9AFF /* XFlatMirror.swift in Sources */,
 				62988FF61AB2FA8800FD9AFF /* XColor.swift in Sources */,
 				98F63A9F1AD1650F0096A32E /* GOCoordinate.swift in Sources */,
 				98F63A9E1AD1650F0096A32E /* GOArcSegment.swift in Sources */,
 				9885E76F1AD174500089325D /* GameLevel.swift in Sources */,
-				62988FF01AB2FA8800FD9AFF /* XConvexMirror.swift in Sources */,
-				62988FEC1AB2FA8800FD9AFF /* XConcaveLens.swift in Sources */,
 				98F63AA21AD1650F0096A32E /* GORay.swift in Sources */,
 				98F63A9B1AD165070096A32E /* GOOpticRep.swift in Sources */,
-				62988FF41AB2FA8800FD9AFF /* XNode.swift in Sources */,
-				62988FEB1AB2FA8800FD9AFF /* XFlatLens.swift in Sources */,
 				98F63AA11AD1650F0096A32E /* GOLineSegment.swift in Sources */,
 				263B09CE1ACEEF9600E7C99E /* GOUtilities.swift in Sources */,
 				98F63A941AD163C70096A32E /* ArchiveTest.swift in Sources */,
 				98F63AA01AD1650F0096A32E /* GOLine.swift in Sources */,
-				62988FEA1AB2FA8800FD9AFF /* XLens.swift in Sources */,
 				98F63AA41AD1650F0096A32E /* GOStack.swift in Sources */,
 				263B09CB1ACEEF9600E7C99E /* CGPoint+GOUtilities.swift in Sources */,
-				62BC35541AB3096400B0B6F7 /* XContactableNode.swift in Sources */,
-				62988FE91AB2FA8800FD9AFF /* XPlanck.swift in Sources */,
-				62BC35551AB3096900B0B6F7 /* GameScene.swift in Sources */,
-				984F35D81ABF09F1008816C9 /* InstrumentNSCodingTests.swift in Sources */,
 				98F63A9C1AD165070096A32E /* GOEmitterRep.swift in Sources */,
-				62988FE71AB2FA8800FD9AFF /* XEmitter.swift in Sources */,
-				62988FF31AB2FA8800FD9AFF /* XWall.swift in Sources */,
 				62988FF81AB2FA8800FD9AFF /* XMedium.swift in Sources */,
 				62988FF91AB2FA8800FD9AFF /* XNote.swift in Sources */,
-				264F935E1ABEE8E900744B1A /* XInterface.swift in Sources */,
 				263B09CC1ACEEF9600E7C99E /* CGVector+GOUtilities.swift in Sources */,
 				98F63A971AD165070096A32E /* GOFlatOpticRep.swift in Sources */,
 				98F63A981AD165070096A32E /* GOFlatLensRep.swift in Sources */,
-				62988FE81AB2FA8800FD9AFF /* XPhoton.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

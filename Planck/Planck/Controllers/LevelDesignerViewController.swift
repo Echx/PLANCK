@@ -33,6 +33,13 @@ class LevelDesignerViewController: UIViewController {
     @IBOutlet var labelDirection: UILabel!
     @IBOutlet var labelLength: UILabel!
     
+    @IBOutlet var planckInputPanel: UIView!
+    @IBOutlet var colorPicker: UIPickerView!
+    @IBOutlet var notePicker: UIPickerView!
+    @IBOutlet var accidentalPicker: UIPickerView!
+    @IBOutlet var groupPicker: UIPickerView!
+    
+    
     var paramenterFields: [UITextField] {
         get {
             return [textFieldCenterX,
@@ -116,9 +123,15 @@ class LevelDesignerViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.inputPanel.alpha = 0;
+        
+        self.inputPanel.alpha = 0
         self.inputPanel.userInteractionEnabled = false
         self.inputPanel.layer.cornerRadius = 20
+        
+        self.planckInputPanel.alpha = 0
+        self.planckInputPanel.userInteractionEnabled = false
+        self.planckInputPanel.layer.cornerRadius = 20
+        
         self.deviceSegment.addTarget(self, action: Selectors.segmentValueDidChangeAction, forControlEvents: UIControlEvents.ValueChanged)
     }
     
@@ -172,7 +185,17 @@ class LevelDesignerViewController: UIViewController {
     @IBAction func viewDidTapped(sender: UITapGestureRecognizer) {
         if sender.numberOfTapsRequired == 1 {
             if sender.numberOfTouchesRequired == 2 {
-                self.toggleInputPanel()
+                if self.deviceSegment.selectedSegmentIndex == DeviceSegmentIndex.planck {
+                    if self.inputPanel.userInteractionEnabled {
+                       self.toggleInputPanel()
+                    }
+                    self.togglePlanckInputPanel()
+                } else {
+                    if self.planckInputPanel.userInteractionEnabled {
+                        self.togglePlanckInputPanel()
+                    }
+                    self.toggleInputPanel()
+                }
                 return
             }
             
@@ -196,7 +219,7 @@ class LevelDesignerViewController: UIViewController {
             self.addNode(emitter, strokeColor: DeviceColor.emitter)
             
         case DeviceSegmentIndex.flatMirror:
-            let mirror = GOFlatMirrorRep(center: coordinate, thickness: 2, length: 8, direction: CGVectorMake(0, 1), id: String.generateRandomString(self.identifierLength))
+            let mirror = XFlatMirror(center: coordinate, thickness: 2, length: 8, direction: CGVectorMake(0, 1), id: String.generateRandomString(self.identifierLength))
             self.addNode(mirror, strokeColor: DeviceColor.mirror)
             
         case DeviceSegmentIndex.flatLens:
@@ -204,15 +227,15 @@ class LevelDesignerViewController: UIViewController {
             self.addNode(flatLens, strokeColor: DeviceColor.lens)
             
         case DeviceSegmentIndex.flatWall:
-            let wall = GOFlatWallRep(center: coordinate, thickness: 2, length: 8, direction: CGVectorMake(0, 1), id: String.generateRandomString(self.identifierLength))
+            let wall = XWall(center: coordinate, thickness: 2, length: 8, direction: CGVectorMake(0, 1), id: String.generateRandomString(self.identifierLength))
             self.addNode(wall, strokeColor: DeviceColor.wall)
             
         case DeviceSegmentIndex.concaveLens:
-            let concaveLens = GOConcaveLensRep(center: coordinate, direction: CGVectorMake(0, 1), thicknessCenter: 1, thicknessEdge: 3, curvatureRadius: 10, id: String.generateRandomString(self.identifierLength), refractionIndex: 1.5)
+            let concaveLens = XConcaveLens(center: coordinate, direction: CGVectorMake(0, 1), thicknessCenter: 1, thicknessEdge: 3, curvatureRadius: 10, id: String.generateRandomString(self.identifierLength), refractionIndex: 1.5)
             self.addNode(concaveLens, strokeColor: DeviceColor.lens)
             
         case DeviceSegmentIndex.convexLens:
-            let convexLens = GOConvexLensRep(center: coordinate, direction: CGVectorMake(0, 1), thickness: 2, curvatureRadius: 10, id: String.generateRandomString(self.identifierLength), refractionIndex: 1.5)
+            let convexLens = XConvexLens(center: coordinate, direction: CGVectorMake(0, 1), thickness: 2, curvatureRadius: 10, id: String.generateRandomString(self.identifierLength), refractionIndex: 1.5)
             self.addNode(convexLens, strokeColor: DeviceColor.lens)
             
         case DeviceSegmentIndex.planck:
@@ -528,6 +551,16 @@ class LevelDesignerViewController: UIViewController {
         }
     }
     
+    private func togglePlanckInputPanel() {
+        if self.planckInputPanel.userInteractionEnabled {
+            self.planckInputPanel.userInteractionEnabled = false
+            self.planckInputPanel.alpha = 0
+        } else {
+            self.planckInputPanel.userInteractionEnabled = true
+            self.planckInputPanel.alpha = 0.9
+        }
+    }
+    
     private func updateTextFieldInformation() {
         if let node = self.selectedNode {
             self.textFieldCenterX.text = "\(node.center.x)"
@@ -752,23 +785,18 @@ class LevelDesignerViewController: UIViewController {
     
     private func processPoints(points: [CGPoint]) {
         if points.count > 2 {
-            var bounceSound = NSURL(fileURLWithPath: NSBundle.mainBundle().pathForResource("snare-drum", ofType: "m4a")!)
             var prevPoint = points[0]
             var distance: CGFloat = 0
             for i in 1...points.count - 1 {
                 distance += points[i].getDistanceToPoint(prevPoint)
                 prevPoint = points[i]
                 if let device = self.grid.getInstrumentAtGridPoint(points[i]) {
-                    switch device.type {
-                    case DeviceType.Mirror :
-                        let audioPlayer = AVAudioPlayer(contentsOfURL: bounceSound, error: nil)
+                    if let sound = device.getSound() {
+                        let audioPlayer = AVAudioPlayer(contentsOfURL: sound, error: nil)
                         self.audioPlayerList.append(audioPlayer)
                         audioPlayer.prepareToPlay()
                         let wait = NSTimeInterval(distance / Constant.lightSpeedBase + Constant.audioDelay)
                         audioPlayer.playAtTime(wait + audioPlayer.deviceCurrentTime)
-
-                    default :
-                        1
                     }
                 }
             }
@@ -781,7 +809,6 @@ class LevelDesignerViewController: UIViewController {
     }
     
     
-
     /*
     // MARK: - Navigation
 

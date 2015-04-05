@@ -14,6 +14,7 @@ class GOEmitterRep: GOFlatOpticRep {
         self.setDeviceType(DeviceType.Emitter)
     }
     
+    
     required convenience init(coder aDecoder: NSCoder) {
         let id = aDecoder.decodeObjectForKey(GOCodingKey.optic_id) as String
         let edges = aDecoder.decodeObjectForKey(GOCodingKey.optic_edges) as [GOSegment]

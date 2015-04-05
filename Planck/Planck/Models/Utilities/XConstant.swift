@@ -9,7 +9,7 @@
 import UIKit
 
 struct Constant {
-    static let lightSpeedBase: CGFloat = 100 //points per second
+    static let lightSpeedBase: CGFloat = 60 //points per second
     static let audioDelay: CGFloat = 0.1
     static let angleCalculationPrecision: CGFloat = 1000 //1000 is 3 bit precision
     
@@ -147,4 +147,10 @@ struct LevelDesignerDefaults {
     
     static let eraserSize: CGFloat = 20;
     static let selectionAreaSize: CGFloat = 20;
+}
+
+struct SoundFiles {
+    static let snareDrumSound = NSURL(fileURLWithPath: NSBundle.mainBundle().pathForResource("snare-drum", ofType: "m4a")!)
+    static let bassDrumSound = NSURL(fileURLWithPath: NSBundle.mainBundle().pathForResource("bass-drum", ofType: "m4a")!)
+    static let cymbalSound = NSURL(fileURLWithPath: NSBundle.mainBundle().pathForResource("cymbal", ofType: "m4a")!)
 }
