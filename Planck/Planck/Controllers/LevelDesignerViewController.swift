@@ -13,6 +13,47 @@ class LevelDesignerViewController: UIViewController {
 
     @IBOutlet var deviceSegment: UISegmentedControl!
     @IBOutlet var inputPanel: UIView!
+    @IBOutlet var textFieldCenterX: UITextField!
+    @IBOutlet var textFieldCenterY: UITextField!
+    @IBOutlet var textFieldCurvatureRadius: UITextField!
+    @IBOutlet var textFieldRefractionIndex: UITextField!
+    @IBOutlet var textFieldThicknessEdge: UITextField!
+    @IBOutlet var textFieldThicknessCenter: UITextField!
+    @IBOutlet var textFieldThickness: UITextField!
+    @IBOutlet var textFieldDirection: UITextField!
+    @IBOutlet var textFieldLength: UITextField!
+    
+    @IBOutlet var labelCenterX: UILabel!
+    @IBOutlet var labelCenterY: UILabel!
+    @IBOutlet var labelCurvatureRadius: UILabel!
+    @IBOutlet var labelRefractionIndex: UILabel!
+    @IBOutlet var labelThicknessEdge: UILabel!
+    @IBOutlet var labelThicknessCenter: UILabel!
+    @IBOutlet var labelThickness: UILabel!
+    @IBOutlet var labelDirection: UILabel!
+    @IBOutlet var labelLength: UILabel!
+    
+    var paramenterFields: [UITextField] {
+        get {
+            return [textFieldCenterX,
+                textFieldCenterY,
+                textFieldDirection,
+                textFieldThickness,
+                textFieldThicknessCenter,
+                textFieldThicknessEdge,
+                textFieldRefractionIndex,
+                textFieldCurvatureRadius,
+                textFieldLength]
+        }
+    }
+    
+    var parameterLabels: [UILabel] {
+        get {
+            return [labelCenterX, labelCenterY, labelCurvatureRadius,
+                labelRefractionIndex, labelThicknessEdge, labelThicknessCenter, labelThickness,
+                labelDirection, labelLength]
+        }
+    }
     
     //store the views we draw the various optic devices
     //key is the id of the instrument
@@ -50,6 +91,19 @@ class LevelDesignerViewController: UIViewController {
         static let planck = 6;
     }
     
+    struct InputTextFieldIndex {
+        static let centerX = 0
+        static let centerY = 1
+        static let direction = 2
+        static let thickness = 3
+        static let thicknessCenter = 4
+        static let thicknessEdge = 5
+        static let refractionIndex = 6
+        static let curvatureRadius = 7
+        static let length = 8
+        
+    }
+    
     struct InputModeSegmentIndex {
         static let add = 0;
         static let edit = 1;
@@ -65,6 +119,54 @@ class LevelDesignerViewController: UIViewController {
         self.inputPanel.alpha = 0;
         self.inputPanel.userInteractionEnabled = false
         self.inputPanel.layer.cornerRadius = 20
+        self.deviceSegment.addTarget(self, action: Selectors.segmentValueDidChangeAction, forControlEvents: UIControlEvents.ValueChanged)
+        self.segmentValueDidChange(self.deviceSegment)
+    }
+    
+    func segmentValueDidChange(sender: UISegmentedControl) {
+        var input = [Bool]()
+        switch sender.selectedSegmentIndex {
+        case DeviceSegmentIndex.emitter:
+            input = [true, true, true, true, false, false, false, false, true]
+            
+        case DeviceSegmentIndex.flatMirror, DeviceSegmentIndex.flatWall, DeviceSegmentIndex.planck:
+            input = [true, true, true, true, false, false, false, false, true]
+            
+        case DeviceSegmentIndex.flatLens:
+            input = [true, true, true, false, false, false, true, false, true]
+            
+        case DeviceSegmentIndex.concaveLens:
+            input = [true, true, true, false, true, true, true, true, false]
+            
+        case DeviceSegmentIndex.convexLens:
+            input = [true, true, true, true, false, false, true, true, false]
+            
+        default:
+            fatalError("Segment Index Not Recogonized")
+        }
+        self.updateControlPanelValidItems(input)
+    }
+    
+    func updateControlPanelValidItems(input: [Bool]) {
+        for var i = 0; i < input.count; i++ {
+            self.paramenterFields[i].enabled = input[i]
+        }
+    }
+    
+    func updateControlPanelAppearence() {
+        for var i = 0; i < self.paramenterFields.count; i++ {
+            if self.paramenterFields[i].enabled {
+                self.paramenterFields[i].layer.borderColor = UIColor.blackColor().CGColor
+                self.paramenterFields[i].alpha = 1
+                self.parameterLabels[i].textColor = UIColor.blackColor()
+                self.parameterLabels[i].alpha = 1
+            } else {
+                self.paramenterFields[i].layer.borderColor = UIColor.grayColor().CGColor
+                self.paramenterFields[i].alpha = 0.5
+                self.parameterLabels[i].textColor = UIColor.grayColor()
+                self.parameterLabels[i].alpha = 0.5
+            }
+        }
     }
     
     //MARK - tap gesture handler
