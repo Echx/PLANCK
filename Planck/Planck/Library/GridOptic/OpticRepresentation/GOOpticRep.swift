@@ -49,6 +49,10 @@ class GOOpticRep: NSObject, NSCoding {
     
     func setCenter(center: GOCoordinate) {
         self.center = center
+        self.refresh()
+    }
+    
+    func refresh() {
         let direction = self.direction
         self.direction = CGVectorMake(0, 1)
         self.setUpEdges()
