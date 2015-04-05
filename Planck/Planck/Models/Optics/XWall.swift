@@ -1,5 +1,5 @@
 //
-//  XConvexLens.swift
+//  XWall.swift
 //  Planck
 //
 //  Created by Lei Mingyu on 05/04/15.
@@ -8,8 +8,9 @@
 
 import UIKit
 
-class XConvexLens: GOConcaveLensRep {
+class XWall: GOFlatWallRep {
     override func getSound() -> NSURL? {
-        return SoundFiles.bassDrumSound
+        return SoundFiles.cymbalSound
     }
 }
+

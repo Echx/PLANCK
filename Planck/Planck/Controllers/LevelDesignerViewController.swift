@@ -205,7 +205,7 @@ class LevelDesignerViewController: UIViewController {
             self.addNode(flatLens, strokeColor: DeviceColor.lens)
             
         case DeviceSegmentIndex.flatWall:
-            let wall = GOFlatWallRep(center: coordinate, thickness: 2, length: 8, direction: CGVectorMake(0, 1), id: String.generateRandomString(self.identifierLength))
+            let wall = XWall(center: coordinate, thickness: 2, length: 8, direction: CGVectorMake(0, 1), id: String.generateRandomString(self.identifierLength))
             self.addNode(wall, strokeColor: DeviceColor.wall)
             
         case DeviceSegmentIndex.concaveLens:
