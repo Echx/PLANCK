@@ -222,9 +222,13 @@ class GOArcSegment: GOSegment {
             } else {
                 n = CGVectorMake(-tangentNormal.dx, -tangentNormal.dy).normalised
             }
-            
+
             let cosTheta1 = -CGVector.dot(n, v2: l)
             let cosTheta2 = sqrt(1 - (indexIn / indexOut) * (indexIn / indexOut) * (1 - cosTheta1 * cosTheta1))
+            
+            if 1 - (indexIn / indexOut) * (indexIn / indexOut) * (1 - cosTheta1 * cosTheta1) < 0 {
+                return self.getReflectionRay(rayIn: rayIn)
+            }
             
             let x = (indexIn / indexOut) * l.dx + (indexIn / indexOut * cosTheta1 - cosTheta2) * n.dx
             let y = (indexIn / indexOut) * l.dy + (indexIn / indexOut * cosTheta1 - cosTheta2) * n.dy
