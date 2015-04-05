@@ -73,7 +73,6 @@
 		62E00C911AC46A5C00F10F10 /* piano-70.m4a in Resources */ = {isa = PBXBuildFile; fileRef = 62E00C841AC46A5C00F10F10 /* piano-70.m4a */; };
 		62E00C921AC46A5C00F10F10 /* piano-71.m4a in Resources */ = {isa = PBXBuildFile; fileRef = 62E00C851AC46A5C00F10F10 /* piano-71.m4a */; };
 		62E00C931AC46A5C00F10F10 /* piano-72.m4a in Resources */ = {isa = PBXBuildFile; fileRef = 62E00C861AC46A5C00F10F10 /* piano-72.m4a */; };
-		984F35D81ABF09F1008816C9 /* InstrumentNSCodingTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 984F35D71ABF09F1008816C9 /* InstrumentNSCodingTests.swift */; };
 		986E5DA31AC55604008EF3CE /* StorageManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 98D55F9D1ABF133000B3E86A /* StorageManager.swift */; };
 		98754ADC1AD0587F00817319 /* GameLevel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 98754ADB1AD0587F00817319 /* GameLevel.swift */; };
 		9885E76F1AD174500089325D /* GameLevel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 98754ADB1AD0587F00817319 /* GameLevel.swift */; };
@@ -170,7 +169,6 @@
 		62E00C841AC46A5C00F10F10 /* piano-70.m4a */ = {isa = PBXFileReference; lastKnownFileType = file; path = "piano-70.m4a"; sourceTree = "<group>"; };
 		62E00C851AC46A5C00F10F10 /* piano-71.m4a */ = {isa = PBXFileReference; lastKnownFileType = file; path = "piano-71.m4a"; sourceTree = "<group>"; };
 		62E00C861AC46A5C00F10F10 /* piano-72.m4a */ = {isa = PBXFileReference; lastKnownFileType = file; path = "piano-72.m4a"; sourceTree = "<group>"; };
-		984F35D71ABF09F1008816C9 /* InstrumentNSCodingTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InstrumentNSCodingTests.swift; sourceTree = "<group>"; };
 		98754ADB1AD0587F00817319 /* GameLevel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GameLevel.swift; sourceTree = "<group>"; };
 		98D55F9D1ABF133000B3E86A /* StorageManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = StorageManager.swift; path = Storage/StorageManager.swift; sourceTree = "<group>"; };
 		98F63A931AD163C70096A32E /* ArchiveTest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ArchiveTest.swift; path = Model/ArchiveTest.swift; sourceTree = "<group>"; };
@@ -325,7 +323,6 @@
 				6227FC1E1AAE291F007F49EA /* Model */,
 				6227FB871AAE285C007F49EA /* PlanckTests.swift */,
 				6227FB851AAE285C007F49EA /* Supporting Files */,
-				984F35D71ABF09F1008816C9 /* InstrumentNSCodingTests.swift */,
 				98F63A931AD163C70096A32E /* ArchiveTest.swift */,
 			);
 			path = PlanckTests;
@@ -617,7 +614,6 @@
 				98F63AA01AD1650F0096A32E /* GOLine.swift in Sources */,
 				98F63AA41AD1650F0096A32E /* GOStack.swift in Sources */,
 				263B09CB1ACEEF9600E7C99E /* CGPoint+GOUtilities.swift in Sources */,
-				984F35D81ABF09F1008816C9 /* InstrumentNSCodingTests.swift in Sources */,
 				98F63A9C1AD165070096A32E /* GOEmitterRep.swift in Sources */,
 				62988FF81AB2FA8800FD9AFF /* XMedium.swift in Sources */,
 				62988FF91AB2FA8800FD9AFF /* XNote.swift in Sources */,
