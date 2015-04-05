@@ -163,7 +163,7 @@ class LevelDesignerViewController: UIViewController {
     @IBAction func viewDidTapped(sender: UITapGestureRecognizer) {
         if sender.numberOfTapsRequired == 1 {
             if sender.numberOfTouchesRequired == 2 {
-                if ((self.selectedNode != nil) && (self.selectedNode!.isKindOfClass(XConvexLens))) {
+                if ((self.selectedNode != nil) && (self.selectedNode!.isKindOfClass(XPlanck))) {
                     if self.inputPanel.userInteractionEnabled {
                        self.toggleInputPanel()
                     }
@@ -217,7 +217,7 @@ class LevelDesignerViewController: UIViewController {
             self.addNode(convexLens, strokeColor: DeviceColor.lens)
             
         case DeviceSegmentIndex.planck:
-            let planck = GOFlatWallRep(center: coordinate, thickness: 6, length: 6, direction: CGVectorMake(0, 1), id: String.generateRandomString(self.identifierLength))
+            let planck = XPlanck(center: coordinate, thickness: 6, length: 6, direction: CGVectorMake(0, 1), id: String.generateRandomString(self.identifierLength))
             self.addNode(planck, strokeColor: DeviceColor.planck)
             
         default:
