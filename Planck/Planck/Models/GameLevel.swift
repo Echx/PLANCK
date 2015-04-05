@@ -8,7 +8,7 @@
 import UIKit
 import Foundation
 
-class GameLevel: NSObject {
+class GameLevel: NSObject, NSCoding {
     
     var grid:GOGrid
     
@@ -20,5 +20,18 @@ class GameLevel: NSObject {
         self.name = levelName
         self.index = levelIndex
         self.grid = grid
+    }
+    
+    required convenience init(coder aDecoder: NSCoder) {
+        let levelName = aDecoder.decodeObjectForKey("name") as String
+        let index = aDecoder.decodeObjectForKey("index") as Int
+        let grid = aDecoder.decodeObjectForKey("grid") as GOGrid
+        self.init(levelName:levelName, levelIndex: index, grid:grid)
+    }
+    
+    func encodeWithCoder(aCoder: NSCoder) {
+        aCoder.encodeObject(self.name, forKey: "name")
+        aCoder.encodeObject(self.index, forKey: "index")
+        aCoder.encodeObject(self.grid, forKey: "grid")
     }
 }

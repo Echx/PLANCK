@@ -1,5 +1,5 @@
 //
-//  GOGridArchiveTest.swift
+//  ArchiveTest.swift
 //  Planck
 //
 //  Created by Jiang Sheng on 5/4/15.
@@ -10,7 +10,7 @@ import UIKit
 import XCTest
 import Foundation
 
-class GOGridArchiveTest: XCTestCase {
+class ArchiveTest : XCTestCase {
 
     struct Default {
         static let center = GOCoordinate(x: 60, y: 35)
@@ -82,5 +82,33 @@ class GOGridArchiveTest: XCTestCase {
         XCTAssertEqual(recoverObj.direction, Default.direction, "Error Recovering")
         XCTAssertEqual(recoverObj.id, Default.MirrorKey, "Error Recovering")
     }
+    
+    func testArchiveGameLevel() {
+        let data = NSMutableData();
+        let archiver = NSKeyedArchiver(forWritingWithMutableData: data)
+        
+        var grid:GOGrid = GOGrid(width: 64, height: 48, andUnitLength: 16)
+        
+        grid.addInstrument(mirror)
+        
+        grid.addInstrument(flatLens)
+        
+        grid.addInstrument(concaveLens)
+        
+        grid.addInstrument(convexLens)
+        
+        grid.addInstrument(convexLens1)
+
+        let gameLevel = GameLevel(levelName: "haha", levelIndex: 12, grid: grid)
+        archiver.encodeObject(gameLevel, forKey: "game")
+        archiver.finishEncoding()
+        
+        let unarchiver = NSKeyedUnarchiver(forReadingWithData: data)
+        let recoverObj = unarchiver.decodeObjectForKey("game")! as GameLevel
+        XCTAssertEqual(recoverObj.name, "haha", "Error Recovering")
+        XCTAssertEqual(recoverObj.index, 12, "Error Recovering")
+        XCTAssertEqual(recoverObj.grid.instruments.count, grid.instruments.count, "Error Recovering")
+    }
+
 
 }

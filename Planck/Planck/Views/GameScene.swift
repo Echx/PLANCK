@@ -155,28 +155,28 @@ class GameScene: SKScene, XEmitterDelegate, SKPhysicsContactDelegate {
                     $0 is XInsrtument && !($0 is XPlanck)
                 })
                 var arrayForSave = NSMutableArray(array: instruments)
-                let fileManager = StorageManager.defaultManager
-                fileManager.saveCurrentLevel(arrayForSave)
+//                let fileManager = StorageManager.defaultManager
+//                fileManager.saveCurrentLevel(arrayForSave)
             } else if (selectedButtonName == "load") {
                 clearNodeInScene()
-                let fileManager = StorageManager.defaultManager
-                var level = fileManager.loadLevel("haha.dat")
-                for node in level {
-                    // treat emitter as a speicla case.
-                    if (node is XEmitter) {
-                        let storeEmitter = node as XEmitter
-                        let emitter = XEmitter(appearanceColor: storeEmitter.appearanceColor,
-                            direction: storeEmitter.direction)
-                        emitter.position = storeEmitter.position
-                        emitter.name = EmitterDefualts.nodeName
-                        self.addChild(emitter)
-                        emitter.zPosition = 1000
-                        emitter.delegate = self
-                        emitter.fire()
-                    } else {
-                        self.addChild(node as XInsrtument)
-                    }
-                }
+//                let fileManager = StorageManager.defaultManager
+//                var level = fileManager.loadLevel("haha.dat")
+//                for node in level {
+//                    // treat emitter as a speicla case.
+//                    if (node is XEmitter) {
+//                        let storeEmitter = node as XEmitter
+//                        let emitter = XEmitter(appearanceColor: storeEmitter.appearanceColor,
+//                            direction: storeEmitter.direction)
+//                        emitter.position = storeEmitter.position
+//                        emitter.name = EmitterDefualts.nodeName
+//                        self.addChild(emitter)
+//                        emitter.zPosition = 1000
+//                        emitter.delegate = self
+//                        emitter.fire()
+//                    } else {
+//                        self.addChild(node as XInsrtument)
+//                    }
+//                }
             } else {
                 self.currentOpticalDeviceMode = selectedButtonName
                 updateButtonAppearance(selectedButton: sender)

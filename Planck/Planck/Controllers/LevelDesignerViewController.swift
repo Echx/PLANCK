@@ -60,7 +60,7 @@ class LevelDesignerViewController: UIViewController {
     private var deviceViews = [String: UIView]()
     private var rayLayers = [CAShapeLayer]()
     private var selectedNode: GOOpticRep?
-    private var audioPlayer: AVAudioPlayer!
+    private var audioPlayerList = [AVAudioPlayer]()
     private var grid: GOGrid
     
     private let identifierLength = 20
@@ -325,7 +325,32 @@ class LevelDesignerViewController: UIViewController {
         self.shootRay()
     }
     
-    
+    @IBAction func saveButtonDidClicked(sender: AnyObject) {
+        // TODO: Should pop up a window for input name
+        // create a game leveld
+        let game = GameLevel(levelName: "TestSave", levelIndex: 1, grid: self.grid)
+        println(game.grid.instruments.count)
+        StorageManager.defaultManager.saveCurrentLevel(game)
+    }
+
+    @IBAction func loadButtonDidClicked(sender: AnyObject) {
+        self.grid.clearInstruments()
+        for (id, view) in self.deviceViews {
+            view.removeFromSuperview()
+        }
+        self.clearRay()
+        let game = StorageManager.defaultManager.loadLevel("haha.dat")
+        
+        for (id, opticNode) in game.grid.instruments {
+            self.addNode(opticNode, strokeColor: getColorForNode(opticNode))
+        }
+        
+        self.shootRay()
+        
+        println(game.name)
+        println(game.name)
+        println(game.grid.instruments.count)
+    }
 //------------------------------------------------------------------------------
 //    Private Methods
 //------------------------------------------------------------------------------
@@ -550,6 +575,7 @@ class LevelDesignerViewController: UIViewController {
         for layer in self.rayLayers {
             layer.removeFromSuperlayer()
         }
+        self.audioPlayerList.removeAll(keepCapacity: false)
     }
     
     private func getColorForNode(node: GOOpticRep) -> UIColor {
@@ -579,10 +605,11 @@ class LevelDesignerViewController: UIViewController {
                 if let device = self.grid.getInstrumentAtGridPoint(points[i]) {
                     switch device.type {
                     case DeviceType.Mirror :
-                        self.audioPlayer = AVAudioPlayer(contentsOfURL: bounceSound, error: nil)
-                        self.audioPlayer.prepareToPlay()
+                        let audioPlayer = AVAudioPlayer(contentsOfURL: bounceSound, error: nil)
+                        self.audioPlayerList.append(audioPlayer)
+                        audioPlayer.prepareToPlay()
                         let wait = NSTimeInterval(distance / Constant.lightSpeedBase + Constant.audioDelay)
-                        self.audioPlayer.playAtTime(wait + self.audioPlayer.deviceCurrentTime)
+                        audioPlayer.playAtTime(wait + audioPlayer.deviceCurrentTime)
 
                     default :
                         1
