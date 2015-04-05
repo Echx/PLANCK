@@ -213,7 +213,7 @@ class LevelDesignerViewController: UIViewController {
             self.addNode(concaveLens, strokeColor: DeviceColor.lens)
             
         case DeviceSegmentIndex.convexLens:
-            let convexLens = GOConvexLensRep(center: coordinate, direction: CGVectorMake(0, 1), thickness: 2, curvatureRadius: 10, id: String.generateRandomString(self.identifierLength), refractionIndex: 1.5)
+            let convexLens = XConvexLens(center: coordinate, direction: CGVectorMake(0, 1), thickness: 2, curvatureRadius: 10, id: String.generateRandomString(self.identifierLength), refractionIndex: 1.5)
             self.addNode(convexLens, strokeColor: DeviceColor.lens)
             
         case DeviceSegmentIndex.planck:
