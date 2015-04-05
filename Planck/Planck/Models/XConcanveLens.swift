@@ -1,5 +1,5 @@
 //
-//  XFlatMirror.swift
+//  XConcaveLens.swift
 //  Planck
 //
 //  Created by Lei Mingyu on 05/04/15.
@@ -8,8 +8,8 @@
 
 import UIKit
 
-class XFlatMirror: GOFlatMirrorRep {    
+class XConcaveLens: GOConcaveLensRep {
     override func getSound() -> NSURL? {
-        return SoundFiles.snareDrumSound
+        return SoundFiles.bassDrumSound
     }
 }
