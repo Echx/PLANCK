@@ -135,30 +135,6 @@ class LevelDesignerViewController: UIViewController {
         self.deviceSegment.addTarget(self, action: Selectors.segmentValueDidChangeAction, forControlEvents: UIControlEvents.ValueChanged)
     }
     
-    func segmentValueDidChange(sender: UISegmentedControl) {
-        var input = [Bool]()
-        switch sender.selectedSegmentIndex {
-        case DeviceSegmentIndex.emitter:
-            input = [true, true, true, true, false, false, false, false, true]
-            
-        case DeviceSegmentIndex.flatMirror, DeviceSegmentIndex.flatWall, DeviceSegmentIndex.planck:
-            input = [true, true, true, true, false, false, false, false, true]
-            
-        case DeviceSegmentIndex.flatLens:
-            input = [true, true, true, false, false, false, true, false, true]
-            
-        case DeviceSegmentIndex.concaveLens:
-            input = [true, true, true, false, true, true, true, true, false]
-            
-        case DeviceSegmentIndex.convexLens:
-            input = [true, true, true, true, false, false, true, true, false]
-            
-        default:
-            fatalError("Segment Index Not Recogonized")
-        }
-        self.updateControlPanelValidItems(input)
-    }
-    
     func updateControlPanelValidItems(input: [Bool]) {
         for var i = 0; i < input.count; i++ {
             self.paramenterFields[i].enabled = input[i]
