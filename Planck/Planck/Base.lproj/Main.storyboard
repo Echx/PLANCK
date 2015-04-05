@@ -194,8 +194,6 @@
                         <outlet property="labelThickness" destination="Pfw-ca-9Fp" id="Lm7-qg-eYq"/>
                         <outlet property="labelThicknessCenter" destination="0jj-Z4-gHq" id="ceg-JN-kdz"/>
                         <outlet property="labelThicknessEdge" destination="MR2-2G-ysM" id="bRV-FX-inI"/>
-                        <outlet property="loadButtonDidClicked" destination="9mI-Ed-y62" id="R0a-Mb-jUP"/>
-                        <outlet property="saveButtonDidClicked" destination="5r6-jO-y8Z" id="eK6-ne-kTM"/>
                         <outlet property="textFieldCenterX" destination="8e6-CP-bI1" id="YRA-4D-Z5I"/>
                         <outlet property="textFieldCenterY" destination="J9A-rf-tP5" id="N8r-tq-CtH"/>
                         <outlet property="textFieldCurvatureRadius" destination="TPT-r4-OZD" id="0G2-dj-Z31"/>

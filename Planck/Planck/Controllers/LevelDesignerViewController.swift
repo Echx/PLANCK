@@ -320,8 +320,10 @@ class LevelDesignerViewController: UIViewController {
     
     @IBAction func saveButtonDidClicked(sender: AnyObject) {
         // TODO: Should pop up a window for input name
-        // create a game level
+        // create a game leveld
         let game = GameLevel(levelName: "TestSave", levelIndex: 1, grid: self.grid)
+        println(game.grid.instruments.count)
+        StorageManager.defaultManager.saveCurrentLevel(game)
     }
 
     @IBAction func loadButtonDidClicked(sender: AnyObject) {
@@ -330,6 +332,17 @@ class LevelDesignerViewController: UIViewController {
             view.removeFromSuperview()
         }
         self.clearRay()
+        let game = StorageManager.defaultManager.loadLevel("haha.dat")
+        
+        for (id, opticNode) in game.grid.instruments {
+            self.addNode(opticNode, strokeColor: getColorForNode(opticNode))
+        }
+        
+        self.shootRay()
+        
+        println(game.name)
+        println(game.name)
+        println(game.grid.instruments.count)
     }
 //------------------------------------------------------------------------------
 //    Private Methods
