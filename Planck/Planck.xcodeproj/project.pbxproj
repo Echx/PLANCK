@@ -79,8 +79,9 @@
 		984F35D81ABF09F1008816C9 /* InstrumentNSCodingTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 984F35D71ABF09F1008816C9 /* InstrumentNSCodingTests.swift */; };
 		986E5DA31AC55604008EF3CE /* StorageManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 98D55F9D1ABF133000B3E86A /* StorageManager.swift */; };
 		98754ADC1AD0587F00817319 /* GameLevel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 98754ADB1AD0587F00817319 /* GameLevel.swift */; };
+		9885E76F1AD174500089325D /* GameLevel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 98754ADB1AD0587F00817319 /* GameLevel.swift */; };
 		98D55F9E1ABF133000B3E86A /* StorageManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 98D55F9D1ABF133000B3E86A /* StorageManager.swift */; };
-		98F63A941AD163C70096A32E /* GOGridArchiveTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 98F63A931AD163C70096A32E /* GOGridArchiveTest.swift */; };
+		98F63A941AD163C70096A32E /* ArchiveTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 98F63A931AD163C70096A32E /* ArchiveTest.swift */; };
 		98F63A951AD165070096A32E /* GOConcaveLensRep.swift in Sources */ = {isa = PBXBuildFile; fileRef = 263B09A41ACEEDD800E7C99E /* GOConcaveLensRep.swift */; };
 		98F63A961AD165070096A32E /* GOConvexLensRep.swift in Sources */ = {isa = PBXBuildFile; fileRef = 263B09A51ACEEDD800E7C99E /* GOConvexLensRep.swift */; };
 		98F63A971AD165070096A32E /* GOFlatOpticRep.swift in Sources */ = {isa = PBXBuildFile; fileRef = 263B09A81ACEEDD800E7C99E /* GOFlatOpticRep.swift */; };
@@ -177,7 +178,7 @@
 		984F35D71ABF09F1008816C9 /* InstrumentNSCodingTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InstrumentNSCodingTests.swift; sourceTree = "<group>"; };
 		98754ADB1AD0587F00817319 /* GameLevel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GameLevel.swift; sourceTree = "<group>"; };
 		98D55F9D1ABF133000B3E86A /* StorageManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = StorageManager.swift; path = Storage/StorageManager.swift; sourceTree = "<group>"; };
-		98F63A931AD163C70096A32E /* GOGridArchiveTest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = GOGridArchiveTest.swift; path = Model/GOGridArchiveTest.swift; sourceTree = "<group>"; };
+		98F63A931AD163C70096A32E /* ArchiveTest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ArchiveTest.swift; path = Model/ArchiveTest.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -330,7 +331,7 @@
 				6227FB871AAE285C007F49EA /* PlanckTests.swift */,
 				6227FB851AAE285C007F49EA /* Supporting Files */,
 				984F35D71ABF09F1008816C9 /* InstrumentNSCodingTests.swift */,
-				98F63A931AD163C70096A32E /* GOGridArchiveTest.swift */,
+				98F63A931AD163C70096A32E /* ArchiveTest.swift */,
 			);
 			path = PlanckTests;
 			sourceTree = "<group>";
@@ -616,11 +617,14 @@
 				62988FF61AB2FA8800FD9AFF /* XColor.swift in Sources */,
 				98F63A9F1AD1650F0096A32E /* GOCoordinate.swift in Sources */,
 				98F63A9E1AD1650F0096A32E /* GOArcSegment.swift in Sources */,
+				9885E76F1AD174500089325D /* GameLevel.swift in Sources */,
+				62988FF01AB2FA8800FD9AFF /* XConvexMirror.swift in Sources */,
+				62988FEC1AB2FA8800FD9AFF /* XConcaveLens.swift in Sources */,
 				98F63AA21AD1650F0096A32E /* GORay.swift in Sources */,
 				98F63A9B1AD165070096A32E /* GOOpticRep.swift in Sources */,
 				98F63AA11AD1650F0096A32E /* GOLineSegment.swift in Sources */,
 				263B09CE1ACEEF9600E7C99E /* GOUtilities.swift in Sources */,
-				98F63A941AD163C70096A32E /* GOGridArchiveTest.swift in Sources */,
+				98F63A941AD163C70096A32E /* ArchiveTest.swift in Sources */,
 				98F63AA01AD1650F0096A32E /* GOLine.swift in Sources */,
 				98F63AA41AD1650F0096A32E /* GOStack.swift in Sources */,
 				263B09CB1ACEEF9600E7C99E /* CGPoint+GOUtilities.swift in Sources */,

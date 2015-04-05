@@ -19,11 +19,11 @@ class StorageManager:NSObject  {
     private let levelDataFileType = ".dat"
     
     // MARK: - Save & Load
-    func saveCurrentLevel(level:NSMutableArray) {
+    func saveCurrentLevel(level:GameLevel) {
         let data = NSMutableData()
         let archiver = NSKeyedArchiver(forWritingWithMutableData: data)
         archiver.encodeObject(level, forKey: keyForArchieve)
-        println(level.count)
+
         archiver.finishEncoding()
         let documentsPath = NSSearchPathForDirectoriesInDomains(.DocumentDirectory,
             .UserDomainMask, true)[0] as NSString
@@ -35,7 +35,7 @@ class StorageManager:NSObject  {
     }
     
     // load the level based on the file name
-    func loadLevel(filename:NSString) -> NSMutableArray {
+    func loadLevel(filename:NSString) -> GameLevel {
         let documentsPath = NSSearchPathForDirectoriesInDomains(.DocumentDirectory,
             .UserDomainMask, true)[0] as NSString
         // the dat name should be set by user
@@ -43,7 +43,7 @@ class StorageManager:NSObject  {
         println(filePath)
         let data = NSData(contentsOfFile: filePath)
         let unarchiver = NSKeyedUnarchiver(forReadingWithData: data!)
-        return unarchiver.decodeObjectForKey(keyForArchieve) as NSMutableArray
+        return unarchiver.decodeObjectForKey(keyForArchieve) as GameLevel
     }
     
 }

@@ -293,6 +293,8 @@ class LevelDesignerViewController: UIViewController {
         }
     }
     
+
+    
     
     //MARK - long press gesture handler
     @IBAction func viewDidLongPressed(sender: UILongPressGestureRecognizer) {
@@ -317,12 +319,38 @@ class LevelDesignerViewController: UIViewController {
     @IBAction func updateSelectedNode() {
         if let node = self.selectedNode {
             self.updateCenterFromInput()
+            self.updateDirectionFromInput()
         }
         
         self.shootRay()
     }
     
-    
+    @IBAction func saveButtonDidClicked(sender: AnyObject) {
+        // TODO: Should pop up a window for input name
+        // create a game leveld
+        let game = GameLevel(levelName: "TestSave", levelIndex: 1, grid: self.grid)
+        println(game.grid.instruments.count)
+        StorageManager.defaultManager.saveCurrentLevel(game)
+    }
+
+    @IBAction func loadButtonDidClicked(sender: AnyObject) {
+        self.grid.clearInstruments()
+        for (id, view) in self.deviceViews {
+            view.removeFromSuperview()
+        }
+        self.clearRay()
+        let game = StorageManager.defaultManager.loadLevel("haha.dat")
+        
+        for (id, opticNode) in game.grid.instruments {
+            self.addNode(opticNode, strokeColor: getColorForNode(opticNode))
+        }
+        
+        self.shootRay()
+        
+        println(game.name)
+        println(game.name)
+        println(game.grid.instruments.count)
+    }
 //------------------------------------------------------------------------------
 //    Private Methods
 //------------------------------------------------------------------------------
@@ -337,11 +365,29 @@ class LevelDesignerViewController: UIViewController {
         }
     }
     
-    private func checkDirectionInput() -> CGVector? {
-        let i: Int? = self.textFieldDirection.text.toInt()
-        if let index = i {
+    private func updateDirectionFromInput() {
+        if let node = self.selectedNode {
+            let i: Int? = self.textFieldDirection.text.toInt()
+            if let index = i {
+                let originalDirection = node.direction
+                let effectDirection = CGVector.vectorFromXPlusRadius(CGFloat(index) * self.grid.unitDegree)
+                self.updateDirection(node, startVector: originalDirection, currentVector: effectDirection)
+            }
         }
-        return nil
+    }
+    
+    private func updateDirection(node: GOOpticRep, startVector: CGVector, currentVector: CGVector) {
+        var angle = CGVector.angleFrom(startVector, to: currentVector)
+        let nodeAngle = node.direction.angleFromXPlus
+        let effectAngle = angle + nodeAngle
+        let count = round(effectAngle / self.grid.unitDegree)
+        let finalAngle = self.grid.unitDegree * count
+        angle = finalAngle - nodeAngle
+        node.setDirection(CGVector.vectorFromXPlusRadius(finalAngle))
+        if let view = self.deviceViews[node.id] {
+            var layerTransform = CATransform3DRotate(view.layer.transform, angle, 0, 0, 1)
+            view.layer.transform = layerTransform
+        }
     }
     
     private func toggleInputPanel() {
@@ -358,7 +404,7 @@ class LevelDesignerViewController: UIViewController {
         if let node = self.selectedNode {
             self.textFieldCenterX.text = "\(node.center.x)"
             self.textFieldCenterY.text = "\(node.center.y)"
-            self.textFieldDirection.text = "\(Int(round(node.direction.angleFromXPlus / (CGFloat(M_PI/12)))))"
+            self.textFieldDirection.text = "\(Int(round(node.direction.angleFromXPlus / self.grid.unitDegree)))"
             
             if let flatNode = node as? GOFlatOpticRep {
                 self.textFieldThickness.text = "\(flatNode.thickness)"
