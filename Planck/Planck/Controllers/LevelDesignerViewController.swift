@@ -284,7 +284,6 @@ class LevelDesignerViewController: UIViewController {
                     firstViewCenter = nil
                 }
             }
-
         }
         
         if sender.state == UIGestureRecognizerState.Ended {
@@ -318,9 +317,13 @@ class LevelDesignerViewController: UIViewController {
     
     @IBAction func updateSelectedNode() {
         if let node = self.selectedNode {
+            self.updateThicknessFromInput()
+            self.updateLengthFromInput()
             self.updateCenterFromInput()
             self.updateDirectionFromInput()
+            self.refreshSelectedNode()
         }
+        
         
         self.shootRay()
     }
@@ -351,16 +354,85 @@ class LevelDesignerViewController: UIViewController {
         println(game.name)
         println(game.grid.instruments.count)
     }
+    
+    
+    
 //------------------------------------------------------------------------------
 //    Private Methods
 //------------------------------------------------------------------------------
+    private func refreshSelectedNode() {
+        if let node = self.selectedNode {
+            if var view = self.deviceViews[node.id] {
+                view.removeFromSuperview()
+                self.addNode(node, strokeColor: self.getColorForNode(node))
+            }
+            self.deselectNode()
+            self.selectNode(node)
+        }
+    }
+    
+    private func updateLengthFromInput() {
+        if let node = self.selectedNode {
+            if let flatNode = node as? GOFlatOpticRep {
+                let l: CGFloat? = CGFloat((self.textFieldLength.text as NSString).floatValue)
+                if let length = l {
+                    if length > 0 && length < CGFloat(self.grid.width) && length < CGFloat(self.grid.width) {
+                        flatNode.length = length
+                    }
+                }
+            }
+        }
+    }
+    
+    private func updateThicknessFromInput() {
+        if let node = self.selectedNode {
+            let f: CGFloat? = CGFloat((self.textFieldThickness.text as NSString).floatValue)
+            let fc: CGFloat? = CGFloat((self.textFieldThicknessCenter.text as NSString).floatValue)
+            let fe: CGFloat? = CGFloat((self.textFieldThicknessEdge.text as NSString).floatValue)
+            
+            if let flatNode = node as? GOFlatOpticRep {
+                if let thickness = f {
+                    if thickness > 0 && thickness < CGFloat(self.grid.width) && thickness < CGFloat(self.grid.height) {
+                        flatNode.thickness = thickness
+                    }
+                }
+            }
+            
+            if let convexNode = node as? GOConvexLensRep {
+                if let thickness = f {
+                    if thickness > 0 && thickness < CGFloat(self.grid.width) && thickness < CGFloat(self.grid.height) {
+                        convexNode.thickness = thickness
+                    }
+                }
+
+            }
+            
+            if let concaveNode = node as? GOConcaveLensRep {
+                if let thicknessCenter = fc {
+                    if let thicknessEdge = fe {
+                        if thicknessCenter < thicknessEdge &&
+                            thicknessCenter > 0 &&
+                            thicknessEdge < CGFloat(self.grid.width) &&
+                            thicknessEdge < CGFloat(self.grid.height) {
+                                concaveNode.thicknessEdge = thicknessEdge
+                                concaveNode.thicknessCenter = thicknessCenter
+                        }
+                    }
+                }
+            }
+            let view = self.deviceViews[node.id]
+        }
+    }
+    
     private func updateCenterFromInput() {
         if let node = self.selectedNode {
             let x: Int? = self.textFieldCenterX.text.toInt()
             let y: Int? = self.textFieldCenterY.text.toInt()
             
             if x != nil && y != nil {
-                self.moveNode(node, to: GOCoordinate(x: x!, y: y!))
+                if x! >= 0 && x! <= self.grid.width && y! >= 0 && y! <= self.grid.height {
+                    node.center = GOCoordinate(x: x!, y: y!)
+                }
             }
         }
     }
@@ -371,7 +443,8 @@ class LevelDesignerViewController: UIViewController {
             if let index = i {
                 let originalDirection = node.direction
                 let effectDirection = CGVector.vectorFromXPlusRadius(CGFloat(index) * self.grid.unitDegree)
-                self.updateDirection(node, startVector: originalDirection, currentVector: effectDirection)
+//                self.updateDirection(node, startVector: originalDirection, currentVector: effectDirection)
+                node.direction = effectDirection
             }
         }
     }

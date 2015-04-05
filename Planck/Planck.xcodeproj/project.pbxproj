@@ -277,13 +277,13 @@
 		263B09941ACEEDD800E7C99E /* DataStructure */ = {
 			isa = PBXGroup;
 			children = (
-				263B09951ACEEDD800E7C99E /* GOArcSegment.swift */,
-				263B09961ACEEDD800E7C99E /* GOCoordinate.swift */,
 				263B09971ACEEDD800E7C99E /* GOLine.swift */,
-				263B09981ACEEDD800E7C99E /* GOLineSegment.swift */,
 				263B09991ACEEDD800E7C99E /* GORay.swift */,
 				263B099A1ACEEDD800E7C99E /* GOSegment.swift */,
+				263B09981ACEEDD800E7C99E /* GOLineSegment.swift */,
+				263B09951ACEEDD800E7C99E /* GOArcSegment.swift */,
 				263B099B1ACEEDD800E7C99E /* GOStack.swift */,
+				263B09961ACEEDD800E7C99E /* GOCoordinate.swift */,
 				26C8ADDF1AD045D8008ADACB /* GOPath.swift */,
 			);
 			path = DataStructure;

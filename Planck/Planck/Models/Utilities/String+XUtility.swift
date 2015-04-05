@@ -6,7 +6,7 @@
 //  Copyright (c) 2015年 Echx. All rights reserved.
 //
 
-import Foundation
+import UIKit
 
 extension String {
     static func generateRandomString(len: Int) -> String {
