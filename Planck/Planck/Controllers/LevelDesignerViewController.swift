@@ -200,6 +200,11 @@ class LevelDesignerViewController: UIViewController {
     }
     
     
+    
+//------------------------------------------------------------------------------
+//    Private Methods
+//------------------------------------------------------------------------------
+    
     private func selectNode(optionalNode: GOOpticRep?) {
         if let node = optionalNode {
             self.selectedNode = node
