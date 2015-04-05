@@ -67,6 +67,9 @@ class LevelDesignerViewController: UIViewController {
     
     private func addNode(node: GOOpticRep, strokeColor: UIColor) {
         self.clearRay()
+        var coordinateBackup = node.center
+        node.setCenter(GOCoordinate(x: self.grid.width/2, y: self.grid.height/2))
+        
         self.grid.addInstrument(node)
         let layer = CAShapeLayer()
         layer.strokeEnd = 1.0
@@ -81,6 +84,12 @@ class LevelDesignerViewController: UIViewController {
         view.layer.addSublayer(layer)
         self.deviceViews[node.id] = view
         self.view.insertSubview(view, atIndex: 0)
+        
+        var offsetX = CGFloat(coordinateBackup.x - node.center.x) * self.grid.unitLength
+        var offsetY = CGFloat(coordinateBackup.y - node.center.y) * self.grid.unitLength
+        var offset = CGPointMake(offsetX, offsetY)
+        
+        self.moveNode(node, from: self.view.center, offset: offset)
     }
     
     private func addRay(point: CGPoint) {
@@ -173,49 +182,76 @@ class LevelDesignerViewController: UIViewController {
     var firstLocation: CGPoint?
     var lastLocation: CGPoint?
     var firstViewCenter: CGPoint?
+    var firstViewTransform: CATransform3D?
     var touchedNode: GOOpticRep?
     @IBAction func viewDidPanned(sender: UIPanGestureRecognizer) {
         let location = sender.locationInView(self.view)
         
-        if sender.state == UIGestureRecognizerState.Began || touchedNode == nil {
-            firstLocation = location
-            lastLocation = location
-            touchedNode = self.grid.getInstrumentAtPoint(location)
-            if let node = touchedNode {
-                firstViewCenter = self.deviceViews[node.id]!.center
-                self.clearRay()
+        if let node = self.selectedNode {
+            let view = self.deviceViews[node.id]!
+            if sender.state == UIGestureRecognizerState.Began {
+                firstLocation = location
+                lastLocation = location
+                firstViewTransform = view.layer.transform
+            } else if sender.state == UIGestureRecognizerState.Changed {
+                let startVector = CGVectorMake(firstLocation!.x - self.grid.getCenterForGridCell(node.center).x,
+                                               firstLocation!.y - self.grid.getCenterForGridCell(node.center).y)
+                let currentVector = CGVectorMake(location.x - self.grid.getCenterForGridCell(node.center).x,
+                                                 location.y - self.grid.getCenterForGridCell(node.center).y)
+                var layerTransform = CATransform3DRotate(firstViewTransform!, CGVector.angleFrom(startVector, to: currentVector), 0, 0, 1)
+                view.layer.transform = layerTransform
+            } else if sender.state == UIGestureRecognizerState.Ended {
+                
             }
+        } else {
+            if sender.state == UIGestureRecognizerState.Began || touchedNode == nil {
+                firstLocation = location
+                lastLocation = location
+                touchedNode = self.grid.getInstrumentAtPoint(location)
+                if let node = touchedNode {
+                    firstViewCenter = self.deviceViews[node.id]!.center
+                    self.clearRay()
+                }
+            }
+            
+            if let node = touchedNode {
+                let view = self.deviceViews[node.id]!
+                view.center = CGPointMake(view.center.x + location.x - lastLocation!.x, view.center.y + location.y - lastLocation!.y)
+                lastLocation = location
+                if sender.state == UIGestureRecognizerState.Ended {
+                    
+                    let offset = CGPointMake(location.x - firstLocation!.x, location.y - firstLocation!.y)
+                    
+                    self.moveNode(node, from: firstViewCenter!, offset: offset)
+                    
+                    lastLocation = nil
+                    firstLocation = nil
+                    firstViewCenter = nil
+                }
+            }
+
         }
         
-        if let node = touchedNode {
-            let view = self.deviceViews[node.id]!
-            view.center = CGPointMake(view.center.x + location.x - lastLocation!.x, view.center.y + location.y - lastLocation!.y)
-            lastLocation = location
-            
-            
-            if sender.state == UIGestureRecognizerState.Ended {
-                
-                let offsetX = location.x - firstLocation!.x
-                let offsetY = location.y - firstLocation!.y
-                
-                let originalDisplayPoint = self.grid.getCenterForGridCell(node.center)
-                let effectDisplayPoint = CGPointMake(originalDisplayPoint.x + offsetX, originalDisplayPoint.y + offsetY)
-                
-                node.setCenter(self.grid.getGridCoordinateForPoint(effectDisplayPoint))
-                
-                let view = self.deviceViews[node.id]!
-                let finalDisplayPoint = self.grid.getCenterForGridCell(node.center)
-                let finalX = finalDisplayPoint.x - originalDisplayPoint.x + firstViewCenter!.x
-                let finalY = finalDisplayPoint.y - originalDisplayPoint.y + firstViewCenter!.y
-                
-                view.center = CGPointMake(finalX, finalY)
-                
-                lastLocation = nil
-                firstLocation = nil
-                firstViewCenter = nil
-                self.shootRay()
-            }
+        if sender.state == UIGestureRecognizerState.Ended {
+            self.shootRay()
         }
+    }
+    
+    private func moveNode(node: GOOpticRep, from: CGPoint,offset: CGPoint) {
+        let offsetX = offset.x
+        let offsetY = offset.y
+        
+        let originalDisplayPoint = self.grid.getCenterForGridCell(node.center)
+        let effectDisplayPoint = CGPointMake(originalDisplayPoint.x + offsetX, originalDisplayPoint.y + offsetY)
+        
+        node.setCenter(self.grid.getGridCoordinateForPoint(effectDisplayPoint))
+        
+        let view = self.deviceViews[node.id]!
+        let finalDisplayPoint = self.grid.getCenterForGridCell(node.center)
+        let finalX = finalDisplayPoint.x - originalDisplayPoint.x + from.x
+        let finalY = finalDisplayPoint.y - originalDisplayPoint.y + from.y
+        
+        view.center = CGPointMake(finalX, finalY)
     }
     
     

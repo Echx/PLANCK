@@ -111,6 +111,12 @@ extension CGVector {
         return acos(temp)
     }
     
+    // the angle from v1 to v2 in anti-clockwise
+    static func angleFrom(v1: CGVector, to v2: CGVector) -> CGFloat {
+        var angle = v2.angleFromXPlus - v1.angleFromXPlus
+        return angle >= 0 ? angle : angle + CGFloat(M_PI * 2)
+    }
+    
     func makePerpendicularVector() -> CGVector {
         return CGVectorMake(-self.dy, self.dx);
     }
