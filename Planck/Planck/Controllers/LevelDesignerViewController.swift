@@ -120,7 +120,6 @@ class LevelDesignerViewController: UIViewController {
         self.inputPanel.userInteractionEnabled = false
         self.inputPanel.layer.cornerRadius = 20
         self.deviceSegment.addTarget(self, action: Selectors.segmentValueDidChangeAction, forControlEvents: UIControlEvents.ValueChanged)
-        self.segmentValueDidChange(self.deviceSegment)
     }
     
     func segmentValueDidChange(sender: UISegmentedControl) {
@@ -321,6 +320,9 @@ class LevelDesignerViewController: UIViewController {
             self.updateLengthFromInput()
             self.updateCenterFromInput()
             self.updateDirectionFromInput()
+            self.updateRefractionIndexFromInput()
+            self.updateCurvatureRadiusFromInput()
+            
             self.refreshSelectedNode()
         }
         
@@ -368,6 +370,59 @@ class LevelDesignerViewController: UIViewController {
             }
             self.deselectNode()
             self.selectNode(node)
+        }
+    }
+    
+    private func updateCurvatureRadiusFromInput() {
+        if let node = self.selectedNode {
+            if let lens = node as? GOConcaveLensRep {
+                let r: CGFloat? = CGFloat((self.textFieldCurvatureRadius.text as NSString).floatValue)
+                if let curvatureRadius = r {
+                    if curvatureRadius > 0 && curvatureRadius < CGFloat(self.grid.width) && curvatureRadius < CGFloat(self.grid.width) {
+                        lens.curvatureRadius = curvatureRadius
+                    }
+                }
+            }
+   
+            if let lens = node as? GOConvexLensRep {
+                let r: CGFloat? = CGFloat((self.textFieldCurvatureRadius.text as NSString).floatValue)
+                if let curvatureRadius = r {
+                    if curvatureRadius > 0 && curvatureRadius < CGFloat(self.grid.width) && curvatureRadius < CGFloat(self.grid.width) {
+                        lens.curvatureRadius = curvatureRadius
+                    }
+                }
+            }
+        }
+    }
+    
+    private func updateRefractionIndexFromInput() {
+        if let node = self.selectedNode {
+            if let lens = node as? GOConcaveLensRep {
+                let i: CGFloat? = CGFloat((self.textFieldRefractionIndex.text as NSString).floatValue)
+                if let refractionIndex = i {
+                    if refractionIndex > 0 && refractionIndex < CGFloat(self.grid.width) && refractionIndex < CGFloat(self.grid.width) {
+                        lens.refractionIndex = refractionIndex
+                    }
+                }
+            }
+            
+            if let lens = node as? GOFlatLensRep {
+                let i: CGFloat? = CGFloat((self.textFieldRefractionIndex.text as NSString).floatValue)
+                if let refractionIndex = i {
+                    if refractionIndex > 0 && refractionIndex < CGFloat(self.grid.width) && refractionIndex < CGFloat(self.grid.width) {
+                        lens.refractionIndex = refractionIndex
+                    }
+                }
+            }
+            
+            if let lens = node as? GOConvexLensRep {
+                let i: CGFloat? = CGFloat((self.textFieldRefractionIndex.text as NSString).floatValue)
+                if let refractionIndex = i {
+                    if refractionIndex > 0 && refractionIndex < CGFloat(self.grid.width) && refractionIndex < CGFloat(self.grid.width) {
+                        lens.refractionIndex = refractionIndex
+                    }
+                }
+            }
         }
     }
     
@@ -506,6 +561,34 @@ class LevelDesignerViewController: UIViewController {
                 self.textFieldThicknessEdge.text = ""
                 self.textFieldLength.text = ""
             }
+            
+            var input = [Bool]()
+            
+            if let device = node as? GOEmitterRep {
+                input = [true, true, true, true, false, false, false, false, true]
+            }
+            
+            if let device = node as? GOFlatMirrorRep {
+                input = [true, true, true, true, false, false, false, false, true]
+            }
+            
+            if let device = node as? GOFlatWallRep {
+                input = [true, true, true, true, false, false, false, false, true]
+            }
+            
+            if let device = node as? GOFlatLensRep {
+                input = [true, true, true, false, false, false, true, false, true]
+            }
+            
+            if let device = node as? GOConcaveLensRep {
+                input = [true, true, true, false, true, true, true, true, false]
+            }
+            
+            if let device = node as? GOConvexLensRep {
+                input = [true, true, true, true, false, false, true, true, false]
+            }
+            
+            self.updateControlPanelValidItems(input)
         } else {
             self.textFieldCenterX.text = ""
             self.textFieldCenterY.text = ""
