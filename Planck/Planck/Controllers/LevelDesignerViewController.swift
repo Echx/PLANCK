@@ -19,13 +19,12 @@ class LevelDesignerViewController: UIViewController {
     private var rayLayers = [CAShapeLayer]()
     private var selectedNode: GOOpticRep?
     private var audioPlayer: AVAudioPlayer!
+    private var grid: GOGrid
     
-    private let grid: GOGrid
-    private let identifierLength = 20;
-    required init(coder aDecoder: NSCoder) {
-        self.grid = GOGrid(width: 64, height: 48, andUnitLength: 16)
-        super.init(coder: aDecoder)
-    }
+    private let identifierLength = 20
+    private let gridWidth = 64
+    private let gridHeight = 48
+    private let gridUnitLength: CGFloat = 16
     
     struct Selectors {
         static let segmentValueDidChangeAction: Selector = "segmentValueDidChange:"
@@ -52,6 +51,11 @@ class LevelDesignerViewController: UIViewController {
     struct InputModeSegmentIndex {
         static let add = 0;
         static let edit = 1;
+    }
+    
+    required init(coder aDecoder: NSCoder) {
+        self.grid = GOGrid(width: self.gridWidth, height: self.gridHeight, andUnitLength: self.gridUnitLength)
+        super.init(coder: aDecoder)
     }
     
     override func viewDidLoad() {
