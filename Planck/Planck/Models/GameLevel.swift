@@ -9,11 +9,13 @@ import UIKit
 import Foundation
 
 class GameLevel: NSObject, NSCoding {
-    
+    /// The grid contained in this level
     var grid:GOGrid
     
+    /// The name of this level
     var name:String
     
+    /// The index of this level
     var index:Int
     
     init(levelName:String, levelIndex: Int, grid:GOGrid) {
