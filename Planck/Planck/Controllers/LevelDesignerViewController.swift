@@ -193,15 +193,22 @@ class LevelDesignerViewController: UIViewController {
                 firstLocation = location
                 lastLocation = location
                 firstViewTransform = view.layer.transform
-            } else if sender.state == UIGestureRecognizerState.Changed {
+            } else {
                 let startVector = CGVectorMake(firstLocation!.x - self.grid.getCenterForGridCell(node.center).x,
                                                firstLocation!.y - self.grid.getCenterForGridCell(node.center).y)
                 let currentVector = CGVectorMake(location.x - self.grid.getCenterForGridCell(node.center).x,
                                                  location.y - self.grid.getCenterForGridCell(node.center).y)
-                var layerTransform = CATransform3DRotate(firstViewTransform!, CGVector.angleFrom(startVector, to: currentVector), 0, 0, 1)
+                var angle = CGVector.angleFrom(startVector, to: currentVector)
+                if sender.state == UIGestureRecognizerState.Ended {
+                    let nodeAngle = node.direction.angleFromXPlus
+                    let effectAngle = angle + nodeAngle
+                    let count = round(effectAngle / self.grid.unitDegree)
+                    let finalAngle = self.grid.unitDegree * count
+                    angle = finalAngle - nodeAngle
+                    node.setDirection(CGVector.vectorFromXPlusRadius(finalAngle))
+                }
+                var layerTransform = CATransform3DRotate(firstViewTransform!, angle, 0, 0, 1)
                 view.layer.transform = layerTransform
-            } else if sender.state == UIGestureRecognizerState.Ended {
-                
             }
         } else {
             if sender.state == UIGestureRecognizerState.Began || touchedNode == nil {

@@ -18,6 +18,7 @@ class GOGrid: NSObject, NSCoding {
     let height: NSInteger
     let origin: CGPoint = CGPointZero
     let backgroundRefractionIndex: CGFloat = 1.0
+    let unitDegree = CGFloat(M_PI/12)
     
     var instruments = [String: GOOpticRep]()
     var delegate: GOGridDelegate?
