@@ -110,6 +110,7 @@
 		984F35D81ABF09F1008816C9 /* InstrumentNSCodingTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 984F35D71ABF09F1008816C9 /* InstrumentNSCodingTests.swift */; };
 		986E5DA31AC55604008EF3CE /* StorageManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 98D55F9D1ABF133000B3E86A /* StorageManager.swift */; };
 		98754ADC1AD0587F00817319 /* GameLevel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 98754ADB1AD0587F00817319 /* GameLevel.swift */; };
+		9885E76F1AD174500089325D /* GameLevel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 98754ADB1AD0587F00817319 /* GameLevel.swift */; };
 		98D55F9E1ABF133000B3E86A /* StorageManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 98D55F9D1ABF133000B3E86A /* StorageManager.swift */; };
 		98F63A941AD163C70096A32E /* ArchiveTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 98F63A931AD163C70096A32E /* ArchiveTest.swift */; };
 		98F63A951AD165070096A32E /* GOConcaveLensRep.swift in Sources */ = {isa = PBXBuildFile; fileRef = 263B09A41ACEEDD800E7C99E /* GOConcaveLensRep.swift */; };
@@ -713,6 +714,7 @@
 				62988FF61AB2FA8800FD9AFF /* XColor.swift in Sources */,
 				98F63A9F1AD1650F0096A32E /* GOCoordinate.swift in Sources */,
 				98F63A9E1AD1650F0096A32E /* GOArcSegment.swift in Sources */,
+				9885E76F1AD174500089325D /* GameLevel.swift in Sources */,
 				62988FF01AB2FA8800FD9AFF /* XConvexMirror.swift in Sources */,
 				62988FEC1AB2FA8800FD9AFF /* XConcaveLens.swift in Sources */,
 				98F63AA21AD1650F0096A32E /* GORay.swift in Sources */,
