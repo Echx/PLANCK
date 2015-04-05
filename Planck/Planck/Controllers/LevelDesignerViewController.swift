@@ -318,7 +318,19 @@ class LevelDesignerViewController: UIViewController {
         
     }
     
-    
+    @IBAction func saveButtonDidClicked(sender: AnyObject) {
+        // TODO: Should pop up a window for input name
+        // create a game level
+        let game = GameLevel(levelName: "TestSave", levelIndex: 1, grid: self.grid)
+    }
+
+    @IBAction func loadButtonDidClicked(sender: AnyObject) {
+        self.grid.clearInstruments()
+        for (id, view) in self.deviceViews {
+            view.removeFromSuperview()
+        }
+        self.clearRay()
+    }
 //------------------------------------------------------------------------------
 //    Private Methods
 //------------------------------------------------------------------------------
