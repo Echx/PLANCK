@@ -315,7 +315,7 @@
             <objects>
                 <tableViewController storyboardIdentifier="DesignerLevelSelectViewController" modalPresentationStyle="formSheet" useStoryboardIdentifierAsRestorationIdentifier="YES" id="J3J-LA-iRa" customClass="DesignerLevelSelectViewController" customModule="Planck" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" id="5xh-41-5SH">
-                        <rect key="frame" x="0.0" y="0.0" width="1024" height="768"/>
+                        <rect key="frame" x="0.0" y="0.0" width="300" height="500"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <prototypes>
@@ -341,9 +341,29 @@
                     </tableView>
                     <nil key="simulatedStatusBarMetrics"/>
                     <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
-                    <size key="freeformSize" width="1024" height="768"/>
+                    <size key="freeformSize" width="300" height="500"/>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="odB-Ok-KaU" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="79" y="-413"/>
+        </scene>
+        <!--Game View Controller-->
+        <scene sceneID="GCX-7I-Zry">
+            <objects>
+                <viewController storyboardIdentifier="GameViewController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="Ivs-sv-Sw2" customClass="GameViewController" customModule="Planck" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="v9e-ny-neD"/>
+                        <viewControllerLayoutGuide type="bottom" id="5WM-Xb-iZl"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="0Kx-Mk-6JZ">
+                        <rect key="frame" x="0.0" y="0.0" width="1024" height="768"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                    <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+                    <size key="freeformSize" width="1024" height="768"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="nD4-xY-EFO" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="879" y="-481"/>
         </scene>
@@ -425,7 +445,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="v15-4y-bMc" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-239" y="1279"/>
+            <point key="canvasLocation" x="879" y="397"/>
         </scene>
         <!--Setting View Controller-->
         <scene sceneID="3nx-KU-gzm">
@@ -456,7 +476,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="i5j-L0-sh5" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="879" y="397"/>
+            <point key="canvasLocation" x="-239" y="1299"/>
         </scene>
     </scenes>
 </document>

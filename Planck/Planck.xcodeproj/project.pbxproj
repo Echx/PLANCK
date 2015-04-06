@@ -39,6 +39,7 @@
 		269D783A1AD3070100279EF3 /* LevelSelectorViewDesigner.swift in Sources */ = {isa = PBXBuildFile; fileRef = 269D78391AD3070100279EF3 /* LevelSelectorViewDesigner.swift */; };
 		269D783E1AD3088300279EF3 /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 269D783D1AD3088300279EF3 /* HomeViewController.swift */; };
 		269D78401AD30ECF00279EF3 /* XViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 269D783F1AD30ECF00279EF3 /* XViewController.swift */; };
+		269D78421AD3128D00279EF3 /* GameViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 269D78411AD3128D00279EF3 /* GameViewController.swift */; };
 		26C8ADDA1AD00437008ADACB /* LevelDesignerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26C8ADD91AD00437008ADACB /* LevelDesignerViewController.swift */; };
 		26C8ADDC1AD01A52008ADACB /* String+XUtility.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26C8ADDB1AD01A52008ADACB /* String+XUtility.swift */; };
 		26C8ADE01AD045D8008ADACB /* GOPath.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26C8ADDF1AD045D8008ADACB /* GOPath.swift */; };
@@ -145,6 +146,7 @@
 		269D78391AD3070100279EF3 /* LevelSelectorViewDesigner.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LevelSelectorViewDesigner.swift; sourceTree = "<group>"; };
 		269D783D1AD3088300279EF3 /* HomeViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
 		269D783F1AD30ECF00279EF3 /* XViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = XViewController.swift; sourceTree = "<group>"; };
+		269D78411AD3128D00279EF3 /* GameViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GameViewController.swift; sourceTree = "<group>"; };
 		26C8ADD91AD00437008ADACB /* LevelDesignerViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LevelDesignerViewController.swift; sourceTree = "<group>"; };
 		26C8ADDB1AD01A52008ADACB /* String+XUtility.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "String+XUtility.swift"; sourceTree = "<group>"; };
 		26C8ADDF1AD045D8008ADACB /* GOPath.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GOPath.swift; sourceTree = "<group>"; };
@@ -363,6 +365,7 @@
 				269D78371AD306F000279EF3 /* SettingViewController.swift */,
 				269D78391AD3070100279EF3 /* LevelSelectorViewDesigner.swift */,
 				269D783D1AD3088300279EF3 /* HomeViewController.swift */,
+				269D78411AD3128D00279EF3 /* GameViewController.swift */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -619,6 +622,7 @@
 				620BD4461AB2E69800267C7B /* XNote.swift in Sources */,
 				263B09C51ACEEE1100E7C99E /* CGFLoat+GOUtilities.swift in Sources */,
 				263B09C91ACEEE1100E7C99E /* GOUtilities.swift in Sources */,
+				269D78421AD3128D00279EF3 /* GameViewController.swift in Sources */,
 				262BE1A61ABE9A9000ABE965 /* AGSpriteButton.m in Sources */,
 				98754ADC1AD0587F00817319 /* GameLevel.swift in Sources */,
 				62D2836A1AD1890900A583FA /* XWall.swift in Sources */,

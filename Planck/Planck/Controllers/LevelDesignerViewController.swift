@@ -57,9 +57,15 @@ class LevelDesignerViewController: XViewController {
     
     var parameterLabels: [UILabel] {
         get {
-            return [labelCenterX, labelCenterY, labelCurvatureRadius,
-                labelRefractionIndex, labelThicknessEdge, labelThicknessCenter, labelThickness,
-                labelDirection, labelLength]
+            return [labelCenterX,
+                labelCenterY,
+                labelCurvatureRadius,
+                labelRefractionIndex,
+                labelThicknessEdge,
+                labelThicknessCenter,
+                labelThickness,
+                labelDirection,
+                labelLength]
         }
     }
     
