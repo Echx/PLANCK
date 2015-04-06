@@ -10,6 +10,8 @@ import UIKit
 
 class GameViewController: XViewController {
 
+    var grid: GOGrid?
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -21,7 +23,14 @@ class GameViewController: XViewController {
         // Dispose of any resources that can be recreated.
     }
     
-
+    class func getInstance(grid: GOGrid) -> GameViewController {
+        let storyboard = UIStoryboard(name: "Main", bundle: nil)
+        let identifier = StoryboardIndentifier.Game
+        let viewController = storyboard.instantiateViewControllerWithIdentifier(identifier) as GameViewController
+        viewController.grid = grid
+        return viewController
+    }
+    
     /*
     // MARK: - Navigation
 
