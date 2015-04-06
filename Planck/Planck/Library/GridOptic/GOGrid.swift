@@ -9,10 +9,12 @@
 import UIKit
 
 protocol GOGridDelegate {
-    
+    func grid(grid: GOGrid, didProduceNewCriticalPoint point: CGPoint)
+    func gridDidFinishCalculation(grid: GOGrid)
 }
 
 class GOGrid: NSObject, NSCoding {
+
     let unitLength: CGFloat
     let width: NSInteger
     let height: NSInteger
@@ -185,6 +187,53 @@ class GOGrid: NSObject, NSCoding {
     }
 
 
+    func startCriticalPointsCalculationWithRay(ray: GORay) {
+        var queue = dispatch_queue_create("CALCULATION_SERIAL_QUEUE", DISPATCH_QUEUE_SERIAL)
+        dispatch_async(queue, {
+            self.refractionEdgeParentStack = GOStack<String>()
+            var criticalPoints = [CGPoint]()
+            
+            // first add the start point of the ray
+            criticalPoints.append(ray.startPoint)
+            self.delegate?.grid(self, didProduceNewCriticalPoint: self.getDisplayPointForGridPoint(ray.startPoint))
+            
+            // from the given ray, we found out each nearest edge
+            // loop through each resulted ray until we get nil result (no intersection anymore)
+            var edge = self.getNearestEdgeOnDirection(ray)
+            var currentRay : GORay = ray
+            // mark if the final ray will end at the boundary
+            var willEndAtBoundary = true
+            while (edge != nil) {
+                // it must hit the edge, add the intersection point
+                let newPoint = edge!.getIntersectionPoint(currentRay)!
+                criticalPoints.append(newPoint)
+                self.delegate?.grid(self, didProduceNewCriticalPoint: self.getDisplayPointForGridPoint(newPoint))
+                
+                
+                if let outcomeRay = self.getOutcomeRay(currentRay, edge: edge!) {
+                    edge = self.getNearestEdgeOnDirection(outcomeRay)
+                    currentRay = outcomeRay
+                } else {
+                    // no outcome ray, hit wall or planck
+                    willEndAtBoundary = false
+                    break
+                }
+            }
+            
+            if willEndAtBoundary {
+                // found out the intersection with the boundary
+                // we treat boundary as 4 line segments
+                if let finalPoint = self.getIntersectionWithBoundary(ray: currentRay) {
+                    criticalPoints.append(self.getDisplayPointForGridPoint(finalPoint))
+                } else {
+                    println("something goes wrong no final point")
+                }
+            }
+            
+            self.delegate?.gridDidFinishCalculation(self)
+        })
+    }
+    
     //given a ray to start, this method will return every critical point of the path (i.e. the contact points between light paths and instruments)
     func getRayPathCriticalPoints(ray: GORay) -> [CGPoint] {
         self.refractionEdgeParentStack = GOStack<String>()
