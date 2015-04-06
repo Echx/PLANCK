@@ -14,7 +14,8 @@ class GameViewController: XViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        
+        println(grid)
         // Do any additional setup after loading the view.
     }
 
