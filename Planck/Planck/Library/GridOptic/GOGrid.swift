@@ -49,13 +49,13 @@ class GOGrid: NSObject, NSCoding {
             var boundaries = [GOLineSegment]()
             
             let bottomBound = GOLineSegment(center: CGPoint(x: origin.x + CGFloat(width / 2),
-                y: origin.y - GOConstant.boundaryOffset), length: CGFloat(width), direction: CGVector(dx: 1, dy: 0))
+                y: origin.y - GOConstant.boundaryOffset), length: CGFloat(width) + GOConstant.boundaryExtend, direction: CGVector(dx: 1, dy: 0))
             let upperBound = GOLineSegment(center: CGPoint(x: origin.x + CGFloat(width / 2),
-                y: origin.y + CGFloat(height) + GOConstant.boundaryOffset), length: CGFloat(width), direction: CGVector(dx: 1, dy: 0))
+                y: origin.y + CGFloat(height) + GOConstant.boundaryOffset), length: CGFloat(width) + GOConstant.boundaryExtend, direction: CGVector(dx: 1, dy: 0))
             let leftBound = GOLineSegment(center: CGPoint(x: origin.x - GOConstant.boundaryOffset,
-                y: origin.y + CGFloat(height / 2)), length: CGFloat(height), direction: CGVector(dx: 0, dy: 1))
+                y: origin.y + CGFloat(height / 2)), length: CGFloat(height) + GOConstant.boundaryExtend, direction: CGVector(dx: 0, dy: 1))
             let rightBound = GOLineSegment(center: CGPoint(x: origin.x + CGFloat(width) + GOConstant.boundaryOffset,
-                y: origin.y + CGFloat(height / 2)), length: CGFloat(height), direction: CGVector(dx: 0, dy: 1))
+                y: origin.y + CGFloat(height / 2)), length: CGFloat(height) + GOConstant.boundaryExtend, direction: CGVector(dx: 0, dy: 1))
             
             boundaries.append(bottomBound)
             boundaries.append(upperBound)
@@ -303,8 +303,10 @@ class GOGrid: NSObject, NSCoding {
             }
         }
         
-//        println("indexIn:   \(indexIn)")
-//        println("indexOut:  \(indexOut)")
+        println("indexIn:   \(indexIn)")
+        println("ray:       \(ray)")
+        println("edge:      \(edge)")
+        println("indexOut:  \(indexOut)\n")
         return edge.getOutcomeRay(rayIn: ray, indexIn: indexIn, indexOut: indexOut)
     }
     

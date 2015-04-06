@@ -12,6 +12,7 @@ struct GOConstant {
     static let angleCalculationPrecision:CGFloat = 1000
     static let overallPrecision: CGFloat = 0.00001
     static let boundaryOffset : CGFloat = 1
+    static let boundaryExtend : CGFloat = 2
     static let vacuumRefractionIndex: CGFloat = 1
 }
 
