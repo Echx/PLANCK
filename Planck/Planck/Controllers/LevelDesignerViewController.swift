@@ -39,6 +39,7 @@ class LevelDesignerViewController: UIViewController {
     @IBOutlet var accidentalPicker: UIPickerView!
     @IBOutlet var groupPicker: UIPickerView!
     
+    @IBOutlet weak var loadButton: UIBarButtonItem!
     
     var paramenterFields: [UITextField] {
         get {
@@ -69,11 +70,18 @@ class LevelDesignerViewController: UIViewController {
     private var selectedNode: GOOpticRep?
     private var audioPlayerList = [AVAudioPlayer]()
     private var grid: GOGrid
+    private var game:GameLevel?
     
     private let identifierLength = 20
     private let gridWidth = 64
     private let gridHeight = 48
     private let gridUnitLength: CGFloat = 16
+    
+    private let cellID = "Cell"
+    private let storyBoardID = "Main"
+    private let levelSelectVCID = "DESIGNER_SELECT"
+    
+    private let validNamePattern = "^[a-zA-Z0-9]+$"
     
     
     struct Selectors {
@@ -109,6 +117,18 @@ class LevelDesignerViewController: UIViewController {
         static let curvatureRadius = 7
         static let length = 8
         
+    }
+    
+    struct AlertViewText {
+        static let save_title = "Saving current level"
+        static let save_msg = "Please enter your level name"
+        static let btn_save = "Save"
+        static let btn_cancel = "Cancel"
+        static let default_text = "untitled"
+        static let wrong_title = "Error"
+        static let wrong_msg = "The name should not be empty" +
+        " or contain any special character."
+        static let wrong_confirm = "OK"
     }
     
     struct InputModeSegmentIndex {
@@ -332,30 +352,18 @@ class LevelDesignerViewController: UIViewController {
     }
     
     @IBAction func saveButtonDidClicked(sender: AnyObject) {
-        // TODO: Should pop up a window for input name
-        // create a game leveld
-        let game = GameLevel(levelName: "TestSave", levelIndex: 1, grid: self.grid)
-        println(game.grid.instruments.count)
-        StorageManager.defaultManager.saveCurrentLevel(game)
+        self.showSavePrompt()
     }
 
     @IBAction func loadButtonDidClicked(sender: AnyObject) {
-        self.grid.clearInstruments()
-        for (id, view) in self.deviceViews {
-            view.removeFromSuperview()
-        }
-        self.clearRay()
-        let game = StorageManager.defaultManager.loadLevel("haha.dat")
-        
-        for (id, opticNode) in game.grid.instruments {
-            self.addNode(opticNode, strokeColor: getColorForNode(opticNode))
-        }
-        
-        self.shootRay()
-        
-        println(game.name)
-        println(game.name)
-        println(game.grid.instruments.count)
+        // Create a level select VC instance
+        var storyBoard = UIStoryboard(name: storyBoardID, bundle: nil)
+        var levelVC = storyBoard.instantiateViewControllerWithIdentifier(levelSelectVCID)
+            as DesignerLevelSelectViewController
+        levelVC.modalPresentationStyle = UIModalPresentationStyle.Popover
+        levelVC.delegate = self
+        self.presentViewController(levelVC, animated: true, completion: nil)
+        levelVC.popoverPresentationController?.barButtonItem = self.loadButton
     }
     
     
@@ -781,10 +789,88 @@ class LevelDesignerViewController: UIViewController {
         }
     }
     
+    private func loadLevel(level:GameLevel) {
+        self.grid.clearInstruments()
+        for (id, view) in self.deviceViews {
+            view.removeFromSuperview()
+        }
+        self.clearRay()
+        
+        for (id, opticNode) in level.grid.instruments {
+            self.addNode(opticNode, strokeColor: getColorForNode(opticNode))
+        }
+        
+        self.shootRay()
+
+    }
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
+    
+    
+    // MARK: - ALERT
+    private func showSavePrompt() {
+        // 1.Initialze an alert
+        var alert = UIAlertController(title: AlertViewText.save_title, message: AlertViewText.save_msg, preferredStyle: .Alert)
+        
+        // 2. Add the text field
+        alert.addTextFieldWithConfigurationHandler{ (textField) in
+            if let currentLevel = self.game {
+                textField.text = currentLevel.name
+            } else {
+                textField.text = AlertViewText.default_text
+            }
+        }
+        
+        //3. Set up button and its handler
+        alert.addAction(UIAlertAction(title: AlertViewText.btn_save, style: .Default,
+            handler: { action in
+                let textField = alert.textFields![0] as UITextField
+                // validate textField input (non-empty)
+                let whitespace = NSCharacterSet.whitespaceAndNewlineCharacterSet
+                let inputName = textField.text.stringByTrimmingCharactersInSet(whitespace())
+                
+                let regEx = NSRegularExpression(pattern: self.validNamePattern,
+                    options: nil,
+                    error: nil)!
+                
+                if let match = regEx.firstMatchInString(inputName, options: nil,
+                    range: NSRange(location: 0, length: inputName.utf16Count)) {
+                        // valid
+                        let game = GameLevel(levelName: inputName, levelIndex: 1, grid: self.grid)
+                        self.game = game
+                    StorageManager.defaultManager.saveCurrentLevel(game)
+                } else {
+                    // invalid
+                    self.showWrongInputAlert()
+                }
+        }))
+        
+        alert.addAction(UIAlertAction(title: AlertViewText.btn_cancel,
+            style: UIAlertActionStyle.Cancel, handler: nil))
+        
+        // 4. Present the alert.
+        self.presentViewController(alert, animated: true, completion: nil)
+    }
+    
+    private func showWrongInputAlert() {
+        // 1.Initialze an alert
+        var alert = UIAlertController(title: AlertViewText.wrong_title,
+            message: AlertViewText.wrong_msg,
+            preferredStyle: .Alert)
+        
+        // 2. Set up button and its handler
+        alert.addAction(UIAlertAction(title: AlertViewText.wrong_confirm, style: .Cancel,
+            handler: { action in
+                self.showSavePrompt()
+        }))
+        
+        // 3. Present the alert.
+        self.presentViewController(alert, animated: true, completion: nil)
+    }
+
     
     
     /*
@@ -797,4 +883,14 @@ class LevelDesignerViewController: UIViewController {
     }
     */
 
+}
+
+extension LevelDesignerViewController:LevelSelectDelegate {
+    func loadSelectLevel(level:GameLevel) {
+        self.dismissViewControllerAnimated(true, completion: {
+            self.loadLevel(level)
+            self.game = level
+        })
+        
+    }
 }

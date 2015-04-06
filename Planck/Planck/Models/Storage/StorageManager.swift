@@ -27,11 +27,10 @@ class StorageManager:NSObject  {
         archiver.finishEncoding()
         let documentsPath = NSSearchPathForDirectoriesInDomains(.DocumentDirectory,
             .UserDomainMask, true)[0] as NSString
-        let levelName = "haha" + levelDataFileType
+        let levelName = level.name + levelDataFileType
         // the dat name should be set by user
         var filePath : NSString = documentsPath.stringByAppendingPathComponent(levelName)
         data.writeToFile(filePath, atomically: true)
-        println("Success")
     }
     
     // load the level based on the file name

@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6751" systemVersion="14D105g" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="ICT-TY-Uh1">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6751" systemVersion="14C1514" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="ICT-TY-Uh1">
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6736"/>
     </dependencies>
@@ -261,6 +261,7 @@
                         <outlet property="labelThickness" destination="Pfw-ca-9Fp" id="Lm7-qg-eYq"/>
                         <outlet property="labelThicknessCenter" destination="0jj-Z4-gHq" id="ceg-JN-kdz"/>
                         <outlet property="labelThicknessEdge" destination="MR2-2G-ysM" id="bRV-FX-inI"/>
+                        <outlet property="loadButton" destination="9mI-Ed-y62" id="Jqb-gi-V6f"/>
                         <outlet property="notePicker" destination="eb2-aC-rEe" id="Rcs-zy-sjv"/>
                         <outlet property="planckInputPanel" destination="PcM-6l-K8S" id="GVn-iN-Wj6"/>
                         <outlet property="textFieldCenterX" destination="8e6-CP-bI1" id="YRA-4D-Z5I"/>
@@ -302,6 +303,41 @@
                 </tapGestureRecognizer>
             </objects>
             <point key="canvasLocation" x="509" y="-473"/>
+        </scene>
+        <!--Designer Level Select View Controller-->
+        <scene sceneID="ewF-Cs-yPt">
+            <objects>
+                <tableViewController storyboardIdentifier="DESIGNER_SELECT" modalPresentationStyle="formSheet" id="J3J-LA-iRa" customClass="DesignerLevelSelectViewController" customModule="Planck" customModuleProvider="target" sceneMemberID="viewController">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" id="5xh-41-5SH">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <prototypes>
+                            <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="LevelCell" textLabel="Yts-qP-ATP" style="IBUITableViewCellStyleDefault" id="628-pF-VsM">
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="628-pF-VsM" id="sVo-RC-TNp">
+                                    <autoresizingMask key="autoresizingMask"/>
+                                    <subviews>
+                                        <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" text="Title" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="Yts-qP-ATP">
+                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="16"/>
+                                            <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                    </subviews>
+                                </tableViewCellContentView>
+                            </tableViewCell>
+                        </prototypes>
+                        <connections>
+                            <outlet property="dataSource" destination="J3J-LA-iRa" id="ejz-ii-qKO"/>
+                            <outlet property="delegate" destination="J3J-LA-iRa" id="RIH-iB-eOu"/>
+                        </connections>
+                    </tableView>
+                    <nil key="simulatedStatusBarMetrics"/>
+                </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="odB-Ok-KaU" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="277" y="371"/>
         </scene>
     </scenes>
 </document>
