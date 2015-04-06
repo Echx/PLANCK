@@ -21,7 +21,8 @@ struct StoryboardIndentifier {
     static let LevelDesigner = "LevelDesignerViewController"
     static let Setting = "SettingViewController"
     static let Game = "GameViewController"
-    static let LevelSelector = "LevelSelectorViewController"
+    static let LevelSelect = "LevelSelectViewController"
+    static let DesignerLevelSelect = "DesignerLevelSelectViewController"
 }
 
 struct NSCodingKey {

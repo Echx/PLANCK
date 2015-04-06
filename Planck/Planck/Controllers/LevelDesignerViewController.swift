@@ -85,7 +85,6 @@ class LevelDesignerViewController: XViewController {
     
     private let cellID = "Cell"
     private let storyBoardID = "Main"
-    private let levelSelectVCID = "DESIGNER_SELECT"
     
     private let validNamePattern = "^[a-zA-Z0-9]+$"
     
@@ -184,6 +183,11 @@ class LevelDesignerViewController: XViewController {
     
     @IBAction func refresh(sender: UIBarButtonItem) {
         self.shootRay()
+    }
+    
+    @IBAction func play() {
+        let gameViewController = GameViewController.getInstance(self.grid)
+        self.presentViewController(gameViewController, animated: true, completion: nil)
     }
     
     //MARK - tap gesture handler
@@ -365,7 +369,7 @@ class LevelDesignerViewController: XViewController {
     @IBAction func loadButtonDidClicked(sender: AnyObject) {
         // Create a level select VC instance
         var storyBoard = UIStoryboard(name: storyBoardID, bundle: nil)
-        var levelVC = storyBoard.instantiateViewControllerWithIdentifier(levelSelectVCID)
+        var levelVC = storyBoard.instantiateViewControllerWithIdentifier(StoryboardIndentifier.DesignerLevelSelect)
             as DesignerLevelSelectViewController
         levelVC.modalPresentationStyle = UIModalPresentationStyle.Popover
         levelVC.delegate = self
