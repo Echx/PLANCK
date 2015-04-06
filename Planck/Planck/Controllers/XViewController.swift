@@ -1,5 +1,5 @@
 //
-//  HomeViewController.swift
+//  XViewController.swift
 //  Planck
 //
 //  Created by NULL on 07/04/15.
@@ -8,7 +8,7 @@
 
 import UIKit
 
-class HomeViewController: XViewController {
+class XViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -19,6 +19,10 @@ class HomeViewController: XViewController {
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
+    }
+    
+    @IBAction func dismissViewController() {
+        self.dismissViewControllerAnimated(true, completion: nil)
     }
     
 

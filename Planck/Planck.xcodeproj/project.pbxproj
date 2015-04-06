@@ -38,6 +38,7 @@
 		269D78381AD306F000279EF3 /* SettingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 269D78371AD306F000279EF3 /* SettingViewController.swift */; };
 		269D783A1AD3070100279EF3 /* LevelSelectorViewDesigner.swift in Sources */ = {isa = PBXBuildFile; fileRef = 269D78391AD3070100279EF3 /* LevelSelectorViewDesigner.swift */; };
 		269D783E1AD3088300279EF3 /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 269D783D1AD3088300279EF3 /* HomeViewController.swift */; };
+		269D78401AD30ECF00279EF3 /* XViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 269D783F1AD30ECF00279EF3 /* XViewController.swift */; };
 		26C8ADDA1AD00437008ADACB /* LevelDesignerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26C8ADD91AD00437008ADACB /* LevelDesignerViewController.swift */; };
 		26C8ADDC1AD01A52008ADACB /* String+XUtility.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26C8ADDB1AD01A52008ADACB /* String+XUtility.swift */; };
 		26C8ADE01AD045D8008ADACB /* GOPath.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26C8ADDF1AD045D8008ADACB /* GOPath.swift */; };
@@ -143,6 +144,7 @@
 		269D78371AD306F000279EF3 /* SettingViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingViewController.swift; sourceTree = "<group>"; };
 		269D78391AD3070100279EF3 /* LevelSelectorViewDesigner.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LevelSelectorViewDesigner.swift; sourceTree = "<group>"; };
 		269D783D1AD3088300279EF3 /* HomeViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
+		269D783F1AD30ECF00279EF3 /* XViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = XViewController.swift; sourceTree = "<group>"; };
 		26C8ADD91AD00437008ADACB /* LevelDesignerViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LevelDesignerViewController.swift; sourceTree = "<group>"; };
 		26C8ADDB1AD01A52008ADACB /* String+XUtility.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "String+XUtility.swift"; sourceTree = "<group>"; };
 		26C8ADDF1AD045D8008ADACB /* GOPath.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GOPath.swift; sourceTree = "<group>"; };
@@ -355,6 +357,7 @@
 		6227FBEF1AAE28E7007F49EA /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
+				269D783F1AD30ECF00279EF3 /* XViewController.swift */,
 				26C8ADD91AD00437008ADACB /* LevelDesignerViewController.swift */,
 				982495D71AD2ACC10039E75E /* DesignerLevelSelectViewController.swift */,
 				269D78371AD306F000279EF3 /* SettingViewController.swift */,
@@ -606,6 +609,7 @@
 				62D2836D1AD1892400A583FA /* XConvexLens.swift in Sources */,
 				6227FB6E1AAE285C007F49EA /* AppDelegate.swift in Sources */,
 				263B09C81ACEEE1100E7C99E /* GOConstant.swift in Sources */,
+				269D78401AD30ECF00279EF3 /* XViewController.swift in Sources */,
 				6227FC191AAE28E7007F49EA /* XColor.swift in Sources */,
 				263B09BA1ACEEDD800E7C99E /* GOFlatLensRep.swift in Sources */,
 				62D2836E1AD1892400A583FA /* XConcanveLens.swift in Sources */,

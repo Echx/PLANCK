@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6751" systemVersion="14D105g" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="ICT-TY-Uh1">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6751" systemVersion="14D105g" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="Z3F-Q9-Qtd">
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6736"/>
     </dependencies>
@@ -7,7 +7,7 @@
         <!--Level Designer View Controller-->
         <scene sceneID="51X-Ds-183">
             <objects>
-                <viewController id="ICT-TY-Uh1" customClass="LevelDesignerViewController" customModule="Planck" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="LevelDesignerViewController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="ICT-TY-Uh1" customClass="LevelDesignerViewController" customModule="Planck" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="3GY-3F-e3c"/>
                         <viewControllerLayoutGuide type="bottom" id="Wib-TG-yhB"/>
@@ -239,6 +239,7 @@
                                     <outletCollection property="gestureRecognizers" destination="Txt-zX-WDV" appends="YES" id="JxR-nk-BOD"/>
                                     <outletCollection property="gestureRecognizers" destination="stW-1L-XFP" appends="YES" id="nhG-gK-HZj"/>
                                     <outletCollection property="gestureRecognizers" destination="kMz-7u-Yeq" appends="YES" id="WA7-7u-byt"/>
+                                    <outletCollection property="gestureRecognizers" destination="Bmb-Xb-qhm" appends="YES" id="sIi-rM-OaX"/>
                                 </connections>
                             </view>
                         </subviews>
@@ -301,15 +302,20 @@
                         <action selector="viewDidTapped:" destination="ICT-TY-Uh1" id="Sn4-WX-Wpo"/>
                     </connections>
                 </tapGestureRecognizer>
+                <tapGestureRecognizer numberOfTapsRequired="2" numberOfTouchesRequired="2" id="Bmb-Xb-qhm">
+                    <connections>
+                        <action selector="dismissViewController" destination="ICT-TY-Uh1" id="yij-Re-BoB"/>
+                    </connections>
+                </tapGestureRecognizer>
             </objects>
-            <point key="canvasLocation" x="509" y="-473"/>
+            <point key="canvasLocation" x="-239" y="-481"/>
         </scene>
         <!--Designer Level Select View Controller-->
         <scene sceneID="ewF-Cs-yPt">
             <objects>
                 <tableViewController storyboardIdentifier="DesignerLevelSelectViewController" modalPresentationStyle="formSheet" useStoryboardIdentifierAsRestorationIdentifier="YES" id="J3J-LA-iRa" customClass="DesignerLevelSelectViewController" customModule="Planck" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" id="5xh-41-5SH">
-                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <rect key="frame" x="0.0" y="0.0" width="1024" height="768"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <prototypes>
@@ -334,10 +340,12 @@
                         </connections>
                     </tableView>
                     <nil key="simulatedStatusBarMetrics"/>
+                    <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+                    <size key="freeformSize" width="1024" height="768"/>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="odB-Ok-KaU" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="277" y="371"/>
+            <point key="canvasLocation" x="879" y="-481"/>
         </scene>
         <!--Home View Controller-->
         <scene sceneID="dYy-7Q-8jn">
@@ -348,32 +356,76 @@
                         <viewControllerLayoutGuide type="bottom" id="Dtx-qB-uvO"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="9UY-nZ-Yvt">
-                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <rect key="frame" x="0.0" y="0.0" width="1024" height="768"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="X5K-qp-zHK">
+                                <rect key="frame" x="462" y="312" width="101" height="30"/>
+                                <state key="normal" title="Level Designer">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <segue destination="ICT-TY-Uh1" kind="presentation" id="6sk-JX-aAy"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="he7-a3-goa">
+                                <rect key="frame" x="463" y="369" width="98" height="30"/>
+                                <state key="normal" title="Level Selector">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <segue destination="3sC-QG-bbK" kind="presentation" id="aT5-fx-Bxe"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="2ca-8x-gck">
+                                <rect key="frame" x="484" y="424" width="57" height="30"/>
+                                <state key="normal" title="Settings">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <segue destination="uGl-4E-rzF" kind="presentation" id="Bs7-BX-NZO"/>
+                                </connections>
+                            </button>
+                        </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
+                    <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+                    <size key="freeformSize" width="1024" height="768"/>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="nhq-O5-paL" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="277" y="1068"/>
+            <point key="canvasLocation" x="-239" y="397"/>
         </scene>
         <!--Level Selector View Designer-->
         <scene sceneID="adN-yn-p58">
             <objects>
-                <viewController storyboardIdentifier="LevelSelectorViewDesigner" useStoryboardIdentifierAsRestorationIdentifier="YES" id="3sC-QG-bbK" customClass="LevelSelectorViewDesigner" customModule="LevelSelectorViewDesigner" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="LevelSelectorViewDesigner" useStoryboardIdentifierAsRestorationIdentifier="YES" id="3sC-QG-bbK" customClass="LevelSelectorViewDesigner" customModule="Planck" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="5oz-hM-3x8"/>
                         <viewControllerLayoutGuide type="bottom" id="T5k-7D-0Ws"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="IYD-DR-Ggg">
-                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <rect key="frame" x="0.0" y="0.0" width="1024" height="768"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="B0o-lv-xKY">
+                                <rect key="frame" x="484" y="369" width="35" height="30"/>
+                                <state key="normal" title="Back">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="dismissViewController" destination="3sC-QG-bbK" eventType="touchUpInside" id="e3O-cl-31c"/>
+                                </connections>
+                            </button>
+                        </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
+                    <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+                    <size key="freeformSize" width="1024" height="768"/>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="v15-4y-bMc" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="277" y="1737"/>
+            <point key="canvasLocation" x="-239" y="1279"/>
         </scene>
         <!--Setting View Controller-->
         <scene sceneID="3nx-KU-gzm">
@@ -384,14 +436,27 @@
                         <viewControllerLayoutGuide type="bottom" id="qFz-1J-4UW"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="tQc-1r-pU3">
-                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <rect key="frame" x="0.0" y="0.0" width="1024" height="768"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="1Ca-93-9oM">
+                                <rect key="frame" x="495" y="369" width="35" height="30"/>
+                                <state key="normal" title="Back">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="dismissViewController" destination="uGl-4E-rzF" eventType="touchUpInside" id="onE-yY-Mw6"/>
+                                </connections>
+                            </button>
+                        </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
+                    <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+                    <size key="freeformSize" width="1024" height="768"/>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="i5j-L0-sh5" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="950" y="1737"/>
+            <point key="canvasLocation" x="879" y="397"/>
         </scene>
     </scenes>
 </document>

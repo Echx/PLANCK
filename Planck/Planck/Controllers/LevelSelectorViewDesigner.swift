@@ -8,7 +8,7 @@
 
 import UIKit
 
-class LevelSelectorViewDesigner: UIViewController {
+class LevelSelectorViewDesigner: XViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         

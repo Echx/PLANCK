@@ -8,7 +8,7 @@
 
 import UIKit
 
-class SettingViewController: UIViewController {
+class SettingViewController: XViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
