@@ -9,7 +9,7 @@
 import UIKit
 import AVFoundation
 
-class LevelDesignerViewController: UIViewController, GOGridDelegate {
+class LevelDesignerViewController: UIViewController {
 
     @IBOutlet var deviceSegment: UISegmentedControl!
     @IBOutlet var inputPanel: UIView!
@@ -138,7 +138,7 @@ class LevelDesignerViewController: UIViewController, GOGridDelegate {
     
     required init(coder aDecoder: NSCoder) {
         self.grid = GOGrid(width: self.gridWidth, height: self.gridHeight, andUnitLength: self.gridUnitLength)
-        grid.delegate = self
+//        grid.delegate = self
         super.init(coder: aDecoder)
     }
     
