@@ -35,9 +35,9 @@
 		263B09CD1ACEEF9600E7C99E /* GOConstant.swift in Sources */ = {isa = PBXBuildFile; fileRef = 263B09C31ACEEE1100E7C99E /* GOConstant.swift */; };
 		263B09CE1ACEEF9600E7C99E /* GOUtilities.swift in Sources */ = {isa = PBXBuildFile; fileRef = 263B09C41ACEEE1100E7C99E /* GOUtilities.swift */; };
 		267EC2D41AB1DA01002FE745 /* CGVector+XUtility.swift in Sources */ = {isa = PBXBuildFile; fileRef = 267EC2D31AB1DA01002FE745 /* CGVector+XUtility.swift */; };
-		269D78361AD305EC00279EF3 /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 269D78351AD305EC00279EF3 /* HomeViewController.swift */; };
 		269D78381AD306F000279EF3 /* SettingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 269D78371AD306F000279EF3 /* SettingViewController.swift */; };
 		269D783A1AD3070100279EF3 /* LevelSelectorViewDesigner.swift in Sources */ = {isa = PBXBuildFile; fileRef = 269D78391AD3070100279EF3 /* LevelSelectorViewDesigner.swift */; };
+		269D783E1AD3088300279EF3 /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 269D783D1AD3088300279EF3 /* HomeViewController.swift */; };
 		26C8ADDA1AD00437008ADACB /* LevelDesignerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26C8ADD91AD00437008ADACB /* LevelDesignerViewController.swift */; };
 		26C8ADDC1AD01A52008ADACB /* String+XUtility.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26C8ADDB1AD01A52008ADACB /* String+XUtility.swift */; };
 		26C8ADE01AD045D8008ADACB /* GOPath.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26C8ADDF1AD045D8008ADACB /* GOPath.swift */; };
@@ -140,9 +140,9 @@
 		263B09C31ACEEE1100E7C99E /* GOConstant.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GOConstant.swift; sourceTree = "<group>"; };
 		263B09C41ACEEE1100E7C99E /* GOUtilities.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GOUtilities.swift; sourceTree = "<group>"; };
 		267EC2D31AB1DA01002FE745 /* CGVector+XUtility.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "CGVector+XUtility.swift"; sourceTree = "<group>"; };
-		269D78351AD305EC00279EF3 /* HomeViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
 		269D78371AD306F000279EF3 /* SettingViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingViewController.swift; sourceTree = "<group>"; };
 		269D78391AD3070100279EF3 /* LevelSelectorViewDesigner.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LevelSelectorViewDesigner.swift; sourceTree = "<group>"; };
+		269D783D1AD3088300279EF3 /* HomeViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
 		26C8ADD91AD00437008ADACB /* LevelDesignerViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LevelDesignerViewController.swift; sourceTree = "<group>"; };
 		26C8ADDB1AD01A52008ADACB /* String+XUtility.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "String+XUtility.swift"; sourceTree = "<group>"; };
 		26C8ADDF1AD045D8008ADACB /* GOPath.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GOPath.swift; sourceTree = "<group>"; };
@@ -357,9 +357,9 @@
 			children = (
 				26C8ADD91AD00437008ADACB /* LevelDesignerViewController.swift */,
 				982495D71AD2ACC10039E75E /* DesignerLevelSelectViewController.swift */,
-				269D78351AD305EC00279EF3 /* HomeViewController.swift */,
 				269D78371AD306F000279EF3 /* SettingViewController.swift */,
 				269D78391AD3070100279EF3 /* LevelSelectorViewDesigner.swift */,
+				269D783D1AD3088300279EF3 /* HomeViewController.swift */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -595,6 +595,7 @@
 				263B09BB1ACEEDD800E7C99E /* GOFlatMirrorRep.swift in Sources */,
 				263B09B81ACEEDD800E7C99E /* GOConcaveLensRep.swift in Sources */,
 				263B09B01ACEEDD800E7C99E /* GOSegment.swift in Sources */,
+				269D783E1AD3088300279EF3 /* HomeViewController.swift in Sources */,
 				629F42531AD046C600EFBABD /* GOEmitterRep.swift in Sources */,
 				263B09BD1ACEEDD800E7C99E /* GOFlatWallRep.swift in Sources */,
 				26C8ADDC1AD01A52008ADACB /* String+XUtility.swift in Sources */,
@@ -614,7 +615,6 @@
 				620BD4461AB2E69800267C7B /* XNote.swift in Sources */,
 				263B09C51ACEEE1100E7C99E /* CGFLoat+GOUtilities.swift in Sources */,
 				263B09C91ACEEE1100E7C99E /* GOUtilities.swift in Sources */,
-				269D78361AD305EC00279EF3 /* HomeViewController.swift in Sources */,
 				262BE1A61ABE9A9000ABE965 /* AGSpriteButton.m in Sources */,
 				98754ADC1AD0587F00817319 /* GameLevel.swift in Sources */,
 				62D2836A1AD1890900A583FA /* XWall.swift in Sources */,
