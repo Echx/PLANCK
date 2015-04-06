@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6751" systemVersion="14C1514" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="ICT-TY-Uh1">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6751" systemVersion="14D105g" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="ICT-TY-Uh1">
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6736"/>
     </dependencies>
@@ -307,7 +307,7 @@
         <!--Designer Level Select View Controller-->
         <scene sceneID="ewF-Cs-yPt">
             <objects>
-                <tableViewController storyboardIdentifier="DESIGNER_SELECT" modalPresentationStyle="formSheet" id="J3J-LA-iRa" customClass="DesignerLevelSelectViewController" customModule="Planck" customModuleProvider="target" sceneMemberID="viewController">
+                <tableViewController storyboardIdentifier="DesignerLevelSelectViewController" modalPresentationStyle="formSheet" useStoryboardIdentifierAsRestorationIdentifier="YES" id="J3J-LA-iRa" customClass="DesignerLevelSelectViewController" customModule="Planck" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" id="5xh-41-5SH">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -338,6 +338,60 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="odB-Ok-KaU" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="277" y="371"/>
+        </scene>
+        <!--Home View Controller-->
+        <scene sceneID="dYy-7Q-8jn">
+            <objects>
+                <viewController storyboardIdentifier="HomeViewController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="Z3F-Q9-Qtd" customClass="HomeViewController" customModule="Planck" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="zHk-tC-ncm"/>
+                        <viewControllerLayoutGuide type="bottom" id="Dtx-qB-uvO"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="9UY-nZ-Yvt">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="nhq-O5-paL" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="277" y="1068"/>
+        </scene>
+        <!--Level Selector View Designer-->
+        <scene sceneID="adN-yn-p58">
+            <objects>
+                <viewController storyboardIdentifier="LevelSelectorViewDesigner" useStoryboardIdentifierAsRestorationIdentifier="YES" id="3sC-QG-bbK" customClass="LevelSelectorViewDesigner" customModule="LevelSelectorViewDesigner" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="5oz-hM-3x8"/>
+                        <viewControllerLayoutGuide type="bottom" id="T5k-7D-0Ws"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="IYD-DR-Ggg">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="v15-4y-bMc" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="277" y="1737"/>
+        </scene>
+        <!--Setting View Controller-->
+        <scene sceneID="3nx-KU-gzm">
+            <objects>
+                <viewController storyboardIdentifier="SettingViewController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="uGl-4E-rzF" customClass="SettingViewController" customModule="Planck" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="Gd3-O8-aAk"/>
+                        <viewControllerLayoutGuide type="bottom" id="qFz-1J-4UW"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="tQc-1r-pU3">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="i5j-L0-sh5" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="950" y="1737"/>
         </scene>
     </scenes>
 </document>
