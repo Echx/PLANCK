@@ -16,6 +16,14 @@ struct Constant {
     static let vectorUnitLength: CGFloat = 1
 }
 
+struct StoryboardIndentifier {
+    static let Home = "HomeViewController"
+    static let LevelDesigner = "LevelDesignerViewController"
+    static let Setting = "SettingViewController"
+    static let Game = "GameViewController"
+    static let LevelSelector = "LevelSelectorViewController"
+}
+
 struct NSCodingKey {
     static let ColorRed = "RED"
     static let ColorGreen = "GREEN"
