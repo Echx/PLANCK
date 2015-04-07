@@ -122,12 +122,17 @@ class GOArcSegment: GOSegment {
         let lineOfRay = ray.line
         let k = lineOfRay.slope
         let c = lineOfRay.yIntercept
+        
+        if c == nil {
+            return nil
+        }
+        
         let r1 = CGFloat(self.center.x)
         let r2 = CGFloat(self.center.y)
         let r = self.radius
         let termA = 1 + k * k
-        let termB = 2 * ((c - r2) * k - r1)
-        let termC = r1 * r1 + (r2 - c) * (r2 - c) - r * r
+        let termB = 2 * ((c! - r2) * k - r1)
+        let termC = r1 * r1 + (r2 - c!) * (r2 - c!) - r * r
         
         let xs = GOUtilities.solveQuadraticEquation(termA, b: termB, c: termC)
         
