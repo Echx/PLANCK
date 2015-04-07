@@ -22,9 +22,9 @@ class GOLine: NSObject {
         }
     }
     
-    var yIntercept: CGFloat {
+    var yIntercept: CGFloat? {
         get {
-            return self.getY(x: 0)!
+            return self.getY(x: 0)
         }
     }
     

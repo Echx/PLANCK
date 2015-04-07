@@ -777,7 +777,6 @@ class LevelDesignerViewController: XViewController {
                 
                 
                 let delayInNanoSeconds = delay * CGFloat(NSEC_PER_SEC);
-                print(delayInNanoSeconds)
                 dispatch_after(dispatch_time(DISPATCH_TIME_NOW, Int64(delayInNanoSeconds)), dispatch_get_main_queue()) {
                     self.drawRay(tag, currentIndex: currentIndex + 1)
                 }
