@@ -9,8 +9,8 @@
 import UIKit
 
 protocol GOGridDelegate {
-    func grid(grid: GOGrid, didProduceNewCriticalPoint point: CGPoint)
-    func gridDidFinishCalculation(grid: GOGrid)
+    func grid(grid: GOGrid, didProduceNewCriticalPoint point: CGPoint, forRayWithTag tag: Int)
+    func gridDidFinishCalculation(grid: GOGrid, forRayWithTag tag: Int)
 }
 
 class GOGrid: NSObject, NSCoding {
@@ -187,7 +187,7 @@ class GOGrid: NSObject, NSCoding {
     }
 
 
-    func startCriticalPointsCalculationWithRay(ray: GORay) {
+    func startCriticalPointsCalculationWithRay(ray: GORay, withTag tag: Int) {
         var queue = dispatch_queue_create("CALCULATION_SERIAL_QUEUE", DISPATCH_QUEUE_SERIAL)
         dispatch_async(queue, {
             self.refractionEdgeParentStack = GOStack<String>()
@@ -195,7 +195,7 @@ class GOGrid: NSObject, NSCoding {
             
             // first add the start point of the ray
             criticalPoints.append(ray.startPoint)
-            self.delegate?.grid(self, didProduceNewCriticalPoint: self.getDisplayPointForGridPoint(ray.startPoint))
+            self.delegate?.grid(self, didProduceNewCriticalPoint: self.getDisplayPointForGridPoint(ray.startPoint), forRayWithTag: tag)
             
             // from the given ray, we found out each nearest edge
             // loop through each resulted ray until we get nil result (no intersection anymore)
@@ -207,7 +207,7 @@ class GOGrid: NSObject, NSCoding {
                 // it must hit the edge, add the intersection point
                 let newPoint = edge!.getIntersectionPoint(currentRay)!
                 criticalPoints.append(newPoint)
-                self.delegate?.grid(self, didProduceNewCriticalPoint: self.getDisplayPointForGridPoint(newPoint))
+                self.delegate?.grid(self, didProduceNewCriticalPoint: self.getDisplayPointForGridPoint(newPoint), forRayWithTag: tag)
                 
                 
                 if let outcomeRay = self.getOutcomeRay(currentRay, edge: edge!) {
@@ -230,7 +230,7 @@ class GOGrid: NSObject, NSCoding {
                 }
             }
             
-            self.delegate?.gridDidFinishCalculation(self)
+            self.delegate?.gridDidFinishCalculation(self, forRayWithTag: tag)
         })
     }
     
