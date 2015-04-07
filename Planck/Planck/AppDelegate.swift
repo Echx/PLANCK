@@ -9,13 +9,24 @@
 import UIKit
 
 @UIApplicationMain
+
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
     var window: UIWindow?
-
+    var drawerController: MMDrawerController?
 
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
-        // Override point for customization after application launch.
+        let settingViewController = SettingViewController.getInstance()
+        let levelSelectViewController = LevelSelectViewController.getInstance()
+        let homeViewController = HomeViewController.getInstance()
+        
+        self.drawerController = MMDrawerController(centerViewController: homeViewController, leftDrawerViewController: settingViewController, rightDrawerViewController: levelSelectViewController)
+        self.drawerController!.maximumLeftDrawerWidth = 300
+        self.drawerController!.maximumRightDrawerWidth = 300
+        self.drawerController!.openDrawerGestureModeMask = MMOpenDrawerGestureMode.All
+        self.drawerController!.closeDrawerGestureModeMask = MMCloseDrawerGestureMode.PanningCenterView
+        self.window = UIWindow(frame: UIScreen.mainScreen().bounds)
+        self.window!.rootViewController = self.drawerController
         return true
     }
 

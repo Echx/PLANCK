@@ -395,8 +395,12 @@
                         <rect key="frame" x="0.0" y="0.0" width="1024" height="768"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="LaunchImage" translatesAutoresizingMaskIntoConstraints="NO" id="C9z-9U-jCx">
+                                <rect key="frame" x="0.0" y="0.0" width="1024" height="768"/>
+                            </imageView>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="X5K-qp-zHK">
-                                <rect key="frame" x="462" y="312" width="101" height="30"/>
+                                <rect key="frame" x="462" y="694" width="101" height="30"/>
+                                <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <state key="normal" title="Level Designer">
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
@@ -404,26 +408,8 @@
                                     <segue destination="ICT-TY-Uh1" kind="presentation" id="6sk-JX-aAy"/>
                                 </connections>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="he7-a3-goa">
-                                <rect key="frame" x="463" y="369" width="98" height="30"/>
-                                <state key="normal" title="Level Selector">
-                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                </state>
-                                <connections>
-                                    <segue destination="3sC-QG-bbK" kind="presentation" id="aT5-fx-Bxe"/>
-                                </connections>
-                            </button>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="2ca-8x-gck">
-                                <rect key="frame" x="484" y="424" width="57" height="30"/>
-                                <state key="normal" title="Settings">
-                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                </state>
-                                <connections>
-                                    <segue destination="uGl-4E-rzF" kind="presentation" id="Bs7-BX-NZO"/>
-                                </connections>
-                            </button>
                         </subviews>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <color key="backgroundColor" red="0.26274509800000001" green="0.36862745099999999" blue="0.46274509800000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     </view>
                     <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
                     <size key="freeformSize" width="1024" height="768"/>
@@ -432,10 +418,10 @@
             </objects>
             <point key="canvasLocation" x="-239" y="397"/>
         </scene>
-        <!--Level Selector View Designer-->
+        <!--Level Select View Controller-->
         <scene sceneID="adN-yn-p58">
             <objects>
-                <viewController storyboardIdentifier="LevelSelectorViewDesigner" useStoryboardIdentifierAsRestorationIdentifier="YES" id="3sC-QG-bbK" customClass="LevelSelectorViewDesigner" customModule="Planck" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="LevelSelectViewController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="3sC-QG-bbK" customClass="LevelSelectViewController" customModule="Planck" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="5oz-hM-3x8"/>
                         <viewControllerLayoutGuide type="bottom" id="T5k-7D-0Ws"/>
@@ -495,4 +481,7 @@
             <point key="canvasLocation" x="-239" y="1299"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="LaunchImage" width="1024" height="768"/>
+    </resources>
 </document>
