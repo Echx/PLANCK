@@ -11,7 +11,7 @@ import UIKit
 class LevelSelectViewController: XViewController, UICollectionViewDataSource, UICollectionViewDelegate, UICollectionViewDelegateFlowLayout {
     
     private let itemsInSection = 5
-    private let sectionInsets = UIEdgeInsets(top: 0.0, left: 20.0, bottom: 20.0, right: 50.0)
+    private let sectionInsets = UIEdgeInsets(top: 0.0, left: 10.0, bottom: 15.0, right: 10.0)
     
     var levelArray:[GameLevel] = [GameLevel]()
     
