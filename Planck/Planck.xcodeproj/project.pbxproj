@@ -86,6 +86,8 @@
 		986E5DA31AC55604008EF3CE /* StorageManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 98D55F9D1ABF133000B3E86A /* StorageManager.swift */; };
 		98754ADC1AD0587F00817319 /* GameLevel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 98754ADB1AD0587F00817319 /* GameLevel.swift */; };
 		9885E76F1AD174500089325D /* GameLevel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 98754ADB1AD0587F00817319 /* GameLevel.swift */; };
+		988CF3481AD3C6580013D903 /* LevelSelectHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 988CF3471AD3C6580013D903 /* LevelSelectHeaderView.swift */; };
+		988CF34A1AD3C6C70013D903 /* LevelSelectCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 988CF3491AD3C6C70013D903 /* LevelSelectCollectionViewCell.swift */; };
 		98D55F9E1ABF133000B3E86A /* StorageManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 98D55F9D1ABF133000B3E86A /* StorageManager.swift */; };
 		98F63A941AD163C70096A32E /* ArchiveTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 98F63A931AD163C70096A32E /* ArchiveTest.swift */; };
 		98F63A951AD165070096A32E /* GOConcaveLensRep.swift in Sources */ = {isa = PBXBuildFile; fileRef = 263B09A41ACEEDD800E7C99E /* GOConcaveLensRep.swift */; };
@@ -190,6 +192,8 @@
 		62D2836C1AD1892400A583FA /* XConcanveLens.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = XConcanveLens.swift; path = Optics/XConcanveLens.swift; sourceTree = "<group>"; };
 		982495D71AD2ACC10039E75E /* DesignerLevelSelectViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DesignerLevelSelectViewController.swift; sourceTree = "<group>"; };
 		98754ADB1AD0587F00817319 /* GameLevel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GameLevel.swift; sourceTree = "<group>"; };
+		988CF3471AD3C6580013D903 /* LevelSelectHeaderView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LevelSelectHeaderView.swift; sourceTree = "<group>"; };
+		988CF3491AD3C6C70013D903 /* LevelSelectCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LevelSelectCollectionViewCell.swift; sourceTree = "<group>"; };
 		98D55F9D1ABF133000B3E86A /* StorageManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = StorageManager.swift; path = Storage/StorageManager.swift; sourceTree = "<group>"; };
 		98F63A931AD163C70096A32E /* ArchiveTest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ArchiveTest.swift; path = Model/ArchiveTest.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -398,6 +402,7 @@
 		6227FC071AAE28E7007F49EA /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				988CF3461AD3C6490013D903 /* LevelSelect */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -450,6 +455,15 @@
 				622556A21AC5345600DA47AF /* Percussion */,
 			);
 			name = Sound;
+			sourceTree = "<group>";
+		};
+		988CF3461AD3C6490013D903 /* LevelSelect */ = {
+			isa = PBXGroup;
+			children = (
+				988CF3471AD3C6580013D903 /* LevelSelectHeaderView.swift */,
+				988CF3491AD3C6C70013D903 /* LevelSelectCollectionViewCell.swift */,
+			);
+			path = LevelSelect;
 			sourceTree = "<group>";
 		};
 		98D55F9C1ABF126700B3E86A /* Storage */ = {
@@ -592,6 +606,7 @@
 				267EC2D41AB1DA01002FE745 /* CGVector+XUtility.swift in Sources */,
 				6296A3951AD1D531008F7655 /* XPlanck.swift in Sources */,
 				26C8ADDA1AD00437008ADACB /* LevelDesignerViewController.swift in Sources */,
+				988CF3481AD3C6580013D903 /* LevelSelectHeaderView.swift in Sources */,
 				269D783A1AD3070100279EF3 /* LevelSelectorViewDesigner.swift in Sources */,
 				263B09BC1ACEEDD800E7C99E /* GOFlatOpticRep.swift in Sources */,
 				6227FC1B1AAE28E7007F49EA /* XMedium.swift in Sources */,
@@ -627,6 +642,7 @@
 				98754ADC1AD0587F00817319 /* GameLevel.swift in Sources */,
 				62D2836A1AD1890900A583FA /* XWall.swift in Sources */,
 				263B09C71ACEEE1100E7C99E /* CGVector+GOUtilities.swift in Sources */,
+				988CF34A1AD3C6C70013D903 /* LevelSelectCollectionViewCell.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
