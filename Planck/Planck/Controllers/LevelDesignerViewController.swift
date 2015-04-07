@@ -72,7 +72,7 @@ class LevelDesignerViewController: XViewController {
     //store the views we draw the various optic devices
     //key is the id of the instrument
     private var deviceViews = [String: UIView]()
-    private var rayLayers = [CAShapeLayer]()
+    private var rayLayers = [[CAShapeLayer]]()
     private var rays = [[CGPoint]]()
     private var selectedNode: GOOpticRep?
     private var audioPlayerList = [AVAudioPlayer]()
@@ -719,13 +719,7 @@ class LevelDesignerViewController: XViewController {
     private func addRay(point: CGPoint) {
         let ray = GORay(startPoint: self.grid.getGridPointForDisplayPoint(point), direction: CGVector(dx: 1, dy: 0))
         self.rays.append([CGPoint]())
-        let layer = CAShapeLayer()
-        layer.strokeEnd = 1.0
-        layer.strokeColor = UIColor.whiteColor().CGColor
-        layer.fillColor = UIColor.clearColor().CGColor
-        layer.lineWidth = 2.0
-        
-        self.rayLayers.append(layer)
+        self.rayLayers.append([CAShapeLayer]())
         
         self.grid.startCriticalPointsCalculationWithRay(ray, withTag: self.rays.count - 1)
     }
@@ -743,11 +737,22 @@ class LevelDesignerViewController: XViewController {
         }
     }
     
-    private func drawRay(tag: Int) {
+    private func drawRay(tag: Int, currentIndex: Int) {
         dispatch_async(dispatch_get_main_queue()) {
+            if self.rays.count == 0 {
+                return
+            }
             
-            var currentIndex = 1
-            while currentIndex < self.rays[tag].count {
+            if currentIndex < self.rays[tag].count {
+                
+                let layer = CAShapeLayer()
+                layer.strokeEnd = 1.0
+                layer.strokeColor = UIColor.whiteColor().CGColor
+                layer.fillColor = UIColor.clearColor().CGColor
+                layer.lineWidth = 2.0
+                
+                self.rayLayers[tag].append(layer)
+                
                 var path = UIBezierPath()
                 let rayPath = self.rays[tag]
                 let prevPoint = rayPath[currentIndex - 1]
@@ -755,30 +760,40 @@ class LevelDesignerViewController: XViewController {
                 path.moveToPoint(prevPoint)
                 path.addLineToPoint(currentPoint)
                 let distance = prevPoint.getDistanceToPoint(currentPoint)
-                var rayLayer = self.rayLayers[tag]
-                rayLayer.path = path.CGPath
-                self.view.layer.addSublayer(rayLayer)
+                layer.path = path.CGPath
+                self.view.layer.addSublayer(layer)
+                
+                let delay = distance / Constant.lightSpeedBase
                 
                 let pathAnimation = CABasicAnimation(keyPath: "strokeEnd")
                 pathAnimation.fromValue = 0.0;
                 pathAnimation.toValue = 1.0;
-                pathAnimation.duration = CFTimeInterval(distance / Constant.lightSpeedBase);
+                pathAnimation.duration = CFTimeInterval(delay);
                 pathAnimation.repeatCount = 1.0
                 pathAnimation.fillMode = kCAFillModeForwards
                 pathAnimation.timingFunction = CAMediaTimingFunction(name: kCAMediaTimingFunctionLinear)
                 
-                rayLayer.addAnimation(pathAnimation, forKey: "strokeEnd")
-                currentIndex = currentIndex + 1
-//                NSTimer.scheduledTimerWithTimeInterval(0.4, target: self, selector: Selector("update"), userInfo: nil, repeats: true)
+                layer.addAnimation(pathAnimation, forKey: "strokeEnd")
+                
+                
+                let delayInNanoSeconds = delay * CGFloat(NSEC_PER_SEC);
+                print(delayInNanoSeconds)
+                dispatch_after(dispatch_time(DISPATCH_TIME_NOW, Int64(delayInNanoSeconds)), dispatch_get_main_queue()) {
+                    self.drawRay(tag, currentIndex: currentIndex + 1)
+                }
             }
         }
     }
     
     private func clearRay() {
-        for layer in self.rayLayers {
-            layer.removeFromSuperlayer()
+        for layers in self.rayLayers {
+            for layer in layers {
+                layer.removeFromSuperlayer()
+            }
         }
         self.audioPlayerList.removeAll(keepCapacity: false)
+        self.rayLayers.removeAll(keepCapacity: false)
+        self.rays.removeAll(keepCapacity: false)
     }
     
     private func getColorForNode(node: GOOpticRep) -> UIColor {
@@ -925,10 +940,14 @@ extension LevelDesignerViewController: LevelSelectDelegate {
 
 extension LevelDesignerViewController: GOGridDelegate {
     func grid(grid: GOGrid, didProduceNewCriticalPoint point: CGPoint, forRayWithTag tag: Int) {
+        if self.rays.count == 0 {
+            // waiting for thread to complete
+            return
+        }
         self.rays[tag].append(point)
         if self.rays[tag].count == 2 {
             // when there are 2 points, start drawing
-            drawRay(tag)
+            drawRay(tag, currentIndex: 1)
         }
     }
     
