@@ -17,12 +17,22 @@ struct Constant {
 }
 
 struct StoryboardIndentifier {
+    static let StoryBoardID = "Main"
     static let Home = "HomeViewController"
     static let LevelDesigner = "LevelDesignerViewController"
     static let Setting = "SettingViewController"
     static let Game = "GameViewController"
     static let LevelSelect = "LevelSelectViewController"
     static let DesignerLevelSelect = "DesignerLevelSelectViewController"
+}
+
+struct ReuseableID {
+    static let LevelSelectCell = "LevelSelectCell"
+    static let LevelSelectHeader = "LevelSelectHeader"
+}
+
+struct StorageDefault {
+    static let levelDataType = "dat"
 }
 
 struct NSCodingKey {
