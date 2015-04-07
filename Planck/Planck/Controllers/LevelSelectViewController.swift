@@ -42,7 +42,6 @@ class LevelSelectViewController: XViewController, UICollectionViewDataSource, UI
     
     func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCellWithReuseIdentifier(ReuseableID.LevelSelectCell , forIndexPath: indexPath) as LevelSelectCollectionViewCell
-        println(indexPath.section * itemsInSection + indexPath.item)
         let game = levelArray[indexPath.section * itemsInSection + indexPath.item]
         let nameChar = ["I", "II", "III", "IV", "V"]
         

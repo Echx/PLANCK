@@ -490,7 +490,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="v15-4y-bMc" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="853" y="397"/>
+            <point key="canvasLocation" x="597" y="397"/>
         </scene>
         <!--Setting View Controller-->
         <scene sceneID="3nx-KU-gzm">
@@ -501,16 +501,16 @@
                         <viewControllerLayoutGuide type="bottom" id="qFz-1J-4UW"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="tQc-1r-pU3">
-                        <rect key="frame" x="0.0" y="0.0" width="1024" height="768"/>
+                        <rect key="frame" x="0.0" y="0.0" width="300" height="768"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <color key="backgroundColor" red="0.26274509800000001" green="0.36862745099999999" blue="0.46274509800000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     </view>
                     <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
-                    <size key="freeformSize" width="1024" height="768"/>
+                    <size key="freeformSize" width="300" height="768"/>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="i5j-L0-sh5" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-239" y="1299"/>
+            <point key="canvasLocation" x="-1125" y="397"/>
         </scene>
     </scenes>
     <resources>
