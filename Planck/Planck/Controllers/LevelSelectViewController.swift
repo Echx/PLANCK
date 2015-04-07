@@ -1,5 +1,5 @@
 //
-//  LevelSelectorViewDesigner.swift
+//  LevelSelectViewController
 //  Planck
 //
 //  Created by NULL on 07/04/15.
@@ -8,12 +8,19 @@
 
 import UIKit
 
-class LevelSelectorViewDesigner: XViewController, UICollectionViewDataSource, UICollectionViewDelegate, UICollectionViewDelegateFlowLayout {
+class LevelSelectViewController: XViewController, UICollectionViewDataSource, UICollectionViewDelegate, UICollectionViewDelegateFlowLayout {
     
     private let itemsInSection = 5
     private let sectionInsets = UIEdgeInsets(top: 0.0, left: 20.0, bottom: 20.0, right: 50.0)
     
     var levelArray:[GameLevel] = [GameLevel]()
+    
+    class func getInstance() -> LevelSelectViewController {
+        let storyboard = UIStoryboard(name: "Main", bundle: nil)
+        let identifier = StoryboardIndentifier.LevelSelect
+        let viewController = storyboard.instantiateViewControllerWithIdentifier(identifier) as LevelSelectViewController
+        return viewController
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()

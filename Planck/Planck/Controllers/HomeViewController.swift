@@ -10,9 +10,15 @@ import UIKit
 
 class HomeViewController: XViewController {
 
+    class func getInstance() -> HomeViewController {
+        let storyboard = UIStoryboard(name: "Main", bundle: nil)
+        let identifier = StoryboardIndentifier.Home
+        let viewController = storyboard.instantiateViewControllerWithIdentifier(identifier) as HomeViewController
+        return viewController
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-
         // Do any additional setup after loading the view.
     }
 

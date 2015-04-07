@@ -9,6 +9,14 @@
 import UIKit
 
 class SettingViewController: XViewController {
+    
+    class func getInstance() -> SettingViewController {
+        let storyboard = UIStoryboard(name: "Main", bundle: nil)
+        let identifier = StoryboardIndentifier.Setting
+        let viewController = storyboard.instantiateViewControllerWithIdentifier(identifier) as SettingViewController
+        return viewController
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
