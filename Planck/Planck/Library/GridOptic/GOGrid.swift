@@ -224,7 +224,8 @@ class GOGrid: NSObject, NSCoding {
                 // found out the intersection with the boundary
                 // we treat boundary as 4 line segments
                 if let finalPoint = self.getIntersectionWithBoundary(ray: currentRay) {
-                    criticalPoints.append(self.getDisplayPointForGridPoint(finalPoint))
+//                    criticalPoints.append(self.getDisplayPointForGridPoint(finalPoint))
+                    self.delegate?.grid(self, didProduceNewCriticalPoint: self.getDisplayPointForGridPoint(finalPoint), forRayWithTag: tag)
                 } else {
                     println("something goes wrong no final point")
                 }

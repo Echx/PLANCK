@@ -894,28 +894,32 @@ extension LevelDesignerViewController: LevelSelectDelegate {
 
 extension LevelDesignerViewController: GOGridDelegate {
     func grid(grid: GOGrid, didProduceNewCriticalPoint point: CGPoint, forRayWithTag tag: Int) {
-        var rayPath = self.rays[tag]
-        rayPath.append(point)
+        self.rays[tag].append(point)
+        let rayPath = self.rays[tag]
         if rayPath.count > 1 {
-            
+            dispatch_async(dispatch_get_main_queue()) {
+                var path = UIBezierPath()
+                let prevPoint = rayPath[rayPath.count - 2]
+                let currentPoint = rayPath[rayPath.count - 1]
+                path.moveToPoint(prevPoint)
+                path.addLineToPoint(currentPoint)
+                let distance = prevPoint.getDistanceToPoint(currentPoint)
+                var rayLayer = self.rayLayers[tag]
+                rayLayer.path = path.CGPath
+                self.view.layer.addSublayer(rayLayer)
+                
+                let pathAnimation = CABasicAnimation(keyPath: "strokeEnd")
+                pathAnimation.fromValue = 0.0;
+                pathAnimation.toValue = 1.0;
+                pathAnimation.duration = CFTimeInterval(distance / Constant.lightSpeedBase);
+                pathAnimation.repeatCount = 1.0
+                pathAnimation.fillMode = kCAFillModeForwards
+                pathAnimation.timingFunction = CAMediaTimingFunction(name: kCAMediaTimingFunctionLinear)
+                println(rayPath.count)
+
+                rayLayer.addAnimation(pathAnimation, forKey: "strokeEnd")
+            }
         }
-//        let goPath = self.grid.getRayPath(ray)
-//        let path = goPath.bezierPath
-//        let points = goPath.criticalPoints
-//        let distance = goPath.pathLength
-//        self.processPoints(points)
-//        layer.path = path.CGPath
-//        self.view.layer.addSublayer(layer)
-//        
-//        let pathAnimation = CABasicAnimation(keyPath: "strokeEnd")
-//        pathAnimation.fromValue = 0.0;
-//        pathAnimation.toValue = 1.0;
-//        pathAnimation.duration = CFTimeInterval(distance / Constant.lightSpeedBase);
-//        pathAnimation.repeatCount = 1.0
-//        pathAnimation.fillMode = kCAFillModeForwards
-//        pathAnimation.timingFunction = CAMediaTimingFunction(name: kCAMediaTimingFunctionLinear)
-//        
-//        layer.addAnimation(pathAnimation, forKey: "strokeEnd")
     }
     
     func gridDidFinishCalculation(grid: GOGrid, forRayWithTag tag: Int) {
