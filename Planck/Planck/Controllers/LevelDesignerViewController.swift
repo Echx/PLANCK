@@ -73,6 +73,7 @@ class LevelDesignerViewController: XViewController {
     //key is the id of the instrument
     private var deviceViews = [String: UIView]()
     private var rayLayers = [CAShapeLayer]()
+    private var rays = [[CGPoint]]()
     private var selectedNode: GOOpticRep?
     private var audioPlayerList = [AVAudioPlayer]()
     private var grid: GOGrid
@@ -143,8 +144,8 @@ class LevelDesignerViewController: XViewController {
     
     required override init(coder aDecoder: NSCoder) {
         self.grid = GOGrid(width: self.gridWidth, height: self.gridHeight, andUnitLength: self.gridUnitLength)
-//        grid.delegate = self
         super.init(coder: aDecoder)
+        self.grid.delegate = self
     }
     
     override func viewDidLoad() {
@@ -717,6 +718,7 @@ class LevelDesignerViewController: XViewController {
     
     private func addRay(point: CGPoint) {
         let ray = GORay(startPoint: self.grid.getGridPointForDisplayPoint(point), direction: CGVector(dx: 1, dy: 0))
+        self.rays.append([CGPoint]())
         let layer = CAShapeLayer()
         layer.strokeEnd = 1.0
         layer.strokeColor = UIColor.whiteColor().CGColor
@@ -725,23 +727,7 @@ class LevelDesignerViewController: XViewController {
         
         self.rayLayers.append(layer)
         
-        let goPath = self.grid.getRayPath(ray)
-        let path = goPath.bezierPath
-        let points = goPath.criticalPoints
-        let distance = goPath.pathLength
-        self.processPoints(points)
-        layer.path = path.CGPath
-        self.view.layer.addSublayer(layer)
-        
-        let pathAnimation = CABasicAnimation(keyPath: "strokeEnd")
-        pathAnimation.fromValue = 0.0;
-        pathAnimation.toValue = 1.0;
-        pathAnimation.duration = CFTimeInterval(distance / Constant.lightSpeedBase);
-        pathAnimation.repeatCount = 1.0
-        pathAnimation.fillMode = kCAFillModeForwards
-        pathAnimation.timingFunction = CAMediaTimingFunction(name: kCAMediaTimingFunctionLinear)
-        
-        layer.addAnimation(pathAnimation, forKey: "strokeEnd")
+        self.grid.startCriticalPointsCalculationWithRay(ray, withTag: self.rays.count - 1)
     }
     
     private func shootRay() {
@@ -896,12 +882,43 @@ class LevelDesignerViewController: XViewController {
 
 }
 
-extension LevelDesignerViewController:LevelSelectDelegate {
+extension LevelDesignerViewController: LevelSelectDelegate {
     func loadSelectLevel(level:GameLevel) {
         self.dismissViewControllerAnimated(true, completion: {
             self.loadLevel(level)
             self.game = level
         })
         
+    }
+}
+
+extension LevelDesignerViewController: GOGridDelegate {
+    func grid(grid: GOGrid, didProduceNewCriticalPoint point: CGPoint, forRayWithTag tag: Int) {
+        var rayPath = self.rays[tag]
+        rayPath.append(point)
+        if rayPath.count > 1 {
+            
+        }
+//        let goPath = self.grid.getRayPath(ray)
+//        let path = goPath.bezierPath
+//        let points = goPath.criticalPoints
+//        let distance = goPath.pathLength
+//        self.processPoints(points)
+//        layer.path = path.CGPath
+//        self.view.layer.addSublayer(layer)
+//        
+//        let pathAnimation = CABasicAnimation(keyPath: "strokeEnd")
+//        pathAnimation.fromValue = 0.0;
+//        pathAnimation.toValue = 1.0;
+//        pathAnimation.duration = CFTimeInterval(distance / Constant.lightSpeedBase);
+//        pathAnimation.repeatCount = 1.0
+//        pathAnimation.fillMode = kCAFillModeForwards
+//        pathAnimation.timingFunction = CAMediaTimingFunction(name: kCAMediaTimingFunctionLinear)
+//        
+//        layer.addAnimation(pathAnimation, forKey: "strokeEnd")
+    }
+    
+    func gridDidFinishCalculation(grid: GOGrid, forRayWithTag tag: Int) {
+        self.processPoints(self.rays[tag])
     }
 }
