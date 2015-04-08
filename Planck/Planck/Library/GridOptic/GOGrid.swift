@@ -25,6 +25,7 @@ class GOGrid: NSObject, NSCoding {
     var instruments = [String: GOOpticRep]()
     var delegate: GOGridDelegate?
     var refractionEdgeParentStack = GOStack<String>()
+    var queue = dispatch_queue_create("CALCULATION_SERIAL_QUEUE", DISPATCH_QUEUE_SERIAL)
     
     var size: CGSize {
         get {
@@ -185,11 +186,16 @@ class GOGrid: NSObject, NSCoding {
         
         return GOPath(bezierPath: path, criticalPoints: points)
     }
-
+    
+    var shouldContinueCalculation: Bool = false
+    
+    func stopSubsequentCalculation() {
+        self.shouldContinueCalculation = false
+    }
 
     func startCriticalPointsCalculationWithRay(ray: GORay, withTag tag: Int) {
-        var queue = dispatch_queue_create("CALCULATION_SERIAL_QUEUE", DISPATCH_QUEUE_SERIAL)
-        dispatch_async(queue, {
+        self.shouldContinueCalculation = true
+        dispatch_async(self.queue, {
             self.refractionEdgeParentStack = GOStack<String>()
             var criticalPoints = [CGPoint]()
             
@@ -204,6 +210,9 @@ class GOGrid: NSObject, NSCoding {
             // mark if the final ray will end at the boundary
             var willEndAtBoundary = true
             while (edge != nil) {
+                if !self.shouldContinueCalculation {
+                    return
+                }
                 // it must hit the edge, add the intersection point
                 let newPoint = edge!.getIntersectionPoint(currentRay)!
                 criticalPoints.append(newPoint)

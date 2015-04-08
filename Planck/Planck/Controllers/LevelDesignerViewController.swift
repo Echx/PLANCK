@@ -787,14 +787,15 @@ class LevelDesignerViewController: XViewController {
     }
     
     private func clearRay() {
+        self.grid.stopSubsequentCalculation()
         for layers in self.rayLayers {
             for layer in layers {
                 layer.removeFromSuperlayer()
             }
         }
         self.audioPlayerList.removeAll(keepCapacity: false)
-        self.rayLayers.removeAll(keepCapacity: false)
-        self.rays.removeAll(keepCapacity: false)
+        self.rayLayers = [[CAShapeLayer]]()
+        self.rays = [[CGPoint]]()
     }
     
     private func getColorForNode(node: GOOpticRep) -> UIColor {
@@ -965,5 +966,6 @@ extension LevelDesignerViewController: GOGridDelegate {
     
     func gridDidFinishCalculation(grid: GOGrid, forRayWithTag tag: Int) {
 //        self.processPoints(self.rays[tag])
+        println("ha")
     }
 }
