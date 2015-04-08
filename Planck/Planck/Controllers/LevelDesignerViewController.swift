@@ -774,9 +774,11 @@ class LevelDesignerViewController: XViewController {
                 pathAnimation.timingFunction = CAMediaTimingFunction(name: kCAMediaTimingFunctionLinear)
                 
                 layer.addAnimation(pathAnimation, forKey: "strokeEnd")
+                if currentIndex > 1 {
+                    self.processPoint(prevPoint)
+                }
                 
-                
-                let delayInNanoSeconds = delay * CGFloat(NSEC_PER_SEC);
+                let delayInNanoSeconds = 0.9 * delay * CGFloat(NSEC_PER_SEC);
                 dispatch_after(dispatch_time(DISPATCH_TIME_NOW, Int64(delayInNanoSeconds)), dispatch_get_main_queue()) {
                     self.drawRay(tag, currentIndex: currentIndex + 1)
                 }
@@ -827,6 +829,17 @@ class LevelDesignerViewController: XViewController {
                         audioPlayer.playAtTime(wait + audioPlayer.deviceCurrentTime)
                     }
                 }
+            }
+        }
+    }
+    
+    private func processPoint(currPoint: CGPoint) {
+        if let device = self.grid.getInstrumentAtPoint(currPoint) {
+            if let sound = device.getSound() {
+                let audioPlayer = AVAudioPlayer(contentsOfURL: sound, error: nil)
+                self.audioPlayerList.append(audioPlayer)
+                audioPlayer.prepareToPlay()
+                audioPlayer.play()
             }
         }
     }
@@ -951,6 +964,6 @@ extension LevelDesignerViewController: GOGridDelegate {
     }
     
     func gridDidFinishCalculation(grid: GOGrid, forRayWithTag tag: Int) {
-        self.processPoints(self.rays[tag])
+//        self.processPoints(self.rays[tag])
     }
 }
