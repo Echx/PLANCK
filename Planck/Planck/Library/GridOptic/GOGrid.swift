@@ -9,8 +9,8 @@
 import UIKit
 
 protocol GOGridDelegate {
-    func grid(grid: GOGrid, didProduceNewCriticalPoint point: CGPoint, forRayWithTag tag: Int)
-    func gridDidFinishCalculation(grid: GOGrid, forRayWithTag tag: Int)
+    func grid(grid: GOGrid, didProduceNewCriticalPoint point: CGPoint, forRayWithTag tag: String)
+    func gridDidFinishCalculation(grid: GOGrid, forRayWithTag tag: String)
 }
 
 class GOGrid: NSObject, NSCoding {
@@ -193,7 +193,7 @@ class GOGrid: NSObject, NSCoding {
         self.shouldContinueCalculation = false
     }
 
-    func startCriticalPointsCalculationWithRay(ray: GORay, withTag tag: Int) {
+    func startCriticalPointsCalculationWithRay(ray: GORay, withTag tag: String) {
         self.shouldContinueCalculation = true
         dispatch_async(self.queue, {
             self.refractionEdgeParentStack = GOStack<String>()
@@ -313,10 +313,10 @@ class GOGrid: NSObject, NSCoding {
             }
         }
         
-        println("indexIn:   \(indexIn)")
-        println("ray:       \(ray)")
-        println("edge:      \(edge)")
-        println("indexOut:  \(indexOut)\n")
+//        println("indexIn:   \(indexIn)")
+//        println("ray:       \(ray)")
+//        println("edge:      \(edge)")
+//        println("indexOut:  \(indexOut)\n")
         return edge.getOutcomeRay(rayIn: ray, indexIn: indexIn, indexOut: indexOut)
     }
     

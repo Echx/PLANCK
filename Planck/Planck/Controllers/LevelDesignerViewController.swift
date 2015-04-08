@@ -72,8 +72,8 @@ class LevelDesignerViewController: XViewController {
     //store the views we draw the various optic devices
     //key is the id of the instrument
     private var deviceViews = [String: UIView]()
-    private var rayLayers = [[CAShapeLayer]]()
-    private var rays = [[CGPoint]]()
+    private var rayLayers = [String: [CAShapeLayer]]()
+    private var rays = [String: [CGPoint]]()
     private var selectedNode: GOOpticRep?
     private var audioPlayerList = [AVAudioPlayer]()
     private var grid: GOGrid
@@ -718,10 +718,11 @@ class LevelDesignerViewController: XViewController {
     
     private func addRay(point: CGPoint) {
         let ray = GORay(startPoint: self.grid.getGridPointForDisplayPoint(point), direction: CGVector(dx: 1, dy: 0))
-        self.rays.append([CGPoint]())
-        self.rayLayers.append([CAShapeLayer]())
+        var newTag = String.generateRandomString(20)
+        self.rays[newTag] = [CGPoint]()
+        self.rayLayers[newTag] = [CAShapeLayer]()
         
-        self.grid.startCriticalPointsCalculationWithRay(ray, withTag: self.rays.count - 1)
+        self.grid.startCriticalPointsCalculationWithRay(ray, withTag: newTag)
     }
     
     private func shootRay() {
@@ -737,24 +738,23 @@ class LevelDesignerViewController: XViewController {
         }
     }
     
-    private func drawRay(tag: Int, currentIndex: Int) {
+    private func drawRay(tag: String, currentIndex: Int) {
         dispatch_async(dispatch_get_main_queue()) {
             if self.rays.count == 0 {
                 return
             }
             
-            if currentIndex < self.rays[tag].count {
-                
+            if currentIndex < self.rays[tag]?.count {
                 let layer = CAShapeLayer()
                 layer.strokeEnd = 1.0
                 layer.strokeColor = UIColor.whiteColor().CGColor
                 layer.fillColor = UIColor.clearColor().CGColor
                 layer.lineWidth = 2.0
                 
-                self.rayLayers[tag].append(layer)
+                self.rayLayers[tag]?.append(layer)
                 
                 var path = UIBezierPath()
-                let rayPath = self.rays[tag]
+                let rayPath = self.rays[tag]!
                 let prevPoint = rayPath[currentIndex - 1]
                 let currentPoint = rayPath[currentIndex]
                 path.moveToPoint(prevPoint)
@@ -788,14 +788,14 @@ class LevelDesignerViewController: XViewController {
     
     private func clearRay() {
         self.grid.stopSubsequentCalculation()
-        for layers in self.rayLayers {
+        for (key, layers) in self.rayLayers {
             for layer in layers {
                 layer.removeFromSuperlayer()
             }
         }
         self.audioPlayerList.removeAll(keepCapacity: false)
-        self.rayLayers = [[CAShapeLayer]]()
-        self.rays = [[CGPoint]]()
+        self.rayLayers = [String: [CAShapeLayer]]()
+        self.rays = [String: [CGPoint]]()
     }
     
     private func getColorForNode(node: GOOpticRep) -> UIColor {
@@ -952,20 +952,20 @@ extension LevelDesignerViewController: LevelSelectDelegate {
 }
 
 extension LevelDesignerViewController: GOGridDelegate {
-    func grid(grid: GOGrid, didProduceNewCriticalPoint point: CGPoint, forRayWithTag tag: Int) {
+    func grid(grid: GOGrid, didProduceNewCriticalPoint point: CGPoint, forRayWithTag tag: String) {
         if self.rays.count == 0 {
             // waiting for thread to complete
             return
         }
-        self.rays[tag].append(point)
-        if self.rays[tag].count == 2 {
+        
+        self.rays[tag]?.append(point)
+        if self.rays[tag]?.count == 2 {
             // when there are 2 points, start drawing
             drawRay(tag, currentIndex: 1)
         }
     }
     
-    func gridDidFinishCalculation(grid: GOGrid, forRayWithTag tag: Int) {
+    func gridDidFinishCalculation(grid: GOGrid, forRayWithTag tag: String) {
 //        self.processPoints(self.rays[tag])
-        println("ha")
     }
 }
