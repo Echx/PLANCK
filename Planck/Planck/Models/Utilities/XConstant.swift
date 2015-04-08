@@ -9,12 +9,8 @@
 import UIKit
 
 struct Constant {
-    static let lightSpeedBase: CGFloat = 60 //points per second
-<<<<<<< HEAD
-    static let audioDelay: CGFloat = -0.05
-=======
+    static let lightSpeedBase: CGFloat = 300 //points per second
     static let audioDelay: CGFloat = 0.1
->>>>>>> ac208e0b32acca006fe8554abbc6e6c012040208
     static let angleCalculationPrecision: CGFloat = 1000 //1000 is 3 bit precision
     
     static let vectorUnitLength: CGFloat = 1

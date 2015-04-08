@@ -106,8 +106,8 @@ class DesignerLevelSelectViewController: UITableViewController {
         var levelFileLoader = StorageManager.defaultManager
         // iterate each filename to add
         for filename in fileArray {
-            if filename.pathExtension != nil {
-                if filename.pathExtension == levelDataFileType {
+            if ((filename.pathExtension) != nil) {
+                if (filename.pathExtension == levelDataFileType) {
                     let game = levelFileLoader.loadLevel(filename as NSString)
                     levelArray.addObject(game)
                 }
