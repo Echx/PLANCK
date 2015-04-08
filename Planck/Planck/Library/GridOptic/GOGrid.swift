@@ -9,8 +9,8 @@
 import UIKit
 
 protocol GOGridDelegate {
-    func grid(grid: GOGrid, didProduceNewCriticalPoint point: CGPoint, forRayWithTag tag: Int)
-    func gridDidFinishCalculation(grid: GOGrid, forRayWithTag tag: Int)
+    func grid(grid: GOGrid, didProduceNewCriticalPoint point: CGPoint)
+    func gridDidFinishCalculation(grid: GOGrid)
 }
 
 class GOGrid: NSObject, NSCoding {
@@ -187,7 +187,7 @@ class GOGrid: NSObject, NSCoding {
     }
 
 
-    func startCriticalPointsCalculationWithRay(ray: GORay, withTag tag: Int) {
+    func startCriticalPointsCalculationWithRay(ray: GORay) {
         var queue = dispatch_queue_create("CALCULATION_SERIAL_QUEUE", DISPATCH_QUEUE_SERIAL)
         dispatch_async(queue, {
             self.refractionEdgeParentStack = GOStack<String>()
@@ -195,7 +195,7 @@ class GOGrid: NSObject, NSCoding {
             
             // first add the start point of the ray
             criticalPoints.append(ray.startPoint)
-            self.delegate?.grid(self, didProduceNewCriticalPoint: self.getDisplayPointForGridPoint(ray.startPoint), forRayWithTag: tag)
+            self.delegate?.grid(self, didProduceNewCriticalPoint: self.getDisplayPointForGridPoint(ray.startPoint))
             
             // from the given ray, we found out each nearest edge
             // loop through each resulted ray until we get nil result (no intersection anymore)
@@ -207,7 +207,7 @@ class GOGrid: NSObject, NSCoding {
                 // it must hit the edge, add the intersection point
                 let newPoint = edge!.getIntersectionPoint(currentRay)!
                 criticalPoints.append(newPoint)
-                self.delegate?.grid(self, didProduceNewCriticalPoint: self.getDisplayPointForGridPoint(newPoint), forRayWithTag: tag)
+                self.delegate?.grid(self, didProduceNewCriticalPoint: self.getDisplayPointForGridPoint(newPoint))
                 
                 
                 if let outcomeRay = self.getOutcomeRay(currentRay, edge: edge!) {
@@ -224,14 +224,13 @@ class GOGrid: NSObject, NSCoding {
                 // found out the intersection with the boundary
                 // we treat boundary as 4 line segments
                 if let finalPoint = self.getIntersectionWithBoundary(ray: currentRay) {
-//                    criticalPoints.append(self.getDisplayPointForGridPoint(finalPoint))
-                    self.delegate?.grid(self, didProduceNewCriticalPoint: self.getDisplayPointForGridPoint(finalPoint), forRayWithTag: tag)
+                    criticalPoints.append(self.getDisplayPointForGridPoint(finalPoint))
                 } else {
-                    println("something goes wrong no final point")
+//                    println("something goes wrong no final point")
                 }
             }
             
-            self.delegate?.gridDidFinishCalculation(self, forRayWithTag: tag)
+            self.delegate?.gridDidFinishCalculation(self)
         })
     }
     
@@ -275,7 +274,7 @@ class GOGrid: NSObject, NSCoding {
             if let finalPoint = getIntersectionWithBoundary(ray: currentRay) {
                 criticalPoints.append(finalPoint)
             } else {
-                println("something goes wrong no final point")
+//                println("something goes wrong no final point")
             }
         }
         return criticalPoints
@@ -304,10 +303,10 @@ class GOGrid: NSObject, NSCoding {
             }
         }
         
-        println("indexIn:   \(indexIn)")
-        println("ray:       \(ray)")
-        println("edge:      \(edge)")
-        println("indexOut:  \(indexOut)\n")
+//        println("indexIn:   \(indexIn)")
+//        println("ray:       \(ray)")
+//        println("edge:      \(edge)")
+//        println("indexOut:  \(indexOut)\n")
         return edge.getOutcomeRay(rayIn: ray, indexIn: indexIn, indexOut: indexOut)
     }
     
@@ -359,7 +358,7 @@ class GOGrid: NSObject, NSCoding {
     }
     
     func getAllEdges() -> [GOSegment]? {
-        println("getAllEdges")
+//        println("getAllEdges")
         // firstly add all boundaries
         var output = self.boundaries
         
