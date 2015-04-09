@@ -807,7 +807,7 @@ class LevelDesignerViewController: XViewController {
         case .Mirror:
             return DeviceColor.mirror
         case .Wall:
-            return DeviceColor.planck
+            return DeviceColor.wall
             
         default:
             return UIColor.whiteColor()
