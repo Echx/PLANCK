@@ -881,6 +881,10 @@ class LevelDesignerViewController: XViewController {
         }
         
         //3. Set up button and its handler
+        alert.addAction(UIAlertAction(title: AlertViewText.btn_cancel,
+            style: UIAlertActionStyle.Destructive, handler: nil))
+        
+        
         alert.addAction(UIAlertAction(title: AlertViewText.btn_save, style: .Default,
             handler: { action in
                 let textField = alert.textFields![0] as UITextField
@@ -903,9 +907,6 @@ class LevelDesignerViewController: XViewController {
                     self.showWrongInputAlert()
                 }
         }))
-        
-        alert.addAction(UIAlertAction(title: AlertViewText.btn_cancel,
-            style: UIAlertActionStyle.Cancel, handler: nil))
         
         // 4. Present the alert.
         self.presentViewController(alert, animated: true, completion: nil)
