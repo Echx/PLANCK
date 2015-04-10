@@ -1061,3 +1061,24 @@ extension LevelDesignerViewController: GOGridDelegate {
 //        self.processPoints(self.rays[tag])
     }
 }
+
+extension LevelDesignerViewController: UIPickerViewDataSource, UIPickerViewDelegate {
+    func numberOfComponentsInPickerView(pickerView: UIPickerView) -> Int {
+        switch pickerView.tag {
+        case PlanckControllPanel.instrumentPickerTag:
+            return 4
+            
+        case PlanckControllPanel.notePickerTag:
+            return 7
+            
+        case PlanckControllPanel.accidentalPickerTag:
+            return 5
+            
+        case PlanckControllPanel.groupPickerTag:
+            return 8
+            
+        default:
+            fatalError("invalid picker")
+        }
+    }
+}
