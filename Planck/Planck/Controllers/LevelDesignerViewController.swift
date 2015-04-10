@@ -1064,6 +1064,10 @@ extension LevelDesignerViewController: GOGridDelegate {
 
 extension LevelDesignerViewController: UIPickerViewDataSource, UIPickerViewDelegate {
     func numberOfComponentsInPickerView(pickerView: UIPickerView) -> Int {
+        return 1
+    }
+    
+    func pickerView(pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
         switch pickerView.tag {
         case PlanckControllPanel.instrumentPickerTag:
             return 4
@@ -1080,5 +1084,6 @@ extension LevelDesignerViewController: UIPickerViewDataSource, UIPickerViewDeleg
         default:
             fatalError("invalid picker")
         }
+
     }
 }
