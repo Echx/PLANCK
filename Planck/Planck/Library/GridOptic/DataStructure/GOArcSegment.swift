@@ -195,7 +195,6 @@ class GOArcSegment: GOSegment {
                     let point = CGPoint(x: xs.1!, y: y1)
                     if self.containsPoint(point) {
                         if point.isNearEnough(ray.startPoint) {
-                            // println("intersection is ray startPoint")
                             return nil
                         } else {
                             return point

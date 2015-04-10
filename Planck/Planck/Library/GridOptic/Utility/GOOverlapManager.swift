@@ -12,8 +12,8 @@ class GOOverlapManager: NSObject {
     
     //Calculate the projection
     private class func getProjectionOfShape(vertices: [CGPoint], onto vector: CGVector) -> (min: CGFloat, max: CGFloat){
-        var minProj = CGFloat.min
-        var maxProj = CGFloat.max
+        var minProj = CGFloat.max
+        var maxProj = CGFloat.min
         var normalisedVector = vector.normalised
         
         for vertex in vertices {

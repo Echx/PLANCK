@@ -39,7 +39,6 @@ class StorageManager:NSObject  {
             .UserDomainMask, true)[0] as NSString
         // the dat name should be set by user
         var filePath : NSString = documentsPath.stringByAppendingPathComponent(filename)
-        println(filePath)
         let data = NSData(contentsOfFile: filePath)
         let unarchiver = NSKeyedUnarchiver(forReadingWithData: data!)
         return unarchiver.decodeObjectForKey(keyForArchieve) as GameLevel

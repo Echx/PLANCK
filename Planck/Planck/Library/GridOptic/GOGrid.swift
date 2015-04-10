@@ -102,7 +102,6 @@ class GOGrid: NSObject, NSCoding {
     }
     
     func addInstrument(instrument: GOOpticRep) -> Bool{
-        println(self.isInstrumentOverlappedWidthOthers(instrument))
         if self.instruments[instrument.id] == nil {
             self.instruments[instrument.id] = instrument
             return true
@@ -111,14 +110,14 @@ class GOGrid: NSObject, NSCoding {
         }
     }
     
-    private func isInstrumentOverlappedWidthOthers(instrument: GOOpticRep) -> Bool {
+    func isInstrumentOverlappedWidthOthers(instrument: GOOpticRep) -> Bool {
         let instrumentVertices = instrument.vertices
         for (key, otherInstrument) in self.instruments {
-            let otherInstrumentVertices = otherInstrument.vertices
-            if GOOverlapManager.isShape(instrumentVertices, intersectWith: otherInstrumentVertices) {
-                println(otherInstrument)
-                println(otherInstrumentVertices)
-                return true
+            if instrument != otherInstrument {
+                let otherInstrumentVertices = otherInstrument.vertices
+                if GOOverlapManager.isShape(instrumentVertices, intersectWith: otherInstrumentVertices) {
+                    return true
+                }
             }
         }
         return false
@@ -279,10 +278,6 @@ class GOGrid: NSObject, NSCoding {
 
             
             if let outcomeRay = getOutcomeRay(currentRay, edge: edge!) {
-//                println("\n\n\n\n\n\n")
-//                println("currentRay:    \(currentRay.direction) from \(currentRay.startPoint)")
-//                println("edge:          \(edge?.parent)  center: \(edge?.center)   direction: \(edge?.direction))")
-//                println("outcomeRay:    \(outcomeRay.direction) from \(outcomeRay.startPoint)")
                 edge = getNearestEdgeOnDirection(outcomeRay)
                 currentRay = outcomeRay
             } else {
@@ -326,11 +321,6 @@ class GOGrid: NSObject, NSCoding {
                 self.refractionEdgeParentStack.push(edge.parent)
             }
         }
-        
-//        println("indexIn:   \(indexIn)")
-//        println("ray:       \(ray)")
-//        println("edge:      \(edge)")
-//        println("indexOut:  \(indexOut)\n")
         return edge.getOutcomeRay(rayIn: ray, indexIn: indexIn, indexOut: indexOut)
     }
     
@@ -382,7 +372,6 @@ class GOGrid: NSObject, NSCoding {
     }
     
     func getAllEdges() -> [GOSegment]? {
-        println("getAllEdges")
         // firstly add all boundaries
         var output = self.boundaries
         
@@ -402,7 +391,6 @@ class GOGrid: NSObject, NSCoding {
     private func getIntersectionWithBoundary(#ray:GORay) -> CGPoint? {
         for bound in boundaries {
             if let point = bound.getIntersectionPoint(ray) {
-//                println(point)
                 // check the point is in the visible space
                 // heigh: [0, height]
                 // width: [0, width]

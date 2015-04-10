@@ -692,6 +692,8 @@ class LevelDesignerViewController: XViewController {
         
         node.setCenter(self.grid.getGridCoordinateForPoint(effectDisplayPoint))
         
+        self.grid.isInstrumentOverlappedWidthOthers(node)
+        
         let view = self.deviceViews[node.id]!
         let finalDisplayPoint = self.grid.getCenterForGridCell(node.center)
         let finalX = finalDisplayPoint.x - originalDisplayPoint.x + from.x
