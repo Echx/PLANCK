@@ -33,8 +33,10 @@ class LevelDesignerViewController: XViewController {
     @IBOutlet var labelDirection: UILabel!
     @IBOutlet var labelLength: UILabel!
     
+    
+    
     @IBOutlet var planckInputPanel: UIView!
-    @IBOutlet var colorPicker: UIPickerView!
+    @IBOutlet var instrumentPicker: UIPickerView!
     @IBOutlet var notePicker: UIPickerView!
     @IBOutlet var accidentalPicker: UIPickerView!
     @IBOutlet var groupPicker: UIPickerView!
@@ -381,6 +383,20 @@ class LevelDesignerViewController: XViewController {
         }
         
         
+        self.shootRay()
+    }
+    
+    @IBAction func updateSelectedNodePlanck() {
+        if let node = self.selectedNode {
+            if let node = node as? XNode {
+                let l: CGFloat? = CGFloat((self.textFieldLength.text as NSString).floatValue)
+                if let length = l {
+                    if length > 0 && length < CGFloat(self.grid.width) && length < CGFloat(self.grid.width) {
+                        flatNode.length = length
+                    }
+                }
+            }
+        }
         self.shootRay()
     }
     

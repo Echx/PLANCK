@@ -11,8 +11,8 @@ import UIKit
 class XFlatWall: XNode {
     init(flatWall: GOFlatWallRep) {
         super.init(physicsBody: flatWall)
-        self.normalSoundURL = SoundFiles.cymbalSound
         self.strokeColor = DeviceColor.wall
+        self.normalNote = XNote(noteName: XNoteName.cymbal, noteGroup: 0)
     }
 
     required convenience init(coder aDecoder: NSCoder) {
