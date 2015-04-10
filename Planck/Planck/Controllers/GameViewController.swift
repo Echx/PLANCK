@@ -41,7 +41,7 @@ class GameViewController: XViewController {
         println(self.xNodes)
         
         for (key, node) in self.grid.instruments {
-            self.addNode(node, strokeColor: UIColor.blackColor())
+            self.addNode(node, strokeColor: self.xNodes[node.id]!.strokeColor)
         }
     }
     
