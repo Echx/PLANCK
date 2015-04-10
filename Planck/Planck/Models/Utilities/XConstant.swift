@@ -173,3 +173,16 @@ struct SoundFiles {
     static let bassDrumSound = NSURL(fileURLWithPath: NSBundle.mainBundle().pathForResource("bass-drum", ofType: "m4a")!)
     static let cymbalSound = NSURL(fileURLWithPath: NSBundle.mainBundle().pathForResource("cymbal", ofType: "m4a")!)
 }
+
+struct PlanckControllPanel {
+    static let instrumentPickerTag = 0
+    static let notePickerTag = 1
+    static let accidentalPickerTag = 2
+    static let groupPickerTag = 3
+    
+    static let instrumentPickerTitle = ["inherit", "nil", "piano", "guitar"]
+    static let notePickerTitle = ["A", "B", "C", "D", "E", "F", "G"]
+//    static let accidentalPickerTitle = ["♮", "♯", "♭", "𝄪", "𝄫"]
+    static let accidentalPickerTitle = ["♮", "♯", "♭", "x", "♭♭"]
+    static let groupPickerTitle = ["0", "1", "2", "3", "4", "5", "6", "7"]
+}

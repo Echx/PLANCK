@@ -195,7 +195,14 @@ class LevelDesignerViewController: XViewController {
     //MARK - tap gesture handler
     @IBAction func viewDidTapped(sender: UITapGestureRecognizer) {
         if sender.numberOfTapsRequired == 1 {
-            if sender.numberOfTouchesRequired == 2 {
+            if sender.numberOfTouches() == 3 {
+                if self.inputPanel.userInteractionEnabled {
+                    self.toggleInputPanel()
+                }
+                self.togglePlanckInputPanel()
+                return
+            }
+            if sender.numberOfTouches() == 2 {
                 if self.planckInputPanel.userInteractionEnabled {
                     self.togglePlanckInputPanel()
                 }
@@ -206,14 +213,6 @@ class LevelDesignerViewController: XViewController {
                 let location = sender.locationInView(sender.view)
                 self.deselectNode()
                 self.selectNode(self.grid.getInstrumentAtPoint(location))
-            }
-            return
-        } else if sender.numberOfTapsRequired == 3 {
-            if sender.numberOfTouchesRequired == 1 {
-                if self.inputPanel.userInteractionEnabled {
-                    self.toggleInputPanel()
-                }
-                self.togglePlanckInputPanel()
             }
             return
         }
@@ -945,6 +944,9 @@ class LevelDesignerViewController: XViewController {
             self.addNode(opticNode, strokeColor: getColorForNode(opticNode))
         }
         
+
+        self.xnodes = level.xNodes
+
         self.shootRay()
 
     }
@@ -988,7 +990,7 @@ class LevelDesignerViewController: XViewController {
                 if let match = regEx.firstMatchInString(inputName, options: nil,
                     range: NSRange(location: 0, length: inputName.utf16Count)) {
                         // valid
-                        let game = GameLevel(levelName: inputName, levelIndex: 1, grid: self.grid)
+                        let game = GameLevel(levelName: inputName, levelIndex: 1, grid: self.grid, nodes: self.xnodes)
                         self.game = game
                     StorageManager.defaultManager.saveCurrentLevel(game)
                 } else {
@@ -1057,5 +1059,49 @@ extension LevelDesignerViewController: GOGridDelegate {
     
     func gridDidFinishCalculation(grid: GOGrid, forRayWithTag tag: String) {
 //        self.processPoints(self.rays[tag])
+    }
+}
+
+extension LevelDesignerViewController: UIPickerViewDataSource, UIPickerViewDelegate {
+    func numberOfComponentsInPickerView(pickerView: UIPickerView) -> Int {
+        return 1
+    }
+    
+    func pickerView(pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
+        switch pickerView.tag {
+        case PlanckControllPanel.instrumentPickerTag:
+            return PlanckControllPanel.instrumentPickerTitle.count
+            
+        case PlanckControllPanel.notePickerTag:
+            return PlanckControllPanel.notePickerTitle.count
+            
+        case PlanckControllPanel.accidentalPickerTag:
+            return PlanckControllPanel.accidentalPickerTitle.count
+            
+        case PlanckControllPanel.groupPickerTag:
+            return PlanckControllPanel.groupPickerTitle.count
+            
+        default:
+            fatalError("invalid picker")
+        }
+    }
+    
+    func pickerView(pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String! {
+        switch pickerView.tag {
+        case PlanckControllPanel.instrumentPickerTag:
+            return PlanckControllPanel.instrumentPickerTitle[row]
+            
+        case PlanckControllPanel.notePickerTag:
+            return PlanckControllPanel.notePickerTitle[row]
+            
+        case PlanckControllPanel.accidentalPickerTag:
+            return PlanckControllPanel.accidentalPickerTitle[row]
+            
+        case PlanckControllPanel.groupPickerTag:
+            return PlanckControllPanel.groupPickerTitle[row]
+            
+        default:
+            fatalError("invalid picker")
+        }
     }
 }

@@ -15,6 +15,15 @@ class XConvexLens: XNode {
     }
 
     required convenience init(coder aDecoder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
+        let body = aDecoder.decodeObjectForKey("phyBody") as GOConvexLensRep
+        let isPlanck = aDecoder.decodeBoolForKey("isPlanck")
+        let shouldPlaySould = aDecoder.decodeBoolForKey("shouldPlaySound")
+        self.init(convexLens: body)
+    }
+    
+    override func encodeWithCoder(aCoder: NSCoder) {
+        aCoder.encodeObject(self.physicsBody, forKey: "phyBody")
+        aCoder.encodeBool(self.isPlanck, forKey: "isPlanck")
+        aCoder.encodeBool(self.shouldPlaySound, forKey: "shouldPlaySound")
     }
 }

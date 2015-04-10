@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6751" systemVersion="14D131" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="Z3F-Q9-Qtd">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6751" systemVersion="14D98g" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="Z3F-Q9-Qtd">
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6736"/>
     </dependencies>
@@ -12,7 +12,7 @@
                         <viewControllerLayoutGuide type="top" id="3GY-3F-e3c"/>
                         <viewControllerLayoutGuide type="bottom" id="Wib-TG-yhB"/>
                     </layoutGuides>
-                    <view key="view" contentMode="scaleToFill" id="rrK-D2-hUU">
+                    <view key="view" multipleTouchEnabled="YES" contentMode="scaleToFill" id="rrK-D2-hUU">
                         <rect key="frame" x="0.0" y="0.0" width="1024" height="768"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
@@ -70,7 +70,7 @@
                                     <view alpha="0.89999997615814209" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="PcM-6l-K8S">
                                         <rect key="frame" x="32" y="41" width="958" height="181"/>
                                         <subviews>
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Color:" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="p30-Sl-Tok">
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Instrument:" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="p30-Sl-Tok">
                                                 <rect key="frame" x="28" y="13" width="61" height="21"/>
                                                 <fontDescription key="fontDescription" name="GillSans" family="Gill Sans" pointSize="12"/>
                                                 <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
@@ -100,14 +100,19 @@
                                                     <action selector="updateSelectedNode" destination="ICT-TY-Uh1" eventType="touchUpInside" id="RT7-8m-INK"/>
                                                 </connections>
                                             </button>
-                                            <pickerView contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="ZhU-C2-ov8">
-                                                <rect key="frame" x="8" y="19" width="158" height="162"/>
-                                            </pickerView>
-                                            <pickerView contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="eb2-aC-rEe">
+                                            <pickerView tag="1" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="eb2-aC-rEe">
                                                 <rect key="frame" x="206" y="19" width="158" height="162"/>
+                                                <connections>
+                                                    <outlet property="dataSource" destination="ICT-TY-Uh1" id="gOm-NG-ibA"/>
+                                                    <outlet property="delegate" destination="ICT-TY-Uh1" id="v46-81-Nqj"/>
+                                                </connections>
                                             </pickerView>
-                                            <pickerView contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="UxK-0m-h8g">
+                                            <pickerView tag="2" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="UxK-0m-h8g">
                                                 <rect key="frame" x="400" y="19" width="158" height="162"/>
+                                                <connections>
+                                                    <outlet property="dataSource" destination="ICT-TY-Uh1" id="L6p-Gf-eie"/>
+                                                    <outlet property="delegate" destination="ICT-TY-Uh1" id="Kgy-2W-wmX"/>
+                                                </connections>
                                             </pickerView>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Group:" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="nFO-Eo-Wpr">
                                                 <rect key="frame" x="612" y="13" width="121" height="21"/>
@@ -115,15 +120,26 @@
                                                 <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
-                                            <pickerView contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="gHU-uu-uP1">
+                                            <pickerView tag="3" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="gHU-uu-uP1">
                                                 <rect key="frame" x="593" y="19" width="158" height="162"/>
+                                                <connections>
+                                                    <outlet property="dataSource" destination="ICT-TY-Uh1" id="5xh-i6-YkC"/>
+                                                    <outlet property="delegate" destination="ICT-TY-Uh1" id="HCw-l8-rog"/>
+                                                </connections>
+                                            </pickerView>
+                                            <pickerView contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="ZhU-C2-ov8">
+                                                <rect key="frame" x="13" y="19" width="158" height="162"/>
+                                                <connections>
+                                                    <outlet property="dataSource" destination="ICT-TY-Uh1" id="tiy-F5-UUN"/>
+                                                    <outlet property="delegate" destination="ICT-TY-Uh1" id="FJW-yV-WB2"/>
+                                                </connections>
                                             </pickerView>
                                         </subviews>
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         <gestureRecognizers/>
                                     </view>
                                     <view alpha="0.89999999999999991" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="4BT-L2-RuS">
-                                        <rect key="frame" x="33" y="40" width="958" height="175"/>
+                                        <rect key="frame" x="32" y="239" width="958" height="175"/>
                                         <subviews>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Center: " lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Ckj-1b-o6D">
                                                 <rect key="frame" x="22" y="20" width="61" height="21"/>
@@ -244,6 +260,7 @@
                                     <outletCollection property="gestureRecognizers" destination="stW-1L-XFP" appends="YES" id="nhG-gK-HZj"/>
                                     <outletCollection property="gestureRecognizers" destination="kMz-7u-Yeq" appends="YES" id="WA7-7u-byt"/>
                                     <outletCollection property="gestureRecognizers" destination="Bmb-Xb-qhm" appends="YES" id="sIi-rM-OaX"/>
+                                    <outletCollection property="gestureRecognizers" destination="XwB-aM-G2A" appends="YES" id="GfV-eb-nsX"/>
                                 </connections>
                             </view>
                         </subviews>
@@ -311,6 +328,11 @@
                         <action selector="dismissViewController" destination="ICT-TY-Uh1" id="yij-Re-BoB"/>
                     </connections>
                 </tapGestureRecognizer>
+                <tapGestureRecognizer numberOfTouchesRequired="3" id="XwB-aM-G2A">
+                    <connections>
+                        <action selector="viewDidTapped:" destination="ICT-TY-Uh1" id="rJe-l6-1Qr"/>
+                    </connections>
+                </tapGestureRecognizer>
             </objects>
             <point key="canvasLocation" x="-239" y="-481"/>
         </scene>
@@ -349,7 +371,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="odB-Ok-KaU" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="79" y="-413"/>
+            <point key="canvasLocation" x="55" y="-405"/>
         </scene>
         <!--Game View Controller-->
         <scene sceneID="GCX-7I-Zry">
