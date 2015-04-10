@@ -15,6 +15,7 @@ class XNode: NSObject, NSCoding {
     var strokeColor = UIColor.whiteColor()
     var normalNote: XNote?
     var planckNote: XNote?
+    var isFixed = true
     var id: String {
         get {
             return self.physicsBody.id
