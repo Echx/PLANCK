@@ -329,7 +329,6 @@
 				262BE1A21ABE9A9000ABE965 /* Library */,
 				6227FBEF1AAE28E7007F49EA /* Controllers */,
 				6227FBF11AAE28E7007F49EA /* Models */,
-				6227FC071AAE28E7007F49EA /* Views */,
 				6227FB6D1AAE285C007F49EA /* AppDelegate.swift */,
 				262BE19F1ABE9A5D00ABE965 /* Planck-Bridging-Header.h */,
 				6227FB751AAE285C007F49EA /* Main.storyboard */,
@@ -402,6 +401,7 @@
 				6227FC061AAE28E7007F49EA /* XMedium.swift */,
 				620BD4451AB2E69800267C7B /* XNote.swift */,
 				26C8ADDB1AD01A52008ADACB /* String+XUtility.swift */,
+				6227FC071AAE28E7007F49EA /* Views */,
 			);
 			path = Utilities;
 			sourceTree = "<group>";
@@ -411,7 +411,8 @@
 			children = (
 				988CF3461AD3C6490013D903 /* LevelSelect */,
 			);
-			path = Views;
+			name = Views;
+			path = ../../Views;
 			sourceTree = "<group>";
 		};
 		6227FC1E1AAE291F007F49EA /* Model */ = {

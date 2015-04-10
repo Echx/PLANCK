@@ -190,25 +190,27 @@ class XNote: NSObject, NSCoding {
         
     }
     
-    func getAudioFileName() -> String {
-        
+    func getAudioFile() -> NSURL? {
+
         if !self.isPitchedNote {
             switch self.noteName {
             case .bassDrum:
-                return "bass-drum.m4a"
+                return SoundFiles.bassDrumSound
                 
             case .snareDrum:
-                return "snare-drum.m4a"
+                return SoundFiles.snareDrumSound
                 
             case .cymbal:
-                return "cymbal.m4a"
+                return SoundFiles.cymbalSound
                 
             default:
-                fatalError("impossible")
+                fatalError("invalid XNote")
             }
         }
-
-        return NSString(format: "piano-%d.m4a", self.getMIDINote())
+        
+        let midiNote = self.getMIDINote()
+        
+        return NSURL(fileURLWithPath: NSBundle.mainBundle().pathForResource("piano-\(midiNote)", ofType: "m4a")!)
     }
 }
 
