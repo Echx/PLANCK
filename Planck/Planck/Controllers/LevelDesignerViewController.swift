@@ -387,13 +387,36 @@ class LevelDesignerViewController: XViewController {
     }
     
     @IBAction func updateSelectedNodePlanck() {
-        if let node = self.selectedNode {
-            if let node = node as? XNode {
-                let l: CGFloat? = CGFloat((self.textFieldLength.text as NSString).floatValue)
-                if let length = l {
-                    if length > 0 && length < CGFloat(self.grid.width) && length < CGFloat(self.grid.width) {
-                        flatNode.length = length
-                    }
+        if let selectedNode = self.selectedNode {
+            if let node = self.xNodes[selectedNode.id] {
+                let instrument = self.instrumentPicker.selectedRowInComponent(0)
+                
+                switch instrument {
+                case PlanckControllPanel.instrumentInheritRow:
+                    node.isPlanck = false
+                    node.shouldPlaySound = true
+                    
+                case PlanckControllPanel.instrumentNilRow:
+                    node.isPlanck = false
+                    node.shouldPlaySound = false
+                    
+                case PlanckControllPanel.instrumentPianoRow:
+                    node.isPlanck = true
+                    node.shouldPlaySound = true
+                    
+                default:
+                    fatalError("Guitar is not supported yet")
+                }
+                
+                if node.isPlanck {
+                    let noteName: Int = self.notePicker.selectedRowInComponent(0)
+                    let noteAccidental: Int = self.accidentalPicker.selectedRowInComponent(0)
+                    let xNoteName: XNoteName = XNoteName(rawValue: noteName * 5 + noteAccidental)!
+                    
+                    let noteGroup: Int = self.groupPicker.selectedRowInComponent(0)
+                    
+                    let xNote = XNote(noteName: xNoteName, noteGroup: noteGroup)
+                    node.planckNote = xNote
                 }
             }
         }
