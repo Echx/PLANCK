@@ -11,7 +11,7 @@ import UIKit
 class XConcaveLens: XNode {
     init(concaveRep: GOConcaveLensRep) {
         super.init(physicsBody: concaveRep)
-        self.normalSoundURL = SoundFiles.bassDrumSound
+        self.normalNote = XNote(noteName: XNoteName.bassDrum, noteGroup: 0)
     }
 
     required convenience init(coder aDecoder: NSCoder) {

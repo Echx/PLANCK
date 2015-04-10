@@ -3,7 +3,7 @@
 //  Planck
 //
 //  Created by NULL on 10/04/15.
-//  Copyright (c) 2015年 Echx. All rights reserved.
+//  Copyright (c) 2015 Echx. All rights reserved.
 //
 
 import UIKit
@@ -12,8 +12,8 @@ class XNode: NSObject, NSCoding {
     var physicsBody: GOOpticRep
     var isPlanck = false
     var shouldPlaySound = true
-    var normalSoundURL: NSURL?
-    var planckSoundURL: NSURL? = SoundFiles.cymbalSound
+    var normalNote: XNote?
+    var planckNote: XNote?
     var id: String {
         get {
             return self.physicsBody.id
@@ -27,9 +27,9 @@ class XNode: NSObject, NSCoding {
     
     func getSound() -> NSURL? {
         if self.isPlanck {
-            return self.planckSoundURL
+            return self.planckNote?.getAudioFile()
         } else {
-            return self.normalSoundURL
+            return self.normalNote?.getAudioFile()
         }
     }
     

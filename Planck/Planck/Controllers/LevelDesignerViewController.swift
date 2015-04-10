@@ -393,14 +393,14 @@ class LevelDesignerViewController: XViewController {
     
     @IBAction func updateSelectedNodePlanck() {
         if let node = self.selectedNode {
-//            if let flatNode = node as? GOFlatOpticRep {
-//                let l: CGFloat? = CGFloat((self.textFieldLength.text as NSString).floatValue)
-//                if let length = l {
-//                    if length > 0 && length < CGFloat(self.grid.width) && length < CGFloat(self.grid.width) {
-//                        flatNode.length = length
-//                    }
-//                }
-//            }
+            if let node = node as? XNode {
+                let l: CGFloat? = CGFloat((self.textFieldLength.text as NSString).floatValue)
+                if let length = l {
+                    if length > 0 && length < CGFloat(self.grid.width) && length < CGFloat(self.grid.width) {
+                        flatNode.length = length
+                    }
+                }
+            }
         }
         self.shootRay()
     }

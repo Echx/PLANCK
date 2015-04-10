@@ -11,7 +11,7 @@ import UIKit
 class XFlatMirror: XNode {
     init(flatMirror: GOFlatMirrorRep) {
         super.init(physicsBody: flatMirror)
-        self.normalSoundURL = SoundFiles.snareDrumSound
+        self.normalNote = XNote(noteName: XNoteName.snareDrum, noteGroup: 0)
     }
 
     required convenience init(coder aDecoder: NSCoder) {

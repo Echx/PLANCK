@@ -11,7 +11,7 @@ import UIKit
 class XFlatLens: XNode {
     init(flatLens: GOFlatLensRep) {
         super.init(physicsBody: flatLens)
-        self.normalSoundURL = SoundFiles.cymbalSound
+        self.normalNote = XNote(noteName: XNoteName.cymbal, noteGroup: 0)
     }
 
     required convenience init(coder aDecoder: NSCoder) {
