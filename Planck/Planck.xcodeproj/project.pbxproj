@@ -47,6 +47,7 @@
 		26C8ADE01AD045D8008ADACB /* GOPath.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26C8ADDF1AD045D8008ADACB /* GOPath.swift */; };
 		26D9ABB11AD7CB1700D70D83 /* GOOverlapManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26D9ABB01AD7CB1700D70D83 /* GOOverlapManager.swift */; };
 		26D9ABB21AD7D9CA00D70D83 /* GOOverlapManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26D9ABB01AD7CB1700D70D83 /* GOOverlapManager.swift */; };
+		26DFCF9C1AD8467000C97C5B /* XEmitter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26DFCF9B1AD8467000C97C5B /* XEmitter.swift */; };
 		620BD4461AB2E69800267C7B /* XNote.swift in Sources */ = {isa = PBXBuildFile; fileRef = 620BD4451AB2E69800267C7B /* XNote.swift */; };
 		6227FB6E1AAE285C007F49EA /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6227FB6D1AAE285C007F49EA /* AppDelegate.swift */; };
 		6227FB771AAE285C007F49EA /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 6227FB751AAE285C007F49EA /* Main.storyboard */; };
@@ -156,6 +157,7 @@
 		26C8ADDB1AD01A52008ADACB /* String+XUtility.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "String+XUtility.swift"; sourceTree = "<group>"; };
 		26C8ADDF1AD045D8008ADACB /* GOPath.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GOPath.swift; sourceTree = "<group>"; };
 		26D9ABB01AD7CB1700D70D83 /* GOOverlapManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GOOverlapManager.swift; sourceTree = "<group>"; };
+		26DFCF9B1AD8467000C97C5B /* XEmitter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = XEmitter.swift; path = Optics/XEmitter.swift; sourceTree = "<group>"; };
 		620BD4451AB2E69800267C7B /* XNote.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = XNote.swift; sourceTree = "<group>"; };
 		6227FB681AAE285C007F49EA /* Planck.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Planck.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		6227FB6C1AAE285C007F49EA /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -431,6 +433,7 @@
 				62D2833E1AD17D3C00A583FA /* XFlatMirror.swift */,
 				62D283691AD1890900A583FA /* XFlatWall.swift */,
 				269192B01AD8120F002F8590 /* XFlatLens.swift */,
+				26DFCF9B1AD8467000C97C5B /* XEmitter.swift */,
 				269192B31AD817D8002F8590 /* XNode.swift */,
 			);
 			name = Optics;
@@ -674,6 +677,7 @@
 				263B09AD1ACEEDD800E7C99E /* GOLine.swift in Sources */,
 				263B09B91ACEEDD800E7C99E /* GOConvexLensRep.swift in Sources */,
 				62D2833F1AD17D3C00A583FA /* XFlatMirror.swift in Sources */,
+				26DFCF9C1AD8467000C97C5B /* XEmitter.swift in Sources */,
 				62D2836D1AD1892400A583FA /* XConvexLens.swift in Sources */,
 				6227FB6E1AAE285C007F49EA /* AppDelegate.swift in Sources */,
 				263B09C81ACEEE1100E7C99E /* GOConstant.swift in Sources */,
