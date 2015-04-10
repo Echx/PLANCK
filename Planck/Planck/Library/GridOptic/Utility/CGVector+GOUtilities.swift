@@ -56,7 +56,6 @@ extension CGVector: Printable {
             } else if self.dy == 0 && self.dx > 0 {
                 return CGFloat(0)
             } else {
-                println(self)
                 fatalError("undefined angle")
             }
         }

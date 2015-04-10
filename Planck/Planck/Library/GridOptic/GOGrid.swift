@@ -102,7 +102,7 @@ class GOGrid: NSObject, NSCoding {
     }
     
     func addInstrument(instrument: GOOpticRep) -> Bool{
-        self.isInstrumentOverlappedWidthOthers(instrument)
+        println(self.isInstrumentOverlappedWidthOthers(instrument))
         if self.instruments[instrument.id] == nil {
             self.instruments[instrument.id] = instrument
             return true
@@ -116,6 +116,8 @@ class GOGrid: NSObject, NSCoding {
         for (key, otherInstrument) in self.instruments {
             let otherInstrumentVertices = otherInstrument.vertices
             if GOOverlapManager.isShape(instrumentVertices, intersectWith: otherInstrumentVertices) {
+                println(otherInstrument)
+                println(otherInstrumentVertices)
                 return true
             }
         }

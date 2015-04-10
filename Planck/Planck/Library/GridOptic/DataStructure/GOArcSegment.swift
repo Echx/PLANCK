@@ -139,12 +139,11 @@ class GOArcSegment: GOSegment {
         if xs.0 == nil {
             return nil
         } else if xs.1 == nil {
-            // 相切
+            // tangent
             if let y = ray.getY(x: xs.0!) {
                 let point = CGPoint(x: xs.0!, y: y)
                 if self.containsPoint(point) {
                     if point.isNearEnough(ray.startPoint) {
-                        // println("intersection is ray startPoint")
                         return nil
                     } else {
                         return point
@@ -163,7 +162,6 @@ class GOArcSegment: GOSegment {
                         let point = CGPoint(x: xs.1!, y: y1)
                         if self.containsPoint(point) {
                             if point.isNearEnough(ray.startPoint) {
-                                // println("intersection is ray startPoint")
                                 return nil
                             } else {
                                 return point
@@ -173,7 +171,6 @@ class GOArcSegment: GOSegment {
                     let point = CGPoint(x: xs.0!, y: y0)
                     if self.containsPoint(point) {
                         if point.isNearEnough(ray.startPoint) {
-                            // println("intersection is ray startPoint")
                             return nil
                         } else {
                             return point
@@ -185,7 +182,6 @@ class GOArcSegment: GOSegment {
                     let point = CGPoint(x: xs.0!, y: y0)
                     if self.containsPoint(point) {
                         if point.isNearEnough(ray.startPoint) {
-                            // println("intersection is ray startPoint")
                             return nil
                         } else {
                             return point
