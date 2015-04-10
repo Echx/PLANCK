@@ -800,6 +800,10 @@ class LevelDesignerViewController: XViewController {
     }
 
     private func removeNode(node: GOOpticRep) {
+        if self.selectedNode == node {
+            self.deselectNode()
+        }
+        
         self.deviceViews[node.id]?.removeFromSuperview()
         self.deviceViews[node.id] = nil
         self.xNodes[node.id] = nil
