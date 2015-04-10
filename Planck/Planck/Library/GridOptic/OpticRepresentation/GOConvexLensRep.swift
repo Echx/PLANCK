@@ -28,6 +28,36 @@ class GOConvexLensRep: GOOpticRep {
         }
     }
     
+    override var vertices: [CGPoint] {
+        get {
+            let angle = self.direction.angleFromXPlus
+            let length = self.length
+            let width = self.thickness
+            let originalPoints = [
+                CGPointMake(-length/2, -width/2),
+                CGPointMake(length/2, -width/2),
+                CGPointMake(length/2, width/2),
+                CGPointMake(-length/2, width/2)
+            ]
+            
+            var finalPoints = [CGPoint]()
+            for point in originalPoints {
+                finalPoints.append(self.getPointAfterRotation(angle, from: point))
+            }
+            
+            return finalPoints
+        }
+    }
+    
+    private func getPointAfterRotation(angle: CGFloat, from originalPoint: CGPoint) -> CGPoint {
+        let rotationTranform = CGAffineTransformMakeRotation(angle)
+        let rotatedPoint = CGPointApplyAffineTransform(originalPoint, rotationTranform)
+        let finalPoint = CGPointMake(
+            rotatedPoint.x + CGFloat(self.center.x),
+            rotatedPoint.y + CGFloat(self.center.y))
+        return finalPoint
+    }
+    
     init(center: GOCoordinate, direction: CGVector, thickness: CGFloat, curvatureRadius: CGFloat, id: String, refractionIndex: CGFloat) {
         self.thickness = thickness
         self.curvatureRadius = curvatureRadius

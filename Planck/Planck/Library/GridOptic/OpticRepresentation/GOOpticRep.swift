@@ -32,6 +32,16 @@ class GOOpticRep: NSObject, NSCoding {
     
     var refractionIndex : CGFloat = GOConstant.vacuumRefractionIndex
 
+    var vertices: [CGPoint] {
+        get {
+            var points = [CGPoint]()
+            for edge in self.edges {
+                points.append(edge.startPoint)
+            }
+            return points
+        }
+    }
+    
     
     init(id: String, center: GOCoordinate) {
         self.id = id

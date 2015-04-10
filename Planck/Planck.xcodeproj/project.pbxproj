@@ -41,6 +41,7 @@
 		26C8ADDA1AD00437008ADACB /* LevelDesignerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26C8ADD91AD00437008ADACB /* LevelDesignerViewController.swift */; };
 		26C8ADDC1AD01A52008ADACB /* String+XUtility.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26C8ADDB1AD01A52008ADACB /* String+XUtility.swift */; };
 		26C8ADE01AD045D8008ADACB /* GOPath.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26C8ADDF1AD045D8008ADACB /* GOPath.swift */; };
+		26D9ABB11AD7CB1700D70D83 /* GOIntersectionManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26D9ABB01AD7CB1700D70D83 /* GOIntersectionManager.swift */; };
 		620BD4461AB2E69800267C7B /* XNote.swift in Sources */ = {isa = PBXBuildFile; fileRef = 620BD4451AB2E69800267C7B /* XNote.swift */; };
 		6227FB6E1AAE285C007F49EA /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6227FB6D1AAE285C007F49EA /* AppDelegate.swift */; };
 		6227FB771AAE285C007F49EA /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 6227FB751AAE285C007F49EA /* Main.storyboard */; };
@@ -149,6 +150,7 @@
 		26C8ADD91AD00437008ADACB /* LevelDesignerViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LevelDesignerViewController.swift; sourceTree = "<group>"; };
 		26C8ADDB1AD01A52008ADACB /* String+XUtility.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "String+XUtility.swift"; sourceTree = "<group>"; };
 		26C8ADDF1AD045D8008ADACB /* GOPath.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GOPath.swift; sourceTree = "<group>"; };
+		26D9ABB01AD7CB1700D70D83 /* GOIntersectionManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GOIntersectionManager.swift; sourceTree = "<group>"; };
 		620BD4451AB2E69800267C7B /* XNote.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = XNote.swift; sourceTree = "<group>"; };
 		6227FB681AAE285C007F49EA /* Planck.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Planck.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		6227FB6C1AAE285C007F49EA /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -274,6 +276,7 @@
 				263B09C21ACEEE1100E7C99E /* CGVector+GOUtilities.swift */,
 				263B09C31ACEEE1100E7C99E /* GOConstant.swift */,
 				263B09C41ACEEE1100E7C99E /* GOUtilities.swift */,
+				26D9ABB01AD7CB1700D70D83 /* GOIntersectionManager.swift */,
 			);
 			path = Utility;
 			sourceTree = "<group>";
@@ -655,6 +658,7 @@
 				269D783A1AD3070100279EF3 /* LevelSelectViewController.swift in Sources */,
 				263B09BC1ACEEDD800E7C99E /* GOFlatOpticRep.swift in Sources */,
 				6227FC1B1AAE28E7007F49EA /* XMedium.swift in Sources */,
+				26D9ABB11AD7CB1700D70D83 /* GOIntersectionManager.swift in Sources */,
 				263B09AE1ACEEDD800E7C99E /* GOLineSegment.swift in Sources */,
 				263B09AF1ACEEDD800E7C99E /* GORay.swift in Sources */,
 				263B09B61ACEEDD800E7C99E /* GOGrid.swift in Sources */,
