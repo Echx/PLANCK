@@ -76,6 +76,7 @@ class LevelSelectViewController: XViewController, UICollectionViewDataSource, UI
     }
     
     private func loadLevels() {
+        println("Loading!")
         // find out the document path
         let path = NSSearchPathForDirectoriesInDomains(.DocumentDirectory,
             .UserDomainMask, true)[0] as NSString
