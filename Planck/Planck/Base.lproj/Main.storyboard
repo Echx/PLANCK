@@ -30,6 +30,7 @@
                                                 <segment title="Flat Wall"/>
                                                 <segment title="Concave Lens"/>
                                                 <segment title="Convex Lens"/>
+                                                <segment title=""/>
                                             </segments>
                                             <color key="tintColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="calibratedRGB"/>
                                         </segmentedControl>
@@ -65,7 +66,7 @@
                                 <color key="barTintColor" red="0.26274509800000001" green="0.36862745099999999" blue="0.46274509800000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                             </toolbar>
                             <view multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="EoB-ZE-bU7">
-                                <rect key="frame" x="-30" y="-27" width="1024" height="724"/>
+                                <rect key="frame" x="0.0" y="-23" width="1024" height="724"/>
                                 <subviews>
                                     <view alpha="0.89999997615814209" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="PcM-6l-K8S">
                                         <rect key="frame" x="32" y="41" width="958" height="181"/>

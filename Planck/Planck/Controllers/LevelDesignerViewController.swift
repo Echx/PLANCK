@@ -196,26 +196,24 @@ class LevelDesignerViewController: XViewController {
     @IBAction func viewDidTapped(sender: UITapGestureRecognizer) {
         if sender.numberOfTapsRequired == 1 {
             if sender.numberOfTouchesRequired == 2 {
-                if ((self.selectedNode != nil) && (xnodes[self.selectedNode!.id]!.isPlanck)) {
-                    if self.inputPanel.userInteractionEnabled {
-                       self.toggleInputPanel()
-                    }
+                if self.planckInputPanel.userInteractionEnabled {
                     self.togglePlanckInputPanel()
-                } else {
-                    if self.planckInputPanel.userInteractionEnabled {
-                        self.togglePlanckInputPanel()
-                    }
-                    self.toggleInputPanel()
                 }
-                return
-            }
-            
-            if self.selectedNode != nil {
+                self.toggleInputPanel()
+            } else if self.selectedNode != nil {
                 self.deselectNode()
             } else {
                 let location = sender.locationInView(sender.view)
                 self.deselectNode()
                 self.selectNode(self.grid.getInstrumentAtPoint(location))
+            }
+            return
+        } else if sender.numberOfTapsRequired == 3 {
+            if sender.numberOfTouchesRequired == 1 {
+                if self.inputPanel.userInteractionEnabled {
+                    self.toggleInputPanel()
+                }
+                self.togglePlanckInputPanel()
             }
             return
         }
