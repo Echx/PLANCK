@@ -358,18 +358,56 @@ class LevelDesignerViewController: XViewController {
     
     @IBAction func updateSelectedNode() {
         if let node = self.selectedNode {
+            self.backupNode(node)
             self.updateThicknessFromInput()
             self.updateLengthFromInput()
             self.updateCenterFromInput()
             self.updateDirectionFromInput()
             self.updateRefractionIndexFromInput()
             self.updateCurvatureRadiusFromInput()
-            
-            self.refreshSelectedNode()
+            if !self.refreshSelectedNode() {
+                self.removeNode(node)
+                if let node = self.backupNode {
+                    self.addNode(node, strokeColor: self.getColorForNode(node))
+                    self.deselectNode()
+                    self.selectNode(node)
+                }
+                let alertView = UIAlertView(title: "Update Failed", message: "The updated node may overlap with other nodes", delegate: nil, cancelButtonTitle: "OK")
+                alertView.show()
+            }
         }
         
         
         self.shootRay()
+    }
+    
+    private var backupNode: GOOpticRep?
+    
+    private func backupNode(generalNode: GOOpticRep) {
+        if let node = generalNode as? GOFlatLensRep {
+            self.backupNode = GOFlatLensRep(center: node.center, thickness: node.thickness, length: node.length, direction: node.direction, refractionIndex: node.refractionIndex, id: node.id)
+            return
+        }
+        
+        if let node = generalNode as? GOFlatMirrorRep {
+            self.backupNode = GOFlatMirrorRep(center: node.center, thickness: node.thickness, length: node.length, direction: node.direction, id: node.id)
+            return
+        }
+
+        if let node = generalNode as? GOFlatWallRep {
+            self.backupNode = GOFlatWallRep(center: node.center, thickness: node.thickness, length: node.length, direction: node.direction, id: node.id)
+            return
+        }
+
+        if let node = generalNode as? GOConvexLensRep {
+            self.backupNode = GOConvexLensRep(center: node.center, direction: node.direction, id: node.id, refractionIndex: node.refractionIndex)
+            return
+        }
+
+        if let node = generalNode as? GOConcaveLensRep {
+            self.backupNode = GOConcaveLensRep(center: node.center, direction: node.direction, id: node.id, refractionIndex: node.refractionIndex)
+            return
+        }
     }
     
     @IBAction func saveButtonDidClicked(sender: AnyObject) {
@@ -392,15 +430,20 @@ class LevelDesignerViewController: XViewController {
 //------------------------------------------------------------------------------
 //    Private Methods
 //------------------------------------------------------------------------------
-    private func refreshSelectedNode() {
+    private func refreshSelectedNode() -> Bool {
         if let node = self.selectedNode {
             if var view = self.deviceViews[node.id] {
                 view.removeFromSuperview()
-                self.addNode(node, strokeColor: self.getColorForNode(node))
+                if !self.addNode(node, strokeColor: self.getColorForNode(node)) {
+                    return false
+                }
             }
             self.deselectNode()
             self.selectNode(node)
+            return true
         }
+        
+        return false
     }
     
     private func updateCurvatureRadiusFromInput() {
@@ -617,7 +660,7 @@ class LevelDesignerViewController: XViewController {
             }
             
             if let device = node as? GOFlatLensRep {
-                input = [true, true, true, false, false, false, true, false, true]
+                input = [true, true, true, true, false, false, true, false, true]
             }
             
             if let device = node as? GOConcaveLensRep {
@@ -665,7 +708,7 @@ class LevelDesignerViewController: XViewController {
         self.updateTextFieldInformation()
     }
     
-    private func addNode(node: GOOpticRep, strokeColor: UIColor) {
+    private func addNode(node: GOOpticRep, strokeColor: UIColor) -> Bool{
         self.clearRay()
         var coordinateBackup = node.center
         node.setCenter(GOCoordinate(x: self.grid.width/2, y: self.grid.height/2))
@@ -691,7 +734,10 @@ class LevelDesignerViewController: XViewController {
         if !self.moveNode(node, from: self.view.center, offset: offset) {
             view.removeFromSuperview()
             self.grid.removeInstrumentForID(node.id)
+            return false
         }
+        
+        return true
     }
 
     
