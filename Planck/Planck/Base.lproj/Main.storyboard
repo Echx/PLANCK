@@ -100,10 +100,10 @@
                                                     <action selector="updateSelectedNode" destination="ICT-TY-Uh1" eventType="touchUpInside" id="RT7-8m-INK"/>
                                                 </connections>
                                             </button>
-                                            <pickerView contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="eb2-aC-rEe">
+                                            <pickerView tag="1" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="eb2-aC-rEe">
                                                 <rect key="frame" x="206" y="19" width="158" height="162"/>
                                             </pickerView>
-                                            <pickerView contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="UxK-0m-h8g">
+                                            <pickerView tag="2" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="UxK-0m-h8g">
                                                 <rect key="frame" x="400" y="19" width="158" height="162"/>
                                             </pickerView>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Group:" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="nFO-Eo-Wpr">
@@ -112,8 +112,12 @@
                                                 <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
-                                            <pickerView contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="gHU-uu-uP1">
+                                            <pickerView tag="3" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="gHU-uu-uP1">
                                                 <rect key="frame" x="593" y="19" width="158" height="162"/>
+                                                <connections>
+                                                    <outlet property="dataSource" destination="ICT-TY-Uh1" id="5xh-i6-YkC"/>
+                                                    <outlet property="delegate" destination="ICT-TY-Uh1" id="HCw-l8-rog"/>
+                                                </connections>
                                             </pickerView>
                                             <pickerView contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="ZhU-C2-ov8">
                                                 <rect key="frame" x="13" y="19" width="158" height="162"/>
