@@ -75,9 +75,9 @@ class LevelDesignerViewController: XViewController {
     //key is the id of the instrument
     private var xNodes = [String: XNode]()
     private var deviceViews = [String: UIView]()
+    private var selectedNode: GOOpticRep?
     private var rayLayers = [String: [CAShapeLayer]]()
     private var rays = [String: [CGPoint]]()
-    private var selectedNode: GOOpticRep?
     private var audioPlayerList = [AVAudioPlayer]()
     private var grid: GOGrid
     private var game:GameLevel?

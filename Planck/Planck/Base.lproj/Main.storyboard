@@ -387,6 +387,9 @@
                         <subviews>
                             <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="1qz-JW-p2k">
                                 <rect key="frame" x="16" y="13" width="51" height="31"/>
+                                <connections>
+                                    <action selector="switchValueDidChange:" destination="Ivs-sv-Sw2" eventType="valueChanged" id="2Gh-n9-bMO"/>
+                                </connections>
                             </switch>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="6IA-Mj-X9n">
                                 <rect key="frame" x="970" y="14" width="35" height="30"/>
@@ -404,6 +407,9 @@
                     <nil key="simulatedStatusBarMetrics"/>
                     <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
                     <size key="freeformSize" width="1024" height="768"/>
+                    <connections>
+                        <outlet property="shootSwitch" destination="1qz-JW-p2k" id="J02-pZ-rEI"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="nD4-xY-EFO" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
