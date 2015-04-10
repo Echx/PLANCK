@@ -334,6 +334,7 @@ class LevelDesignerViewController: XViewController {
         
         if sender.state == UIGestureRecognizerState.Ended {
             self.updateTextFieldInformation()
+            self.updatePickerInformation()
             self.shootRay()
         }
     }
@@ -346,6 +347,7 @@ class LevelDesignerViewController: XViewController {
         let location = sender.locationInView(sender.view)
         if let node = self.grid.getInstrumentAtPoint(location) {
             self.updateTextFieldInformation()
+            self.updatePickerInformation()
             self.removeNode(node)
         }
     }
@@ -359,6 +361,7 @@ class LevelDesignerViewController: XViewController {
         
         self.clearRay()
         self.updateTextFieldInformation()
+        self.updatePickerInformation()
     }
     
     @IBAction func updateSelectedNode() {
@@ -390,23 +393,7 @@ class LevelDesignerViewController: XViewController {
         if let selectedNode = self.selectedNode {
             if let node = self.xNodes[selectedNode.id] {
                 let instrument = self.instrumentPicker.selectedRowInComponent(0)
-                
-                switch instrument {
-                case PlanckControllPanel.instrumentInheritRow:
-                    node.isPlanck = false
-                    node.shouldPlaySound = true
-                    
-                case PlanckControllPanel.instrumentNilRow:
-                    node.isPlanck = false
-                    node.shouldPlaySound = false
-                    
-                case PlanckControllPanel.instrumentPianoRow:
-                    node.isPlanck = true
-                    node.shouldPlaySound = true
-                    
-                default:
-                    fatalError("Guitar is not supported yet")
-                }
+                node.instrument = instrument
                 
                 if node.isPlanck {
                     let noteName: Int = self.notePicker.selectedRowInComponent(0)
@@ -726,6 +713,99 @@ class LevelDesignerViewController: XViewController {
             self.textFieldLength.text = ""
         }
     }
+
+    private func updatePickerInformation() {
+        if let selectedNode = self.selectedNode {
+            if let node = self.xNodes[selectedNode.id] {
+                self.instrumentPicker.selectRow(node.instrument, inComponent: 0, animated: false)
+                if (node.instrument == NodeDefaults.instrumentInherit) || (node.instrument == NodeDefaults.instrumentNil) {
+                    self.notePicker.selectRow(0, inComponent: 0, animated: false)
+                    self.accidentalPicker.selectRow(0, inComponent: 0, animated: false)
+                    self.groupPicker.selectRow(0, inComponent: 0, animated: false)
+                } else {
+                    if let note = node.planckNote {
+                        self.notePicker.selectRow(note.noteName.rawValue / 5, inComponent: 0, animated: false)
+                        self.accidentalPicker.selectRow(note.noteName.rawValue % 5, inComponent: 0, animated: false)
+                        self.groupPicker.selectRow(note.noteGroup, inComponent: 0, animated: false)
+                    } else {
+                        self.notePicker.selectRow(0, inComponent: 0, animated: false)
+                        self.accidentalPicker.selectRow(0, inComponent: 0, animated: false)
+                        self.groupPicker.selectRow(0, inComponent: 0, animated: false)
+                    }
+                }
+            }
+        }
+//            self.textFieldCenterX.text = "\(node.center.x)"
+//            self.textFieldCenterY.text = "\(node.center.y)"
+//            self.textFieldDirection.text = "\(Int(round(node.direction.angleFromXPlus / self.grid.unitDegree)))"
+//            
+//            if let flatNode = node as? GOFlatOpticRep {
+//                self.textFieldThickness.text = "\(flatNode.thickness)"
+//                self.textFieldLength.text = "\(flatNode.length)"
+//                
+//                if let flatLens = flatNode as? GOFlatLensRep {
+//                    self.textFieldRefractionIndex.text = "\(flatLens.refractionIndex)"
+//                } else {
+//                    self.textFieldRefractionIndex.text = ""
+//                }
+//                self.textFieldThicknessCenter.text = ""
+//                self.textFieldThicknessEdge.text = ""
+//                self.textFieldCurvatureRadius.text = ""
+//            } else if let concaveLens = node as? GOConcaveLensRep {
+//                self.textFieldThicknessCenter.text = "\(concaveLens.thicknessCenter)"
+//                self.textFieldThicknessEdge.text = "\(concaveLens.thicknessEdge)"
+//                self.textFieldRefractionIndex.text = "\(concaveLens.refractionIndex)"
+//                self.textFieldCurvatureRadius.text = "\(concaveLens.curvatureRadius)"
+//                self.textFieldThickness.text = ""
+//                self.textFieldLength.text = ""
+//            } else if let convexLens = node as? GOConvexLensRep {
+//                self.textFieldThickness.text = "\(convexLens.thickness)"
+//                self.textFieldRefractionIndex.text = "\(convexLens.refractionIndex)"
+//                self.textFieldCurvatureRadius.text = "\(convexLens.curvatureRadius)"
+//                self.textFieldThicknessCenter.text = ""
+//                self.textFieldThicknessEdge.text = ""
+//                self.textFieldLength.text = ""
+//            }
+//            
+//            var input = [Bool]()
+//            
+//            if let device = node as? GOEmitterRep {
+//                input = [true, true, true, true, false, false, false, false, true]
+//            }
+//            
+//            if let device = node as? GOFlatMirrorRep {
+//                input = [true, true, true, true, false, false, false, false, true]
+//            }
+//            
+//            if let device = node as? GOFlatWallRep {
+//                input = [true, true, true, true, false, false, false, false, true]
+//            }
+//            
+//            if let device = node as? GOFlatLensRep {
+//                input = [true, true, true, true, false, false, true, false, true]
+//            }
+//            
+//            if let device = node as? GOConcaveLensRep {
+//                input = [true, true, true, false, true, true, true, true, false]
+//            }
+//            
+//            if let device = node as? GOConvexLensRep {
+//                input = [true, true, true, true, false, false, true, true, false]
+//            }
+//            
+//            self.updateControlPanelValidItems(input)
+//        } else {
+//            self.textFieldCenterX.text = ""
+//            self.textFieldCenterY.text = ""
+//            self.textFieldDirection.text = ""
+//            self.textFieldThickness.text = ""
+//            self.textFieldRefractionIndex.text = ""
+//            self.textFieldCurvatureRadius.text = ""
+//            self.textFieldThicknessCenter.text = ""
+//            self.textFieldThicknessEdge.text = ""
+//            self.textFieldLength.text = ""
+//        }
+    }
     
     private func selectNode(optionalNode: GOOpticRep?) {
         if let node = optionalNode {
@@ -738,6 +818,7 @@ class LevelDesignerViewController: XViewController {
         }
         
         self.updateTextFieldInformation()
+        self.updatePickerInformation()
     }
     
     private func deselectNode() {
@@ -748,6 +829,7 @@ class LevelDesignerViewController: XViewController {
         }
         self.selectedNode = nil
         self.updateTextFieldInformation()
+        self.updatePickerInformation()
     }
     
     private func addNode(node: GOOpticRep, strokeColor: UIColor) -> Bool{

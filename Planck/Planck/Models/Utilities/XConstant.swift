@@ -69,8 +69,11 @@ struct ActionKey {
     static let nodeActionShake = "NODE_ACTION_KEY_SHAKE"
 }
 
-struct NodeName {
-    static let xPhoton = "X_PHOTON"
+struct NodeDefaults {
+    static let instrumentInherit = PlanckControllPanel.instrumentInheritRow
+    static let instrumentNil = PlanckControllPanel.instrumentNilRow
+    static let instrumentPiano = PlanckControllPanel.instrumentPianoRow
+    static let instrumentGuitar = PlanckControllPanel.instrumentGuitarRow
 }
 
 struct InstrumentDefaults {
