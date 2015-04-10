@@ -690,16 +690,25 @@ class LevelDesignerViewController: XViewController {
         let originalDisplayPoint = self.grid.getCenterForGridCell(node.center)
         let effectDisplayPoint = CGPointMake(originalDisplayPoint.x + offsetX, originalDisplayPoint.y + offsetY)
         
+        let centerBackup = node.center
+        
+        //check whether the node will overlap with other nodes with the new center
         node.setCenter(self.grid.getGridCoordinateForPoint(effectDisplayPoint))
-        
-        self.grid.isInstrumentOverlappedWidthOthers(node)
-        
-        let view = self.deviceViews[node.id]!
-        let finalDisplayPoint = self.grid.getCenterForGridCell(node.center)
-        let finalX = finalDisplayPoint.x - originalDisplayPoint.x + from.x
-        let finalY = finalDisplayPoint.y - originalDisplayPoint.y + from.y
-        
-        view.center = CGPointMake(finalX, finalY)
+        if self.grid.isInstrumentOverlappedWidthOthers(node) {
+            //overlapped recover the center and view
+            node.setCenter(centerBackup)
+            //recover the view
+            let view = self.deviceViews[node.id]!
+            view.center = originalDisplayPoint
+        } else{
+            //not overlap, move the view to the new position
+            let view = self.deviceViews[node.id]!
+            let finalDisplayPoint = self.grid.getCenterForGridCell(node.center)
+            let finalX = finalDisplayPoint.x - originalDisplayPoint.x + from.x
+            let finalY = finalDisplayPoint.y - originalDisplayPoint.y + from.y
+            
+            view.center = CGPointMake(finalX, finalY)
+        }
     }
     
     private func moveNode(node: GOOpticRep, to: GOCoordinate) {
