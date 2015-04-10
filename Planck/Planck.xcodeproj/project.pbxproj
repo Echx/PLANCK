@@ -33,6 +33,8 @@
 		263B09CD1ACEEF9600E7C99E /* GOConstant.swift in Sources */ = {isa = PBXBuildFile; fileRef = 263B09C31ACEEE1100E7C99E /* GOConstant.swift */; };
 		263B09CE1ACEEF9600E7C99E /* GOUtilities.swift in Sources */ = {isa = PBXBuildFile; fileRef = 263B09C41ACEEE1100E7C99E /* GOUtilities.swift */; };
 		267EC2D41AB1DA01002FE745 /* CGVector+XUtility.swift in Sources */ = {isa = PBXBuildFile; fileRef = 267EC2D31AB1DA01002FE745 /* CGVector+XUtility.swift */; };
+		269192B11AD8120F002F8590 /* XFlatLens.swift in Sources */ = {isa = PBXBuildFile; fileRef = 269192B01AD8120F002F8590 /* XFlatLens.swift */; };
+		269192B21AD8124D002F8590 /* XFlatLens.swift in Sources */ = {isa = PBXBuildFile; fileRef = 269192B01AD8120F002F8590 /* XFlatLens.swift */; };
 		269D78381AD306F000279EF3 /* SettingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 269D78371AD306F000279EF3 /* SettingViewController.swift */; };
 		269D783A1AD3070100279EF3 /* LevelSelectViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 269D78391AD3070100279EF3 /* LevelSelectViewController.swift */; };
 		269D783E1AD3088300279EF3 /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 269D783D1AD3088300279EF3 /* HomeViewController.swift */; };
@@ -143,6 +145,7 @@
 		263B09C31ACEEE1100E7C99E /* GOConstant.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GOConstant.swift; sourceTree = "<group>"; };
 		263B09C41ACEEE1100E7C99E /* GOUtilities.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GOUtilities.swift; sourceTree = "<group>"; };
 		267EC2D31AB1DA01002FE745 /* CGVector+XUtility.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "CGVector+XUtility.swift"; sourceTree = "<group>"; };
+		269192B01AD8120F002F8590 /* XFlatLens.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = XFlatLens.swift; path = Optics/XFlatLens.swift; sourceTree = "<group>"; };
 		269D78371AD306F000279EF3 /* SettingViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingViewController.swift; sourceTree = "<group>"; };
 		269D78391AD3070100279EF3 /* LevelSelectViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LevelSelectViewController.swift; sourceTree = "<group>"; };
 		269D783D1AD3088300279EF3 /* HomeViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
@@ -430,6 +433,7 @@
 				62D2833E1AD17D3C00A583FA /* XFlatMirror.swift */,
 				62D283691AD1890900A583FA /* XWall.swift */,
 				6296A3941AD1D531008F7655 /* XPlanck.swift */,
+				269192B01AD8120F002F8590 /* XFlatLens.swift */,
 			);
 			name = Optics;
 			sourceTree = "<group>";
@@ -688,6 +692,7 @@
 				263B09C51ACEEE1100E7C99E /* CGFLoat+GOUtilities.swift in Sources */,
 				263B09C91ACEEE1100E7C99E /* GOUtilities.swift in Sources */,
 				269D78421AD3128D00279EF3 /* GameViewController.swift in Sources */,
+				269192B11AD8120F002F8590 /* XFlatLens.swift in Sources */,
 				98754ADC1AD0587F00817319 /* GameLevel.swift in Sources */,
 				62D2836A1AD1890900A583FA /* XWall.swift in Sources */,
 				263B09C71ACEEE1100E7C99E /* CGVector+GOUtilities.swift in Sources */,
@@ -710,6 +715,7 @@
 				98F63A991AD165070096A32E /* GOFlatMirrorRep.swift in Sources */,
 				98F63A9A1AD165070096A32E /* GOFlatWallRep.swift in Sources */,
 				263B09CA1ACEEF9600E7C99E /* CGFLoat+GOUtilities.swift in Sources */,
+				269192B21AD8124D002F8590 /* XFlatLens.swift in Sources */,
 				263B09CD1ACEEF9600E7C99E /* GOConstant.swift in Sources */,
 				62988FF71AB2FA8800FD9AFF /* XConstant.swift in Sources */,
 				98F63A951AD165070096A32E /* GOConcaveLensRep.swift in Sources */,
