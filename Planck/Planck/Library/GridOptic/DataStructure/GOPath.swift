@@ -2,8 +2,8 @@
 //  GOPath.swift
 //  GridOptic
 //
-//  Created by NULL on 05/04/15.
-//  Copyright (c) 2015年 Echx. All rights reserved.
+//  Created by Wang Jinghan on 05/04/15.
+//  Copyright (c) 2015 Echx. All rights reserved.
 //
 
 import UIKit
