@@ -83,32 +83,32 @@ class ArchiveTest : XCTestCase {
         XCTAssertEqual(recoverObj.id, Default.MirrorKey, "Error Recovering")
     }
     
-    func testArchiveGameLevel() {
-        let data = NSMutableData();
-        let archiver = NSKeyedArchiver(forWritingWithMutableData: data)
-        
-        var grid:GOGrid = GOGrid(width: 64, height: 48, andUnitLength: 16)
-        
-        grid.addInstrument(mirror)
-        
-        grid.addInstrument(flatLens)
-        
-        grid.addInstrument(concaveLens)
-        
-        grid.addInstrument(convexLens)
-        
-        grid.addInstrument(convexLens1)
-
-        let gameLevel = GameLevel(levelName: "haha", levelIndex: 12, grid: grid)
-        archiver.encodeObject(gameLevel, forKey: "game")
-        archiver.finishEncoding()
-        
-        let unarchiver = NSKeyedUnarchiver(forReadingWithData: data)
-        let recoverObj = unarchiver.decodeObjectForKey("game")! as GameLevel
-        XCTAssertEqual(recoverObj.name, "haha", "Error Recovering")
-        XCTAssertEqual(recoverObj.index, 12, "Error Recovering")
-        XCTAssertEqual(recoverObj.grid.instruments.count, grid.instruments.count, "Error Recovering")
-    }
+//    func testArchiveGameLevel() {
+//        let data = NSMutableData();
+//        let archiver = NSKeyedArchiver(forWritingWithMutableData: data)
+//        
+//        var grid:GOGrid = GOGrid(width: 64, height: 48, andUnitLength: 16)
+//        
+//        grid.addInstrument(mirror)
+//        
+//        grid.addInstrument(flatLens)
+//        
+//        grid.addInstrument(concaveLens)
+//        
+//        grid.addInstrument(convexLens)
+//        
+//        grid.addInstrument(convexLens1)
+//
+//        let gameLevel = GameLevel(levelName: "haha", levelIndex: 12, grid: grid)
+//        archiver.encodeObject(gameLevel, forKey: "game")
+//        archiver.finishEncoding()
+//        
+//        let unarchiver = NSKeyedUnarchiver(forReadingWithData: data)
+//        let recoverObj = unarchiver.decodeObjectForKey("game")! as GameLevel
+//        XCTAssertEqual(recoverObj.name, "haha", "Error Recovering")
+//        XCTAssertEqual(recoverObj.index, 12, "Error Recovering")
+//        XCTAssertEqual(recoverObj.grid.instruments.count, grid.instruments.count, "Error Recovering")
+//    }
 
 
 }
