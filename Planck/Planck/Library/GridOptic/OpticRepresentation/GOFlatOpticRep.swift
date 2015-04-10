@@ -104,19 +104,19 @@ class GOFlatOpticRep: GOOpticRep {
         aCoder.encodeObject(refractionIndex, forKey: GOCodingKey.optic_refractionIndex)
     }
     
-    override func containsPoint(point: CGPoint) -> Bool{
-        let areaHalfRect = self.length * self.thickness * 0.5
-        for edge in self.edges {
-            let vertexA = edge.startPoint
-            let vertexB = edge.endPoint
-            let vertexC = point
-            let areaABC = GOUtilities.areaOfTriangle(first: vertexA, second: vertexB, third: vertexC)
-            if areaABC > areaHalfRect {
-                return false
-            }
-        }
-        return true
-    }
+//    override func containsPoint(point: CGPoint) -> Bool{
+//        let areaHalfRect = self.length * self.thickness * 0.5
+//        for edge in self.edges {
+//            let vertexA = edge.startPoint
+//            let vertexB = edge.endPoint
+//            let vertexC = point
+//            let areaABC = GOUtilities.areaOfTriangle(first: vertexA, second: vertexB, third: vertexC)
+//            if areaABC > areaHalfRect {
+//                return false
+//            }
+//        }
+//        return true
+//    }
     
     override func setUpEdges() {
         self.edges = [GOSegment]()

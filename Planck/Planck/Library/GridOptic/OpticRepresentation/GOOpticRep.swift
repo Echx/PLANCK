@@ -104,7 +104,18 @@ class GOOpticRep: NSObject, NSCoding {
     }
     
     func containsPoint(point: CGPoint) -> Bool {
-        fatalError("containsPoint must be overriden by child classes")
+        var framePath = UIBezierPath()
+        let vertices = self.vertices
+        framePath.moveToPoint(vertices[0])
+        
+        for var i = 1; i < vertices.count; i++ {
+            var vertex = vertices[i]
+            framePath.addLineToPoint(vertex)
+        }
+        
+        framePath.closePath()
+        
+        return framePath.containsPoint(point)
     }
     
     func updateEdgesParent() {
