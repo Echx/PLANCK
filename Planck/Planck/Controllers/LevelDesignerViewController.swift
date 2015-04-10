@@ -688,11 +688,14 @@ class LevelDesignerViewController: XViewController {
         var offsetY = CGFloat(coordinateBackup.y - node.center.y) * self.grid.unitLength
         var offset = CGPointMake(offsetX, offsetY)
         
-        self.moveNode(node, from: self.view.center, offset: offset)
+        if !self.moveNode(node, from: self.view.center, offset: offset) {
+            view.removeFromSuperview()
+            self.grid.removeInstrumentForID(node.id)
+        }
     }
 
     
-    private func moveNode(node: GOOpticRep, from: CGPoint,offset: CGPoint) {
+    private func moveNode(node: GOOpticRep, from: CGPoint,offset: CGPoint) -> Bool{
         let offsetX = offset.x
         let offsetY = offset.y
         
@@ -709,6 +712,7 @@ class LevelDesignerViewController: XViewController {
             //recover the view
             let view = self.deviceViews[node.id]!
             view.center = originalDisplayPoint
+            return false
         } else{
             //not overlap, move the view to the new position
             let view = self.deviceViews[node.id]!
@@ -717,16 +721,17 @@ class LevelDesignerViewController: XViewController {
             let finalY = finalDisplayPoint.y - originalDisplayPoint.y + from.y
             
             view.center = CGPointMake(finalX, finalY)
+            return true
         }
     }
     
-    private func moveNode(node: GOOpticRep, to: GOCoordinate) {
+    private func moveNode(node: GOOpticRep, to: GOCoordinate) -> Bool{
         let originalCenter = self.grid.getCenterForGridCell(node.center)
         let finalCenter = self.grid.getCenterForGridCell(to)
         let offsetX = finalCenter.x - originalCenter.x
         let offsetY = finalCenter.y - originalCenter.y
         let offset = CGPointMake(offsetX, offsetY)
-        self.moveNode(node, from: originalCenter, offset: offset)
+        return self.moveNode(node, from: originalCenter, offset: offset)
     }
 
     private func removeNode(node: GOOpticRep) {
