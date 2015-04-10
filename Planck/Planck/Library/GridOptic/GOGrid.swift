@@ -115,7 +115,7 @@ class GOGrid: NSObject, NSCoding {
         for (key, otherInstrument) in self.instruments {
             if instrument != otherInstrument {
                 let otherInstrumentVertices = otherInstrument.vertices
-                if GOOverlapManager.isShape(instrumentVertices, intersectWith: otherInstrumentVertices) {
+                if GOOverlapManager.isShape(instrumentVertices, overlappedWith: otherInstrumentVertices) {
                     return true
                 }
             }

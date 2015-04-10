@@ -25,7 +25,7 @@ class GOOverlapManager: NSObject {
     }
     
     //Applying SAT (Separating Axix Theorm) to check if two shape are intersect
-    class func isShape(aVertices: [CGPoint], intersectWith bVertices: [CGPoint]) -> Bool{
+    class func isShape(aVertices: [CGPoint], overlappedWith bVertices: [CGPoint]) -> Bool{
         for var i = 0; i < aVertices.count; i++ {
             let point1 = aVertices[i]
             let point2 = aVertices[(i + 1) % aVertices.count]
