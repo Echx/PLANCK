@@ -8,6 +8,9 @@
 
 import UIKit
 
-class XFlatLens: GOFlatLensRep {
-    
+class XFlatLens: XNode {
+    init(flatLens: GOFlatLensRep) {
+        super.init(physicsBody: flatLens)
+        self.normalSoundURL = SoundFiles.cymbalSound
+    }
 }

@@ -8,8 +8,9 @@
 
 import UIKit
 
-class XFlatMirror: GOFlatMirrorRep {    
-    override func getSound() -> NSURL? {
-        return SoundFiles.snareDrumSound
+class XFlatMirror: XNode {
+    init(flatMirror: GOFlatMirrorRep) {
+        super.init(physicsBody: flatMirror)
+        self.normalSoundURL = SoundFiles.snareDrumSound
     }
 }

@@ -1,5 +1,5 @@
 //
-//  XConvexLens.swift
+//  XConcaveLens.swift
 //  Planck
 //
 //  Created by Lei Mingyu on 05/04/15.
@@ -8,9 +8,9 @@
 
 import UIKit
 
-class XConvexLens: XNode {
-    init(convexLens: GOConvexLensRep) {
-        super.init(physicsBody: convexLens)
+class XConcaveLens: XNode {
+    init(concaveRep: GOConcaveLensRep) {
+        super.init(physicsBody: concaveRep)
         self.normalSoundURL = SoundFiles.bassDrumSound
     }
 }
