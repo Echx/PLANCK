@@ -1,5 +1,5 @@
 //
-//  GOIntersectionManager.swift
+//  GOOverlapManager
 //  Planck
 //
 //  Created by NULL on 10/04/15.
@@ -8,7 +8,7 @@
 
 import UIKit
 
-class GOIntersectionManager: NSObject {
+class GOOverlapManager: NSObject {
     
     //Calculate the projection
     private class func getProjectionOfShape(vertices: [CGPoint], onto vector: CGVector) -> (min: CGFloat, max: CGFloat){
