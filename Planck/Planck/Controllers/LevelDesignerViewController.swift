@@ -945,6 +945,9 @@ println(sender.numberOfTouches())
             self.addNode(opticNode, strokeColor: getColorForNode(opticNode))
         }
         
+
+        self.xnodes = level.xNodes
+
         self.shootRay()
 
     }
@@ -988,7 +991,7 @@ println(sender.numberOfTouches())
                 if let match = regEx.firstMatchInString(inputName, options: nil,
                     range: NSRange(location: 0, length: inputName.utf16Count)) {
                         // valid
-                        let game = GameLevel(levelName: inputName, levelIndex: 1, grid: self.grid)
+                        let game = GameLevel(levelName: inputName, levelIndex: 1, grid: self.grid, nodes: self.xnodes)
                         self.game = game
                     StorageManager.defaultManager.saveCurrentLevel(game)
                 } else {

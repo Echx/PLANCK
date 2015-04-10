@@ -8,7 +8,7 @@
 
 import UIKit
 
-class XNode: NSObject {
+class XNode: NSObject, NSCoding {
     var physicsBody: GOOpticRep
     var isPlanck = false
     var shouldPlaySound = true
@@ -34,6 +34,15 @@ class XNode: NSObject {
     }
     
     required convenience init(coder aDecoder: NSCoder) {
-        fatalError("Not implemented")
+        let body = aDecoder.decodeObjectForKey("phyBody") as GOOpticRep
+        let isPlanck = aDecoder.decodeBoolForKey("isPlanck")
+        let shouldPlaySould = aDecoder.decodeBoolForKey("shouldPlaySound")
+        self.init(physicsBody: body)
+    }
+    
+    func encodeWithCoder(aCoder: NSCoder) {
+        aCoder.encodeObject(self.physicsBody, forKey: "phyBody")
+        aCoder.encodeBool(self.isPlanck, forKey: "isPlanck")
+        aCoder.encodeBool(self.shouldPlaySound, forKey: "shouldPlaySound")
     }
 }

@@ -375,8 +375,8 @@
 				982495D71AD2ACC10039E75E /* DesignerLevelSelectViewController.swift */,
 				26C8ADD91AD00437008ADACB /* LevelDesignerViewController.swift */,
 				269D78371AD306F000279EF3 /* SettingViewController.swift */,
-				269D78391AD3070100279EF3 /* LevelSelectViewController.swift */,
 				269D783D1AD3088300279EF3 /* HomeViewController.swift */,
+				269D78391AD3070100279EF3 /* LevelSelectViewController.swift */,
 				269D78411AD3128D00279EF3 /* GameViewController.swift */,
 			);
 			path = Controllers;
