@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6751" systemVersion="14D131" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="Z3F-Q9-Qtd">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6751" systemVersion="14D98g" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="Z3F-Q9-Qtd">
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6736"/>
     </dependencies>
@@ -12,7 +12,7 @@
                         <viewControllerLayoutGuide type="top" id="3GY-3F-e3c"/>
                         <viewControllerLayoutGuide type="bottom" id="Wib-TG-yhB"/>
                     </layoutGuides>
-                    <view key="view" contentMode="scaleToFill" id="rrK-D2-hUU">
+                    <view key="view" multipleTouchEnabled="YES" contentMode="scaleToFill" id="rrK-D2-hUU">
                         <rect key="frame" x="0.0" y="0.0" width="1024" height="768"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
@@ -244,6 +244,7 @@
                                     <outletCollection property="gestureRecognizers" destination="stW-1L-XFP" appends="YES" id="nhG-gK-HZj"/>
                                     <outletCollection property="gestureRecognizers" destination="kMz-7u-Yeq" appends="YES" id="WA7-7u-byt"/>
                                     <outletCollection property="gestureRecognizers" destination="Bmb-Xb-qhm" appends="YES" id="sIi-rM-OaX"/>
+                                    <outletCollection property="gestureRecognizers" destination="XwB-aM-G2A" appends="YES" id="GfV-eb-nsX"/>
                                 </connections>
                             </view>
                         </subviews>
@@ -309,6 +310,11 @@
                 <tapGestureRecognizer numberOfTapsRequired="2" numberOfTouchesRequired="2" id="Bmb-Xb-qhm">
                     <connections>
                         <action selector="dismissViewController" destination="ICT-TY-Uh1" id="yij-Re-BoB"/>
+                    </connections>
+                </tapGestureRecognizer>
+                <tapGestureRecognizer numberOfTouchesRequired="3" id="XwB-aM-G2A">
+                    <connections>
+                        <action selector="viewDidTapped:" destination="ICT-TY-Uh1" id="rJe-l6-1Qr"/>
                     </connections>
                 </tapGestureRecognizer>
             </objects>
