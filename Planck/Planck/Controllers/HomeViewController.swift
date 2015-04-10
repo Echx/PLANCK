@@ -56,7 +56,7 @@ class HomeViewController: XViewController {
         emitter.emitterSize = rect.size
         
         let emitterCell = CAEmitterCell()
-        emitterCell.scale = 0.6
+        emitterCell.scale = 0.08
         emitterCell.contents = UIImage(named: sparkFile)!.CGImage
         emitter.emitterCells = [emitterCell]
         // define params here
