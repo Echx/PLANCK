@@ -263,6 +263,7 @@ class LevelDesignerViewController: XViewController {
     private var lastLocation: CGPoint?
     private var firstViewCenter: CGPoint?
     private var firstViewTransform: CATransform3D?
+    private var firstDirection: CGVector?
     private var touchedNode: GOOpticRep?
     @IBAction func viewDidPanned(sender: UIPanGestureRecognizer) {
         let location = sender.locationInView(self.view)
@@ -272,6 +273,7 @@ class LevelDesignerViewController: XViewController {
             if sender.state == UIGestureRecognizerState.Began {
                 firstLocation = location
                 lastLocation = location
+                firstDirection = node.direction
                 firstViewTransform = view.layer.transform
             } else {
                 let startVector = CGVectorMake(firstLocation!.x - self.grid.getCenterForGridCell(node.center).x,
@@ -285,7 +287,14 @@ class LevelDesignerViewController: XViewController {
                     let count = round(effectAngle / self.grid.unitDegree)
                     let finalAngle = self.grid.unitDegree * count
                     angle = finalAngle - nodeAngle
+                    
+                    //check whether the node will overlap with others with the new direction
                     node.setDirection(CGVector.vectorFromXPlusRadius(finalAngle))
+                    if self.grid.isInstrumentOverlappedWidthOthers(node) {
+                        node.setDirection(firstDirection!)
+                        view.layer.transform = firstViewTransform!
+                        return
+                    }
                 }
                 var layerTransform = CATransform3DRotate(firstViewTransform!, angle, 0, 0, 1)
                 view.layer.transform = layerTransform
