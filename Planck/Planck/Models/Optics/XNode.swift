@@ -10,8 +10,25 @@ import UIKit
 
 class XNode: NSObject, NSCoding {
     var physicsBody: GOOpticRep
-    var isPlanck = false
-    var shouldPlaySound = true
+    var instrument: Int = NodeDefaults.instrumentInherit
+    var isPlanck: Bool {
+        get {
+            if (self.instrument == NodeDefaults.instrumentInherit) || (self.instrument == NodeDefaults.instrumentNil) {
+                return false
+            } else {
+                return true
+            }
+        }
+    }
+    var shouldPlaySound: Bool {
+        get {
+            if self.instrument == NodeDefaults.instrumentNil {
+                return false
+            } else {
+                return true
+            }
+        }
+    }
     var strokeColor = UIColor.whiteColor()
     var normalNote: XNote?
     var planckNote: XNote?

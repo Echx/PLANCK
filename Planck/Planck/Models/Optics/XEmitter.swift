@@ -12,8 +12,7 @@ class XEmitter: XNode {
     init(emitter: GOEmitterRep) {
         super.init(physicsBody: emitter)
         self.strokeColor = DeviceColor.emitter
-        self.isPlanck = false
-        self.shouldPlaySound = false
+        self.instrument = NodeDefaults.instrumentNil
     }
     
     required convenience init(coder aDecoder: NSCoder) {

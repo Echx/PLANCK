@@ -69,8 +69,11 @@ struct ActionKey {
     static let nodeActionShake = "NODE_ACTION_KEY_SHAKE"
 }
 
-struct NodeName {
-    static let xPhoton = "X_PHOTON"
+struct NodeDefaults {
+    static let instrumentInherit = PlanckControllPanel.instrumentInheritRow
+    static let instrumentNil = PlanckControllPanel.instrumentNilRow
+    static let instrumentPiano = PlanckControllPanel.instrumentPianoRow
+    static let instrumentGuitar = PlanckControllPanel.instrumentGuitarRow
 }
 
 struct InstrumentDefaults {
@@ -189,8 +192,13 @@ struct PlanckControllPanel {
     static let groupPickerTag = 3
     
     static let instrumentPickerTitle = ["inherit", "nil", "piano", "guitar"]
-    static let notePickerTitle = ["A", "B", "C", "D", "E", "F", "G"]
+    static let instrumentInheritRow = 0
+    static let instrumentNilRow = 1
+    static let instrumentPianoRow = 2
+    static let instrumentGuitarRow = 3
+    
+    static let notePickerTitle = ["C", "D", "E", "F", "G", "A", "B"]
 //    static let accidentalPickerTitle = ["♮", "♯", "♭", "𝄪", "𝄫"]
-    static let accidentalPickerTitle = ["♮", "♯", "♭", "x", "♭♭"]
+    static let accidentalPickerTitle = ["♮", "♭", "♭♭", "♯", "x"]
     static let groupPickerTitle = ["0", "1", "2", "3", "4", "5", "6", "7"]
 }
