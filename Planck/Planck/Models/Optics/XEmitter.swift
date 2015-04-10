@@ -11,7 +11,6 @@ import UIKit
 class XEmitter: XNode {
     init(emitter: GOEmitterRep) {
         super.init(physicsBody: emitter)
-        self.normalSoundURL = nil
         self.strokeColor = DeviceColor.emitter
         self.isPlanck = false
         self.shouldPlaySound = false
