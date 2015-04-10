@@ -70,7 +70,7 @@
                                     <view alpha="0.89999997615814209" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="PcM-6l-K8S">
                                         <rect key="frame" x="32" y="41" width="958" height="181"/>
                                         <subviews>
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Color:" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="p30-Sl-Tok">
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Instrument:" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="p30-Sl-Tok">
                                                 <rect key="frame" x="28" y="13" width="61" height="21"/>
                                                 <fontDescription key="fontDescription" name="GillSans" family="Gill Sans" pointSize="12"/>
                                                 <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
@@ -100,9 +100,6 @@
                                                     <action selector="updateSelectedNode" destination="ICT-TY-Uh1" eventType="touchUpInside" id="RT7-8m-INK"/>
                                                 </connections>
                                             </button>
-                                            <pickerView contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="ZhU-C2-ov8">
-                                                <rect key="frame" x="8" y="19" width="158" height="162"/>
-                                            </pickerView>
                                             <pickerView contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="eb2-aC-rEe">
                                                 <rect key="frame" x="206" y="19" width="158" height="162"/>
                                             </pickerView>
@@ -118,12 +115,15 @@
                                             <pickerView contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="gHU-uu-uP1">
                                                 <rect key="frame" x="593" y="19" width="158" height="162"/>
                                             </pickerView>
+                                            <pickerView contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="ZhU-C2-ov8">
+                                                <rect key="frame" x="13" y="19" width="158" height="162"/>
+                                            </pickerView>
                                         </subviews>
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         <gestureRecognizers/>
                                     </view>
                                     <view alpha="0.89999999999999991" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="4BT-L2-RuS">
-                                        <rect key="frame" x="33" y="40" width="958" height="175"/>
+                                        <rect key="frame" x="32" y="239" width="958" height="175"/>
                                         <subviews>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Center: " lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Ckj-1b-o6D">
                                                 <rect key="frame" x="22" y="20" width="61" height="21"/>

@@ -194,7 +194,6 @@ class LevelDesignerViewController: XViewController {
     
     //MARK - tap gesture handler
     @IBAction func viewDidTapped(sender: UITapGestureRecognizer) {
-println(sender.numberOfTouches())
         if sender.numberOfTapsRequired == 1 {
             if sender.numberOfTouches() == 3 {
                 if self.inputPanel.userInteractionEnabled {
