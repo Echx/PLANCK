@@ -97,7 +97,7 @@
                                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                                 </state>
                                                 <connections>
-                                                    <action selector="updateSelectedNode" destination="ICT-TY-Uh1" eventType="touchUpInside" id="RT7-8m-INK"/>
+                                                    <action selector="updateSelectedNodePlanck" destination="ICT-TY-Uh1" eventType="touchUpInside" id="z4h-pQ-TaN"/>
                                                 </connections>
                                             </button>
                                             <pickerView tag="1" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="eb2-aC-rEe">

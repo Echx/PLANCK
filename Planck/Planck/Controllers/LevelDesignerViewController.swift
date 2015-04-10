@@ -405,6 +405,7 @@ class LevelDesignerViewController: XViewController {
                     let xNote = XNote(noteName: xNoteName, noteGroup: noteGroup)
                     node.planckNote = xNote
                 }
+                self.updatePickerInformation()
             }
         }
         self.shootRay()
