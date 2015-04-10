@@ -271,10 +271,10 @@
                     <size key="freeformSize" width="1024" height="768"/>
                     <connections>
                         <outlet property="accidentalPicker" destination="UxK-0m-h8g" id="xhk-vE-Hyh"/>
-                        <outlet property="colorPicker" destination="ZhU-C2-ov8" id="RZ6-p6-a3Z"/>
                         <outlet property="deviceSegment" destination="9gO-qO-sAS" id="quA-kf-yuz"/>
                         <outlet property="groupPicker" destination="gHU-uu-uP1" id="ioD-zs-qHx"/>
                         <outlet property="inputPanel" destination="4BT-L2-RuS" id="0Xr-mn-ErZ"/>
+                        <outlet property="instrumentPicker" destination="ZhU-C2-ov8" id="rrE-kk-jnE"/>
                         <outlet property="labelCenterX" destination="Ckj-1b-o6D" id="UxH-4g-DhD"/>
                         <outlet property="labelCurvatureRadius" destination="AEx-O5-ASB" id="dLS-Uw-SWT"/>
                         <outlet property="labelDirection" destination="521-St-pgy" id="p2M-Lc-luo"/>
