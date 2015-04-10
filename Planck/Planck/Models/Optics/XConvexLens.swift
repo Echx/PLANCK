@@ -12,6 +12,7 @@ class XConvexLens: XNode {
     init(convexLens: GOConvexLensRep) {
         super.init(physicsBody: convexLens)
         self.normalSoundURL = SoundFiles.bassDrumSound
+        self.strokeColor = DeviceColor.lens
     }
 
     required convenience init(coder aDecoder: NSCoder) {

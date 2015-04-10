@@ -12,6 +12,7 @@ class XFlatLens: XNode {
     init(flatLens: GOFlatLensRep) {
         super.init(physicsBody: flatLens)
         self.normalSoundURL = SoundFiles.cymbalSound
+        self.strokeColor = DeviceColor.lens
     }
 
     required convenience init(coder aDecoder: NSCoder) {

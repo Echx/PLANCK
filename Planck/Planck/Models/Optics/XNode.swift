@@ -14,6 +14,7 @@ class XNode: NSObject, NSCoding {
     var shouldPlaySound = true
     var normalSoundURL: NSURL?
     var planckSoundURL: NSURL? = SoundFiles.cymbalSound
+    var strokeColor = UIColor.whiteColor()
     var id: String {
         get {
             return self.physicsBody.id

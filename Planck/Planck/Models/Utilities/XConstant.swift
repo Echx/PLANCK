@@ -16,6 +16,14 @@ struct Constant {
     static let vectorUnitLength: CGFloat = 1
 }
 
+struct DeviceColor {
+    static let mirror = UIColor.whiteColor()
+    static let lens = UIColor(red: 190/255.0, green: 1, blue: 1, alpha: 1)
+    static let wall = UIColor.blackColor()
+    static let planck = UIColor.yellowColor()
+    static let emitter = UIColor.greenColor()
+}
+
 struct StoryboardIndentifier {
     static let StoryBoardID = "Main"
     static let Home = "HomeViewController"

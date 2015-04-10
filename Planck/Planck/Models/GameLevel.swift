@@ -28,12 +28,19 @@ class GameLevel: NSObject, NSCoding {
         self.xNodes = nodes
     }
     
+    override init() {
+        self.name = ""
+        self.index = 0
+        self.grid = GOGrid(width: 0, height: 0, andUnitLength: 0)
+        self.xNodes = [String: XNode]()
+    }
+    
     required convenience init(coder aDecoder: NSCoder) {
         let levelName = aDecoder.decodeObjectForKey("name") as String
         let index = aDecoder.decodeObjectForKey("index") as Int
         let grid = aDecoder.decodeObjectForKey("grid") as GOGrid
-        let xnodes = aDecoder.decodeObjectForKey("xnode") as [String: XNode]
-        self.init(levelName:levelName, levelIndex: index, grid:grid, nodes:xnodes)
+        let xNodes = aDecoder.decodeObjectForKey("xnode") as [String: XNode]
+        self.init(levelName:levelName, levelIndex: index, grid:grid, nodes:xNodes)
     }
     
     func encodeWithCoder(aCoder: NSCoder) {

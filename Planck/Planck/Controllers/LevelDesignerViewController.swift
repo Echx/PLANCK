@@ -71,7 +71,7 @@ class LevelDesignerViewController: XViewController {
     
     //store the views we draw the various optic devices
     //key is the id of the instrument
-    private var xnodes = [String: XNode]()
+    private var xNodes = [String: XNode]()
     private var deviceViews = [String: UIView]()
     private var rayLayers = [String: [CAShapeLayer]]()
     private var rays = [String: [CGPoint]]()
@@ -93,14 +93,6 @@ class LevelDesignerViewController: XViewController {
     
     struct Selectors {
         static let segmentValueDidChangeAction: Selector = "segmentValueDidChange:"
-    }
-    
-    struct DeviceColor {
-        static let mirror = UIColor.whiteColor()
-        static let lens = UIColor(red: 190/255.0, green: 1, blue: 1, alpha: 1)
-        static let wall = UIColor.blackColor()
-        static let planck = UIColor.yellowColor()
-        static let emitter = UIColor.greenColor()
     }
     
     struct DeviceSegmentIndex {
@@ -188,7 +180,8 @@ class LevelDesignerViewController: XViewController {
     }
     
     @IBAction func play() {
-        let gameViewController = GameViewController.getInstance(self.grid)
+        let currentGameLevel = GameLevel(levelName: "Current Game Level", levelIndex: 0, grid: self.grid, nodes: self.xNodes)
+        let gameViewController = GameViewController.getInstance(currentGameLevel)
         self.presentViewController(gameViewController, animated: true, completion: nil)
     }
     
@@ -223,37 +216,39 @@ class LevelDesignerViewController: XViewController {
         
         switch(self.deviceSegment.selectedSegmentIndex) {
         case DeviceSegmentIndex.emitter:
-            let emitter = GOEmitterRep(center: coordinate, thickness: 2, length: 2, direction: CGVectorMake(0, 1), id: String.generateRandomString(self.identifierLength))
-            self.addNode(emitter, strokeColor: DeviceColor.emitter)
+            let emitterPhysicsBody = GOEmitterRep(center: coordinate, thickness: 2, length: 2, direction: CGVectorMake(0, 1), id: String.generateRandomString(self.identifierLength))
+            let emitter = XEmitter(emitter: emitterPhysicsBody)
+            self.xNodes[emitter.id] = emitter
+            self.addNode(emitterPhysicsBody, strokeColor: DeviceColor.emitter)
             
         case DeviceSegmentIndex.flatMirror:
             let mirrorPhysicsBody = GOFlatMirrorRep(center: coordinate, thickness: 2, length: 8, direction: CGVectorMake(0, 1), id: String.generateRandomString(self.identifierLength))
             let mirror = XFlatMirror(flatMirror: mirrorPhysicsBody)
-            self.xnodes[mirror.id] = mirror
+            self.xNodes[mirror.id] = mirror
             self.addNode(mirrorPhysicsBody, strokeColor: DeviceColor.mirror)
             
         case DeviceSegmentIndex.flatLens:
             let flatLensPhysicsBody = GOFlatLensRep(center: coordinate, thickness: 2, length: 8, direction: CGVectorMake(0, 1), refractionIndex: 1.5, id: String.generateRandomString(self.identifierLength))
             let flatLens = XFlatLens(flatLens: flatLensPhysicsBody)
-            self.xnodes[flatLens.id] = flatLens
+            self.xNodes[flatLens.id] = flatLens
             self.addNode(flatLensPhysicsBody, strokeColor: DeviceColor.lens)
             
         case DeviceSegmentIndex.flatWall:
             let flatWallPhysicsBody = GOFlatWallRep(center: coordinate, thickness: 2, length: 8, direction: CGVectorMake(0, 1), id: String.generateRandomString(self.identifierLength))
             let flatWall = XFlatWall(flatWall: flatWallPhysicsBody)
-            self.xnodes[flatWall.id] = flatWall
+            self.xNodes[flatWall.id] = flatWall
             self.addNode(flatWallPhysicsBody, strokeColor: DeviceColor.wall)
             
         case DeviceSegmentIndex.concaveLens:
             let concaveLensPhysicsBody = GOConcaveLensRep(center: coordinate, direction: CGVectorMake(0, 1), thicknessCenter: 1, thicknessEdge: 3, curvatureRadius: 10, id: String.generateRandomString(self.identifierLength), refractionIndex: 1.5)
             let concaveLens = XConcaveLens(concaveRep: concaveLensPhysicsBody)
-            self.xnodes[concaveLens.id] = concaveLens
+            self.xNodes[concaveLens.id] = concaveLens
             self.addNode(concaveLensPhysicsBody, strokeColor: DeviceColor.lens)
             
         case DeviceSegmentIndex.convexLens:
             let convexLensPhysicsBody = GOConvexLensRep(center: coordinate, direction: CGVectorMake(0, 1), thickness: 2, curvatureRadius: 10, id: String.generateRandomString(self.identifierLength), refractionIndex: 1.5)
             let convexLens = XConvexLens(convexLens: convexLensPhysicsBody)
-            self.xnodes[convexLens.id] = convexLens
+            self.xNodes[convexLens.id] = convexLens
             self.addNode(convexLensPhysicsBody, strokeColor: DeviceColor.lens)
             
 //        case DeviceSegmentIndex.planck:
@@ -791,7 +786,7 @@ class LevelDesignerViewController: XViewController {
     private func removeNode(node: GOOpticRep) {
         self.deviceViews[node.id]?.removeFromSuperview()
         self.deviceViews[node.id] = nil
-        self.xnodes[node.id] = nil
+        self.xNodes[node.id] = nil
         self.grid.removeInstrumentForID(node.id)
         self.shootRay()
     }
@@ -902,7 +897,7 @@ class LevelDesignerViewController: XViewController {
                 distance += points[i].getDistanceToPoint(prevPoint)
                 prevPoint = points[i]
                 if let physicsBody = self.grid.getInstrumentAtPoint(points[i]) {
-                    if let device = xnodes[physicsBody.id] {
+                    if let device = xNodes[physicsBody.id] {
                         if let sound = device.getSound() {
                             let audioPlayer = AVAudioPlayer(contentsOfURL: sound, error: nil)
                             self.audioPlayerList.append(audioPlayer)
@@ -920,7 +915,7 @@ class LevelDesignerViewController: XViewController {
     
     private func processPoint(currPoint: CGPoint) {
         if let physicsBody = self.grid.getInstrumentAtPoint(currPoint) {
-            if let device = xnodes[physicsBody.id] {
+            if let device = xNodes[physicsBody.id] {
                 if let sound = device.getSound() {
                     let audioPlayer = AVAudioPlayer(contentsOfURL: sound, error: nil)
                     self.audioPlayerList.append(audioPlayer)
@@ -945,7 +940,7 @@ class LevelDesignerViewController: XViewController {
         }
         
 
-        self.xnodes = level.xNodes
+        self.xNodes = level.xNodes
 
         self.shootRay()
 
@@ -990,7 +985,7 @@ class LevelDesignerViewController: XViewController {
                 if let match = regEx.firstMatchInString(inputName, options: nil,
                     range: NSRange(location: 0, length: inputName.utf16Count)) {
                         // valid
-                        let game = GameLevel(levelName: inputName, levelIndex: 1, grid: self.grid, nodes: self.xnodes)
+                        let game = GameLevel(levelName: inputName, levelIndex: 1, grid: self.grid, nodes: self.xNodes)
                         self.game = game
                     StorageManager.defaultManager.saveCurrentLevel(game)
                 } else {

@@ -12,6 +12,7 @@ class XFlatWall: XNode {
     init(flatWall: GOFlatWallRep) {
         super.init(physicsBody: flatWall)
         self.normalSoundURL = SoundFiles.cymbalSound
+        self.strokeColor = DeviceColor.wall
     }
 
     required convenience init(coder aDecoder: NSCoder) {

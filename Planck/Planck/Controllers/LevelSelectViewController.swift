@@ -65,8 +65,8 @@ class LevelSelectViewController: XViewController, UICollectionViewDataSource, UI
         let game = levelArray[indexPath.section * itemsInSection + indexPath.item]
         
         // load game to the game view 
-        var gameVC = GameViewController.getInstance(game.grid)
-        self.presentViewController(gameVC, animated: true, completion: {})
+//        var gameVC = GameViewController.getInstance(game.grid)
+//        self.presentViewController(gameVC, animated: true, completion: {})
     }
     
     func collectionView(collectionView: UICollectionView!,
