@@ -42,21 +42,14 @@ class GOConvexLensRep: GOOpticRep {
             
             var finalPoints = [CGPoint]()
             for point in originalPoints {
-                finalPoints.append(self.getPointAfterRotation(angle, from: point))
+                finalPoints.append(CGPoint.getPointAfterRotation(angle, from: point, translate: CGPointMake(CGFloat(self.center.x), CGFloat(self.center.y))))
             }
             
             return finalPoints
         }
     }
     
-    private func getPointAfterRotation(angle: CGFloat, from originalPoint: CGPoint) -> CGPoint {
-        let rotationTranform = CGAffineTransformMakeRotation(angle)
-        let rotatedPoint = CGPointApplyAffineTransform(originalPoint, rotationTranform)
-        let finalPoint = CGPointMake(
-            rotatedPoint.x + CGFloat(self.center.x),
-            rotatedPoint.y + CGFloat(self.center.y))
-        return finalPoint
-    }
+
     
     init(center: GOCoordinate, direction: CGVector, thickness: CGFloat, curvatureRadius: CGFloat, id: String, refractionIndex: CGFloat) {
         self.thickness = thickness

@@ -44,4 +44,13 @@ extension CGPoint {
         return (self.x - point.x).abs < GOConstant.overallPrecision &&
             (self.y - point.y).abs < GOConstant.overallPrecision
     }
+    
+    static func getPointAfterRotation(angle: CGFloat, from originalPoint: CGPoint, translate: CGPoint) -> CGPoint {
+        let rotationTranform = CGAffineTransformMakeRotation(angle)
+        let rotatedPoint = CGPointApplyAffineTransform(originalPoint, rotationTranform)
+        let finalPoint = CGPointMake(
+            rotatedPoint.x + translate.x,
+            rotatedPoint.y + translate.y)
+        return finalPoint
+    }
 }

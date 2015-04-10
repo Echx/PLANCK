@@ -34,6 +34,27 @@ class GOConcaveLensRep: GOOpticRep {
         }
     }
     
+    override var vertices: [CGPoint] {
+        get {
+            let angle = self.direction.angleFromXPlus
+            let length = self.length
+            let width = self.thicknessEdge
+            let originalPoints = [
+                CGPointMake(-length/2, -width/2),
+                CGPointMake(length/2, -width/2),
+                CGPointMake(length/2, width/2),
+                CGPointMake(-length/2, width/2)
+            ]
+            
+            var finalPoints = [CGPoint]()
+            for point in originalPoints {
+                finalPoints.append(CGPoint.getPointAfterRotation(angle, from: point, translate: CGPointMake(CGFloat(self.center.x), CGFloat(self.center.y))))
+            }
+            
+            return finalPoints
+        }
+    }
+    
     init(center: GOCoordinate, direction: CGVector, thicknessCenter: CGFloat, thicknessEdge: CGFloat, curvatureRadius: CGFloat, id: String, refractionIndex: CGFloat) {
         self.thicknessCenter = thicknessCenter
         self.thicknessEdge = thicknessEdge

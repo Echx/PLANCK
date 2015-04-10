@@ -34,11 +34,7 @@ class GOOpticRep: NSObject, NSCoding {
 
     var vertices: [CGPoint] {
         get {
-            var points = [CGPoint]()
-            for edge in self.edges {
-                points.append(edge.startPoint)
-            }
-            return points
+            fatalError("The computational variable vertices must be overriden by subclasses")
         }
     }
     
