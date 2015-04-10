@@ -218,7 +218,7 @@ class LevelDesignerViewController: XViewController {
         
         switch(self.deviceSegment.selectedSegmentIndex) {
         case DeviceSegmentIndex.emitter:
-            let emitterPhysicsBody = GOEmitterRep(center: coordinate, thickness: 2, length: 2, direction: CGVectorMake(0, 1), id: String.generateRandomString(self.identifierLength))
+            let emitterPhysicsBody = GOEmitterRep(center: coordinate, thickness: 1, length: 4, direction: CGVectorMake(1, 0), id: String.generateRandomString(self.identifierLength))
             let emitter = XEmitter(emitter: emitterPhysicsBody)
             self.xNodes[emitter.id] = emitter
             self.addNode(emitterPhysicsBody, strokeColor: DeviceColor.emitter)
@@ -386,19 +386,19 @@ class LevelDesignerViewController: XViewController {
         self.shootRay()
     }
     
-    @IBAction func updateSelectedNodePlanck() {
-        if let node = self.selectedNode {
-            if let node = node as? XNode {
-                let l: CGFloat? = CGFloat((self.textFieldLength.text as NSString).floatValue)
-                if let length = l {
-                    if length > 0 && length < CGFloat(self.grid.width) && length < CGFloat(self.grid.width) {
-                        flatNode.length = length
-                    }
-                }
-            }
-        }
-        self.shootRay()
-    }
+//    @IBAction func updateSelectedNodePlanck() {
+//        if let node = self.selectedNode {
+//            if let node = node as? XNode {
+//                let l: CGFloat? = CGFloat((self.textFieldLength.text as NSString).floatValue)
+//                if let length = l {
+//                    if length > 0 && length < CGFloat(self.grid.width) && length < CGFloat(self.grid.width) {
+//                        flatNode.length = length
+//                    }
+//                }
+//            }
+//        }
+//        self.shootRay()
+//    }
     
     private var backupNode: GOOpticRep?
     
@@ -811,8 +811,7 @@ class LevelDesignerViewController: XViewController {
         self.shootRay()
     }
     
-    private func addRay(point: CGPoint) {
-        let ray = GORay(startPoint: self.grid.getGridPointForDisplayPoint(point), direction: CGVector(dx: 1, dy: 0))
+    private func addRay(ray: GORay) {
         var newTag = String.generateRandomString(20)
         self.rays[newTag] = [CGPoint]()
         self.rayLayers[newTag] = [CAShapeLayer]()
@@ -823,11 +822,8 @@ class LevelDesignerViewController: XViewController {
     private func shootRay() {
         self.clearRay()
         for (name, item) in self.grid.instruments {
-            if item.type == DeviceType.Emitter {
-                let coordinate = (item as GOEmitterRep).center
-                let shootingCoordinate = GOCoordinate(x: coordinate.x + 1, y: coordinate.y)
-                let shootingPoint = self.grid.getPointForGridCoordinate(shootingCoordinate)
-                self.addRay(shootingPoint)
+            if let item = item as? GOEmitterRep {
+                self.addRay(item.getRay())
             }
             
         }
