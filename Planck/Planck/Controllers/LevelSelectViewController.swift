@@ -24,7 +24,7 @@ class LevelSelectViewController: XViewController, UICollectionViewDataSource, UI
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.loadLevels()
+//        self.loadLevels()
     }
     
     func numberOfSectionsInCollectionView(collectionView: UICollectionView) -> Int {

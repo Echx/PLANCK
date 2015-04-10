@@ -1,5 +1,5 @@
 //
-//  XFlatMirror.swift
+//  XFlatWall.swift
 //  Planck
 //
 //  Created by Lei Mingyu on 05/04/15.
@@ -8,13 +8,14 @@
 
 import UIKit
 
-class XFlatMirror: XNode {
-    init(flatMirror: GOFlatMirrorRep) {
-        super.init(physicsBody: flatMirror)
-        self.normalSoundURL = SoundFiles.snareDrumSound
+class XFlatWall: XNode {
+    init(flatWall: GOFlatWallRep) {
+        super.init(physicsBody: flatWall)
+        self.normalSoundURL = SoundFiles.cymbalSound
     }
 
     required convenience init(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
 }
+

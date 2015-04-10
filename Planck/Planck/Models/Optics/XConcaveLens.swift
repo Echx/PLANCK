@@ -1,5 +1,5 @@
 //
-//  XFlatMirror.swift
+//  XConcaveLens.swift
 //  Planck
 //
 //  Created by Lei Mingyu on 05/04/15.
@@ -8,10 +8,10 @@
 
 import UIKit
 
-class XFlatMirror: XNode {
-    init(flatMirror: GOFlatMirrorRep) {
-        super.init(physicsBody: flatMirror)
-        self.normalSoundURL = SoundFiles.snareDrumSound
+class XConcaveLens: XNode {
+    init(concaveRep: GOConcaveLensRep) {
+        super.init(physicsBody: concaveRep)
+        self.normalSoundURL = SoundFiles.bassDrumSound
     }
 
     required convenience init(coder aDecoder: NSCoder) {

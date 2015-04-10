@@ -8,8 +8,13 @@
 
 import UIKit
 
-class XConvexLens: GOConvexLensRep {
-    override func getSound() -> NSURL? {
-        return SoundFiles.bassDrumSound
+class XConvexLens: XNode {
+    init(convexLens: GOConvexLensRep) {
+        super.init(physicsBody: convexLens)
+        self.normalSoundURL = SoundFiles.bassDrumSound
+    }
+
+    required convenience init(coder aDecoder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
     }
 }
