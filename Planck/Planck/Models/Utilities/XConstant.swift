@@ -182,6 +182,7 @@ struct PlanckControllPanel {
     
     static let instrumentPickerTitle = ["inherit", "nil", "piano", "guitar"]
     static let notePickerTitle = ["A", "B", "C", "D", "E", "F", "G"]
-    static let accidentalPickerTitle = ["♮", "♯", "♭", "𝄪", "𝄫"]
+//    static let accidentalPickerTitle = ["♮", "♯", "♭", "𝄪", "𝄫"]
+    static let accidentalPickerTitle = ["♮", "♯", "♭", "x", "♭♭"]
     static let groupPickerTitle = ["0", "1", "2", "3", "4", "5", "6", "7"]
 }
