@@ -1070,20 +1070,38 @@ extension LevelDesignerViewController: UIPickerViewDataSource, UIPickerViewDeleg
     func pickerView(pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
         switch pickerView.tag {
         case PlanckControllPanel.instrumentPickerTag:
-            return 4
+            return PlanckControllPanel.instrumentPickerTitle.count
             
         case PlanckControllPanel.notePickerTag:
-            return 7
+            return PlanckControllPanel.notePickerTitle.count
             
         case PlanckControllPanel.accidentalPickerTag:
-            return 5
+            return PlanckControllPanel.accidentalPickerTitle.count
             
         case PlanckControllPanel.groupPickerTag:
-            return 8
+            return PlanckControllPanel.groupPickerTitle.count
             
         default:
             fatalError("invalid picker")
         }
-
+    }
+    
+    func pickerView(pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String! {
+        switch pickerView.tag {
+        case PlanckControllPanel.instrumentPickerTag:
+            return PlanckControllPanel.instrumentPickerTitle[row]
+            
+        case PlanckControllPanel.notePickerTag:
+            return PlanckControllPanel.notePickerTitle[row]
+            
+        case PlanckControllPanel.accidentalPickerTag:
+            return PlanckControllPanel.accidentalPickerTitle[row]
+            
+        case PlanckControllPanel.groupPickerTag:
+            return PlanckControllPanel.groupPickerTitle[row]
+            
+        default:
+            fatalError("invalid picker")
+        }
     }
 }

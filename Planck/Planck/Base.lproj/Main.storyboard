@@ -102,9 +102,17 @@
                                             </button>
                                             <pickerView tag="1" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="eb2-aC-rEe">
                                                 <rect key="frame" x="206" y="19" width="158" height="162"/>
+                                                <connections>
+                                                    <outlet property="dataSource" destination="ICT-TY-Uh1" id="gOm-NG-ibA"/>
+                                                    <outlet property="delegate" destination="ICT-TY-Uh1" id="v46-81-Nqj"/>
+                                                </connections>
                                             </pickerView>
                                             <pickerView tag="2" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="UxK-0m-h8g">
                                                 <rect key="frame" x="400" y="19" width="158" height="162"/>
+                                                <connections>
+                                                    <outlet property="dataSource" destination="ICT-TY-Uh1" id="L6p-Gf-eie"/>
+                                                    <outlet property="delegate" destination="ICT-TY-Uh1" id="Kgy-2W-wmX"/>
+                                                </connections>
                                             </pickerView>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Group:" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="nFO-Eo-Wpr">
                                                 <rect key="frame" x="612" y="13" width="121" height="21"/>
@@ -121,6 +129,10 @@
                                             </pickerView>
                                             <pickerView contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="ZhU-C2-ov8">
                                                 <rect key="frame" x="13" y="19" width="158" height="162"/>
+                                                <connections>
+                                                    <outlet property="dataSource" destination="ICT-TY-Uh1" id="tiy-F5-UUN"/>
+                                                    <outlet property="delegate" destination="ICT-TY-Uh1" id="FJW-yV-WB2"/>
+                                                </connections>
                                             </pickerView>
                                         </subviews>
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -359,7 +371,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="odB-Ok-KaU" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="79" y="-413"/>
+            <point key="canvasLocation" x="55" y="-405"/>
         </scene>
         <!--Game View Controller-->
         <scene sceneID="GCX-7I-Zry">
