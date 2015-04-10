@@ -13,4 +13,8 @@ class XConcaveLens: XNode {
         super.init(physicsBody: concaveRep)
         self.normalSoundURL = SoundFiles.bassDrumSound
     }
+
+    required convenience init(coder aDecoder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
 }

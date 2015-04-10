@@ -13,4 +13,8 @@ class XConvexLens: XNode {
         super.init(physicsBody: convexLens)
         self.normalSoundURL = SoundFiles.bassDrumSound
     }
+
+    required convenience init(coder aDecoder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
 }

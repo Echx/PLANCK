@@ -14,6 +14,11 @@ class XNode: NSObject {
     var shouldPlaySound = true
     var normalSoundURL: NSURL?
     var planckSoundURL: NSURL? = SoundFiles.cymbalSound
+    var id: String {
+        get {
+            return self.physicsBody.id
+        }
+    }
     
     init(physicsBody: GOOpticRep) {
         self.physicsBody = physicsBody
@@ -26,5 +31,9 @@ class XNode: NSObject {
         } else {
             return self.normalSoundURL
         }
+    }
+    
+    required convenience init(coder aDecoder: NSCoder) {
+        fatalError("Not implemented")
     }
 }

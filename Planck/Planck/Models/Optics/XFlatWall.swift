@@ -13,5 +13,9 @@ class XFlatWall: XNode {
         super.init(physicsBody: flatWall)
         self.normalSoundURL = SoundFiles.cymbalSound
     }
+
+    required convenience init(coder aDecoder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
 }
 

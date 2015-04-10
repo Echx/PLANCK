@@ -71,6 +71,7 @@ class LevelDesignerViewController: XViewController {
     
     //store the views we draw the various optic devices
     //key is the id of the instrument
+    private var xnodes = [String: XNode]()
     private var deviceViews = [String: UIView]()
     private var rayLayers = [String: [CAShapeLayer]]()
     private var rays = [String: [CGPoint]]()
@@ -195,7 +196,7 @@ class LevelDesignerViewController: XViewController {
     @IBAction func viewDidTapped(sender: UITapGestureRecognizer) {
         if sender.numberOfTapsRequired == 1 {
             if sender.numberOfTouchesRequired == 2 {
-                if ((self.selectedNode != nil) && (self.selectedNode!.isKindOfClass(XPlanck))) {
+                if ((self.selectedNode != nil) && (xnodes[self.selectedNode!.id]!.isPlanck)) {
                     if self.inputPanel.userInteractionEnabled {
                        self.toggleInputPanel()
                     }
@@ -229,28 +230,38 @@ class LevelDesignerViewController: XViewController {
             self.addNode(emitter, strokeColor: DeviceColor.emitter)
             
         case DeviceSegmentIndex.flatMirror:
-            let mirror = XFlatMirror(center: coordinate, thickness: 2, length: 8, direction: CGVectorMake(0, 1), id: String.generateRandomString(self.identifierLength))
-            self.addNode(mirror, strokeColor: DeviceColor.mirror)
+            let mirrorPhysicsBody = GOFlatMirrorRep(center: coordinate, thickness: 2, length: 8, direction: CGVectorMake(0, 1), id: String.generateRandomString(self.identifierLength))
+            let mirror = XFlatMirror(flatMirror: mirrorPhysicsBody)
+            self.xnodes[mirror.id] = mirror
+            self.addNode(mirrorPhysicsBody, strokeColor: DeviceColor.mirror)
             
         case DeviceSegmentIndex.flatLens:
-            let flatLens = GOFlatLensRep(center: coordinate, thickness: 2, length: 8, direction: CGVectorMake(0, 1), refractionIndex: 1.5, id: String.generateRandomString(self.identifierLength))
-            self.addNode(flatLens, strokeColor: DeviceColor.lens)
+            let flatLensPhysicsBody = GOFlatLensRep(center: coordinate, thickness: 2, length: 8, direction: CGVectorMake(0, 1), refractionIndex: 1.5, id: String.generateRandomString(self.identifierLength))
+            let flatLens = XFlatLens(flatLens: flatLensPhysicsBody)
+            self.xnodes[flatLens.id] = flatLens
+            self.addNode(flatLensPhysicsBody, strokeColor: DeviceColor.lens)
             
         case DeviceSegmentIndex.flatWall:
-            let wall = XWall(center: coordinate, thickness: 2, length: 8, direction: CGVectorMake(0, 1), id: String.generateRandomString(self.identifierLength))
-            self.addNode(wall, strokeColor: DeviceColor.wall)
+            let flatWallPhysicsBody = GOFlatWallRep(center: coordinate, thickness: 2, length: 8, direction: CGVectorMake(0, 1), id: String.generateRandomString(self.identifierLength))
+            let flatWall = XFlatWall(flatWall: flatWallPhysicsBody)
+            self.xnodes[flatWall.id] = flatWall
+            self.addNode(flatWallPhysicsBody, strokeColor: DeviceColor.wall)
             
         case DeviceSegmentIndex.concaveLens:
-            let concaveLens = XConcaveLens(center: coordinate, direction: CGVectorMake(0, 1), thicknessCenter: 1, thicknessEdge: 3, curvatureRadius: 10, id: String.generateRandomString(self.identifierLength), refractionIndex: 1.5)
-            self.addNode(concaveLens, strokeColor: DeviceColor.lens)
+            let concaveLensPhysicsBody = GOConcaveLensRep(center: coordinate, direction: CGVectorMake(0, 1), thicknessCenter: 1, thicknessEdge: 3, curvatureRadius: 10, id: String.generateRandomString(self.identifierLength), refractionIndex: 1.5)
+            let concaveLens = XConcaveLens(concaveRep: concaveLensPhysicsBody)
+            self.xnodes[concaveLens.id] = concaveLens
+            self.addNode(concaveLensPhysicsBody, strokeColor: DeviceColor.lens)
             
         case DeviceSegmentIndex.convexLens:
-            let convexLens = XConvexLens(center: coordinate, direction: CGVectorMake(0, 1), thickness: 2, curvatureRadius: 10, id: String.generateRandomString(self.identifierLength), refractionIndex: 1.5)
-            self.addNode(convexLens, strokeColor: DeviceColor.lens)
+            let convexLensPhysicsBody = GOConvexLensRep(center: coordinate, direction: CGVectorMake(0, 1), thickness: 2, curvatureRadius: 10, id: String.generateRandomString(self.identifierLength), refractionIndex: 1.5)
+            let convexLens = XConvexLens(convexLens: convexLensPhysicsBody)
+            self.xnodes[convexLens.id] = convexLens
+            self.addNode(convexLensPhysicsBody, strokeColor: DeviceColor.lens)
             
-        case DeviceSegmentIndex.planck:
-            let planck = XPlanck(center: coordinate, thickness: 6, length: 6, direction: CGVectorMake(0, 1), id: String.generateRandomString(self.identifierLength))
-            self.addNode(planck, strokeColor: DeviceColor.planck)
+//        case DeviceSegmentIndex.planck:
+//            let planck = XPlanck(center: coordinate, thickness: 6, length: 6, direction: CGVectorMake(0, 1), id: String.generateRandomString(self.identifierLength))
+//            self.addNode(planck, strokeColor: DeviceColor.planck)
             
         default:
             fatalError("SegmentNotRecognized")
@@ -783,6 +794,7 @@ class LevelDesignerViewController: XViewController {
     private func removeNode(node: GOOpticRep) {
         self.deviceViews[node.id]?.removeFromSuperview()
         self.deviceViews[node.id] = nil
+        self.xnodes[node.id] = nil
         self.grid.removeInstrumentForID(node.id)
         self.shootRay()
     }
@@ -892,13 +904,17 @@ class LevelDesignerViewController: XViewController {
             for i in 1...points.count - 1 {
                 distance += points[i].getDistanceToPoint(prevPoint)
                 prevPoint = points[i]
-                if let device = self.grid.getInstrumentAtPoint(points[i]) {
-                    if let sound = device.getSound() {
-                        let audioPlayer = AVAudioPlayer(contentsOfURL: sound, error: nil)
-                        self.audioPlayerList.append(audioPlayer)
-                        audioPlayer.prepareToPlay()
-                        let wait = NSTimeInterval(distance / Constant.lightSpeedBase + Constant.audioDelay)
-                        audioPlayer.playAtTime(wait + audioPlayer.deviceCurrentTime)
+                if let physicsBody = self.grid.getInstrumentAtPoint(points[i]) {
+                    if let device = xnodes[physicsBody.id] {
+                        if let sound = device.getSound() {
+                            let audioPlayer = AVAudioPlayer(contentsOfURL: sound, error: nil)
+                            self.audioPlayerList.append(audioPlayer)
+                            audioPlayer.prepareToPlay()
+                            let wait = NSTimeInterval(distance / Constant.lightSpeedBase + Constant.audioDelay)
+                            audioPlayer.playAtTime(wait + audioPlayer.deviceCurrentTime)
+                        }
+                    } else {
+                        fatalError("The node for the physics body not existed")
                     }
                 }
             }
@@ -906,12 +922,16 @@ class LevelDesignerViewController: XViewController {
     }
     
     private func processPoint(currPoint: CGPoint) {
-        if let device = self.grid.getInstrumentAtPoint(currPoint) {
-            if let sound = device.getSound() {
-                let audioPlayer = AVAudioPlayer(contentsOfURL: sound, error: nil)
-                self.audioPlayerList.append(audioPlayer)
-                audioPlayer.prepareToPlay()
-                audioPlayer.play()
+        if let physicsBody = self.grid.getInstrumentAtPoint(currPoint) {
+            if let device = xnodes[physicsBody.id] {
+                if let sound = device.getSound() {
+                    let audioPlayer = AVAudioPlayer(contentsOfURL: sound, error: nil)
+                    self.audioPlayerList.append(audioPlayer)
+                    audioPlayer.prepareToPlay()
+                    audioPlayer.play()
+                }
+            } else {
+                fatalError("The node for the physics body not existed")
             }
         }
     }
