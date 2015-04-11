@@ -29,7 +29,8 @@ class XNote: NSObject, NSCoding {
         let noteNameRaw = aDecoder.decodeObjectForKey(NSCodingKey.NoteName)! as Int
         let noteName = XNoteName(rawValue: noteNameRaw)!
         let noteGroup = aDecoder.decodeObjectForKey(NSCodingKey.NoteGroup)! as Int
-        self.init(noteName: noteName, noteGroup: noteGroup)
+        let instrument = aDecoder.decodeObjectForKey(NSCodingKey.Instrument)! as Int
+        self.init(noteName: noteName, noteGroup: noteGroup, instrument: instrument)
     }
     
     func encodeWithCoder(aCoder: NSCoder) {
@@ -42,7 +43,7 @@ class XNote: NSObject, NSCoding {
             return -1
         }
         
-        var note: Int = (self.noteGroup + 1) * 12 // base MIDI note
+        var note: Int = (self.noteGroup! + 1) * 12 // base MIDI note
         let baseNote: Int = self.noteName.rawValue / 5
         let accidental: Int = self.noteName.rawValue % 5
         
@@ -186,7 +187,7 @@ class XNote: NSObject, NSCoding {
             fatalError("invalid note")
         }
         
-        fileName += String(self.noteGroup)
+        fileName += String(self.noteGroup!)
         
         return fileName
         

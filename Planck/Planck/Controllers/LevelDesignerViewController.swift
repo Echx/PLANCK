@@ -738,7 +738,7 @@ class LevelDesignerViewController: XViewController {
                     if let note = node.planckNote {
                         self.notePicker.selectRow(note.noteName.rawValue / 5, inComponent: 0, animated: false)
                         self.accidentalPicker.selectRow(note.noteName.rawValue % 5, inComponent: 0, animated: false)
-                        self.groupPicker.selectRow(note.noteGroup, inComponent: 0, animated: false)
+                        self.groupPicker.selectRow(note.noteGroup!, inComponent: 0, animated: false)
                     } else {
                         self.notePicker.selectRow(0, inComponent: 0, animated: false)
                         self.accidentalPicker.selectRow(0, inComponent: 0, animated: false)

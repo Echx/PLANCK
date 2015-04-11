@@ -62,6 +62,7 @@ struct NSCodingKey {
     static let NoteName = "NOTENAME"
     static let NoteGroup = "NOTEGRP"
     static let isPitchedNote = "ISPITCH"
+    static let Instrument = "INSTRUMENT"
 }
 
 struct ActionKey {
