@@ -20,11 +20,15 @@ class XFlatMirror: XNode {
         let isFixed = aDecoder.decodeBoolForKey("isFixed")
         self.init(flatMirror: body)
         self.isFixed = isFixed
+        self.normalNote = normalNote
+        self.planckNote = planckNote
     }
     
     override func encodeWithCoder(aCoder: NSCoder) {
         aCoder.encodeObject(self.physicsBody, forKey: "phyBody")
         aCoder.encodeBool(self.isFixed, forKey: "isFixed")
+        aCoder.encodeObject(self.normalNote, forKey: "normalNote")
+        aCoder.encodeObject(self.planckNote, forKey: "planckNote")
     }
 
 }
