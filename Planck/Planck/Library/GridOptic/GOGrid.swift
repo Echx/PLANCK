@@ -9,7 +9,7 @@
 import UIKit
 
 protocol GOGridDelegate {
-    func grid(grid: GOGrid, didProduceNewCriticalPoint point: CGPoint, forRayWithTag tag: String)
+    func grid(grid: GOGrid, didProduceNewCriticalPoint point: CGPoint, onEdge edge: GOSegment?, forRayWithTag tag: String)
     func gridDidFinishCalculation(grid: GOGrid, forRayWithTag tag: String)
 }
 
@@ -214,7 +214,7 @@ class GOGrid: NSObject, NSCoding {
             
             // first add the start point of the ray
             criticalPoints.append(ray.startPoint)
-            self.delegate?.grid(self, didProduceNewCriticalPoint: self.getDisplayPointForGridPoint(ray.startPoint), forRayWithTag: tag)
+            self.delegate?.grid(self, didProduceNewCriticalPoint: self.getDisplayPointForGridPoint(ray.startPoint), onEdge: nil, forRayWithTag: tag)
             
             // from the given ray, we found out each nearest edge
             // loop through each resulted ray until we get nil result (no intersection anymore)
@@ -229,7 +229,7 @@ class GOGrid: NSObject, NSCoding {
                 // it must hit the edge, add the intersection point
                 let newPoint = edge!.getIntersectionPoint(currentRay)!
                 criticalPoints.append(newPoint)
-                self.delegate?.grid(self, didProduceNewCriticalPoint: self.getDisplayPointForGridPoint(newPoint), forRayWithTag: tag)
+                self.delegate?.grid(self, didProduceNewCriticalPoint: self.getDisplayPointForGridPoint(newPoint), onEdge: edge, forRayWithTag: tag)
                 
                 
                 if let outcomeRay = self.getOutcomeRay(currentRay, edge: edge!) {
@@ -247,7 +247,7 @@ class GOGrid: NSObject, NSCoding {
                 // we treat boundary as 4 line segments
                 if let finalPoint = self.getIntersectionWithBoundary(ray: currentRay) {
 //                    criticalPoints.append(self.getDisplayPointForGridPoint(finalPoint))
-                    self.delegate?.grid(self, didProduceNewCriticalPoint: self.getDisplayPointForGridPoint(finalPoint), forRayWithTag: tag)
+                    self.delegate?.grid(self, didProduceNewCriticalPoint: self.getDisplayPointForGridPoint(finalPoint), onEdge: nil, forRayWithTag: tag)
                 } else {
                     println("something goes wrong no final point")
                 }

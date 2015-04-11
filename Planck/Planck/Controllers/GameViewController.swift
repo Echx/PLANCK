@@ -218,30 +218,6 @@ class GameViewController: XViewController {
         }
     }
     
-    private func processPoints(points: [CGPoint]) {
-        if points.count > 2 {
-            var prevPoint = points[0]
-            var distance: CGFloat = 0
-            for i in 1...points.count - 1 {
-                distance += points[i].getDistanceToPoint(prevPoint)
-                prevPoint = points[i]
-                if let physicsBody = self.grid.getInstrumentAtPoint(points[i]) {
-                    if let device = xNodes[physicsBody.id] {
-                        if let sound = device.getSound() {
-                            let audioPlayer = AVAudioPlayer(contentsOfURL: sound, error: nil)
-                            self.audioPlayerList.append(audioPlayer)
-                            audioPlayer.prepareToPlay()
-                            let wait = NSTimeInterval(distance / Constant.lightSpeedBase + Constant.audioDelay)
-                            audioPlayer.playAtTime(wait + audioPlayer.deviceCurrentTime)
-                        }
-                    } else {
-                        fatalError("The node for the physics body not existed")
-                    }
-                }
-            }
-        }
-    }
-    
     private func processPoint(currPoint: CGPoint) {
         if let physicsBody = self.grid.getInstrumentAtPoint(currPoint) {
             if let device = xNodes[physicsBody.id] {
@@ -347,7 +323,7 @@ class GameViewController: XViewController {
 }
 
 extension GameViewController: GOGridDelegate {
-    func grid(grid: GOGrid, didProduceNewCriticalPoint point: CGPoint, forRayWithTag tag: String) {
+    func grid(grid: GOGrid, didProduceNewCriticalPoint point: CGPoint, onEdge: GOSegment?, forRayWithTag tag: String) {
         if self.rays.count == 0 {
             // waiting for thread to complete
             return
