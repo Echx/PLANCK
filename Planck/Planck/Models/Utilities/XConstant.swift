@@ -62,6 +62,7 @@ struct NSCodingKey {
     static let NoteName = "NOTENAME"
     static let NoteGroup = "NOTEGRP"
     static let isPitchedNote = "ISPITCH"
+    static let Instrument = "INSTRUMENT"
 }
 
 struct ActionKey {
@@ -73,7 +74,7 @@ struct NodeDefaults {
     static let instrumentInherit = PlanckControllPanel.instrumentInheritRow
     static let instrumentNil = PlanckControllPanel.instrumentNilRow
     static let instrumentPiano = PlanckControllPanel.instrumentPianoRow
-    static let instrumentGuitar = PlanckControllPanel.instrumentGuitarRow
+    static let instrumentHarp = PlanckControllPanel.instrumentHarpRow
 }
 
 struct InstrumentDefaults {
@@ -191,11 +192,11 @@ struct PlanckControllPanel {
     static let accidentalPickerTag = 2
     static let groupPickerTag = 3
     
-    static let instrumentPickerTitle = ["inherit", "nil", "piano", "guitar"]
+    static let instrumentPickerTitle = ["inherit", "nil", "piano", "harp"]
     static let instrumentInheritRow = 0
     static let instrumentNilRow = 1
     static let instrumentPianoRow = 2
-    static let instrumentGuitarRow = 3
+    static let instrumentHarpRow = 3
     
     static let notePickerTitle = ["C", "D", "E", "F", "G", "A", "B"]
 //    static let accidentalPickerTitle = ["♮", "♯", "♭", "𝄪", "𝄫"]

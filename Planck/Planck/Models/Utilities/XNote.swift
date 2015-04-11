@@ -11,12 +11,14 @@ import Foundation
 
 class XNote: NSObject, NSCoding {
     var noteName: XNoteName
-    var noteGroup: Int
+    var noteGroup: Int?
+    var instrument: Int?
     var isPitchedNote: Bool
     
-    init(noteName: XNoteName, noteGroup: Int) {
+    init(noteName: XNoteName, noteGroup: Int?, instrument: Int?) {
         self.noteName = noteName
         self.noteGroup = noteGroup
+        self.instrument = instrument
         self.isPitchedNote = true
         if contains([XNoteName.cymbal, XNoteName.snareDrum, XNoteName.bassDrum], self.noteName) {
             self.isPitchedNote = false
@@ -27,7 +29,8 @@ class XNote: NSObject, NSCoding {
         let noteNameRaw = aDecoder.decodeObjectForKey(NSCodingKey.NoteName)! as Int
         let noteName = XNoteName(rawValue: noteNameRaw)!
         let noteGroup = aDecoder.decodeObjectForKey(NSCodingKey.NoteGroup)! as Int
-        self.init(noteName: noteName, noteGroup: noteGroup)
+        let instrument = aDecoder.decodeObjectForKey(NSCodingKey.Instrument)! as Int
+        self.init(noteName: noteName, noteGroup: noteGroup, instrument: instrument)
     }
     
     func encodeWithCoder(aCoder: NSCoder) {
@@ -40,7 +43,7 @@ class XNote: NSObject, NSCoding {
             return -1
         }
         
-        var note: Int = (self.noteGroup + 1) * 12 // base MIDI note
+        var note: Int = (self.noteGroup! + 1) * 12 // base MIDI note
         let baseNote: Int = self.noteName.rawValue / 5
         let accidental: Int = self.noteName.rawValue % 5
         
@@ -184,7 +187,7 @@ class XNote: NSObject, NSCoding {
             fatalError("invalid note")
         }
         
-        fileName += String(self.noteGroup)
+        fileName += String(self.noteGroup!)
         
         return fileName
         
@@ -210,8 +213,18 @@ class XNote: NSObject, NSCoding {
         
         let midiNote = self.getMIDINote()
         
-        if let path = NSBundle.mainBundle().pathForResource("piano-\(midiNote)", ofType: "m4a") {
-            return NSURL(fileURLWithPath: path)
+        if self.instrument == NodeDefaults.instrumentPiano {
+            if let path = NSBundle.mainBundle().pathForResource("piano-\(midiNote)", ofType: "m4a") {
+                return NSURL(fileURLWithPath: path)
+            } else {
+                return nil
+            }
+        } else if self.instrument == NodeDefaults.instrumentHarp {
+            if let path = NSBundle.mainBundle().pathForResource("harp-\(midiNote)", ofType: "m4a") {
+                return NSURL(fileURLWithPath: path)
+            } else {
+                return nil
+            }
         } else {
             return nil
         }

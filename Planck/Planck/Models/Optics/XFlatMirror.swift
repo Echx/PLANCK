@@ -12,7 +12,7 @@ class XFlatMirror: XNode {
     init(flatMirror: GOFlatMirrorRep) {
         super.init(physicsBody: flatMirror)
         self.strokeColor = DeviceColor.mirror
-        self.normalNote = XNote(noteName: XNoteName.snareDrum, noteGroup: 0)
+        self.normalNote = XNote(noteName: XNoteName.snareDrum, noteGroup: nil, instrument: nil)
     }
 
     required convenience init(coder aDecoder: NSCoder) {
