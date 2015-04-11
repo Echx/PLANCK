@@ -225,6 +225,8 @@ class XNote: NSObject, NSCoding {
             } else {
                 return nil
             }
+        } else {
+            return nil
         }
     }
 }
