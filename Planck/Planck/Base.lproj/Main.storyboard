@@ -229,8 +229,31 @@
                                                 <fontDescription key="fontDescription" name="GillSans" family="Gill Sans" pointSize="14"/>
                                                 <textInputTraits key="textInputTraits"/>
                                             </textField>
+                                            <textField opaque="NO" clipsSubviews="YES" tag="1" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Y (Integer)" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="J9A-rf-tP5">
+                                                <rect key="frame" x="120" y="50" width="92" height="30"/>
+                                                <fontDescription key="fontDescription" name="GillSans" family="Gill Sans" pointSize="14"/>
+                                                <textInputTraits key="textInputTraits"/>
+                                            </textField>
+                                            <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="KBP-8Y-Spf">
+                                                <rect key="frame" x="787" y="125" width="51" height="31"/>
+                                            </switch>
+                                            <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="eeR-1x-Lqz">
+                                                <rect key="frame" x="880" y="125" width="51" height="31"/>
+                                            </switch>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Fixed" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="iRK-Td-zBw">
+                                                <rect key="frame" x="790" y="95" width="42" height="21"/>
+                                                <fontDescription key="fontDescription" name="GillSans" family="Gill Sans" pointSize="12"/>
+                                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Planck" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="zeG-c6-vYI">
+                                                <rect key="frame" x="883" y="96" width="42" height="21"/>
+                                                <fontDescription key="fontDescription" name="GillSans" family="Gill Sans" pointSize="12"/>
+                                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
                                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="0XY-c7-YCl">
-                                                <rect key="frame" x="804" y="67" width="112" height="42"/>
+                                                <rect key="frame" x="799" y="38" width="112" height="42"/>
                                                 <fontDescription key="fontDescription" name="GillSans" family="Gill Sans" pointSize="25"/>
                                                 <color key="tintColor" red="0.26274509800000001" green="0.36862745099999999" blue="0.46274509800000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                 <state key="normal" title="UPDATE">
@@ -241,11 +264,6 @@
                                                     <action selector="updateSelectedNode" destination="ICT-TY-Uh1" eventType="touchUpInside" id="6jJ-ep-sIp"/>
                                                 </connections>
                                             </button>
-                                            <textField opaque="NO" clipsSubviews="YES" tag="1" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Y (Integer)" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="J9A-rf-tP5">
-                                                <rect key="frame" x="120" y="50" width="92" height="30"/>
-                                                <fontDescription key="fontDescription" name="GillSans" family="Gill Sans" pointSize="14"/>
-                                                <textInputTraits key="textInputTraits"/>
-                                            </textField>
                                         </subviews>
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         <gestureRecognizers/>
@@ -275,6 +293,8 @@
                         <outlet property="groupPicker" destination="gHU-uu-uP1" id="ioD-zs-qHx"/>
                         <outlet property="inputPanel" destination="4BT-L2-RuS" id="0Xr-mn-ErZ"/>
                         <outlet property="instrumentPicker" destination="ZhU-C2-ov8" id="k1k-0p-Yne"/>
+                        <outlet property="isFixedSwitch" destination="KBP-8Y-Spf" id="YEx-SZ-UJt"/>
+                        <outlet property="isPlanckSwitch" destination="eeR-1x-Lqz" id="FVh-y1-Crt"/>
                         <outlet property="labelCenterX" destination="Ckj-1b-o6D" id="UxH-4g-DhD"/>
                         <outlet property="labelCurvatureRadius" destination="AEx-O5-ASB" id="dLS-Uw-SWT"/>
                         <outlet property="labelDirection" destination="521-St-pgy" id="p2M-Lc-luo"/>

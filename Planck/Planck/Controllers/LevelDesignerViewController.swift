@@ -41,6 +41,8 @@ class LevelDesignerViewController: XViewController {
     @IBOutlet var accidentalPicker: UIPickerView!
     @IBOutlet var groupPicker: UIPickerView!
     
+    @IBOutlet var isFixedSwitch: UISwitch!
+    @IBOutlet var isPlanckSwitch: UISwitch!
     @IBOutlet weak var loadButton: UIBarButtonItem!
     
     var paramenterFields: [UITextField] {
