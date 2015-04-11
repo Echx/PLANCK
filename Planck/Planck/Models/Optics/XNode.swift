@@ -45,7 +45,9 @@ class XNode: NSObject, NSCoding {
     }
     
     func getSound() -> NSURL? {
-        if self.isPlanck {
+        if !self.shouldPlaySound {
+            return nil
+        } else if self.isPlanck {
             return self.planckNote?.getAudioFile()
         } else {
             return self.normalNote?.getAudioFile()
