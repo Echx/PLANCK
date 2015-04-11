@@ -132,17 +132,17 @@ class GOConvexLensRep: GOOpticRep {
         self.edges.append(rightArc)
     }
     
-//    override func containsPoint(point: CGPoint) -> Bool {
-//        for edge in self.edges {
-//            if let arcEdge = edge as? GOArcSegment {
-//                if edge.center.getDistanceToPoint(point) > arcEdge.radius {
-//                    return false
-//                }
-//            }
-//        }
-//        
-//        return true
-//    }
+    override func containsPoint(point: CGPoint) -> Bool {
+        for edge in self.edges {
+            if let arcEdge = edge as? GOArcSegment {
+                if edge.center.getDistanceToPoint(point) > arcEdge.radius {
+                    return false
+                }
+            }
+        }
+        
+        return true
+    }
     
     override func setDirection(direction: CGVector) {
         let directionDifference = direction.angleFromXPlus - self.direction.angleFromXPlus
