@@ -200,5 +200,5 @@ struct PlanckControllPanel {
     static let notePickerTitle = ["C", "D", "E", "F", "G", "A", "B"]
 //    static let accidentalPickerTitle = ["♮", "♯", "♭", "𝄪", "𝄫"]
     static let accidentalPickerTitle = ["♮", "♭", "♭♭", "♯", "x"]
-    static let groupPickerTitle = ["0", "1", "2", "3", "4", "5", "6", "7"]
+    static let groupPickerTitle = ["0", "1", "2", "3", "4", "5", "6"]
 }

@@ -78,7 +78,7 @@ class LevelDesignerViewController: XViewController {
     private var deviceViews = [String: UIView]()
     private var selectedNode: GOOpticRep?
     private var rayLayers = [String: [CAShapeLayer]]()
-    private var rays = [String: [CGPoint]]()
+    private var rays = [String: [(CGPoint, GOSegment?)]]()
     private var audioPlayerList = [AVAudioPlayer]()
     private var grid: GOGrid
     private var game:GameLevel?
@@ -865,7 +865,7 @@ class LevelDesignerViewController: XViewController {
     
     private func addRay(ray: GORay) {
         var newTag = String.generateRandomString(20)
-        self.rays[newTag] = [CGPoint]()
+        self.rays[newTag] = [(CGPoint, GOSegment?)]()
         self.rayLayers[newTag] = [CAShapeLayer]()
         
         self.grid.startCriticalPointsCalculationWithRay(ray, withTag: newTag)
@@ -900,9 +900,9 @@ class LevelDesignerViewController: XViewController {
                 let rayPath = self.rays[tag]!
                 let prevPoint = rayPath[currentIndex - 1]
                 let currentPoint = rayPath[currentIndex]
-                path.moveToPoint(prevPoint)
-                path.addLineToPoint(currentPoint)
-                let distance = prevPoint.getDistanceToPoint(currentPoint)
+                path.moveToPoint(prevPoint.0)
+                path.addLineToPoint(currentPoint.0)
+                let distance = prevPoint.0.getDistanceToPoint(currentPoint.0)
                 layer.path = path.CGPath
                 self.view.layer.addSublayer(layer)
                 
@@ -918,7 +918,7 @@ class LevelDesignerViewController: XViewController {
                 
                 layer.addAnimation(pathAnimation, forKey: "strokeEnd")
                 if currentIndex > 1 {
-                    self.processPoint(prevPoint)
+                    self.playNote(prevPoint.1)
                 }
                 
                 let delayInNanoSeconds = 0.9 * delay * CGFloat(NSEC_PER_SEC);
@@ -938,7 +938,7 @@ class LevelDesignerViewController: XViewController {
         }
         self.audioPlayerList.removeAll(keepCapacity: false)
         self.rayLayers = [String: [CAShapeLayer]]()
-        self.rays = [String: [CGPoint]]()
+        self.rays = [String: [(CGPoint, GOSegment?)]]()
     }
     
     private func getColorForNode(node: GOOpticRep) -> UIColor {
@@ -957,33 +957,9 @@ class LevelDesignerViewController: XViewController {
         }
     }
     
-    private func processPoints(points: [CGPoint]) {
-        if points.count > 2 {
-            var prevPoint = points[0]
-            var distance: CGFloat = 0
-            for i in 1...points.count - 1 {
-                distance += points[i].getDistanceToPoint(prevPoint)
-                prevPoint = points[i]
-                if let physicsBody = self.grid.getInstrumentAtPoint(points[i]) {
-                    if let device = xNodes[physicsBody.id] {
-                        if let sound = device.getSound() {
-                            let audioPlayer = AVAudioPlayer(contentsOfURL: sound, error: nil)
-                            self.audioPlayerList.append(audioPlayer)
-                            audioPlayer.prepareToPlay()
-                            let wait = NSTimeInterval(distance / Constant.lightSpeedBase + Constant.audioDelay)
-                            audioPlayer.playAtTime(wait + audioPlayer.deviceCurrentTime)
-                        }
-                    } else {
-                        fatalError("The node for the physics body not existed")
-                    }
-                }
-            }
-        }
-    }
-    
-    private func processPoint(currPoint: CGPoint) {
-        if let physicsBody = self.grid.getInstrumentAtPoint(currPoint) {
-            if let device = xNodes[physicsBody.id] {
+    private func playNote(segment: GOSegment?) {
+        if let edge = segment {
+            if let device = xNodes[edge.parent] {
                 if let sound = device.getSound() {
                     let audioPlayer = AVAudioPlayer(contentsOfURL: sound, error: nil)
                     self.audioPlayerList.append(audioPlayer)
@@ -1107,13 +1083,13 @@ extension LevelDesignerViewController: LevelSelectDelegate {
 }
 
 extension LevelDesignerViewController: GOGridDelegate {
-    func grid(grid: GOGrid, didProduceNewCriticalPoint point: CGPoint, forRayWithTag tag: String) {
+    func grid(grid: GOGrid, didProduceNewCriticalPoint point: CGPoint, onEdge edge: GOSegment?, forRayWithTag tag: String) {
         if self.rays.count == 0 {
             // waiting for thread to complete
             return
         }
         
-        self.rays[tag]?.append(point)
+        self.rays[tag]?.append((point, edge))
         if self.rays[tag]?.count == 2 {
             // when there are 2 points, start drawing
             drawRay(tag, currentIndex: 1)

@@ -12,7 +12,7 @@ class XFlatLens: XNode {
     init(flatLens: GOFlatLensRep) {
         super.init(physicsBody: flatLens)
         self.strokeColor = DeviceColor.lens
-        self.normalNote = XNote(noteName: XNoteName.cymbal, noteGroup: 0)
+        self.normalNote = XNote(noteName: XNoteName.bassDrum, noteGroup: 0)
     }
 
     required convenience init(coder aDecoder: NSCoder) {
