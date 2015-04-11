@@ -52,6 +52,24 @@ class GameViewController: XViewController {
         }
     }
     
+    @IBAction func viewDidTapped(sender: UITapGestureRecognizer) {
+        let location = sender.locationInView(sender.view)
+        if let node = self.grid.getInstrumentAtPoint(location) {
+            if self.isNodeFixed(node) {
+                println("node is fixed")
+            } else {
+                println("node is free")
+            }
+        }
+    }
+    
+    private func isNodeFixed(node: GOOpticRep) -> Bool {
+        if let xNode = self.xNodes[node.id] {
+            return xNode.isFixed
+        }
+        fatalError("Inconsistency between xNodes and nodes")
+    }
+    
     private func setUpGrid() {
         for (key, node) in self.grid.instruments {
             self.addNode(node, strokeColor: self.xNodes[node.id]!.strokeColor)

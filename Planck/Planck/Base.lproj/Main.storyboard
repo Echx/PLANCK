@@ -413,6 +413,10 @@
                             </button>
                         </subviews>
                         <color key="backgroundColor" red="0.26274509800000001" green="0.36862745099999999" blue="0.46274509800000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <gestureRecognizers/>
+                        <connections>
+                            <outletCollection property="gestureRecognizers" destination="iVH-nq-Jaw" appends="YES" id="SPH-Re-wBr"/>
+                        </connections>
                     </view>
                     <nil key="simulatedStatusBarMetrics"/>
                     <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
@@ -422,6 +426,11 @@
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="nD4-xY-EFO" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <tapGestureRecognizer id="iVH-nq-Jaw">
+                    <connections>
+                        <action selector="viewDidTapped:" destination="Ivs-sv-Sw2" id="HDE-8v-eDm"/>
+                    </connections>
+                </tapGestureRecognizer>
             </objects>
             <point key="canvasLocation" x="879" y="-481"/>
         </scene>
