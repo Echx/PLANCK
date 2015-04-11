@@ -12,9 +12,17 @@ class SettingViewController: XViewController, UITableViewDataSource, UITableView
     
     private let settingCellID = "SettingViewCell"
     private let textCellId = "SettingViewTextCell"
-    
+    private let sectionTitleForSupport = "support"
+    private let sectionTitleForGameCenter = "game center"
+    private let sectionTitleForControls = "controls"
+    private let sectionTitleForAudio = "audio"
+    private let sectionTitleForVideo = "video"
+
     private let numOfExtraSection = 2
     
+    private let sectionIDForControl = 0
+    private let sectionIDForAudio = 1
+    private let sectionIDForVideo = 2
     private let sectionIDForSupport = 3
     private let sectionIDForGameCenter = 4
     
@@ -64,6 +72,20 @@ class SettingViewController: XViewController, UITableViewDataSource, UITableView
             return getStaticGameCenterSupportItems().count
         } else {
             return getStaticTogglableItems()[section].count
+        }
+    }
+    
+    func tableView(tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
+        if section == sectionIDForControl {
+            return sectionTitleForControls
+        } else if section == sectionIDForAudio {
+            return sectionTitleForAudio
+        } else if section == sectionIDForVideo {
+            return sectionTitleForVideo
+        } else if section == sectionIDForSupport {
+            return sectionTitleForSupport
+        } else {
+            return sectionTitleForGameCenter
         }
     }
 
