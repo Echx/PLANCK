@@ -152,6 +152,99 @@
 		629D39701AD9847A00A8B3B7 /* piano-70.m4a in Resources */ = {isa = PBXBuildFile; fileRef = 629D39631AD9847A00A8B3B7 /* piano-70.m4a */; };
 		629D39711AD9847A00A8B3B7 /* piano-71.m4a in Resources */ = {isa = PBXBuildFile; fileRef = 629D39641AD9847A00A8B3B7 /* piano-71.m4a */; };
 		629D39721AD9847A00A8B3B7 /* piano-72.m4a in Resources */ = {isa = PBXBuildFile; fileRef = 629D39651AD9847A00A8B3B7 /* piano-72.m4a */; };
+		629D39CD1AD9C29A00A8B3B7 /* harp-98.m4a in Resources */ = {isa = PBXBuildFile; fileRef = 629D39741AD9C29900A8B3B7 /* harp-98.m4a */; };
+		629D39CE1AD9C29A00A8B3B7 /* harp-97.m4a in Resources */ = {isa = PBXBuildFile; fileRef = 629D39751AD9C29900A8B3B7 /* harp-97.m4a */; };
+		629D39CF1AD9C29A00A8B3B7 /* harp-96.m4a in Resources */ = {isa = PBXBuildFile; fileRef = 629D39761AD9C29900A8B3B7 /* harp-96.m4a */; };
+		629D39D01AD9C29A00A8B3B7 /* harp-95.m4a in Resources */ = {isa = PBXBuildFile; fileRef = 629D39771AD9C29900A8B3B7 /* harp-95.m4a */; };
+		629D39D11AD9C29A00A8B3B7 /* harp-94.m4a in Resources */ = {isa = PBXBuildFile; fileRef = 629D39781AD9C29900A8B3B7 /* harp-94.m4a */; };
+		629D39D21AD9C29A00A8B3B7 /* harp-93.m4a in Resources */ = {isa = PBXBuildFile; fileRef = 629D39791AD9C29900A8B3B7 /* harp-93.m4a */; };
+		629D39D31AD9C29A00A8B3B7 /* harp-92.m4a in Resources */ = {isa = PBXBuildFile; fileRef = 629D397A1AD9C29900A8B3B7 /* harp-92.m4a */; };
+		629D39D41AD9C29A00A8B3B7 /* harp-91.m4a in Resources */ = {isa = PBXBuildFile; fileRef = 629D397B1AD9C29900A8B3B7 /* harp-91.m4a */; };
+		629D39D51AD9C29A00A8B3B7 /* harp-90.m4a in Resources */ = {isa = PBXBuildFile; fileRef = 629D397C1AD9C29900A8B3B7 /* harp-90.m4a */; };
+		629D39D61AD9C29A00A8B3B7 /* harp-89.m4a in Resources */ = {isa = PBXBuildFile; fileRef = 629D397D1AD9C29900A8B3B7 /* harp-89.m4a */; };
+		629D39D71AD9C29A00A8B3B7 /* harp-88.m4a in Resources */ = {isa = PBXBuildFile; fileRef = 629D397E1AD9C29900A8B3B7 /* harp-88.m4a */; };
+		629D39D81AD9C29A00A8B3B7 /* harp-87.m4a in Resources */ = {isa = PBXBuildFile; fileRef = 629D397F1AD9C29900A8B3B7 /* harp-87.m4a */; };
+		629D39D91AD9C29A00A8B3B7 /* harp-86.m4a in Resources */ = {isa = PBXBuildFile; fileRef = 629D39801AD9C29900A8B3B7 /* harp-86.m4a */; };
+		629D39DA1AD9C29A00A8B3B7 /* harp-85.m4a in Resources */ = {isa = PBXBuildFile; fileRef = 629D39811AD9C29900A8B3B7 /* harp-85.m4a */; };
+		629D39DB1AD9C29A00A8B3B7 /* harp-84.m4a in Resources */ = {isa = PBXBuildFile; fileRef = 629D39821AD9C29900A8B3B7 /* harp-84.m4a */; };
+		629D39DC1AD9C29A00A8B3B7 /* harp-83.m4a in Resources */ = {isa = PBXBuildFile; fileRef = 629D39831AD9C29900A8B3B7 /* harp-83.m4a */; };
+		629D39DD1AD9C29A00A8B3B7 /* harp-82.m4a in Resources */ = {isa = PBXBuildFile; fileRef = 629D39841AD9C29900A8B3B7 /* harp-82.m4a */; };
+		629D39DE1AD9C29A00A8B3B7 /* harp-81.m4a in Resources */ = {isa = PBXBuildFile; fileRef = 629D39851AD9C29900A8B3B7 /* harp-81.m4a */; };
+		629D39DF1AD9C29A00A8B3B7 /* harp-80.m4a in Resources */ = {isa = PBXBuildFile; fileRef = 629D39861AD9C29900A8B3B7 /* harp-80.m4a */; };
+		629D39E01AD9C29A00A8B3B7 /* harp-79.m4a in Resources */ = {isa = PBXBuildFile; fileRef = 629D39871AD9C29900A8B3B7 /* harp-79.m4a */; };
+		629D39E11AD9C29A00A8B3B7 /* harp-78.m4a in Resources */ = {isa = PBXBuildFile; fileRef = 629D39881AD9C29900A8B3B7 /* harp-78.m4a */; };
+		629D39E21AD9C29A00A8B3B7 /* harp-77.m4a in Resources */ = {isa = PBXBuildFile; fileRef = 629D39891AD9C29900A8B3B7 /* harp-77.m4a */; };
+		629D39E31AD9C29A00A8B3B7 /* harp-76.m4a in Resources */ = {isa = PBXBuildFile; fileRef = 629D398A1AD9C29900A8B3B7 /* harp-76.m4a */; };
+		629D39E41AD9C29A00A8B3B7 /* harp-75.m4a in Resources */ = {isa = PBXBuildFile; fileRef = 629D398B1AD9C29900A8B3B7 /* harp-75.m4a */; };
+		629D39E51AD9C29A00A8B3B7 /* harp-74.m4a in Resources */ = {isa = PBXBuildFile; fileRef = 629D398C1AD9C29900A8B3B7 /* harp-74.m4a */; };
+		629D39E61AD9C29A00A8B3B7 /* harp-73.m4a in Resources */ = {isa = PBXBuildFile; fileRef = 629D398D1AD9C29900A8B3B7 /* harp-73.m4a */; };
+		629D39E71AD9C29A00A8B3B7 /* harp-72.m4a in Resources */ = {isa = PBXBuildFile; fileRef = 629D398E1AD9C29900A8B3B7 /* harp-72.m4a */; };
+		629D39E81AD9C29A00A8B3B7 /* harp-71.m4a in Resources */ = {isa = PBXBuildFile; fileRef = 629D398F1AD9C29900A8B3B7 /* harp-71.m4a */; };
+		629D39E91AD9C29A00A8B3B7 /* harp-70.m4a in Resources */ = {isa = PBXBuildFile; fileRef = 629D39901AD9C29900A8B3B7 /* harp-70.m4a */; };
+		629D39EA1AD9C29A00A8B3B7 /* harp-69.m4a in Resources */ = {isa = PBXBuildFile; fileRef = 629D39911AD9C29900A8B3B7 /* harp-69.m4a */; };
+		629D39EB1AD9C29A00A8B3B7 /* harp-68.m4a in Resources */ = {isa = PBXBuildFile; fileRef = 629D39921AD9C29900A8B3B7 /* harp-68.m4a */; };
+		629D39EC1AD9C29A00A8B3B7 /* harp-67.m4a in Resources */ = {isa = PBXBuildFile; fileRef = 629D39931AD9C29900A8B3B7 /* harp-67.m4a */; };
+		629D39ED1AD9C29A00A8B3B7 /* harp-66.m4a in Resources */ = {isa = PBXBuildFile; fileRef = 629D39941AD9C29900A8B3B7 /* harp-66.m4a */; };
+		629D39EE1AD9C29A00A8B3B7 /* harp-65.m4a in Resources */ = {isa = PBXBuildFile; fileRef = 629D39951AD9C29900A8B3B7 /* harp-65.m4a */; };
+		629D39EF1AD9C29A00A8B3B7 /* harp-64.m4a in Resources */ = {isa = PBXBuildFile; fileRef = 629D39961AD9C29900A8B3B7 /* harp-64.m4a */; };
+		629D39F01AD9C29A00A8B3B7 /* harp-63.m4a in Resources */ = {isa = PBXBuildFile; fileRef = 629D39971AD9C29900A8B3B7 /* harp-63.m4a */; };
+		629D39F11AD9C29A00A8B3B7 /* harp-62.m4a in Resources */ = {isa = PBXBuildFile; fileRef = 629D39981AD9C29900A8B3B7 /* harp-62.m4a */; };
+		629D39F21AD9C29A00A8B3B7 /* harp-61.m4a in Resources */ = {isa = PBXBuildFile; fileRef = 629D39991AD9C29900A8B3B7 /* harp-61.m4a */; };
+		629D39F31AD9C29A00A8B3B7 /* harp-60.m4a in Resources */ = {isa = PBXBuildFile; fileRef = 629D399A1AD9C29900A8B3B7 /* harp-60.m4a */; };
+		629D39F41AD9C29A00A8B3B7 /* harp-59.m4a in Resources */ = {isa = PBXBuildFile; fileRef = 629D399B1AD9C29900A8B3B7 /* harp-59.m4a */; };
+		629D39F51AD9C29A00A8B3B7 /* harp-58.m4a in Resources */ = {isa = PBXBuildFile; fileRef = 629D399C1AD9C29900A8B3B7 /* harp-58.m4a */; };
+		629D39F61AD9C29A00A8B3B7 /* harp-57.m4a in Resources */ = {isa = PBXBuildFile; fileRef = 629D399D1AD9C29900A8B3B7 /* harp-57.m4a */; };
+		629D39F71AD9C29A00A8B3B7 /* harp-56.m4a in Resources */ = {isa = PBXBuildFile; fileRef = 629D399E1AD9C29900A8B3B7 /* harp-56.m4a */; };
+		629D39F81AD9C29A00A8B3B7 /* harp-55.m4a in Resources */ = {isa = PBXBuildFile; fileRef = 629D399F1AD9C29900A8B3B7 /* harp-55.m4a */; };
+		629D39F91AD9C29A00A8B3B7 /* harp-54.m4a in Resources */ = {isa = PBXBuildFile; fileRef = 629D39A01AD9C29900A8B3B7 /* harp-54.m4a */; };
+		629D39FA1AD9C29A00A8B3B7 /* harp-53.m4a in Resources */ = {isa = PBXBuildFile; fileRef = 629D39A11AD9C29900A8B3B7 /* harp-53.m4a */; };
+		629D39FB1AD9C29A00A8B3B7 /* harp-52.m4a in Resources */ = {isa = PBXBuildFile; fileRef = 629D39A21AD9C29900A8B3B7 /* harp-52.m4a */; };
+		629D39FC1AD9C29A00A8B3B7 /* harp-51.m4a in Resources */ = {isa = PBXBuildFile; fileRef = 629D39A31AD9C29900A8B3B7 /* harp-51.m4a */; };
+		629D39FD1AD9C29A00A8B3B7 /* harp-50.m4a in Resources */ = {isa = PBXBuildFile; fileRef = 629D39A41AD9C29900A8B3B7 /* harp-50.m4a */; };
+		629D39FE1AD9C29A00A8B3B7 /* harp-49.m4a in Resources */ = {isa = PBXBuildFile; fileRef = 629D39A51AD9C29900A8B3B7 /* harp-49.m4a */; };
+		629D39FF1AD9C29A00A8B3B7 /* harp-48.m4a in Resources */ = {isa = PBXBuildFile; fileRef = 629D39A61AD9C29900A8B3B7 /* harp-48.m4a */; };
+		629D3A001AD9C29A00A8B3B7 /* harp-47.m4a in Resources */ = {isa = PBXBuildFile; fileRef = 629D39A71AD9C29900A8B3B7 /* harp-47.m4a */; };
+		629D3A011AD9C29A00A8B3B7 /* harp-46.m4a in Resources */ = {isa = PBXBuildFile; fileRef = 629D39A81AD9C29900A8B3B7 /* harp-46.m4a */; };
+		629D3A021AD9C29A00A8B3B7 /* harp-45.m4a in Resources */ = {isa = PBXBuildFile; fileRef = 629D39A91AD9C29900A8B3B7 /* harp-45.m4a */; };
+		629D3A031AD9C29A00A8B3B7 /* harp-44.m4a in Resources */ = {isa = PBXBuildFile; fileRef = 629D39AA1AD9C29900A8B3B7 /* harp-44.m4a */; };
+		629D3A041AD9C29A00A8B3B7 /* harp-43.m4a in Resources */ = {isa = PBXBuildFile; fileRef = 629D39AB1AD9C29900A8B3B7 /* harp-43.m4a */; };
+		629D3A051AD9C29A00A8B3B7 /* harp-42.m4a in Resources */ = {isa = PBXBuildFile; fileRef = 629D39AC1AD9C29900A8B3B7 /* harp-42.m4a */; };
+		629D3A061AD9C29A00A8B3B7 /* harp-41.m4a in Resources */ = {isa = PBXBuildFile; fileRef = 629D39AD1AD9C29900A8B3B7 /* harp-41.m4a */; };
+		629D3A071AD9C29A00A8B3B7 /* harp-40.m4a in Resources */ = {isa = PBXBuildFile; fileRef = 629D39AE1AD9C29900A8B3B7 /* harp-40.m4a */; };
+		629D3A081AD9C29A00A8B3B7 /* harp-39.m4a in Resources */ = {isa = PBXBuildFile; fileRef = 629D39AF1AD9C29900A8B3B7 /* harp-39.m4a */; };
+		629D3A091AD9C29A00A8B3B7 /* harp-38.m4a in Resources */ = {isa = PBXBuildFile; fileRef = 629D39B01AD9C29900A8B3B7 /* harp-38.m4a */; };
+		629D3A0A1AD9C29A00A8B3B7 /* harp-37.m4a in Resources */ = {isa = PBXBuildFile; fileRef = 629D39B11AD9C29900A8B3B7 /* harp-37.m4a */; };
+		629D3A0B1AD9C29A00A8B3B7 /* harp-36.m4a in Resources */ = {isa = PBXBuildFile; fileRef = 629D39B21AD9C29900A8B3B7 /* harp-36.m4a */; };
+		629D3A0C1AD9C29A00A8B3B7 /* harp-35.m4a in Resources */ = {isa = PBXBuildFile; fileRef = 629D39B31AD9C29900A8B3B7 /* harp-35.m4a */; };
+		629D3A0D1AD9C29A00A8B3B7 /* harp-34.m4a in Resources */ = {isa = PBXBuildFile; fileRef = 629D39B41AD9C29900A8B3B7 /* harp-34.m4a */; };
+		629D3A0E1AD9C29A00A8B3B7 /* harp-33.m4a in Resources */ = {isa = PBXBuildFile; fileRef = 629D39B51AD9C29900A8B3B7 /* harp-33.m4a */; };
+		629D3A0F1AD9C29A00A8B3B7 /* harp-32.m4a in Resources */ = {isa = PBXBuildFile; fileRef = 629D39B61AD9C29900A8B3B7 /* harp-32.m4a */; };
+		629D3A101AD9C29A00A8B3B7 /* harp-31.m4a in Resources */ = {isa = PBXBuildFile; fileRef = 629D39B71AD9C29900A8B3B7 /* harp-31.m4a */; };
+		629D3A111AD9C29A00A8B3B7 /* harp-30.m4a in Resources */ = {isa = PBXBuildFile; fileRef = 629D39B81AD9C29900A8B3B7 /* harp-30.m4a */; };
+		629D3A121AD9C29A00A8B3B7 /* harp-29.m4a in Resources */ = {isa = PBXBuildFile; fileRef = 629D39B91AD9C29900A8B3B7 /* harp-29.m4a */; };
+		629D3A131AD9C29A00A8B3B7 /* harp-28.m4a in Resources */ = {isa = PBXBuildFile; fileRef = 629D39BA1AD9C29900A8B3B7 /* harp-28.m4a */; };
+		629D3A141AD9C29A00A8B3B7 /* harp-27.m4a in Resources */ = {isa = PBXBuildFile; fileRef = 629D39BB1AD9C29900A8B3B7 /* harp-27.m4a */; };
+		629D3A151AD9C29A00A8B3B7 /* harp-26.m4a in Resources */ = {isa = PBXBuildFile; fileRef = 629D39BC1AD9C29900A8B3B7 /* harp-26.m4a */; };
+		629D3A161AD9C29A00A8B3B7 /* harp-25.m4a in Resources */ = {isa = PBXBuildFile; fileRef = 629D39BD1AD9C29900A8B3B7 /* harp-25.m4a */; };
+		629D3A171AD9C29A00A8B3B7 /* harp-24.m4a in Resources */ = {isa = PBXBuildFile; fileRef = 629D39BE1AD9C29900A8B3B7 /* harp-24.m4a */; };
+		629D3A181AD9C29A00A8B3B7 /* harp-23.m4a in Resources */ = {isa = PBXBuildFile; fileRef = 629D39BF1AD9C29900A8B3B7 /* harp-23.m4a */; };
+		629D3A191AD9C29A00A8B3B7 /* harp-22.m4a in Resources */ = {isa = PBXBuildFile; fileRef = 629D39C01AD9C29900A8B3B7 /* harp-22.m4a */; };
+		629D3A1A1AD9C29A00A8B3B7 /* harp-21.m4a in Resources */ = {isa = PBXBuildFile; fileRef = 629D39C11AD9C29900A8B3B7 /* harp-21.m4a */; };
+		629D3A1B1AD9C29A00A8B3B7 /* harp-20.m4a in Resources */ = {isa = PBXBuildFile; fileRef = 629D39C21AD9C29A00A8B3B7 /* harp-20.m4a */; };
+		629D3A1C1AD9C29A00A8B3B7 /* harp-19.m4a in Resources */ = {isa = PBXBuildFile; fileRef = 629D39C31AD9C29A00A8B3B7 /* harp-19.m4a */; };
+		629D3A1D1AD9C29A00A8B3B7 /* harp-18.m4a in Resources */ = {isa = PBXBuildFile; fileRef = 629D39C41AD9C29A00A8B3B7 /* harp-18.m4a */; };
+		629D3A1E1AD9C29A00A8B3B7 /* harp-17.m4a in Resources */ = {isa = PBXBuildFile; fileRef = 629D39C51AD9C29A00A8B3B7 /* harp-17.m4a */; };
+		629D3A1F1AD9C29A00A8B3B7 /* harp-16.m4a in Resources */ = {isa = PBXBuildFile; fileRef = 629D39C61AD9C29A00A8B3B7 /* harp-16.m4a */; };
+		629D3A201AD9C29A00A8B3B7 /* harp-15.m4a in Resources */ = {isa = PBXBuildFile; fileRef = 629D39C71AD9C29A00A8B3B7 /* harp-15.m4a */; };
+		629D3A211AD9C29A00A8B3B7 /* harp-14.m4a in Resources */ = {isa = PBXBuildFile; fileRef = 629D39C81AD9C29A00A8B3B7 /* harp-14.m4a */; };
+		629D3A221AD9C29A00A8B3B7 /* harp-13.m4a in Resources */ = {isa = PBXBuildFile; fileRef = 629D39C91AD9C29A00A8B3B7 /* harp-13.m4a */; };
+		629D3A231AD9C29A00A8B3B7 /* harp-12.m4a in Resources */ = {isa = PBXBuildFile; fileRef = 629D39CA1AD9C29A00A8B3B7 /* harp-12.m4a */; };
+		629D3A241AD9C29A00A8B3B7 /* harp-11.m4a in Resources */ = {isa = PBXBuildFile; fileRef = 629D39CB1AD9C29A00A8B3B7 /* harp-11.m4a */; };
+		629D3A251AD9C29A00A8B3B7 /* harp-10.m4a in Resources */ = {isa = PBXBuildFile; fileRef = 629D39CC1AD9C29A00A8B3B7 /* harp-10.m4a */; };
+		629D3A2A1AD9C2B000A8B3B7 /* piano-97.m4a in Resources */ = {isa = PBXBuildFile; fileRef = 629D3A261AD9C2B000A8B3B7 /* piano-97.m4a */; };
+		629D3A2B1AD9C2B000A8B3B7 /* piano-96.m4a in Resources */ = {isa = PBXBuildFile; fileRef = 629D3A271AD9C2B000A8B3B7 /* piano-96.m4a */; };
+		629D3A2C1AD9C2B000A8B3B7 /* piano-11.m4a in Resources */ = {isa = PBXBuildFile; fileRef = 629D3A281AD9C2B000A8B3B7 /* piano-11.m4a */; };
+		629D3A2D1AD9C2B000A8B3B7 /* piano-10.m4a in Resources */ = {isa = PBXBuildFile; fileRef = 629D3A291AD9C2B000A8B3B7 /* piano-10.m4a */; };
 		629F42531AD046C600EFBABD /* GOEmitterRep.swift in Sources */ = {isa = PBXBuildFile; fileRef = 629F42521AD046C600EFBABD /* GOEmitterRep.swift */; };
 		62D2833F1AD17D3C00A583FA /* XFlatMirror.swift in Sources */ = {isa = PBXBuildFile; fileRef = 62D2833E1AD17D3C00A583FA /* XFlatMirror.swift */; };
 		62D283451AD1852300A583FA /* bass-drum.m4a in Resources */ = {isa = PBXBuildFile; fileRef = 62D283421AD1852300A583FA /* bass-drum.m4a */; };
@@ -333,6 +426,99 @@
 		629D39631AD9847A00A8B3B7 /* piano-70.m4a */ = {isa = PBXFileReference; lastKnownFileType = file; name = "piano-70.m4a"; path = "Sounds/Piano/piano-70.m4a"; sourceTree = "<group>"; };
 		629D39641AD9847A00A8B3B7 /* piano-71.m4a */ = {isa = PBXFileReference; lastKnownFileType = file; name = "piano-71.m4a"; path = "Sounds/Piano/piano-71.m4a"; sourceTree = "<group>"; };
 		629D39651AD9847A00A8B3B7 /* piano-72.m4a */ = {isa = PBXFileReference; lastKnownFileType = file; name = "piano-72.m4a"; path = "Sounds/Piano/piano-72.m4a"; sourceTree = "<group>"; };
+		629D39741AD9C29900A8B3B7 /* harp-98.m4a */ = {isa = PBXFileReference; lastKnownFileType = file; name = "harp-98.m4a"; path = "Sounds/Harp/harp-98.m4a"; sourceTree = "<group>"; };
+		629D39751AD9C29900A8B3B7 /* harp-97.m4a */ = {isa = PBXFileReference; lastKnownFileType = file; name = "harp-97.m4a"; path = "Sounds/Harp/harp-97.m4a"; sourceTree = "<group>"; };
+		629D39761AD9C29900A8B3B7 /* harp-96.m4a */ = {isa = PBXFileReference; lastKnownFileType = file; name = "harp-96.m4a"; path = "Sounds/Harp/harp-96.m4a"; sourceTree = "<group>"; };
+		629D39771AD9C29900A8B3B7 /* harp-95.m4a */ = {isa = PBXFileReference; lastKnownFileType = file; name = "harp-95.m4a"; path = "Sounds/Harp/harp-95.m4a"; sourceTree = "<group>"; };
+		629D39781AD9C29900A8B3B7 /* harp-94.m4a */ = {isa = PBXFileReference; lastKnownFileType = file; name = "harp-94.m4a"; path = "Sounds/Harp/harp-94.m4a"; sourceTree = "<group>"; };
+		629D39791AD9C29900A8B3B7 /* harp-93.m4a */ = {isa = PBXFileReference; lastKnownFileType = file; name = "harp-93.m4a"; path = "Sounds/Harp/harp-93.m4a"; sourceTree = "<group>"; };
+		629D397A1AD9C29900A8B3B7 /* harp-92.m4a */ = {isa = PBXFileReference; lastKnownFileType = file; name = "harp-92.m4a"; path = "Sounds/Harp/harp-92.m4a"; sourceTree = "<group>"; };
+		629D397B1AD9C29900A8B3B7 /* harp-91.m4a */ = {isa = PBXFileReference; lastKnownFileType = file; name = "harp-91.m4a"; path = "Sounds/Harp/harp-91.m4a"; sourceTree = "<group>"; };
+		629D397C1AD9C29900A8B3B7 /* harp-90.m4a */ = {isa = PBXFileReference; lastKnownFileType = file; name = "harp-90.m4a"; path = "Sounds/Harp/harp-90.m4a"; sourceTree = "<group>"; };
+		629D397D1AD9C29900A8B3B7 /* harp-89.m4a */ = {isa = PBXFileReference; lastKnownFileType = file; name = "harp-89.m4a"; path = "Sounds/Harp/harp-89.m4a"; sourceTree = "<group>"; };
+		629D397E1AD9C29900A8B3B7 /* harp-88.m4a */ = {isa = PBXFileReference; lastKnownFileType = file; name = "harp-88.m4a"; path = "Sounds/Harp/harp-88.m4a"; sourceTree = "<group>"; };
+		629D397F1AD9C29900A8B3B7 /* harp-87.m4a */ = {isa = PBXFileReference; lastKnownFileType = file; name = "harp-87.m4a"; path = "Sounds/Harp/harp-87.m4a"; sourceTree = "<group>"; };
+		629D39801AD9C29900A8B3B7 /* harp-86.m4a */ = {isa = PBXFileReference; lastKnownFileType = file; name = "harp-86.m4a"; path = "Sounds/Harp/harp-86.m4a"; sourceTree = "<group>"; };
+		629D39811AD9C29900A8B3B7 /* harp-85.m4a */ = {isa = PBXFileReference; lastKnownFileType = file; name = "harp-85.m4a"; path = "Sounds/Harp/harp-85.m4a"; sourceTree = "<group>"; };
+		629D39821AD9C29900A8B3B7 /* harp-84.m4a */ = {isa = PBXFileReference; lastKnownFileType = file; name = "harp-84.m4a"; path = "Sounds/Harp/harp-84.m4a"; sourceTree = "<group>"; };
+		629D39831AD9C29900A8B3B7 /* harp-83.m4a */ = {isa = PBXFileReference; lastKnownFileType = file; name = "harp-83.m4a"; path = "Sounds/Harp/harp-83.m4a"; sourceTree = "<group>"; };
+		629D39841AD9C29900A8B3B7 /* harp-82.m4a */ = {isa = PBXFileReference; lastKnownFileType = file; name = "harp-82.m4a"; path = "Sounds/Harp/harp-82.m4a"; sourceTree = "<group>"; };
+		629D39851AD9C29900A8B3B7 /* harp-81.m4a */ = {isa = PBXFileReference; lastKnownFileType = file; name = "harp-81.m4a"; path = "Sounds/Harp/harp-81.m4a"; sourceTree = "<group>"; };
+		629D39861AD9C29900A8B3B7 /* harp-80.m4a */ = {isa = PBXFileReference; lastKnownFileType = file; name = "harp-80.m4a"; path = "Sounds/Harp/harp-80.m4a"; sourceTree = "<group>"; };
+		629D39871AD9C29900A8B3B7 /* harp-79.m4a */ = {isa = PBXFileReference; lastKnownFileType = file; name = "harp-79.m4a"; path = "Sounds/Harp/harp-79.m4a"; sourceTree = "<group>"; };
+		629D39881AD9C29900A8B3B7 /* harp-78.m4a */ = {isa = PBXFileReference; lastKnownFileType = file; name = "harp-78.m4a"; path = "Sounds/Harp/harp-78.m4a"; sourceTree = "<group>"; };
+		629D39891AD9C29900A8B3B7 /* harp-77.m4a */ = {isa = PBXFileReference; lastKnownFileType = file; name = "harp-77.m4a"; path = "Sounds/Harp/harp-77.m4a"; sourceTree = "<group>"; };
+		629D398A1AD9C29900A8B3B7 /* harp-76.m4a */ = {isa = PBXFileReference; lastKnownFileType = file; name = "harp-76.m4a"; path = "Sounds/Harp/harp-76.m4a"; sourceTree = "<group>"; };
+		629D398B1AD9C29900A8B3B7 /* harp-75.m4a */ = {isa = PBXFileReference; lastKnownFileType = file; name = "harp-75.m4a"; path = "Sounds/Harp/harp-75.m4a"; sourceTree = "<group>"; };
+		629D398C1AD9C29900A8B3B7 /* harp-74.m4a */ = {isa = PBXFileReference; lastKnownFileType = file; name = "harp-74.m4a"; path = "Sounds/Harp/harp-74.m4a"; sourceTree = "<group>"; };
+		629D398D1AD9C29900A8B3B7 /* harp-73.m4a */ = {isa = PBXFileReference; lastKnownFileType = file; name = "harp-73.m4a"; path = "Sounds/Harp/harp-73.m4a"; sourceTree = "<group>"; };
+		629D398E1AD9C29900A8B3B7 /* harp-72.m4a */ = {isa = PBXFileReference; lastKnownFileType = file; name = "harp-72.m4a"; path = "Sounds/Harp/harp-72.m4a"; sourceTree = "<group>"; };
+		629D398F1AD9C29900A8B3B7 /* harp-71.m4a */ = {isa = PBXFileReference; lastKnownFileType = file; name = "harp-71.m4a"; path = "Sounds/Harp/harp-71.m4a"; sourceTree = "<group>"; };
+		629D39901AD9C29900A8B3B7 /* harp-70.m4a */ = {isa = PBXFileReference; lastKnownFileType = file; name = "harp-70.m4a"; path = "Sounds/Harp/harp-70.m4a"; sourceTree = "<group>"; };
+		629D39911AD9C29900A8B3B7 /* harp-69.m4a */ = {isa = PBXFileReference; lastKnownFileType = file; name = "harp-69.m4a"; path = "Sounds/Harp/harp-69.m4a"; sourceTree = "<group>"; };
+		629D39921AD9C29900A8B3B7 /* harp-68.m4a */ = {isa = PBXFileReference; lastKnownFileType = file; name = "harp-68.m4a"; path = "Sounds/Harp/harp-68.m4a"; sourceTree = "<group>"; };
+		629D39931AD9C29900A8B3B7 /* harp-67.m4a */ = {isa = PBXFileReference; lastKnownFileType = file; name = "harp-67.m4a"; path = "Sounds/Harp/harp-67.m4a"; sourceTree = "<group>"; };
+		629D39941AD9C29900A8B3B7 /* harp-66.m4a */ = {isa = PBXFileReference; lastKnownFileType = file; name = "harp-66.m4a"; path = "Sounds/Harp/harp-66.m4a"; sourceTree = "<group>"; };
+		629D39951AD9C29900A8B3B7 /* harp-65.m4a */ = {isa = PBXFileReference; lastKnownFileType = file; name = "harp-65.m4a"; path = "Sounds/Harp/harp-65.m4a"; sourceTree = "<group>"; };
+		629D39961AD9C29900A8B3B7 /* harp-64.m4a */ = {isa = PBXFileReference; lastKnownFileType = file; name = "harp-64.m4a"; path = "Sounds/Harp/harp-64.m4a"; sourceTree = "<group>"; };
+		629D39971AD9C29900A8B3B7 /* harp-63.m4a */ = {isa = PBXFileReference; lastKnownFileType = file; name = "harp-63.m4a"; path = "Sounds/Harp/harp-63.m4a"; sourceTree = "<group>"; };
+		629D39981AD9C29900A8B3B7 /* harp-62.m4a */ = {isa = PBXFileReference; lastKnownFileType = file; name = "harp-62.m4a"; path = "Sounds/Harp/harp-62.m4a"; sourceTree = "<group>"; };
+		629D39991AD9C29900A8B3B7 /* harp-61.m4a */ = {isa = PBXFileReference; lastKnownFileType = file; name = "harp-61.m4a"; path = "Sounds/Harp/harp-61.m4a"; sourceTree = "<group>"; };
+		629D399A1AD9C29900A8B3B7 /* harp-60.m4a */ = {isa = PBXFileReference; lastKnownFileType = file; name = "harp-60.m4a"; path = "Sounds/Harp/harp-60.m4a"; sourceTree = "<group>"; };
+		629D399B1AD9C29900A8B3B7 /* harp-59.m4a */ = {isa = PBXFileReference; lastKnownFileType = file; name = "harp-59.m4a"; path = "Sounds/Harp/harp-59.m4a"; sourceTree = "<group>"; };
+		629D399C1AD9C29900A8B3B7 /* harp-58.m4a */ = {isa = PBXFileReference; lastKnownFileType = file; name = "harp-58.m4a"; path = "Sounds/Harp/harp-58.m4a"; sourceTree = "<group>"; };
+		629D399D1AD9C29900A8B3B7 /* harp-57.m4a */ = {isa = PBXFileReference; lastKnownFileType = file; name = "harp-57.m4a"; path = "Sounds/Harp/harp-57.m4a"; sourceTree = "<group>"; };
+		629D399E1AD9C29900A8B3B7 /* harp-56.m4a */ = {isa = PBXFileReference; lastKnownFileType = file; name = "harp-56.m4a"; path = "Sounds/Harp/harp-56.m4a"; sourceTree = "<group>"; };
+		629D399F1AD9C29900A8B3B7 /* harp-55.m4a */ = {isa = PBXFileReference; lastKnownFileType = file; name = "harp-55.m4a"; path = "Sounds/Harp/harp-55.m4a"; sourceTree = "<group>"; };
+		629D39A01AD9C29900A8B3B7 /* harp-54.m4a */ = {isa = PBXFileReference; lastKnownFileType = file; name = "harp-54.m4a"; path = "Sounds/Harp/harp-54.m4a"; sourceTree = "<group>"; };
+		629D39A11AD9C29900A8B3B7 /* harp-53.m4a */ = {isa = PBXFileReference; lastKnownFileType = file; name = "harp-53.m4a"; path = "Sounds/Harp/harp-53.m4a"; sourceTree = "<group>"; };
+		629D39A21AD9C29900A8B3B7 /* harp-52.m4a */ = {isa = PBXFileReference; lastKnownFileType = file; name = "harp-52.m4a"; path = "Sounds/Harp/harp-52.m4a"; sourceTree = "<group>"; };
+		629D39A31AD9C29900A8B3B7 /* harp-51.m4a */ = {isa = PBXFileReference; lastKnownFileType = file; name = "harp-51.m4a"; path = "Sounds/Harp/harp-51.m4a"; sourceTree = "<group>"; };
+		629D39A41AD9C29900A8B3B7 /* harp-50.m4a */ = {isa = PBXFileReference; lastKnownFileType = file; name = "harp-50.m4a"; path = "Sounds/Harp/harp-50.m4a"; sourceTree = "<group>"; };
+		629D39A51AD9C29900A8B3B7 /* harp-49.m4a */ = {isa = PBXFileReference; lastKnownFileType = file; name = "harp-49.m4a"; path = "Sounds/Harp/harp-49.m4a"; sourceTree = "<group>"; };
+		629D39A61AD9C29900A8B3B7 /* harp-48.m4a */ = {isa = PBXFileReference; lastKnownFileType = file; name = "harp-48.m4a"; path = "Sounds/Harp/harp-48.m4a"; sourceTree = "<group>"; };
+		629D39A71AD9C29900A8B3B7 /* harp-47.m4a */ = {isa = PBXFileReference; lastKnownFileType = file; name = "harp-47.m4a"; path = "Sounds/Harp/harp-47.m4a"; sourceTree = "<group>"; };
+		629D39A81AD9C29900A8B3B7 /* harp-46.m4a */ = {isa = PBXFileReference; lastKnownFileType = file; name = "harp-46.m4a"; path = "Sounds/Harp/harp-46.m4a"; sourceTree = "<group>"; };
+		629D39A91AD9C29900A8B3B7 /* harp-45.m4a */ = {isa = PBXFileReference; lastKnownFileType = file; name = "harp-45.m4a"; path = "Sounds/Harp/harp-45.m4a"; sourceTree = "<group>"; };
+		629D39AA1AD9C29900A8B3B7 /* harp-44.m4a */ = {isa = PBXFileReference; lastKnownFileType = file; name = "harp-44.m4a"; path = "Sounds/Harp/harp-44.m4a"; sourceTree = "<group>"; };
+		629D39AB1AD9C29900A8B3B7 /* harp-43.m4a */ = {isa = PBXFileReference; lastKnownFileType = file; name = "harp-43.m4a"; path = "Sounds/Harp/harp-43.m4a"; sourceTree = "<group>"; };
+		629D39AC1AD9C29900A8B3B7 /* harp-42.m4a */ = {isa = PBXFileReference; lastKnownFileType = file; name = "harp-42.m4a"; path = "Sounds/Harp/harp-42.m4a"; sourceTree = "<group>"; };
+		629D39AD1AD9C29900A8B3B7 /* harp-41.m4a */ = {isa = PBXFileReference; lastKnownFileType = file; name = "harp-41.m4a"; path = "Sounds/Harp/harp-41.m4a"; sourceTree = "<group>"; };
+		629D39AE1AD9C29900A8B3B7 /* harp-40.m4a */ = {isa = PBXFileReference; lastKnownFileType = file; name = "harp-40.m4a"; path = "Sounds/Harp/harp-40.m4a"; sourceTree = "<group>"; };
+		629D39AF1AD9C29900A8B3B7 /* harp-39.m4a */ = {isa = PBXFileReference; lastKnownFileType = file; name = "harp-39.m4a"; path = "Sounds/Harp/harp-39.m4a"; sourceTree = "<group>"; };
+		629D39B01AD9C29900A8B3B7 /* harp-38.m4a */ = {isa = PBXFileReference; lastKnownFileType = file; name = "harp-38.m4a"; path = "Sounds/Harp/harp-38.m4a"; sourceTree = "<group>"; };
+		629D39B11AD9C29900A8B3B7 /* harp-37.m4a */ = {isa = PBXFileReference; lastKnownFileType = file; name = "harp-37.m4a"; path = "Sounds/Harp/harp-37.m4a"; sourceTree = "<group>"; };
+		629D39B21AD9C29900A8B3B7 /* harp-36.m4a */ = {isa = PBXFileReference; lastKnownFileType = file; name = "harp-36.m4a"; path = "Sounds/Harp/harp-36.m4a"; sourceTree = "<group>"; };
+		629D39B31AD9C29900A8B3B7 /* harp-35.m4a */ = {isa = PBXFileReference; lastKnownFileType = file; name = "harp-35.m4a"; path = "Sounds/Harp/harp-35.m4a"; sourceTree = "<group>"; };
+		629D39B41AD9C29900A8B3B7 /* harp-34.m4a */ = {isa = PBXFileReference; lastKnownFileType = file; name = "harp-34.m4a"; path = "Sounds/Harp/harp-34.m4a"; sourceTree = "<group>"; };
+		629D39B51AD9C29900A8B3B7 /* harp-33.m4a */ = {isa = PBXFileReference; lastKnownFileType = file; name = "harp-33.m4a"; path = "Sounds/Harp/harp-33.m4a"; sourceTree = "<group>"; };
+		629D39B61AD9C29900A8B3B7 /* harp-32.m4a */ = {isa = PBXFileReference; lastKnownFileType = file; name = "harp-32.m4a"; path = "Sounds/Harp/harp-32.m4a"; sourceTree = "<group>"; };
+		629D39B71AD9C29900A8B3B7 /* harp-31.m4a */ = {isa = PBXFileReference; lastKnownFileType = file; name = "harp-31.m4a"; path = "Sounds/Harp/harp-31.m4a"; sourceTree = "<group>"; };
+		629D39B81AD9C29900A8B3B7 /* harp-30.m4a */ = {isa = PBXFileReference; lastKnownFileType = file; name = "harp-30.m4a"; path = "Sounds/Harp/harp-30.m4a"; sourceTree = "<group>"; };
+		629D39B91AD9C29900A8B3B7 /* harp-29.m4a */ = {isa = PBXFileReference; lastKnownFileType = file; name = "harp-29.m4a"; path = "Sounds/Harp/harp-29.m4a"; sourceTree = "<group>"; };
+		629D39BA1AD9C29900A8B3B7 /* harp-28.m4a */ = {isa = PBXFileReference; lastKnownFileType = file; name = "harp-28.m4a"; path = "Sounds/Harp/harp-28.m4a"; sourceTree = "<group>"; };
+		629D39BB1AD9C29900A8B3B7 /* harp-27.m4a */ = {isa = PBXFileReference; lastKnownFileType = file; name = "harp-27.m4a"; path = "Sounds/Harp/harp-27.m4a"; sourceTree = "<group>"; };
+		629D39BC1AD9C29900A8B3B7 /* harp-26.m4a */ = {isa = PBXFileReference; lastKnownFileType = file; name = "harp-26.m4a"; path = "Sounds/Harp/harp-26.m4a"; sourceTree = "<group>"; };
+		629D39BD1AD9C29900A8B3B7 /* harp-25.m4a */ = {isa = PBXFileReference; lastKnownFileType = file; name = "harp-25.m4a"; path = "Sounds/Harp/harp-25.m4a"; sourceTree = "<group>"; };
+		629D39BE1AD9C29900A8B3B7 /* harp-24.m4a */ = {isa = PBXFileReference; lastKnownFileType = file; name = "harp-24.m4a"; path = "Sounds/Harp/harp-24.m4a"; sourceTree = "<group>"; };
+		629D39BF1AD9C29900A8B3B7 /* harp-23.m4a */ = {isa = PBXFileReference; lastKnownFileType = file; name = "harp-23.m4a"; path = "Sounds/Harp/harp-23.m4a"; sourceTree = "<group>"; };
+		629D39C01AD9C29900A8B3B7 /* harp-22.m4a */ = {isa = PBXFileReference; lastKnownFileType = file; name = "harp-22.m4a"; path = "Sounds/Harp/harp-22.m4a"; sourceTree = "<group>"; };
+		629D39C11AD9C29900A8B3B7 /* harp-21.m4a */ = {isa = PBXFileReference; lastKnownFileType = file; name = "harp-21.m4a"; path = "Sounds/Harp/harp-21.m4a"; sourceTree = "<group>"; };
+		629D39C21AD9C29A00A8B3B7 /* harp-20.m4a */ = {isa = PBXFileReference; lastKnownFileType = file; name = "harp-20.m4a"; path = "Sounds/Harp/harp-20.m4a"; sourceTree = "<group>"; };
+		629D39C31AD9C29A00A8B3B7 /* harp-19.m4a */ = {isa = PBXFileReference; lastKnownFileType = file; name = "harp-19.m4a"; path = "Sounds/Harp/harp-19.m4a"; sourceTree = "<group>"; };
+		629D39C41AD9C29A00A8B3B7 /* harp-18.m4a */ = {isa = PBXFileReference; lastKnownFileType = file; name = "harp-18.m4a"; path = "Sounds/Harp/harp-18.m4a"; sourceTree = "<group>"; };
+		629D39C51AD9C29A00A8B3B7 /* harp-17.m4a */ = {isa = PBXFileReference; lastKnownFileType = file; name = "harp-17.m4a"; path = "Sounds/Harp/harp-17.m4a"; sourceTree = "<group>"; };
+		629D39C61AD9C29A00A8B3B7 /* harp-16.m4a */ = {isa = PBXFileReference; lastKnownFileType = file; name = "harp-16.m4a"; path = "Sounds/Harp/harp-16.m4a"; sourceTree = "<group>"; };
+		629D39C71AD9C29A00A8B3B7 /* harp-15.m4a */ = {isa = PBXFileReference; lastKnownFileType = file; name = "harp-15.m4a"; path = "Sounds/Harp/harp-15.m4a"; sourceTree = "<group>"; };
+		629D39C81AD9C29A00A8B3B7 /* harp-14.m4a */ = {isa = PBXFileReference; lastKnownFileType = file; name = "harp-14.m4a"; path = "Sounds/Harp/harp-14.m4a"; sourceTree = "<group>"; };
+		629D39C91AD9C29A00A8B3B7 /* harp-13.m4a */ = {isa = PBXFileReference; lastKnownFileType = file; name = "harp-13.m4a"; path = "Sounds/Harp/harp-13.m4a"; sourceTree = "<group>"; };
+		629D39CA1AD9C29A00A8B3B7 /* harp-12.m4a */ = {isa = PBXFileReference; lastKnownFileType = file; name = "harp-12.m4a"; path = "Sounds/Harp/harp-12.m4a"; sourceTree = "<group>"; };
+		629D39CB1AD9C29A00A8B3B7 /* harp-11.m4a */ = {isa = PBXFileReference; lastKnownFileType = file; name = "harp-11.m4a"; path = "Sounds/Harp/harp-11.m4a"; sourceTree = "<group>"; };
+		629D39CC1AD9C29A00A8B3B7 /* harp-10.m4a */ = {isa = PBXFileReference; lastKnownFileType = file; name = "harp-10.m4a"; path = "Sounds/Harp/harp-10.m4a"; sourceTree = "<group>"; };
+		629D3A261AD9C2B000A8B3B7 /* piano-97.m4a */ = {isa = PBXFileReference; lastKnownFileType = file; name = "piano-97.m4a"; path = "Sounds/Piano/piano-97.m4a"; sourceTree = "<group>"; };
+		629D3A271AD9C2B000A8B3B7 /* piano-96.m4a */ = {isa = PBXFileReference; lastKnownFileType = file; name = "piano-96.m4a"; path = "Sounds/Piano/piano-96.m4a"; sourceTree = "<group>"; };
+		629D3A281AD9C2B000A8B3B7 /* piano-11.m4a */ = {isa = PBXFileReference; lastKnownFileType = file; name = "piano-11.m4a"; path = "Sounds/Piano/piano-11.m4a"; sourceTree = "<group>"; };
+		629D3A291AD9C2B000A8B3B7 /* piano-10.m4a */ = {isa = PBXFileReference; lastKnownFileType = file; name = "piano-10.m4a"; path = "Sounds/Piano/piano-10.m4a"; sourceTree = "<group>"; };
 		629F42521AD046C600EFBABD /* GOEmitterRep.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GOEmitterRep.swift; sourceTree = "<group>"; };
 		62D2833E1AD17D3C00A583FA /* XFlatMirror.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = XFlatMirror.swift; path = Optics/XFlatMirror.swift; sourceTree = "<group>"; };
 		62D283421AD1852300A583FA /* bass-drum.m4a */ = {isa = PBXFileReference; lastKnownFileType = file; name = "bass-drum.m4a"; path = "Sounds/Percussion/bass-drum.m4a"; sourceTree = "<group>"; };
@@ -590,6 +776,102 @@
 			path = Model;
 			sourceTree = "<group>";
 		};
+		629D39731AD9C28200A8B3B7 /* Harp */ = {
+			isa = PBXGroup;
+			children = (
+				629D39741AD9C29900A8B3B7 /* harp-98.m4a */,
+				629D39751AD9C29900A8B3B7 /* harp-97.m4a */,
+				629D39761AD9C29900A8B3B7 /* harp-96.m4a */,
+				629D39771AD9C29900A8B3B7 /* harp-95.m4a */,
+				629D39781AD9C29900A8B3B7 /* harp-94.m4a */,
+				629D39791AD9C29900A8B3B7 /* harp-93.m4a */,
+				629D397A1AD9C29900A8B3B7 /* harp-92.m4a */,
+				629D397B1AD9C29900A8B3B7 /* harp-91.m4a */,
+				629D397C1AD9C29900A8B3B7 /* harp-90.m4a */,
+				629D397D1AD9C29900A8B3B7 /* harp-89.m4a */,
+				629D397E1AD9C29900A8B3B7 /* harp-88.m4a */,
+				629D397F1AD9C29900A8B3B7 /* harp-87.m4a */,
+				629D39801AD9C29900A8B3B7 /* harp-86.m4a */,
+				629D39811AD9C29900A8B3B7 /* harp-85.m4a */,
+				629D39821AD9C29900A8B3B7 /* harp-84.m4a */,
+				629D39831AD9C29900A8B3B7 /* harp-83.m4a */,
+				629D39841AD9C29900A8B3B7 /* harp-82.m4a */,
+				629D39851AD9C29900A8B3B7 /* harp-81.m4a */,
+				629D39861AD9C29900A8B3B7 /* harp-80.m4a */,
+				629D39871AD9C29900A8B3B7 /* harp-79.m4a */,
+				629D39881AD9C29900A8B3B7 /* harp-78.m4a */,
+				629D39891AD9C29900A8B3B7 /* harp-77.m4a */,
+				629D398A1AD9C29900A8B3B7 /* harp-76.m4a */,
+				629D398B1AD9C29900A8B3B7 /* harp-75.m4a */,
+				629D398C1AD9C29900A8B3B7 /* harp-74.m4a */,
+				629D398D1AD9C29900A8B3B7 /* harp-73.m4a */,
+				629D398E1AD9C29900A8B3B7 /* harp-72.m4a */,
+				629D398F1AD9C29900A8B3B7 /* harp-71.m4a */,
+				629D39901AD9C29900A8B3B7 /* harp-70.m4a */,
+				629D39911AD9C29900A8B3B7 /* harp-69.m4a */,
+				629D39921AD9C29900A8B3B7 /* harp-68.m4a */,
+				629D39931AD9C29900A8B3B7 /* harp-67.m4a */,
+				629D39941AD9C29900A8B3B7 /* harp-66.m4a */,
+				629D39951AD9C29900A8B3B7 /* harp-65.m4a */,
+				629D39961AD9C29900A8B3B7 /* harp-64.m4a */,
+				629D39971AD9C29900A8B3B7 /* harp-63.m4a */,
+				629D39981AD9C29900A8B3B7 /* harp-62.m4a */,
+				629D39991AD9C29900A8B3B7 /* harp-61.m4a */,
+				629D399A1AD9C29900A8B3B7 /* harp-60.m4a */,
+				629D399B1AD9C29900A8B3B7 /* harp-59.m4a */,
+				629D399C1AD9C29900A8B3B7 /* harp-58.m4a */,
+				629D399D1AD9C29900A8B3B7 /* harp-57.m4a */,
+				629D399E1AD9C29900A8B3B7 /* harp-56.m4a */,
+				629D399F1AD9C29900A8B3B7 /* harp-55.m4a */,
+				629D39A01AD9C29900A8B3B7 /* harp-54.m4a */,
+				629D39A11AD9C29900A8B3B7 /* harp-53.m4a */,
+				629D39A21AD9C29900A8B3B7 /* harp-52.m4a */,
+				629D39A31AD9C29900A8B3B7 /* harp-51.m4a */,
+				629D39A41AD9C29900A8B3B7 /* harp-50.m4a */,
+				629D39A51AD9C29900A8B3B7 /* harp-49.m4a */,
+				629D39A61AD9C29900A8B3B7 /* harp-48.m4a */,
+				629D39A71AD9C29900A8B3B7 /* harp-47.m4a */,
+				629D39A81AD9C29900A8B3B7 /* harp-46.m4a */,
+				629D39A91AD9C29900A8B3B7 /* harp-45.m4a */,
+				629D39AA1AD9C29900A8B3B7 /* harp-44.m4a */,
+				629D39AB1AD9C29900A8B3B7 /* harp-43.m4a */,
+				629D39AC1AD9C29900A8B3B7 /* harp-42.m4a */,
+				629D39AD1AD9C29900A8B3B7 /* harp-41.m4a */,
+				629D39AE1AD9C29900A8B3B7 /* harp-40.m4a */,
+				629D39AF1AD9C29900A8B3B7 /* harp-39.m4a */,
+				629D39B01AD9C29900A8B3B7 /* harp-38.m4a */,
+				629D39B11AD9C29900A8B3B7 /* harp-37.m4a */,
+				629D39B21AD9C29900A8B3B7 /* harp-36.m4a */,
+				629D39B31AD9C29900A8B3B7 /* harp-35.m4a */,
+				629D39B41AD9C29900A8B3B7 /* harp-34.m4a */,
+				629D39B51AD9C29900A8B3B7 /* harp-33.m4a */,
+				629D39B61AD9C29900A8B3B7 /* harp-32.m4a */,
+				629D39B71AD9C29900A8B3B7 /* harp-31.m4a */,
+				629D39B81AD9C29900A8B3B7 /* harp-30.m4a */,
+				629D39B91AD9C29900A8B3B7 /* harp-29.m4a */,
+				629D39BA1AD9C29900A8B3B7 /* harp-28.m4a */,
+				629D39BB1AD9C29900A8B3B7 /* harp-27.m4a */,
+				629D39BC1AD9C29900A8B3B7 /* harp-26.m4a */,
+				629D39BD1AD9C29900A8B3B7 /* harp-25.m4a */,
+				629D39BE1AD9C29900A8B3B7 /* harp-24.m4a */,
+				629D39BF1AD9C29900A8B3B7 /* harp-23.m4a */,
+				629D39C01AD9C29900A8B3B7 /* harp-22.m4a */,
+				629D39C11AD9C29900A8B3B7 /* harp-21.m4a */,
+				629D39C21AD9C29A00A8B3B7 /* harp-20.m4a */,
+				629D39C31AD9C29A00A8B3B7 /* harp-19.m4a */,
+				629D39C41AD9C29A00A8B3B7 /* harp-18.m4a */,
+				629D39C51AD9C29A00A8B3B7 /* harp-17.m4a */,
+				629D39C61AD9C29A00A8B3B7 /* harp-16.m4a */,
+				629D39C71AD9C29A00A8B3B7 /* harp-15.m4a */,
+				629D39C81AD9C29A00A8B3B7 /* harp-14.m4a */,
+				629D39C91AD9C29A00A8B3B7 /* harp-13.m4a */,
+				629D39CA1AD9C29A00A8B3B7 /* harp-12.m4a */,
+				629D39CB1AD9C29A00A8B3B7 /* harp-11.m4a */,
+				629D39CC1AD9C29A00A8B3B7 /* harp-10.m4a */,
+			);
+			name = Harp;
+			sourceTree = "<group>";
+		};
 		62D2833D1AD17D0300A583FA /* Optics */ = {
 			isa = PBXGroup;
 			children = (
@@ -607,6 +889,10 @@
 		62D283481AD1852900A583FA /* Piano */ = {
 			isa = PBXGroup;
 			children = (
+				629D3A261AD9C2B000A8B3B7 /* piano-97.m4a */,
+				629D3A271AD9C2B000A8B3B7 /* piano-96.m4a */,
+				629D3A281AD9C2B000A8B3B7 /* piano-11.m4a */,
+				629D3A291AD9C2B000A8B3B7 /* piano-10.m4a */,
 				629D39591AD9847A00A8B3B7 /* piano-60.m4a */,
 				629D395A1AD9847A00A8B3B7 /* piano-61.m4a */,
 				629D395B1AD9847A00A8B3B7 /* piano-62.m4a */,
@@ -698,6 +984,7 @@
 		62E00C751AC466E800F10F10 /* Sound */ = {
 			isa = PBXGroup;
 			children = (
+				629D39731AD9C28200A8B3B7 /* Harp */,
 				62D283481AD1852900A583FA /* Piano */,
 				622556A21AC5345600DA47AF /* Percussion */,
 			);
@@ -825,41 +1112,73 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				629D3A231AD9C29A00A8B3B7 /* harp-12.m4a in Resources */,
+				629D3A1D1AD9C29A00A8B3B7 /* harp-18.m4a in Resources */,
+				629D3A031AD9C29A00A8B3B7 /* harp-44.m4a in Resources */,
+				629D39D11AD9C29A00A8B3B7 /* harp-94.m4a in Resources */,
 				629D39171AD9844300A8B3B7 /* piano-17.m4a in Resources */,
 				62D283471AD1852300A583FA /* snare-drum.m4a in Resources */,
 				629D39581AD9844300A8B3B7 /* piano-95.m4a in Resources */,
+				629D3A071AD9C29A00A8B3B7 /* harp-40.m4a in Resources */,
 				6227FB7C1AAE285C007F49EA /* LaunchScreen.xib in Resources */,
+				629D3A251AD9C29A00A8B3B7 /* harp-10.m4a in Resources */,
+				629D3A2C1AD9C2B000A8B3B7 /* piano-11.m4a in Resources */,
 				629D393E1AD9844300A8B3B7 /* piano-56.m4a in Resources */,
+				629D39EB1AD9C29A00A8B3B7 /* harp-68.m4a in Resources */,
 				629D394C1AD9844300A8B3B7 /* piano-83.m4a in Resources */,
 				629D393F1AD9844300A8B3B7 /* piano-57.m4a in Resources */,
+				629D39CE1AD9C29A00A8B3B7 /* harp-97.m4a in Resources */,
 				629D39351AD9844300A8B3B7 /* piano-47.m4a in Resources */,
 				629D39231AD9844300A8B3B7 /* piano-29.m4a in Resources */,
+				629D39FF1AD9C29A00A8B3B7 /* harp-48.m4a in Resources */,
 				629D39371AD9844300A8B3B7 /* piano-49.m4a in Resources */,
 				629D39461AD9844300A8B3B7 /* piano-77.m4a in Resources */,
+				629D3A0D1AD9C29A00A8B3B7 /* harp-34.m4a in Resources */,
 				629D39251AD9844300A8B3B7 /* piano-31.m4a in Resources */,
 				629D39301AD9844300A8B3B7 /* piano-42.m4a in Resources */,
 				629D391C1AD9844300A8B3B7 /* piano-22.m4a in Resources */,
+				629D3A2A1AD9C2B000A8B3B7 /* piano-97.m4a in Resources */,
 				629D39431AD9844300A8B3B7 /* piano-74.m4a in Resources */,
+				629D3A221AD9C29A00A8B3B7 /* harp-13.m4a in Resources */,
+				629D39E61AD9C29A00A8B3B7 /* harp-73.m4a in Resources */,
 				629D391B1AD9844300A8B3B7 /* piano-21.m4a in Resources */,
+				629D3A171AD9C29A00A8B3B7 /* harp-24.m4a in Resources */,
 				629D396B1AD9847A00A8B3B7 /* piano-65.m4a in Resources */,
 				62D283461AD1852300A583FA /* cymbal.m4a in Resources */,
 				629D39331AD9844300A8B3B7 /* piano-45.m4a in Resources */,
+				629D3A101AD9C29A00A8B3B7 /* harp-31.m4a in Resources */,
+				629D39DF1AD9C29A00A8B3B7 /* harp-80.m4a in Resources */,
 				629D39551AD9844300A8B3B7 /* piano-92.m4a in Resources */,
 				629D39181AD9844300A8B3B7 /* piano-18.m4a in Resources */,
+				629D3A061AD9C29A00A8B3B7 /* harp-41.m4a in Resources */,
+				629D3A0B1AD9C29A00A8B3B7 /* harp-36.m4a in Resources */,
 				629D39341AD9844300A8B3B7 /* piano-46.m4a in Resources */,
+				629D39F61AD9C29A00A8B3B7 /* harp-57.m4a in Resources */,
+				629D39FD1AD9C29A00A8B3B7 /* harp-50.m4a in Resources */,
+				629D39DE1AD9C29A00A8B3B7 /* harp-81.m4a in Resources */,
+				629D39DA1AD9C29A00A8B3B7 /* harp-85.m4a in Resources */,
 				629D393D1AD9844300A8B3B7 /* piano-55.m4a in Resources */,
 				629D39701AD9847A00A8B3B7 /* piano-70.m4a in Resources */,
+				629D39E01AD9C29A00A8B3B7 /* harp-79.m4a in Resources */,
+				629D39F91AD9C29A00A8B3B7 /* harp-54.m4a in Resources */,
+				629D3A141AD9C29A00A8B3B7 /* harp-27.m4a in Resources */,
+				629D39E11AD9C29A00A8B3B7 /* harp-78.m4a in Resources */,
+				629D3A011AD9C29A00A8B3B7 /* harp-46.m4a in Resources */,
+				629D39FB1AD9C29A00A8B3B7 /* harp-52.m4a in Resources */,
 				629D39441AD9844300A8B3B7 /* piano-75.m4a in Resources */,
 				629D39161AD9844300A8B3B7 /* piano-16.m4a in Resources */,
 				629D39681AD9847A00A8B3B7 /* piano-62.m4a in Resources */,
+				629D39FE1AD9C29A00A8B3B7 /* harp-49.m4a in Resources */,
 				629D392B1AD9844300A8B3B7 /* piano-37.m4a in Resources */,
 				629D39561AD9844300A8B3B7 /* piano-93.m4a in Resources */,
 				629D39451AD9844300A8B3B7 /* piano-76.m4a in Resources */,
+				629D3A191AD9C29A00A8B3B7 /* harp-22.m4a in Resources */,
 				629D39511AD9844300A8B3B7 /* piano-88.m4a in Resources */,
 				629D39421AD9844300A8B3B7 /* piano-73.m4a in Resources */,
 				629D394A1AD9844300A8B3B7 /* piano-81.m4a in Resources */,
 				629D393C1AD9844300A8B3B7 /* piano-54.m4a in Resources */,
 				629D39191AD9844300A8B3B7 /* piano-19.m4a in Resources */,
+				629D39E81AD9C29A00A8B3B7 /* harp-71.m4a in Resources */,
 				6227FB791AAE285C007F49EA /* Images.xcassets in Resources */,
 				629D39541AD9844300A8B3B7 /* piano-91.m4a in Resources */,
 				629D39151AD9844300A8B3B7 /* piano-15.m4a in Resources */,
@@ -867,53 +1186,114 @@
 				629D39481AD9844300A8B3B7 /* piano-79.m4a in Resources */,
 				629D39531AD9844300A8B3B7 /* piano-90.m4a in Resources */,
 				629D396E1AD9847A00A8B3B7 /* piano-68.m4a in Resources */,
+				629D39EC1AD9C29A00A8B3B7 /* harp-67.m4a in Resources */,
 				629D39571AD9844300A8B3B7 /* piano-94.m4a in Resources */,
+				629D39EE1AD9C29A00A8B3B7 /* harp-65.m4a in Resources */,
 				629D39391AD9844300A8B3B7 /* piano-51.m4a in Resources */,
 				629D391A1AD9844300A8B3B7 /* piano-20.m4a in Resources */,
+				629D39F31AD9C29A00A8B3B7 /* harp-60.m4a in Resources */,
+				629D3A0C1AD9C29A00A8B3B7 /* harp-35.m4a in Resources */,
+				629D39F11AD9C29A00A8B3B7 /* harp-62.m4a in Resources */,
+				629D3A1B1AD9C29A00A8B3B7 /* harp-20.m4a in Resources */,
+				629D3A161AD9C29A00A8B3B7 /* harp-25.m4a in Resources */,
 				629D39261AD9844300A8B3B7 /* piano-32.m4a in Resources */,
 				629D39201AD9844300A8B3B7 /* piano-26.m4a in Resources */,
+				629D39D41AD9C29A00A8B3B7 /* harp-91.m4a in Resources */,
 				629D393B1AD9844300A8B3B7 /* piano-53.m4a in Resources */,
+				629D3A181AD9C29A00A8B3B7 /* harp-23.m4a in Resources */,
+				629D39F41AD9C29A00A8B3B7 /* harp-59.m4a in Resources */,
 				629D39131AD9844300A8B3B7 /* piano-13.m4a in Resources */,
+				629D39E41AD9C29A00A8B3B7 /* harp-75.m4a in Resources */,
+				629D39D61AD9C29A00A8B3B7 /* harp-89.m4a in Resources */,
+				629D3A051AD9C29A00A8B3B7 /* harp-42.m4a in Resources */,
 				629D39381AD9844300A8B3B7 /* piano-50.m4a in Resources */,
 				629D39281AD9844300A8B3B7 /* piano-34.m4a in Resources */,
+				629D39F01AD9C29A00A8B3B7 /* harp-63.m4a in Resources */,
 				629D39361AD9844300A8B3B7 /* piano-48.m4a in Resources */,
+				629D39E71AD9C29A00A8B3B7 /* harp-72.m4a in Resources */,
+				629D39DB1AD9C29A00A8B3B7 /* harp-84.m4a in Resources */,
+				629D39EA1AD9C29A00A8B3B7 /* harp-69.m4a in Resources */,
 				629D392D1AD9844300A8B3B7 /* piano-39.m4a in Resources */,
 				629D39491AD9844300A8B3B7 /* piano-80.m4a in Resources */,
+				629D3A081AD9C29A00A8B3B7 /* harp-39.m4a in Resources */,
+				629D3A201AD9C29A00A8B3B7 /* harp-15.m4a in Resources */,
 				629D394B1AD9844300A8B3B7 /* piano-82.m4a in Resources */,
+				629D39E21AD9C29A00A8B3B7 /* harp-77.m4a in Resources */,
+				629D3A121AD9C29A00A8B3B7 /* harp-29.m4a in Resources */,
 				629D39471AD9844300A8B3B7 /* piano-78.m4a in Resources */,
+				629D39D01AD9C29A00A8B3B7 /* harp-95.m4a in Resources */,
+				629D39D71AD9C29A00A8B3B7 /* harp-88.m4a in Resources */,
+				629D3A211AD9C29A00A8B3B7 /* harp-14.m4a in Resources */,
+				629D3A131AD9C29A00A8B3B7 /* harp-28.m4a in Resources */,
 				629D396D1AD9847A00A8B3B7 /* piano-67.m4a in Resources */,
 				629D39271AD9844300A8B3B7 /* piano-33.m4a in Resources */,
 				629D39671AD9847A00A8B3B7 /* piano-61.m4a in Resources */,
+				629D3A1F1AD9C29A00A8B3B7 /* harp-16.m4a in Resources */,
+				629D39CF1AD9C29A00A8B3B7 /* harp-96.m4a in Resources */,
+				629D39D21AD9C29A00A8B3B7 /* harp-93.m4a in Resources */,
 				629D392A1AD9844300A8B3B7 /* piano-36.m4a in Resources */,
 				6227FB771AAE285C007F49EA /* Main.storyboard in Resources */,
 				629D392E1AD9844300A8B3B7 /* piano-40.m4a in Resources */,
+				629D3A241AD9C29A00A8B3B7 /* harp-11.m4a in Resources */,
+				629D3A2D1AD9C2B000A8B3B7 /* piano-10.m4a in Resources */,
 				629D39521AD9844300A8B3B7 /* piano-89.m4a in Resources */,
+				629D39E51AD9C29A00A8B3B7 /* harp-74.m4a in Resources */,
+				629D39CD1AD9C29A00A8B3B7 /* harp-98.m4a in Resources */,
 				629D39711AD9847A00A8B3B7 /* piano-71.m4a in Resources */,
+				629D39DD1AD9C29A00A8B3B7 /* harp-82.m4a in Resources */,
+				629D39F71AD9C29A00A8B3B7 /* harp-56.m4a in Resources */,
+				629D3A111AD9C29A00A8B3B7 /* harp-30.m4a in Resources */,
 				629D39141AD9844300A8B3B7 /* piano-14.m4a in Resources */,
+				629D3A001AD9C29A00A8B3B7 /* harp-47.m4a in Resources */,
 				629D396F1AD9847A00A8B3B7 /* piano-69.m4a in Resources */,
 				629D39221AD9844300A8B3B7 /* piano-28.m4a in Resources */,
+				629D3A0F1AD9C29A00A8B3B7 /* harp-32.m4a in Resources */,
 				629D393A1AD9844300A8B3B7 /* piano-52.m4a in Resources */,
+				629D39D91AD9C29A00A8B3B7 /* harp-86.m4a in Resources */,
+				629D3A1A1AD9C29A00A8B3B7 /* harp-21.m4a in Resources */,
+				629D3A021AD9C29A00A8B3B7 /* harp-45.m4a in Resources */,
+				629D39D51AD9C29A00A8B3B7 /* harp-90.m4a in Resources */,
+				629D39EF1AD9C29A00A8B3B7 /* harp-64.m4a in Resources */,
+				629D39FC1AD9C29A00A8B3B7 /* harp-51.m4a in Resources */,
+				629D39F81AD9C29A00A8B3B7 /* harp-55.m4a in Resources */,
 				629D391D1AD9844300A8B3B7 /* piano-23.m4a in Resources */,
+				629D3A1E1AD9C29A00A8B3B7 /* harp-17.m4a in Resources */,
+				629D3A151AD9C29A00A8B3B7 /* harp-26.m4a in Resources */,
 				629D39721AD9847A00A8B3B7 /* piano-72.m4a in Resources */,
 				629D394E1AD9844300A8B3B7 /* piano-85.m4a in Resources */,
+				629D39DC1AD9C29A00A8B3B7 /* harp-83.m4a in Resources */,
+				629D3A041AD9C29A00A8B3B7 /* harp-43.m4a in Resources */,
+				629D39ED1AD9C29A00A8B3B7 /* harp-66.m4a in Resources */,
 				629D396A1AD9847A00A8B3B7 /* piano-64.m4a in Resources */,
+				629D3A1C1AD9C29A00A8B3B7 /* harp-19.m4a in Resources */,
 				629D394F1AD9844300A8B3B7 /* piano-86.m4a in Resources */,
 				629D39411AD9844300A8B3B7 /* piano-59.m4a in Resources */,
+				629D39D81AD9C29A00A8B3B7 /* harp-87.m4a in Resources */,
+				629D3A2B1AD9C2B000A8B3B7 /* piano-96.m4a in Resources */,
 				629D39401AD9844300A8B3B7 /* piano-58.m4a in Resources */,
 				629D39291AD9844300A8B3B7 /* piano-35.m4a in Resources */,
 				629D39321AD9844300A8B3B7 /* piano-44.m4a in Resources */,
 				629D39691AD9847A00A8B3B7 /* piano-63.m4a in Resources */,
 				629D396C1AD9847A00A8B3B7 /* piano-66.m4a in Resources */,
+				629D3A0A1AD9C29A00A8B3B7 /* harp-37.m4a in Resources */,
+				629D39E31AD9C29A00A8B3B7 /* harp-76.m4a in Resources */,
 				62D283451AD1852300A583FA /* bass-drum.m4a in Resources */,
 				629D39121AD9844300A8B3B7 /* piano-12.m4a in Resources */,
 				629D391E1AD9844300A8B3B7 /* piano-24.m4a in Resources */,
+				629D3A0E1AD9C29A00A8B3B7 /* harp-33.m4a in Resources */,
+				629D39FA1AD9C29A00A8B3B7 /* harp-53.m4a in Resources */,
+				629D39D31AD9C29A00A8B3B7 /* harp-92.m4a in Resources */,
 				629D394D1AD9844300A8B3B7 /* piano-84.m4a in Resources */,
 				629D39501AD9844300A8B3B7 /* piano-87.m4a in Resources */,
 				629D39661AD9847A00A8B3B7 /* piano-60.m4a in Resources */,
 				629D392C1AD9844300A8B3B7 /* piano-38.m4a in Resources */,
+				629D39F21AD9C29A00A8B3B7 /* harp-61.m4a in Resources */,
+				629D39E91AD9C29A00A8B3B7 /* harp-70.m4a in Resources */,
+				629D3A091AD9C29A00A8B3B7 /* harp-38.m4a in Resources */,
 				629D392F1AD9844300A8B3B7 /* piano-41.m4a in Resources */,
 				629D391F1AD9844300A8B3B7 /* piano-25.m4a in Resources */,
 				629D39241AD9844300A8B3B7 /* piano-30.m4a in Resources */,
+				629D39F51AD9C29A00A8B3B7 /* harp-58.m4a in Resources */,
 				629D39311AD9844300A8B3B7 /* piano-43.m4a in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

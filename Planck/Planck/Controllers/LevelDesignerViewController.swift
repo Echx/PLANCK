@@ -405,7 +405,7 @@ class LevelDesignerViewController: XViewController {
                     
                     let noteGroup: Int = self.groupPicker.selectedRowInComponent(0)
                     
-                    let xNote = XNote(noteName: xNoteName, noteGroup: noteGroup)
+                    let xNote = XNote(noteName: xNoteName, noteGroup: noteGroup, instrument: node.instrument)
                     node.planckNote = xNote
                 }
                 self.updatePickerInformation()

@@ -12,7 +12,7 @@ class XConcaveLens: XNode {
     init(concaveRep: GOConcaveLensRep) {
         super.init(physicsBody: concaveRep)
         self.strokeColor = DeviceColor.lens
-        self.normalNote = XNote(noteName: XNoteName.bassDrum, noteGroup: 0)
+        self.normalNote = XNote(noteName: XNoteName.bassDrum, noteGroup: nil, instrument: nil)
     }
 
     required convenience init(coder aDecoder: NSCoder) {

@@ -11,12 +11,14 @@ import Foundation
 
 class XNote: NSObject, NSCoding {
     var noteName: XNoteName
-    var noteGroup: Int
+    var noteGroup: Int?
+    var instrument: Int?
     var isPitchedNote: Bool
     
-    init(noteName: XNoteName, noteGroup: Int) {
+    init(noteName: XNoteName, noteGroup: Int?, instrument: Int?) {
         self.noteName = noteName
         self.noteGroup = noteGroup
+        self.instrument = instrument
         self.isPitchedNote = true
         if contains([XNoteName.cymbal, XNoteName.snareDrum, XNoteName.bassDrum], self.noteName) {
             self.isPitchedNote = false
@@ -210,10 +212,18 @@ class XNote: NSObject, NSCoding {
         
         let midiNote = self.getMIDINote()
         
-        if let path = NSBundle.mainBundle().pathForResource("piano-\(midiNote)", ofType: "m4a") {
-            return NSURL(fileURLWithPath: path)
-        } else {
-            return nil
+        if self.instrument == NodeDefaults.instrumentPiano {
+            if let path = NSBundle.mainBundle().pathForResource("piano-\(midiNote)", ofType: "m4a") {
+                return NSURL(fileURLWithPath: path)
+            } else {
+                return nil
+            }
+        } else if self.instrument == NodeDefaults.instrumentHarp {
+            if let path = NSBundle.mainBundle().pathForResource("harp-\(midiNote)", ofType: "m4a") {
+                return NSURL(fileURLWithPath: path)
+            } else {
+                return nil
+            }
         }
     }
 }
