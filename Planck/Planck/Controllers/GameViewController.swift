@@ -58,6 +58,8 @@ class GameViewController: XViewController {
             if self.isNodeFixed(node) {
                 println("node is fixed")
             } else {
+                self.shootSwitch.setOn(false, animated: true)
+                self.clearRay()
                 updateDirection(node)
             }
         }
