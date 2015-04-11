@@ -13,6 +13,7 @@ class LevelSelectViewController: XViewController, UICollectionViewDataSource, UI
     private let itemsInSection = 5
     private let sectionInsets = UIEdgeInsets(top: 0.0, left: 10.0, bottom: 15.0, right: 10.0)
     
+    @IBOutlet weak var collectionView: UICollectionView!
     var levelArray:[GameLevel] = [GameLevel]()
     
     class func getInstance() -> LevelSelectViewController {
@@ -24,7 +25,11 @@ class LevelSelectViewController: XViewController, UICollectionViewDataSource, UI
     
     override func viewDidLoad() {
         super.viewDidLoad()
+    }
+    
+    override func viewDidAppear(animated: Bool) {
         self.loadLevels()
+        self.collectionView.reloadData()
     }
     
     func numberOfSectionsInCollectionView(collectionView: UICollectionView) -> Int {
@@ -76,7 +81,6 @@ class LevelSelectViewController: XViewController, UICollectionViewDataSource, UI
     }
     
     private func loadLevels() {
-        println("Loading!")
         // find out the document path
         let path = NSSearchPathForDirectoriesInDomains(.DocumentDirectory,
             .UserDomainMask, true)[0] as NSString
@@ -85,6 +89,9 @@ class LevelSelectViewController: XViewController, UICollectionViewDataSource, UI
             error: nil)! as NSArray
         
         var levelFileLoader = StorageManager.defaultManager
+        
+        // clear the level cache
+        levelArray.removeAll(keepCapacity: true)
         // iterate each filename to add
         for filename in fileArray {
             if ((filename.pathExtension) != nil) {

@@ -519,6 +519,9 @@
                     </view>
                     <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
                     <size key="freeformSize" width="300" height="768"/>
+                    <connections>
+                        <outlet property="collectionView" destination="p2A-bJ-KhB" id="YBQ-LY-rbL"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="v15-4y-bMc" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
