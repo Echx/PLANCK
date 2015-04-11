@@ -210,7 +210,11 @@ class XNote: NSObject, NSCoding {
         
         let midiNote = self.getMIDINote()
         
-        return NSURL(fileURLWithPath: NSBundle.mainBundle().pathForResource("piano-\(midiNote)", ofType: "m4a")!)
+        if let path = NSBundle.mainBundle().pathForResource("piano-\(midiNote)", ofType: "m4a") {
+            return NSURL(fileURLWithPath: path)
+        } else {
+            return nil
+        }
     }
 }
 
