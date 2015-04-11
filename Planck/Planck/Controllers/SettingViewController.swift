@@ -8,7 +8,7 @@
 
 import UIKit
 
-class SettingViewController: XViewController {
+class SettingViewController: XViewController, UITableViewDataSource, UITableViewDelegate {
     
     class func getInstance() -> SettingViewController {
         let storyboard = UIStoryboard(name: "Main", bundle: nil)
