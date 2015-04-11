@@ -7,6 +7,10 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		261483C71AD9B42A001F4143 /* GameLevel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 261483C51AD9B42A001F4143 /* GameLevel.swift */; };
+		261483C81AD9B42E001F4143 /* GameLevel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 261483C51AD9B42A001F4143 /* GameLevel.swift */; };
+		261483CD1AD9B456001F4143 /* ParticleManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 261483CC1AD9B456001F4143 /* ParticleManager.swift */; };
+		261483CE1AD9B471001F4143 /* ParticleManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 261483CC1AD9B456001F4143 /* ParticleManager.swift */; };
 		263B09AB1ACEEDD800E7C99E /* GOArcSegment.swift in Sources */ = {isa = PBXBuildFile; fileRef = 263B09951ACEEDD800E7C99E /* GOArcSegment.swift */; };
 		263B09AC1ACEEDD800E7C99E /* GOCoordinate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 263B09961ACEEDD800E7C99E /* GOCoordinate.swift */; };
 		263B09AD1ACEEDD800E7C99E /* GOLine.swift in Sources */ = {isa = PBXBuildFile; fileRef = 263B09971ACEEDD800E7C99E /* GOLine.swift */; };
@@ -160,8 +164,6 @@
 		982495D81AD2ACC10039E75E /* DesignerLevelSelectViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 982495D71AD2ACC10039E75E /* DesignerLevelSelectViewController.swift */; };
 		9841A82E1AD987010095AEBB /* SettingViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9841A82D1AD987010095AEBB /* SettingViewCell.swift */; };
 		986E5DA31AC55604008EF3CE /* StorageManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 98D55F9D1ABF133000B3E86A /* StorageManager.swift */; };
-		98754ADC1AD0587F00817319 /* GameLevel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 98754ADB1AD0587F00817319 /* GameLevel.swift */; };
-		9885E76F1AD174500089325D /* GameLevel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 98754ADB1AD0587F00817319 /* GameLevel.swift */; };
 		988CF3481AD3C6580013D903 /* LevelSelectHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 988CF3471AD3C6580013D903 /* LevelSelectHeaderView.swift */; };
 		988CF34A1AD3C6C70013D903 /* LevelSelectCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 988CF3491AD3C6C70013D903 /* LevelSelectCollectionViewCell.swift */; };
 		98D55F9E1ABF133000B3E86A /* StorageManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 98D55F9D1ABF133000B3E86A /* StorageManager.swift */; };
@@ -196,6 +198,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		261483C51AD9B42A001F4143 /* GameLevel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GameLevel.swift; sourceTree = "<group>"; };
+		261483CC1AD9B456001F4143 /* ParticleManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ParticleManager.swift; sourceTree = "<group>"; };
 		262BE19F1ABE9A5D00ABE965 /* Planck-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Planck-Bridging-Header.h"; sourceTree = SOURCE_ROOT; };
 		263B09951ACEEDD800E7C99E /* GOArcSegment.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GOArcSegment.swift; sourceTree = "<group>"; };
 		263B09961ACEEDD800E7C99E /* GOCoordinate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GOCoordinate.swift; sourceTree = "<group>"; };
@@ -341,7 +345,6 @@
 		8FAA2537BA840D27B293A4BB /* Pods-Planck.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Planck.release.xcconfig"; path = "Pods/Target Support Files/Pods-Planck/Pods-Planck.release.xcconfig"; sourceTree = "<group>"; };
 		982495D71AD2ACC10039E75E /* DesignerLevelSelectViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DesignerLevelSelectViewController.swift; sourceTree = "<group>"; };
 		9841A82D1AD987010095AEBB /* SettingViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SettingViewCell.swift; path = Setting/SettingViewCell.swift; sourceTree = "<group>"; };
-		98754ADB1AD0587F00817319 /* GameLevel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GameLevel.swift; sourceTree = "<group>"; };
 		988CF3471AD3C6580013D903 /* LevelSelectHeaderView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LevelSelectHeaderView.swift; sourceTree = "<group>"; };
 		988CF3491AD3C6C70013D903 /* LevelSelectCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LevelSelectCollectionViewCell.swift; sourceTree = "<group>"; };
 		98D55F9D1ABF133000B3E86A /* StorageManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = StorageManager.swift; path = Storage/StorageManager.swift; sourceTree = "<group>"; };
@@ -368,6 +371,22 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		261483C41AD9B42A001F4143 /* Game Settings */ = {
+			isa = PBXGroup;
+			children = (
+				261483C51AD9B42A001F4143 /* GameLevel.swift */,
+			);
+			path = "Game Settings";
+			sourceTree = "<group>";
+		};
+		261483CB1AD9B456001F4143 /* Visual Effects */ = {
+			isa = PBXGroup;
+			children = (
+				261483CC1AD9B456001F4143 /* ParticleManager.swift */,
+			);
+			path = "Visual Effects";
+			sourceTree = "<group>";
+		};
 		262BE1A21ABE9A9000ABE965 /* Library */ = {
 			isa = PBXGroup;
 			children = (
@@ -531,10 +550,11 @@
 		6227FBF11AAE28E7007F49EA /* Models */ = {
 			isa = PBXGroup;
 			children = (
+				261483CB1AD9B456001F4143 /* Visual Effects */,
+				261483C41AD9B42A001F4143 /* Game Settings */,
 				62D2833D1AD17D0300A583FA /* Optics */,
 				98D55F9C1ABF126700B3E86A /* Storage */,
 				6227FC031AAE28E7007F49EA /* Utilities */,
-				98754ADB1AD0587F00817319 /* GameLevel.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -975,8 +995,10 @@
 				26DFCF9C1AD8467000C97C5B /* XEmitter.swift in Sources */,
 				62D2836D1AD1892400A583FA /* XConvexLens.swift in Sources */,
 				6227FB6E1AAE285C007F49EA /* AppDelegate.swift in Sources */,
+				261483C71AD9B42A001F4143 /* GameLevel.swift in Sources */,
 				263B09C81ACEEE1100E7C99E /* GOConstant.swift in Sources */,
 				9841A82E1AD987010095AEBB /* SettingViewCell.swift in Sources */,
+				261483CD1AD9B456001F4143 /* ParticleManager.swift in Sources */,
 				269D78401AD30ECF00279EF3 /* XViewController.swift in Sources */,
 				6227FC191AAE28E7007F49EA /* XColor.swift in Sources */,
 				263B09BA1ACEEDD800E7C99E /* GOFlatLensRep.swift in Sources */,
@@ -990,7 +1012,6 @@
 				263B09C91ACEEE1100E7C99E /* GOUtilities.swift in Sources */,
 				269D78421AD3128D00279EF3 /* GameViewController.swift in Sources */,
 				269192B11AD8120F002F8590 /* XFlatLens.swift in Sources */,
-				98754ADC1AD0587F00817319 /* GameLevel.swift in Sources */,
 				62D2836A1AD1890900A583FA /* XFlatWall.swift in Sources */,
 				263B09C71ACEEE1100E7C99E /* CGVector+GOUtilities.swift in Sources */,
 				988CF34A1AD3C6C70013D903 /* LevelSelectCollectionViewCell.swift in Sources */,
@@ -1017,10 +1038,10 @@
 				62988FF71AB2FA8800FD9AFF /* XConstant.swift in Sources */,
 				98F63A951AD165070096A32E /* GOConcaveLensRep.swift in Sources */,
 				98F63A961AD165070096A32E /* GOConvexLensRep.swift in Sources */,
+				261483C81AD9B42E001F4143 /* GameLevel.swift in Sources */,
 				62988FF61AB2FA8800FD9AFF /* XColor.swift in Sources */,
 				98F63A9F1AD1650F0096A32E /* GOCoordinate.swift in Sources */,
 				98F63A9E1AD1650F0096A32E /* GOArcSegment.swift in Sources */,
-				9885E76F1AD174500089325D /* GameLevel.swift in Sources */,
 				269192B51AD81A7D002F8590 /* XNode.swift in Sources */,
 				98F63AA21AD1650F0096A32E /* GORay.swift in Sources */,
 				98F63A9B1AD165070096A32E /* GOOpticRep.swift in Sources */,
@@ -1031,6 +1052,7 @@
 				98F63AA01AD1650F0096A32E /* GOLine.swift in Sources */,
 				98F63AA41AD1650F0096A32E /* GOStack.swift in Sources */,
 				263B09CB1ACEEF9600E7C99E /* CGPoint+GOUtilities.swift in Sources */,
+				261483CE1AD9B471001F4143 /* ParticleManager.swift in Sources */,
 				98F63A9C1AD165070096A32E /* GOEmitterRep.swift in Sources */,
 				62988FF81AB2FA8800FD9AFF /* XMedium.swift in Sources */,
 				62988FF91AB2FA8800FD9AFF /* XNote.swift in Sources */,
