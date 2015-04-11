@@ -75,7 +75,17 @@ class SettingViewController: XViewController, UITableViewDataSource, UITableView
         }
     }
     
-    func tableView(tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
+    func tableView(tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+        var header = UIView(frame: CGRectMake(0, 0, 300, 40))
+//        header.backgroundColor = UIColor(red: 67, green: 94, blue: 118, alpha: 1)
+        let textLabel = UILabel(frame: CGRectMake(5, 5, 300, 30))
+        textLabel.text = getSectionHeader(section)
+        textLabel.textColor = UIColor.whiteColor()
+        header.addSubview(textLabel)
+        return header
+    }
+    
+    private func getSectionHeader(section: Int) -> String? {
         if section == sectionIDForControl {
             return sectionTitleForControls
         } else if section == sectionIDForAudio {
@@ -92,8 +102,8 @@ class SettingViewController: XViewController, UITableViewDataSource, UITableView
     
     private func getStaticTogglableItems() -> [[String]] {
         var cellItems = [
-            ["background music"], // audio setting
-            ["free rotate"],      // control setting
+            ["free rotate"], // audio setting
+            ["background music"],      // control setting
             ["visual effects"]    // video setting
         ]
         return cellItems
