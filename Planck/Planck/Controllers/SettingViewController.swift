@@ -75,6 +75,10 @@ class SettingViewController: XViewController, UITableViewDataSource, UITableView
         }
     }
     
+    func tableView(tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
+        return 20.0
+    }
+    
     func tableView(tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
         var header = UIView(frame: CGRectMake(0, 0, 300, 40))
 //        header.backgroundColor = UIColor(red: 67, green: 94, blue: 118, alpha: 1)
