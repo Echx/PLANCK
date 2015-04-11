@@ -10,21 +10,8 @@ import UIKit
 
 class HomeViewController: XViewController {
     
-    // constants for emitter
-    private let emitterBirthRate:Float = 20
-    private let emitterLifetime:Float = 2
-    private let emitterX:CGFloat = 410
-    private let emitterY:CGFloat = 270
-    private let emitterHeight:CGFloat = 50.0
-    private let emitterXAcceleration:CGFloat = 1.0
-    private let emitterYAcceleration:CGFloat = 2.0
-    private let emitterSpeed:CGFloat = 20.0
-    private let emitterLocation:CGFloat = CGFloat(-M_PI)
-    private let emitterVelocityRange:CGFloat = 20.0
-    private let emitterEmissionRange:CGFloat = CGFloat(M_PI)
-    private let buttonOffset:CGFloat = 1024.0
+    private let emitterLayer = ParticleManager.getParticleLayer()
     
-    private let sparkFile:String = "FireSpark"
     
     class func getInstance() -> HomeViewController {
         let storyboard = UIStoryboard(name: "Main", bundle: nil)
@@ -35,45 +22,18 @@ class HomeViewController: XViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        animatedSlow()
-        // Do any additional setup after loading the view.
+        self.view.layer.addSublayer(self.emitterLayer)
+    }
+    
+    @IBAction func viewDidTapped(sender: UITapGestureRecognizer) {
+        var touchPoint = sender.locationInView(self.view)
+        println(touchPoint)
+        self.emitterLayer.emitterPosition = touchPoint
     }
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
-    }
-    
-    private func animatedSlow() {
-        let rect = CGRect(x: emitterX, y: emitterY,
-            width: 30, height: emitterHeight)
-        let emitter = CAEmitterLayer()
-        emitter.frame = rect
-        view.layer.addSublayer(emitter)
-        
-        emitter.emitterShape = kCAEmitterLayerSphere
-        emitter.emitterPosition = CGPoint(x: rect.width / 2, y: rect.height / 2)
-        emitter.emitterSize = rect.size
-        
-        let emitterCell = CAEmitterCell()
-        emitterCell.scale = 0.08
-        emitterCell.contents = UIImage(named: sparkFile)!.CGImage
-        emitter.emitterCells = [emitterCell]
-        // define params here
-        emitterCell.birthRate = emitterBirthRate
-        emitterCell.lifetime = emitterLifetime
-        
-        // define speed
-        emitterCell.yAcceleration = emitterYAcceleration
-        emitterCell.xAcceleration = emitterXAcceleration
-        emitterCell.velocity = emitterSpeed
-        emitterCell.emissionLongitude = emitterLocation
-        emitterCell.velocityRange = emitterVelocityRange
-        emitterCell.emissionRange = emitterEmissionRange
-        
-        emitterCell.alphaRange = 0.75
-        emitterCell.alphaSpeed = -0.15
-        emitterCell.lifetimeRange = 1.0
     }
 
 
