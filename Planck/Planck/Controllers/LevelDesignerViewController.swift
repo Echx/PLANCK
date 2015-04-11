@@ -156,6 +156,10 @@ class LevelDesignerViewController: XViewController {
         self.planckInputPanel.layer.cornerRadius = 20
     }
     
+    override func viewDidAppear(animated: Bool) {
+        self.grid.delegate = self
+    }
+    
     func updateControlPanelValidItems(input: [Bool]) {
         for var i = 0; i < input.count; i++ {
             self.paramenterFields[i].enabled = input[i]
