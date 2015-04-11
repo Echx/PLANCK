@@ -29,10 +29,12 @@ class XNode: NSObject, NSCoding {
             }
         }
     }
+    
     var strokeColor = UIColor.whiteColor()
     var normalNote: XNote?
     var planckNote: XNote?
     var isFixed = true
+    
     var id: String {
         get {
             return self.physicsBody.id
@@ -56,14 +58,12 @@ class XNode: NSObject, NSCoding {
     
     required convenience init(coder aDecoder: NSCoder) {
         let body = aDecoder.decodeObjectForKey("phyBody") as GOOpticRep
-        let isPlanck = aDecoder.decodeBoolForKey("isPlanck")
-        let shouldPlaySould = aDecoder.decodeBoolForKey("shouldPlaySound")
+        let isFixed = aDecoder.decodeBoolForKey("isFixed")
         self.init(physicsBody: body)
     }
     
     func encodeWithCoder(aCoder: NSCoder) {
         aCoder.encodeObject(self.physicsBody, forKey: "phyBody")
-        aCoder.encodeBool(self.isPlanck, forKey: "isPlanck")
-        aCoder.encodeBool(self.shouldPlaySound, forKey: "shouldPlaySound")
+        aCoder.encodeBool(self.isFixed, forKey: "isFixed")
     }
 }

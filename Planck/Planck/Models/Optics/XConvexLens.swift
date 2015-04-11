@@ -17,14 +17,13 @@ class XConvexLens: XNode {
 
     required convenience init(coder aDecoder: NSCoder) {
         let body = aDecoder.decodeObjectForKey("phyBody") as GOConvexLensRep
-        let isPlanck = aDecoder.decodeBoolForKey("isPlanck")
-        let shouldPlaySould = aDecoder.decodeBoolForKey("shouldPlaySound")
+        let isFixed = aDecoder.decodeBoolForKey("isFixed")
         self.init(convexLens: body)
+        self.isFixed = isFixed
     }
     
     override func encodeWithCoder(aCoder: NSCoder) {
         aCoder.encodeObject(self.physicsBody, forKey: "phyBody")
-        aCoder.encodeBool(self.isPlanck, forKey: "isPlanck")
-        aCoder.encodeBool(self.shouldPlaySound, forKey: "shouldPlaySound")
+        aCoder.encodeBool(self.isFixed, forKey: "isFixed")
     }
 }
