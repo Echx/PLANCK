@@ -416,6 +416,7 @@
                         <gestureRecognizers/>
                         <connections>
                             <outletCollection property="gestureRecognizers" destination="iVH-nq-Jaw" appends="YES" id="SPH-Re-wBr"/>
+                            <outletCollection property="gestureRecognizers" destination="7gW-1J-VlZ" appends="YES" id="jVs-Me-bqN"/>
                         </connections>
                     </view>
                     <nil key="simulatedStatusBarMetrics"/>
@@ -431,6 +432,11 @@
                         <action selector="viewDidTapped:" destination="Ivs-sv-Sw2" id="HDE-8v-eDm"/>
                     </connections>
                 </tapGestureRecognizer>
+                <panGestureRecognizer minimumNumberOfTouches="1" id="7gW-1J-VlZ">
+                    <connections>
+                        <action selector="viewDidPanned:" destination="Ivs-sv-Sw2" id="tiY-JA-7B6"/>
+                    </connections>
+                </panGestureRecognizer>
             </objects>
             <point key="canvasLocation" x="879" y="-481"/>
         </scene>

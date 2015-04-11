@@ -65,6 +65,45 @@ class GameViewController: XViewController {
         }
     }
     
+    private var firstLocation: CGPoint?
+    private var lastLocation: CGPoint?
+    private var firstViewCenter: CGPoint?
+    private var touchedNode: GOOpticRep?
+    @IBAction func viewDidPanned(sender: UIPanGestureRecognizer) {
+        let location = sender.locationInView(self.view)
+        if sender.state == UIGestureRecognizerState.Began || touchedNode == nil {
+            firstLocation = location
+            lastLocation = location
+            touchedNode = self.grid.getInstrumentAtPoint(location)
+            if let node = touchedNode {
+                if !self.isNodeFixed(node) {
+                    firstViewCenter = self.deviceViews[node.id]!.center
+                    self.shootSwitch.setOn(false, animated: true)
+                    self.clearRay()
+                } else {
+                    touchedNode = nil
+                }
+            }
+        }
+        
+        if let node = touchedNode {
+            let view = self.deviceViews[node.id]!
+            view.center = CGPointMake(view.center.x + location.x - lastLocation!.x, view.center.y + location.y - lastLocation!.y)
+            lastLocation = location
+            if sender.state == UIGestureRecognizerState.Ended {
+                
+                let offset = CGPointMake(location.x - firstLocation!.x, location.y - firstLocation!.y)
+                
+                self.moveNode(node, from: firstViewCenter!, offset: offset)
+                
+                lastLocation = nil
+                firstLocation = nil
+                firstViewCenter = nil
+                touchedNode = nil
+            }
+        }
+    }
+
     
     private func updateDirection(node: GOOpticRep) {
         let newDirectionIndex = Int(round(node.direction.angleFromXPlus / self.grid.unitDegree)) + 1
