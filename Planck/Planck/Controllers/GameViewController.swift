@@ -58,10 +58,33 @@ class GameViewController: XViewController {
             if self.isNodeFixed(node) {
                 println("node is fixed")
             } else {
-                println("node is free")
+                updateDirection(node)
             }
         }
     }
+    
+    
+    private func updateDirection(node: GOOpticRep) {
+        let newDirectionIndex = Int(round(node.direction.angleFromXPlus / self.grid.unitDegree)) + 1
+        let originalDirection = node.direction
+        let effectDirection = CGVector.vectorFromXPlusRadius(CGFloat(newDirectionIndex) * self.grid.unitDegree)
+        self.updateDirection(node, startVector: originalDirection, currentVector: effectDirection)
+    }
+    
+    private func updateDirection(node: GOOpticRep, startVector: CGVector, currentVector: CGVector) {
+        var angle = CGVector.angleFrom(startVector, to: currentVector)
+        let nodeAngle = node.direction.angleFromXPlus
+        let effectAngle = angle + nodeAngle
+        let count = round(effectAngle / self.grid.unitDegree)
+        let finalAngle = self.grid.unitDegree * count
+        angle = finalAngle - nodeAngle
+        node.setDirection(CGVector.vectorFromXPlusRadius(finalAngle))
+        if let view = self.deviceViews[node.id] {
+            var layerTransform = CATransform3DRotate(view.layer.transform, angle, 0, 0, 1)
+            view.layer.transform = layerTransform
+        }
+    }
+    
     
     private func isNodeFixed(node: GOOpticRep) -> Bool {
         if let xNode = self.xNodes[node.id] {
