@@ -16,6 +16,8 @@ class GameViewController: XViewController {
     private var rayLayers = [String: [CAShapeLayer]]()
     private var rays = [String: [(CGPoint, GOSegment?)]]()
     private var audioPlayerList = [AVAudioPlayer]()
+    private var emitterLayers = [String: [CAEmitterLayer]]()
+    private var emitterLayer = ParticleManager.getParticleLayer()
     
     private var grid: GOGrid {
         get {
@@ -105,6 +107,10 @@ class GameViewController: XViewController {
     }
 
     
+    override func animationDidStop(anim: CAAnimation!, finished flag: Bool) {
+        self.emitterLayer.emitterPosition = CGPointMake(-512, -384)
+    }
+    
     private func updateDirection(node: GOOpticRep) {
         let newDirectionIndex = Int(round(node.direction.angleFromXPlus / self.grid.unitDegree)) + 1
         let originalDirection = node.direction
@@ -154,7 +160,7 @@ class GameViewController: XViewController {
         var newTag = String.generateRandomString(20)
         self.rays[newTag] = [(CGPoint, GOSegment?)]()
         self.rayLayers[newTag] = [CAShapeLayer]()
-        
+        self.view.layer.addSublayer(self.emitterLayer)
         self.grid.startCriticalPointsCalculationWithRay(ray, withTag: newTag)
     }
     
@@ -197,10 +203,24 @@ class GameViewController: XViewController {
                 
                 let delay = distance / Constant.lightSpeedBase
                 
+                //emitter
+                self.emitterLayer.emitterPosition = prevPoint.0
+                var emitterPath = CGPathCreateCopy(path.CGPath)
+                var animation = CABasicAnimation(keyPath: "emitterPosition")
+                animation.fromValue = NSValue(CGPoint: prevPoint.0)
+                animation.toValue = NSValue(CGPoint: currentPoint.0)
+                animation.duration = CFTimeInterval(delay)
+                animation.repeatCount = 1
+                animation.removedOnCompletion = true
+                animation.delegate = self
+                self.emitterLayer.addAnimation(animation, forKey: "test")
+                
+                //end of emitter
+                
                 let pathAnimation = CABasicAnimation(keyPath: "strokeEnd")
-                pathAnimation.fromValue = 0.0;
-                pathAnimation.toValue = 1.0;
-                pathAnimation.duration = CFTimeInterval(delay);
+                pathAnimation.fromValue = 0.0
+                pathAnimation.toValue = 1.0
+                pathAnimation.duration = CFTimeInterval(delay)
                 pathAnimation.repeatCount = 1.0
                 pathAnimation.fillMode = kCAFillModeForwards
                 pathAnimation.timingFunction = CAMediaTimingFunction(name: kCAMediaTimingFunctionLinear)
