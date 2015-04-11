@@ -370,6 +370,7 @@ class LevelDesignerViewController: XViewController {
             self.updateDirectionFromInput()
             self.updateRefractionIndexFromInput()
             self.updateCurvatureRadiusFromInput()
+            self.updateIsFixed()
             if !self.refreshSelectedNode() {
                 self.removeNode(node)
                 if let node = self.backupNode {
