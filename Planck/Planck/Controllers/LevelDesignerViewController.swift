@@ -42,7 +42,6 @@ class LevelDesignerViewController: XViewController {
     @IBOutlet var groupPicker: UIPickerView!
     
     @IBOutlet var isFixedSwitch: UISwitch!
-    @IBOutlet var isPlanckSwitch: UISwitch!
     @IBOutlet weak var loadButton: UIBarButtonItem!
     
     var paramenterFields: [UITextField] {
@@ -254,10 +253,6 @@ class LevelDesignerViewController: XViewController {
             let convexLens = XConvexLens(convexLens: convexLensPhysicsBody)
             self.xNodes[convexLens.id] = convexLens
             self.addNode(convexLensPhysicsBody, strokeColor: DeviceColor.lens)
-            
-//        case DeviceSegmentIndex.planck:
-//            let planck = XPlanck(center: coordinate, thickness: 6, length: 6, direction: CGVectorMake(0, 1), id: String.generateRandomString(self.identifierLength))
-//            self.addNode(planck, strokeColor: DeviceColor.planck)
             
         default:
             fatalError("SegmentNotRecognized")
@@ -479,6 +474,13 @@ class LevelDesignerViewController: XViewController {
         return false
     }
     
+    private func updateIsFixed() {
+        if let node = self.selectedNode {
+            let xNode = self.xNodes[node.id]!
+            xNode.isFixed = self.isFixedSwitch.on
+        }
+    }
+    
     private func updateCurvatureRadiusFromInput() {
         if let node = self.selectedNode {
             if let lens = node as? GOConcaveLensRep {
@@ -646,6 +648,7 @@ class LevelDesignerViewController: XViewController {
     
     private func updateTextFieldInformation() {
         if let node = self.selectedNode {
+            self.isFixedSwitch.on = self.xNodes[node.id]!.isFixed
             self.textFieldCenterX.text = "\(node.center.x)"
             self.textFieldCenterY.text = "\(node.center.y)"
             self.textFieldDirection.text = "\(Int(round(node.direction.angleFromXPlus / self.grid.unitDegree)))"

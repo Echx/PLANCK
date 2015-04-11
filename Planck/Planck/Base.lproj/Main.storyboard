@@ -235,19 +235,10 @@
                                                 <textInputTraits key="textInputTraits"/>
                                             </textField>
                                             <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="KBP-8Y-Spf">
-                                                <rect key="frame" x="787" y="125" width="51" height="31"/>
-                                            </switch>
-                                            <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="eeR-1x-Lqz">
-                                                <rect key="frame" x="880" y="125" width="51" height="31"/>
+                                                <rect key="frame" x="832" y="125" width="51" height="31"/>
                                             </switch>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Fixed" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="iRK-Td-zBw">
-                                                <rect key="frame" x="790" y="95" width="42" height="21"/>
-                                                <fontDescription key="fontDescription" name="GillSans" family="Gill Sans" pointSize="12"/>
-                                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
-                                                <nil key="highlightedColor"/>
-                                            </label>
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Planck" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="zeG-c6-vYI">
-                                                <rect key="frame" x="883" y="96" width="42" height="21"/>
+                                                <rect key="frame" x="835" y="95" width="42" height="21"/>
                                                 <fontDescription key="fontDescription" name="GillSans" family="Gill Sans" pointSize="12"/>
                                                 <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                                 <nil key="highlightedColor"/>
@@ -294,7 +285,6 @@
                         <outlet property="inputPanel" destination="4BT-L2-RuS" id="0Xr-mn-ErZ"/>
                         <outlet property="instrumentPicker" destination="ZhU-C2-ov8" id="k1k-0p-Yne"/>
                         <outlet property="isFixedSwitch" destination="KBP-8Y-Spf" id="YEx-SZ-UJt"/>
-                        <outlet property="isPlanckSwitch" destination="eeR-1x-Lqz" id="FVh-y1-Crt"/>
                         <outlet property="labelCenterX" destination="Ckj-1b-o6D" id="UxH-4g-DhD"/>
                         <outlet property="labelCurvatureRadius" destination="AEx-O5-ASB" id="dLS-Uw-SWT"/>
                         <outlet property="labelDirection" destination="521-St-pgy" id="p2M-Lc-luo"/>
