@@ -191,7 +191,7 @@ class LevelDesignerViewController: XViewController {
     }
     
     @IBAction func play() {
-        let currentGameLevel = GameLevel(levelName: "Current Game Level", levelIndex: 0, grid: self.grid, nodes: self.xNodes)
+        let currentGameLevel = GameLevel(levelName: "Current Game Level", levelIndex: 0, grid: self.grid, nodes: self.xNodes, targetMusic: self.music)
         let gameViewController = GameViewController.getInstance(currentGameLevel)
         self.presentViewController(gameViewController, animated: true, completion: nil)
     }
@@ -1054,7 +1054,7 @@ class LevelDesignerViewController: XViewController {
                         var savedGrid = NSKeyedUnarchiver.unarchiveObjectWithData(NSKeyedArchiver.archivedDataWithRootObject(self.grid)) as GOGrid
                         var savedNodes = NSKeyedUnarchiver.unarchiveObjectWithData(NSKeyedArchiver.archivedDataWithRootObject(self.xNodes)) as Dictionary<String, XNode>
                         
-                        let game = GameLevel(levelName: inputName, levelIndex: nextIndex, grid: savedGrid, nodes: savedNodes)
+                        let game = GameLevel(levelName: inputName, levelIndex: nextIndex, grid: savedGrid, nodes: savedNodes, targetMusic: self.music)
                         
                         StorageManager.defaultManager.saveCurrentLevel(game)
                         self.gameName = inputName

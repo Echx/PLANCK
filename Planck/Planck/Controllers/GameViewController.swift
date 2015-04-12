@@ -21,8 +21,9 @@ class GameViewController: XViewController {
     private var emitterLayers = [String: [CAEmitterLayer]]()
     private var deviceViews = [String: UIView]()
     private var transitionMask = LevelTransitionMastView()
+    private var pauseMask = PauseMaskView()
     
-    private var finishedPath: Int = 0
+    private var queue = dispatch_queue_create("CHECKING_SERIAL_QUEUE", DISPATCH_QUEUE_SERIAL)
     
     private var grid: GOGrid {
         get {
@@ -50,6 +51,7 @@ class GameViewController: XViewController {
         super.viewDidLoad()
         self.setUpGrid()
         self.view.backgroundColor = UIColor(patternImage: UIImage(named: "mainbackground")!)
+        self.pauseMask.delegate = self
     }
     
     private func reloadLevel(gameLevel: GameLevel) {
@@ -95,6 +97,11 @@ class GameViewController: XViewController {
     private var lastLocation: CGPoint?
     private var firstViewCenter: CGPoint?
     private var touchedNode: GOOpticRep?
+    
+    @IBAction func pauseButtonDidClicked(sender: UIButton) {
+        self.view.addSubview(self.pauseMask)
+        self.pauseMask.show()
+    }
     
     @IBAction func winButtonDidClicked(sender: UIButton) {
         self.view.addSubview(self.transitionMask)
@@ -202,7 +209,6 @@ class GameViewController: XViewController {
             }
         }
         
-        self.finishedPath = 0
         self.audioPlayerList.removeAll(keepCapacity: false)
         self.rayLayers = [String: [CAShapeLayer]]()
         self.rays = [String: [(CGPoint, GOSegment?)]]()
@@ -306,6 +312,15 @@ class GameViewController: XViewController {
                     
                     let note = device.getNote()!
                     self.music.appendDistance(self.pathDistances[tag]!, forNote: note)
+                    
+                    dispatch_async(queue, {
+                        if self.music.isSimilarTo(self.gameLevel.targetMusic) {
+                            dispatch_after(dispatch_time(DISPATCH_TIME_NOW, Int64(Float(NSEC_PER_SEC) * 0.5)), dispatch_get_main_queue()) {
+                                self.view.addSubview(self.transitionMask)
+                                self.transitionMask.show(2)
+                            }
+                        }
+                    })
                 }
             } else {
                 fatalError("The node for the physics body not existed")
@@ -323,7 +338,7 @@ class GameViewController: XViewController {
         let layer = CAShapeLayer()
         layer.strokeEnd = 1.0
         layer.strokeColor = strokeColor.CGColor
-        layer.fillColor = UIColor.clearColor().CGColor
+        layer.fillColor = strokeColor.CGColor
         layer.lineWidth = 2.0
         layer.shadowRadius = 2
         layer.shadowColor = strokeColor.CGColor
@@ -423,14 +438,21 @@ extension GameViewController: GOGridDelegate {
     }
     
     func gridDidFinishCalculation(grid: GOGrid, forRayWithTag tag: String) {
-        self.finishedPath++
-        
-        if self.finishedPath == self.rays.count {
-            // all finished
-            if self.music.isSimilarTo(self.gameLevel.targetMusic) {
-                self.view.addSubview(self.transitionMask)
-                self.transitionMask.show(2)
-            }
+
+    }
+}
+
+extension GameViewController: PauseMaskViewDelegate {
+    func buttonDidClickedAtIndex(index: Int) {
+        switch index {
+        case 0:
+            self.dismissViewController()
+            
+        case 2:
+            self.pauseMask.hide()
+            
+        default:
+            println(index)
         }
     }
 }
