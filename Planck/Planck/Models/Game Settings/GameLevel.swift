@@ -23,6 +23,17 @@ class GameLevel: NSObject, NSCoding {
     /// The index of this level
     var index:Int
     
+    /// THe desire music for this level
+    var targetMusic:XMusic = XMusic()
+    
+    init(levelName:String, levelIndex: Int, grid:GOGrid, nodes: [String: XNode], targetMusic:XMusic) {
+        self.name = levelName
+        self.index = levelIndex
+        self.grid = grid
+        self.xNodes = nodes
+        self.targetMusic = targetMusic
+    }
+    
     init(levelName:String, levelIndex: Int, grid:GOGrid, nodes: [String: XNode]) {
         self.name = levelName
         self.index = levelIndex
@@ -49,7 +60,8 @@ class GameLevel: NSObject, NSCoding {
         var index = aDecoder.decodeObjectForKey("index") as Int
         var grid = aDecoder.decodeObjectForKey("grid") as GOGrid
         var xNodes = aDecoder.decodeObjectForKey("xnode") as [String: XNode]
-        self.init(levelName:levelName, levelIndex: index, grid:grid, nodes:xNodes)
+        var music = aDecoder.decodeObjectForKey("music") as XMusic
+        self.init(levelName:levelName, levelIndex: index, grid:grid, nodes:xNodes, targetMusic:music)
     }
     
     func encodeWithCoder(aCoder: NSCoder) {
@@ -57,6 +69,7 @@ class GameLevel: NSObject, NSCoding {
         aCoder.encodeObject(self.index, forKey: "index")
         aCoder.encodeObject(self.grid, forKey: "grid")
         aCoder.encodeObject(self.xNodes, forKey: "xnode")
+        aCoder.encodeObject(self.targetMusic, forKey: "music")
     }
 
 }
