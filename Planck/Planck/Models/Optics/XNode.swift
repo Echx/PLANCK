@@ -11,6 +11,7 @@ import UIKit
 class XNode: NSObject, NSCoding {
     var physicsBody: GOOpticRep
     var instrument: Int = NodeDefaults.instrumentInherit
+    
     var isPlanck: Bool {
         get {
             if (self.instrument == NodeDefaults.instrumentInherit) || (self.instrument == NodeDefaults.instrumentNil) {
@@ -60,15 +61,18 @@ class XNode: NSObject, NSCoding {
         let body = aDecoder.decodeObjectForKey("phyBody") as GOOpticRep
         let isFixed = aDecoder.decodeBoolForKey("isFixed")
         let planckNote = aDecoder.decodeObjectForKey("planckNote") as XNote?
+        let instrument = aDecoder.decodeObjectForKey("instrument") as Int
         
         self.init(physicsBody: body)
         self.isFixed = isFixed
+        self.instrument = instrument
         self.planckNote = planckNote
     }
     
     func encodeWithCoder(aCoder: NSCoder) {
         aCoder.encodeObject(self.physicsBody, forKey: "phyBody")
         aCoder.encodeBool(self.isFixed, forKey: "isFixed")
+        aCoder.encodeObject(self.instrument, forKey: "instrument")
         
         if self.planckNote != nil {
             aCoder.encodeObject(self.planckNote, forKey: "planckNote")
