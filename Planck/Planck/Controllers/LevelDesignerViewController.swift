@@ -1045,11 +1045,10 @@ class LevelDesignerViewController: XViewController {
                     range: NSRange(location: 0, length: inputName.utf16Count)) {
                         // valid
                         var nextIndex = StorageManager.defaultManager.numOfLevel()
-                        if self.gameIndex != nil {
+                        if self.gameIndex != nil && inputName == self.gameName {
+                            // user intend to save current level
                             nextIndex = self.gameIndex!
                         }
-                        
-                        println(nextIndex)
                         
                         // create deep copy
                         var savedGrid = NSKeyedUnarchiver.unarchiveObjectWithData(NSKeyedArchiver.archivedDataWithRootObject(self.grid)) as GOGrid
