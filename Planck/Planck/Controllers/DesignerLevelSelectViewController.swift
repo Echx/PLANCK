@@ -51,7 +51,7 @@ class DesignerLevelSelectViewController: UITableViewController {
         let cell = tableView.dequeueReusableCellWithIdentifier(cellID, forIndexPath: indexPath) as UITableViewCell
 
         let game = self.levelArray.objectAtIndex(indexPath.item) as GameLevel
-        cell.textLabel?.text = game.name
+        cell.textLabel?.text = String(game.index)
         return cell
     }
     

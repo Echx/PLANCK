@@ -9,6 +9,8 @@ import UIKit
 import Foundation
 
 class GameLevel: NSObject, NSCoding {
+    private let defaultName = "Deadline"
+    
     /// The grid contained in this level
     var grid:GOGrid
     
@@ -28,6 +30,13 @@ class GameLevel: NSObject, NSCoding {
         self.xNodes = nodes
     }
     
+    init(levelIndex: Int, grid:GOGrid, nodes: [String: XNode]) {
+        self.name = defaultName
+        self.index = levelIndex
+        self.grid = grid
+        self.xNodes = nodes
+    }
+    
     override init() {
         self.name = ""
         self.index = 0
@@ -36,10 +45,10 @@ class GameLevel: NSObject, NSCoding {
     }
     
     required convenience init(coder aDecoder: NSCoder) {
-        let levelName = aDecoder.decodeObjectForKey("name") as String
-        let index = aDecoder.decodeObjectForKey("index") as Int
-        let grid = aDecoder.decodeObjectForKey("grid") as GOGrid
-        let xNodes = aDecoder.decodeObjectForKey("xnode") as [String: XNode]
+        var levelName = aDecoder.decodeObjectForKey("name") as String
+        var index = aDecoder.decodeObjectForKey("index") as Int
+        var grid = aDecoder.decodeObjectForKey("grid") as GOGrid
+        var xNodes = aDecoder.decodeObjectForKey("xnode") as [String: XNode]
         self.init(levelName:levelName, levelIndex: index, grid:grid, nodes:xNodes)
     }
     

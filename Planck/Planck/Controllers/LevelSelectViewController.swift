@@ -91,7 +91,7 @@ class LevelSelectViewController: XViewController, UICollectionViewDataSource, UI
         levelArray.removeAll(keepCapacity: true)
         // iterate each filename to add
         for filename in fileArray {
-            if ((filename.pathExtension) != nil) {
+            if (filename.pathExtension) != nil {
                 if (filename.pathExtension == StorageDefault.levelDataType) {
                     let game = levelFileLoader.loadLevel(filename as NSString)
                     levelArray.append(game)
