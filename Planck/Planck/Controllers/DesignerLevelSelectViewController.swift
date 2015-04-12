@@ -97,6 +97,25 @@ class DesignerLevelSelectViewController: UITableViewController {
     
 
     private func loadFiles() {
-        self.levelArray = StorageManager.defaultManager.loadAllLevels()
+        // find out the document path
+        let path = NSSearchPathForDirectoriesInDomains(.DocumentDirectory,
+            .UserDomainMask, true)[0] as NSString
+        let fileManager = NSFileManager.defaultManager()
+        let fileArray = fileManager.contentsOfDirectoryAtPath(path,
+            error: nil)! as NSArray
+        
+        var levelFileLoader = StorageManager.defaultManager
+        // iterate each filename to add
+        for filename in fileArray {
+            if ((filename.pathExtension) != nil) {
+                if (filename.pathExtension == levelDataFileType) {
+                    let game = levelFileLoader.loadLevel(filename as NSString)
+                    levelArray.append(game)
+                }
+            }
+        }
+        
+        // sort the levelArray based on Index
+        levelArray.sort{$0<$1}
     }
 }
