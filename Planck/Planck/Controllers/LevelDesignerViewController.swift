@@ -79,8 +79,11 @@ class LevelDesignerViewController: XViewController {
     private var selectedNode: GOOpticRep?
     private var rayLayers = [String: [CAShapeLayer]]()
     private var rays = [String: [(CGPoint, GOSegment?)]]()
+    private var pathDistances = [String: CGFloat]()
     private var audioPlayerList = [AVAudioPlayer]()
     private var grid: GOGrid
+    private var music = XMusic()
+    private var game:GameLevel?
     private var gameIndex:Int?
     private var gameName:String?
     
@@ -907,6 +910,12 @@ class LevelDesignerViewController: XViewController {
                 layer.path = path.CGPath
                 self.view.layer.addSublayer(layer)
                 
+                if self.pathDistances[tag] == nil {
+                   self.pathDistances[tag] = CGFloat(0)
+                }
+                
+                self.pathDistances[tag]! += distance
+                
                 let delay = distance / Constant.lightSpeedBase
                 
                 let pathAnimation = CABasicAnimation(keyPath: "strokeEnd")
@@ -919,7 +928,7 @@ class LevelDesignerViewController: XViewController {
                 
                 layer.addAnimation(pathAnimation, forKey: "strokeEnd")
                 if currentIndex > 1 {
-                    self.playNote(prevPoint.1)
+                    self.playNote(prevPoint.1, tag: tag)
                 }
                 
                 let delayInNanoSeconds = 0.9 * delay * CGFloat(NSEC_PER_SEC);
@@ -940,6 +949,8 @@ class LevelDesignerViewController: XViewController {
         self.audioPlayerList.removeAll(keepCapacity: false)
         self.rayLayers = [String: [CAShapeLayer]]()
         self.rays = [String: [(CGPoint, GOSegment?)]]()
+        self.music.reset()
+        self.pathDistances = [String: CGFloat]()
     }
     
     private func getColorForNode(node: GOOpticRep) -> UIColor {
@@ -958,7 +969,7 @@ class LevelDesignerViewController: XViewController {
         }
     }
     
-    private func playNote(segment: GOSegment?) {
+    private func playNote(segment: GOSegment?, tag: String) {
         if let edge = segment {
             if let device = xNodes[edge.parent] {
                 if let sound = device.getSound() {
@@ -966,6 +977,9 @@ class LevelDesignerViewController: XViewController {
                     self.audioPlayerList.append(audioPlayer)
                     audioPlayer.prepareToPlay()
                     audioPlayer.play()
+                    
+                    let note = device.getNote()!
+                    self.music.appendDistance(distance: self.pathDistances[tag]!, forNote: note)
                 }
             } else {
                 fatalError("The node for the physics body not existed")

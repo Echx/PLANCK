@@ -50,10 +50,18 @@ class XNode: NSObject, NSCoding {
     func getSound() -> NSURL? {
         if !self.shouldPlaySound {
             return nil
-        } else if self.isPlanck {
-            return self.planckNote?.getAudioFile()
         } else {
-            return self.normalNote?.getAudioFile()
+            return self.getNote()?.getAudioFile()
+        }
+    }
+    
+    func getNote() -> XNote? {
+        if !self.shouldPlaySound {
+            return nil
+        } else if self.isPlanck {
+            return self.planckNote
+        } else {
+            return self.normalNote
         }
     }
     
