@@ -11,7 +11,6 @@ import UIKit
 class LevelSelectViewController: XViewController, UICollectionViewDataSource, UICollectionViewDelegate, UICollectionViewDelegateFlowLayout {
     
     private let itemsInSection = 6
-    private let sectionInsets = UIEdgeInsets(top: 15.0, left: 20.0, bottom: 10.0, right: 15.0)
     
     @IBOutlet weak var collectionView: UICollectionView!
     var levelArray:[GameLevel] = [GameLevel]()
@@ -59,7 +58,7 @@ class LevelSelectViewController: XViewController, UICollectionViewDataSource, UI
         
         if kind == UICollectionElementKindSectionHeader {
             let header = collectionView.dequeueReusableSupplementaryViewOfKind(kind, withReuseIdentifier: ReuseableID.LevelSelectHeader, forIndexPath: indexPath) as LevelSelectHeaderView
-            header.title.text = "Echx Present"
+            header.title.text = getSectionHeaderText(indexPath.section)
             return header
         } else {
             return UICollectionReusableView()
@@ -74,15 +73,9 @@ class LevelSelectViewController: XViewController, UICollectionViewDataSource, UI
         self.presentViewController(gameVC, animated: true, completion: {})
     }
     
-//    func collectionView(collectionView: UICollectionView!,
-//        layout collectionViewLayout: UICollectionViewLayout!,
-//        insetForSectionAtIndex section: Int) -> UIEdgeInsets {
-//            return sectionInsets
-//    }
-//    
-//    func collectionView(collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumInteritemSpacingForSectionAtIndex section: Int) -> CGFloat {
-//        return 15.0
-//    }
+    private func getSectionHeaderText(section : Int) -> String {
+        return "Echx Present"
+    }
     
     private func loadLevels() {
         // find out the document path
