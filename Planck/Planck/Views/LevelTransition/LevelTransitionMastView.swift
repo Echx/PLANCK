@@ -29,12 +29,13 @@ class LevelTransitionMastView: UIView {
         CGPointMake(687, 350)
     ]
     
+    var tapGestureRecognizer: UITapGestureRecognizer?
     var animationSpringDamping: CGFloat = 0.5
     var animationInitialSpringVelocity: CGFloat = 10
     var animationDuration = 1.5
     var animationDurationOut: NSTimeInterval {
         get {
-            return self.animationDuration * 0.7
+            return self.animationDuration * 0.3
         }
     }
     
@@ -55,9 +56,9 @@ class LevelTransitionMastView: UIView {
             coinView.center = self.hiddenCentersTop[i]
             self.coinViews.append(coinView)
         }
-        
-        let tapGestureRecognizer = UITapGestureRecognizer(target: self, action: "hide")
-        self.addGestureRecognizer(tapGestureRecognizer)
+        self.tapGestureRecognizer = UITapGestureRecognizer(target: self, action: "hide")
+        self.addGestureRecognizer(tapGestureRecognizer!)
+        tapGestureRecognizer!.enabled = false
     }
     
     
@@ -81,27 +82,40 @@ class LevelTransitionMastView: UIView {
                 animations: {
                     self.coinViews[i].center = self.normalCenters[i]
                 },
-                completion: nil)
+                completion: {
+                    finished in
+                    self.tapGestureRecognizer!.enabled = true
+                })
         }
     }
     
     func hide() {
+        self.tapGestureRecognizer?.enabled = false
+        self.animationCount = 0
         for var i = 0; i < self.coinCount; i++ {
             UIView.animateWithDuration(
                 self.animationDurationOut,
                 delay: animationDelays[i],
-                usingSpringWithDamping: self.animationSpringDamping,
-                initialSpringVelocity: 0,
                 options: UIViewAnimationOptions.CurveEaseIn,
                 animations: {
                     self.coinViews[i].center = self.hiddenCentersBottom[i]
                 },
-                completion: nil)
+                completion: {
+                    finished in
+                    self.animationComplete()
+                })
         }
-        NSTimer.scheduledTimerWithTimeInterval(2.1, target: self, selector: "removeFromSuperview", userInfo: nil, repeats: false)
     }
     
-
+    private var animationCount = 0
+    private func animationComplete() {
+        self.animationCount++
+        if self.animationCount == self.coinCount {
+            self.removeFromSuperview()
+        }
+    }
+    
+    
     required init(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
     }
