@@ -12,21 +12,21 @@ class GameLevel: NSObject, NSCoding {
     private let defaultName = "Deadline"
     
     /// The grid contained in this level
-    var grid:GOGrid
+    var grid: GOGrid
     
     /// The XNodes contained in this level
-    var xNodes:[String: XNode]
+    var xNodes: [String: XNode]
     
     /// The name of this level
-    var name:String
+    var name: String
     
     /// The index of this level
-    var index:Int
+    var index: Int
     
     /// THe desire music for this level
-    var targetMusic:XMusic = XMusic()
+    var targetMusic: XMusic = XMusic()
     
-    init(levelName:String, levelIndex: Int, grid:GOGrid, nodes: [String: XNode], targetMusic:XMusic) {
+    init(levelName: String, levelIndex: Int, grid: GOGrid, nodes: [String: XNode], targetMusic: XMusic) {
         self.name = levelName
         self.index = levelIndex
         self.grid = grid
@@ -34,7 +34,7 @@ class GameLevel: NSObject, NSCoding {
         self.targetMusic = targetMusic
     }
     
-    init(levelName:String, levelIndex: Int, grid:GOGrid, nodes: [String: XNode]) {
+    init(levelName: String, levelIndex: Int, grid: GOGrid, nodes: [String: XNode]) {
         self.name = levelName
         self.index = levelIndex
         self.grid = grid
