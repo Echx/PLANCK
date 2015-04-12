@@ -1044,7 +1044,7 @@ class LevelDesignerViewController: XViewController {
                 if let match = regEx.firstMatchInString(inputName, options: nil,
                     range: NSRange(location: 0, length: inputName.utf16Count)) {
                         // valid
-                        var nextIndex = self.numOfLevel()
+                        var nextIndex = StorageManager.defaultManager.numOfLevel()
                         if self.gameIndex != nil {
                             nextIndex = self.gameIndex!
                         }
