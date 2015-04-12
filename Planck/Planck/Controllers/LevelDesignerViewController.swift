@@ -83,9 +83,9 @@ class LevelDesignerViewController: XViewController {
     private var audioPlayerList = [AVAudioPlayer]()
     private var grid: GOGrid
     private var music = XMusic()
-    private var game:GameLevel?
-    private var gameIndex:Int?
-    private var gameName:String?
+    private var game: GameLevel?
+    private var gameIndex: Int?
+    private var gameName: String?
     
     private let identifierLength = 20
     private let gridWidth = 64
