@@ -22,7 +22,7 @@ class GameViewController: XViewController {
     private var deviceViews = [String: UIView]()
     private var transitionMask = LevelTransitionMastView()
     
-    private var finishedPath: Int = 0
+    private var queue = dispatch_queue_create("CHECKING_SERIAL_QUEUE", DISPATCH_QUEUE_SERIAL)
     
     private var grid: GOGrid {
         get {
@@ -202,7 +202,6 @@ class GameViewController: XViewController {
             }
         }
         
-        self.finishedPath = 0
         self.audioPlayerList.removeAll(keepCapacity: false)
         self.rayLayers = [String: [CAShapeLayer]]()
         self.rays = [String: [(CGPoint, GOSegment?)]]()
@@ -307,10 +306,14 @@ class GameViewController: XViewController {
                     let note = device.getNote()!
                     self.music.appendDistance(self.pathDistances[tag]!, forNote: note)
                     
-                    if self.music.isSimilarTo(self.gameLevel.targetMusic) {
-                        self.view.addSubview(self.transitionMask)
-                        self.transitionMask.show(2)
-                    }
+                    dispatch_async(queue, {
+                        if self.music.isSimilarTo(self.gameLevel.targetMusic) {
+                            dispatch_after(dispatch_time(DISPATCH_TIME_NOW, Int64(Float(NSEC_PER_SEC) * 0.5)), dispatch_get_main_queue()) {
+                                self.view.addSubview(self.transitionMask)
+                                self.transitionMask.show(2)
+                            }
+                        }
+                    })
                 }
             } else {
                 fatalError("The node for the physics body not existed")
