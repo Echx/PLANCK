@@ -17,6 +17,7 @@ class GameViewController: XViewController {
     private var rays = [String: [(CGPoint, GOSegment?)]]()
     private var audioPlayerList = [AVAudioPlayer]()
     private var emitterLayers = [String: [CAEmitterLayer]]()
+    private var deviceViews = [String: UIView]()
     private var transitionMask = LevelTransitionMastView()
     
     private var grid: GOGrid {
@@ -30,7 +31,7 @@ class GameViewController: XViewController {
         }
     }
     
-    private var deviceViews = [String: UIView]()
+
     
     class func getInstance(gameLevel: GameLevel) -> GameViewController {
         let storyboard = UIStoryboard(name: "Main", bundle: nil)
@@ -45,7 +46,24 @@ class GameViewController: XViewController {
         super.viewDidLoad()
         self.setUpGrid()
         self.view.backgroundColor = UIColor(patternImage: UIImage(named: "mainbackground")!)
-        self.grid.delegate = self
+    }
+    
+    private func reloadLevel(gameLevel: GameLevel) {
+        self.clear()
+        self.gameLevel = gameLevel
+        self.setUpGrid()
+    }
+    
+    private func clear() {
+        self.clearRay()
+        self.clearDevice()
+    }
+    
+    private func clearDevice() {
+        for (key, view) in self.deviceViews {
+            view.removeFromSuperview()
+        }
+        self.deviceViews = [String: UIView]()
     }
     
     @IBAction func switchValueDidChange(sender: UISwitch) {
@@ -147,6 +165,7 @@ class GameViewController: XViewController {
         for (key, node) in self.grid.instruments {
             self.addNode(node, strokeColor: self.xNodes[node.id]!.strokeColor)
         }
+        self.grid.delegate = self
     }
     
     private func shootRay() {
