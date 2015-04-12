@@ -10,21 +10,78 @@ import UIKit
 import Foundation
 
 class XMusic: NSObject {
-    private var music: [XNote: [CGFloat]]
+    var music: [XNote: [CGFloat]]
+    var isArranged: Bool // whether the distances are sorted
     
-    init() {
+    var numberOfNotes: Int {
+        get {
+            return self.music.count
+        }
+    }
+    
+    var numberOfSounds: Int {
+        get {
+            var count: Int = 0
+            for distanceArray in self.music.values {
+                count += distanceArray.count
+            }
+            return count
+        }
+    }
+    
+    override init() {
+        self.isArranged = true
         self.music = [XNote: [CGFloat]]()
     }
     
     func reset() {
+        self.isArranged = true
         self.music = [XNote: [CGFloat]]()
     }
     
-    func appendDistance(distance: CGFloat, forNote: XNote) {
+    func appendDistance(distance: CGFloat, forNote note: XNote) {
+        self.isArranged = false
+        
         if self.music[note] == nil {
             self.music[note] = [CGFloat]()
         }
         
-        self.music[note]?.append(self.pathDistances[tag]!)
+        self.music[note]?.append(distance)
+    }
+    
+    private func arrangeDistances() {
+        if self.isArranged {
+            return
+        } else {
+            for note in self.music.keys {
+                self.music[note]?.sort({$0 > $1})
+            }
+            
+            self.isArranged = true
+        }
+    }
+    
+    func isSimilarTo(anotherMusic: XMusic) -> Bool {
+        if self.numberOfNotes != anotherMusic.numberOfNotes {
+            return false
+        }
+        
+        if self.numberOfSounds != anotherMusic.numberOfSounds {
+            return false
+        }
+        
+        self.arrangeDistances()
+        anotherMusic.arrangeDistances()
+        
+        for noteOccurence in self.music {
+            for i in 0...noteOccurence.1.count {
+                let anotherPathDistances = anotherMusic.music[noteOccurence.0]!
+                if fabs((Double)(noteOccurence.1[i] - anotherPathDistances[i])) > MusicDefaults.distanceTolerance {
+                    return false
+                }
+            }
+        }
+        
+        return true
     }
 }

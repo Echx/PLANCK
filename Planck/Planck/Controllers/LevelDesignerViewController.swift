@@ -979,7 +979,7 @@ class LevelDesignerViewController: XViewController {
                     audioPlayer.play()
                     
                     let note = device.getNote()!
-                    self.music.appendDistance(distance: self.pathDistances[tag]!, forNote: note)
+                    self.music.appendDistance(self.pathDistances[tag]!, forNote: note)
                 }
             } else {
                 fatalError("The node for the physics body not existed")

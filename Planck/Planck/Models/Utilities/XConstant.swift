@@ -151,6 +151,10 @@ struct MediumDescription {
     static let flintGlassDescription: String = "Flint glass is optical glass that has relatively high refractive index and low Abbe number (high dispersion). Flint glasses are arbitrarily defined as having an Abbe number of 50 to 55 or less. The currently known flint glasses have refractive indices ranging between 1.45 and 2.00."
 }
 
+struct MusicDefaults {
+    static let distanceTolerance: Double = 0.5
+}
+
 struct LevelDesignerDefaults {
     static let selectorButtonClicked: Selector = "buttonDidClicked:"
     static let selectorFunctionalButtonClicked: Selector = "functionalButtonDidClicked:"
