@@ -11,7 +11,7 @@ import UIKit
 class ParticleManager: NSObject {
     
     struct EmitterDefaults {
-        static let emitterBirthRate:Float = 39
+        static let emitterBirthRate:Float = 19
         static let emitterLifetime:Float = 1
         static let emitterX:CGFloat = 0
         static let emitterY:CGFloat = 0
