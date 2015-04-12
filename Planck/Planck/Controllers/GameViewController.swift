@@ -23,6 +23,8 @@ class GameViewController: XViewController {
     private var transitionMask = LevelTransitionMastView()
     private var pauseMask = PauseMaskView()
     
+    private var isVirgin: Bool?
+    
     private var queue = dispatch_queue_create("CHECKING_SERIAL_QUEUE", DISPATCH_QUEUE_SERIAL)
     
     private var grid: GOGrid {
@@ -74,6 +76,11 @@ class GameViewController: XViewController {
     
     @IBAction func switchValueDidChange(sender: UISwitch) {
         if sender.on {
+            if self.isVirgin == nil {
+                self.isVirgin = true
+            } else if self.isVirgin! {
+                self.isVirgin = false
+            }
             self.shootRay()
         } else {
             self.clearRay()
@@ -316,8 +323,13 @@ class GameViewController: XViewController {
                     dispatch_async(queue, {
                         if self.music.isSimilarTo(self.gameLevel.targetMusic) {
                             dispatch_after(dispatch_time(DISPATCH_TIME_NOW, Int64(Float(NSEC_PER_SEC) * 0.5)), dispatch_get_main_queue()) {
-                                self.view.addSubview(self.transitionMask)
-                                self.transitionMask.show(2)
+                                if self.isVirgin! {
+                                    self.view.addSubview(self.transitionMask)
+                                    self.transitionMask.show(3)
+                                } else {
+                                    self.view.addSubview(self.transitionMask)
+                                    self.transitionMask.show(2)
+                                }
                             }
                         }
                     })
