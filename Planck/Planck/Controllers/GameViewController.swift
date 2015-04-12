@@ -199,6 +199,11 @@ class GameViewController: XViewController {
                 path.addLineToPoint(currentPoint.0)
                 let distance = prevPoint.0.getDistanceToPoint(currentPoint.0)
                 layer.path = path.CGPath
+                layer.shadowOffset = CGSizeZero
+                layer.shadowRadius = 5
+                layer.shadowColor = UIColor.whiteColor().CGColor
+                layer.shadowOpacity = 0.9
+                
                 self.view.layer.addSublayer(layer)
                 
                 let delay = distance / Constant.lightSpeedBase
@@ -212,6 +217,8 @@ class GameViewController: XViewController {
                 self.view.layer.addSublayer(emitterLayer)
                 emitterLayer.emitterPosition = prevPoint.0
                 var emitterPath = CGPathCreateCopy(path.CGPath)
+                //                CGContextSetStrokeColorWithColor(context, UIColor.whiteColor().CGColor)
+                
                 var animation = CABasicAnimation(keyPath: "emitterPosition")
                 animation.fromValue = NSValue(CGPoint: prevPoint.0)
                 animation.toValue = NSValue(CGPoint: currentPoint.0)
@@ -270,6 +277,10 @@ class GameViewController: XViewController {
         layer.strokeColor = strokeColor.CGColor
         layer.fillColor = UIColor.clearColor().CGColor
         layer.lineWidth = 2.0
+        layer.shadowRadius = 10
+        layer.shadowColor = strokeColor.CGColor
+        layer.shadowOpacity = 0.9
+        layer.shadowOffset = CGSizeZero
         layer.path = self.grid.getInstrumentDisplayPathForID(node.id)?.CGPath
         
         let view = UIView(frame: CGRectMake(0, 0, self.view.frame.width, self.view.frame.height))
