@@ -9,6 +9,15 @@ import UIKit
 import Foundation
 
 class GameLevel: NSObject, NSCoding {
+    class func loadGameWithIndex(index:Int) -> GameLevel {
+        let totalGame = StorageManager.defaultManager.numOfLevel()
+        if index < 0 || index >= totalGame {
+            fatalError("index out of bound when load game")
+        }
+        return StorageManager.defaultManager.loadAllLevel()[index]
+    }
+    
+    
     private let defaultName = "Deadline"
     
     /// The grid contained in this level
