@@ -9,6 +9,15 @@ import UIKit
 import Foundation
 
 class GameLevel: NSObject, NSCoding {
+    class func getLevelWithIndex(index : Int) -> GameLevel {
+        var levelArray = StorageManager.defaultManager.loadAllLevels()
+        if (index >= levelArray.count || index < 0) {
+            fatalError("Wrong index")
+        }
+        
+        return levelArray[index]
+    }
+    
     private let defaultName = "Deadline"
     
     /// The grid contained in this level
