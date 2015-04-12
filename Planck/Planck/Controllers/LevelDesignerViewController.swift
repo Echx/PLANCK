@@ -82,7 +82,7 @@ class LevelDesignerViewController: XViewController {
     private var pathDistances = [String: CGFloat]()
     private var audioPlayerList = [AVAudioPlayer]()
     private var grid: GOGrid
-    private var music = [XNote: [CGFloat]]()
+    private var music = XMusic()
     private var game:GameLevel?
     private var gameIndex:Int?
     private var gameName:String?
@@ -949,7 +949,7 @@ class LevelDesignerViewController: XViewController {
         self.audioPlayerList.removeAll(keepCapacity: false)
         self.rayLayers = [String: [CAShapeLayer]]()
         self.rays = [String: [(CGPoint, GOSegment?)]]()
-        self.music = [XNote: [CGFloat]]()
+        self.music.reset()
         self.pathDistances = [String: CGFloat]()
     }
     
@@ -979,11 +979,7 @@ class LevelDesignerViewController: XViewController {
                     audioPlayer.play()
                     
                     let note = device.getNote()!
-                    if self.music[note] == nil {
-                        self.music[note] = [CGFloat]()
-                    }
-                    
-                    self.music[note]?.append(self.pathDistances[tag]!)
+                    self.music.appendDistance(distance: self.pathDistances[tag]!, forNote: note)
                 }
             } else {
                 fatalError("The node for the physics body not existed")
