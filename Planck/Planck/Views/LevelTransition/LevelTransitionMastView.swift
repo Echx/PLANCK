@@ -36,7 +36,7 @@ class LevelTransitionMastView: UIView {
     var animationDuration = 1.5
     var animationDurationOut: NSTimeInterval {
         get {
-            return self.animationDuration * 0.1
+            return self.animationDuration * 0.15
         }
     }
     
@@ -121,5 +121,4 @@ class LevelTransitionMastView: UIView {
     required init(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
     }
-
 }

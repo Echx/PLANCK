@@ -21,6 +21,7 @@ class GameViewController: XViewController {
     private var emitterLayers = [String: [CAEmitterLayer]]()
     private var deviceViews = [String: UIView]()
     private var transitionMask = LevelTransitionMastView()
+    private var pauseMask = PauseMaskView()
     
     private var isVirgin: Bool?
     
@@ -52,6 +53,7 @@ class GameViewController: XViewController {
         super.viewDidLoad()
         self.setUpGrid()
         self.view.backgroundColor = UIColor(patternImage: UIImage(named: "mainbackground")!)
+        self.pauseMask.delegate = self
     }
     
     private func reloadLevel(gameLevel: GameLevel) {
@@ -102,6 +104,11 @@ class GameViewController: XViewController {
     private var lastLocation: CGPoint?
     private var firstViewCenter: CGPoint?
     private var touchedNode: GOOpticRep?
+    
+    @IBAction func pauseButtonDidClicked(sender: UIButton) {
+        self.view.addSubview(self.pauseMask)
+        self.pauseMask.show()
+    }
     
     @IBAction func winButtonDidClicked(sender: UIButton) {
         self.view.addSubview(self.transitionMask)
@@ -343,7 +350,7 @@ class GameViewController: XViewController {
         let layer = CAShapeLayer()
         layer.strokeEnd = 1.0
         layer.strokeColor = strokeColor.CGColor
-        layer.fillColor = UIColor.clearColor().CGColor
+        layer.fillColor = strokeColor.CGColor
         layer.lineWidth = 2.0
         layer.shadowRadius = 2
         layer.shadowColor = strokeColor.CGColor
@@ -444,5 +451,20 @@ extension GameViewController: GOGridDelegate {
     
     func gridDidFinishCalculation(grid: GOGrid, forRayWithTag tag: String) {
 
+    }
+}
+
+extension GameViewController: PauseMaskViewDelegate {
+    func buttonDidClickedAtIndex(index: Int) {
+        switch index {
+        case 0:
+            self.dismissViewController()
+            
+        case 2:
+            self.pauseMask.hide()
+            
+        default:
+            println(index)
+        }
     }
 }
