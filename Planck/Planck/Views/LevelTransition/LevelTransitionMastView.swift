@@ -10,32 +10,33 @@ import UIKit
 
 class LevelTransitionMastView: UIView {
     
-    let coinViews = [CoinView]()
-    let hiddenCentersTop = [
+    private let coinViews = [CoinView]()
+    private let hiddenCentersTop = [
         CGPointMake(337, -200),
         CGPointMake(512, -200),
         CGPointMake(687, -200)
     ]
     
-    let hiddenCentersBottom = [
+    private let hiddenCentersBottom = [
         CGPointMake(337, 968),
         CGPointMake(512, 968),
         CGPointMake(687, 968)
     ]
     
-    let normalCenters = [
+    private let normalCenters = [
         CGPointMake(337, 350),
         CGPointMake(512, 350),
         CGPointMake(687, 350)
     ]
     
-    var tapGestureRecognizer: UITapGestureRecognizer?
+    private let imageView = UIImageView(frame: UIScreen.mainScreen().bounds)
+    private var tapGestureRecognizer: UITapGestureRecognizer?
     var animationSpringDamping: CGFloat = 0.5
     var animationInitialSpringVelocity: CGFloat = 10
     var animationDuration = 1.5
     var animationDurationOut: NSTimeInterval {
         get {
-            return self.animationDuration * 0.3
+            return self.animationDuration * 0.1
         }
     }
     
@@ -49,7 +50,8 @@ class LevelTransitionMastView: UIView {
     
     override init() {
         super.init(frame: UIScreen.mainScreen().bounds)
-        
+        self.imageView.image = UIImage(named: "mainbackground")
+        self.addSubview(self.imageView)
         for var i = 0; i < self.coinCount; i++ {
             var coinView = CoinView(isOn: true)
             self.addSubview(coinView)
