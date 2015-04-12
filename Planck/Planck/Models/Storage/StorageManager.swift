@@ -45,4 +45,28 @@ class StorageManager:NSObject  {
         return unarchiver.decodeObjectForKey(keyForArchieve) as GameLevel
     }
     
+    func loadAllLevel() -> [GameLevel] {
+        var levelArray = [GameLevel]()
+        // find out the document path
+        let path = NSSearchPathForDirectoriesInDomains(.DocumentDirectory,
+            .UserDomainMask, true)[0] as NSString
+        let fileManager = NSFileManager.defaultManager()
+        let fileArray = fileManager.contentsOfDirectoryAtPath(path,
+            error: nil)! as NSArray
+        
+        // iterate each filename to add
+        for filename in fileArray {
+            let name = filename as NSString
+            // temp solution for dealing with file type
+            if (name.substringFromIndex(name.length - 4) == levelDataFileType) {
+                let game = loadLevel(name)
+                levelArray.append(game)
+            }
+        }
+        
+        // sort the levelArray based on Index
+        levelArray.sort{$0<$1}
+        
+        return levelArray
+    }
 }
