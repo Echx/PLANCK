@@ -17,6 +17,7 @@ class GameViewController: XViewController {
     private var rays = [String: [(CGPoint, GOSegment?)]]()
     private var audioPlayerList = [AVAudioPlayer]()
     private var emitterLayers = [String: [CAEmitterLayer]]()
+    private var transitionMask = LevelTransitionMastView()
     
     private var grid: GOGrid {
         get {
@@ -74,7 +75,8 @@ class GameViewController: XViewController {
     private var touchedNode: GOOpticRep?
     
     @IBAction func winButtonDidClicked(sender: UIButton) {
-        println("Win")
+        self.view.addSubview(self.transitionMask)
+        self.transitionMask.show(2)
     }
     
     @IBAction func viewDidPanned(sender: UIPanGestureRecognizer) {
