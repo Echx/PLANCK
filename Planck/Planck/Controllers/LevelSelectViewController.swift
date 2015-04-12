@@ -78,7 +78,27 @@ class LevelSelectViewController: XViewController, UICollectionViewDataSource, UI
     }
     
     private func loadLevels() {
-        self.levelArray = StorageManager.defaultManager.loadAllLevels()
+        // find out the document path
+        let path = NSSearchPathForDirectoriesInDomains(.DocumentDirectory,
+            .UserDomainMask, true)[0] as NSString
+        let fileManager = NSFileManager.defaultManager()
+        let fileArray = fileManager.contentsOfDirectoryAtPath(path,
+            error: nil)! as NSArray
+        
+        var levelFileLoader = StorageManager.defaultManager
+        
+        // clear the level cache
+        levelArray.removeAll(keepCapacity: true)
+        // iterate each filename to add
+        for filename in fileArray {
+            if (filename.pathExtension) != nil {
+                if (filename.pathExtension == StorageDefault.levelDataType) {
+                    let game = levelFileLoader.loadLevel(filename as NSString)
+                    levelArray.append(game)
+                }
+            }
+        }
+        levelArray.sort{$0<$1}
     }
 
 }
