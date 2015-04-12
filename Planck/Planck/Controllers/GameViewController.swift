@@ -164,6 +164,13 @@ class GameViewController: XViewController {
                 layer.removeFromSuperlayer()
             }
         }
+        
+        for (key, layers) in self.emitterLayers {
+            for layer in layers {
+                layer.removeFromSuperlayer()
+            }
+        }
+        
         self.audioPlayerList.removeAll(keepCapacity: false)
         self.rayLayers = [String: [CAShapeLayer]]()
         self.rays = [String: [(CGPoint, GOSegment?)]]()
