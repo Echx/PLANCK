@@ -306,6 +306,11 @@ class GameViewController: XViewController {
                     
                     let note = device.getNote()!
                     self.music.appendDistance(self.pathDistances[tag]!, forNote: note)
+                    
+                    if self.music.isSimilarTo(self.gameLevel.targetMusic) {
+                        self.view.addSubview(self.transitionMask)
+                        self.transitionMask.show(2)
+                    }
                 }
             } else {
                 fatalError("The node for the physics body not existed")
@@ -423,14 +428,6 @@ extension GameViewController: GOGridDelegate {
     }
     
     func gridDidFinishCalculation(grid: GOGrid, forRayWithTag tag: String) {
-        self.finishedPath++
-        
-        if self.finishedPath == self.rays.count {
-            // all finished
-            if self.music.isSimilarTo(self.gameLevel.targetMusic) {
-                self.view.addSubview(self.transitionMask)
-                self.transitionMask.show(2)
-            }
-        }
+
     }
 }
