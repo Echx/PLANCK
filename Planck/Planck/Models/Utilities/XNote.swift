@@ -36,6 +36,7 @@ class XNote: NSObject, NSCoding {
     func encodeWithCoder(aCoder: NSCoder) {
         aCoder.encodeObject(self.noteName.rawValue, forKey: NSCodingKey.NoteName)
         aCoder.encodeObject(self.noteGroup, forKey: NSCodingKey.NoteGroup)
+        aCoder.encodeObject(self.instrument, forKey: NSCodingKey.Instrument)
     }
     
     func getMIDINote() -> Int {
