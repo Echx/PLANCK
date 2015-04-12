@@ -18,6 +18,9 @@ class XFlatWall: XNode {
     required convenience init(coder aDecoder: NSCoder) {
         let body = aDecoder.decodeObjectForKey("phyBody") as GOFlatWallRep
         let isFixed = aDecoder.decodeBoolForKey("isFixed")
+        let normalNote = aDecoder.decodeObjectForKey("normalNote") as XNote
+        let planckNote = aDecoder.decodeObjectForKey("planckNote") as XNote
+        
         self.init(flatWall: body)
         self.isFixed = isFixed
         self.normalNote = normalNote
