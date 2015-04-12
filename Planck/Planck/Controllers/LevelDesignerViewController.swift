@@ -83,9 +83,9 @@ class LevelDesignerViewController: XViewController {
     private var audioPlayerList = [AVAudioPlayer]()
     private var grid: GOGrid
     private var music = XMusic()
-    private var game:GameLevel?
-    private var gameIndex:Int?
-    private var gameName:String?
+    private var game: GameLevel?
+    private var gameIndex: Int?
+    private var gameName: String?
     
     private let identifierLength = 20
     private let gridWidth = 64
@@ -191,7 +191,7 @@ class LevelDesignerViewController: XViewController {
     }
     
     @IBAction func play() {
-        let currentGameLevel = GameLevel(levelName: "Current Game Level", levelIndex: 0, grid: self.grid, nodes: self.xNodes)
+        let currentGameLevel = GameLevel(levelName: "Current Game Level", levelIndex: 0, grid: self.grid, nodes: self.xNodes, targetMusic: self.music)
         let gameViewController = GameViewController.getInstance(currentGameLevel)
         self.presentViewController(gameViewController, animated: true, completion: nil)
     }
@@ -1044,7 +1044,7 @@ class LevelDesignerViewController: XViewController {
                 if let match = regEx.firstMatchInString(inputName, options: nil,
                     range: NSRange(location: 0, length: inputName.utf16Count)) {
                         // valid
-                        var nextIndex = self.numOfLevel()
+                        var nextIndex = StorageManager.defaultManager.numOfLevel()
                         if self.gameIndex != nil {
                             nextIndex = self.gameIndex!
                         }
@@ -1055,7 +1055,7 @@ class LevelDesignerViewController: XViewController {
                         var savedGrid = NSKeyedUnarchiver.unarchiveObjectWithData(NSKeyedArchiver.archivedDataWithRootObject(self.grid)) as GOGrid
                         var savedNodes = NSKeyedUnarchiver.unarchiveObjectWithData(NSKeyedArchiver.archivedDataWithRootObject(self.xNodes)) as Dictionary<String, XNode>
                         
-                        let game = GameLevel(levelName: inputName, levelIndex: nextIndex, grid: savedGrid, nodes: savedNodes)
+                        let game = GameLevel(levelName: inputName, levelIndex: nextIndex, grid: savedGrid, nodes: savedNodes, targetMusic: self.music)
                         
                         StorageManager.defaultManager.saveCurrentLevel(game)
                         self.gameName = inputName

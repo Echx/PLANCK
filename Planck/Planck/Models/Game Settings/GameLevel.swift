@@ -9,21 +9,41 @@ import UIKit
 import Foundation
 
 class GameLevel: NSObject, NSCoding {
+    class func loadGameWithIndex(index:Int) -> GameLevel {
+        let totalGame = StorageManager.defaultManager.numOfLevel()
+        if index < 0 || index >= totalGame {
+            fatalError("index out of bound when load game")
+        }
+        return StorageManager.defaultManager.loadAllLevel()[index]
+    }
+    
+    
     private let defaultName = "Deadline"
     
     /// The grid contained in this level
-    var grid:GOGrid
+    var grid: GOGrid
     
     /// The XNodes contained in this level
-    var xNodes:[String: XNode]
+    var xNodes: [String: XNode]
     
     /// The name of this level
-    var name:String
+    var name: String
     
     /// The index of this level
-    var index:Int
+    var index: Int
     
-    init(levelName:String, levelIndex: Int, grid:GOGrid, nodes: [String: XNode]) {
+    /// THe desire music for this level
+    var targetMusic: XMusic = XMusic()
+    
+    init(levelName: String, levelIndex: Int, grid: GOGrid, nodes: [String: XNode], targetMusic: XMusic) {
+        self.name = levelName
+        self.index = levelIndex
+        self.grid = grid
+        self.xNodes = nodes
+        self.targetMusic = targetMusic
+    }
+    
+    init(levelName: String, levelIndex: Int, grid: GOGrid, nodes: [String: XNode]) {
         self.name = levelName
         self.index = levelIndex
         self.grid = grid
@@ -49,7 +69,8 @@ class GameLevel: NSObject, NSCoding {
         var index = aDecoder.decodeObjectForKey("index") as Int
         var grid = aDecoder.decodeObjectForKey("grid") as GOGrid
         var xNodes = aDecoder.decodeObjectForKey("xnode") as [String: XNode]
-        self.init(levelName:levelName, levelIndex: index, grid:grid, nodes:xNodes)
+        var music = aDecoder.decodeObjectForKey("music") as XMusic
+        self.init(levelName:levelName, levelIndex: index, grid:grid, nodes:xNodes, targetMusic:music)
     }
     
     func encodeWithCoder(aCoder: NSCoder) {
@@ -57,6 +78,7 @@ class GameLevel: NSObject, NSCoding {
         aCoder.encodeObject(self.index, forKey: "index")
         aCoder.encodeObject(self.grid, forKey: "grid")
         aCoder.encodeObject(self.xNodes, forKey: "xnode")
+        aCoder.encodeObject(self.targetMusic, forKey: "music")
     }
 
 }

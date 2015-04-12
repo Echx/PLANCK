@@ -16,10 +16,14 @@ class GameViewController: XViewController {
     private var rayLayers = [String: [CAShapeLayer]]()
     private var rays = [String: [(CGPoint, GOSegment?)]]()
     private var audioPlayerList = [AVAudioPlayer]()
+    private var music = XMusic()
+    private var pathDistances = [String: CGFloat]()
     private var emitterLayers = [String: [CAEmitterLayer]]()
     private var deviceViews = [String: UIView]()
     private var transitionMask = LevelTransitionMastView()
     private var pauseMask = PauseMaskView()
+    
+    private var queue = dispatch_queue_create("CHECKING_SERIAL_QUEUE", DISPATCH_QUEUE_SERIAL)
     
     private var grid: GOGrid {
         get {
@@ -208,6 +212,8 @@ class GameViewController: XViewController {
         self.audioPlayerList.removeAll(keepCapacity: false)
         self.rayLayers = [String: [CAShapeLayer]]()
         self.rays = [String: [(CGPoint, GOSegment?)]]()
+        self.music.reset()
+        self.pathDistances = [String: CGFloat]()
     }
     
     private func drawRay(tag: String, currentIndex: Int) {
@@ -239,6 +245,12 @@ class GameViewController: XViewController {
                 layer.shadowOpacity = 0.9
                 
                 self.view.layer.addSublayer(layer)
+                
+                if self.pathDistances[tag] == nil {
+                    self.pathDistances[tag] = CGFloat(0)
+                }
+                
+                self.pathDistances[tag]! += distance
                 
                 let delay = distance / Constant.lightSpeedBase
                 
@@ -273,7 +285,7 @@ class GameViewController: XViewController {
                 
                 layer.addAnimation(pathAnimation, forKey: "strokeEnd")
                 if currentIndex > 1 {
-                    self.playNote(prevPoint.1)
+                    self.playNote(prevPoint.1, tag: tag)
                     OscillationManager.oscillateView(
                         self.deviceViews[prevPoint.1!.parent]!,
                         direction: CGVectorMake(
@@ -289,7 +301,7 @@ class GameViewController: XViewController {
         }
     }
     
-    private func playNote(segment: GOSegment?) {
+    private func playNote(segment: GOSegment?, tag: String) {
         if let edge = segment {
             if let device = xNodes[edge.parent] {
                 if let sound = device.getSound() {
@@ -297,6 +309,18 @@ class GameViewController: XViewController {
                     self.audioPlayerList.append(audioPlayer)
                     audioPlayer.prepareToPlay()
                     audioPlayer.play()
+                    
+                    let note = device.getNote()!
+                    self.music.appendDistance(self.pathDistances[tag]!, forNote: note)
+                    
+                    dispatch_async(queue, {
+                        if self.music.isSimilarTo(self.gameLevel.targetMusic) {
+                            dispatch_after(dispatch_time(DISPATCH_TIME_NOW, Int64(Float(NSEC_PER_SEC) * 0.5)), dispatch_get_main_queue()) {
+                                self.view.addSubview(self.transitionMask)
+                                self.transitionMask.show(2)
+                            }
+                        }
+                    })
                 }
             } else {
                 fatalError("The node for the physics body not existed")
@@ -414,7 +438,7 @@ extension GameViewController: GOGridDelegate {
     }
     
     func gridDidFinishCalculation(grid: GOGrid, forRayWithTag tag: String) {
-        //        self.processPoints(self.rays[tag])
+
     }
 }
 

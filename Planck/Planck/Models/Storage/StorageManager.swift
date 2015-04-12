@@ -39,10 +39,57 @@ class StorageManager:NSObject  {
             .UserDomainMask, true)[0] as NSString
         // the dat name should be set by user
         var filePath : NSString = documentsPath.stringByAppendingPathComponent(filename)
-        println(filePath)
+
         let data = NSData(contentsOfFile: filePath)
         let unarchiver = NSKeyedUnarchiver(forReadingWithData: data!)
         return unarchiver.decodeObjectForKey(keyForArchieve) as GameLevel
     }
     
+    func loadAllLevel() -> [GameLevel] {
+        var levelArray = [GameLevel]()
+        // find out the document path
+        let path = NSSearchPathForDirectoriesInDomains(.DocumentDirectory,
+            .UserDomainMask, true)[0] as NSString
+        let fileManager = NSFileManager.defaultManager()
+        let fileArray = fileManager.contentsOfDirectoryAtPath(path,
+            error: nil)! as NSArray
+        
+        // iterate each filename to add
+        for filename in fileArray {
+            let name = filename as NSString
+            // temp solution for dealing with file type
+            if name.substringFromIndex(name.length - 4) == levelDataFileType {
+                let game = loadLevel(name)
+                levelArray.append(game)
+            }
+        }
+        
+        // sort the levelArray based on Index
+        levelArray.sort{$0<$1}
+        
+        for i in levelArray {
+            println(i.index)
+        }
+        
+        return levelArray
+    }
+    
+    func numOfLevel() -> Int {
+        // find out the document path
+        let path = NSSearchPathForDirectoriesInDomains(.DocumentDirectory,
+            .UserDomainMask, true)[0] as NSString
+        let fileManager = NSFileManager.defaultManager()
+        let fileArray = fileManager.contentsOfDirectoryAtPath(path,
+            error: nil)! as NSArray
+        
+        var total:Int = 0
+        // iterate each filename to add
+        for filename in fileArray {
+            if filename.substringFromIndex(filename.length - 4) == levelDataFileType {
+                total++
+            }
+        }
+        println("Total: \(total)")
+        return total
+    }
 }
