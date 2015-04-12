@@ -28,7 +28,41 @@ class ParticleManager: NSObject {
         static let sparkFile:String = "FireSpark"
     }
     
-    class func getParticleLayer() -> CAEmitterLayer{
+    class func getHomeBackgroundParticles() -> CAEmitterLayer{
+        let rect = UIScreen.mainScreen().bounds
+        let emitter = CAEmitterLayer()
+        emitter.frame = rect
+        
+        emitter.emitterShape = kCAEmitterLayerPoints
+        emitter.emitterPosition = CGPoint(x: rect.width / 2, y: rect.height / 2)
+        emitter.emitterSize = UIScreen.mainScreen().bounds.size
+        emitter.renderMode = kCAEmitterLayerAdditive
+        
+        let emitterCell = CAEmitterCell()
+        emitterCell.scale = 0.05
+        emitterCell.contents = UIImage(named: EmitterDefaults.sparkFile)!.CGImage
+        emitter.emitterCells = [emitterCell]
+        // define params here
+        emitterCell.birthRate = 20
+        emitterCell.lifetime = 6
+        emitterCell.spin = 0
+        emitterCell.spinRange = CGFloat(M_PI * 2)
+        
+        // define speed
+        emitterCell.yAcceleration = 10
+        emitterCell.xAcceleration = 10
+        emitterCell.velocity = 50
+        emitterCell.velocityRange = 30
+        emitterCell.emissionRange = CGFloat(M_PI)
+        
+        emitterCell.alphaRange = 2
+        emitterCell.alphaSpeed = -2
+        emitterCell.lifetimeRange = 1.0
+        
+        return emitter
+    }
+    
+    class func getParticleLayer() -> CAEmitterLayer {
         let rect = CGRect(x: EmitterDefaults.emitterX, y: EmitterDefaults.emitterY,
             width: EmitterDefaults.emitterWidth, height: EmitterDefaults.emitterHeight)
         let emitter = CAEmitterLayer()
@@ -62,29 +96,5 @@ class ParticleManager: NSObject {
         emitterCell.lifetimeRange = 1.0
         
         return emitter
-    }
-    
-    class func getParticle(position: CGPoint) -> CAEmitterCell {
-        let emitterCell = CAEmitterCell()
-        emitterCell.scale = 0.08
-        emitterCell.contents = UIImage(named: EmitterDefaults.sparkFile)!.CGImage
-        // define params here
-        emitterCell.birthRate = EmitterDefaults.emitterBirthRate
-        emitterCell.lifetime = EmitterDefaults.emitterLifetime
-        
-        // define speed
-        emitterCell.yAcceleration = EmitterDefaults.emitterYAcceleration
-        emitterCell.xAcceleration = EmitterDefaults.emitterXAcceleration
-        emitterCell.velocity = EmitterDefaults.emitterSpeed
-        emitterCell.emissionLongitude = EmitterDefaults.emitterLocation
-        emitterCell.velocityRange = EmitterDefaults.emitterVelocityRange
-        emitterCell.emissionRange = EmitterDefaults.emitterEmissionRange
-        
-        emitterCell.alphaRange = 0.75
-        emitterCell.alphaSpeed = -0.15
-        emitterCell.lifetimeRange = 1.0
-        
-        return emitterCell
-
     }
 }

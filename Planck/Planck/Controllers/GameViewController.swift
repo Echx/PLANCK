@@ -36,6 +36,7 @@ class GameViewController: XViewController {
         let identifier = StoryboardIndentifier.Game
         let viewController = storyboard.instantiateViewControllerWithIdentifier(identifier) as GameViewController
         viewController.gameLevel = gameLevel
+        viewController.modalTransitionStyle = UIModalTransitionStyle.CrossDissolve
         return viewController
     }
     
@@ -146,7 +147,6 @@ class GameViewController: XViewController {
             if let item = item as? GOEmitterRep {
                 self.addRay(item.getRay())
             }
-            
         }
     }
     
@@ -240,6 +240,11 @@ class GameViewController: XViewController {
                 layer.addAnimation(pathAnimation, forKey: "strokeEnd")
                 if currentIndex > 1 {
                     self.playNote(prevPoint.1)
+                    OscillationManager.oscillateView(
+                        self.deviceViews[prevPoint.1!.parent]!,
+                        direction: CGVectorMake(
+                            currentPoint.0.x - prevPoint.0.x,
+                            currentPoint.0.y - prevPoint.0.y))
                 }
                 
                 let delayInNanoSeconds = 0.9 * delay * CGFloat(NSEC_PER_SEC);
@@ -332,6 +337,7 @@ class GameViewController: XViewController {
         }
     }
     
+    
     private func moveNode(node: GOOpticRep, to: GOCoordinate) -> Bool{
         let originalCenter = self.grid.getCenterForGridCell(node.center)
         let finalCenter = self.grid.getCenterForGridCell(to)
@@ -341,6 +347,7 @@ class GameViewController: XViewController {
         return self.moveNode(node, from: originalCenter, offset: offset)
     }
     
+        
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.

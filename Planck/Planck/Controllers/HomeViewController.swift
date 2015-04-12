@@ -10,7 +10,7 @@ import UIKit
 
 class HomeViewController: XViewController {
     
-    private let emitterLayer = ParticleManager.getParticleLayer()
+    private let emitterLayer = ParticleManager.getHomeBackgroundParticles()
     
     
     class func getInstance() -> HomeViewController {

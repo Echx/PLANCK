@@ -55,7 +55,7 @@
                                             <action selector="loadButtonDidClicked:" destination="ICT-TY-Uh1" id="lCc-XZ-ESY"/>
                                         </connections>
                                     </barButtonItem>
-                                    <barButtonItem title="Play" id="eXz-4J-3g6">
+                                    <barButtonItem title="Preview" id="eXz-4J-3g6">
                                         <connections>
                                             <action selector="play" destination="ICT-TY-Uh1" id="PZ9-EV-Ztd"/>
                                         </connections>
@@ -530,7 +530,7 @@
                                     </collectionViewCell>
                                 </cells>
                                 <collectionReusableView key="sectionHeaderView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="LevelSelectHeader" id="uOq-sv-PWB" customClass="LevelSelectHeaderView" customModule="Planck" customModuleProvider="target">
-                                    <rect key="frame" x="0.0" y="0.0" width="300" height="48"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="290" height="60"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hG1-YG-Ave">
