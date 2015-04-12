@@ -242,3 +242,13 @@ enum XNoteName: Int {
     case B, BFlat, BDoubleFlat, BSharp, BDoubleSharp
     case snareDrum, bassDrum, cymbal
 }
+
+extension XNote: Equatable {
+    
+}
+
+func == (lhs: XNote, rhs: XNote) -> Bool {
+    return lhs.instrument == rhs.instrument &&
+        lhs.noteGroup == rhs.noteGroup &&
+        lhs.noteName == rhs.noteName
+}
