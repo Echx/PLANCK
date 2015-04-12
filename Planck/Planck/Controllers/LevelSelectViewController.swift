@@ -10,8 +10,8 @@ import UIKit
 
 class LevelSelectViewController: XViewController, UICollectionViewDataSource, UICollectionViewDelegate, UICollectionViewDelegateFlowLayout {
     
-    private let itemsInSection = 5
-    private let sectionInsets = UIEdgeInsets(top: 0.0, left: 10.0, bottom: 15.0, right: 10.0)
+    private let itemsInSection = 6
+    private let sectionInsets = UIEdgeInsets(top: 15.0, left: 20.0, bottom: 10.0, right: 15.0)
     
     @IBOutlet weak var collectionView: UICollectionView!
     var levelArray:[GameLevel] = [GameLevel]()
@@ -37,18 +37,18 @@ class LevelSelectViewController: XViewController, UICollectionViewDataSource, UI
     }
     
     func collectionView(collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        if levelArray.count >= (section + 1) * 5 {
+        if levelArray.count >= (section + 1) * itemsInSection {
             // can afford #itemsInSection
             return itemsInSection
         } else {
-            return levelArray.count - section * 5
+            return levelArray.count - section * itemsInSection
         }
     }
     
     func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCellWithReuseIdentifier(ReuseableID.LevelSelectCell , forIndexPath: indexPath) as LevelSelectCollectionViewCell
         let game = levelArray[indexPath.section * itemsInSection + indexPath.item]
-        let nameChar = ["I", "II", "III", "IV", "V"]
+        let nameChar = ["I", "II", "III", "IV", "V", "VI"]
         
         cell.title.text = nameChar[indexPath.item]
         
@@ -70,15 +70,19 @@ class LevelSelectViewController: XViewController, UICollectionViewDataSource, UI
         let game = levelArray[indexPath.section * itemsInSection + indexPath.item]
         
         // load game to the game view 
-//        var gameVC = GameViewController.getInstance(game.grid)
-//        self.presentViewController(gameVC, animated: true, completion: {})
+        var gameVC = GameViewController.getInstance(game)
+        self.presentViewController(gameVC, animated: true, completion: {})
     }
     
-    func collectionView(collectionView: UICollectionView!,
-        layout collectionViewLayout: UICollectionViewLayout!,
-        insetForSectionAtIndex section: Int) -> UIEdgeInsets {
-            return sectionInsets
-    }
+//    func collectionView(collectionView: UICollectionView!,
+//        layout collectionViewLayout: UICollectionViewLayout!,
+//        insetForSectionAtIndex section: Int) -> UIEdgeInsets {
+//            return sectionInsets
+//    }
+//    
+//    func collectionView(collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumInteritemSpacingForSectionAtIndex section: Int) -> CGFloat {
+//        return 15.0
+//    }
     
     private func loadLevels() {
         // find out the document path

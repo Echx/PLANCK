@@ -22,7 +22,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         self.drawerController = MMDrawerController(centerViewController: homeViewController, leftDrawerViewController: settingViewController, rightDrawerViewController: levelSelectViewController)
         self.drawerController!.maximumLeftDrawerWidth = 300
-        self.drawerController!.maximumRightDrawerWidth = 300
+        self.drawerController!.maximumRightDrawerWidth = 290
         self.drawerController!.openDrawerGestureModeMask = MMOpenDrawerGestureMode.All
         self.drawerController!.closeDrawerGestureModeMask = MMCloseDrawerGestureMode.PanningCenterView
         self.drawerController?.shouldStretchDrawer = false
