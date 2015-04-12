@@ -9,7 +9,7 @@
 import UIKit
 import Foundation
 
-class XMusic: NSObject {
+class XMusic: NSObject, NSCoding {
     var music: [XNote: [CGFloat]]
     var isArranged: Bool // whether the distances are sorted
     

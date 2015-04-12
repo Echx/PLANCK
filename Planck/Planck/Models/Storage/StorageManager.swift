@@ -67,10 +67,6 @@ class StorageManager:NSObject  {
         // sort the levelArray based on Index
         levelArray.sort{$0<$1}
         
-        for i in levelArray {
-            println(i.index)
-        }
-        
         return levelArray
     }
     
