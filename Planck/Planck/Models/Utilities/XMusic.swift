@@ -74,7 +74,7 @@ class XMusic: NSObject {
         anotherMusic.arrangeDistances()
         
         for noteOccurence in self.music {
-            for i in 0...noteOccurence.1.count {
+            for i in 0...noteOccurence.1.count - 1 {
                 let anotherPathDistances = anotherMusic.music[noteOccurence.0]!
                 if fabs((Double)(noteOccurence.1[i] - anotherPathDistances[i])) > MusicDefaults.distanceTolerance {
                     return false
