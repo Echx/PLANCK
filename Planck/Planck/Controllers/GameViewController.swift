@@ -178,9 +178,9 @@ class GameViewController: XViewController {
             if currentIndex < self.rays[tag]?.count {
                 let layer = CAShapeLayer()
                 layer.strokeEnd = 1.0
-                layer.strokeColor = UIColor.whiteColor().CGColor
+                layer.strokeColor = UIColor(white: 1, alpha: 0.2).CGColor
                 layer.fillColor = UIColor.clearColor().CGColor
-                layer.lineWidth = 2.0
+                layer.lineWidth = 5.0
                 
                 self.rayLayers[tag]?.append(layer)
                 

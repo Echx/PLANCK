@@ -11,18 +11,18 @@ import UIKit
 class ParticleManager: NSObject {
     
     struct EmitterDefaults {
-        static let emitterBirthRate:Float = 200
-        static let emitterLifetime:Float = 0.3
+        static let emitterBirthRate:Float = 39
+        static let emitterLifetime:Float = 1
         static let emitterX:CGFloat = 0
         static let emitterY:CGFloat = 0
         static let emitterWidth:CGFloat = 1024
         static let emitterHeight:CGFloat = 768
-        static let emitterSize:CGSize = CGSizeMake(50, 50)
-        static let emitterXAcceleration:CGFloat = 2.0
-        static let emitterYAcceleration:CGFloat = 2.0
-        static let emitterSpeed:CGFloat = 5.0
+        static let emitterSize:CGSize = CGSizeMake(5, 5)
+        static let emitterXAcceleration:CGFloat = 0.0
+        static let emitterYAcceleration:CGFloat = 0.0
+        static let emitterSpeed:CGFloat = 0.0
         static let emitterLocation:CGFloat = CGFloat(-M_PI)
-        static let emitterVelocityRange:CGFloat = 20.0
+        static let emitterVelocityRange:CGFloat = 0
         static let emitterEmissionRange:CGFloat = CGFloat(M_PI)
         static let buttonOffset:CGFloat = 1024.0
         static let sparkFile:String = "FireSpark"
@@ -34,9 +34,10 @@ class ParticleManager: NSObject {
         let emitter = CAEmitterLayer()
         emitter.frame = rect
         
-        emitter.emitterShape = kCAEmitterLayerSphere
+        emitter.emitterShape = kCAEmitterLayerPoints
         emitter.emitterPosition = CGPoint(x: -rect.width / 2, y: -rect.height / 2)
         emitter.emitterSize = EmitterDefaults.emitterSize
+        emitter.renderMode = kCAEmitterLayerAdditive
         
         let emitterCell = CAEmitterCell()
         emitterCell.scale = 0.03
@@ -45,6 +46,8 @@ class ParticleManager: NSObject {
         // define params here
         emitterCell.birthRate = EmitterDefaults.emitterBirthRate
         emitterCell.lifetime = EmitterDefaults.emitterLifetime
+        emitterCell.spin = 0
+        emitterCell.spinRange = CGFloat(M_PI * 2)
         
         // define speed
         emitterCell.yAcceleration = EmitterDefaults.emitterYAcceleration
@@ -54,8 +57,8 @@ class ParticleManager: NSObject {
         emitterCell.velocityRange = EmitterDefaults.emitterVelocityRange
         emitterCell.emissionRange = EmitterDefaults.emitterEmissionRange
         
-        emitterCell.alphaRange = 0.75
-        emitterCell.alphaSpeed = -0.15
+        emitterCell.alphaRange = 2
+        emitterCell.alphaSpeed = -2
         emitterCell.lifetimeRange = 1.0
         
         return emitter
