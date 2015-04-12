@@ -27,40 +27,19 @@ class StorageManager:NSObject  {
         archiver.finishEncoding()
         let documentsPath = NSSearchPathForDirectoriesInDomains(.DocumentDirectory,
             .UserDomainMask, true)[0] as NSString
-        let levelName = String(level.index) + levelDataFileType
-        println(levelName)
+        let levelName = level.name + levelDataFileType
         // the dat name should be set by user
         var filePath : NSString = documentsPath.stringByAppendingPathComponent(levelName)
         data.writeToFile(filePath, atomically: true)
     }
-    
-    // load the level based on the file name
-    func numOfLevel() -> Int {
-        // find out the document path
-        let path = NSSearchPathForDirectoriesInDomains(.DocumentDirectory,
-            .UserDomainMask, true)[0] as NSString
-        let fileManager = NSFileManager.defaultManager()
-        let fileArray = fileManager.contentsOfDirectoryAtPath(path,
-            error: nil)! as NSArray
         
-        var total:Int = 0
-        // iterate each filename to add
-        for filename in fileArray {
-            if (filename.pathExtension) != nil {
-                if (filename.pathExtension == StorageDefault.levelDataType) {
-                    total++
-                }
-            }
-        }
-        return total
-    }
-    
     // load the level based on the file name
     func loadLevel(filename:NSString) -> GameLevel {
         let documentsPath = NSSearchPathForDirectoriesInDomains(.DocumentDirectory,
             .UserDomainMask, true)[0] as NSString
         // the dat name should be set by user
         var filePath : NSString = documentsPath.stringByAppendingPathComponent(filename)
+        println(filePath)
         let data = NSData(contentsOfFile: filePath)
         let unarchiver = NSKeyedUnarchiver(forReadingWithData: data!)
         return unarchiver.decodeObjectForKey(keyForArchieve) as GameLevel

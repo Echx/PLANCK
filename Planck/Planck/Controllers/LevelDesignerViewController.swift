@@ -84,6 +84,8 @@ class LevelDesignerViewController: XViewController {
     private var grid: GOGrid
     private var music = [XNote: [CGFloat]]()
     private var game:GameLevel?
+    private var gameIndex:Int?
+    private var gameName:String?
     
     private let identifierLength = 20
     private let gridWidth = 64
@@ -1020,8 +1022,8 @@ class LevelDesignerViewController: XViewController {
         
         // 2. Add the text field
         alert.addTextFieldWithConfigurationHandler{ (textField) in
-            if let currentLevel = self.game {
-                textField.text = currentLevel.name
+            if let currentLevelName = self.gameName {
+                textField.text = currentLevelName
             } else {
                 textField.text = AlertViewText.default_text
             }
@@ -1046,9 +1048,25 @@ class LevelDesignerViewController: XViewController {
                 if let match = regEx.firstMatchInString(inputName, options: nil,
                     range: NSRange(location: 0, length: inputName.utf16Count)) {
                         // valid
-                        let game = GameLevel(levelName: inputName, levelIndex: 1, grid: self.grid, nodes: self.xNodes)
-                        self.game = game
-                    StorageManager.defaultManager.saveCurrentLevel(game)
+                        var nextIndex = self.numOfLevel()
+                        if self.gameIndex != nil {
+                            nextIndex = self.gameIndex!
+                        }
+                        
+                        println(nextIndex)
+                        
+                        // create deep copy
+                        var savedGrid = NSKeyedUnarchiver.unarchiveObjectWithData(NSKeyedArchiver.archivedDataWithRootObject(self.grid)) as GOGrid
+                        var savedNodes = NSKeyedUnarchiver.unarchiveObjectWithData(NSKeyedArchiver.archivedDataWithRootObject(self.xNodes)) as Dictionary<String, XNode>
+                        
+                        let game = GameLevel(levelName: inputName, levelIndex: nextIndex, grid: savedGrid, nodes: savedNodes)
+                        
+                        StorageManager.defaultManager.saveCurrentLevel(game)
+                        self.gameName = inputName
+                        self.gameIndex = nextIndex
+                        
+                        self.dismissViewController()
+                        
                 } else {
                     // invalid
                     self.showWrongInputAlert()
@@ -1093,7 +1111,8 @@ extension LevelDesignerViewController: LevelSelectDelegate {
     func loadSelectLevel(level:GameLevel) {
         self.dismissViewControllerAnimated(true, completion: {
             self.loadLevel(level)
-            self.game = level
+            self.gameName = level.name
+            self.gameIndex = level.index
         })
         
     }
@@ -1160,4 +1179,25 @@ extension LevelDesignerViewController: UIPickerViewDataSource, UIPickerViewDeleg
             fatalError("invalid picker")
         }
     }
+    
+    private func numOfLevel() -> Int {
+        // find out the document path
+        let path = NSSearchPathForDirectoriesInDomains(.DocumentDirectory,
+            .UserDomainMask, true)[0] as NSString
+        let fileManager = NSFileManager.defaultManager()
+        let fileArray = fileManager.contentsOfDirectoryAtPath(path,
+            error: nil)! as NSArray
+        
+        var total:Int = 0
+        // iterate each filename to add
+        for filename in fileArray {
+            if (filename.pathExtension) != nil {
+                if (filename.pathExtension == StorageDefault.levelDataType) {
+                    total++
+                }
+            }
+        }
+        return total
+    }
+
 }
