@@ -20,7 +20,7 @@ class XFlatWall: XNode {
         let isFixed = aDecoder.decodeBoolForKey("isFixed")
         self.init(flatWall: body)
         self.isFixed = isFixed
-//        self.normalNote = normalNote
+        self.normalNote = normalNote
         self.planckNote = planckNote
     }
     
