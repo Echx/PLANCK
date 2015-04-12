@@ -35,7 +35,7 @@ class XMusic: NSObject {
     }
     
     required convenience init(coder aDecoder: NSCoder) {
-        let music = aDecoder.decodeObjectForKey(NSCodingKey.NoteGroup) as Dictionary<XNote,[CGFloat]>
+        let music = aDecoder.decodeObjectForKey("music") as Dictionary<XNote,[CGFloat]>
         let isArranged = aDecoder.decodeBoolForKey("arrange")
         self.init()
         self.music = music
