@@ -36,6 +36,7 @@ class GameViewController: XViewController {
         let identifier = StoryboardIndentifier.Game
         let viewController = storyboard.instantiateViewControllerWithIdentifier(identifier) as GameViewController
         viewController.gameLevel = gameLevel
+        viewController.modalTransitionStyle = UIModalTransitionStyle.CrossDissolve
         return viewController
     }
     
