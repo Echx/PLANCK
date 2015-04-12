@@ -258,6 +258,26 @@
 		62D2836D1AD1892400A583FA /* XConvexLens.swift in Sources */ = {isa = PBXBuildFile; fileRef = 62D2836B1AD1892400A583FA /* XConvexLens.swift */; };
 		62D2836E1AD1892400A583FA /* XConcaveLens.swift in Sources */ = {isa = PBXBuildFile; fileRef = 62D2836C1AD1892400A583FA /* XConcaveLens.swift */; };
 		62E323261ADAE83100CFD4CA /* XMusic.swift in Sources */ = {isa = PBXBuildFile; fileRef = 62E323251ADAE83100CFD4CA /* XMusic.swift */; };
+		62E323271ADAF25B00CFD4CA /* LevelDesignerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26C8ADD91AD00437008ADACB /* LevelDesignerViewController.swift */; };
+		62E323291ADAF27D00CFD4CA /* XMusicTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 62E323281ADAF27D00CFD4CA /* XMusicTest.swift */; };
+		62E3232A1ADAF2B400CFD4CA /* XMusic.swift in Sources */ = {isa = PBXBuildFile; fileRef = 62E323251ADAE83100CFD4CA /* XMusic.swift */; };
+		62E3232B1ADAF52000CFD4CA /* XViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 269D783F1AD30ECF00279EF3 /* XViewController.swift */; };
+		62E3232C1ADAF52300CFD4CA /* DesignerLevelSelectViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 982495D71AD2ACC10039E75E /* DesignerLevelSelectViewController.swift */; };
+		62E3232D1ADAF52700CFD4CA /* SettingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 269D78371AD306F000279EF3 /* SettingViewController.swift */; };
+		62E3232E1ADAF52900CFD4CA /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 269D783D1AD3088300279EF3 /* HomeViewController.swift */; };
+		62E3232F1ADAF52B00CFD4CA /* LevelSelectViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 269D78391AD3070100279EF3 /* LevelSelectViewController.swift */; };
+		62E323301ADAF52D00CFD4CA /* GameViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 269D78411AD3128D00279EF3 /* GameViewController.swift */; };
+		62E323311ADAF54200CFD4CA /* LevelSelectHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 988CF3471AD3C6580013D903 /* LevelSelectHeaderView.swift */; };
+		62E323321ADAF54600CFD4CA /* LevelSelectCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 988CF3491AD3C6C70013D903 /* LevelSelectCollectionViewCell.swift */; };
+		62E323331ADAF54800CFD4CA /* CoinView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 262F382D1ADACA8F00FA2177 /* CoinView.swift */; };
+		62E323341ADAF54B00CFD4CA /* LevelTransitionMastView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 262F382B1ADACA1B00FA2177 /* LevelTransitionMastView.swift */; };
+		62E323351ADAF54E00CFD4CA /* SettingViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9841A82D1AD987010095AEBB /* SettingViewCell.swift */; };
+		62E323361ADAF56400CFD4CA /* XConvexLens.swift in Sources */ = {isa = PBXBuildFile; fileRef = 62D2836B1AD1892400A583FA /* XConvexLens.swift */; };
+		62E323371ADAF56400CFD4CA /* XConcaveLens.swift in Sources */ = {isa = PBXBuildFile; fileRef = 62D2836C1AD1892400A583FA /* XConcaveLens.swift */; };
+		62E323381ADAF56400CFD4CA /* XFlatMirror.swift in Sources */ = {isa = PBXBuildFile; fileRef = 62D2833E1AD17D3C00A583FA /* XFlatMirror.swift */; };
+		62E323391ADAF56400CFD4CA /* XFlatWall.swift in Sources */ = {isa = PBXBuildFile; fileRef = 62D283691AD1890900A583FA /* XFlatWall.swift */; };
+		62E3233A1ADAF56400CFD4CA /* XEmitter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26DFCF9B1AD8467000C97C5B /* XEmitter.swift */; };
+		62E3233B1ADAF57600CFD4CA /* String+XUtility.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26C8ADDB1AD01A52008ADACB /* String+XUtility.swift */; };
 		908507565261D52FE46A7565 /* libPods-Planck.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 7C7D2BBE51F017F5A3BC172D /* libPods-Planck.a */; };
 		982495D81AD2ACC10039E75E /* DesignerLevelSelectViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 982495D71AD2ACC10039E75E /* DesignerLevelSelectViewController.swift */; };
 		9841A82E1AD987010095AEBB /* SettingViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9841A82D1AD987010095AEBB /* SettingViewCell.swift */; };
@@ -536,6 +556,7 @@
 		62D2836B1AD1892400A583FA /* XConvexLens.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = XConvexLens.swift; path = Optics/XConvexLens.swift; sourceTree = "<group>"; };
 		62D2836C1AD1892400A583FA /* XConcaveLens.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = XConcaveLens.swift; path = Optics/XConcaveLens.swift; sourceTree = "<group>"; };
 		62E323251ADAE83100CFD4CA /* XMusic.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = XMusic.swift; sourceTree = "<group>"; };
+		62E323281ADAF27D00CFD4CA /* XMusicTest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = XMusicTest.swift; sourceTree = "<group>"; };
 		7C7D2BBE51F017F5A3BC172D /* libPods-Planck.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-Planck.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		8FAA2537BA840D27B293A4BB /* Pods-Planck.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Planck.release.xcconfig"; path = "Pods/Target Support Files/Pods-Planck/Pods-Planck.release.xcconfig"; sourceTree = "<group>"; };
 		982495D71AD2ACC10039E75E /* DesignerLevelSelectViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DesignerLevelSelectViewController.swift; sourceTree = "<group>"; };
@@ -793,6 +814,7 @@
 			children = (
 				62988FD31AB2FA3400FD9AFF /* CGVector+XUtilityTest.swift */,
 				6227FC1F1AAE291F007F49EA /* XColorTest.swift */,
+				62E323281ADAF27D00CFD4CA /* XMusicTest.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -1428,9 +1450,12 @@
 			buildActionMask = 2147483647;
 			files = (
 				6227FC201AAE291F007F49EA /* XColorTest.swift in Sources */,
+				62E323391ADAF56400CFD4CA /* XFlatWall.swift in Sources */,
 				62988FD41AB2FA3400FD9AFF /* CGVector+XUtilityTest.swift in Sources */,
 				986E5DA31AC55604008EF3CE /* StorageManager.swift in Sources */,
+				62E3232C1ADAF52300CFD4CA /* DesignerLevelSelectViewController.swift in Sources */,
 				6227FB881AAE285C007F49EA /* PlanckTests.swift in Sources */,
+				62E3232E1ADAF52900CFD4CA /* HomeViewController.swift in Sources */,
 				98F63AA51AD1650F0096A32E /* GOPath.swift in Sources */,
 				98F63AA31AD1650F0096A32E /* GOSegment.swift in Sources */,
 				62988FF51AB2FA8800FD9AFF /* CGVector+XUtility.swift in Sources */,
@@ -1439,17 +1464,29 @@
 				98F63A9A1AD165070096A32E /* GOFlatWallRep.swift in Sources */,
 				263B09CA1ACEEF9600E7C99E /* CGFLoat+GOUtilities.swift in Sources */,
 				269192B21AD8124D002F8590 /* XFlatLens.swift in Sources */,
+				62E323291ADAF27D00CFD4CA /* XMusicTest.swift in Sources */,
 				263B09CD1ACEEF9600E7C99E /* GOConstant.swift in Sources */,
 				62988FF71AB2FA8800FD9AFF /* XConstant.swift in Sources */,
+				62E3233A1ADAF56400CFD4CA /* XEmitter.swift in Sources */,
+				62E323271ADAF25B00CFD4CA /* LevelDesignerViewController.swift in Sources */,
+				62E323311ADAF54200CFD4CA /* LevelSelectHeaderView.swift in Sources */,
 				98F63A951AD165070096A32E /* GOConcaveLensRep.swift in Sources */,
 				98F63A961AD165070096A32E /* GOConvexLensRep.swift in Sources */,
 				261483C81AD9B42E001F4143 /* GameLevel.swift in Sources */,
 				262F38281ADABF0100FA2177 /* OscillationManager.swift in Sources */,
 				62988FF61AB2FA8800FD9AFF /* XColor.swift in Sources */,
+				62E323341ADAF54B00CFD4CA /* LevelTransitionMastView.swift in Sources */,
 				98F63A9F1AD1650F0096A32E /* GOCoordinate.swift in Sources */,
+				62E323301ADAF52D00CFD4CA /* GameViewController.swift in Sources */,
+				62E3232D1ADAF52700CFD4CA /* SettingViewController.swift in Sources */,
 				98F63A9E1AD1650F0096A32E /* GOArcSegment.swift in Sources */,
+				62E323351ADAF54E00CFD4CA /* SettingViewCell.swift in Sources */,
+				62E323371ADAF56400CFD4CA /* XConcaveLens.swift in Sources */,
 				269192B51AD81A7D002F8590 /* XNode.swift in Sources */,
+				62E323321ADAF54600CFD4CA /* LevelSelectCollectionViewCell.swift in Sources */,
 				98F63AA21AD1650F0096A32E /* GORay.swift in Sources */,
+				62E3233B1ADAF57600CFD4CA /* String+XUtility.swift in Sources */,
+				62E323361ADAF56400CFD4CA /* XConvexLens.swift in Sources */,
 				98F63A9B1AD165070096A32E /* GOOpticRep.swift in Sources */,
 				98F63AA11AD1650F0096A32E /* GOLineSegment.swift in Sources */,
 				263B09CE1ACEEF9600E7C99E /* GOUtilities.swift in Sources */,
@@ -1457,10 +1494,15 @@
 				98F63A941AD163C70096A32E /* ArchiveTest.swift in Sources */,
 				98F63AA01AD1650F0096A32E /* GOLine.swift in Sources */,
 				98F63AA41AD1650F0096A32E /* GOStack.swift in Sources */,
+				62E3232A1ADAF2B400CFD4CA /* XMusic.swift in Sources */,
 				263B09CB1ACEEF9600E7C99E /* CGPoint+GOUtilities.swift in Sources */,
+				62E3232F1ADAF52B00CFD4CA /* LevelSelectViewController.swift in Sources */,
+				62E323381ADAF56400CFD4CA /* XFlatMirror.swift in Sources */,
 				261483CE1AD9B471001F4143 /* ParticleManager.swift in Sources */,
 				98F63A9C1AD165070096A32E /* GOEmitterRep.swift in Sources */,
 				62988FF81AB2FA8800FD9AFF /* XMedium.swift in Sources */,
+				62E3232B1ADAF52000CFD4CA /* XViewController.swift in Sources */,
+				62E323331ADAF54800CFD4CA /* CoinView.swift in Sources */,
 				62988FF91AB2FA8800FD9AFF /* XNote.swift in Sources */,
 				263B09CC1ACEEF9600E7C99E /* CGVector+GOUtilities.swift in Sources */,
 				98F63A971AD165070096A32E /* GOFlatOpticRep.swift in Sources */,
