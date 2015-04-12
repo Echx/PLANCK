@@ -10,31 +10,33 @@ import UIKit
 
 class LevelTransitionMastView: UIView {
     
-    let coinViews = [CoinView]()
-    let hiddenCentersTop = [
+    private let coinViews = [CoinView]()
+    private let hiddenCentersTop = [
         CGPointMake(337, -200),
         CGPointMake(512, -200),
         CGPointMake(687, -200)
     ]
     
-    let hiddenCentersBottom = [
+    private let hiddenCentersBottom = [
         CGPointMake(337, 968),
         CGPointMake(512, 968),
         CGPointMake(687, 968)
     ]
     
-    let normalCenters = [
+    private let normalCenters = [
         CGPointMake(337, 350),
         CGPointMake(512, 350),
         CGPointMake(687, 350)
     ]
     
+    private let imageView = UIImageView(frame: UIScreen.mainScreen().bounds)
+    private var tapGestureRecognizer: UITapGestureRecognizer?
     var animationSpringDamping: CGFloat = 0.5
     var animationInitialSpringVelocity: CGFloat = 10
     var animationDuration = 1.5
     var animationDurationOut: NSTimeInterval {
         get {
-            return self.animationDuration * 0.7
+            return self.animationDuration * 0.1
         }
     }
     
@@ -48,16 +50,17 @@ class LevelTransitionMastView: UIView {
     
     override init() {
         super.init(frame: UIScreen.mainScreen().bounds)
-        
+        self.imageView.image = UIImage(named: "mainbackground")
+        self.addSubview(self.imageView)
         for var i = 0; i < self.coinCount; i++ {
             var coinView = CoinView(isOn: true)
             self.addSubview(coinView)
             coinView.center = self.hiddenCentersTop[i]
             self.coinViews.append(coinView)
         }
-        
-        let tapGestureRecognizer = UITapGestureRecognizer(target: self, action: "hide")
-        self.addGestureRecognizer(tapGestureRecognizer)
+        self.tapGestureRecognizer = UITapGestureRecognizer(target: self, action: "hide")
+        self.addGestureRecognizer(tapGestureRecognizer!)
+        tapGestureRecognizer!.enabled = false
     }
     
     
@@ -81,27 +84,40 @@ class LevelTransitionMastView: UIView {
                 animations: {
                     self.coinViews[i].center = self.normalCenters[i]
                 },
-                completion: nil)
+                completion: {
+                    finished in
+                    self.tapGestureRecognizer!.enabled = true
+                })
         }
     }
     
     func hide() {
+        self.tapGestureRecognizer?.enabled = false
+        self.animationCount = 0
         for var i = 0; i < self.coinCount; i++ {
             UIView.animateWithDuration(
                 self.animationDurationOut,
                 delay: animationDelays[i],
-                usingSpringWithDamping: self.animationSpringDamping,
-                initialSpringVelocity: 0,
                 options: UIViewAnimationOptions.CurveEaseIn,
                 animations: {
                     self.coinViews[i].center = self.hiddenCentersBottom[i]
                 },
-                completion: nil)
+                completion: {
+                    finished in
+                    self.animationComplete()
+                })
         }
-        NSTimer.scheduledTimerWithTimeInterval(2.1, target: self, selector: "removeFromSuperview", userInfo: nil, repeats: false)
     }
     
-
+    private var animationCount = 0
+    private func animationComplete() {
+        self.animationCount++
+        if self.animationCount == self.coinCount {
+            self.removeFromSuperview()
+        }
+    }
+    
+    
     required init(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
     }
