@@ -28,8 +28,8 @@ class XNote: NSObject, NSCoding {
     required convenience init(coder aDecoder: NSCoder) {
         let noteNameRaw = aDecoder.decodeObjectForKey(NSCodingKey.NoteName)! as Int
         let noteName = XNoteName(rawValue: noteNameRaw)!
-        let noteGroup = aDecoder.decodeObjectForKey(NSCodingKey.NoteGroup)! as Int
-        let instrument = aDecoder.decodeObjectForKey(NSCodingKey.Instrument)! as Int
+        let noteGroup = aDecoder.decodeObjectForKey(NSCodingKey.NoteGroup) as Int?
+        let instrument = aDecoder.decodeObjectForKey(NSCodingKey.Instrument) as Int?
         self.init(noteName: noteName, noteGroup: noteGroup, instrument: instrument)
     }
     
