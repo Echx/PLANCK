@@ -51,10 +51,8 @@ class XNode: NSObject, NSCoding {
         if !self.shouldPlaySound {
             return nil
         } else if self.isPlanck {
-            println("play isPlanck")
             return self.planckNote?.getAudioFile()
         } else {
-            println("play isPlanck")
             return self.normalNote?.getAudioFile()
         }
     }
