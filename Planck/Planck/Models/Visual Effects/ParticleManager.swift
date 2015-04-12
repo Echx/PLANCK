@@ -17,12 +17,12 @@ class ParticleManager: NSObject {
         static let emitterY:CGFloat = 0
         static let emitterWidth:CGFloat = 1024
         static let emitterHeight:CGFloat = 768
-        static let emitterSize:CGSize = CGSizeMake(10, 10)
-        static let emitterXAcceleration:CGFloat = 0.0
-        static let emitterYAcceleration:CGFloat = 0.0
-        static let emitterSpeed:CGFloat = 2.0
+        static let emitterSize:CGSize = CGSizeMake(50, 50)
+        static let emitterXAcceleration:CGFloat = 2.0
+        static let emitterYAcceleration:CGFloat = 2.0
+        static let emitterSpeed:CGFloat = 5.0
         static let emitterLocation:CGFloat = CGFloat(-M_PI)
-        static let emitterVelocityRange:CGFloat = 2.0
+        static let emitterVelocityRange:CGFloat = 20.0
         static let emitterEmissionRange:CGFloat = CGFloat(M_PI)
         static let buttonOffset:CGFloat = 1024.0
         static let sparkFile:String = "FireSpark"

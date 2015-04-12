@@ -17,7 +17,6 @@ class GameViewController: XViewController {
     private var rays = [String: [(CGPoint, GOSegment?)]]()
     private var audioPlayerList = [AVAudioPlayer]()
     private var emitterLayers = [String: [CAEmitterLayer]]()
-    private var emitterLayer = ParticleManager.getParticleLayer()
     
     private var grid: GOGrid {
         get {
@@ -105,11 +104,6 @@ class GameViewController: XViewController {
             }
         }
     }
-
-    
-    override func animationDidStop(anim: CAAnimation!, finished flag: Bool) {
-        self.emitterLayer.emitterPosition = CGPointMake(-512, -384)
-    }
     
     private func updateDirection(node: GOOpticRep) {
         let newDirectionIndex = Int(round(node.direction.angleFromXPlus / self.grid.unitDegree)) + 1
@@ -160,7 +154,6 @@ class GameViewController: XViewController {
         var newTag = String.generateRandomString(20)
         self.rays[newTag] = [(CGPoint, GOSegment?)]()
         self.rayLayers[newTag] = [CAShapeLayer]()
-        self.view.layer.addSublayer(self.emitterLayer)
         self.grid.startCriticalPointsCalculationWithRay(ray, withTag: newTag)
     }
     
@@ -204,16 +197,18 @@ class GameViewController: XViewController {
                 let delay = distance / Constant.lightSpeedBase
                 
                 //emitter
-                self.emitterLayer.emitterPosition = prevPoint.0
+                let emitterLayer = ParticleManager.getParticleLayer()
+                self.emitterLayers[tag]?.append(emitterLayer)
+                self.view.layer.addSublayer(emitterLayer)
+                emitterLayer.emitterPosition = prevPoint.0
                 var emitterPath = CGPathCreateCopy(path.CGPath)
                 var animation = CABasicAnimation(keyPath: "emitterPosition")
                 animation.fromValue = NSValue(CGPoint: prevPoint.0)
                 animation.toValue = NSValue(CGPoint: currentPoint.0)
                 animation.duration = CFTimeInterval(delay)
-                animation.repeatCount = 1
+                animation.repeatCount = MAXFLOAT
                 animation.removedOnCompletion = true
-                animation.delegate = self
-                self.emitterLayer.addAnimation(animation, forKey: "test")
+                emitterLayer.addAnimation(animation, forKey: "test")
                 
                 //end of emitter
                 
