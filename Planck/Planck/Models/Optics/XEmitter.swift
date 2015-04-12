@@ -18,6 +18,9 @@ class XEmitter: XNode {
     required convenience init(coder aDecoder: NSCoder) {
         let body = aDecoder.decodeObjectForKey("phyBody") as GOEmitterRep
         let isFixed = aDecoder.decodeBoolForKey("isFixed")
+        let normalNote = aDecoder.decodeObjectForKey("normalNote") as XNote
+        let planckNote = aDecoder.decodeObjectForKey("planckNote") as XNote
+        
         self.init(emitter: body)
         self.isFixed = isFixed
         self.normalNote = normalNote

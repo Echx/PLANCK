@@ -18,9 +18,12 @@ class XFlatLens: XNode {
     required convenience init(coder aDecoder: NSCoder) {
         let body = aDecoder.decodeObjectForKey("phyBody") as GOFlatLensRep
         let isFixed = aDecoder.decodeBoolForKey("isFixed")
+        let normalNote = aDecoder.decodeObjectForKey("normalNote") as XNote
+        let planckNote = aDecoder.decodeObjectForKey("planckNote") as XNote
+        
         self.init(flatLens: body)
         self.isFixed = isFixed
-//        self.normalNote = normalNote
+        self.normalNote = normalNote
         self.planckNote = planckNote
     }
     
