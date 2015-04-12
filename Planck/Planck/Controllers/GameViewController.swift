@@ -200,7 +200,7 @@ class GameViewController: XViewController {
                 let distance = prevPoint.0.getDistanceToPoint(currentPoint.0)
                 layer.path = path.CGPath
                 layer.shadowOffset = CGSizeZero
-                layer.shadowRadius = 5
+                layer.shadowRadius = 2
                 layer.shadowColor = UIColor.whiteColor().CGColor
                 layer.shadowOpacity = 0.9
                 
@@ -277,9 +277,9 @@ class GameViewController: XViewController {
         layer.strokeColor = strokeColor.CGColor
         layer.fillColor = UIColor.clearColor().CGColor
         layer.lineWidth = 2.0
-        layer.shadowRadius = 10
+        layer.shadowRadius = 2
         layer.shadowColor = strokeColor.CGColor
-        layer.shadowOpacity = 0.9
+        layer.shadowOpacity = 0.5
         layer.shadowOffset = CGSizeZero
         layer.path = self.grid.getInstrumentDisplayPathForID(node.id)?.CGPath
         
