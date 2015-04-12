@@ -43,6 +43,7 @@ class GameViewController: XViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         self.setUpGrid()
+        self.view.backgroundColor = UIColor(patternImage: UIImage(named: "mainbackground")!)
         self.grid.delegate = self
     }
     
@@ -71,6 +72,11 @@ class GameViewController: XViewController {
     private var lastLocation: CGPoint?
     private var firstViewCenter: CGPoint?
     private var touchedNode: GOOpticRep?
+    
+    @IBAction func winButtonDidClicked(sender: UIButton) {
+        println("Win")
+    }
+    
     @IBAction func viewDidPanned(sender: UIPanGestureRecognizer) {
         let location = sender.locationInView(self.view)
         if sender.state == UIGestureRecognizerState.Began || touchedNode == nil {
