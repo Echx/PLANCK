@@ -58,4 +58,18 @@ class GameLevel: NSObject, NSCoding {
         aCoder.encodeObject(self.grid, forKey: "grid")
         aCoder.encodeObject(self.xNodes, forKey: "xnode")
     }
+
 }
+
+extension GameLevel:Comparable, Equatable {
+    
+}
+
+func ==(lhs: GameLevel, rhs: GameLevel) -> Bool {
+    return lhs.name == rhs.name && lhs.index == rhs.index
+}
+
+func <(lhs: GameLevel, rhs: GameLevel) -> Bool {
+    return lhs.index < rhs.index
+}
+

@@ -20,7 +20,7 @@ class DesignerLevelSelectViewController: UITableViewController {
     private let gameViewID = "GameView"
     
     // holding level names
-    private var levelArray = NSMutableArray()
+    private var levelArray = [GameLevel]()
     
     var delegate: LevelSelectDelegate?
     
@@ -50,13 +50,13 @@ class DesignerLevelSelectViewController: UITableViewController {
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCellWithIdentifier(cellID, forIndexPath: indexPath) as UITableViewCell
 
-        let game = self.levelArray.objectAtIndex(indexPath.item) as GameLevel
-        cell.textLabel?.text = String(game.index)
+        let game = self.levelArray[indexPath.item]
+        cell.textLabel?.text = game.name
         return cell
     }
     
     override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
-        let game = self.levelArray.objectAtIndex(indexPath.item) as GameLevel
+        let game = self.levelArray[indexPath.item]
         self.delegate!.loadSelectLevel(game)
     }
 
@@ -94,6 +94,7 @@ class DesignerLevelSelectViewController: UITableViewController {
         return true
     }
     */
+    
 
     private func loadFiles() {
         // find out the document path
@@ -109,9 +110,12 @@ class DesignerLevelSelectViewController: UITableViewController {
             if ((filename.pathExtension) != nil) {
                 if (filename.pathExtension == levelDataFileType) {
                     let game = levelFileLoader.loadLevel(filename as NSString)
-                    levelArray.addObject(game)
+                    levelArray.append(game)
                 }
             }
         }
+        
+        // sort the levelArray based on Index
+        levelArray.sort{$0<$1}
     }
 }
