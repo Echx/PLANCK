@@ -205,6 +205,9 @@ class GameViewController: XViewController {
                 
                 //emitter
                 let emitterLayer = ParticleManager.getParticleLayer()
+                if self.emitterLayers[tag] == nil {
+                    self.emitterLayers[tag] = [CAEmitterLayer]()
+                }
                 self.emitterLayers[tag]?.append(emitterLayer)
                 self.view.layer.addSublayer(emitterLayer)
                 emitterLayer.emitterPosition = prevPoint.0
