@@ -20,7 +20,7 @@ class XConcaveLens: XNode {
         let isFixed = aDecoder.decodeBoolForKey("isFixed")
         self.init(concaveRep: body)
         self.isFixed = isFixed
-        self.normalNote = normalNote
+//        self.normalNote = normalNote
         self.planckNote = planckNote
     }
     
