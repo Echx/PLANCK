@@ -243,7 +243,7 @@ enum XNoteName: Int {
     case snareDrum, bassDrum, cymbal
 }
 
-extension XNote: Equatable, Hashable, NSCopying {
+extension XNote: Equatable, NSCopying {
     func copyWithZone(zone: NSZone) -> AnyObject {
         var copy = XNote(noteName: self.noteName, noteGroup: self.noteGroup, instrument: self.instrument)
         return copy
@@ -254,4 +254,12 @@ func == (lhs: XNote, rhs: XNote) -> Bool {
     return lhs.instrument == rhs.instrument &&
         lhs.noteGroup == rhs.noteGroup &&
         lhs.noteName == rhs.noteName
+}
+
+extension XNote: Hashable {
+    override var hashValue : Int {
+        get {
+            return "\(self.noteGroup),\(self.noteName),\(self.instrument)".hashValue
+        }
+    }
 }
