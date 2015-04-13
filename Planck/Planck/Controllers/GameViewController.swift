@@ -23,7 +23,7 @@ class GameViewController: XViewController {
     private var deviceViews = [String: UIView]()
     private var transitionMask = LevelTransitionMaskView()
     private var pauseMask = PauseMaskView()
-    private var isFinished = false
+    private var numberOfFinishedRay = 0
     
     private var isVirgin: Bool?
     private var shouldShowNextLevel: Bool = false
@@ -227,6 +227,7 @@ class GameViewController: XViewController {
         self.music.reset()
         self.pathDistances = [String: CGFloat]()
         self.visitedPlanckList = [XNode]()
+        self.numberOfFinishedRay = 0
     }
     
     private func drawRay(tag: String, currentIndex: Int) {
@@ -310,6 +311,35 @@ class GameViewController: XViewController {
                 dispatch_after(dispatch_time(DISPATCH_TIME_NOW, Int64(delayInNanoSeconds)), dispatch_get_main_queue()) {
                     self.drawRay(tag, currentIndex: currentIndex + 1)
                 }
+            } else {
+                self.numberOfFinishedRay++
+                
+                if self.numberOfFinishedRay == self.rays.count {
+                    dispatch_async(self.queue, {
+                        if self.music.isSimilarTo(self.gameLevel.targetMusic) {
+                            dispatch_after(dispatch_time(DISPATCH_TIME_NOW, Int64(Float(NSEC_PER_SEC) * 0.5)), dispatch_get_main_queue()) {
+                                if self.isVirgin! {
+                                    self.view.addSubview(self.transitionMask)
+                                    self.transitionMask.show(3)
+                                } else {
+                                    self.view.addSubview(self.transitionMask)
+                                    self.transitionMask.show(2)
+                                }
+                            }
+                            
+                            self.shouldShowNextLevel = true
+                        } else if self.music.numberOfPlanck == self.gameLevel.targetMusic.numberOfPlanck {
+                            dispatch_after(dispatch_time(DISPATCH_TIME_NOW, Int64(Float(NSEC_PER_SEC) * 1.5)), dispatch_get_main_queue()) {
+                                self.view.addSubview(self.transitionMask)
+                                self.transitionMask.show(1)
+                            }
+                            
+                            self.shouldShowNextLevel = true
+                        } else {
+                            self.shouldShowNextLevel = false
+                        }
+                    })
+                }
             }
         }
     }
@@ -330,36 +360,6 @@ class GameViewController: XViewController {
                     
                     let note = device.getNote()!
                     self.music.appendDistance(self.pathDistances[tag]!, forNote: note)
-                    
-
-                    if !self.isFinished {
-                        dispatch_async(queue, {
-                            if self.music.isSimilarTo(self.gameLevel.targetMusic) {
-                                self.isFinished = true
-                                dispatch_after(dispatch_time(DISPATCH_TIME_NOW, Int64(Float(NSEC_PER_SEC) * 1.5)), dispatch_get_main_queue()) {
-                                    if self.isVirgin! {
-                                        self.view.addSubview(self.transitionMask)
-                                        self.transitionMask.show(3)
-                                    } else {
-                                        self.view.addSubview(self.transitionMask)
-                                        self.transitionMask.show(2)
-                                    }
-                                }
-                                
-                                self.shouldShowNextLevel = true
-                            } else if self.music.numberOfPlanck == self.gameLevel.targetMusic.numberOfPlanck {
-                                self.isFinished = true
-                                dispatch_after(dispatch_time(DISPATCH_TIME_NOW, Int64(Float(NSEC_PER_SEC) * 1.5)), dispatch_get_main_queue()) {
-                                    self.view.addSubview(self.transitionMask)
-                                    self.transitionMask.show(1)
-                                }
-                                
-                                self.shouldShowNextLevel = true
-                            } else {
-                                self.shouldShowNextLevel = false
-                            }
-                        })
-                    }
                 }
             } else {
                 fatalError("The node for the physics body not existed")
