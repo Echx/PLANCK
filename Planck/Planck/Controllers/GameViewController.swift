@@ -57,6 +57,7 @@ class GameViewController: XViewController {
     }
     
     private func reloadLevel(gameLevel: GameLevel) {
+        self.isVirgin = true
         self.shootSwitch.setOn(false, animated: true)
         self.clear()
         self.gameLevel = gameLevel
@@ -465,7 +466,8 @@ extension GameViewController: PauseMaskViewDelegate {
             self.pauseMask.hide()
             
         default:
-            self.reloadLevel(self.gameLevel)
+            let level = GameLevel.loadGameWithIndex(self.gameLevel.index)
+            self.reloadLevel(level)
             self.pauseMask.hide()
         }
     }
