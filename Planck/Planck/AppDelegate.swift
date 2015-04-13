@@ -28,6 +28,24 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         self.drawerController?.shouldStretchDrawer = false
         self.window = UIWindow(frame: UIScreen.mainScreen().bounds)
         self.window!.rootViewController = self.drawerController
+        
+        /* Set delegate */
+        GamiCent.delegate = homeViewController
+        let gamiCent = GamiCent.sharedInstance({
+            (isAuthentified) -> Void in
+            if isAuthentified {
+                /* Success! */
+                println("Login!!!")
+                let player = GamiCent.getPlayer()
+                println("PlayerId: \(player.playerID) Name: \(player.alias)")
+            } else {
+                /* Failed. */
+                /* No internet connection? not authentified? */
+                println("Failed!!!")
+            }
+        })
+
+        
         return true
     }
 
