@@ -305,7 +305,7 @@ class GOArcSegment: GOSegment {
         }
     }
     
-    func revert() {
+    override func revert() {
         self.isReversed = !self.isReversed
     }
     
