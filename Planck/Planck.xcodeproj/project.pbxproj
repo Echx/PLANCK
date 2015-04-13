@@ -15,9 +15,9 @@
 		261483CE1AD9B471001F4143 /* ParticleManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 261483CC1AD9B456001F4143 /* ParticleManager.swift */; };
 		262F38271ADABEE500FA2177 /* OscillationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 262F38261ADABEE500FA2177 /* OscillationManager.swift */; };
 		262F38281ADABF0100FA2177 /* OscillationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 262F38261ADABEE500FA2177 /* OscillationManager.swift */; };
-		262F382C1ADACA1B00FA2177 /* LevelTransitionMastView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 262F382B1ADACA1B00FA2177 /* LevelTransitionMastView.swift */; };
+		262F382C1ADACA1B00FA2177 /* LevelTransitionMaskView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 262F382B1ADACA1B00FA2177 /* LevelTransitionMaskView.swift */; };
 		262F382E1ADACA8F00FA2177 /* CoinView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 262F382D1ADACA8F00FA2177 /* CoinView.swift */; };
-		262F382F1ADAFB4300FA2177 /* LevelTransitionMastView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 262F382B1ADACA1B00FA2177 /* LevelTransitionMastView.swift */; };
+		262F382F1ADAFB4300FA2177 /* LevelTransitionMaskView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 262F382B1ADACA1B00FA2177 /* LevelTransitionMaskView.swift */; };
 		263B09AB1ACEEDD800E7C99E /* GOArcSegment.swift in Sources */ = {isa = PBXBuildFile; fileRef = 263B09951ACEEDD800E7C99E /* GOArcSegment.swift */; };
 		263B09AC1ACEEDD800E7C99E /* GOCoordinate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 263B09961ACEEDD800E7C99E /* GOCoordinate.swift */; };
 		263B09AD1ACEEDD800E7C99E /* GOLine.swift in Sources */ = {isa = PBXBuildFile; fileRef = 263B09971ACEEDD800E7C99E /* GOLine.swift */; };
@@ -323,7 +323,7 @@
 		261483CC1AD9B456001F4143 /* ParticleManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ParticleManager.swift; sourceTree = "<group>"; };
 		262BE19F1ABE9A5D00ABE965 /* Planck-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Planck-Bridging-Header.h"; sourceTree = SOURCE_ROOT; };
 		262F38261ADABEE500FA2177 /* OscillationManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OscillationManager.swift; sourceTree = "<group>"; };
-		262F382B1ADACA1B00FA2177 /* LevelTransitionMastView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LevelTransitionMastView.swift; sourceTree = "<group>"; };
+		262F382B1ADACA1B00FA2177 /* LevelTransitionMaskView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LevelTransitionMaskView.swift; sourceTree = "<group>"; };
 		262F382D1ADACA8F00FA2177 /* CoinView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CoinView.swift; sourceTree = "<group>"; };
 		263B09951ACEEDD800E7C99E /* GOArcSegment.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GOArcSegment.swift; sourceTree = "<group>"; };
 		263B09961ACEEDD800E7C99E /* GOCoordinate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GOCoordinate.swift; sourceTree = "<group>"; };
@@ -618,7 +618,7 @@
 		262F382A1ADACA1B00FA2177 /* LevelTransition */ = {
 			isa = PBXGroup;
 			children = (
-				262F382B1ADACA1B00FA2177 /* LevelTransitionMastView.swift */,
+				262F382B1ADACA1B00FA2177 /* LevelTransitionMaskView.swift */,
 				262F382D1ADACA8F00FA2177 /* CoinView.swift */,
 				2602B9191ADB032C00F8ABC0 /* PauseMaskView.swift */,
 			);
@@ -1417,7 +1417,7 @@
 				263B09B01ACEEDD800E7C99E /* GOSegment.swift in Sources */,
 				269D783E1AD3088300279EF3 /* HomeViewController.swift in Sources */,
 				629F42531AD046C600EFBABD /* GOEmitterRep.swift in Sources */,
-				262F382C1ADACA1B00FA2177 /* LevelTransitionMastView.swift in Sources */,
+				262F382C1ADACA1B00FA2177 /* LevelTransitionMaskView.swift in Sources */,
 				263B09BD1ACEEDD800E7C99E /* GOFlatWallRep.swift in Sources */,
 				2602B91A1ADB032C00F8ABC0 /* PauseMaskView.swift in Sources */,
 				26C8ADDC1AD01A52008ADACB /* String+XUtility.swift in Sources */,
@@ -1482,7 +1482,7 @@
 				62988FF61AB2FA8800FD9AFF /* XColor.swift in Sources */,
 				2602B91B1ADB06B200F8ABC0 /* PauseMaskView.swift in Sources */,
 				98F63A9F1AD1650F0096A32E /* GOCoordinate.swift in Sources */,
-				262F382F1ADAFB4300FA2177 /* LevelTransitionMastView.swift in Sources */,
+				262F382F1ADAFB4300FA2177 /* LevelTransitionMaskView.swift in Sources */,
 				62E323301ADAF52D00CFD4CA /* GameViewController.swift in Sources */,
 				62E3232D1ADAF52700CFD4CA /* SettingViewController.swift in Sources */,
 				98F63A9E1AD1650F0096A32E /* GOArcSegment.swift in Sources */,

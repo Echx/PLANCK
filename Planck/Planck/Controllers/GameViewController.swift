@@ -21,12 +21,12 @@ class GameViewController: XViewController {
     private var visitedPlanckList = [XNode]()
     private var emitterLayers = [String: [CAEmitterLayer]]()
     private var deviceViews = [String: UIView]()
-    private var transitionMask = LevelTransitionMastView()
+    private var transitionMask = LevelTransitionMaskView()
     private var pauseMask = PauseMaskView()
     private var isFinished = false
     
     private var isVirgin: Bool?
-    
+    private var shouldShowNextLevel: Bool = false
     private var queue = dispatch_queue_create("CHECKING_SERIAL_QUEUE", DISPATCH_QUEUE_SERIAL)
     
     private var grid: GOGrid {
@@ -56,10 +56,11 @@ class GameViewController: XViewController {
         self.setUpGrid()
         self.view.backgroundColor = UIColor(patternImage: UIImage(named: "mainbackground")!)
         self.pauseMask.delegate = self
+        self.transitionMask.delegate = self
     }
     
     private func reloadLevel(gameLevel: GameLevel) {
-        self.isVirgin = true
+        self.isVirgin = nil
         self.shootSwitch.setOn(false, animated: true)
         self.clear()
         self.gameLevel = gameLevel
@@ -330,6 +331,7 @@ class GameViewController: XViewController {
                     let note = device.getNote()!
                     self.music.appendDistance(self.pathDistances[tag]!, forNote: note)
                     
+
                     if !self.isFinished {
                         dispatch_async(queue, {
                             if self.music.isSimilarTo(self.gameLevel.targetMusic) {
@@ -343,12 +345,18 @@ class GameViewController: XViewController {
                                     }
                                     self.isFinished = true
                                 }
+                                
+                                self.shouldShowNextLevel = true
                             } else if self.music.numberOfPlanck == self.gameLevel.targetMusic.numberOfPlanck {
                                 dispatch_after(dispatch_time(DISPATCH_TIME_NOW, Int64(Float(NSEC_PER_SEC) * 1.5)), dispatch_get_main_queue()) {
                                     self.view.addSubview(self.transitionMask)
                                     self.transitionMask.show(1)
                                     self.isFinished = true
                                 }
+                                
+                                self.shouldShowNextLevel = true
+                            } else {
+                                self.shouldShowNextLevel = false
                             }
                         })
                     }
@@ -483,9 +491,23 @@ extension GameViewController: PauseMaskViewDelegate {
             self.pauseMask.hide()
             
         default:
-            let level = GameLevel.loadGameWithIndex(self.gameLevel.index)
+            let level = GameLevel.loadGameWithIndex(self.gameLevel.index)!
             self.reloadLevel(level)
             self.pauseMask.hide()
+        }
+    }
+}
+
+extension GameViewController: LevelTransitionMaskViewDelegate {
+    func viewDidDismiss(view: LevelTransitionMaskView) {
+        if self.shouldShowNextLevel {
+            if let nextLevel = GameLevel.loadGameWithIndex(self.gameLevel.index + 1) {
+                println("nextLevel: \(self.gameLevel.index + 1)")
+                self.reloadLevel(nextLevel)
+            } else {
+                println("nextLevel: \(self.gameLevel.index + 1)")
+                self.dismissViewController()
+            }
         }
     }
 }
