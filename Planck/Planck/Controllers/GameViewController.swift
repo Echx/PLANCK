@@ -57,6 +57,7 @@ class GameViewController: XViewController {
     }
     
     private func reloadLevel(gameLevel: GameLevel) {
+        self.shootSwitch.setOn(false, animated: true)
         self.clear()
         self.gameLevel = gameLevel
         self.setUpGrid()
@@ -322,7 +323,7 @@ class GameViewController: XViewController {
                     
                     dispatch_async(queue, {
                         if self.music.isSimilarTo(self.gameLevel.targetMusic) {
-                            dispatch_after(dispatch_time(DISPATCH_TIME_NOW, Int64(Float(NSEC_PER_SEC) * 0.5)), dispatch_get_main_queue()) {
+                            dispatch_after(dispatch_time(DISPATCH_TIME_NOW, Int64(Float(NSEC_PER_SEC) * 1.5)), dispatch_get_main_queue()) {
                                 if self.isVirgin! {
                                     self.view.addSubview(self.transitionMask)
                                     self.transitionMask.show(3)
@@ -464,7 +465,8 @@ extension GameViewController: PauseMaskViewDelegate {
             self.pauseMask.hide()
             
         default:
-            println(index)
+            self.reloadLevel(self.gameLevel)
+            self.pauseMask.hide()
         }
     }
 }
