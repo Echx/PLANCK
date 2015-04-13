@@ -282,7 +282,7 @@ class GameViewController: XViewController {
                 animation.fromValue = NSValue(CGPoint: prevPoint.0)
                 animation.toValue = NSValue(CGPoint: currentPoint.0)
                 animation.duration = CFTimeInterval(delay)
-                animation.repeatCount = MAXFLOAT
+                animation.repeatCount = 1.0
                 animation.removedOnCompletion = true
                 emitterLayer.addAnimation(animation, forKey: "test")
                 
