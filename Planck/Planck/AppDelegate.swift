@@ -29,6 +29,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         self.window = UIWindow(frame: UIScreen.mainScreen().bounds)
         self.window!.rootViewController = self.drawerController
         
+        /* Set delegate */
+        GamiCent.delegate = homeViewController
         let gamiCent = GamiCent.sharedInstance({
             (isAuthentified) -> Void in
             if isAuthentified {
@@ -42,8 +44,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                 println("Failed!!!")
             }
         })
-        /* Set delegate */
-        GamiCent.delegate = homeViewController
+
         
         return true
     }

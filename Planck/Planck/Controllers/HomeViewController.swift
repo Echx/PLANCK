@@ -23,6 +23,8 @@ class HomeViewController: XViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         self.view.layer.addSublayer(self.emitterLayer)
+        
+                
     }
     
     @IBAction func viewDidTapped(sender: UITapGestureRecognizer) {
