@@ -23,6 +23,7 @@ class GameViewController: XViewController {
     private var deviceViews = [String: UIView]()
     private var transitionMask = LevelTransitionMastView()
     private var pauseMask = PauseMaskView()
+    private var isFinished = false
     
     private var isVirgin: Bool?
     
@@ -329,24 +330,28 @@ class GameViewController: XViewController {
                     let note = device.getNote()!
                     self.music.appendDistance(self.pathDistances[tag]!, forNote: note)
                     
-                    dispatch_async(queue, {
-                        if self.music.isSimilarTo(self.gameLevel.targetMusic) {
-                            dispatch_after(dispatch_time(DISPATCH_TIME_NOW, Int64(Float(NSEC_PER_SEC) * 1.5)), dispatch_get_main_queue()) {
-                                if self.isVirgin! {
+                    if !self.isFinished {
+                        dispatch_async(queue, {
+                            if self.music.isSimilarTo(self.gameLevel.targetMusic) {
+                                dispatch_after(dispatch_time(DISPATCH_TIME_NOW, Int64(Float(NSEC_PER_SEC) * 1.5)), dispatch_get_main_queue()) {
+                                    if self.isVirgin! {
+                                        self.view.addSubview(self.transitionMask)
+                                        self.transitionMask.show(3)
+                                    } else {
+                                        self.view.addSubview(self.transitionMask)
+                                        self.transitionMask.show(2)
+                                    }
+                                    self.isFinished = true
+                                }
+                            } else if self.music.numberOfPlanck == self.gameLevel.targetMusic.numberOfPlanck {
+                                dispatch_after(dispatch_time(DISPATCH_TIME_NOW, Int64(Float(NSEC_PER_SEC) * 1.5)), dispatch_get_main_queue()) {
                                     self.view.addSubview(self.transitionMask)
-                                    self.transitionMask.show(3)
-                                } else {
-                                    self.view.addSubview(self.transitionMask)
-                                    self.transitionMask.show(2)
+                                    self.transitionMask.show(1)
+                                    self.isFinished = true
                                 }
                             }
-                        } else if self.music.numberOfPlanck == self.gameLevel.targetMusic.numberOfPlanck {
-                            dispatch_after(dispatch_time(DISPATCH_TIME_NOW, Int64(Float(NSEC_PER_SEC) * 1.5)), dispatch_get_main_queue()) {
-                                self.view.addSubview(self.transitionMask)
-                                self.transitionMask.show(1)
-                            }
-                        }
-                    })
+                        })
+                    }
                 }
             } else {
                 fatalError("The node for the physics body not existed")
