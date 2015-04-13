@@ -37,11 +37,6 @@ class GOConcaveLensRep: GOOpticRep {
     override var bezierPath: UIBezierPath {
         get {
             var path = UIBezierPath()
-//            for edge in self.edges {
-////                path.addLineToPoint(edge.bezierPath.currentPoint)
-//                path.appendPath(edge.bezierPath)
-//            }
-            
             path.appendPath(self.edges[0].bezierPath)
             path.addLineToPoint(self.edges[1].bezierPath.currentPoint)
             path.appendPath(self.edges[1].bezierPath.bezierPathByReversingPath())
@@ -50,7 +45,6 @@ class GOConcaveLensRep: GOOpticRep {
             path.addLineToPoint(self.edges[3].bezierPath.currentPoint)
             path.appendPath(self.edges[3].bezierPath)
             path.addLineToPoint(self.edges[0].bezierPath.currentPoint)
-            //            path.closePath()
             return path
         }
     }
