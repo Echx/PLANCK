@@ -29,6 +29,16 @@ class GOFlatOpticRep: GOOpticRep {
         }
     }
     
+    override var bezierPath: UIBezierPath {
+        get {
+            var path = UIBezierPath()
+            for edge in self.edges {
+                path.appendPath(edge.bezierPath)
+            }
+            return path
+        }
+    }
+    
     override var vertices: [CGPoint] {
         get {
             let angle = self.direction.angleFromXPlus
@@ -120,7 +130,7 @@ class GOFlatOpticRep: GOOpticRep {
     
     override func setUpEdges() {
         self.edges = [GOSegment]()
-        //top edge
+        //bottom edge
         let centerTopEdge = CGPointMake(CGFloat(self.center.x), CGFloat(self.center.y) + CGFloat(self.length)/2)
         let topEdge = GOLineSegment(center: centerTopEdge, length: self.thickness, direction: self.inversedNormalDirection)
         topEdge.tag = 0
@@ -132,7 +142,7 @@ class GOFlatOpticRep: GOOpticRep {
         rightEdge.tag = 1
         self.edges.append(rightEdge)
         
-        //bottom edge
+        //top edge
         let centerBottomEdge = CGPointMake(CGFloat(self.center.x), CGFloat(self.center.y) - CGFloat(self.length)/2)
         let bottomEdge = GOLineSegment(center: centerBottomEdge, length: self.thickness, direction: self.normalDirection)
         bottomEdge.tag = 2

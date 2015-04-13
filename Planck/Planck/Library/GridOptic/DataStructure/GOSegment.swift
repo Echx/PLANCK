@@ -14,9 +14,21 @@ class GOSegment : NSObject, NSCoding {
     var willReflect: Bool = false
     var center: CGPoint = CGPointZero
     var tag: NSInteger = 0
+    var isReversed: Bool = false
+    
     var bezierPath: UIBezierPath {
         get {
             fatalError("Property bezierPath need to be overriden by child classes")
+        }
+    }
+    
+    var drawingPath: UIBezierPath {
+        get {
+            if self.isReversed {
+                return self.bezierPath.bezierPathByReversingPath()
+            } else {
+                return self.bezierPath
+            }
         }
     }
     var parent: String = ""
@@ -99,6 +111,6 @@ class GOSegment : NSObject, NSCoding {
     }
     
     func revert() {
-        fatalError("revert needed by overriden by child classes")
+        self.isReversed = !self.isReversed
     }
 }

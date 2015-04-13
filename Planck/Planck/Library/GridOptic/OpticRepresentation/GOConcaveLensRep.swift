@@ -37,10 +37,20 @@ class GOConcaveLensRep: GOOpticRep {
     override var bezierPath: UIBezierPath {
         get {
             var path = UIBezierPath()
-            for edge in self.edges {
-                path.addLineToPoint(edge.bezierPath.currentPoint)
-                path.appendPath(edge.bezierPath)
-            }
+//            for edge in self.edges {
+////                path.addLineToPoint(edge.bezierPath.currentPoint)
+//                path.appendPath(edge.bezierPath)
+//            }
+            
+            path.appendPath(self.edges[0].bezierPath)
+            path.addLineToPoint(self.edges[1].bezierPath.currentPoint)
+            path.appendPath(self.edges[1].bezierPath.bezierPathByReversingPath())
+            path.addLineToPoint(self.edges[2].bezierPath.bezierPathByReversingPath().currentPoint)
+            path.appendPath(self.edges[2].bezierPath)
+            path.addLineToPoint(self.edges[3].bezierPath.currentPoint)
+            path.appendPath(self.edges[3].bezierPath)
+            path.addLineToPoint(self.edges[0].bezierPath.bezierPathByReversingPath().currentPoint)
+            //            path.closePath()
             return path
         }
     }
@@ -146,7 +156,6 @@ class GOConcaveLensRep: GOOpticRep {
         let centerRightArc = CGPointMake(CGFloat(self.center.x) + CGFloat(self.thicknessCenter)/2 + self.curvatureRadius, CGFloat(self.center.y))
         let rightArc = GOArcSegment(center: centerRightArc, radius: self.curvatureRadius, radian: radianSpan, normalDirection: self.inverseNormalDirection)
         rightArc.tag = 1
-        rightArc.revert()
         self.edges.append(rightArc)
         
         
