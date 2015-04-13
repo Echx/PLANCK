@@ -1,5 +1,5 @@
 //
-//  LevelTransitionMastView.swift
+//  LevelTransitionMaskView.swift
 //  Planck
 //
 //  Created by NULL on 12/04/15.
@@ -8,7 +8,11 @@
 
 import UIKit
 
-class LevelTransitionMastView: UIView {
+protocol LevelTransitionMaskViewDelegate {
+    func viewDidDismiss(view: LevelTransitionMaskView)
+}
+
+class LevelTransitionMaskView: UIView {
     
     private let coinViews = [CoinView]()
     private let hiddenCentersTop = [
@@ -31,6 +35,7 @@ class LevelTransitionMastView: UIView {
     
     private let imageView = UIImageView(frame: UIScreen.mainScreen().bounds)
     private var tapGestureRecognizer: UITapGestureRecognizer?
+    var delegate: LevelTransitionMaskViewDelegate?
     var animationSpringDamping: CGFloat = 0.5
     var animationInitialSpringVelocity: CGFloat = 10
     var animationDuration = 1.5
@@ -114,6 +119,7 @@ class LevelTransitionMastView: UIView {
         self.animationCount++
         if self.animationCount == self.coinCount {
             self.removeFromSuperview()
+            self.delegate?.viewDidDismiss(self)
         }
     }
     

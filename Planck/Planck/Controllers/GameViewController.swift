@@ -21,11 +21,11 @@ class GameViewController: XViewController {
     private var visitedPlanckList = [XNode]()
     private var emitterLayers = [String: [CAEmitterLayer]]()
     private var deviceViews = [String: UIView]()
-    private var transitionMask = LevelTransitionMastView()
+    private var transitionMask = LevelTransitionMaskView()
     private var pauseMask = PauseMaskView()
     
     private var isVirgin: Bool?
-    
+    private var shouldShowNextLevel: Bool = false
     private var queue = dispatch_queue_create("CHECKING_SERIAL_QUEUE", DISPATCH_QUEUE_SERIAL)
     
     private var grid: GOGrid {
@@ -55,6 +55,7 @@ class GameViewController: XViewController {
         self.setUpGrid()
         self.view.backgroundColor = UIColor(patternImage: UIImage(named: "mainbackground")!)
         self.pauseMask.delegate = self
+        self.transitionMask.delegate = self
     }
     
     private func reloadLevel(gameLevel: GameLevel) {
@@ -340,11 +341,15 @@ class GameViewController: XViewController {
                                     self.transitionMask.show(2)
                                 }
                             }
+                            self.shouldShowNextLevel = true
                         } else if self.music.numberOfPlanck == self.gameLevel.targetMusic.numberOfPlanck {
                             dispatch_after(dispatch_time(DISPATCH_TIME_NOW, Int64(Float(NSEC_PER_SEC) * 1.5)), dispatch_get_main_queue()) {
                                 self.view.addSubview(self.transitionMask)
                                 self.transitionMask.show(1)
                             }
+                            self.shouldShowNextLevel = true
+                        } else {
+                            self.shouldShowNextLevel = false
                         }
                     })
                 }
@@ -481,6 +486,18 @@ extension GameViewController: PauseMaskViewDelegate {
             let level = GameLevel.loadGameWithIndex(self.gameLevel.index)!
             self.reloadLevel(level)
             self.pauseMask.hide()
+        }
+    }
+}
+
+extension GameViewController: LevelTransitionMaskViewDelegate {
+    func viewDidDismiss(view: LevelTransitionMaskView) {
+        if self.shouldShowNextLevel {
+            if let nextLevel = GameLevel.loadGameWithIndex(self.gameLevel.index + 1) {
+                self.reloadLevel(nextLevel)
+            } else {
+                self.dismissViewController()
+            }
         }
     }
 }
