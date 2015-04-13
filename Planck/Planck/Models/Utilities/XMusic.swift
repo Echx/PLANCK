@@ -12,6 +12,7 @@ import Foundation
 class XMusic: NSObject, NSCoding {
     var music: [XNote: [CGFloat]]
     var isArranged: Bool // whether the distances are sorted
+    var numberOfPlanck: Int
     
     var numberOfNotes: Int {
         get {
@@ -31,24 +32,29 @@ class XMusic: NSObject, NSCoding {
     
     override init() {
         self.isArranged = true
+        self.numberOfPlanck = 0
         self.music = [XNote: [CGFloat]]()
     }
     
     required convenience init(coder aDecoder: NSCoder) {
-        let music = aDecoder.decodeObjectForKey("musicDic") as [XNote: [CGFloat]]
-        let isArranged = aDecoder.decodeBoolForKey("arrange")
+        let music = aDecoder.decodeObjectForKey(NSCodingKey.MusicDic) as [XNote: [CGFloat]]
+        let isArranged = aDecoder.decodeBoolForKey(NSCodingKey.MusicIsArranged)
+        let numberOfPlanck = aDecoder.decodeIntForKey(NSCodingKey.MusicNumberOfPlanck)
         self.init()
         self.music = music
+        self.numberOfPlanck = Int(numberOfPlanck)
         self.isArranged = isArranged
     }
     
     func encodeWithCoder(aCoder: NSCoder) {
-        aCoder.encodeObject(self.music, forKey: "musicDic")
-        aCoder.encodeBool(self.isArranged, forKey: "arrange")
+        aCoder.encodeObject(self.music, forKey: NSCodingKey.MusicDic)
+        aCoder.encodeBool(self.isArranged, forKey: NSCodingKey.MusicIsArranged)
+        aCoder.encodeInt(Int32(self.numberOfPlanck), forKey: NSCodingKey.MusicNumberOfPlanck)
     }
     
     func reset() {
         self.isArranged = true
+        self.numberOfPlanck = 0
         self.music = [XNote: [CGFloat]]()
     }
     
