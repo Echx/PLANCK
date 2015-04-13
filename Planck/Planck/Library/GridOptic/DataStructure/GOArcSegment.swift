@@ -301,7 +301,7 @@ class GOArcSegment: GOSegment {
                 return pointRadian <= maxRadian && pointRadian >= minRadian
             }
         } else {
-            return false
+            return fgit stalse
         }
     }
     

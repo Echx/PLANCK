@@ -28,16 +28,26 @@ class GOConvexLensRep: GOOpticRep {
         }
     }
     
+    override var bezierPath: UIBezierPath {
+        get {
+            var path = UIBezierPath()
+            for edge in self.edges {
+                    path.appendPath(edge.bezierPath)
+            }
+            return path
+        }
+    }
+    
     override var vertices: [CGPoint] {
         get {
             let angle = self.direction.angleFromXPlus
             let length = self.length
             let width = self.thickness
             let originalPoints = [
-                CGPointMake(-length/2, -width/2),
-                CGPointMake(length/2, -width/2),
-                CGPointMake(length/2, width/2),
-                CGPointMake(-length/2, width/2)
+                CGPointMake(-length / 2, -width / 2),
+                CGPointMake(length / 2, -width / 2),
+                CGPointMake(length / 2, width / 2),
+                CGPointMake(-length / 2, width / 2)
             ]
             
             var finalPoints = [CGPoint]()

@@ -34,6 +34,17 @@ class GOConcaveLensRep: GOOpticRep {
         }
     }
     
+    override var bezierPath: UIBezierPath {
+        get {
+            var path = UIBezierPath()
+            for edge in self.edges {
+                path.addLineToPoint(edge.bezierPath.currentPoint)
+                path.appendPath(edge.bezierPath)
+            }
+            return path
+        }
+    }
+    
     override var vertices: [CGPoint] {
         get {
             let angle = self.direction.angleFromXPlus
@@ -135,6 +146,7 @@ class GOConcaveLensRep: GOOpticRep {
         let centerRightArc = CGPointMake(CGFloat(self.center.x) + CGFloat(self.thicknessCenter)/2 + self.curvatureRadius, CGFloat(self.center.y))
         let rightArc = GOArcSegment(center: centerRightArc, radius: self.curvatureRadius, radian: radianSpan, normalDirection: self.inverseNormalDirection)
         rightArc.tag = 1
+        rightArc.revert()
         self.edges.append(rightArc)
         
         
@@ -142,6 +154,7 @@ class GOConcaveLensRep: GOOpticRep {
         let centerBottomEdge = CGPointMake(CGFloat(self.center.x), CGFloat(self.center.y) - CGFloat(self.length)/2)
         let bottomEdge = GOLineSegment(center: centerBottomEdge, length: self.thicknessEdge, direction: self.normalDirection)
         bottomEdge.tag = 2
+        bottomEdge.revert()
         self.edges.append(bottomEdge)
         
         //left arc
