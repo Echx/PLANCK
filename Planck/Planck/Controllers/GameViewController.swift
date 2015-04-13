@@ -18,6 +18,7 @@ class GameViewController: XViewController {
     private var audioPlayerList = [AVAudioPlayer]()
     private var music = XMusic()
     private var pathDistances = [String: CGFloat]()
+    private var visitedPlanckList = [XNode]()
     private var emitterLayers = [String: [CAEmitterLayer]]()
     private var deviceViews = [String: UIView]()
     private var transitionMask = LevelTransitionMastView()
@@ -223,6 +224,7 @@ class GameViewController: XViewController {
         self.rays = [String: [(CGPoint, GOSegment?)]]()
         self.music.reset()
         self.pathDistances = [String: CGFloat]()
+        self.visitedPlanckList = [XNode]()
     }
     
     private func drawRay(tag: String, currentIndex: Int) {
@@ -313,6 +315,11 @@ class GameViewController: XViewController {
     private func playNote(segment: GOSegment?, tag: String) {
         if let edge = segment {
             if let device = xNodes[edge.parent] {
+                if !contains(self.visitedPlanckList, device) {
+                    self.visitedPlanckList.append(device)
+                    self.music.numberOfPlanck++
+                }
+                
                 if let sound = device.getSound() {
                     let audioPlayer = AVAudioPlayer(contentsOfURL: sound, error: nil)
                     self.audioPlayerList.append(audioPlayer)
@@ -332,6 +339,11 @@ class GameViewController: XViewController {
                                     self.view.addSubview(self.transitionMask)
                                     self.transitionMask.show(2)
                                 }
+                            }
+                        } else if self.music.numberOfPlanck == self.gameLevel.targetMusic.numberOfPlanck {
+                            dispatch_after(dispatch_time(DISPATCH_TIME_NOW, Int64(Float(NSEC_PER_SEC) * 1.5)), dispatch_get_main_queue()) {
+                                self.view.addSubview(self.transitionMask)
+                                self.transitionMask.show(1)
                             }
                         }
                     })
