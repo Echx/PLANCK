@@ -11,6 +11,7 @@ import UIKit
 class GOArcSegment: GOSegment {
     var radius: CGFloat
     var radian: CGFloat
+    var isReversed: Bool = false
     
     override var bezierPath: UIBezierPath {
         get {
@@ -67,20 +68,38 @@ class GOArcSegment: GOSegment {
     
     var scaledStartVector: CGVector {
         get {
-            let startVector = CGVector(
-                dx: normalDirection.dx * cos(-radian / 2) - normalDirection.dy * sin(-radian / 2),
-                dy: normalDirection.dx * sin(-radian / 2) + normalDirection.dy * cos(-radian / 2)
-            )
-            return startVector.scaleTo(self.radius)
+            if self.isReversed {
+                let startVector = CGVector(
+                    dx: normalDirection.dx * cos(radian / 2) - normalDirection.dy * sin(radian / 2),
+                    dy: normalDirection.dx * sin(radian / 2) + normalDirection.dy * cos(radian / 2)
+                )
+                return startVector.scaleTo(self.radius)
+            } else {
+                let startVector = CGVector(
+                    dx: normalDirection.dx * cos(-radian / 2) - normalDirection.dy * sin(-radian / 2),
+                    dy: normalDirection.dx * sin(-radian / 2) + normalDirection.dy * cos(-radian / 2)
+                )
+                return startVector.scaleTo(self.radius)
+            }
         }
     }
     
     var scaledEndVector: CGVector {
-        let endVector = CGVector(
-            dx: normalDirection.dx * cos(radian / 2) - normalDirection.dy * sin(radian / 2),
-            dy: normalDirection.dx * sin(radian / 2) + normalDirection.dy * cos(radian / 2)
-        )
-        return endVector.scaleTo(self.radius)
+        get {
+            if self.isReversed {
+                let endVector = CGVector(
+                    dx: normalDirection.dx * cos(-radian / 2) - normalDirection.dy * sin(-radian / 2),
+                    dy: normalDirection.dx * sin(-radian / 2) + normalDirection.dy * cos(-radian / 2)
+                )
+                return endVector.scaleTo(self.radius)
+            } else {
+                let endVector = CGVector(
+                    dx: normalDirection.dx * cos(radian / 2) - normalDirection.dy * sin(radian / 2),
+                    dy: normalDirection.dx * sin(radian / 2) + normalDirection.dy * cos(radian / 2)
+                )
+                return endVector.scaleTo(self.radius)
+            }
+        }
     }
     
     override var startPoint: CGPoint {
@@ -105,15 +124,25 @@ class GOArcSegment: GOSegment {
     
     var startRadian: CGFloat {
         get {
-            var result = self.normalDirection.angleFromXPlus - self.radian / 2
-            return result.restrictWithin2Pi
+            if self.isReversed {
+                var result = self.normalDirection.angleFromXPlus + self.radian / 2
+                return result.restrictWithin2Pi
+            } else {
+                var result = self.normalDirection.angleFromXPlus - self.radian / 2
+                return result.restrictWithin2Pi
+            }
         }
     }
     
     var endRadian: CGFloat {
         get {
-            var result = self.normalDirection.angleFromXPlus + self.radian / 2
-            return result.restrictWithin2Pi
+            if self.isReversed {
+                var result = self.normalDirection.angleFromXPlus - self.radian / 2
+                return result.restrictWithin2Pi
+            } else {
+                var result = self.normalDirection.angleFromXPlus + self.radian / 2
+                return result.restrictWithin2Pi
+            }
         }
     }
     
@@ -274,6 +303,10 @@ class GOArcSegment: GOSegment {
         } else {
             return false
         }
+    }
+    
+    func revert() {
+        self.isReversed = !self.isReversed
     }
     
 }

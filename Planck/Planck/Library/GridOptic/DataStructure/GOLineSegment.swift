@@ -10,6 +10,7 @@ import UIKit
 
 class GOLineSegment: GOSegment {
     var length: CGFloat
+    var isReversed: Bool = false
     var line: GOLine {
         get {
             return GOLine(anyPoint: CGPointMake(CGFloat(self.center.x), CGFloat(self.center.y)), direction: self.direction)
@@ -24,6 +25,8 @@ class GOLineSegment: GOSegment {
             return path
         }
     }
+    
+
     
     init(center: CGPoint, length: CGFloat, direction: CGVector) {
         self.length = length;
@@ -72,19 +75,33 @@ class GOLineSegment: GOSegment {
     
     override var startPoint: CGPoint {
         get {
-            let radDirection = self.directionInRadianFromXPlus
-            let deltaX = -0.5 * self.length * cos(radDirection)
-            let deltaY = -0.5 * self.length * sin(radDirection)
-            return CGPointMake(center.x + deltaX, center.y + deltaY)
+            if self.isReversed {
+                let radDirection = self.directionInRadianFromXPlus
+                let deltaX = 0.5 * self.length * cos(radDirection)
+                let deltaY = 0.5 * self.length * sin(radDirection)
+                return CGPointMake(center.x + deltaX, center.y + deltaY)
+            } else {
+                let radDirection = self.directionInRadianFromXPlus
+                let deltaX = -0.5 * self.length * cos(radDirection)
+                let deltaY = -0.5 * self.length * sin(radDirection)
+                return CGPointMake(center.x + deltaX, center.y + deltaY)
+            }
         }
     }
     
     override var endPoint: CGPoint {
         get {
-            let radDirection = self.directionInRadianFromXPlus
-            let deltaX = 0.5 * self.length * cos(radDirection)
-            let deltaY = 0.5 * self.length * sin(radDirection)
-            return CGPointMake(center.x + deltaX, center.y + deltaY)
+            if self.isReversed {
+                let radDirection = self.directionInRadianFromXPlus
+                let deltaX = -0.5 * self.length * cos(radDirection)
+                let deltaY = -0.5 * self.length * sin(radDirection)
+                return CGPointMake(center.x + deltaX, center.y + deltaY)
+            } else {
+                let radDirection = self.directionInRadianFromXPlus
+                let deltaX = 0.5 * self.length * cos(radDirection)
+                let deltaY = 0.5 * self.length * sin(radDirection)
+                return CGPointMake(center.x + deltaX, center.y + deltaY)
+            }
         }
     }
     
@@ -188,5 +205,9 @@ class GOLineSegment: GOSegment {
         } else {
             return nil
         }
+    }
+    
+    override func revert() {
+        self.isReversed = !self.isReversed
     }
 }

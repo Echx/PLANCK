@@ -97,4 +97,8 @@ class GOSegment : NSObject, NSCoding {
     func getReflectionRay(#rayIn: GORay) -> GORay? {
         return nil
     }
+    
+    func revert() {
+        fatalError("revert needed by overriden by child classes")
+    }
 }
