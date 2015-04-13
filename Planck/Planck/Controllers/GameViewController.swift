@@ -268,23 +268,23 @@ class GameViewController: XViewController {
                 let delay = distance / Constant.lightSpeedBase
                 
                 //emitter
-                let emitterLayer = ParticleManager.getParticleLayer()
-                if self.emitterLayers[tag] == nil {
-                    self.emitterLayers[tag] = [CAEmitterLayer]()
-                }
-                self.emitterLayers[tag]?.append(emitterLayer)
-                self.view.layer.addSublayer(emitterLayer)
-                emitterLayer.emitterPosition = prevPoint.0
-                var emitterPath = CGPathCreateCopy(path.CGPath)
-                //                CGContextSetStrokeColorWithColor(context, UIColor.whiteColor().CGColor)
-                
-                var animation = CABasicAnimation(keyPath: "emitterPosition")
-                animation.fromValue = NSValue(CGPoint: prevPoint.0)
-                animation.toValue = NSValue(CGPoint: currentPoint.0)
-                animation.duration = CFTimeInterval(delay)
-                animation.repeatCount = 1.0
-                animation.removedOnCompletion = true
-                emitterLayer.addAnimation(animation, forKey: "test")
+//                let emitterLayer = ParticleManager.getParticleLayer()
+//                if self.emitterLayers[tag] == nil {
+//                    self.emitterLayers[tag] = [CAEmitterLayer]()
+//                }
+//                self.emitterLayers[tag]?.append(emitterLayer)
+//                self.view.layer.addSublayer(emitterLayer)
+//                emitterLayer.emitterPosition = prevPoint.0
+//                var emitterPath = CGPathCreateCopy(path.CGPath)
+//                //                CGContextSetStrokeColorWithColor(context, UIColor.whiteColor().CGColor)
+//                
+//                var animation = CABasicAnimation(keyPath: "emitterPosition")
+//                animation.fromValue = NSValue(CGPoint: prevPoint.0)
+//                animation.toValue = NSValue(CGPoint: currentPoint.0)
+//                animation.duration = CFTimeInterval(delay)
+//                animation.repeatCount = 1.0
+//                animation.removedOnCompletion = true
+//                emitterLayer.addAnimation(animation, forKey: "test")
                 
                 //end of emitter
                 
