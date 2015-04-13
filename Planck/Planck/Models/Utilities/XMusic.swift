@@ -54,6 +54,7 @@ class XMusic: NSObject, NSCoding {
     
     func reset() {
         self.isArranged = true
+        self.numberOfPlanck = 0
         self.music = [XNote: [CGFloat]]()
     }
     

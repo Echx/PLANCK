@@ -80,6 +80,7 @@ class LevelDesignerViewController: XViewController {
     private var rayLayers = [String: [CAShapeLayer]]()
     private var rays = [String: [(CGPoint, GOSegment?)]]()
     private var pathDistances = [String: CGFloat]()
+    private var visitedPlanckList = [XNode]()
     private var audioPlayerList = [AVAudioPlayer]()
     private var grid: GOGrid
     private var music = XMusic()
@@ -951,6 +952,7 @@ class LevelDesignerViewController: XViewController {
         self.rays = [String: [(CGPoint, GOSegment?)]]()
         self.music.reset()
         self.pathDistances = [String: CGFloat]()
+        self.visitedPlanckList = [XNode]()
     }
     
     private func getColorForNode(node: GOOpticRep) -> UIColor {
@@ -972,6 +974,12 @@ class LevelDesignerViewController: XViewController {
     private func playNote(segment: GOSegment?, tag: String) {
         if let edge = segment {
             if let device = xNodes[edge.parent] {
+                
+                if !contains(self.visitedPlanckList, device) {
+                    self.visitedPlanckList.append(device)
+                    self.music.numberOfPlanck++
+                }
+                
                 if let sound = device.getSound() {
                     let audioPlayer = AVAudioPlayer(contentsOfURL: sound, error: nil)
                     self.audioPlayerList.append(audioPlayer)
