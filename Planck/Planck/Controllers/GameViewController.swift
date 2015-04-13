@@ -466,7 +466,7 @@ extension GameViewController: PauseMaskViewDelegate {
             self.pauseMask.hide()
             
         default:
-            let level = GameLevel.loadGameWithIndex(self.gameLevel.index)
+            let level = GameLevel.loadGameWithIndex(self.gameLevel.index)!
             self.reloadLevel(level)
             self.pauseMask.hide()
         }
