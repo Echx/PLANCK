@@ -281,6 +281,10 @@
 		62E3233A1ADAF56400CFD4CA /* XEmitter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26DFCF9B1AD8467000C97C5B /* XEmitter.swift */; };
 		62E3233B1ADAF57600CFD4CA /* String+XUtility.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26C8ADDB1AD01A52008ADACB /* String+XUtility.swift */; };
 		908507565261D52FE46A7565 /* libPods-Planck.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 7C7D2BBE51F017F5A3BC172D /* libPods-Planck.a */; };
+		98026E2C1ADC40870092620B /* GamiCent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 98026E2B1ADC40870092620B /* GamiCent.swift */; };
+		98026E301ADC40B30092620B /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 98026E2F1ADC40B30092620B /* SystemConfiguration.framework */; };
+		98026E311ADC41770092620B /* GamiCent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 98026E2B1ADC40870092620B /* GamiCent.swift */; };
+		98026E331ADC42FD0092620B /* GameKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 98026E321ADC42FD0092620B /* GameKit.framework */; };
 		982495D81AD2ACC10039E75E /* DesignerLevelSelectViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 982495D71AD2ACC10039E75E /* DesignerLevelSelectViewController.swift */; };
 		9841A82E1AD987010095AEBB /* SettingViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9841A82D1AD987010095AEBB /* SettingViewCell.swift */; };
 		986E5DA31AC55604008EF3CE /* StorageManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 98D55F9D1ABF133000B3E86A /* StorageManager.swift */; };
@@ -562,6 +566,9 @@
 		62E323281ADAF27D00CFD4CA /* XMusicTest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = XMusicTest.swift; sourceTree = "<group>"; };
 		7C7D2BBE51F017F5A3BC172D /* libPods-Planck.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-Planck.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		8FAA2537BA840D27B293A4BB /* Pods-Planck.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Planck.release.xcconfig"; path = "Pods/Target Support Files/Pods-Planck/Pods-Planck.release.xcconfig"; sourceTree = "<group>"; };
+		98026E2B1ADC40870092620B /* GamiCent.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GamiCent.swift; sourceTree = "<group>"; };
+		98026E2F1ADC40B30092620B /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
+		98026E321ADC42FD0092620B /* GameKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = GameKit.framework; path = System/Library/Frameworks/GameKit.framework; sourceTree = SDKROOT; };
 		982495D71AD2ACC10039E75E /* DesignerLevelSelectViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DesignerLevelSelectViewController.swift; sourceTree = "<group>"; };
 		9841A82D1AD987010095AEBB /* SettingViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SettingViewCell.swift; path = Setting/SettingViewCell.swift; sourceTree = "<group>"; };
 		988CF3471AD3C6580013D903 /* LevelSelectHeaderView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LevelSelectHeaderView.swift; sourceTree = "<group>"; };
@@ -576,6 +583,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				98026E331ADC42FD0092620B /* GameKit.framework in Frameworks */,
+				98026E301ADC40B30092620B /* SystemConfiguration.framework in Frameworks */,
 				908507565261D52FE46A7565 /* libPods-Planck.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -722,6 +731,7 @@
 			isa = PBXGroup;
 			children = (
 				262BE1A21ABE9A9000ABE965 /* Library */,
+				98026E2B1ADC40870092620B /* GamiCent.swift */,
 				6227FBEF1AAE28E7007F49EA /* Controllers */,
 				6227FBF11AAE28E7007F49EA /* Models */,
 				6227FC071AAE28E7007F49EA /* Views */,
@@ -1066,6 +1076,8 @@
 		F96E4F7A924BA3503E92F4DC /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				98026E321ADC42FD0092620B /* GameKit.framework */,
+				98026E2F1ADC40B30092620B /* SystemConfiguration.framework */,
 				7C7D2BBE51F017F5A3BC172D /* libPods-Planck.a */,
 			);
 			name = Frameworks;
@@ -1122,10 +1134,10 @@
 				TargetAttributes = {
 					6227FB671AAE285C007F49EA = {
 						CreatedOnToolsVersion = 6.1.1;
-						DevelopmentTeam = W76H98A34A;
+						DevelopmentTeam = DJHPY9N63F;
 						SystemCapabilities = {
 							com.apple.GameCenter = {
-								enabled = 0;
+								enabled = 1;
 							};
 						};
 					};
@@ -1401,6 +1413,7 @@
 				263B09AC1ACEEDD800E7C99E /* GOCoordinate.swift in Sources */,
 				267EC2D41AB1DA01002FE745 /* CGVector+XUtility.swift in Sources */,
 				26C8ADDA1AD00437008ADACB /* LevelDesignerViewController.swift in Sources */,
+				98026E2C1ADC40870092620B /* GamiCent.swift in Sources */,
 				262F382E1ADACA8F00FA2177 /* CoinView.swift in Sources */,
 				988CF3481AD3C6580013D903 /* LevelSelectHeaderView.swift in Sources */,
 				269D783A1AD3070100279EF3 /* LevelSelectViewController.swift in Sources */,
@@ -1475,6 +1488,7 @@
 				62E3233A1ADAF56400CFD4CA /* XEmitter.swift in Sources */,
 				62E323271ADAF25B00CFD4CA /* LevelDesignerViewController.swift in Sources */,
 				62E323311ADAF54200CFD4CA /* LevelSelectHeaderView.swift in Sources */,
+				98026E311ADC41770092620B /* GamiCent.swift in Sources */,
 				98F63A951AD165070096A32E /* GOConcaveLensRep.swift in Sources */,
 				98F63A961AD165070096A32E /* GOConvexLensRep.swift in Sources */,
 				261483C81AD9B42E001F4143 /* GameLevel.swift in Sources */,
