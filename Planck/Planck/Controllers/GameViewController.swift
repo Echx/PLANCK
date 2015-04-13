@@ -335,6 +335,7 @@ class GameViewController: XViewController {
                     if !self.isFinished {
                         dispatch_async(queue, {
                             if self.music.isSimilarTo(self.gameLevel.targetMusic) {
+                                self.isFinished = true
                                 dispatch_after(dispatch_time(DISPATCH_TIME_NOW, Int64(Float(NSEC_PER_SEC) * 1.5)), dispatch_get_main_queue()) {
                                     if self.isVirgin! {
                                         self.view.addSubview(self.transitionMask)
@@ -343,15 +344,14 @@ class GameViewController: XViewController {
                                         self.view.addSubview(self.transitionMask)
                                         self.transitionMask.show(2)
                                     }
-                                    self.isFinished = true
                                 }
                                 
                                 self.shouldShowNextLevel = true
                             } else if self.music.numberOfPlanck == self.gameLevel.targetMusic.numberOfPlanck {
+                                self.isFinished = true
                                 dispatch_after(dispatch_time(DISPATCH_TIME_NOW, Int64(Float(NSEC_PER_SEC) * 1.5)), dispatch_get_main_queue()) {
                                     self.view.addSubview(self.transitionMask)
                                     self.transitionMask.show(1)
-                                    self.isFinished = true
                                 }
                                 
                                 self.shouldShowNextLevel = true
