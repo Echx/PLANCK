@@ -156,7 +156,7 @@ struct MediumDescription {
 }
 
 struct MusicDefaults {
-    static let distanceTolerance: Double = 2
+    static let distanceTolerance: Double = 50
 }
 
 struct LevelDesignerDefaults {
