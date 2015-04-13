@@ -59,7 +59,7 @@ class GameViewController: XViewController {
     }
     
     private func reloadLevel(gameLevel: GameLevel) {
-        self.isVirgin = true
+        self.isVirgin = nil
         self.shootSwitch.setOn(false, animated: true)
         self.clear()
         self.gameLevel = gameLevel
@@ -332,6 +332,7 @@ class GameViewController: XViewController {
                     
                     dispatch_async(queue, {
                         if self.music.isSimilarTo(self.gameLevel.targetMusic) {
+                            self.shouldShowNextLevel = true
                             dispatch_after(dispatch_time(DISPATCH_TIME_NOW, Int64(Float(NSEC_PER_SEC) * 1.5)), dispatch_get_main_queue()) {
                                 if self.isVirgin! {
                                     self.view.addSubview(self.transitionMask)
@@ -341,13 +342,12 @@ class GameViewController: XViewController {
                                     self.transitionMask.show(2)
                                 }
                             }
-                            self.shouldShowNextLevel = true
                         } else if self.music.numberOfPlanck == self.gameLevel.targetMusic.numberOfPlanck {
+                            self.shouldShowNextLevel = true
                             dispatch_after(dispatch_time(DISPATCH_TIME_NOW, Int64(Float(NSEC_PER_SEC) * 1.5)), dispatch_get_main_queue()) {
                                 self.view.addSubview(self.transitionMask)
                                 self.transitionMask.show(1)
                             }
-                            self.shouldShowNextLevel = true
                         } else {
                             self.shouldShowNextLevel = false
                         }
@@ -494,8 +494,10 @@ extension GameViewController: LevelTransitionMaskViewDelegate {
     func viewDidDismiss(view: LevelTransitionMaskView) {
         if self.shouldShowNextLevel {
             if let nextLevel = GameLevel.loadGameWithIndex(self.gameLevel.index + 1) {
+                println("nextLevel: \(self.gameLevel.index + 1)")
                 self.reloadLevel(nextLevel)
             } else {
+                println("nextLevel: \(self.gameLevel.index + 1)")
                 self.dismissViewController()
             }
         }

@@ -36,6 +36,8 @@ class LevelTransitionMaskView: UIView {
     private let imageView = UIImageView(frame: UIScreen.mainScreen().bounds)
     private var tapGestureRecognizer: UITapGestureRecognizer?
     var delegate: LevelTransitionMaskViewDelegate?
+    var autoHide = false
+    var autoHideTime: NSTimeInterval = 0.2
     var animationSpringDamping: CGFloat = 0.5
     var animationInitialSpringVelocity: CGFloat = 10
     var animationDuration = 1.5
@@ -91,7 +93,16 @@ class LevelTransitionMaskView: UIView {
                 },
                 completion: {
                     finished in
-                    self.tapGestureRecognizer!.enabled = true
+                    if self.autoHide {
+                        NSTimer.scheduledTimerWithTimeInterval(
+                            self.autoHideTime,
+                            target: self,
+                            selector: "hide",
+                            userInfo: nil,
+                            repeats: false)
+                    } else {
+                        self.tapGestureRecognizer!.enabled = true
+                    }
                 })
         }
     }
@@ -119,6 +130,7 @@ class LevelTransitionMaskView: UIView {
         self.animationCount++
         if self.animationCount == self.coinCount {
             self.removeFromSuperview()
+            self.animationCount = 0
             self.delegate?.viewDidDismiss(self)
         }
     }
