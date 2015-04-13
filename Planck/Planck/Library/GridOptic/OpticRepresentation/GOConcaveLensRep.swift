@@ -49,7 +49,7 @@ class GOConcaveLensRep: GOOpticRep {
             path.appendPath(self.edges[2].bezierPath)
             path.addLineToPoint(self.edges[3].bezierPath.currentPoint)
             path.appendPath(self.edges[3].bezierPath)
-            path.addLineToPoint(self.edges[0].bezierPath.bezierPathByReversingPath().currentPoint)
+            path.addLineToPoint(self.edges[0].bezierPath.currentPoint)
             //            path.closePath()
             return path
         }
