@@ -67,6 +67,12 @@ struct NSCodingKey {
     static let MusicDic = "MUSICDIC"
     static let MusicIsArranged = "ARRANGE"
     static let MusicNumberOfPlanck = "NUMBEROFPLANCK"
+    
+    static let GameName = "name"
+    static let GameIndex = "index"
+    static let GameGrid = "grid"
+    static let GameNodes = "xnode"
+    static let GameTargetMusic = "music"
 }
 
 struct ActionKey {

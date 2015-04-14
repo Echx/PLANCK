@@ -17,7 +17,6 @@ class GameLevel: NSObject, NSCoding {
         return StorageManager.defaultManager.loadAllLevel()[index]
     }
     
-    
     private let defaultName = "Deadline"
     
     /// The grid contained in this level
@@ -65,20 +64,20 @@ class GameLevel: NSObject, NSCoding {
     }
     
     required convenience init(coder aDecoder: NSCoder) {
-        var levelName = aDecoder.decodeObjectForKey("name") as String
-        var index = aDecoder.decodeObjectForKey("index") as Int
-        var grid = aDecoder.decodeObjectForKey("grid") as GOGrid
-        var xNodes = aDecoder.decodeObjectForKey("xnode") as [String: XNode]
-        var music = aDecoder.decodeObjectForKey("music") as XMusic
+        var levelName = aDecoder.decodeObjectForKey(NSCodingKey.GameName) as String
+        var index = aDecoder.decodeObjectForKey(NSCodingKey.GameIndex) as Int
+        var grid = aDecoder.decodeObjectForKey(NSCodingKey.GameGrid) as GOGrid
+        var xNodes = aDecoder.decodeObjectForKey(NSCodingKey.GameNodes) as [String: XNode]
+        var music = aDecoder.decodeObjectForKey(NSCodingKey.GameTargetMusic) as XMusic
         self.init(levelName:levelName, levelIndex: index, grid:grid, nodes:xNodes, targetMusic:music)
     }
     
     func encodeWithCoder(aCoder: NSCoder) {
-        aCoder.encodeObject(self.name, forKey: "name")
-        aCoder.encodeObject(self.index, forKey: "index")
-        aCoder.encodeObject(self.grid, forKey: "grid")
-        aCoder.encodeObject(self.xNodes, forKey: "xnode")
-        aCoder.encodeObject(self.targetMusic, forKey: "music")
+        aCoder.encodeObject(self.name, forKey: NSCodingKey.GameName)
+        aCoder.encodeObject(self.index, forKey: NSCodingKey.GameIndex)
+        aCoder.encodeObject(self.grid, forKey: NSCodingKey.GameGrid)
+        aCoder.encodeObject(self.xNodes, forKey: NSCodingKey.GameNodes)
+        aCoder.encodeObject(self.targetMusic, forKey: NSCodingKey.GameTargetMusic)
     }
 
 }
