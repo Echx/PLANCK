@@ -403,7 +403,6 @@ class GamiCent : NSObject, GKGameCenterControllerDelegate {
     
     // MARKS: game center view ctrl delegate
     func gameCenterViewControllerDidFinish(gameCenterViewController: GKGameCenterViewController!) {
-        println("Im called!")
         gameCenterViewController.dismissViewControllerAnimated(true, completion: nil)
     }
     

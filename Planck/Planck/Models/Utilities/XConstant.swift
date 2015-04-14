@@ -223,6 +223,12 @@ struct PlanckControllPanel {
     static let groupPickerTitle = ["0", "1", "2", "3", "4", "5", "6"]
 }
 
+struct XStats {
+    static let totalScore = "totalScore"
+    
+    static let firstTime = "firstTime"
+}
+
 struct XGameCenter {
     static let leaderboardID = "echx.planck.leaderboard"
     
