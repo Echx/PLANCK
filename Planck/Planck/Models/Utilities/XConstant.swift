@@ -73,6 +73,8 @@ struct NSCodingKey {
     static let GameGrid = "grid"
     static let GameNodes = "xnode"
     static let GameTargetMusic = "music"
+    static let GameBestScore = "score"
+    static let GameUnlock = "unlock"
     
     static let XNodeBody = "phyBody"
     static let XNodeFixed = "isFixed"

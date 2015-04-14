@@ -31,8 +31,14 @@ class GameLevel: NSObject, NSCoding {
     /// The index of this level
     var index: Int
     
-    /// THe desire music for this level
+    /// The desire music for this level
     var targetMusic: XMusic = XMusic()
+    
+    /// The score user achieve on this level
+    var bestScore:Int = 0
+    
+    /// Whether this level is unlocked
+    var isUnlock:Bool = false
     
     init(levelName: String, levelIndex: Int, grid: GOGrid, nodes: [String: XNode], targetMusic: XMusic) {
         self.name = levelName
@@ -69,7 +75,12 @@ class GameLevel: NSObject, NSCoding {
         var grid = aDecoder.decodeObjectForKey(NSCodingKey.GameGrid) as GOGrid
         var xNodes = aDecoder.decodeObjectForKey(NSCodingKey.GameNodes) as [String: XNode]
         var music = aDecoder.decodeObjectForKey(NSCodingKey.GameTargetMusic) as XMusic
+        var bestScore = aDecoder.decodeObjectForKey(NSCodingKey.GameBestScore) as Int
+        var isUnlock = aDecoder.decodeBoolForKey(NSCodingKey.GameUnlock)
+        
         self.init(levelName:levelName, levelIndex: index, grid:grid, nodes:xNodes, targetMusic:music)
+        self.bestScore = bestScore
+        self.isUnlock = isUnlock
     }
     
     func encodeWithCoder(aCoder: NSCoder) {
@@ -78,6 +89,8 @@ class GameLevel: NSObject, NSCoding {
         aCoder.encodeObject(self.grid, forKey: NSCodingKey.GameGrid)
         aCoder.encodeObject(self.xNodes, forKey: NSCodingKey.GameNodes)
         aCoder.encodeObject(self.targetMusic, forKey: NSCodingKey.GameTargetMusic)
+        aCoder.encodeObject(self.bestScore, forKey: NSCodingKey.GameBestScore)
+        aCoder.encodeBool(self.isUnlock, forKey: NSCodingKey.GameUnlock)
     }
 
 }
