@@ -24,8 +24,6 @@ class LevelSelectCollectionViewCell: UICollectionViewCell {
         }
         
         switch score {
-            case 0:
-                self.status.image = nil
             case 1:
                 self.status.image = UIImage(named: "onestar")
             case 2:
