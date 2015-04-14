@@ -16,15 +16,15 @@ class XEmitter: XNode {
     }
     
     required convenience init(coder aDecoder: NSCoder) {
-        let body = aDecoder.decodeObjectForKey("phyBody") as GOEmitterRep
-        let isFixed = aDecoder.decodeBoolForKey("isFixed")
+        let body = aDecoder.decodeObjectForKey(NSCodingKey.XNodeBody) as GOEmitterRep
+        let isFixed = aDecoder.decodeBoolForKey(NSCodingKey.XNodeFixed)
         
         self.init(emitter: body)
         self.isFixed = isFixed
     }
     
     override func encodeWithCoder(aCoder: NSCoder) {
-        aCoder.encodeObject(self.physicsBody, forKey: "phyBody")
-        aCoder.encodeBool(self.isFixed, forKey: "isFixed")
+        aCoder.encodeObject(self.physicsBody, forKey: NSCodingKey.XNodeBody)
+        aCoder.encodeBool(self.isFixed, forKey: NSCodingKey.XNodeFixed)
     }
 }

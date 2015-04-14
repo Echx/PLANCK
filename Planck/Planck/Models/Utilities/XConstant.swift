@@ -73,6 +73,11 @@ struct NSCodingKey {
     static let GameGrid = "grid"
     static let GameNodes = "xnode"
     static let GameTargetMusic = "music"
+    
+    static let XNodeBody = "phyBody"
+    static let XNodeFixed = "isFixed"
+    static let XNodePlanck = "planckNote"
+    static let XNodeInstrument = "instrument"
 }
 
 struct ActionKey {

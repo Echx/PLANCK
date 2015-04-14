@@ -66,11 +66,11 @@ class XNode: NSObject, NSCoding {
     }
     
     required convenience init(coder aDecoder: NSCoder) {
-        let body = aDecoder.decodeObjectForKey("phyBody") as GOOpticRep
-        let isFixed = aDecoder.decodeBoolForKey("isFixed")
-        let planckNote = aDecoder.decodeObjectForKey("planckNote") as XNote?
-        let instrument = aDecoder.decodeObjectForKey("instrument") as Int
-        
+        let body = aDecoder.decodeObjectForKey(NSCodingKey.XNodeBody) as GOOpticRep
+        let isFixed = aDecoder.decodeBoolForKey(NSCodingKey.XNodeFixed)
+        let planckNote = aDecoder.decodeObjectForKey(NSCodingKey.XNodePlanck) as XNote?
+        let instrument = aDecoder.decodeObjectForKey(NSCodingKey.XNodeInstrument) as Int
+
         self.init(physicsBody: body)
         self.isFixed = isFixed
         self.instrument = instrument
@@ -78,12 +78,11 @@ class XNode: NSObject, NSCoding {
     }
     
     func encodeWithCoder(aCoder: NSCoder) {
-        aCoder.encodeObject(self.physicsBody, forKey: "phyBody")
-        aCoder.encodeBool(self.isFixed, forKey: "isFixed")
-        aCoder.encodeObject(self.instrument, forKey: "instrument")
-        
+        aCoder.encodeObject(self.physicsBody, forKey: NSCodingKey.XNodeBody)
+        aCoder.encodeBool(self.isFixed, forKey: NSCodingKey.XNodeFixed)
+        aCoder.encodeObject(self.instrument, forKey: NSCodingKey.XNodeInstrument)
         if self.planckNote != nil {
-            aCoder.encodeObject(self.planckNote, forKey: "planckNote")
+            aCoder.encodeObject(self.planckNote, forKey: NSCodingKey.XNodePlanck)
         }
     }
 }
