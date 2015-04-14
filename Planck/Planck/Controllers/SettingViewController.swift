@@ -14,17 +14,13 @@ class SettingViewController: XViewController, UITableViewDataSource, UITableView
     private let textCellId = "SettingViewTextCell"
     private let sectionTitleForSupport = "support"
     private let sectionTitleForGameCenter = "game center"
-    private let sectionTitleForControls = "controls"
     private let sectionTitleForAudio = "audio"
-    private let sectionTitleForVideo = "video"
 
     private let numOfExtraSection = 2
     
-    private let sectionIDForControl = 0
-    private let sectionIDForAudio = 1
-    private let sectionIDForVideo = 2
-    private let sectionIDForSupport = 3
-    private let sectionIDForGameCenter = 4
+    private let sectionIDForAudio = 0
+    private let sectionIDForSupport = 1
+    private let sectionIDForGameCenter = 2
     
     class func getInstance() -> SettingViewController {
         let storyboard = UIStoryboard(name: "Main", bundle: nil)
@@ -77,7 +73,6 @@ class SettingViewController: XViewController, UITableViewDataSource, UITableView
     
     func tableView(tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
         var header = UIView(frame: CGRectMake(0, 0, 300, 40))
-//        header.backgroundColor = UIColor(red: 67, green: 94, blue: 118, alpha: 1)
         let textLabel = UILabel(frame: CGRectMake(5, 5, 300, 30))
         textLabel.text = getSectionHeader(section)
         textLabel.textColor = UIColor.whiteColor()
@@ -86,12 +81,8 @@ class SettingViewController: XViewController, UITableViewDataSource, UITableView
     }
     
     private func getSectionHeader(section: Int) -> String? {
-        if section == sectionIDForControl {
-            return sectionTitleForControls
-        } else if section == sectionIDForAudio {
+        if section == sectionIDForAudio {
             return sectionTitleForAudio
-        } else if section == sectionIDForVideo {
-            return sectionTitleForVideo
         } else if section == sectionIDForSupport {
             return sectionTitleForSupport
         } else {
@@ -102,9 +93,7 @@ class SettingViewController: XViewController, UITableViewDataSource, UITableView
     
     private func getStaticTogglableItems() -> [[String]] {
         var cellItems = [
-            ["free rotate"], // audio setting
-            ["background music"],      // control setting
-            ["visual effects"]    // video setting
+            ["background music"]      // control setting
         ]
         return cellItems
     }
@@ -115,7 +104,7 @@ class SettingViewController: XViewController, UITableViewDataSource, UITableView
     }
     
     private func getStaticSupportItems() -> [String] {
-        var cellItems = ["rate us", "credits", "feedbacl"]
+        var cellItems = ["rate us", "credits", "feedback"]
         return cellItems
     }
 }
