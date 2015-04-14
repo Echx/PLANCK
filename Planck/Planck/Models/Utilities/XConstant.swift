@@ -222,3 +222,11 @@ struct PlanckControllPanel {
     static let accidentalPickerTitle = ["♮", "♭", "♭♭", "♯", "x"]
     static let groupPickerTitle = ["0", "1", "2", "3", "4", "5", "6"]
 }
+
+struct XGameCenter {
+    static let leaderboardID = "echx.planck.leaderboard"
+    
+    static let achi_newbie = "planck.achievement0"
+    static let achi_firstblood = "planck.achievement1"
+    static let achi_nine = "planck.achievement2"
+}

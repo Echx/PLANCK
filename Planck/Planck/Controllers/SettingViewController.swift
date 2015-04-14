@@ -19,8 +19,10 @@ class SettingViewController: XViewController, UITableViewDataSource, UITableView
     private let numOfExtraSection = 2
     
     private let sectionIDForAudio = 0
-    private let sectionIDForSupport = 1
-    private let sectionIDForGameCenter = 2
+    private let sectionIDForGameCenter = 1
+    private let sectionIDForSupport = 2
+    
+    private let headerHeight:CGFloat = 60.0
     
     class func getInstance() -> SettingViewController {
         let storyboard = UIStoryboard(name: "Main", bundle: nil)
@@ -72,13 +74,36 @@ class SettingViewController: XViewController, UITableViewDataSource, UITableView
     }
     
     func tableView(tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
-        var header = UIView(frame: CGRectMake(0, 0, 300, 40))
-        let textLabel = UILabel(frame: CGRectMake(5, 5, 300, 30))
+        var header = UIView(frame: CGRectMake(0, 0, 300, 60))
+        let textLabel = UILabel(frame: CGRectMake(15, 10, 300, 40))
         textLabel.text = getSectionHeader(section)
         textLabel.textColor = UIColor.whiteColor()
+        textLabel.font = UIFont.systemFontOfSize(28.0)
         header.addSubview(textLabel)
         return header
     }
+    
+    func tableView(tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
+        return headerHeight
+    }
+    
+    func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+        let section = indexPath.section
+        if section == sectionIDForSupport {
+            
+        } else if section == sectionIDForGameCenter {
+            if indexPath.item == 0 {
+                // item 1 : view achievements
+                GamiCent.showAchievements(completion: nil)
+            } else {
+                // item 2 : view leaderboard
+                GamiCent.showLeaderboard(leaderboardID: XGameCenter.leaderboardID, completion: nil)
+            }
+        }
+        
+        tableView.deselectRowAtIndexPath(indexPath, animated: true)
+    }
+    
     
     private func getSectionHeader(section: Int) -> String? {
         if section == sectionIDForAudio {
