@@ -88,20 +88,23 @@ class SettingViewController: XViewController, UITableViewDataSource, UITableView
     }
     
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+        tableView.deselectRowAtIndexPath(indexPath, animated: true)
         let section = indexPath.section
         if section == sectionIDForSupport {
-            
+        
         } else if section == sectionIDForGameCenter {
             if indexPath.item == 0 {
                 // item 1 : view achievements
-                GamiCent.showAchievements(completion: nil)
+                dispatch_async(dispatch_get_main_queue(), {
+                    GamiCent.showAchievements(completion: nil)
+                })
             } else {
                 // item 2 : view leaderboard
-                GamiCent.showLeaderboard(leaderboardID: XGameCenter.leaderboardID, completion: nil)
+                dispatch_async(dispatch_get_main_queue(), {
+                    GamiCent.showLeaderboard(leaderboardID: XGameCenter.leaderboardID, completion: nil)
+                })
             }
         }
-        
-        tableView.deselectRowAtIndexPath(indexPath, animated: true)
     }
     
     
