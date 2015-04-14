@@ -40,14 +40,16 @@ class GameViewController: XViewController {
         }
     }
     
-
+    /// a boolean value indicate if the game play is in preview mode or not
+    private var isPreview:Bool = false
     
-    class func getInstance(gameLevel: GameLevel) -> GameViewController {
+    class func getInstance(gameLevel: GameLevel, isPreview:Bool) -> GameViewController {
         let storyboard = UIStoryboard(name: "Main", bundle: nil)
         let identifier = StoryboardIndentifier.Game
         let viewController = storyboard.instantiateViewControllerWithIdentifier(identifier) as GameViewController
         viewController.gameLevel = gameLevel
         viewController.modalTransitionStyle = UIModalTransitionStyle.CrossDissolve
+        viewController.isPreview = isPreview
         return viewController
     }
     
@@ -321,9 +323,15 @@ class GameViewController: XViewController {
                                 if self.isVirgin! {
                                     self.view.addSubview(self.transitionMask)
                                     self.transitionMask.show(3)
+                                    if self.gameLevel.bestScore < 3 {
+                                        self.gameLevel.bestScore = 3
+                                    }
                                 } else {
                                     self.view.addSubview(self.transitionMask)
                                     self.transitionMask.show(2)
+                                    if self.gameLevel.bestScore < 2 {
+                                        self.gameLevel.bestScore = 2
+                                    }
                                 }
                             }
                             
@@ -332,6 +340,9 @@ class GameViewController: XViewController {
                             dispatch_after(dispatch_time(DISPATCH_TIME_NOW, Int64(Float(NSEC_PER_SEC) * 1.5)), dispatch_get_main_queue()) {
                                 self.view.addSubview(self.transitionMask)
                                 self.transitionMask.show(1)
+                                if self.gameLevel.bestScore < 1 {
+                                    self.gameLevel.bestScore = 1
+                                }
                             }
                             
                             self.shouldShowNextLevel = true
@@ -501,7 +512,21 @@ extension GameViewController: PauseMaskViewDelegate {
 extension GameViewController: LevelTransitionMaskViewDelegate {
     func viewDidDismiss(view: LevelTransitionMaskView) {
         if self.shouldShowNextLevel {
+            // save current game if it is not preview mode
+            if !isPreview {
+                dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), {
+                    StorageManager.defaultManager.saveCurrentLevel(self.gameLevel)
+                })
+            }
+            
             if let nextLevel = GameLevel.loadGameWithIndex(self.gameLevel.index + 1) {
+                // in preview mode, can neve reach here
+                // unlock next level and save it
+                nextLevel.isUnlock = true
+                dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), {
+                    StorageManager.defaultManager.saveCurrentLevel(nextLevel)
+                })
+                
                 println("nextLevel: \(self.gameLevel.index + 1)")
                 self.reloadLevel(nextLevel)
             } else {

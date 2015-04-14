@@ -17,6 +17,15 @@ class GameLevel: NSObject, NSCoding {
         return StorageManager.defaultManager.loadAllLevel()[index]
     }
     
+    class func countTotalScore() -> Int {
+        let allLevels = StorageManager.defaultManager.loadAllLevel()
+        var total:Int = 0
+        for level in allLevels {
+            total += level.bestScore
+        }
+        return total
+    }
+    
     private let defaultName = "Deadline"
     
     /// The grid contained in this level
@@ -37,7 +46,7 @@ class GameLevel: NSObject, NSCoding {
     /// The score user achieve on this level
     var bestScore:Int = 0
     
-    /// Whether this level is unlocked
+    /// Whether this level is unlocked, default false
     var isUnlock:Bool = false
     
     init(levelName: String, levelIndex: Int, grid: GOGrid, nodes: [String: XNode], targetMusic: XMusic) {
@@ -92,7 +101,6 @@ class GameLevel: NSObject, NSCoding {
         aCoder.encodeObject(self.bestScore, forKey: NSCodingKey.GameBestScore)
         aCoder.encodeBool(self.isUnlock, forKey: NSCodingKey.GameUnlock)
     }
-
 }
 
 extension GameLevel:Comparable, Equatable {
