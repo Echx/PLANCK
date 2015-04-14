@@ -22,8 +22,9 @@ class SettingViewController: XViewController, UITableViewDataSource, UITableView
     private let sectionIDForGameCenter = 1
     private let sectionIDForSupport = 2
     
-    private let headerHeight:CGFloat = 60.0
+    private let headerHeight:CGFloat = 50.0
     
+    @IBOutlet weak var tableView: UITableView!
     class func getInstance() -> SettingViewController {
         let storyboard = UIStoryboard(name: "Main", bundle: nil)
         let identifier = StoryboardIndentifier.Setting
@@ -33,7 +34,7 @@ class SettingViewController: XViewController, UITableViewDataSource, UITableView
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+        self.tableView.alwaysBounceVertical = false
         // Do any additional setup after loading the view.
     }
     
@@ -58,6 +59,8 @@ class SettingViewController: XViewController, UITableViewDataSource, UITableView
         } else {
             let cell = tableView.dequeueReusableCellWithIdentifier(settingCellID, forIndexPath: indexPath) as SettingViewCell
             cell.title.text = getStaticTogglableItems()[indexPath.section][indexPath.item]
+            cell.toggle.addTarget(self, action: "toggleSetting:", forControlEvents: UIControlEvents.TouchUpInside)
+            cell.toggle.tag = indexPath.item
             return cell
         }
         
@@ -74,10 +77,10 @@ class SettingViewController: XViewController, UITableViewDataSource, UITableView
     }
     
     func tableView(tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
-        var header = UIView(frame: CGRectMake(0, 0, 300, 60))
-        let textLabel = UILabel(frame: CGRectMake(15, 10, 300, 40))
+        var header = UIView(frame: CGRectMake(0, 0, 300, 50))
+        let textLabel = UILabel(frame: CGRectMake(5, 5, 300, 40))
         textLabel.text = getSectionHeader(section)
-        textLabel.textColor = UIColor.whiteColor()
+        textLabel.textColor = UIColor(red: 67/255, green: 94/255, blue: 118/255, alpha: 1.0)
         textLabel.font = UIFont.systemFontOfSize(28.0)
         header.addSubview(textLabel)
         return header
@@ -88,7 +91,7 @@ class SettingViewController: XViewController, UITableViewDataSource, UITableView
     }
     
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
-        tableView.deselectRowAtIndexPath(indexPath, animated: true)
+        tableView.deselectRowAtIndexPath(indexPath, animated: false)
         let section = indexPath.section
         if section == sectionIDForSupport {
         
@@ -105,6 +108,10 @@ class SettingViewController: XViewController, UITableViewDataSource, UITableView
                 })
             }
         }
+    }
+    
+    func toggleSetting(sender:UIButton!) {
+        sender.selected = !sender.selected
     }
     
     

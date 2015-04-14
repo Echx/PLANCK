@@ -11,5 +11,7 @@ import UIKit
 class SettingViewCell: UITableViewCell {
 
     @IBOutlet weak var title: UILabel!
-    @IBOutlet weak var toggle: UISwitch!
+    
+    @IBOutlet weak var toggle: UIButton!
+
 }
