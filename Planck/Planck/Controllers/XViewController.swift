@@ -25,7 +25,6 @@ class XViewController: UIViewController {
         self.dismissViewControllerAnimated(true, completion: nil)
     }
     
-
     /*
     // MARK: - Navigation
 
@@ -36,4 +35,17 @@ class XViewController: UIViewController {
     }
     */
 
+}
+
+extension XViewController {
+    func mm_drawerController() -> MMDrawerController? {
+        var parentViewController = self.parentViewController
+        while (parentViewController != nil) {
+            if parentViewController!.isKindOfClass(MMDrawerController) {
+                return parentViewController as? MMDrawerController
+            }
+            parentViewController = parentViewController!.parentViewController
+        }
+        return nil
+    }
 }
