@@ -50,7 +50,7 @@ class LevelSelectViewController: XViewController, UICollectionViewDataSource, UI
         let nameChar = ["I", "II", "III", "IV", "V", "VI"]
         
         cell.title.text = nameChar[indexPath.item]
-        
+        cell.setUpStatus(game.bestScore, isUnlock: game.isUnlock)
         return cell
     }
     
@@ -67,10 +67,13 @@ class LevelSelectViewController: XViewController, UICollectionViewDataSource, UI
     
     func collectionView(collectionView: UICollectionView, didSelectItemAtIndexPath indexPath: NSIndexPath) {
         let game = levelArray[indexPath.section * itemsInSection + indexPath.item]
-        
-        // load game to the game view 
-        var gameVC = GameViewController.getInstance(game)
-        self.presentViewController(gameVC, animated: true, completion: {})
+        if game.isUnlock {
+            // load game to the game view
+            var gameVC = GameViewController.getInstance(game, isPreview: false)
+            self.mm_drawerController()!.closeDrawerAnimated(true, completion: { bool in
+                self.presentViewController(gameVC, animated: true, completion: {})
+            })
+        }
     }
     
     private func getSectionHeaderText(section : Int) -> String {
@@ -100,5 +103,7 @@ class LevelSelectViewController: XViewController, UICollectionViewDataSource, UI
 //        }
         self.levelArray = StorageManager.defaultManager.loadAllLevel()
     }
+    
+    
 
 }

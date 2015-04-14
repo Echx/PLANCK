@@ -192,8 +192,9 @@ class LevelDesignerViewController: XViewController {
     }
     
     @IBAction func play() {
-        let currentGameLevel = GameLevel(levelName: "Current Game Level", levelIndex: 0, grid: self.grid, nodes: self.xNodes, targetMusic: self.music)
-        let gameViewController = GameViewController.getInstance(currentGameLevel)
+        // create a dummy value for preview
+        let currentGameLevel = GameLevel(levelName: "Current Game Level", levelIndex: -2, grid: self.grid, nodes: self.xNodes, targetMusic: self.music)
+        let gameViewController = GameViewController.getInstance(currentGameLevel, isPreview: true)
         self.presentViewController(gameViewController, animated: true, completion: nil)
     }
     
@@ -1054,7 +1055,7 @@ class LevelDesignerViewController: XViewController {
                         // valid
                         var nextIndex = StorageManager.defaultManager.numOfLevel()
                         if self.gameIndex != nil && inputName == self.gameName {
-                            // user intend to save current level
+                            // user intend to overwrite current level
                             nextIndex = self.gameIndex!
                         }
                         
@@ -1063,6 +1064,18 @@ class LevelDesignerViewController: XViewController {
                         var savedNodes = NSKeyedUnarchiver.unarchiveObjectWithData(NSKeyedArchiver.archivedDataWithRootObject(self.xNodes)) as Dictionary<String, XNode>
                         
                         let game = GameLevel(levelName: inputName, levelIndex: nextIndex, grid: savedGrid, nodes: savedNodes, targetMusic: self.music)
+                        
+                        if nextIndex == 0 {
+                            game.isUnlock = true // unlock first level
+                        } else {
+                            if let previousLevel = GameLevel.loadGameWithIndex(nextIndex - 1) {
+                                // if previous level is unlock with a point more than 0
+                                // unlock this level
+                                if previousLevel.isUnlock && previousLevel.bestScore > 0 {
+                                    game.isUnlock = true
+                                }
+                            }
+                        }
                         
                         StorageManager.defaultManager.saveCurrentLevel(game)
                         self.gameName = inputName
