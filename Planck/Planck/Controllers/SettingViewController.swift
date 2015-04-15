@@ -15,6 +15,7 @@ class SettingViewController: XViewController, UITableViewDataSource, UITableView
     private let sectionTitleForSupport = "support"
     private let sectionTitleForGameCenter = "game center"
     private let sectionTitleForAudio = "audio"
+    private let sectionTitleForLevelDesigner = "Design"
 
     private let numOfExtraSection = 2
     
@@ -96,6 +97,10 @@ class SettingViewController: XViewController, UITableViewDataSource, UITableView
         return headerHeight
     }
     
+    func tableView(tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
+        return 30
+    }
+    
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         tableView.deselectRowAtIndexPath(indexPath, animated: false)
         let section = indexPath.section
@@ -123,7 +128,9 @@ class SettingViewController: XViewController, UITableViewDataSource, UITableView
     
     
     private func getSectionHeader(section: Int) -> String? {
-        if section == sectionIDForAudio {
+        if section == sectionIDForLevelDesigner {
+            return sectionTitleForLevelDesigner
+        } else if section == sectionIDForAudio {
             return sectionTitleForAudio
         } else if section == sectionIDForSupport {
             return sectionTitleForSupport
