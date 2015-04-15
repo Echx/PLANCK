@@ -8,7 +8,7 @@
 
 import UIKit
 
-class CoinView: UIView {
+class BadgeView: UIView {
     
     private struct CoinImage {
         static let normal = UIImage(named: "coin");

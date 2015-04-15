@@ -520,29 +520,34 @@ extension GameViewController: PauseMaskViewDelegate {
 }
 
 extension GameViewController: LevelTransitionMaskViewDelegate {
-    func viewDidDismiss(view: LevelTransitionMaskView) {
-        if self.shouldShowNextLevel {
-            // save current game if it is not preview mode
-            if !isPreview {
-                dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), {
-                    StorageManager.defaultManager.saveCurrentLevel(self.gameLevel)
-                })
-            }
-            
-            if let nextLevel = GameLevel.loadGameWithIndex(self.gameLevel.index + 1) {
-                // in preview mode, can neve reach here
-                // unlock next level and save it
-                nextLevel.isUnlock = true
-                dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), {
-                    StorageManager.defaultManager.saveCurrentLevel(nextLevel)
-                })
+    func viewDidDismiss(view: LevelTransitionMaskView, withButtonClickedAtIndex index: Int) {
+        if index == 2 {
+            if self.shouldShowNextLevel {
+                // save current game if it is not preview mode
+                if !isPreview {
+                    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), {
+                        StorageManager.defaultManager.saveCurrentLevel(self.gameLevel)
+                    })
+                }
                 
-                println("nextLevel: \(self.gameLevel.index + 1)")
-                self.reloadLevel(nextLevel)
-            } else {
-                println("nextLevel: \(self.gameLevel.index + 1)")
-                self.dismissViewController()
+                if let nextLevel = GameLevel.loadGameWithIndex(self.gameLevel.index + 1) {
+                    // in preview mode, can neve reach here
+                    // unlock next level and save it
+                    nextLevel.isUnlock = true
+                    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), {
+                        StorageManager.defaultManager.saveCurrentLevel(nextLevel)
+                    })
+                    
+                    println("nextLevel: \(self.gameLevel.index + 1)")
+                    self.reloadLevel(nextLevel)
+                } else {
+                    println("nextLevel: \(self.gameLevel.index + 1)")
+                    self.dismissViewController()
+                }
             }
+        } else {
+            self.buttonDidClickedAtIndex(index)
         }
+        
     }
 }

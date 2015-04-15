@@ -19,7 +19,7 @@
 		262F38271ADABEE500FA2177 /* OscillationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 262F38261ADABEE500FA2177 /* OscillationManager.swift */; };
 		262F38281ADABF0100FA2177 /* OscillationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 262F38261ADABEE500FA2177 /* OscillationManager.swift */; };
 		262F382C1ADACA1B00FA2177 /* LevelTransitionMaskView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 262F382B1ADACA1B00FA2177 /* LevelTransitionMaskView.swift */; };
-		262F382E1ADACA8F00FA2177 /* CoinView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 262F382D1ADACA8F00FA2177 /* CoinView.swift */; };
+		262F382E1ADACA8F00FA2177 /* BadgeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 262F382D1ADACA8F00FA2177 /* BadgeView.swift */; };
 		262F382F1ADAFB4300FA2177 /* LevelTransitionMaskView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 262F382B1ADACA1B00FA2177 /* LevelTransitionMaskView.swift */; };
 		263B09AB1ACEEDD800E7C99E /* GOArcSegment.swift in Sources */ = {isa = PBXBuildFile; fileRef = 263B09951ACEEDD800E7C99E /* GOArcSegment.swift */; };
 		263B09AC1ACEEDD800E7C99E /* GOCoordinate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 263B09961ACEEDD800E7C99E /* GOCoordinate.swift */; };
@@ -271,7 +271,7 @@
 		62E323301ADAF52D00CFD4CA /* GameViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 269D78411AD3128D00279EF3 /* GameViewController.swift */; };
 		62E323311ADAF54200CFD4CA /* LevelSelectHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 988CF3471AD3C6580013D903 /* LevelSelectHeaderView.swift */; };
 		62E323321ADAF54600CFD4CA /* LevelSelectCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 988CF3491AD3C6C70013D903 /* LevelSelectCollectionViewCell.swift */; };
-		62E323331ADAF54800CFD4CA /* CoinView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 262F382D1ADACA8F00FA2177 /* CoinView.swift */; };
+		62E323331ADAF54800CFD4CA /* BadgeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 262F382D1ADACA8F00FA2177 /* BadgeView.swift */; };
 		62E323351ADAF54E00CFD4CA /* SettingViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9841A82D1AD987010095AEBB /* SettingViewCell.swift */; };
 		62E323361ADAF56400CFD4CA /* XConvexLens.swift in Sources */ = {isa = PBXBuildFile; fileRef = 62D2836B1AD1892400A583FA /* XConvexLens.swift */; };
 		62E323371ADAF56400CFD4CA /* XConcaveLens.swift in Sources */ = {isa = PBXBuildFile; fileRef = 62D2836C1AD1892400A583FA /* XConcaveLens.swift */; };
@@ -327,7 +327,7 @@
 		262BE19F1ABE9A5D00ABE965 /* Planck-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Planck-Bridging-Header.h"; sourceTree = SOURCE_ROOT; };
 		262F38261ADABEE500FA2177 /* OscillationManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OscillationManager.swift; sourceTree = "<group>"; };
 		262F382B1ADACA1B00FA2177 /* LevelTransitionMaskView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LevelTransitionMaskView.swift; sourceTree = "<group>"; };
-		262F382D1ADACA8F00FA2177 /* CoinView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CoinView.swift; sourceTree = "<group>"; };
+		262F382D1ADACA8F00FA2177 /* BadgeView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BadgeView.swift; sourceTree = "<group>"; };
 		263B09951ACEEDD800E7C99E /* GOArcSegment.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GOArcSegment.swift; sourceTree = "<group>"; };
 		263B09961ACEEDD800E7C99E /* GOCoordinate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GOCoordinate.swift; sourceTree = "<group>"; };
 		263B09971ACEEDD800E7C99E /* GOLine.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GOLine.swift; sourceTree = "<group>"; };
@@ -625,7 +625,7 @@
 			isa = PBXGroup;
 			children = (
 				262F382B1ADACA1B00FA2177 /* LevelTransitionMaskView.swift */,
-				262F382D1ADACA8F00FA2177 /* CoinView.swift */,
+				262F382D1ADACA8F00FA2177 /* BadgeView.swift */,
 				2602B9191ADB032C00F8ABC0 /* PauseMaskView.swift */,
 			);
 			path = LevelTransition;
@@ -1399,7 +1399,7 @@
 				263B09AC1ACEEDD800E7C99E /* GOCoordinate.swift in Sources */,
 				267EC2D41AB1DA01002FE745 /* CGVector+XUtility.swift in Sources */,
 				26C8ADDA1AD00437008ADACB /* LevelDesignerViewController.swift in Sources */,
-				262F382E1ADACA8F00FA2177 /* CoinView.swift in Sources */,
+				262F382E1ADACA8F00FA2177 /* BadgeView.swift in Sources */,
 				988CF3481AD3C6580013D903 /* LevelSelectHeaderView.swift in Sources */,
 				269D783A1AD3070100279EF3 /* LevelSelectViewController.swift in Sources */,
 				262F38271ADABEE500FA2177 /* OscillationManager.swift in Sources */,
@@ -1504,7 +1504,7 @@
 				98F63A9C1AD165070096A32E /* GOEmitterRep.swift in Sources */,
 				62988FF81AB2FA8800FD9AFF /* XMedium.swift in Sources */,
 				62E3232B1ADAF52000CFD4CA /* XViewController.swift in Sources */,
-				62E323331ADAF54800CFD4CA /* CoinView.swift in Sources */,
+				62E323331ADAF54800CFD4CA /* BadgeView.swift in Sources */,
 				62988FF91AB2FA8800FD9AFF /* XNote.swift in Sources */,
 				263B09CC1ACEEF9600E7C99E /* CGVector+GOUtilities.swift in Sources */,
 				98F63A971AD165070096A32E /* GOFlatOpticRep.swift in Sources */,
