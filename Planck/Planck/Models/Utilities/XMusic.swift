@@ -111,7 +111,7 @@ class XMusic: NSObject, NSCoding {
                 notesArray.append((note, distance))
             }
         }
-        notesArray.sort($0.1 <= $1.1)
+        notesArray.sort({$0.1 <= $1.1})
         
         return notesArray
     }

@@ -14,7 +14,7 @@ protocol TargetMusicMaskViewDelegate {
 
 class TargetMusicMaskView: UIView {
     private let headphoneImage = UIImage(named: "headphone")
-    private var audioPlayer: AVAudioPlayer?
+    private var audioPlayerList = [AVAudioPlayer]()
     var delegate: TargetMusicMaskViewDelegate?
     
     override init() {
@@ -34,7 +34,13 @@ class TargetMusicMaskView: UIView {
 //        self.audioPlayer = AVAudioPlayer(contentsOfURL: SoundFiles.levelUpSound, error: nil)
 //        self.audioPlayer!.prepareToPlay()
 //        self.audioPlayer!.play()
-        
+        let noteSequence = targetMusic.flattenMapping()
+        for (note, distance) in noteSequence {
+            let audioPlayer = AVAudioPlayer(contentsOfURL: note.getAudioFile(), error: nil)
+            self.audioPlayerList.append(audioPlayer)
+            audioPlayer.prepareToPlay()
+            audioPlayer.playAtTime(audioPlayer.deviceCurrentTime + NSTimeInterval(distance / Constant.lightSpeedBase))
+        }
         
     }
     
