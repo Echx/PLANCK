@@ -12,6 +12,7 @@ class GameViewController: XViewController {
 
     @IBOutlet var shootSwitch: UISwitch!
     
+    @IBOutlet var loadingMask: UIView!
     var gameLevel: GameLevel = GameLevel()
     // keep a copy of original level
     private var originalLevel: GameLevel = GameLevel()
@@ -63,8 +64,10 @@ class GameViewController: XViewController {
         self.view.backgroundColor = UIColor(patternImage: UIImage(named: "mainbackground")!)
         self.pauseMask.delegate = self
         self.transitionMask.delegate = self
+        self.loadingMask.backgroundColor = UIColor(red: 0, green: 0, blue: 0, alpha: 0.1)
         if self.isPreview {
             self.transitionMask.shouldShowButtons = false
+            self.loadingMask.removeFromSuperview()
         }
     }
     
