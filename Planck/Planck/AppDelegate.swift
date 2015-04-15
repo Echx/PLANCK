@@ -29,6 +29,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         self.window = UIWindow(frame: UIScreen.mainScreen().bounds)
         self.window!.rootViewController = self.drawerController
         
+        // initial the cache
+        StorageManager.defaultManager.setNeedsReload()
+        
         return true
     }
 

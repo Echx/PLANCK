@@ -9,8 +9,12 @@
 import UIKit
 
 private let SingletonSharedInstance = StorageManager()
+private var isDirty:Bool = true
 
-class StorageManager:NSObject  {
+/// cache the levels
+private var levelCache: [GameLevel] = [GameLevel]()
+
+class StorageManager:NSObject {
     class var defaultManager : StorageManager {
         return SingletonSharedInstance
     }
@@ -31,6 +35,9 @@ class StorageManager:NSObject  {
         // the dat name should be set by user
         var filePath : NSString = documentsPath.stringByAppendingPathComponent(levelName)
         data.writeToFile(filePath, atomically: true)
+        
+        // reload the cache after saving the games
+        setNeedsReload()
     }
         
     // load the level based on the file name
@@ -46,28 +53,39 @@ class StorageManager:NSObject  {
     }
     
     func loadAllLevel() -> [GameLevel] {
-        var levelArray = [GameLevel]()
-        // find out the document path
-        let path = NSSearchPathForDirectoriesInDomains(.DocumentDirectory,
-            .UserDomainMask, true)[0] as NSString
-        let fileManager = NSFileManager.defaultManager()
-        let fileArray = fileManager.contentsOfDirectoryAtPath(path,
-            error: nil)! as NSArray
-        
-        // iterate each filename to add
-        for filename in fileArray {
-            let name = filename as NSString
-            // temp solution for dealing with file type
-            if name.substringFromIndex(name.length - 4) == levelDataFileType {
-                let game = loadLevel(name)
-                levelArray.append(game)
+        if isDirty {
+            var levelArray = [GameLevel]()
+            // find out the document path
+            let path = NSSearchPathForDirectoriesInDomains(.DocumentDirectory,
+                .UserDomainMask, true)[0] as NSString
+            let fileManager = NSFileManager.defaultManager()
+            let fileArray = fileManager.contentsOfDirectoryAtPath(path,
+                error: nil)! as NSArray
+            
+            // iterate each filename to add
+            for filename in fileArray {
+                let name = filename as NSString
+                // temp solution for dealing with file type
+                if name.substringFromIndex(name.length - 4) == levelDataFileType {
+                    let game = loadLevel(name)
+                    levelArray.append(game)
+                }
             }
+            
+            // sort the levelArray based on Index
+            levelArray.sort{$0<$1}
+            
+            // set up cache
+            levelCache = levelArray
+            
+            // update isDirty
+            isDirty = false
+            return levelArray
+        } else {
+            // if the levels are not changed, just return the cache value
+            return levelCache
         }
         
-        // sort the levelArray based on Index
-        levelArray.sort{$0<$1}
-        
-        return levelArray
     }
     
     func numOfLevel() -> Int {
@@ -85,7 +103,12 @@ class StorageManager:NSObject  {
                 total++
             }
         }
-        println("Total: \(total)")
         return total
+    }
+    
+    func setNeedsReload() {
+        // reload cache
+        isDirty = true
+        self.loadAllLevel()
     }
 }
