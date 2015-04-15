@@ -102,13 +102,11 @@ class GameViewController: XViewController {
                 self.deviceViews[node.id]!,
                 direction: CGVectorMake(1, 0))
             if let sound = self.xNodes[node.id]?.getSound() {
-                println(sound)
                 audioPlayer = AVAudioPlayer(contentsOfURL: sound, error: nil)
                 audioPlayer!.prepareToPlay()
                 audioPlayer!.play()
-            } else {
-                println("no sound")
             }
+            
             if self.isNodeFixed(node) {
                 println("node is fixed")
             } else {
@@ -401,7 +399,7 @@ class GameViewController: XViewController {
         layer.strokeEnd = 1.0
         layer.strokeColor = strokeColor.CGColor
         layer.fillColor = strokeColor.CGColor
-        layer.lineWidth = 2.0
+        layer.lineWidth = 0
         layer.shadowRadius = 2
         layer.shadowColor = strokeColor.CGColor
         layer.shadowOpacity = 0.5
