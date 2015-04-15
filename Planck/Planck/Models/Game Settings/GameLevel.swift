@@ -101,6 +101,10 @@ class GameLevel: NSObject, NSCoding {
         aCoder.encodeObject(self.bestScore, forKey: NSCodingKey.GameBestScore)
         aCoder.encodeBool(self.isUnlock, forKey: NSCodingKey.GameUnlock)
     }
+    
+    func deepCopy() -> GameLevel {
+        return NSKeyedUnarchiver.unarchiveObjectWithData(NSKeyedArchiver.archivedDataWithRootObject(self)) as GameLevel
+    }
 }
 
 extension GameLevel:Comparable, Equatable {
