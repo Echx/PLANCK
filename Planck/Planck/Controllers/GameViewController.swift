@@ -65,6 +65,7 @@ class GameViewController: XViewController {
         self.pauseMask.delegate = self
         self.transitionMask.delegate = self
         self.musicMask.delegate = self
+        self.showTargetMusicMask()
         
         if self.isPreview {
             self.transitionMask.shouldShowButtons = false
