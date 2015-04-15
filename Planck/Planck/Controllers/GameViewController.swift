@@ -331,7 +331,7 @@ class GameViewController: XViewController {
                 
                 if self.numberOfFinishedRay == self.rays.count {
                     dispatch_async(self.queue, {
-                        if self.music.isSimilarTo(self.gameLevel.targetMusic) {
+                        if self.music.isSimilarTo(self.originalLevel.targetMusic) {
                             dispatch_after(dispatch_time(DISPATCH_TIME_NOW, Int64(Float(NSEC_PER_SEC) * 0.5)), dispatch_get_main_queue()) {
                                 if self.isVirgin! {
                                     self.showBadgeMask(3)
