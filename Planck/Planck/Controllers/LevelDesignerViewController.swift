@@ -142,6 +142,14 @@ class LevelDesignerViewController: XViewController {
         static let add = 0;
         static let edit = 1;
     }
+
+    class func getInstance() -> LevelDesignerViewController {
+        let storyboard = UIStoryboard(name: "Main", bundle: nil)
+        let identifier = StoryboardIndentifier.LevelDesigner
+        let viewController = storyboard.instantiateViewControllerWithIdentifier(identifier) as LevelDesignerViewController
+        viewController.modalTransitionStyle = UIModalTransitionStyle.CrossDissolve
+        return viewController
+    }
     
     required override init(coder aDecoder: NSCoder) {
         self.grid = GOGrid(width: self.gridWidth, height: self.gridHeight, andUnitLength: self.gridUnitLength)
