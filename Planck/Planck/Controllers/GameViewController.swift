@@ -268,6 +268,8 @@ class GameViewController: XViewController {
                 let rayPath = self.rays[tag]!
                 let prevPoint = rayPath[currentIndex - 1]
                 let currentPoint = rayPath[currentIndex]
+                path.lineJoinStyle = kCGLineJoinBevel
+                path.lineCapStyle = kCGLineCapRound
                 path.moveToPoint(prevPoint.0)
                 path.addLineToPoint(currentPoint.0)
                 let distance = prevPoint.0.getDistanceToPoint(currentPoint.0)
@@ -375,6 +377,10 @@ class GameViewController: XViewController {
     
     private func showTargetMusicMask() {
         self.view.addSubview(self.musicMask)
+        self.musicMask.show(self.gameLevel.targetMusic)
+    }
+    
+    @IBAction func playMusic(sender: UIButton) {
         self.musicMask.show(self.gameLevel.targetMusic)
     }
     
