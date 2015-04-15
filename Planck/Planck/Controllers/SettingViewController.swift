@@ -18,9 +18,10 @@ class SettingViewController: XViewController, UITableViewDataSource, UITableView
 
     private let numOfExtraSection = 2
     
-    private let sectionIDForAudio = 0
-    private let sectionIDForGameCenter = 1
-    private let sectionIDForSupport = 2
+    private let sectionIDForLevelDesigner = 0
+    private let sectionIDForAudio = 1
+    private let sectionIDForGameCenter = 2
+    private let sectionIDForSupport = 3
     
     private let headerHeight:CGFloat = 50.0
     
@@ -44,35 +45,40 @@ class SettingViewController: XViewController, UITableViewDataSource, UITableView
     }
     
     func numberOfSectionsInTableView(tableView: UITableView) -> Int {
-        return getStaticTogglableItems().count + numOfExtraSection // setting items + support + game center
+        return 4
     }
     
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        if indexPath.section == sectionIDForSupport {
+        if indexPath.section == sectionIDForLevelDesigner {
             let cell = tableView.dequeueReusableCellWithIdentifier(textCellId, forIndexPath: indexPath) as UITableViewCell
-            cell.textLabel?.text = getStaticSupportItems()[indexPath.item]
+            cell.textLabel?.text = "Level Designer"
+            return cell
+        } else if indexPath.section == sectionIDForSupport {
+            let cell = tableView.dequeueReusableCellWithIdentifier(textCellId, forIndexPath: indexPath) as UITableViewCell
+            cell.textLabel?.text = getStaticSupportItems()[indexPath.row]
             return cell
         } else if indexPath.section == sectionIDForGameCenter {
             let cell = tableView.dequeueReusableCellWithIdentifier(textCellId, forIndexPath: indexPath) as UITableViewCell
-            cell.textLabel?.text = getStaticGameCenterSupportItems()[indexPath.item]
+            cell.textLabel?.text = getStaticGameCenterSupportItems()[indexPath.row]
             return cell
         } else {
             let cell = tableView.dequeueReusableCellWithIdentifier(settingCellID, forIndexPath: indexPath) as SettingViewCell
-            cell.title.text = getStaticTogglableItems()[indexPath.section][indexPath.item]
+            cell.title.text = "background music"
             cell.toggle.addTarget(self, action: "toggleSetting:", forControlEvents: UIControlEvents.TouchUpInside)
             cell.toggle.tag = indexPath.item
             return cell
         }
-        
     }
     
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        if section == sectionIDForSupport {
-            return getStaticSupportItems().count
+        if section == sectionIDForLevelDesigner {
+            return 1
+        } else if section == sectionIDForSupport {
+            return 3
         } else if section == sectionIDForGameCenter {
-            return getStaticGameCenterSupportItems().count
+            return 2
         } else {
-            return getStaticTogglableItems()[section].count
+            return 1
         }
     }
     
@@ -93,8 +99,9 @@ class SettingViewController: XViewController, UITableViewDataSource, UITableView
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         tableView.deselectRowAtIndexPath(indexPath, animated: false)
         let section = indexPath.section
-        if section == sectionIDForSupport {
-        
+        if section == sectionIDForLevelDesigner {
+            let viewController = LevelDesignerViewController.getInstance()
+            self.presentViewController(viewController, animated: true, completion: nil)
         } else if section == sectionIDForGameCenter {
             if indexPath.item == 0 {
                 // item 1 : view achievements
@@ -123,14 +130,6 @@ class SettingViewController: XViewController, UITableViewDataSource, UITableView
         } else {
             return sectionTitleForGameCenter
         }
-    }
-
-    
-    private func getStaticTogglableItems() -> [[String]] {
-        var cellItems = [
-            ["background music"]      // control setting
-        ]
-        return cellItems
     }
     
     private func getStaticGameCenterSupportItems() -> [String] {
