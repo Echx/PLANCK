@@ -43,21 +43,22 @@ class ParticleManager: NSObject {
         emitterCell.contents = UIImage(named: EmitterDefaults.sparkFile)!.CGImage
         emitter.emitterCells = [emitterCell]
         // define params here
-        emitterCell.birthRate = 20
-        emitterCell.lifetime = 6
+        emitterCell.birthRate = 50
+        emitterCell.lifetime = 16
         emitterCell.spin = 0
         emitterCell.spinRange = CGFloat(M_PI * 2)
         
         // define speed
-        emitterCell.yAcceleration = 10
-        emitterCell.xAcceleration = 10
-        emitterCell.velocity = 50
-        emitterCell.velocityRange = 30
+        emitterCell.yAcceleration = 100
+        emitterCell.xAcceleration = 100
+        emitterCell.velocity = 100
+        emitterCell.velocityRange = 50
         emitterCell.emissionRange = CGFloat(M_PI)
         
         emitterCell.alphaRange = 2
         emitterCell.alphaSpeed = -2
-        emitterCell.lifetimeRange = 1.0
+        emitterCell.lifetimeRange = 1
+        3.0
         
         return emitter
     }

@@ -43,6 +43,7 @@ class LevelTransitionMaskView: UIView {
     private let imageView = UIImageView(frame: UIScreen.mainScreen().bounds)
     private var tapGestureRecognizer: UITapGestureRecognizer?
     private let audioPlayer = AVAudioPlayer(contentsOfURL: SoundFiles.levelUpSound, error: nil)
+    var shouldShowButtons = true
     var delegate: LevelTransitionMaskViewDelegate?
     var autoHide = false
     var animationSpringDamping: CGFloat = 0.5
@@ -119,13 +120,15 @@ class LevelTransitionMaskView: UIView {
                 },
                 completion: {
                     finished in
-
-                    let timer = NSTimer.scheduledTimerWithTimeInterval(
-                        self.showButtonDelay,
-                        target: self,
-                        selector: Selector("showButtons"),
-                        userInfo: nil,
-                        repeats: false)
+                    self.tapGestureRecognizer!.enabled = true
+                    if self.shouldShowButtons {
+                        let timer = NSTimer.scheduledTimerWithTimeInterval(
+                            self.showButtonDelay,
+                            target: self,
+                            selector: Selector("showButtons"),
+                            userInfo: nil,
+                            repeats: false)
+                    }
                 })
         }
     }

@@ -60,6 +60,9 @@ class GameViewController: XViewController {
         self.view.backgroundColor = UIColor(patternImage: UIImage(named: "mainbackground")!)
         self.pauseMask.delegate = self
         self.transitionMask.delegate = self
+        if self.isPreview {
+            self.transitionMask.shouldShowButtons = false
+        }
     }
     
     private func reloadLevel(gameLevel: GameLevel) {
@@ -509,9 +512,10 @@ extension GameViewController: PauseMaskViewDelegate {
             self.pauseMask.hide()
             
         default:
-            let level = GameLevel.loadGameWithIndex(self.gameLevel.index)!
-            self.reloadLevel(level)
-            self.pauseMask.hide()
+            if let level = GameLevel.loadGameWithIndex(self.gameLevel.index) {
+                self.reloadLevel(level)
+                self.pauseMask.hide()
+            }
         }
     }
 }
