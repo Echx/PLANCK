@@ -562,6 +562,7 @@ extension GameViewController: LevelTransitionMaskViewDelegate {
                     
                     println("nextLevel: \(self.gameLevel.index + 1)")
                     self.reloadLevel(nextLevel)
+                    self.view.addSubview(self.musicMask)
                     self.musicMask.show(self.gameLevel.targetMusic)
                 } else {
                     println("nextLevel: \(self.gameLevel.index + 1)")
