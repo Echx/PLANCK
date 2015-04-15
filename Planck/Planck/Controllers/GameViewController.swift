@@ -25,6 +25,7 @@ class GameViewController: XViewController {
     private var deviceViews = [String: UIView]()
     private var transitionMask = LevelTransitionMaskView()
     private var pauseMask = PauseMaskView()
+    private var musicMask = TargetMusicMaskView()
     private var numberOfFinishedRay = 0
     private var audioPlayer: AVAudioPlayer?
     
@@ -63,6 +64,9 @@ class GameViewController: XViewController {
         self.view.backgroundColor = UIColor(patternImage: UIImage(named: "mainbackground")!)
         self.pauseMask.delegate = self
         self.transitionMask.delegate = self
+        self.musicMask.delegate = self
+        self.showTargetMusicMask()
+        
         if self.isPreview {
             self.transitionMask.shouldShowButtons = false
         }
@@ -370,6 +374,11 @@ class GameViewController: XViewController {
         self.transitionMask.show(numberOfBadge)
     }
     
+    private func showTargetMusicMask() {
+        self.view.addSubview(self.musicMask)
+        self.musicMask.show(self.gameLevel.targetMusic)
+    }
+    
     private func playNote(segment: GOSegment?, tag: String) {
         if let edge = segment {
             if let device = xNodes[edge.parent] {
@@ -551,6 +560,7 @@ extension GameViewController: LevelTransitionMaskViewDelegate {
                     
                     println("nextLevel: \(self.gameLevel.index + 1)")
                     self.reloadLevel(nextLevel)
+                    self.musicMask.show(self.gameLevel.targetMusic)
                 } else {
                     println("nextLevel: \(self.gameLevel.index + 1)")
                     // have finished all current game
@@ -561,5 +571,11 @@ extension GameViewController: LevelTransitionMaskViewDelegate {
             self.buttonDidClickedAtIndex(index)
         }
         
+    }
+}
+
+extension GameViewController: TargetMusicMaskViewDelegate {
+    func didFinishPlaying() {
+        self.musicMask.hide()
     }
 }

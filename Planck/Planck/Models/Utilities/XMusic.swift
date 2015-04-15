@@ -103,4 +103,16 @@ class XMusic: NSObject, NSCoding {
         
         return true
     }
+    
+    func flattenMapping() -> [(XNote, CGFloat)] {
+        var notesArray = [(XNote, CGFloat)]()
+        for (note, distances) in self.music {
+            for distance in distances {
+                notesArray.append((note, distance))
+            }
+        }
+        notesArray.sort({$0.1 <= $1.1})
+        
+        return notesArray
+    }
 }

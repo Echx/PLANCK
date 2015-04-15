@@ -850,8 +850,8 @@ class LevelDesignerViewController: XViewController {
         let layer = CAShapeLayer()
         layer.strokeEnd = 1.0
         layer.strokeColor = strokeColor.CGColor
-        layer.fillColor = UIColor.clearColor().CGColor
-        layer.lineWidth = 2.0
+        layer.fillColor = strokeColor.CGColor
+        layer.opacity = 0.4
         layer.path = self.grid.getInstrumentDisplayPathForID(node.id)?.CGPath
         
         let view = UIView(frame: CGRectMake(0, 0, self.view.frame.width, self.view.frame.height))
