@@ -23,7 +23,7 @@ class GOUtilities {
         }
     }
     
-    class func getDistanceBetweenPoints(a: CGPoint, b: CGPoint) -> CGFloat {
+    class func getDistanceBetweenPoint(a: CGPoint, andPoint b: CGPoint) -> CGFloat {
         let dx = a.x - b.x
         let dy = a.y - b.y
         return sqrt(dx * dx + dy * dy)
