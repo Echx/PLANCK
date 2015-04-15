@@ -13,6 +13,8 @@ class GameViewController: XViewController {
     @IBOutlet var shootSwitch: UISwitch!
     
     var gameLevel: GameLevel = GameLevel()
+    // keep a copy of original level
+    private var originalLevel: GameLevel = GameLevel()
     private var rayLayers = [String: [CAShapeLayer]]()
     private var rays = [String: [(CGPoint, GOSegment?)]]()
     private var audioPlayerList = [AVAudioPlayer]()
@@ -49,6 +51,7 @@ class GameViewController: XViewController {
         let identifier = StoryboardIndentifier.Game
         let viewController = storyboard.instantiateViewControllerWithIdentifier(identifier) as GameViewController
         viewController.gameLevel = gameLevel
+        viewController.originalLevel = gameLevel.deepCopy()
         viewController.modalTransitionStyle = UIModalTransitionStyle.CrossDissolve
         viewController.isPreview = isPreview
         return viewController
@@ -70,6 +73,8 @@ class GameViewController: XViewController {
         self.shootSwitch.setOn(false, animated: true)
         self.clear()
         self.gameLevel = gameLevel
+        self.originalLevel = gameLevel.deepCopy()
+
         self.setUpGrid()
     }
     
@@ -330,13 +335,13 @@ class GameViewController: XViewController {
                             dispatch_after(dispatch_time(DISPATCH_TIME_NOW, Int64(Float(NSEC_PER_SEC) * 0.5)), dispatch_get_main_queue()) {
                                 if self.isVirgin! {
                                     self.showBadgeMask(3)
-                                    if self.gameLevel.bestScore < 3 {
-                                        self.gameLevel.bestScore = 3
+                                    if self.originalLevel.bestScore < 3 {
+                                        self.originalLevel.bestScore = 3
                                     }
                                 } else {
                                     self.showBadgeMask(2)
-                                    if self.gameLevel.bestScore < 2 {
-                                        self.gameLevel.bestScore = 2
+                                    if self.originalLevel.bestScore < 2 {
+                                        self.originalLevel.bestScore = 2
                                     }
                                 }
                             }
@@ -345,8 +350,8 @@ class GameViewController: XViewController {
                         } else if self.music.numberOfPlanck == self.gameLevel.targetMusic.numberOfPlanck {
                             dispatch_after(dispatch_time(DISPATCH_TIME_NOW, Int64(Float(NSEC_PER_SEC) * 1.5)), dispatch_get_main_queue()) {
                                 self.showBadgeMask(1)
-                                if self.gameLevel.bestScore < 1 {
-                                    self.gameLevel.bestScore = 1
+                                if self.originalLevel.bestScore < 1 {
+                                    self.originalLevel.bestScore = 1
                                 }
                             }
                             
@@ -512,10 +517,8 @@ extension GameViewController: PauseMaskViewDelegate {
             self.pauseMask.hide()
             
         default:
-            if let level = GameLevel.loadGameWithIndex(self.gameLevel.index) {
-                self.reloadLevel(level)
-                self.pauseMask.hide()
-            }
+            self.reloadLevel(self.originalLevel)
+            self.pauseMask.hide()
         }
     }
 }
@@ -527,7 +530,7 @@ extension GameViewController: LevelTransitionMaskViewDelegate {
                 // save current game if it is not preview mode
                 if !isPreview {
                     dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), {
-                        StorageManager.defaultManager.saveCurrentLevel(self.gameLevel)
+                        StorageManager.defaultManager.saveCurrentLevel(self.originalLevel)
                     })
                 }
                 
