@@ -35,6 +35,7 @@ class LevelTransitionMaskView: UIView {
     
     private let imageView = UIImageView(frame: UIScreen.mainScreen().bounds)
     private var tapGestureRecognizer: UITapGestureRecognizer?
+    private let audioPlayer = AVAudioPlayer(contentsOfURL: SoundFiles.levelUpSound, error: nil)
     var delegate: LevelTransitionMaskViewDelegate?
     var autoHide = false
     var autoHideTime: NSTimeInterval = 0.2
@@ -68,11 +69,13 @@ class LevelTransitionMaskView: UIView {
         self.tapGestureRecognizer = UITapGestureRecognizer(target: self, action: "hide")
         self.addGestureRecognizer(tapGestureRecognizer!)
         tapGestureRecognizer!.enabled = false
+        self.audioPlayer.prepareToPlay()
     }
     
     
     //show n normal and 3-n empty coin
     func show(n: Int) {
+        self.audioPlayer.play()
         for var i = 0; i < self.coinCount; i++ {
             self.coinViews[i].center = self.hiddenCentersTop[i]
             

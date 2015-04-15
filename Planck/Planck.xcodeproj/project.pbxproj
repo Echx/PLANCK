@@ -13,6 +13,9 @@
 		261483C81AD9B42E001F4143 /* GameLevel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 261483C51AD9B42A001F4143 /* GameLevel.swift */; };
 		261483CD1AD9B456001F4143 /* ParticleManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 261483CC1AD9B456001F4143 /* ParticleManager.swift */; };
 		261483CE1AD9B471001F4143 /* ParticleManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 261483CC1AD9B456001F4143 /* ParticleManager.swift */; };
+		26290C911ADE748200409FD8 /* GamiCent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 98C2CBAB1ADD19CE00074127 /* GamiCent.swift */; };
+		26290C921ADE748F00409FD8 /* GameStats.swift in Sources */ = {isa = PBXBuildFile; fileRef = 98C2CBA91ADD199000074127 /* GameStats.swift */; };
+		26290C941ADE793300409FD8 /* levelup.m4a in Resources */ = {isa = PBXBuildFile; fileRef = 26290C931ADE793300409FD8 /* levelup.m4a */; };
 		262F38271ADABEE500FA2177 /* OscillationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 262F38261ADABEE500FA2177 /* OscillationManager.swift */; };
 		262F38281ADABF0100FA2177 /* OscillationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 262F38261ADABEE500FA2177 /* OscillationManager.swift */; };
 		262F382C1ADACA1B00FA2177 /* LevelTransitionMaskView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 262F382B1ADACA1B00FA2177 /* LevelTransitionMaskView.swift */; };
@@ -320,6 +323,7 @@
 		2602B9191ADB032C00F8ABC0 /* PauseMaskView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PauseMaskView.swift; sourceTree = "<group>"; };
 		261483C51AD9B42A001F4143 /* GameLevel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GameLevel.swift; sourceTree = "<group>"; };
 		261483CC1AD9B456001F4143 /* ParticleManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ParticleManager.swift; sourceTree = "<group>"; };
+		26290C931ADE793300409FD8 /* levelup.m4a */ = {isa = PBXFileReference; lastKnownFileType = file; name = levelup.m4a; path = Sounds/levelup.m4a; sourceTree = "<group>"; };
 		262BE19F1ABE9A5D00ABE965 /* Planck-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Planck-Bridging-Header.h"; sourceTree = SOURCE_ROOT; };
 		262F38261ADABEE500FA2177 /* OscillationManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OscillationManager.swift; sourceTree = "<group>"; };
 		262F382B1ADACA1B00FA2177 /* LevelTransitionMaskView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LevelTransitionMaskView.swift; sourceTree = "<group>"; };
@@ -1020,6 +1024,7 @@
 		62E00C751AC466E800F10F10 /* Sound */ = {
 			isa = PBXGroup;
 			children = (
+				26290C931ADE793300409FD8 /* levelup.m4a */,
 				629D39731AD9C28200A8B3B7 /* Harp */,
 				62D283481AD1852900A583FA /* Piano */,
 				622556A21AC5345600DA47AF /* Percussion */,
@@ -1198,6 +1203,7 @@
 				629D393D1AD9844300A8B3B7 /* piano-55.m4a in Resources */,
 				629D39701AD9847A00A8B3B7 /* piano-70.m4a in Resources */,
 				629D39E01AD9C29A00A8B3B7 /* harp-79.m4a in Resources */,
+				26290C941ADE793300409FD8 /* levelup.m4a in Resources */,
 				629D39F91AD9C29A00A8B3B7 /* harp-54.m4a in Resources */,
 				629D3A141AD9C29A00A8B3B7 /* harp-27.m4a in Resources */,
 				629D39E11AD9C29A00A8B3B7 /* harp-78.m4a in Resources */,
@@ -1482,7 +1488,9 @@
 				98F63AA21AD1650F0096A32E /* GORay.swift in Sources */,
 				62E3233B1ADAF57600CFD4CA /* String+XUtility.swift in Sources */,
 				62E323361ADAF56400CFD4CA /* XConvexLens.swift in Sources */,
+				26290C921ADE748F00409FD8 /* GameStats.swift in Sources */,
 				98F63A9B1AD165070096A32E /* GOOpticRep.swift in Sources */,
+				26290C911ADE748200409FD8 /* GamiCent.swift in Sources */,
 				98F63AA11AD1650F0096A32E /* GOLineSegment.swift in Sources */,
 				263B09CE1ACEEF9600E7C99E /* GOUtilities.swift in Sources */,
 				26D9ABB21AD7D9CA00D70D83 /* GOOverlapManager.swift in Sources */,
