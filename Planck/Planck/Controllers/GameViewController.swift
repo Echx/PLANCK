@@ -25,6 +25,7 @@ class GameViewController: XViewController {
     private var deviceViews = [String: UIView]()
     private var transitionMask = LevelTransitionMaskView()
     private var pauseMask = PauseMaskView()
+    private var musicMask = TargetMusicMaskView()
     private var numberOfFinishedRay = 0
     private var audioPlayer: AVAudioPlayer?
     
@@ -63,6 +64,9 @@ class GameViewController: XViewController {
         self.view.backgroundColor = UIColor(patternImage: UIImage(named: "mainbackground")!)
         self.pauseMask.delegate = self
         self.transitionMask.delegate = self
+        self.musicMask.delegate = self
+        self.showTargetMusicMask()
+        
         if self.isPreview {
             self.transitionMask.shouldShowButtons = false
         }
@@ -370,6 +374,11 @@ class GameViewController: XViewController {
         self.transitionMask.show(numberOfBadge)
     }
     
+    private func showTargetMusicMask() {
+        self.view.addSubview(self.musicMask)
+        self.musicMask.show(self.gameLevel.targetMusic)
+    }
+    
     private func playNote(segment: GOSegment?, tag: String) {
         if let edge = segment {
             if let device = xNodes[edge.parent] {
@@ -415,6 +424,13 @@ class GameViewController: XViewController {
         view.backgroundColor = UIColor.clearColor()
         view.layer.addSublayer(layer)
         self.deviceViews[node.id] = view
+        if let xnode = self.xNodes[node.id] {
+            if !xnode.isFixed {
+                let img = UIImageView(image: UIImage(named: "moveable"))
+                view.addSubview(img)
+                img.center = view.center
+            }
+        }
         self.view.insertSubview(view, atIndex: 0)
         
         var offsetX = CGFloat(coordinateBackup.x - node.center.x) * self.grid.unitLength
@@ -529,6 +545,7 @@ extension GameViewController: LevelTransitionMaskViewDelegate {
             if self.shouldShowNextLevel {
                 // save current game if it is not preview mode
                 if !isPreview {
+                    println("saving!")
                     dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), {
                         StorageManager.defaultManager.saveCurrentLevel(self.originalLevel)
                     })
@@ -538,12 +555,14 @@ extension GameViewController: LevelTransitionMaskViewDelegate {
                     // in preview mode, can neve reach here
                     // unlock next level and save it
                     nextLevel.isUnlock = true
+                    println("saving next!")
                     dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), {
                         StorageManager.defaultManager.saveCurrentLevel(nextLevel)
                     })
                     
                     println("nextLevel: \(self.gameLevel.index + 1)")
                     self.reloadLevel(nextLevel)
+                    self.musicMask.show(self.gameLevel.targetMusic)
                 } else {
                     println("nextLevel: \(self.gameLevel.index + 1)")
                     // have finished all current game
@@ -554,5 +573,11 @@ extension GameViewController: LevelTransitionMaskViewDelegate {
             self.buttonDidClickedAtIndex(index)
         }
         
+    }
+}
+
+extension GameViewController: TargetMusicMaskViewDelegate {
+    func didFinishPlaying() {
+        self.musicMask.hide()
     }
 }

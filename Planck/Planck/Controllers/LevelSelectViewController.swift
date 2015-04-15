@@ -69,7 +69,7 @@ class LevelSelectViewController: XViewController, UICollectionViewDataSource, UI
         let game = levelArray[indexPath.section * itemsInSection + indexPath.item]
         if game.isUnlock {
             // load game to the game view
-            var gameVC = GameViewController.getInstance(game, isPreview: false)
+            var gameVC = GameViewController.getInstance(game.deepCopy(), isPreview: false)
             self.mm_drawerController()!.closeDrawerAnimated(true, completion: { bool in
                 self.presentViewController(gameVC, animated: true, completion: {})
             })

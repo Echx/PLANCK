@@ -202,7 +202,7 @@ class LevelDesignerViewController: XViewController {
     @IBAction func play() {
         // create a dummy value for preview
         let currentGameLevel = GameLevel(levelName: "Current Game Level", levelIndex: -2, grid: self.grid, nodes: self.xNodes, targetMusic: self.music)
-        let gameViewController = GameViewController.getInstance(currentGameLevel, isPreview: true)
+        let gameViewController = GameViewController.getInstance(currentGameLevel.deepCopy(), isPreview: true)
         self.presentViewController(gameViewController, animated: true, completion: nil)
     }
     
