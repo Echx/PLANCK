@@ -24,6 +24,7 @@ class GameViewController: XViewController {
     private var transitionMask = LevelTransitionMaskView()
     private var pauseMask = PauseMaskView()
     private var numberOfFinishedRay = 0
+    private var audioPlayer: AVAudioPlayer?
     
     private var isVirgin: Bool?
     private var shouldShowNextLevel: Bool = false
@@ -97,6 +98,17 @@ class GameViewController: XViewController {
     @IBAction func viewDidTapped(sender: UITapGestureRecognizer) {
         let location = sender.locationInView(sender.view)
         if let node = self.grid.getInstrumentAtPoint(location) {
+            OscillationManager.oscillateView(
+                self.deviceViews[node.id]!,
+                direction: CGVectorMake(1, 0))
+            if let sound = self.xNodes[node.id]?.getSound() {
+                println(sound)
+                audioPlayer = AVAudioPlayer(contentsOfURL: sound, error: nil)
+                audioPlayer!.prepareToPlay()
+                audioPlayer!.play()
+            } else {
+                println("no sound")
+            }
             if self.isNodeFixed(node) {
                 println("node is fixed")
             } else {
