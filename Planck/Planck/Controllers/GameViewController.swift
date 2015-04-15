@@ -127,11 +127,6 @@ class GameViewController: XViewController {
         self.pauseMask.show()
     }
     
-    @IBAction func winButtonDidClicked(sender: UIButton) {
-        self.view.addSubview(self.transitionMask)
-        self.transitionMask.show(2)
-    }
-    
     @IBAction func viewDidPanned(sender: UIPanGestureRecognizer) {
         let location = sender.locationInView(self.view)
         if sender.state == UIGestureRecognizerState.Began || touchedNode == nil {
@@ -331,14 +326,12 @@ class GameViewController: XViewController {
                         if self.music.isSimilarTo(self.gameLevel.targetMusic) {
                             dispatch_after(dispatch_time(DISPATCH_TIME_NOW, Int64(Float(NSEC_PER_SEC) * 0.5)), dispatch_get_main_queue()) {
                                 if self.isVirgin! {
-                                    self.view.addSubview(self.transitionMask)
-                                    self.transitionMask.show(3)
+                                    self.showBadgeMask(3)
                                     if self.gameLevel.bestScore < 3 {
                                         self.gameLevel.bestScore = 3
                                     }
                                 } else {
-                                    self.view.addSubview(self.transitionMask)
-                                    self.transitionMask.show(2)
+                                    self.showBadgeMask(2)
                                     if self.gameLevel.bestScore < 2 {
                                         self.gameLevel.bestScore = 2
                                     }
@@ -348,8 +341,7 @@ class GameViewController: XViewController {
                             self.shouldShowNextLevel = true
                         } else if self.music.numberOfPlanck == self.gameLevel.targetMusic.numberOfPlanck {
                             dispatch_after(dispatch_time(DISPATCH_TIME_NOW, Int64(Float(NSEC_PER_SEC) * 1.5)), dispatch_get_main_queue()) {
-                                self.view.addSubview(self.transitionMask)
-                                self.transitionMask.show(1)
+                                self.showBadgeMask(1)
                                 if self.gameLevel.bestScore < 1 {
                                     self.gameLevel.bestScore = 1
                                 }
@@ -363,6 +355,11 @@ class GameViewController: XViewController {
                 }
             }
         }
+    }
+    
+    private func showBadgeMask(numberOfBadge: Int) {
+        self.view.addSubview(self.transitionMask)
+        self.transitionMask.show(numberOfBadge)
     }
     
     private func playNote(segment: GOSegment?, tag: String) {
