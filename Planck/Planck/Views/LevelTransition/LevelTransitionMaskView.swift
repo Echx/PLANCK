@@ -95,6 +95,7 @@ class LevelTransitionMaskView: UIView {
     
     //show n normal and 3-n empty coin
     func show(n: Int) {
+        self.alpha = 1
         self.audioPlayer.play()
         self.selectedIndex = self.coinCount - 1
         for var i = 0; i < self.coinCount; i++ {
@@ -176,9 +177,14 @@ class LevelTransitionMaskView: UIView {
     private func animationComplete() {
         self.animationCount++
         if self.animationCount == self.coinCount {
-            self.removeFromSuperview()
-            self.animationCount = 0
-            self.delegate?.viewDidDismiss(self, withButtonClickedAtIndex: self.selectedIndex)
+            UIView.animateWithDuration(0.3, animations: {
+                    self.alpha = 0
+                }, completion: {
+                    finished in
+                    self.removeFromSuperview()
+                    self.animationCount = 0
+                    self.delegate?.viewDidDismiss(self, withButtonClickedAtIndex: self.selectedIndex)
+                })
         }
     }
     

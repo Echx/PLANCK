@@ -20,7 +20,7 @@ class TargetMusicMaskView: UIView {
     override init() {
         super.init(frame: UIScreen.mainScreen().bounds)
         
-        let blurView = UIVisualEffectView(effect: UIBlurEffect(style: UIBlurEffectStyle.Light))
+        let blurView = UIVisualEffectView(effect: UIBlurEffect(style: UIBlurEffectStyle.Dark))
         blurView.frame = self.bounds
         self.addSubview(blurView)
         
@@ -31,6 +31,7 @@ class TargetMusicMaskView: UIView {
     
     
     func show(targetMusic: XMusic) {
+        self.alpha = 1
         let noteSequence = targetMusic.flattenMapping()
         dispatch_after(dispatch_time(DISPATCH_TIME_NOW, Int64(Float(NSEC_PER_SEC) * Float(MusicDefaults.musicBuffer))), dispatch_get_main_queue()) {
             for (note, distance) in noteSequence {
@@ -53,7 +54,12 @@ class TargetMusicMaskView: UIView {
     }
     
     func hide() {
-        self.removeFromSuperview()
+        UIView.animateWithDuration(0.3, animations: {
+                self.alpha = 0
+            }, completion: {
+                finished in
+                self.removeFromSuperview()
+            })
     }
     
     required init(coder aDecoder: NSCoder) {
