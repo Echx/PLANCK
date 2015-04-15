@@ -419,9 +419,17 @@ class GameViewController: XViewController {
         self.grid.addInstrument(node)
         let layer = CAShapeLayer()
         layer.strokeEnd = 1.0
-        layer.strokeColor = UIColor.clearColor().CGColor
         layer.fillColor = strokeColor.CGColor
-        layer.lineWidth = 0
+        layer.lineWidth = 2
+        if let xnode = self.xNodes[node.id] {
+            if !xnode.isFixed {
+                layer.strokeColor = UIColor.blackColor().colorWithAlphaComponent(0.5).CGColor
+            } else {
+                layer.strokeColor = UIColor.clearColor().CGColor
+            }
+        } else {
+            fatalError("no corresponding xnode")
+        }
         layer.shadowRadius = 2
         layer.shadowColor = strokeColor.CGColor
         layer.shadowOpacity = 0.5
@@ -432,11 +440,7 @@ class GameViewController: XViewController {
         view.backgroundColor = UIColor.clearColor()
         view.layer.addSublayer(layer)
         self.deviceViews[node.id] = view
-        if let xnode = self.xNodes[node.id] {
-            if !xnode.isFixed {
-                
-            }
-        }
+
         self.view.insertSubview(view, atIndex: 0)
         
         var offsetX = CGFloat(coordinateBackup.x - node.center.x) * self.grid.unitLength
