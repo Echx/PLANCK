@@ -32,23 +32,21 @@ class TargetMusicMaskView: UIView {
     
     func show(targetMusic: XMusic) {
         let noteSequence = targetMusic.flattenMapping()
-        for (note, distance) in noteSequence {
-            let audioPlayer = AVAudioPlayer(contentsOfURL: note.getAudioFile(), error: nil)
-            self.audioPlayerList.append(audioPlayer)
-            audioPlayer.prepareToPlay()
-            audioPlayer.playAtTime(audioPlayer.deviceCurrentTime + NSTimeInterval(distance / Constant.lightSpeedBase))
+        dispatch_after(dispatch_time(DISPATCH_TIME_NOW, Int64(Float(NSEC_PER_SEC) * Float(MusicDefaults.musicBuffer))), dispatch_get_main_queue()) {
+            for (note, distance) in noteSequence {
+                let audioPlayer = AVAudioPlayer(contentsOfURL: note.getAudioFile(), error: nil)
+                self.audioPlayerList.append(audioPlayer)
+                audioPlayer.prepareToPlay()
+                audioPlayer.playAtTime(audioPlayer.deviceCurrentTime + NSTimeInterval(distance / Constant.lightSpeedBase))
+            }
         }
         
         let longestDistance = noteSequence[noteSequence.count - 1].1
         let delayTime = Float(longestDistance / Constant.lightSpeedBase + MusicDefaults.musicBuffer)
-        
-        dispatch_async(dispatch_get_main_queue()) {
-            
-            dispatch_after(dispatch_time(DISPATCH_TIME_NOW, Int64(Float(NSEC_PER_SEC) * Float(delayTime))), dispatch_get_main_queue()) {
-                self.delegate?.didFinishPlaying()
-                return
-            }
-        
+    
+        dispatch_after(dispatch_time(DISPATCH_TIME_NOW, Int64(Float(NSEC_PER_SEC) * Float(delayTime))), dispatch_get_main_queue()) {
+            self.delegate?.didFinishPlaying()
+            return
         }
         
         

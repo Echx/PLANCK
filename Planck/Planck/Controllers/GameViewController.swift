@@ -279,12 +279,6 @@ class GameViewController: XViewController {
                 
                 self.view.layer.addSublayer(layer)
                 
-                if self.pathDistances[tag] == nil {
-                    self.pathDistances[tag] = CGFloat(0)
-                }
-                
-                self.pathDistances[tag]! += distance
-                
                 let delay = distance / Constant.lightSpeedBase
                 
                 //emitter
@@ -326,6 +320,11 @@ class GameViewController: XViewController {
                             currentPoint.0.y - prevPoint.0.y))
                 }
                 
+                if self.pathDistances[tag] == nil {
+                    self.pathDistances[tag] = CGFloat(0)
+                }
+                
+                self.pathDistances[tag]! += distance
                 let delayInNanoSeconds = 0.9 * delay * CGFloat(NSEC_PER_SEC);
                 dispatch_after(dispatch_time(DISPATCH_TIME_NOW, Int64(delayInNanoSeconds)), dispatch_get_main_queue()) {
                     self.drawRay(tag, currentIndex: currentIndex + 1)
