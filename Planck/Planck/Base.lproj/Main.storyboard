@@ -4,7 +4,11 @@
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6736"/>
     </dependencies>
     <customFonts key="customFonts">
+        <mutableArray key="Akagi-BK.ttf">
+            <string>Akagi-Book</string>
+        </mutableArray>
         <mutableArray key="Akagi-SB.ttf">
+            <string>Akagi-SemiBold</string>
             <string>Akagi-SemiBold</string>
         </mutableArray>
         <mutableArray key="Akagi-TH.ttf">
@@ -525,8 +529,8 @@
                                                     <rect key="frame" x="50" y="0.0" width="25" height="25"/>
                                                 </imageView>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="I" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Dhn-6Z-tSK">
-                                                    <rect key="frame" x="7" y="8" width="60" height="60"/>
-                                                    <fontDescription key="fontDescription" type="system" weight="light" pointSize="45"/>
+                                                    <rect key="frame" x="7" y="12" width="60" height="60"/>
+                                                    <fontDescription key="fontDescription" name="Akagi-Book" family="Akagi" pointSize="35"/>
                                                     <color key="textColor" red="0.26274509800000001" green="0.36862745099999999" blue="0.46274509800000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
@@ -545,8 +549,8 @@
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hG1-YG-Ave">
-                                            <rect key="frame" x="20" y="6" width="192" height="48"/>
-                                            <fontDescription key="fontDescription" type="system" pointSize="28"/>
+                                            <rect key="frame" x="20" y="13" width="192" height="48"/>
+                                            <fontDescription key="fontDescription" name="Akagi-SemiBold" family="Akagi" pointSize="28"/>
                                             <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                             <nil key="highlightedColor"/>
                                         </label>
@@ -588,7 +592,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="40" sectionHeaderHeight="60" sectionFooterHeight="60" translatesAutoresizingMaskIntoConstraints="NO" id="RjJ-1b-9MS">
-                                <rect key="frame" x="16" y="148" width="268" height="620"/>
+                                <rect key="frame" x="23" y="148" width="268" height="620"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                 <color key="tintColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                 <color key="sectionIndexBackgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
@@ -648,7 +652,7 @@
                                 </connections>
                             </tableView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="More" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="m9t-8K-UZM">
-                                <rect key="frame" x="20" y="39" width="223" height="47"/>
+                                <rect key="frame" x="27" y="39" width="223" height="47"/>
                                 <fontDescription key="fontDescription" name="Akagi-SemiBold" family="Akagi" pointSize="46"/>
                                 <color key="textColor" red="0.26274509800000001" green="0.36862745099999999" blue="0.46274509800000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <nil key="highlightedColor"/>
