@@ -539,6 +539,7 @@ extension GameViewController: LevelTransitionMaskViewDelegate {
                     self.reloadLevel(nextLevel)
                 } else {
                     println("nextLevel: \(self.gameLevel.index + 1)")
+                    // have finished all current game
                     self.dismissViewController()
                 }
             }

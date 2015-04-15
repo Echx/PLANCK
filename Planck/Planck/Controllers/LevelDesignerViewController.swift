@@ -1078,6 +1078,7 @@ class LevelDesignerViewController: XViewController {
                         }
                         
                         StorageManager.defaultManager.saveCurrentLevel(game)
+                        
                         self.gameName = inputName
                         self.gameIndex = nextIndex
                         

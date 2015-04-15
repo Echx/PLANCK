@@ -25,9 +25,6 @@ class GOLineSegment: GOSegment {
         }
     }
     
-    
-
-    
     init(center: CGPoint, length: CGFloat, direction: CGVector) {
         self.length = length;
         super.init()
