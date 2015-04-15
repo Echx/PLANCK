@@ -122,45 +122,113 @@ class GOArcSegment: GOSegment {
     
     override func getIntersectionPoint(ray: GORay) -> CGPoint? {
         let lineOfRay = ray.line
-        let k = lineOfRay.slope
-        let c = lineOfRay.yIntercept
-        
-        if c == nil {
-            return nil
-        }
-        
         let r1 = CGFloat(self.center.x)
         let r2 = CGFloat(self.center.y)
         let r = self.radius
-        let termA = 1 + k * k
-        let termB = 2 * ((c! - r2) * k - r1)
-        let termC = r1 * r1 + (r2 - c!) * (r2 - c!) - r * r
         
-        let xs = GOUtilities.solveQuadraticEquation(termA, b: termB, c: termC)
-        
-        if xs.0 == nil {
-            return nil
-        } else if xs.1 == nil {
-            // tangent
-            if let y = ray.getY(x: xs.0!) {
-                let point = CGPoint(x: xs.0!, y: y)
-                if self.containsPoint(point) {
-                    if point.isNearEnough(ray.startPoint) {
+        // handle dy=0 separately
+        if fabs(lineOfRay.direction.dx - 0) < GOConstant.overallPrecision {
+            let x = ray.startPoint.x
+            let squareSide = r * r - (x - r1) * (x - r1)
+            if squareSide < 0 {
+                return nil
+            } else {
+                let root = sqrt(squareSide)
+                let y1 = r2 + root
+                let y2 = r2 - root
+                let point1 = CGPoint(x: x, y: y1)
+                let point2 = CGPoint(x: x, y: y2)
+                
+                if GOUtilities.getDistanceBetweenPoint(ray.startPoint, andPoint: point1) >
+                    GOUtilities.getDistanceBetweenPoint(ray.startPoint, andPoint: point2) {
+                        if self.containsPoint(point2) {
+                            if point2.isNearEnough(ray.startPoint) {
+                                return nil
+                            } else {
+                                return point2
+                            }
+                        }
+                }
+                if self.containsPoint(point1) {
+                    if point1.isNearEnough(ray.startPoint) {
                         return nil
                     } else {
-                        return point
+                        return point1
+                    }
+                } else {
+                    return nil
+                }
+            }
+        } else {
+            let k = lineOfRay.slope
+            let c = lineOfRay.yIntercept
+            
+            if c == nil {
+                return nil
+            }
+            
+            let termA = 1 + k * k
+            let termB = 2 * ((c! - r2) * k - r1)
+            let termC = r1 * r1 + (r2 - c!) * (r2 - c!) - r * r
+            
+            let xs = GOUtilities.solveQuadraticEquation(termA, b: termB, c: termC)
+            
+            if xs.0 == nil {
+                return nil
+            } else if xs.1 == nil {
+                // tangent
+                if let y = ray.getY(x: xs.0!) {
+                    let point = CGPoint(x: xs.0!, y: y)
+                    if self.containsPoint(point) {
+                        if point.isNearEnough(ray.startPoint) {
+                            return nil
+                        } else {
+                            return point
+                        }
+                    } else {
+                        return nil
                     }
                 } else {
                     return nil
                 }
             } else {
-                return nil
-            }
-        } else {
-            if let y0 = ray.getY(x: xs.0!) {
-                if let y1 = ray.getY(x: xs.1!) {
-                    if GOUtilities.getDistanceBetweenPoints(ray.startPoint, b: CGPoint(x: xs.0!, y: y0)) >
-                        GOUtilities.getDistanceBetweenPoints(ray.startPoint, b: CGPoint(x: xs.1!, y: y1)) {
+                if let y0 = ray.getY(x: xs.0!) {
+                    if let y1 = ray.getY(x: xs.1!) {
+                        if GOUtilities.getDistanceBetweenPoint(ray.startPoint, andPoint: CGPoint(x: xs.0!, y: y0)) >
+                            GOUtilities.getDistanceBetweenPoint(ray.startPoint, andPoint: CGPoint(x: xs.1!, y: y1)) {
+                                let point = CGPoint(x: xs.1!, y: y1)
+                                if self.containsPoint(point) {
+                                    if point.isNearEnough(ray.startPoint) {
+                                        return nil
+                                    } else {
+                                        return point
+                                    }
+                                }
+                        }
+                        let point = CGPoint(x: xs.0!, y: y0)
+                        if self.containsPoint(point) {
+                            if point.isNearEnough(ray.startPoint) {
+                                return nil
+                            } else {
+                                return point
+                            }
+                        } else {
+                            return nil
+                        }
+                    } else {
+                        let point = CGPoint(x: xs.0!, y: y0)
+                        if self.containsPoint(point) {
+                            if point.isNearEnough(ray.startPoint) {
+                                return nil
+                            } else {
+                                return point
+                            }
+                        } else {
+                            return nil
+                        }
+                    }
+                } else {
+                    if let y1 = ray.getY(x: xs.1!) {
                         let point = CGPoint(x: xs.1!, y: y1)
                         if self.containsPoint(point) {
                             if point.isNearEnough(ray.startPoint) {
@@ -168,44 +236,12 @@ class GOArcSegment: GOSegment {
                             } else {
                                 return point
                             }
-                        }
-                    }
-                    let point = CGPoint(x: xs.0!, y: y0)
-                    if self.containsPoint(point) {
-                        if point.isNearEnough(ray.startPoint) {
-                            return nil
                         } else {
-                            return point
+                            return nil
                         }
                     } else {
                         return nil
                     }
-                } else {
-                    let point = CGPoint(x: xs.0!, y: y0)
-                    if self.containsPoint(point) {
-                        if point.isNearEnough(ray.startPoint) {
-                            return nil
-                        } else {
-                            return point
-                        }
-                    } else {
-                        return nil
-                    }
-                }
-            } else {
-                if let y1 = ray.getY(x: xs.1!) {
-                    let point = CGPoint(x: xs.1!, y: y1)
-                    if self.containsPoint(point) {
-                        if point.isNearEnough(ray.startPoint) {
-                            return nil
-                        } else {
-                            return point
-                        }
-                    } else {
-                        return nil
-                    }
-                } else {
-                    return nil
                 }
             }
         }
