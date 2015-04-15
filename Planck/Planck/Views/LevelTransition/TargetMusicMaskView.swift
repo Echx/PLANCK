@@ -42,7 +42,7 @@ class TargetMusicMaskView: UIView {
         }
         
         let longestDistance = noteSequence[noteSequence.count - 1].1
-        let delayTime = Float(longestDistance / Constant.lightSpeedBase + MusicDefaults.musicBuffer)
+        let delayTime = Float(longestDistance / Constant.lightSpeedBase + MusicDefaults.musicBuffer * 4)
     
         dispatch_after(dispatch_time(DISPATCH_TIME_NOW, Int64(Float(NSEC_PER_SEC) * Float(delayTime))), dispatch_get_main_queue()) {
             self.delegate?.didFinishPlaying()
