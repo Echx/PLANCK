@@ -411,7 +411,7 @@ class GameViewController: XViewController {
         self.grid.addInstrument(node)
         let layer = CAShapeLayer()
         layer.strokeEnd = 1.0
-        layer.strokeColor = strokeColor.CGColor
+        layer.strokeColor = UIColor.clearColor().CGColor
         layer.fillColor = strokeColor.CGColor
         layer.lineWidth = 0
         layer.shadowRadius = 2
@@ -424,6 +424,13 @@ class GameViewController: XViewController {
         view.backgroundColor = UIColor.clearColor()
         view.layer.addSublayer(layer)
         self.deviceViews[node.id] = view
+        if let xnode = self.xNodes[node.id] {
+            if !xnode.isFixed {
+                let img = UIImageView(image: UIImage(named: "moveable"))
+                view.addSubview(img)
+                img.center = view.center
+            }
+        }
         self.view.insertSubview(view, atIndex: 0)
         
         var offsetX = CGFloat(coordinateBackup.x - node.center.x) * self.grid.unitLength
@@ -538,6 +545,7 @@ extension GameViewController: LevelTransitionMaskViewDelegate {
             if self.shouldShowNextLevel {
                 // save current game if it is not preview mode
                 if !isPreview {
+                    println("saving!")
                     dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), {
                         StorageManager.defaultManager.saveCurrentLevel(self.originalLevel)
                     })
@@ -547,6 +555,7 @@ extension GameViewController: LevelTransitionMaskViewDelegate {
                     // in preview mode, can neve reach here
                     // unlock next level and save it
                     nextLevel.isUnlock = true
+                    println("saving next!")
                     dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), {
                         StorageManager.defaultManager.saveCurrentLevel(nextLevel)
                     })

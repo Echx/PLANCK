@@ -36,16 +36,32 @@ class GOConcaveLensRep: GOOpticRep {
     
     override var bezierPath: UIBezierPath {
         get {
-            var path = UIBezierPath()
-            path.appendPath(self.edges[0].bezierPath)
-            path.addLineToPoint(self.edges[1].bezierPath.currentPoint)
-            path.appendPath(self.edges[1].bezierPath.bezierPathByReversingPath())
-            path.addLineToPoint(self.edges[2].bezierPath.bezierPathByReversingPath().currentPoint)
-            path.appendPath(self.edges[2].bezierPath)
-            path.addLineToPoint(self.edges[3].bezierPath.currentPoint)
-            path.appendPath(self.edges[3].bezierPath)
-            path.addLineToPoint(self.edges[0].bezierPath.currentPoint)
-            return path
+            var path1 = UIBezierPath()
+            path1.appendPath(self.edges[1].bezierPath)
+            path1.addLineToPoint(self.edges[0].center)
+            path1.addLineToPoint(self.edges[2].center)
+            path1.closePath()
+            
+            var path2 = UIBezierPath()
+            path2.appendPath(self.edges[3].bezierPath)
+            path2.addLineToPoint(self.edges[2].center)
+            path2.addLineToPoint(self.edges[0].center)
+            path2.closePath()
+            
+            path1.appendPath(path2)
+
+//            path.addLineToPoint(self.edges[2].bezierPath.bezierPathByReversingPath().currentPoint)
+//            path.appendPath(self.edges[2].bezierPath)
+            
+//            path.addLineToPoint(self.edges[3].bezierPath.currentPoint)
+//            println(path.currentPoint)
+//            
+//            path.appendPath(self.edges[3].bezierPath.bezierPathByReversingPath())
+//            println(path.currentPoint)
+//            path.addLineToPoint(self.edges[0].bezierPath.bezierPathByReversingPath().currentPoint)
+//            println(path.currentPoint)
+//            path.closePath()
+            return path1
         }
     }
     

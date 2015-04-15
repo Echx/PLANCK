@@ -32,14 +32,13 @@ class GOFlatOpticRep: GOOpticRep {
     override var bezierPath: UIBezierPath {
         get {
             var path = UIBezierPath()
-            path.appendPath(self.edges[0].bezierPath)
-            path.addLineToPoint(self.edges[1].bezierPath.currentPoint)
-            path.appendPath(self.edges[1].bezierPath)
-            path.addLineToPoint(self.edges[2].bezierPath.currentPoint)
-            path.appendPath(self.edges[2].bezierPath)
+            
+            path.moveToPoint(self.edges[1].bezierPath.currentPoint)
+            path.addLineToPoint(self.edges[2].bezierPath.bezierPathByReversingPath().currentPoint)
             path.addLineToPoint(self.edges[3].bezierPath.currentPoint)
-            path.appendPath(self.edges[3].bezierPath)
-            path.addLineToPoint(self.edges[0].bezierPath.currentPoint)
+            path.addLineToPoint(self.edges[0].bezierPath.bezierPathByReversingPath().currentPoint)
+            path.closePath()
+            
             return path
         }
     }
