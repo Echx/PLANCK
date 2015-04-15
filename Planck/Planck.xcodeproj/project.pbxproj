@@ -16,6 +16,11 @@
 		26290C911ADE748200409FD8 /* GamiCent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 98C2CBAB1ADD19CE00074127 /* GamiCent.swift */; };
 		26290C921ADE748F00409FD8 /* GameStats.swift in Sources */ = {isa = PBXBuildFile; fileRef = 98C2CBA91ADD199000074127 /* GameStats.swift */; };
 		26290C941ADE793300409FD8 /* levelup.m4a in Resources */ = {isa = PBXBuildFile; fileRef = 26290C931ADE793300409FD8 /* levelup.m4a */; };
+		26290C9B1ADEB5A400409FD8 /* UIFont+Akagi.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26290C9A1ADEB5A400409FD8 /* UIFont+Akagi.swift */; };
+		26290CA01ADEB86900409FD8 /* Akagi-BK.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 26290C9D1ADEB86900409FD8 /* Akagi-BK.ttf */; };
+		26290CA11ADEB86900409FD8 /* Akagi-SB.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 26290C9E1ADEB86900409FD8 /* Akagi-SB.ttf */; };
+		26290CA21ADEB86900409FD8 /* Akagi-TH.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 26290C9F1ADEB86900409FD8 /* Akagi-TH.ttf */; };
+		26290CA31ADEB9CD00409FD8 /* UIFont+Akagi.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26290C9A1ADEB5A400409FD8 /* UIFont+Akagi.swift */; };
 		262F38271ADABEE500FA2177 /* OscillationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 262F38261ADABEE500FA2177 /* OscillationManager.swift */; };
 		262F38281ADABF0100FA2177 /* OscillationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 262F38261ADABEE500FA2177 /* OscillationManager.swift */; };
 		262F382C1ADACA1B00FA2177 /* LevelTransitionMaskView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 262F382B1ADACA1B00FA2177 /* LevelTransitionMaskView.swift */; };
@@ -324,6 +329,10 @@
 		261483C51AD9B42A001F4143 /* GameLevel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GameLevel.swift; sourceTree = "<group>"; };
 		261483CC1AD9B456001F4143 /* ParticleManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ParticleManager.swift; sourceTree = "<group>"; };
 		26290C931ADE793300409FD8 /* levelup.m4a */ = {isa = PBXFileReference; lastKnownFileType = file; name = levelup.m4a; path = Sounds/levelup.m4a; sourceTree = "<group>"; };
+		26290C9A1ADEB5A400409FD8 /* UIFont+Akagi.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIFont+Akagi.swift"; sourceTree = "<group>"; };
+		26290C9D1ADEB86900409FD8 /* Akagi-BK.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Akagi-BK.ttf"; sourceTree = "<group>"; };
+		26290C9E1ADEB86900409FD8 /* Akagi-SB.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Akagi-SB.ttf"; sourceTree = "<group>"; };
+		26290C9F1ADEB86900409FD8 /* Akagi-TH.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Akagi-TH.ttf"; sourceTree = "<group>"; };
 		262BE19F1ABE9A5D00ABE965 /* Planck-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Planck-Bridging-Header.h"; sourceTree = SOURCE_ROOT; };
 		262F38261ADABEE500FA2177 /* OscillationManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OscillationManager.swift; sourceTree = "<group>"; };
 		262F382B1ADACA1B00FA2177 /* LevelTransitionMaskView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LevelTransitionMaskView.swift; sourceTree = "<group>"; };
@@ -613,6 +622,16 @@
 			path = "Visual Effects";
 			sourceTree = "<group>";
 		};
+		26290C9C1ADEB86900409FD8 /* Fonts */ = {
+			isa = PBXGroup;
+			children = (
+				26290C9D1ADEB86900409FD8 /* Akagi-BK.ttf */,
+				26290C9E1ADEB86900409FD8 /* Akagi-SB.ttf */,
+				26290C9F1ADEB86900409FD8 /* Akagi-TH.ttf */,
+			);
+			path = Fonts;
+			sourceTree = "<group>";
+		};
 		262BE1A21ABE9A9000ABE965 /* Library */ = {
 			isa = PBXGroup;
 			children = (
@@ -744,6 +763,7 @@
 		6227FB6B1AAE285C007F49EA /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				26290C9C1ADEB86900409FD8 /* Fonts */,
 				62E00C751AC466E800F10F10 /* Sound */,
 				6227FB6C1AAE285C007F49EA /* Info.plist */,
 			);
@@ -802,6 +822,7 @@
 				620BD4451AB2E69800267C7B /* XNote.swift */,
 				26C8ADDB1AD01A52008ADACB /* String+XUtility.swift */,
 				62E323251ADAE83100CFD4CA /* XMusic.swift */,
+				26290C9A1ADEB5A400409FD8 /* UIFont+Akagi.swift */,
 			);
 			path = Utilities;
 			sourceTree = "<group>";
@@ -1199,6 +1220,7 @@
 				629D39F61AD9C29A00A8B3B7 /* harp-57.m4a in Resources */,
 				629D39FD1AD9C29A00A8B3B7 /* harp-50.m4a in Resources */,
 				629D39DE1AD9C29A00A8B3B7 /* harp-81.m4a in Resources */,
+				26290CA21ADEB86900409FD8 /* Akagi-TH.ttf in Resources */,
 				629D39DA1AD9C29A00A8B3B7 /* harp-85.m4a in Resources */,
 				629D393D1AD9844300A8B3B7 /* piano-55.m4a in Resources */,
 				629D39701AD9847A00A8B3B7 /* piano-70.m4a in Resources */,
@@ -1222,6 +1244,7 @@
 				629D394A1AD9844300A8B3B7 /* piano-81.m4a in Resources */,
 				629D393C1AD9844300A8B3B7 /* piano-54.m4a in Resources */,
 				629D39191AD9844300A8B3B7 /* piano-19.m4a in Resources */,
+				26290CA11ADEB86900409FD8 /* Akagi-SB.ttf in Resources */,
 				629D39E81AD9C29A00A8B3B7 /* harp-71.m4a in Resources */,
 				6227FB791AAE285C007F49EA /* Images.xcassets in Resources */,
 				629D39541AD9844300A8B3B7 /* piano-91.m4a in Resources */,
@@ -1277,6 +1300,7 @@
 				629D39D21AD9C29A00A8B3B7 /* harp-93.m4a in Resources */,
 				629D392A1AD9844300A8B3B7 /* piano-36.m4a in Resources */,
 				6227FB771AAE285C007F49EA /* Main.storyboard in Resources */,
+				26290CA01ADEB86900409FD8 /* Akagi-BK.ttf in Resources */,
 				629D392E1AD9844300A8B3B7 /* piano-40.m4a in Resources */,
 				629D3A241AD9C29A00A8B3B7 /* harp-11.m4a in Resources */,
 				629D3A2D1AD9C2B000A8B3B7 /* piano-10.m4a in Resources */,
@@ -1407,6 +1431,7 @@
 				62E323261ADAE83100CFD4CA /* XMusic.swift in Sources */,
 				6227FC1B1AAE28E7007F49EA /* XMedium.swift in Sources */,
 				26D9ABB11AD7CB1700D70D83 /* GOOverlapManager.swift in Sources */,
+				26290C9B1ADEB5A400409FD8 /* UIFont+Akagi.swift in Sources */,
 				263B09AE1ACEEDD800E7C99E /* GOLineSegment.swift in Sources */,
 				263B09AF1ACEEDD800E7C99E /* GORay.swift in Sources */,
 				263B09B61ACEEDD800E7C99E /* GOGrid.swift in Sources */,
@@ -1483,6 +1508,7 @@
 				98F63A9E1AD1650F0096A32E /* GOArcSegment.swift in Sources */,
 				62E323351ADAF54E00CFD4CA /* SettingViewCell.swift in Sources */,
 				62E323371ADAF56400CFD4CA /* XConcaveLens.swift in Sources */,
+				26290CA31ADEB9CD00409FD8 /* UIFont+Akagi.swift in Sources */,
 				269192B51AD81A7D002F8590 /* XNode.swift in Sources */,
 				62E323321ADAF54600CFD4CA /* LevelSelectCollectionViewCell.swift in Sources */,
 				98F63AA21AD1650F0096A32E /* GORay.swift in Sources */,
