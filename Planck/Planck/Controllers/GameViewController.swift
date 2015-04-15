@@ -402,7 +402,7 @@ class GameViewController: XViewController {
         self.grid.addInstrument(node)
         let layer = CAShapeLayer()
         layer.strokeEnd = 1.0
-        layer.strokeColor = strokeColor.CGColor
+        layer.strokeColor = UIColor.clearColor().CGColor
         layer.fillColor = strokeColor.CGColor
         layer.lineWidth = 0
         layer.shadowRadius = 2
