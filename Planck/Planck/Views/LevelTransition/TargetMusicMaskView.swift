@@ -19,7 +19,10 @@ class TargetMusicMaskView: UIView {
     
     override init() {
         super.init(frame: UIScreen.mainScreen().bounds)
-        
+    }
+    
+    
+    func show(targetMusic: XMusic) {
         let blurView = UIVisualEffectView(effect: UIBlurEffect(style: UIBlurEffectStyle.Light))
         blurView.frame = self.bounds
         self.addSubview(blurView)
@@ -27,10 +30,8 @@ class TargetMusicMaskView: UIView {
         let headphoneView = UIImageView(image: self.headphoneImage)
         headphoneView.frame = CGRect(x: 452, y: 324, width: 120, height: 120)
         self.addSubview(headphoneView)
-    }
-    
-    
-    func show(targetMusic: XMusic) {
+        
+        
         let noteSequence = targetMusic.flattenMapping()
         for (note, distance) in noteSequence {
             let audioPlayer = AVAudioPlayer(contentsOfURL: note.getAudioFile(), error: nil)
