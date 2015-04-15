@@ -33,21 +33,30 @@ class TargetMusicMaskView: UIView {
     func show(targetMusic: XMusic) {
         self.alpha = 1
         let noteSequence = targetMusic.flattenMapping()
-        dispatch_after(dispatch_time(DISPATCH_TIME_NOW, Int64(Float(NSEC_PER_SEC) * Float(MusicDefaults.musicBuffer))), dispatch_get_main_queue()) {
-            for (note, distance) in noteSequence {
-                let audioPlayer = AVAudioPlayer(contentsOfURL: note.getAudioFile(), error: nil)
-                self.audioPlayerList.append(audioPlayer)
-                audioPlayer.prepareToPlay()
-                audioPlayer.playAtTime(audioPlayer.deviceCurrentTime + NSTimeInterval(distance / Constant.lightSpeedBase))
+        if noteSequence.count != 0 {
+            dispatch_after(dispatch_time(DISPATCH_TIME_NOW, Int64(Float(NSEC_PER_SEC) * Float(MusicDefaults.musicBuffer))), dispatch_get_main_queue()) {
+                for (note, distance) in noteSequence {
+                    let audioPlayer = AVAudioPlayer(contentsOfURL: note.getAudioFile(), error: nil)
+                    self.audioPlayerList.append(audioPlayer)
+                    audioPlayer.prepareToPlay()
+                    audioPlayer.playAtTime(audioPlayer.deviceCurrentTime + NSTimeInterval(distance / Constant.lightSpeedBase))
+                }
             }
-        }
+            
+            let longestDistance = noteSequence[noteSequence.count - 1].1
+            let delayTime = Float(longestDistance / Constant.lightSpeedBase + MusicDefaults.musicBuffer * 4)
         
-        let longestDistance = noteSequence[noteSequence.count - 1].1
-        let delayTime = Float(longestDistance / Constant.lightSpeedBase + MusicDefaults.musicBuffer * 4)
-    
-        dispatch_after(dispatch_time(DISPATCH_TIME_NOW, Int64(Float(NSEC_PER_SEC) * Float(delayTime))), dispatch_get_main_queue()) {
-            self.delegate?.didFinishPlaying()
-            return
+            dispatch_after(dispatch_time(DISPATCH_TIME_NOW, Int64(Float(NSEC_PER_SEC) * Float(delayTime))), dispatch_get_main_queue()) {
+                self.delegate?.didFinishPlaying()
+                return
+            }
+        } else {
+            let delayTime = Float(MusicDefaults.musicBuffer * 4)
+            
+            dispatch_after(dispatch_time(DISPATCH_TIME_NOW, Int64(Float(NSEC_PER_SEC) * Float(delayTime))), dispatch_get_main_queue()) {
+                self.delegate?.didFinishPlaying()
+                return
+            }
         }
         
         
