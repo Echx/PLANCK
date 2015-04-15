@@ -238,39 +238,27 @@ class LevelDesignerViewController: XViewController {
         switch(self.deviceSegment.selectedSegmentIndex) {
         case DeviceSegmentIndex.emitter:
             let emitterPhysicsBody = GOEmitterRep(center: coordinate, thickness: 1, length: 4, direction: CGVectorMake(1, 0), id: String.generateRandomString(self.identifierLength))
-            let emitter = XEmitter(emitter: emitterPhysicsBody)
-            self.xNodes[emitter.id] = emitter
-            self.addNode(emitterPhysicsBody, strokeColor: DeviceColor.emitter)
+            self.addDevice(emitterPhysicsBody)
             
         case DeviceSegmentIndex.flatMirror:
             let mirrorPhysicsBody = GOFlatMirrorRep(center: coordinate, thickness: 2, length: 8, direction: CGVectorMake(0, 1), id: String.generateRandomString(self.identifierLength))
-            let mirror = XFlatMirror(flatMirror: mirrorPhysicsBody)
-            self.xNodes[mirror.id] = mirror
-            self.addNode(mirrorPhysicsBody, strokeColor: DeviceColor.mirror)
+            self.addDevice(mirrorPhysicsBody)
             
         case DeviceSegmentIndex.flatLens:
             let flatLensPhysicsBody = GOFlatLensRep(center: coordinate, thickness: 2, length: 8, direction: CGVectorMake(0, 1), refractionIndex: 1.5, id: String.generateRandomString(self.identifierLength))
-            let flatLens = XFlatLens(flatLens: flatLensPhysicsBody)
-            self.xNodes[flatLens.id] = flatLens
-            self.addNode(flatLensPhysicsBody, strokeColor: DeviceColor.lens)
+            self.addDevice(flatLensPhysicsBody)
             
         case DeviceSegmentIndex.flatWall:
             let flatWallPhysicsBody = GOFlatWallRep(center: coordinate, thickness: 2, length: 8, direction: CGVectorMake(0, 1), id: String.generateRandomString(self.identifierLength))
-            let flatWall = XFlatWall(flatWall: flatWallPhysicsBody)
-            self.xNodes[flatWall.id] = flatWall
-            self.addNode(flatWallPhysicsBody, strokeColor: DeviceColor.wall)
+            self.addDevice(flatWallPhysicsBody)
             
         case DeviceSegmentIndex.concaveLens:
             let concaveLensPhysicsBody = GOConcaveLensRep(center: coordinate, direction: CGVectorMake(0, 1), thicknessCenter: 1, thicknessEdge: 3, curvatureRadius: 10, id: String.generateRandomString(self.identifierLength), refractionIndex: 1.5)
-            let concaveLens = XConcaveLens(concaveRep: concaveLensPhysicsBody)
-            self.xNodes[concaveLens.id] = concaveLens
-            self.addNode(concaveLensPhysicsBody, strokeColor: DeviceColor.lens)
+            self.addDevice(concaveLensPhysicsBody)
             
         case DeviceSegmentIndex.convexLens:
             let convexLensPhysicsBody = GOConvexLensRep(center: coordinate, direction: CGVectorMake(0, 1), thickness: 2, curvatureRadius: 10, id: String.generateRandomString(self.identifierLength), refractionIndex: 1.5)
-            let convexLens = XConvexLens(convexLens: convexLensPhysicsBody)
-            self.xNodes[convexLens.id] = convexLens
-            self.addNode(convexLensPhysicsBody, strokeColor: DeviceColor.lens)
+            self.addDevice(convexLensPhysicsBody)
             
         default:
             fatalError("SegmentNotRecognized")
@@ -392,7 +380,7 @@ class LevelDesignerViewController: XViewController {
             if !self.refreshSelectedNode() {
                 self.removeNode(node)
                 if let node = self.backupNode {
-                    self.addNode(node, strokeColor: self.getColorForNode(node))
+                    self.addDevice(node)
                     self.deselectNode()
                     self.selectNode(node)
                 }
@@ -401,11 +389,71 @@ class LevelDesignerViewController: XViewController {
             }
         }
         
-        
         self.shootRay()
     }
     
 
+    private func addNode(node: GOOpticRep) -> Bool {
+        return self.addNode(node, strokeColor: self.getColorForNode(node))
+    }
+    
+    private func addDevice(physicsBody: GOOpticRep) -> Bool {
+        var node: XNode
+        var nodePhysicsBody: GOOpticRep
+        if let nodePhysicsBody = physicsBody as? GOEmitterRep {
+            let node = XEmitter(emitter: nodePhysicsBody)
+            if self.addNode(nodePhysicsBody) {
+                self.xNodes[nodePhysicsBody.id] = node
+                return true
+            } else {
+                return false
+            }
+        } else if let nodePhysicsBody = physicsBody as? GOFlatMirrorRep {
+            let node = XFlatMirror(flatMirror: nodePhysicsBody)
+            if self.addNode(nodePhysicsBody) {
+                self.xNodes[nodePhysicsBody.id] = node
+                return true
+            } else {
+                return false
+            }
+        } else if let nodePhysicsBody = physicsBody as? GOFlatLensRep {
+            let node = XFlatLens(flatLens: nodePhysicsBody)
+            if self.addNode(nodePhysicsBody) {
+                self.xNodes[nodePhysicsBody.id] = node
+                return true
+            } else {
+                return false
+            }
+        } else if let nodePhysicsBody = physicsBody as? GOFlatWallRep {
+            let node = XFlatWall(flatWall: nodePhysicsBody)
+            if self.addNode(nodePhysicsBody) {
+                self.xNodes[nodePhysicsBody.id] = node
+                return true
+            } else {
+                return false
+            }
+        } else if let nodePhysicsBody = physicsBody as? GOConvexLensRep {
+            let node = XConvexLens(convexLens: nodePhysicsBody)
+            if self.addNode(nodePhysicsBody) {
+                self.xNodes[nodePhysicsBody.id] = node
+                return true
+            } else {
+                return false
+            }
+        } else if let nodePhysicsBody = physicsBody as? GOConcaveLensRep {
+            let node = XConcaveLens(concaveRep: nodePhysicsBody)
+            if self.addNode(nodePhysicsBody) {
+                self.xNodes[nodePhysicsBody.id] = node
+                return true
+            } else {
+                return false
+            }
+        } else {
+            fatalError("node not recognized")
+        }
+    }
+    
+    
     @IBAction func updateSelectedNodePlanck() {
         if let selectedNode = self.selectedNode {
             if let node = self.xNodes[selectedNode.id] {
