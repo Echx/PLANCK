@@ -432,10 +432,6 @@
                                     <action selector="pauseButtonDidClicked:" destination="Ivs-sv-Sw2" eventType="touchUpInside" id="P7z-Te-gdq"/>
                                 </connections>
                             </button>
-                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="eZW-h3-g5J">
-                                <rect key="frame" x="0.0" y="0.0" width="1024" height="768"/>
-                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
-                            </view>
                         </subviews>
                         <color key="backgroundColor" red="0.26274509800000001" green="0.36862745099999999" blue="0.46274509800000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <gestureRecognizers/>
@@ -448,7 +444,6 @@
                     <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
                     <size key="freeformSize" width="1024" height="768"/>
                     <connections>
-                        <outlet property="loadingMask" destination="eZW-h3-g5J" id="Lnt-Jy-waz"/>
                         <outlet property="shootSwitch" destination="1qz-JW-p2k" id="J02-pZ-rEI"/>
                     </connections>
                 </viewController>
