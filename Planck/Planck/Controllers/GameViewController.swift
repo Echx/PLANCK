@@ -426,9 +426,7 @@ class GameViewController: XViewController {
         self.deviceViews[node.id] = view
         if let xnode = self.xNodes[node.id] {
             if !xnode.isFixed {
-                let img = UIImageView(image: UIImage(named: "moveable"))
-                view.addSubview(img)
-                img.center = view.center
+                
             }
         }
         self.view.insertSubview(view, atIndex: 0)
