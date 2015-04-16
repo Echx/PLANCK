@@ -60,7 +60,6 @@ class GameViewController: XViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.setUpGrid()
         self.view.backgroundColor = UIColor(patternImage: UIImage(named: "mainbackground")!)
         self.pauseMask.delegate = self
         self.transitionMask.delegate = self
@@ -206,10 +205,14 @@ class GameViewController: XViewController {
         fatalError("Inconsistency between xNodes and nodes")
     }
     
+    var nodeCount = 0
     private func setUpGrid() {
         for (key, node) in self.grid.instruments {
             self.addNode(node, strokeColor: self.xNodes[node.id]!.strokeColor)
+            nodeCount++;
         }
+        
+        nodeCount = 0
         self.grid.delegate = self
     }
     
@@ -440,8 +443,6 @@ class GameViewController: XViewController {
         view.backgroundColor = UIColor.clearColor()
         view.layer.addSublayer(layer)
         self.deviceViews[node.id] = view
-
-        self.view.insertSubview(view, atIndex: 0)
         
         var offsetX = CGFloat(coordinateBackup.x - node.center.x) * self.grid.unitLength
         var offsetY = CGFloat(coordinateBackup.y - node.center.y) * self.grid.unitLength
@@ -452,6 +453,22 @@ class GameViewController: XViewController {
             self.grid.removeInstrumentForID(node.id)
             return false
         }
+        
+        view.alpha = 0;
+        let initialWidth: CGFloat = 40
+        let initialHeight: CGFloat = 30
+//        view.bounds = CGRectMake(0, 0, initialWidth, initialHeight)
+        self.view.insertSubview(view, atIndex: 0)
+        
+        UIView.animateWithDuration(0.5,
+            delay: 0.1 * Double(nodeCount),
+            options: UIViewAnimationOptions.CurveEaseInOut,
+            animations: {
+                view.alpha = 1;
+//                view.bounds = UIScreen.mainScreen().bounds
+            }, completion: {finished in
+                
+            })
         
         return true
     }
@@ -590,5 +607,9 @@ extension GameViewController: LevelTransitionMaskViewDelegate {
 extension GameViewController: TargetMusicMaskViewDelegate {
     func didFinishPlaying() {
         self.musicMask.hide()
+    }
+    
+    func musicMaskViewDidDismiss(view: TargetMusicMaskView) {
+        self.setUpGrid()
     }
 }
