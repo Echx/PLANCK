@@ -426,73 +426,67 @@ class GameViewController: XViewController {
         
         self.grid.addInstrument(node)
         
-        if node.type == DeviceType.Emitter {
-            let imageView = UIImageView(image: UIImage(named: "flashlight"))
-            
-            let view = UIView(frame: CGRectMake(0, 0, self.view.frame.width, self.view.frame.height))
-            view.backgroundColor = UIColor.clearColor()
-            imageView.frame = CGRect(x: 0, y: 0, width: self.grid.unitLength * 4.5, height: self.grid.unitLength * 1.5)
-            imageView.center = view.center
-            
-            let degree = node.direction.angleFromXPlus
-            imageView.transform = CGAffineTransformMakeRotation(degree)
-            
-            view.addSubview(imageView)
-            view.layer.zPosition = 100
-            self.deviceViews[node.id] = view
-            
-            self.view.insertSubview(view, atIndex: 0)
-            
-            var offsetX = CGFloat(coordinateBackup.x - node.center.x) * self.grid.unitLength
-            var offsetY = CGFloat(coordinateBackup.y - node.center.y) * self.grid.unitLength
-            var offset = CGPointMake(offsetX, offsetY)
-            
-            if !self.moveNode(node, from: self.view.center, offset: offset) {
-                view.removeFromSuperview()
-                self.grid.removeInstrumentForID(node.id)
-                return false
-            }
-            
-            return true
-        } else {
-            let layer = CAShapeLayer()
-            layer.strokeEnd = 1.0
-            layer.fillColor = strokeColor.CGColor
-            layer.lineWidth = 2
-            if let xnode = self.xNodes[node.id] {
-                if !xnode.isFixed {
-                    layer.strokeColor = UIColor.blackColor().colorWithAlphaComponent(0.5).CGColor
-                } else {
-                    layer.strokeColor = UIColor.clearColor().CGColor
-                }
-            } else {
-                fatalError("no corresponding xnode")
-            }
-            layer.shadowRadius = 2
-            layer.shadowColor = strokeColor.CGColor
-            layer.shadowOpacity = 0.5
-            layer.shadowOffset = CGSizeZero
-            layer.path = self.grid.getInstrumentDisplayPathForID(node.id)?.CGPath
-            
-            let view = UIView(frame: CGRectMake(0, 0, self.view.frame.width, self.view.frame.height))
-            view.backgroundColor = UIColor.clearColor()
-            view.layer.addSublayer(layer)
-            self.deviceViews[node.id] = view
+        let view = UIView(frame: CGRectMake(0, 0, self.view.frame.width, self.view.frame.height))
+        view.backgroundColor = UIColor.clearColor()
 
-            self.view.insertSubview(view, atIndex: 0)
-            
-            var offsetX = CGFloat(coordinateBackup.x - node.center.x) * self.grid.unitLength
-            var offsetY = CGFloat(coordinateBackup.y - node.center.y) * self.grid.unitLength
-            var offset = CGPointMake(offsetX, offsetY)
-            
-            if !self.moveNode(node, from: self.view.center, offset: offset) {
-                view.removeFromSuperview()
-                self.grid.removeInstrumentForID(node.id)
-                return false
+        let layer = CAShapeLayer()
+        layer.strokeEnd = 1.0
+        layer.fillColor = strokeColor.CGColor
+        layer.lineWidth = 2
+        if let xnode = self.xNodes[node.id] {
+            if !xnode.isFixed {
+                layer.strokeColor = UIColor.blackColor().colorWithAlphaComponent(0.5).CGColor
+            } else {
+                layer.strokeColor = UIColor.clearColor().CGColor
             }
-            
-            return true
+        } else {
+            fatalError("no corresponding xnode")
         }
+        layer.shadowRadius = 2
+        layer.shadowColor = strokeColor.CGColor
+        layer.shadowOpacity = 0.5
+        layer.shadowOffset = CGSizeZero
+        layer.path = self.grid.getInstrumentDisplayPathForID(node.id)?.CGPath
+        
+        if let emitter = node as? GOEmitterRep {
+            let markView  = UIView(frame: CGRectMake(0, 0, Constant.rayWidth * 2, Constant.rayWidth * 2))
+            markView.backgroundColor = UIColor.whiteColor()
+            markView.layer.cornerRadius = Constant.rayWidth
+            markView.center = view.center
+            let degree = node.direction.angleFromXPlus
+            markView.transform = CGAffineTransformTranslate(CGAffineTransformMakeRotation(degree), emitter.length * self.grid.unitLength / 2, 0)
+            
+            view.addSubview(markView)
+            view.layer.zPosition = 100
+        }
+        
+        view.layer.addSublayer(layer)
+        
+        self.deviceViews[node.id] = view
+        var offsetX = CGFloat(coordinateBackup.x - node.center.x) * self.grid.unitLength
+        var offsetY = CGFloat(coordinateBackup.y - node.center.y) * self.grid.unitLength
+        var offset = CGPointMake(offsetX, offsetY)
+        
+        if !self.moveNode(node, from: self.view.center, offset: offset) {
+            view.removeFromSuperview()
+            self.grid.removeInstrumentForID(node.id)
+            return false
+        }
+        
+        view.alpha = 0;
+        self.view.insertSubview(view, atIndex: 0)
+        UIView.animateWithDuration(0.3,
+            delay: 0.1 * Double(nodeCount),
+            options: UIViewAnimationOptions.CurveEaseInOut,
+            animations: {
+                view.alpha = 1
+            }, completion: {
+                finished in
+                
+            }
+        )
+        
+        return true
     }
 
     private func moveNode(node: GOOpticRep, from: CGPoint,offset: CGPoint) -> Bool{

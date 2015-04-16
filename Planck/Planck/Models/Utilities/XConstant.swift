@@ -12,7 +12,7 @@ struct Constant {
     static let lightSpeedBase: CGFloat = 600 //points per second
     static let audioDelay: CGFloat = 0.1
     static let angleCalculationPrecision: CGFloat = 1000 //1000 is 3 bit precision
-    
+    static let rayWidth: CGFloat = 5;
     static let vectorUnitLength: CGFloat = 1
 }
 
@@ -21,7 +21,7 @@ struct DeviceColor {
     static let lens = UIColor(red: 190/255.0, green: 1, blue: 1, alpha: 1)
     static let wall = UIColor.blackColor()
     static let planck = UIColor.yellowColor()
-    static let emitter = UIColor.greenColor()
+    static let emitter = UIColor.blackColor()
 }
 
 struct StoryboardIndentifier {
