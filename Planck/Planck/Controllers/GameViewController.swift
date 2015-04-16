@@ -337,6 +337,10 @@ class GameViewController: XViewController {
             } else {
                 self.numberOfFinishedRay++
                 
+                let rayPath = self.rays[tag]!
+                let prevPoint = rayPath[currentIndex - 1]
+                self.playNote(prevPoint.1, tag: tag)
+                
                 if self.numberOfFinishedRay == self.rays.count {
                     dispatch_async(self.queue, {
                         if self.music.isSimilarTo(self.originalLevel.targetMusic) {
