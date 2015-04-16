@@ -26,6 +26,7 @@ class GameViewController: XViewController {
     private var transitionMask = LevelTransitionMaskView()
     private var pauseMask = PauseMaskView()
     private var musicMask = TargetMusicMaskView()
+    private var isFirstTimeShowMusic = true
     private var numberOfFinishedRay = 0
     private var audioPlayer: AVAudioPlayer?
     
@@ -195,7 +196,6 @@ class GameViewController: XViewController {
         }
     }
     
-    
     private func isNodeFixed(node: GOOpticRep) -> Bool {
         if let xNode = self.xNodes[node.id] {
             return xNode.isFixed
@@ -207,7 +207,7 @@ class GameViewController: XViewController {
     private func setUpGrid() {
         for (key, node) in self.grid.instruments {
             self.addNode(node, strokeColor: self.xNodes[node.id]!.strokeColor)
-            nodeCount++;
+            nodeCount++
         }
         
         nodeCount = 0
@@ -567,7 +567,7 @@ extension GameViewController: GOGridDelegate {
     }
     
     func gridDidFinishCalculation(grid: GOGrid, forRayWithTag tag: String) {
-
+        return
     }
 }
 
@@ -631,6 +631,9 @@ extension GameViewController: TargetMusicMaskViewDelegate {
     }
     
     func musicMaskViewDidDismiss(view: TargetMusicMaskView) {
-        self.setUpGrid()
+        if isFirstTimeShowMusic {
+            self.setUpGrid()
+            isFirstTimeShowMusic = false
+        }
     }
 }
