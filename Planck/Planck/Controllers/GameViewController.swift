@@ -426,11 +426,14 @@ class GameViewController: XViewController {
         if node.type == DeviceType.Emitter {
             let imageView = UIImageView(image: UIImage(named: "flashlight"))
             
-            
             let view = UIView(frame: CGRectMake(0, 0, self.view.frame.width, self.view.frame.height))
             view.backgroundColor = UIColor.clearColor()
             imageView.frame = CGRect(x: 0, y: 0, width: self.grid.unitLength * 4.5, height: self.grid.unitLength * 1.5)
             imageView.center = view.center
+            
+            let degree = node.direction.angleFromXPlus
+            imageView.transform = CGAffineTransformMakeRotation(degree)
+            
             view.addSubview(imageView)
             view.layer.zPosition = 100
             self.deviceViews[node.id] = view
