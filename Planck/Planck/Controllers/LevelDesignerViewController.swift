@@ -33,7 +33,8 @@ class LevelDesignerViewController: XViewController {
     @IBOutlet var labelDirection: UILabel!
     @IBOutlet var labelLength: UILabel!
     
-    
+    @IBOutlet weak var confirmBar: UIToolbar!
+    @IBOutlet weak var saveHintLabel: UILabel!
     
     @IBOutlet var planckInputPanel: UIView!
     @IBOutlet var instrumentPicker: UIPickerView!
@@ -83,7 +84,9 @@ class LevelDesignerViewController: XViewController {
     private var visitedPlanckList = [XNode]()
     private var audioPlayerList = [AVAudioPlayer]()
     private var grid: GOGrid
+    private var gridCopy: GOGrid?
     private var music = XMusic()
+    private var musicCopy: XMusic?
     private var game: GameLevel?
     private var gameIndex: Int?
     private var gameName: String?
@@ -97,7 +100,7 @@ class LevelDesignerViewController: XViewController {
     private let storyBoardID = "Main"
     
     private let validNamePattern = "^[a-zA-Z0-9]+$"
-    
+    private var isSaving: Bool = false
     
     struct Selectors {
         static let segmentValueDidChangeAction: Selector = "segmentValueDidChange:"
@@ -171,6 +174,7 @@ class LevelDesignerViewController: XViewController {
     
     override func viewDidAppear(animated: Bool) {
         self.grid.delegate = self
+        self.isSaving = false
     }
     
     func updateControlPanelValidItems(input: [Bool]) {
@@ -200,8 +204,17 @@ class LevelDesignerViewController: XViewController {
     }
     
     @IBAction func play() {
+        // check if we have a solved grid, 
+        // if not, use current grid copy for temp use
+        if self.game == nil {
+            self.gridCopy = self.grid
+        } else {
+            self.gridCopy = self.game!.originalGrid
+        }
+        
         // create a dummy value for preview
-        let currentGameLevel = GameLevel(levelName: "Current Game Level", levelIndex: -2, grid: self.grid, nodes: self.xNodes, targetMusic: self.music)
+        let currentGameLevel = GameLevel(levelName: "Current Game Level", levelIndex: -2, grid: self.grid, solvedGrid: self.gridCopy!, nodes: self.xNodes, targetMusic: self.music)
+        
         let gameViewController = GameViewController.getInstance(currentGameLevel.deepCopy(), isPreview: true)
         self.presentViewController(gameViewController, animated: true, completion: nil)
     }
@@ -210,17 +223,21 @@ class LevelDesignerViewController: XViewController {
     @IBAction func viewDidTapped(sender: UITapGestureRecognizer) {
         if sender.numberOfTapsRequired == 1 {
             if sender.numberOfTouches() == 3 {
-                if self.inputPanel.userInteractionEnabled {
-                    self.toggleInputPanel()
+                if !isSaving {
+                    if self.inputPanel.userInteractionEnabled {
+                        self.toggleInputPanel()
+                    }
+                    self.togglePlanckInputPanel()
+                    return
                 }
-                self.togglePlanckInputPanel()
-                return
             }
             if sender.numberOfTouches() == 2 {
-                if self.planckInputPanel.userInteractionEnabled {
-                    self.togglePlanckInputPanel()
+                if !isSaving {
+                    if self.planckInputPanel.userInteractionEnabled {
+                        self.togglePlanckInputPanel()
+                    }
+                    self.toggleInputPanel()
                 }
-                self.toggleInputPanel()
             } else if self.selectedNode != nil {
                 self.deselectNode()
             } else {
@@ -273,10 +290,16 @@ class LevelDesignerViewController: XViewController {
     private var firstViewTransform: CATransform3D?
     private var firstDirection: CGVector?
     private var touchedNode: GOOpticRep?
+    
     @IBAction func viewDidPanned(sender: UIPanGestureRecognizer) {
         let location = sender.locationInView(self.view)
         
         if let node = self.selectedNode {
+            if isSaving && isNodeFixed(node) {
+                // is saving and the selected node is not the moveable one
+                return
+            }
+            
             let view = self.deviceViews[node.id]!
             if sender.state == UIGestureRecognizerState.Began {
                 firstLocation = location
@@ -313,12 +336,21 @@ class LevelDesignerViewController: XViewController {
                 lastLocation = location
                 touchedNode = self.grid.getInstrumentAtPoint(location)
                 if let node = touchedNode {
+                    if isSaving && isNodeFixed(node) {
+                        // is saving and the selected node is not the moveable one
+                        return
+                    }
                     firstViewCenter = self.deviceViews[node.id]!.center
                     self.clearRay()
                 }
             }
             
             if let node = touchedNode {
+                if isSaving && isNodeFixed(node) {
+                    // is saving and the selected node is not the moveable one
+                    return
+                }
+                
                 let view = self.deviceViews[node.id]!
                 view.center = CGPointMake(view.center.x + location.x - lastLocation!.x, view.center.y + location.y - lastLocation!.y)
                 lastLocation = location
@@ -506,7 +538,7 @@ class LevelDesignerViewController: XViewController {
     }
     
     @IBAction func saveButtonDidClicked(sender: AnyObject) {
-        self.showSavePrompt()
+        initSaving()
     }
 
     @IBAction func loadButtonDidClicked(sender: AnyObject) {
@@ -520,7 +552,39 @@ class LevelDesignerViewController: XViewController {
         levelVC.popoverPresentationController?.barButtonItem = self.loadButton
     }
     
+    @IBAction func cancelSaveBtnDidClicked(sender: AnyObject) {
+        isSaving = false
+        saveHintLabel.hidden = true
+        confirmBar.hidden = true
+        deselectNode()
+        for (id, xnode) in self.xNodes {
+            let nodeView = deviceViews[id]! as UIView
+            if xnode.isFixed {
+                nodeView.layer.opacity = 1.0
+            }
+        }
+        // 4. clear ray
+        clearRay()
+        
+        // 5. reload the designer with the grid we have saved
+        self.grid.clearInstruments()
+        for (id, view) in self.deviceViews {
+            view.removeFromSuperview()
+        }
+        self.clearRay()
+        
+        for (id, opticNode) in self.gridCopy!.instruments {
+            self.addNode(opticNode, strokeColor: getColorForNode(opticNode))
+        }
+        
+        self.grid = self.gridCopy!
+        self.grid.delegate = self
+        self.shootRay()
+    }
     
+    @IBAction func confirmSaveBtnDidClicked(sender: AnyObject) {
+        showSavePrompt()
+    }
     
 //------------------------------------------------------------------------------
 //    Private Methods
@@ -818,6 +882,10 @@ class LevelDesignerViewController: XViewController {
     
     private func selectNode(optionalNode: GOOpticRep?) {
         if let node = optionalNode {
+            if isSaving && isNodeFixed(node) {
+                // if it is saving now, can only select movable node
+                return
+            }
             self.selectedNode = node
             if let view = self.deviceViews[node.id] {
                 view.alpha = 0.5
@@ -872,7 +940,6 @@ class LevelDesignerViewController: XViewController {
         
         return true
     }
-
     
     private func moveNode(node: GOOpticRep, from: CGPoint,offset: CGPoint) -> Bool{
         let offsetX = offset.x
@@ -914,15 +981,17 @@ class LevelDesignerViewController: XViewController {
     }
 
     private func removeNode(node: GOOpticRep) {
-        if self.selectedNode == node {
-            self.deselectNode()
+        if !isSaving {
+            if self.selectedNode == node {
+                self.deselectNode()
+            }
+            
+            self.deviceViews[node.id]?.removeFromSuperview()
+            self.deviceViews[node.id] = nil
+            self.xNodes[node.id] = nil
+            self.grid.removeInstrumentForID(node.id)
+            self.shootRay()
         }
-        
-        self.deviceViews[node.id]?.removeFromSuperview()
-        self.deviceViews[node.id] = nil
-        self.xNodes[node.id] = nil
-        self.grid.removeInstrumentForID(node.id)
-        self.shootRay()
     }
     
     private func addRay(ray: GORay) {
@@ -934,12 +1003,14 @@ class LevelDesignerViewController: XViewController {
     }
     
     private func shootRay() {
-        self.clearRay()
-        for (name, item) in self.grid.instruments {
-            if let item = item as? GOEmitterRep {
-                self.addRay(item.getRay())
+        // do not shoot ray if is saving
+        if !isSaving {
+            self.clearRay()
+            for (name, item) in self.grid.instruments {
+                if let item = item as? GOEmitterRep {
+                    self.addRay(item.getRay())
+                }
             }
-            
         }
     }
     
@@ -948,8 +1019,6 @@ class LevelDesignerViewController: XViewController {
             if self.rays.count == 0 {
                 return
             }
-            
-            
             
             if currentIndex < self.rays[tag]?.count {
                 let layer = CAShapeLayer()
@@ -1081,6 +1150,35 @@ class LevelDesignerViewController: XViewController {
         // Dispose of any resources that can be recreated.
     }
     
+    private func initSaving() {
+        isSaving = true
+        
+        //  keep a copy of current grid (solved version) and music
+        self.gridCopy = self.grid.deepCopy()
+        self.musicCopy = self.music.deepCopy()
+        
+        // 1. display save UI
+        saveHintLabel.hidden = false
+        confirmBar.hidden = false
+        // 2. cannot move devices other than moveable one, and deselect current node
+        deselectNode()
+        // 3. movable device redraw
+        for (id, xnode) in self.xNodes {
+            let nodeView = deviceViews[id]! as UIView
+            if xnode.isFixed {
+                nodeView.layer.opacity = 0.3
+            }
+        }
+        
+        // 4. clear ray and panel
+        clearRay()
+        self.inputPanel.userInteractionEnabled = false
+        self.inputPanel.alpha = 0
+        self.planckInputPanel.userInteractionEnabled = false
+        self.planckInputPanel.alpha = 0
+    }
+    
+    
     
     // MARK: - ALERT
     private func showSavePrompt() {
@@ -1122,10 +1220,10 @@ class LevelDesignerViewController: XViewController {
                         }
                         
                         // create deep copy
-                        var savedGrid = NSKeyedUnarchiver.unarchiveObjectWithData(NSKeyedArchiver.archivedDataWithRootObject(self.grid)) as GOGrid
+                        var savedGrid = self.grid.deepCopy() // this is the puzzle grid
                         var savedNodes = NSKeyedUnarchiver.unarchiveObjectWithData(NSKeyedArchiver.archivedDataWithRootObject(self.xNodes)) as Dictionary<String, XNode>
                         
-                        let game = GameLevel(levelName: inputName, levelIndex: nextIndex, grid: savedGrid, nodes: savedNodes, targetMusic: self.music)
+                        let game = GameLevel(levelName: inputName, levelIndex: nextIndex, grid: savedGrid, solvedGrid: self.gridCopy!, nodes: savedNodes, targetMusic: self.musicCopy!)
                         
                         if nextIndex == 0 {
                             game.isUnlock = true // unlock first level
@@ -1143,9 +1241,9 @@ class LevelDesignerViewController: XViewController {
                         
                         self.gameName = inputName
                         self.gameIndex = nextIndex
+                        self.isSaving = false
                         
                         self.dismissViewController()
-                        
                 } else {
                     // invalid
                     self.showWrongInputAlert()
@@ -1172,6 +1270,12 @@ class LevelDesignerViewController: XViewController {
         self.presentViewController(alert, animated: true, completion: nil)
     }
 
+    private func isNodeFixed(node: GOOpticRep) -> Bool {
+        if let xNode = self.xNodes[node.id] {
+            return xNode.isFixed
+        }
+        fatalError("Inconsistency between xNodes and nodes")
+    }
     
     
     /*

@@ -388,6 +388,10 @@ class GOGrid: NSObject, NSCoding {
         return output
     }
     
+    func deepCopy() -> GOGrid {
+        return NSKeyedUnarchiver.unarchiveObjectWithData(NSKeyedArchiver.archivedDataWithRootObject(self)) as GOGrid
+    }
+    
     private func getIntersectionWithBoundary(#ray:GORay) -> CGPoint? {
         for bound in boundaries {
             if let point = bound.getIntersectionPoint(ray) {
@@ -403,5 +407,6 @@ class GOGrid: NSObject, NSCoding {
         
         return nil
     }
+    
     
 }

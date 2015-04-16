@@ -78,6 +78,24 @@
                                 <color key="tintColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="calibratedRGB"/>
                                 <color key="barTintColor" red="0.26274509800000001" green="0.36862745099999999" blue="0.46274509800000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                             </toolbar>
+                            <toolbar hidden="YES" opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="2BM-04-gt3">
+                                <rect key="frame" x="0.0" y="724" width="1024" height="44"/>
+                                <items>
+                                    <barButtonItem title="Cancel" id="qLt-wm-fUu" userLabel="Cancel">
+                                        <connections>
+                                            <action selector="cancelSaveBtnDidClicked:" destination="ICT-TY-Uh1" id="Rds-XB-L0z"/>
+                                        </connections>
+                                    </barButtonItem>
+                                    <barButtonItem style="plain" systemItem="flexibleSpace" id="4ve-3d-ZjB"/>
+                                    <barButtonItem title="Confirm" id="qaY-05-xI1" userLabel="Confirm">
+                                        <connections>
+                                            <action selector="confirmSaveBtnDidClicked:" destination="ICT-TY-Uh1" id="meX-ye-vS8"/>
+                                        </connections>
+                                    </barButtonItem>
+                                </items>
+                                <color key="tintColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="calibratedRGB"/>
+                                <color key="barTintColor" red="0.26274509800000001" green="0.36862745099999999" blue="0.46274509800000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                            </toolbar>
                             <view multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="EoB-ZE-bU7">
                                 <rect key="frame" x="0.0" y="0.0" width="1024" height="724"/>
                                 <subviews>
@@ -273,6 +291,12 @@
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         <gestureRecognizers/>
                                     </view>
+                                    <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Place your moveable devices to its initial position in the puzzle" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="rjc-89-bWW">
+                                        <rect key="frame" x="265" y="8" width="494" height="21"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="calibratedRGB"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
                                 </subviews>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                 <gestureRecognizers/>
@@ -294,6 +318,7 @@
                     <size key="freeformSize" width="1024" height="768"/>
                     <connections>
                         <outlet property="accidentalPicker" destination="UxK-0m-h8g" id="xhk-vE-Hyh"/>
+                        <outlet property="confirmBar" destination="2BM-04-gt3" id="u6S-pI-3Zb"/>
                         <outlet property="deviceSegment" destination="9gO-qO-sAS" id="quA-kf-yuz"/>
                         <outlet property="groupPicker" destination="gHU-uu-uP1" id="ioD-zs-qHx"/>
                         <outlet property="inputPanel" destination="4BT-L2-RuS" id="0Xr-mn-ErZ"/>
@@ -310,6 +335,7 @@
                         <outlet property="loadButton" destination="9mI-Ed-y62" id="Jqb-gi-V6f"/>
                         <outlet property="notePicker" destination="eb2-aC-rEe" id="Rcs-zy-sjv"/>
                         <outlet property="planckInputPanel" destination="PcM-6l-K8S" id="GVn-iN-Wj6"/>
+                        <outlet property="saveHintLabel" destination="rjc-89-bWW" id="jHl-u3-7UR"/>
                         <outlet property="textFieldCenterX" destination="8e6-CP-bI1" id="YRA-4D-Z5I"/>
                         <outlet property="textFieldCenterY" destination="J9A-rf-tP5" id="N8r-tq-CtH"/>
                         <outlet property="textFieldCurvatureRadius" destination="TPT-r4-OZD" id="0G2-dj-Z31"/>
@@ -358,7 +384,7 @@
                     </connections>
                 </tapGestureRecognizer>
             </objects>
-            <point key="canvasLocation" x="-239" y="-481"/>
+            <point key="canvasLocation" x="-171" y="-517"/>
         </scene>
         <!--Designer Level Select View Controller-->
         <scene sceneID="ewF-Cs-yPt">

@@ -52,6 +52,10 @@ class XMusic: NSObject, NSCoding {
         aCoder.encodeInt(Int32(self.numberOfPlanck), forKey: NSCodingKey.MusicNumberOfPlanck)
     }
     
+    func deepCopy() -> XMusic {
+        return NSKeyedUnarchiver.unarchiveObjectWithData(NSKeyedArchiver.archivedDataWithRootObject(self)) as XMusic
+    }
+    
     func reset() {
         self.isArranged = true
         self.numberOfPlanck = 0
