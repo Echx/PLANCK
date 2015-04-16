@@ -74,6 +74,7 @@ class GameViewController: XViewController {
     
     private func reloadLevel(gameLevel: GameLevel) {
         self.isVirgin = nil
+        self.isFirstTimeShowMusic = true
         self.shootSwitch.setOn(false, animated: true)
         self.clear()
         self.gameLevel = gameLevel
