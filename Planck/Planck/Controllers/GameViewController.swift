@@ -446,9 +446,7 @@ class GameViewController: XViewController {
             markView.transform = CGAffineTransformTranslate(CGAffineTransformMakeRotation(degree), emitter.length * self.grid.unitLength / 2, 0)
             
             view.addSubview(markView)
-            view.layer.zPosition = 100
         }
-        
         view.layer.addSublayer(layer)
         
         self.deviceViews[node.id] = view
