@@ -1134,7 +1134,7 @@ class LevelDesignerViewController: XViewController {
         }
         self.clearRay()
         
-        for (id, opticNode) in level.grid.instruments {
+        for (id, opticNode) in level.originalGrid.instruments {
             self.addNode(opticNode, strokeColor: getColorForNode(opticNode))
         }
         
