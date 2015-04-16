@@ -10,6 +10,7 @@ import UIKit
 
 protocol TargetMusicMaskViewDelegate {
     func didFinishPlaying()
+    func musicMaskViewDidDismiss(view: TargetMusicMaskView)
 }
 
 class TargetMusicMaskView: UIView {
@@ -68,6 +69,7 @@ class TargetMusicMaskView: UIView {
             }, completion: {
                 finished in
                 self.removeFromSuperview()
+                self.delegate?.musicMaskViewDidDismiss(self)
             })
     }
     

@@ -60,7 +60,6 @@ class GameViewController: XViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.setUpGrid()
         self.view.backgroundColor = UIColor(patternImage: UIImage(named: "mainbackground")!)
         self.pauseMask.delegate = self
         self.transitionMask.delegate = self
@@ -206,10 +205,14 @@ class GameViewController: XViewController {
         fatalError("Inconsistency between xNodes and nodes")
     }
     
+    var nodeCount = 0
     private func setUpGrid() {
         for (key, node) in self.grid.instruments {
             self.addNode(node, strokeColor: self.xNodes[node.id]!.strokeColor)
+            nodeCount++;
         }
+        
+        nodeCount = 0
         self.grid.delegate = self
     }
     
@@ -626,5 +629,9 @@ extension GameViewController: LevelTransitionMaskViewDelegate {
 extension GameViewController: TargetMusicMaskViewDelegate {
     func didFinishPlaying() {
         self.musicMask.hide()
+    }
+    
+    func musicMaskViewDidDismiss(view: TargetMusicMaskView) {
+        self.setUpGrid()
     }
 }
