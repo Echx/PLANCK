@@ -12,7 +12,7 @@ class XFlatWall: XNode {
     init(flatWall: GOFlatWallRep) {
         super.init(physicsBody: flatWall)
         self.strokeColor = DeviceColor.wall
-        self.normalNote = XNote(noteName: XNoteName.cymbal, noteGroup: nil, instrument: nil)
+        self.normalNote = nil
     }
 
     required convenience init(coder aDecoder: NSCoder) {

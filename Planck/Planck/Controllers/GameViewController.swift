@@ -77,8 +77,6 @@ class GameViewController: XViewController {
         self.clear()
         self.gameLevel = gameLevel
         self.originalLevel = gameLevel.deepCopy()
-
-        self.setUpGrid()
     }
     
     private func clear() {
@@ -432,16 +430,7 @@ class GameViewController: XViewController {
         let layer = CAShapeLayer()
         layer.strokeEnd = 1.0
         layer.fillColor = strokeColor.CGColor
-        layer.lineWidth = 2
-        if let xnode = self.xNodes[node.id] {
-            if !xnode.isFixed {
-                layer.strokeColor = UIColor.blackColor().colorWithAlphaComponent(0.5).CGColor
-            } else {
-                layer.strokeColor = UIColor.clearColor().CGColor
-            }
-        } else {
-            fatalError("no corresponding xnode")
-        }
+        layer.lineWidth = 0
         layer.shadowRadius = 2
         layer.shadowColor = strokeColor.CGColor
         layer.shadowOpacity = 0.5
