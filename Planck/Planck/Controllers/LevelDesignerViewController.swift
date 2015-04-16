@@ -949,6 +949,8 @@ class LevelDesignerViewController: XViewController {
                 return
             }
             
+            
+            
             if currentIndex < self.rays[tag]?.count {
                 let layer = CAShapeLayer()
                 layer.strokeEnd = 1.0
@@ -979,9 +981,8 @@ class LevelDesignerViewController: XViewController {
                 pathAnimation.timingFunction = CAMediaTimingFunction(name: kCAMediaTimingFunctionLinear)
                 
                 layer.addAnimation(pathAnimation, forKey: "strokeEnd")
-                if currentIndex > 1 {
-                    self.playNote(prevPoint.1, tag: tag)
-                }
+                
+                self.playNote(prevPoint.1, tag: tag)
                 
                 if self.pathDistances[tag] == nil {
                     self.pathDistances[tag] = CGFloat(0)
@@ -993,6 +994,11 @@ class LevelDesignerViewController: XViewController {
                 dispatch_after(dispatch_time(DISPATCH_TIME_NOW, Int64(delayInNanoSeconds)), dispatch_get_main_queue()) {
                     self.drawRay(tag, currentIndex: currentIndex + 1)
                 }
+            } else if currentIndex == self.rays[tag]?.count {
+                // last light might generate sound!
+                let rayPath = self.rays[tag]!
+                let prevPoint = rayPath[currentIndex - 1]
+                self.playNote(prevPoint.1, tag: tag)
             }
         }
     }
