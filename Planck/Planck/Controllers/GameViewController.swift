@@ -447,7 +447,25 @@ class GameViewController: XViewController {
             
             view.addSubview(markView)
         }
+        
         view.layer.addSublayer(layer)
+        
+        if !isNodeFixed(node) {
+            
+            let markView  = UIView(frame: CGRectMake(0, 0, Constant.rayWidth * 2, Constant.rayWidth))
+
+            if node.type == DeviceType.Mirror {
+                markView.backgroundColor = UIColor(white: 0, alpha: 0.2)
+            } else {
+                markView.backgroundColor = UIColor.whiteColor()
+            }
+            
+            markView.center = view.center
+            let degree = node.direction.angleFromXPlus
+            markView.transform = CGAffineTransformMakeRotation(degree)
+            
+            view.addSubview(markView)
+        }
         
         self.deviceViews[node.id] = view
         var offsetX = CGFloat(coordinateBackup.x - node.center.x) * self.grid.unitLength
