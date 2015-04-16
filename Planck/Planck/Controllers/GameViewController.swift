@@ -113,12 +113,9 @@ class GameViewController: XViewController {
                 self.deviceViews[node.id]!,
                 direction: CGVectorMake(1, 0))
             if let sound = self.xNodes[node.id]?.getSound() {
-                if let wall = node as? GOFlatWallRep {
-                } else {
-                    audioPlayer = AVAudioPlayer(contentsOfURL: sound, error: nil)
-                    audioPlayer!.prepareToPlay()
-                    audioPlayer!.play()
-                }
+                audioPlayer = AVAudioPlayer(contentsOfURL: sound, error: nil)
+                audioPlayer!.prepareToPlay()
+                audioPlayer!.play()
             }
             
             if self.isNodeFixed(node) {
