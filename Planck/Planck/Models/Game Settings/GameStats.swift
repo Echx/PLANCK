@@ -39,8 +39,28 @@ class GameStats: NSObject {
         return defaults.integerForKey(XStats.totalScore)
     }
     
+    class func increaseTotalGamePlay() {
+        let defaults = NSUserDefaults.standardUserDefaults()
+        var oldTotal = defaults.integerForKey(XStats.totalGamePlay)
+        oldTotal++
+        defaults.setInteger(oldTotal, forKey: XStats.totalGamePlay)
+    }
     
+    class func getTotalGamePlay() -> Int {
+        let defaults = NSUserDefaults.standardUserDefaults()
+        return defaults.integerForKey(XStats.totalGamePlay)
+    }
     
+    class func increaseTotalLightFire() {
+        let defaults = NSUserDefaults.standardUserDefaults()
+        var oldTotal = defaults.integerForKey(XStats.totalFireLight)
+        oldTotal++
+        defaults.setInteger(oldTotal, forKey: XStats.totalFireLight)
+    }
     
-    
+    class func getTotalLightFire() -> Int {
+        let defaults = NSUserDefaults.standardUserDefaults()
+        return defaults.integerForKey(XStats.totalFireLight)
+    }
+
 }

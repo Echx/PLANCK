@@ -240,6 +240,9 @@ struct XStats {
     static let totalScore = "totalScore"
     
     static let firstTime = "firstTime"
+    
+    static let totalGamePlay = "totalGamePlay"
+    static let totalFireLight = "totalFireLight"
 }
 
 struct XGameCenter {
