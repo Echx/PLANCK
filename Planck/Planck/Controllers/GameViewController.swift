@@ -96,7 +96,7 @@ class GameViewController: XViewController {
         self.deviceViews = [String: UIView]()
     }
     
-    private func setUpSwitchView {
+    private func setUpSwitchView() {
         
     }
     
