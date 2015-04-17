@@ -97,7 +97,7 @@ class GameViewController: XViewController {
     }
     
     private func setUpSwitchView() {
-        
+        self.switchView.addSubview(SwitchView())
     }
     
     @IBAction func switchValueDidChange(sender: UISwitch) {
