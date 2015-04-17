@@ -15,7 +15,7 @@ class SettingViewController: XViewController, UITableViewDataSource, UITableView
     private let sectionTitleForSupport = "support"
     private let sectionTitleForGameCenter = "game center"
     private let sectionTitleForAudio = "audio"
-    private let sectionTitleForLevelDesigner = "Design"
+    private let sectionTitleForLevelDesigner = "design"
 
     private let numOfExtraSection = 2
     
@@ -52,7 +52,7 @@ class SettingViewController: XViewController, UITableViewDataSource, UITableView
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         if indexPath.section == sectionIDForLevelDesigner {
             let cell = tableView.dequeueReusableCellWithIdentifier(textCellId, forIndexPath: indexPath) as UITableViewCell
-            cell.textLabel?.text = "Level Designer"
+            cell.textLabel?.text = "level designer"
             return cell
         } else if indexPath.section == sectionIDForSupport {
             let cell = tableView.dequeueReusableCellWithIdentifier(textCellId, forIndexPath: indexPath) as UITableViewCell
@@ -140,7 +140,7 @@ class SettingViewController: XViewController, UITableViewDataSource, UITableView
     }
     
     private func getStaticGameCenterSupportItems() -> [String] {
-        var cellItems = ["achievements", "leaderboards"]
+        var cellItems = ["achievements", "leaderboards", "statistics"]
         return cellItems
     }
     
