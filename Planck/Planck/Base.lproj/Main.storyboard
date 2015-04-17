@@ -469,7 +469,7 @@
                                 </connections>
                             </button>
                             <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="cHv-Lh-hak">
-                                <rect key="frame" x="16" y="65" width="64" height="64"/>
+                                <rect key="frame" x="5" y="57" width="332" height="252"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                             </view>
                         </subviews>

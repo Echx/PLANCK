@@ -68,6 +68,8 @@
 		26D9ABB21AD7D9CA00D70D83 /* GOOverlapManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26D9ABB01AD7CB1700D70D83 /* GOOverlapManager.swift */; };
 		26DFCF9C1AD8467000C97C5B /* XEmitter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26DFCF9B1AD8467000C97C5B /* XEmitter.swift */; };
 		620BD4461AB2E69800267C7B /* XNote.swift in Sources */ = {isa = PBXBuildFile; fileRef = 620BD4451AB2E69800267C7B /* XNote.swift */; };
+		621E1DE61AE1122C0035B4B5 /* SwitchView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 621E1DE51AE1122C0035B4B5 /* SwitchView.swift */; };
+		621E1DE71AE113D20035B4B5 /* SwitchView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 621E1DE51AE1122C0035B4B5 /* SwitchView.swift */; };
 		6227FB6E1AAE285C007F49EA /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6227FB6D1AAE285C007F49EA /* AppDelegate.swift */; };
 		6227FB771AAE285C007F49EA /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 6227FB751AAE285C007F49EA /* Main.storyboard */; };
 		6227FB791AAE285C007F49EA /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 6227FB781AAE285C007F49EA /* Images.xcassets */; };
@@ -373,6 +375,7 @@
 		26D9ABB01AD7CB1700D70D83 /* GOOverlapManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GOOverlapManager.swift; sourceTree = "<group>"; };
 		26DFCF9B1AD8467000C97C5B /* XEmitter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = XEmitter.swift; path = Optics/XEmitter.swift; sourceTree = "<group>"; };
 		620BD4451AB2E69800267C7B /* XNote.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = XNote.swift; sourceTree = "<group>"; };
+		621E1DE51AE1122C0035B4B5 /* SwitchView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SwitchView.swift; sourceTree = "<group>"; };
 		6227FB681AAE285C007F49EA /* Planck.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Planck.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		6227FB6C1AAE285C007F49EA /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		6227FB6D1AAE285C007F49EA /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -650,6 +653,7 @@
 				262F382D1ADACA8F00FA2177 /* BadgeView.swift */,
 				2602B9191ADB032C00F8ABC0 /* PauseMaskView.swift */,
 				6291FBE21ADED1A3007464FC /* TargetMusicMaskView.swift */,
+				621E1DE51AE1122C0035B4B5 /* SwitchView.swift */,
 			);
 			path = LevelTransition;
 			sourceTree = "<group>";
@@ -1425,6 +1429,7 @@
 				98D55F9E1ABF133000B3E86A /* StorageManager.swift in Sources */,
 				269D78381AD306F000279EF3 /* SettingViewController.swift in Sources */,
 				263B09AC1ACEEDD800E7C99E /* GOCoordinate.swift in Sources */,
+				621E1DE61AE1122C0035B4B5 /* SwitchView.swift in Sources */,
 				267EC2D41AB1DA01002FE745 /* CGVector+XUtility.swift in Sources */,
 				6291FBE31ADED1A3007464FC /* TargetMusicMaskView.swift in Sources */,
 				26C8ADDA1AD00437008ADACB /* LevelDesignerViewController.swift in Sources */,
@@ -1485,6 +1490,7 @@
 			files = (
 				62E323391ADAF56400CFD4CA /* XFlatWall.swift in Sources */,
 				986E5DA31AC55604008EF3CE /* StorageManager.swift in Sources */,
+				621E1DE71AE113D20035B4B5 /* SwitchView.swift in Sources */,
 				62E3232C1ADAF52300CFD4CA /* DesignerLevelSelectViewController.swift in Sources */,
 				62E3232E1ADAF52900CFD4CA /* HomeViewController.swift in Sources */,
 				98F63AA51AD1650F0096A32E /* GOPath.swift in Sources */,
