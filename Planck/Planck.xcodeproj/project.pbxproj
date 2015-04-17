@@ -298,6 +298,7 @@
 		988CF34A1AD3C6C70013D903 /* LevelSelectCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 988CF3491AD3C6C70013D903 /* LevelSelectCollectionViewCell.swift */; };
 		98C2CBAA1ADD199000074127 /* GameStats.swift in Sources */ = {isa = PBXBuildFile; fileRef = 98C2CBA91ADD199000074127 /* GameStats.swift */; };
 		98C2CBAC1ADD19CE00074127 /* GamiCent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 98C2CBAB1ADD19CE00074127 /* GamiCent.swift */; };
+		98CEFDF31AE139050060EE23 /* GameStasticViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 98CEFDF21AE139050060EE23 /* GameStasticViewController.swift */; };
 		98D55F9E1ABF133000B3E86A /* StorageManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 98D55F9D1ABF133000B3E86A /* StorageManager.swift */; };
 		98F63A951AD165070096A32E /* GOConcaveLensRep.swift in Sources */ = {isa = PBXBuildFile; fileRef = 263B09A41ACEEDD800E7C99E /* GOConcaveLensRep.swift */; };
 		98F63A961AD165070096A32E /* GOConvexLensRep.swift in Sources */ = {isa = PBXBuildFile; fileRef = 263B09A51ACEEDD800E7C99E /* GOConvexLensRep.swift */; };
@@ -584,6 +585,7 @@
 		988CF3491AD3C6C70013D903 /* LevelSelectCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LevelSelectCollectionViewCell.swift; sourceTree = "<group>"; };
 		98C2CBA91ADD199000074127 /* GameStats.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GameStats.swift; sourceTree = "<group>"; };
 		98C2CBAB1ADD19CE00074127 /* GamiCent.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GamiCent.swift; sourceTree = "<group>"; };
+		98CEFDF21AE139050060EE23 /* GameStasticViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GameStasticViewController.swift; sourceTree = "<group>"; };
 		98D55F9D1ABF133000B3E86A /* StorageManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = StorageManager.swift; path = Storage/StorageManager.swift; sourceTree = "<group>"; };
 		D9EB5B984B678F09D432FC9D /* Pods-Planck.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Planck.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Planck/Pods-Planck.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -801,6 +803,7 @@
 				982495D71AD2ACC10039E75E /* DesignerLevelSelectViewController.swift */,
 				26C8ADD91AD00437008ADACB /* LevelDesignerViewController.swift */,
 				269D78371AD306F000279EF3 /* SettingViewController.swift */,
+				98CEFDF21AE139050060EE23 /* GameStasticViewController.swift */,
 				269D783D1AD3088300279EF3 /* HomeViewController.swift */,
 				269D78391AD3070100279EF3 /* LevelSelectViewController.swift */,
 				269D78411AD3128D00279EF3 /* GameViewController.swift */,
@@ -1431,6 +1434,7 @@
 				263B09AC1ACEEDD800E7C99E /* GOCoordinate.swift in Sources */,
 				621E1DE61AE1122C0035B4B5 /* SwitchView.swift in Sources */,
 				267EC2D41AB1DA01002FE745 /* CGVector+XUtility.swift in Sources */,
+				98CEFDF31AE139050060EE23 /* GameStasticViewController.swift in Sources */,
 				6291FBE31ADED1A3007464FC /* TargetMusicMaskView.swift in Sources */,
 				26C8ADDA1AD00437008ADACB /* LevelDesignerViewController.swift in Sources */,
 				262F382E1ADACA8F00FA2177 /* BadgeView.swift in Sources */,

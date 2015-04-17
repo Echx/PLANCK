@@ -77,7 +77,7 @@ class SettingViewController: XViewController, UITableViewDataSource, UITableView
         } else if section == sectionIDForSupport {
             return 3
         } else if section == sectionIDForGameCenter {
-            return 2
+            return 3
         } else {
             return 1
         }
@@ -98,7 +98,7 @@ class SettingViewController: XViewController, UITableViewDataSource, UITableView
     }
     
     func tableView(tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
-        return 30
+        return 20
     }
     
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
@@ -113,10 +113,18 @@ class SettingViewController: XViewController, UITableViewDataSource, UITableView
                 dispatch_async(dispatch_get_main_queue(), {
                     GamiCent.showAchievements(completion: nil)
                 })
-            } else {
+            } else if indexPath.item == 1 {
                 // item 2 : view leaderboard
                 dispatch_async(dispatch_get_main_queue(), {
                     GamiCent.showLeaderboard(leaderboardID: XGameCenter.leaderboardID, completion: nil)
+                })
+            } else {
+                // item 3 : view statstic
+                self.mm_drawerController()!.closeDrawerAnimated(true, completion: { (bool) -> Void in
+                    let storyboard = UIStoryboard(name: "Main", bundle: nil)
+                    let identifier = StoryboardIndentifier.GameStats
+                    let viewController = storyboard.instantiateViewControllerWithIdentifier(identifier) as GameStasticViewController
+                    
                 })
             }
         }

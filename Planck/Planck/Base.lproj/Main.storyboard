@@ -633,7 +633,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="40" sectionHeaderHeight="60" sectionFooterHeight="60" translatesAutoresizingMaskIntoConstraints="NO" id="RjJ-1b-9MS">
-                                <rect key="frame" x="23" y="137" width="268" height="620"/>
+                                <rect key="frame" x="23" y="120" width="268" height="620"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                 <color key="tintColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                 <color key="sectionIndexBackgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
@@ -711,6 +711,26 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="i5j-L0-sh5" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="-1125" y="397"/>
+        </scene>
+        <!--Game Stastic View Controller-->
+        <scene sceneID="Yri-7T-SAD">
+            <objects>
+                <viewController storyboardIdentifier="GameStasticViewController" id="dGj-R7-NpS" customClass="GameStasticViewController" customModule="Planck" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="lEh-15-I2X"/>
+                        <viewControllerLayoutGuide type="bottom" id="kwB-fi-jpc"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="jNI-zp-gF2">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="400"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                    <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+                    <size key="freeformSize" width="600" height="400"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="W7P-68-ek8" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-239" y="1238"/>
         </scene>
     </scenes>
     <resources>

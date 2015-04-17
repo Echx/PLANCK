@@ -32,6 +32,7 @@ struct StoryboardIndentifier {
     static let Game = "GameViewController"
     static let LevelSelect = "LevelSelectViewController"
     static let DesignerLevelSelect = "DesignerLevelSelectViewController"
+    static let GameStats = "GameStasticViewController"
 }
 
 struct ReuseableID {
