@@ -52,7 +52,7 @@ class SwitchView: UIView {
         rightPolePath.lineJoinStyle = kCGLineJoinBevel
         rightPolePath.lineCapStyle = kCGLineCapRound
         rightPolePath.addArcWithCenter(CGPoint(x: 65 + 2 * SwitchDefaults.circleRadius, y: 20), radius: CGFloat(SwitchDefaults.circleRadius), startAngle: CGFloat(0), endAngle: CGFloat(2 * M_PI), clockwise: true)
-        rightPolePath.addLineToPoint(CGPoint(x: 75 + 3 * SwitchDefaults.circleRadius, y: 20))
+        rightPolePath.addLineToPoint(CGPoint(x: 75 + 5 * SwitchDefaults.circleRadius, y: 20))
 
         self.switchThrow.path = throwPath.CGPath
         self.leftPole.path = leftPolePath.CGPath
