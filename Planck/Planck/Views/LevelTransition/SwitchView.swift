@@ -42,8 +42,8 @@ class SwitchView: UIView {
         
         rightPolePath.lineJoinStyle = kCGLineJoinBevel
         rightPolePath.lineCapStyle = kCGLineCapRound
-        rightPolePath.addArcWithCenter(CGPoint(x: 105, y: 20), radius: CGFloat(10), startAngle: CGFloat(M_PI), endAngle: CGFloat(-M_PI), clockwise: true)
-        rightPolePath.addLineToPoint(CGPoint(x: 125, y: 20))
+        rightPolePath.addArcWithCenter(CGPoint(x: 105, y: 20), radius: CGFloat(10), startAngle: CGFloat(0), endAngle: CGFloat(2 * M_PI), clockwise: true)
+        rightPolePath.addLineToPoint(CGPoint(x: 135, y: 20))
 
         
         
