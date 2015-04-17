@@ -30,6 +30,8 @@ class GameViewController: XViewController {
     private var numberOfFinishedRay = 0
     private var audioPlayer: AVAudioPlayer?
     
+    @IBOutlet var switchView: UIView!
+    
     private var isVirgin: Bool?
     private var shouldShowNextLevel: Bool = false
     private var queue = dispatch_queue_create("CHECKING_SERIAL_QUEUE", DISPATCH_QUEUE_SERIAL)
@@ -62,6 +64,7 @@ class GameViewController: XViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         self.view.backgroundColor = UIColor(patternImage: UIImage(named: "mainbackground")!)
+        self.setUpSwitchView()
         self.pauseMask.delegate = self
         self.transitionMask.delegate = self
         self.musicMask.delegate = self
@@ -91,6 +94,10 @@ class GameViewController: XViewController {
             view.removeFromSuperview()
         }
         self.deviceViews = [String: UIView]()
+    }
+    
+    private func setUpSwitchView {
+        
     }
     
     @IBAction func switchValueDidChange(sender: UISwitch) {
