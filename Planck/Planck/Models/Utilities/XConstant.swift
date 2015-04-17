@@ -174,6 +174,14 @@ struct MusicDefaults {
     static let musicBuffer: CGFloat = 0.5
 }
 
+struct ErrorMsg {
+    static let invalidPicker = "Invalid Picker"
+    static let nodeInconsistency = "Inconsistency between xNodes and nodes"
+    static let nodeInvalid = "node not recognized"
+    static let segmentInvalid = "Segment Not Recognized"
+    static let nodeNotExist = "The node for the physics body not existed"
+}
+
 struct LevelDesignerDefaults {
     static let selectorButtonClicked: Selector = "buttonDidClicked:"
     static let selectorFunctionalButtonClicked: Selector = "functionalButtonDidClicked:"

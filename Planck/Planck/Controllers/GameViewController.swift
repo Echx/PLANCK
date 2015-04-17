@@ -118,9 +118,7 @@ class GameViewController: XViewController {
                 audioPlayer!.play()
             }
             
-            if self.isNodeFixed(node) {
-                println("node is fixed")
-            } else {
+            if !self.isNodeFixed(node) {
                 self.shootSwitch.setOn(false, animated: true)
                 self.clearRay()
                 updateDirection(node)
@@ -197,8 +195,9 @@ class GameViewController: XViewController {
     private func isNodeFixed(node: GOOpticRep) -> Bool {
         if let xNode = self.xNodes[node.id] {
             return xNode.isFixed
+        } else {
+            fatalError(ErrorMsg.nodeInconsistency)
         }
-        fatalError("Inconsistency between xNodes and nodes")
     }
     
     var nodeCount = 0
@@ -409,7 +408,7 @@ class GameViewController: XViewController {
                     self.music.appendDistance(self.pathDistances[tag]!, forNote: note)
                 }
             } else {
-                fatalError("The node for the physics body not existed")
+                fatalError(ErrorMsg.nodeNotExist)
             }
         }
     }
@@ -531,22 +530,6 @@ class GameViewController: XViewController {
         let offset = CGPointMake(offsetX, offsetY)
         return self.moveNode(node, from: originalCenter, offset: offset)
     }
-    
-        
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
-    }
-    
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
-    }
-    */
 
 }
 
@@ -591,7 +574,6 @@ extension GameViewController: LevelTransitionMaskViewDelegate {
             if self.shouldShowNextLevel {
                 // save current game if it is not preview mode
                 if !isPreview {
-                    println("saving!")
                     dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), {
                         StorageManager.defaultManager.saveCurrentLevel(self.originalLevel)
                     })

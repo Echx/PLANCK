@@ -96,9 +96,6 @@ class LevelDesignerViewController: XViewController {
     private let gridHeight = 48
     private let gridUnitLength: CGFloat = 16
     
-    private let cellID = "Cell"
-    private let storyBoardID = "Main"
-    
     private let validNamePattern = "^[a-zA-Z0-9]+$"
     private var isSaving: Bool = false
     
@@ -278,7 +275,7 @@ class LevelDesignerViewController: XViewController {
             self.addDevice(convexLensPhysicsBody)
             
         default:
-            fatalError("SegmentNotRecognized")
+            fatalError(ErrorMsg.segmentInvalid)
         }
         self.shootRay()
     }
@@ -481,7 +478,7 @@ class LevelDesignerViewController: XViewController {
                 return false
             }
         } else {
-            fatalError("node not recognized")
+            fatalError(ErrorMsg.nodeInvalid)
         }
     }
     
@@ -543,7 +540,7 @@ class LevelDesignerViewController: XViewController {
 
     @IBAction func loadButtonDidClicked(sender: AnyObject) {
         // Create a level select VC instance
-        var storyBoard = UIStoryboard(name: storyBoardID, bundle: nil)
+        var storyBoard = UIStoryboard(name: StoryboardIndentifier.StoryBoardID, bundle: nil)
         var levelVC = storyBoard.instantiateViewControllerWithIdentifier(StoryboardIndentifier.DesignerLevelSelect)
             as DesignerLevelSelectViewController
         levelVC.modalPresentationStyle = UIModalPresentationStyle.Popover
@@ -1121,8 +1118,6 @@ class LevelDesignerViewController: XViewController {
                     let note = device.getNote()!
                     self.music.appendDistance(self.pathDistances[tag]!, forNote: note)
                 }
-            } else {
-                fatalError("The node for the physics body not existed")
             }
         }
     }
@@ -1138,16 +1133,10 @@ class LevelDesignerViewController: XViewController {
             self.addNode(opticNode, strokeColor: getColorForNode(opticNode))
         }
         
-
         self.xNodes = level.xNodes
 
         self.shootRay()
 
-    }
-    
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
     }
     
     private func initSaving() {
@@ -1274,20 +1263,8 @@ class LevelDesignerViewController: XViewController {
         if let xNode = self.xNodes[node.id] {
             return xNode.isFixed
         }
-        fatalError("Inconsistency between xNodes and nodes")
+        fatalError(ErrorMsg.nodeInconsistency)
     }
-    
-    
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
-    }
-    */
-
 }
 
 extension LevelDesignerViewController: LevelSelectDelegate {
@@ -1316,7 +1293,7 @@ extension LevelDesignerViewController: GOGridDelegate {
     }
     
     func gridDidFinishCalculation(grid: GOGrid, forRayWithTag tag: String) {
-//        self.processPoints(self.rays[tag])
+        // TODO: re-enable save/preview here
     }
 }
 
@@ -1340,7 +1317,7 @@ extension LevelDesignerViewController: UIPickerViewDataSource, UIPickerViewDeleg
             return PlanckControllPanel.groupPickerTitle.count
             
         default:
-            fatalError("invalid picker")
+            fatalError(ErrorMsg.invalidPicker)
         }
     }
     
@@ -1359,7 +1336,7 @@ extension LevelDesignerViewController: UIPickerViewDataSource, UIPickerViewDeleg
             return PlanckControllPanel.groupPickerTitle[row]
             
         default:
-            fatalError("invalid picker")
+            fatalError(ErrorMsg.invalidPicker)
         }
     }
     
