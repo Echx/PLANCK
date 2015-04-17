@@ -48,10 +48,15 @@ class GameStasticViewController: XViewController {
         self.totalGameUnlock.text = String(totalGameUnlock)
         self.totalPrefectHit.text = String(totalPrefect)
         let total: CGFloat = CGFloat(totalPrefect) / CGFloat(totalGamePlayed) * CGFloat(100.0)
-        self.prefectRate.text = NSString(format: "%.2f%", total)
+        self.prefectRate.text = NSString(format: "%.2f %", total)
     }
 
     @IBAction func dismissStatsView(sender: AnyObject) {
+        self.presentingViewController?.dismissViewControllerAnimated(true, completion: nil)
+    }
+
+    @IBAction func resetStats(sender: AnyObject) {
+        GameStats.reset()
         self.presentingViewController?.dismissViewControllerAnimated(true, completion: nil)
     }
 }

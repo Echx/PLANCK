@@ -803,7 +803,7 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="wkc-9L-7oQ">
-                                <rect key="frame" x="208" y="500" width="184" height="40"/>
+                                <rect key="frame" x="208" y="483" width="184" height="40"/>
                                 <fontDescription key="fontDescription" name="GillSans-Light" family="Gill Sans" pointSize="24"/>
                                 <state key="normal" title="done">
                                     <color key="titleColor" red="0.26274509800000001" green="0.36862745099999999" blue="0.46274509800000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -811,6 +811,17 @@
                                 </state>
                                 <connections>
                                     <action selector="dismissStatsView:" destination="dGj-R7-NpS" eventType="touchUpInside" id="0za-gN-bBD"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="GTq-EC-MpH">
+                                <rect key="frame" x="208" y="531" width="184" height="40"/>
+                                <fontDescription key="fontDescription" name="GillSans-Light" family="Gill Sans" pointSize="24"/>
+                                <state key="normal" title="reset">
+                                    <color key="titleColor" red="0.26274509800000001" green="0.36862745099999999" blue="0.46274509800000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="resetStats:" destination="dGj-R7-NpS" eventType="touchUpInside" id="MY2-Ty-7tF"/>
                                 </connections>
                             </button>
                         </subviews>

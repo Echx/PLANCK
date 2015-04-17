@@ -10,8 +10,11 @@ import Foundation
 
 class GameStats: NSObject {
     /// Try set up basic game statistic if necessary
-    class func setUp() {
+    class func reset() {
         let defaults = NSUserDefaults.standardUserDefaults()
+        defaults.setInteger(0, forKey: XStats.totalFireLight)
+        defaults.setInteger(0, forKey: XStats.totalGamePlay)
+        defaults.setInteger(0, forKey: XStats.totalMusicPlayed)
     }
     
     class func setFirstTime() {
