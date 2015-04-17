@@ -29,14 +29,16 @@ class GameStats: NSObject {
         return defaults.boolForKey(XStats.firstTime)
     }
     
-    class func saveTotalScore(scores:Int) {
+    class func increaseTotalMusicPlayed() {
         let defaults = NSUserDefaults.standardUserDefaults()
-        defaults.setInteger(scores, forKey: XStats.totalScore)
+        var oldTotal = defaults.integerForKey(XStats.totalMusicPlayed)
+        oldTotal++
+        defaults.setInteger(oldTotal, forKey: XStats.totalMusicPlayed)
     }
     
-    class func getTotalScore() -> Int {
+    class func getTotalMusicPlayed() -> Int {
         let defaults = NSUserDefaults.standardUserDefaults()
-        return defaults.integerForKey(XStats.totalScore)
+        return defaults.integerForKey(XStats.totalMusicPlayed)
     }
     
     class func increaseTotalGamePlay() {

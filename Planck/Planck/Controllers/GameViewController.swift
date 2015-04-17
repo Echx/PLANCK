@@ -634,6 +634,9 @@ extension GameViewController: LevelTransitionMaskViewDelegate {
 
 extension GameViewController: TargetMusicMaskViewDelegate {
     func didFinishPlaying() {
+        if !self.isPreview {
+            GameStats.increaseTotalMusicPlayed()
+        }
         self.musicMask.hide()
         self.view.userInteractionEnabled = true
     }
