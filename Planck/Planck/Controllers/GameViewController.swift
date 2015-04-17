@@ -415,7 +415,7 @@ class GameViewController: XViewController {
     }
     
     @IBAction func playMusic(sender: UIButton) {
-        self.musicMask.show(self.gameLevel.targetMusic)
+        showTargetMusicMask()
     }
     
     private func playNote(segment: GOSegment?, tag: String) {
