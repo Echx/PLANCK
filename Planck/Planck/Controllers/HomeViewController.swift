@@ -36,7 +36,7 @@ class HomeViewController: XViewController {
                         GamiCent.reportAchievements(percent: 100.0, achievementID: XGameCenter.achi_newbie, isShowBanner: true, completion: nil)
                         GameStats.setNotFirstTime()
                     }
-                    GamiCent.reportScoreLeaderboard(leaderboardID: XGameCenter.leaderboardID, score: GameStats.getTotalScore(), completion: { success in
+                    GamiCent.reportScoreLeaderboard(leaderboardID: XGameCenter.leaderboardID, score: GameLevel.countTotalScore(), completion: { success in
                         println(success)
                     })
                 })
@@ -53,7 +53,6 @@ class HomeViewController: XViewController {
     
     @IBAction func viewDidTapped(sender: UITapGestureRecognizer) {
         var touchPoint = sender.locationInView(self.view)
-        println(touchPoint)
         self.emitterLayer.emitterPosition = touchPoint
     }
 
