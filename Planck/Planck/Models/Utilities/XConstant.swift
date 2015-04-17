@@ -149,6 +149,11 @@ struct PlanckDefaults {
     static let textureColor = UIColor.blackColor()
 }
 
+struct SwitchDefaults {
+    static let lineWidth = CGFloat(3.0)
+    static let circleRadius = CGFloat(6.0)
+}
+
 struct PhysicsCategory {
     static let none: UInt32 = 0
     static let all: UInt32 = 0x1 << 31

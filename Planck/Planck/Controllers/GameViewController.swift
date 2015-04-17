@@ -110,7 +110,7 @@ class GameViewController: XViewController {
     }
     
     @IBAction func switchViewDIdTapped(sender: UITapGestureRecognizer) {
-        self.gameSwitch?.toggle()
+        self.gameSwitch!.toggle()
         if self.gameSwitch!.isOn {
             if self.isVirgin == nil {
                 self.isVirgin = true
