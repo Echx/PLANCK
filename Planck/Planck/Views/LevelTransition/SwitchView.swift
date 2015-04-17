@@ -50,9 +50,6 @@ class SwitchView: UIView {
         rightPolePath.addArcWithCenter(CGPoint(x: 65 + 2 * circleRadius, y: 20), radius: CGFloat(circleRadius), startAngle: CGFloat(0), endAngle: CGFloat(2 * M_PI), clockwise: true)
         rightPolePath.addLineToPoint(CGPoint(x: 75 + 4 * circleRadius, y: 20))
 
-        
-        
-
         self.switchThrow.path = throwPath.CGPath
         self.leftPole.path = leftPolePath.CGPath
         self.rightPole.path = rightPolePath.CGPath
@@ -74,7 +71,20 @@ class SwitchView: UIView {
     }
     
     func setOn() {
-        self.isOn = true
+        if !self.isOn {
+            self.isOn = true
+            
+            let rotateAnimation = CABasicAnimation(keyPath: "tranform.rotation")
+            rotateAnimation.fromValue = 0.0;
+            rotateAnimation.toValue = M_PI;
+            rotateAnimation.duration = CFTimeInterval(3.0);
+            rotateAnimation.repeatCount = 1.0
+            rotateAnimation.fillMode = kCAFillModeForwards
+            rotateAnimation.timingFunction = CAMediaTimingFunction(name: kCAMediaTimingFunctionLinear)
+            
+            self.switchThrow.addAnimation(rotateAnimation, forKey: "tranform.rotation")
+
+        }
     }
     
     func setOff() {
