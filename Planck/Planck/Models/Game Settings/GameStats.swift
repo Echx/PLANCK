@@ -10,8 +10,11 @@ import Foundation
 
 class GameStats: NSObject {
     /// Try set up basic game statistic if necessary
-    class func setUp() {
+    class func reset() {
         let defaults = NSUserDefaults.standardUserDefaults()
+        defaults.setInteger(0, forKey: XStats.totalFireLight)
+        defaults.setInteger(0, forKey: XStats.totalGamePlay)
+        defaults.setInteger(0, forKey: XStats.totalMusicPlayed)
     }
     
     class func setFirstTime() {
@@ -29,14 +32,16 @@ class GameStats: NSObject {
         return defaults.boolForKey(XStats.firstTime)
     }
     
-    class func saveTotalScore(scores:Int) {
+    class func increaseTotalMusicPlayed() {
         let defaults = NSUserDefaults.standardUserDefaults()
-        defaults.setInteger(scores, forKey: XStats.totalScore)
+        var oldTotal = defaults.integerForKey(XStats.totalMusicPlayed)
+        oldTotal++
+        defaults.setInteger(oldTotal, forKey: XStats.totalMusicPlayed)
     }
     
-    class func getTotalScore() -> Int {
+    class func getTotalMusicPlayed() -> Int {
         let defaults = NSUserDefaults.standardUserDefaults()
-        return defaults.integerForKey(XStats.totalScore)
+        return defaults.integerForKey(XStats.totalMusicPlayed)
     }
     
     class func increaseTotalGamePlay() {

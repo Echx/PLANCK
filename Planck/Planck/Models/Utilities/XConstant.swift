@@ -243,12 +243,11 @@ struct PlanckControllPanel {
 }
 
 struct XStats {
-    static let totalScore = "totalScore"
-    
     static let firstTime = "firstTime"
     
     static let totalGamePlay = "totalGamePlay"
     static let totalFireLight = "totalFireLight"
+    static let totalMusicPlayed = "totalMusicPlayed"
 }
 
 struct XGameCenter {
