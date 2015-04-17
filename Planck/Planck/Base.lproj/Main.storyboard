@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6751" systemVersion="14D131" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="Z3F-Q9-Qtd">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6751" systemVersion="14D98g" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="Z3F-Q9-Qtd">
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6736"/>
     </dependencies>
@@ -441,12 +441,6 @@
                         <rect key="frame" x="0.0" y="0.0" width="1024" height="768"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="1qz-JW-p2k">
-                                <rect key="frame" x="16" y="13" width="51" height="31"/>
-                                <connections>
-                                    <action selector="switchValueDidChange:" destination="Ivs-sv-Sw2" eventType="valueChanged" id="2Gh-n9-bMO"/>
-                                </connections>
-                            </switch>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="6IA-Mj-X9n">
                                 <rect key="frame" x="965" y="20" width="43" height="43"/>
                                 <state key="normal" image="pause-normal">
@@ -469,8 +463,12 @@
                                 </connections>
                             </button>
                             <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="cHv-Lh-hak">
-                                <rect key="frame" x="5" y="57" width="332" height="252"/>
+                                <rect key="frame" x="7" y="22" width="106" height="45"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                <gestureRecognizers/>
+                                <connections>
+                                    <outletCollection property="gestureRecognizers" destination="9qO-TN-2aQ" appends="YES" id="tCv-7p-dtu"/>
+                                </connections>
                             </view>
                         </subviews>
                         <color key="backgroundColor" red="0.26274509800000001" green="0.36862745099999999" blue="0.46274509800000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -484,7 +482,6 @@
                     <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
                     <size key="freeformSize" width="1024" height="768"/>
                     <connections>
-                        <outlet property="shootSwitch" destination="1qz-JW-p2k" id="J02-pZ-rEI"/>
                         <outlet property="switchView" destination="cHv-Lh-hak" id="wgS-Vz-r4g"/>
                     </connections>
                 </viewController>
@@ -499,6 +496,11 @@
                         <action selector="viewDidPanned:" destination="Ivs-sv-Sw2" id="tiY-JA-7B6"/>
                     </connections>
                 </panGestureRecognizer>
+                <tapGestureRecognizer id="9qO-TN-2aQ">
+                    <connections>
+                        <action selector="switchViewDIdTapped:" destination="Ivs-sv-Sw2" id="ygs-RH-yb3"/>
+                    </connections>
+                </tapGestureRecognizer>
             </objects>
             <point key="canvasLocation" x="879" y="-481"/>
         </scene>

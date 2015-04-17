@@ -9,9 +9,6 @@
 import UIKit
 
 class GameViewController: XViewController {
-
-    @IBOutlet var shootSwitch: UISwitch!
-    
     var gameLevel: GameLevel = GameLevel()
     // keep a copy of original level
     private var originalLevel: GameLevel = GameLevel()
@@ -31,6 +28,7 @@ class GameViewController: XViewController {
     private var audioPlayer: AVAudioPlayer?
     
     @IBOutlet var switchView: UIView!
+    private var gameSwitch: SwitchView?
     
     private var isVirgin: Bool?
     private var shouldShowNextLevel: Bool = false
@@ -83,10 +81,10 @@ class GameViewController: XViewController {
     private func reloadLevel(gameLevel: GameLevel) {
         self.isVirgin = nil
         self.isFirstTimePlayMusic = true
-        self.shootSwitch.setOn(false, animated: true)
         self.clear()
         self.gameLevel = gameLevel
         self.originalLevel = gameLevel.deepCopy()
+        self.gameSwitch?.setOff()
         // increase game stats
         if !isPreview {
             GameStats.increaseTotalGamePlay()
@@ -107,11 +105,13 @@ class GameViewController: XViewController {
     }
     
     private func setUpSwitchView() {
-        self.switchView.addSubview(SwitchView())
+        self.gameSwitch = SwitchView()
+        self.switchView.addSubview(self.gameSwitch!)
     }
     
-    @IBAction func switchValueDidChange(sender: UISwitch) {
-        if sender.on {
+    @IBAction func switchViewDIdTapped(sender: UITapGestureRecognizer) {
+        self.gameSwitch?.toggle()
+        if self.gameSwitch!.isOn {
             if self.isVirgin == nil {
                 self.isVirgin = true
             } else if self.isVirgin! {
@@ -121,7 +121,7 @@ class GameViewController: XViewController {
             if !self.isPreview {
                 GameStats.increaseTotalLightFire()
             }
-
+            
             self.shootRay()
         } else {
             self.clearRay()
@@ -141,7 +141,7 @@ class GameViewController: XViewController {
             }
             
             if !self.isNodeFixed(node) {
-                self.shootSwitch.setOn(false, animated: true)
+                self.gameSwitch!.setOff()
                 self.clearRay()
                 updateDirection(node)
             }
@@ -167,7 +167,7 @@ class GameViewController: XViewController {
             if let node = touchedNode {
                 if !self.isNodeFixed(node) {
                     firstViewCenter = self.deviceViews[node.id]!.center
-                    self.shootSwitch.setOn(false, animated: true)
+                    self.gameSwitch!.setOff()
                     self.clearRay()
                 } else {
                     touchedNode = nil
