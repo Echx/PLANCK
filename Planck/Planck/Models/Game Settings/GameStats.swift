@@ -39,15 +39,7 @@ class GameStats: NSObject {
         return defaults.integerForKey(XStats.totalScore)
     }
     
-    /// Save high score for a level
-    class func saveHighScore(score:Int, forLevel levelIndex:Int) {
-        
-    }
     
-    /// Get high scores for a level
-    class func getHighScore(forLevel levelIndex:Int) -> Int {
-        return 0
-    }
     
     
     
