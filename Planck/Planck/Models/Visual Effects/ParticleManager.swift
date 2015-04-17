@@ -30,7 +30,7 @@ class ParticleManager: NSObject {
     }
     
     class func getHomeBackgroundParticles() -> CAEmitterLayer{
-        var rect = UIScreen.mainScreen().bounds
+        let rect = UIScreen.mainScreen().bounds
         let emitter = CAEmitterLayer()
         emitter.frame = rect
         
