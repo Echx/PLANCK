@@ -26,7 +26,7 @@ class GameViewController: XViewController {
     private var transitionMask = LevelTransitionMaskView()
     private var pauseMask = PauseMaskView()
     private var musicMask = TargetMusicMaskView()
-    private var isFirstTimeShowMusic = true
+    private var isFirstTimePlayMusic = true
     private var numberOfFinishedRay = 0
     private var audioPlayer: AVAudioPlayer?
     
@@ -58,6 +58,11 @@ class GameViewController: XViewController {
         viewController.originalLevel = gameLevel.deepCopy()
         viewController.modalTransitionStyle = UIModalTransitionStyle.CrossDissolve
         viewController.isPreview = isPreview
+        
+        // increase game stats
+        if !isPreview {
+            GameStats.increaseTotalGamePlay()
+        }
         return viewController
     }
     
@@ -77,11 +82,16 @@ class GameViewController: XViewController {
     
     private func reloadLevel(gameLevel: GameLevel) {
         self.isVirgin = nil
-        self.isFirstTimeShowMusic = true
+        self.isFirstTimePlayMusic = true
         self.shootSwitch.setOn(false, animated: true)
         self.clear()
         self.gameLevel = gameLevel
         self.originalLevel = gameLevel.deepCopy()
+        // increase game stats
+        if !isPreview {
+            GameStats.increaseTotalGamePlay()
+        }
+        self.showTargetMusicMask()
     }
     
     private func clear() {
@@ -107,6 +117,11 @@ class GameViewController: XViewController {
             } else if self.isVirgin! {
                 self.isVirgin = false
             }
+            // increase game statistics
+            if !self.isPreview {
+                GameStats.increaseTotalLightFire()
+            }
+
             self.shootRay()
         } else {
             self.clearRay()
@@ -209,6 +224,11 @@ class GameViewController: XViewController {
     
     var nodeCount = 0
     private func setUpGrid() {
+        // in case user replay the music
+        if !isFirstTimePlayMusic {
+            return
+        }
+        
         for (key, node) in self.grid.instruments {
             self.addNode(node, strokeColor: self.xNodes[node.id]!.strokeColor)
             nodeCount++
@@ -391,6 +411,7 @@ class GameViewController: XViewController {
     private func showTargetMusicMask() {
         self.view.addSubview(self.musicMask)
         self.musicMask.show(self.gameLevel.targetMusic)
+        self.view.userInteractionEnabled = false
     }
     
     @IBAction func playMusic(sender: UIButton) {
@@ -590,20 +611,19 @@ extension GameViewController: LevelTransitionMaskViewDelegate {
                     // in preview mode, can neve reach here
                     // unlock next level and save it
                     nextLevel.isUnlock = true
-                    println("saving next!")
+
                     dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), {
                         StorageManager.defaultManager.saveCurrentLevel(nextLevel)
                     })
                     
-                    println("nextLevel: \(self.gameLevel.index + 1)")
                     self.reloadLevel(nextLevel)
                     self.view.addSubview(self.musicMask)
                     self.musicMask.show(self.gameLevel.targetMusic)
                 } else {
-                    println("nextLevel: \(self.gameLevel.index + 1)")
                     // have finished all current game
                     self.dismissViewController()
                 }
+                println("nextLevel: \(self.gameLevel.index + 1)")
             }
         } else {
             self.buttonDidClickedAtIndex(index)
@@ -615,12 +635,11 @@ extension GameViewController: LevelTransitionMaskViewDelegate {
 extension GameViewController: TargetMusicMaskViewDelegate {
     func didFinishPlaying() {
         self.musicMask.hide()
+        self.view.userInteractionEnabled = true
     }
     
     func musicMaskViewDidDismiss(view: TargetMusicMaskView) {
-        if isFirstTimeShowMusic {
-            self.setUpGrid()
-            isFirstTimeShowMusic = false
-        }
+        self.setUpGrid()
+        isFirstTimePlayMusic = false
     }
 }
