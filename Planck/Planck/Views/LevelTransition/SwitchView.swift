@@ -9,6 +9,8 @@
 import UIKit
 
 class SwitchView: UIView {
+    var isOn = false
+    
     let switchThrow = CAShapeLayer()
     let leftPole = CAShapeLayer()
     let rightPole = CAShapeLayer()
@@ -31,7 +33,7 @@ class SwitchView: UIView {
         throwPath.lineJoinStyle = kCGLineJoinBevel
         throwPath.lineCapStyle = kCGLineCapRound
         throwPath.moveToPoint(CGPoint(x: 20 + 2 * circleRadius, y: 20))
-        throwPath.addLineToPoint(CGPoint(x: 40 + 2 * circleRadius, y: 0))
+        throwPath.addLineToPoint(CGPoint(x: 60 + 2 * circleRadius, y: 0))
         
         var leftPolePath = UIBezierPath()
         
@@ -45,8 +47,8 @@ class SwitchView: UIView {
         
         rightPolePath.lineJoinStyle = kCGLineJoinBevel
         rightPolePath.lineCapStyle = kCGLineCapRound
-        rightPolePath.addArcWithCenter(CGPoint(x: 85 + 2 * circleRadius, y: 20), radius: CGFloat(circleRadius), startAngle: CGFloat(0), endAngle: CGFloat(2 * M_PI), clockwise: true)
-        rightPolePath.addLineToPoint(CGPoint(x: 95 + 4 * circleRadius, y: 20))
+        rightPolePath.addArcWithCenter(CGPoint(x: 65 + 2 * circleRadius, y: 20), radius: CGFloat(circleRadius), startAngle: CGFloat(0), endAngle: CGFloat(2 * M_PI), clockwise: true)
+        rightPolePath.addLineToPoint(CGPoint(x: 75 + 4 * circleRadius, y: 20))
 
         
         
@@ -61,7 +63,22 @@ class SwitchView: UIView {
         self.layer.addSublayer(self.leftPole)
         self.layer.addSublayer(self.switchThrow)
         self.layer.addSublayer(self.rightPole)
-
+    }
+    
+    func toggle() {
+        if self.isOn {
+            self.setOff()
+        } else {
+            self.setOn()
+        }
+    }
+    
+    func setOn() {
+        self.isOn = true
+    }
+    
+    func setOff() {
+        self.isOn = false
     }
     
     required init(coder aDecoder: NSCoder) {

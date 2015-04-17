@@ -376,7 +376,7 @@
 		26D9ABB01AD7CB1700D70D83 /* GOOverlapManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GOOverlapManager.swift; sourceTree = "<group>"; };
 		26DFCF9B1AD8467000C97C5B /* XEmitter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = XEmitter.swift; path = Optics/XEmitter.swift; sourceTree = "<group>"; };
 		620BD4451AB2E69800267C7B /* XNote.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = XNote.swift; sourceTree = "<group>"; };
-		621E1DE51AE1122C0035B4B5 /* SwitchView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SwitchView.swift; sourceTree = "<group>"; };
+		621E1DE51AE1122C0035B4B5 /* SwitchView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SwitchView.swift; path = LevelTransition/SwitchView.swift; sourceTree = "<group>"; };
 		6227FB681AAE285C007F49EA /* Planck.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Planck.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		6227FB6C1AAE285C007F49EA /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		6227FB6D1AAE285C007F49EA /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -655,7 +655,6 @@
 				262F382D1ADACA8F00FA2177 /* BadgeView.swift */,
 				2602B9191ADB032C00F8ABC0 /* PauseMaskView.swift */,
 				6291FBE21ADED1A3007464FC /* TargetMusicMaskView.swift */,
-				621E1DE51AE1122C0035B4B5 /* SwitchView.swift */,
 			);
 			path = LevelTransition;
 			sourceTree = "<group>";
@@ -721,6 +720,14 @@
 				8FAA2537BA840D27B293A4BB /* Pods-Planck.release.xcconfig */,
 			);
 			name = Pods;
+			sourceTree = "<group>";
+		};
+		621515981AE1551F00F1A1B1 /* GamePlay */ = {
+			isa = PBXGroup;
+			children = (
+				621E1DE51AE1122C0035B4B5 /* SwitchView.swift */,
+			);
+			name = GamePlay;
 			sourceTree = "<group>";
 		};
 		622556A21AC5345600DA47AF /* Percussion */ = {
@@ -841,6 +848,7 @@
 		6227FC071AAE28E7007F49EA /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				621515981AE1551F00F1A1B1 /* GamePlay */,
 				262F382A1ADACA1B00FA2177 /* LevelTransition */,
 				9841A82C1AD986AC0095AEBB /* Setting */,
 				988CF3461AD3C6490013D903 /* LevelSelect */,
