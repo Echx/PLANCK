@@ -23,6 +23,7 @@ class HomeViewController: XViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         self.view.layer.addSublayer(self.emitterLayer)
+        self.emitterLayer.emitterPosition = HomeViewDefaults.emitterInitialPosition
         
         let gamiCent = GamiCent.sharedInstance({
             (isAuthentified) -> Void in

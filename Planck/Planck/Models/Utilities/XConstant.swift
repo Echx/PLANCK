@@ -257,3 +257,7 @@ struct XGameCenter {
     static let achi_firstblood = "planck.achievement1"
     static let achi_nine = "planck.achievement2"
 }
+
+struct HomeViewDefaults {
+    static let emitterInitialPosition = CGPoint(x: 429.5, y: 291.5)
+}

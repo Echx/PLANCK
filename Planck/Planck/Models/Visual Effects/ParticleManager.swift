@@ -25,11 +25,12 @@ class ParticleManager: NSObject {
         static let emitterVelocityRange:CGFloat = 0
         static let emitterEmissionRange:CGFloat = CGFloat(M_PI)
         static let buttonOffset:CGFloat = 1024.0
-        static let sparkFile:String = "FireSpark"
+//        static let sparkFile:String = "FireSpark"
+        static let sparkFile:String = "spark-circle"
     }
     
     class func getHomeBackgroundParticles() -> CAEmitterLayer{
-        let rect = UIScreen.mainScreen().bounds
+        var rect = UIScreen.mainScreen().bounds
         let emitter = CAEmitterLayer()
         emitter.frame = rect
         
