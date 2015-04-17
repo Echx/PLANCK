@@ -27,30 +27,37 @@ class SwitchView: UIView {
 
         throwPath.lineJoinStyle = kCGLineJoinBevel
         throwPath.lineCapStyle = kCGLineCapRound
-        throwPath.moveToPoint(CGPoint(x: 0, y: 0))
-        throwPath.addLineToPoint(CGPoint(x: 50, y: 0))
+        throwPath.moveToPoint(CGPoint(x: 40, y: 20))
+        throwPath.addLineToPoint(CGPoint(x: 90, y: 0))
         
-        var polePath = UIBezierPath()
+        var leftPolePath = UIBezierPath()
         
-        polePath.lineJoinStyle = kCGLineJoinBevel
-        polePath.lineCapStyle = kCGLineCapRound
-        polePath.moveToPoint(CGPoint(x: 0, y: 0))
-        polePath.addLineToPoint(CGPoint(x: 50, y: 0))
-        polePath.addArcWithCenter(CGPoint(x: 50, y: 0), radius: CGFloat(10), startAngle: CGFloat(0), endAngle: CGFloat(2 * M_PI), clockwise: true)
+        leftPolePath.lineJoinStyle = kCGLineJoinBevel
+        leftPolePath.lineCapStyle = kCGLineCapRound
+        leftPolePath.moveToPoint(CGPoint(x: 0, y: 20))
+        leftPolePath.addLineToPoint(CGPoint(x: 20, y: 20))
+        leftPolePath.addArcWithCenter(CGPoint(x: 30, y: 20), radius: CGFloat(10), startAngle: CGFloat(-M_PI), endAngle: CGFloat(M_PI), clockwise: true)
         
-        var flippedPolePath = polePath.copy() as UIBezierPath
-        flippedPolePath.applyTransform(CGAffineTransformMakeScale(-1.0, -1.0))
+        var rightPolePath = UIBezierPath()
+        
+        rightPolePath.lineJoinStyle = kCGLineJoinBevel
+        rightPolePath.lineCapStyle = kCGLineCapRound
+        rightPolePath.addArcWithCenter(CGPoint(x: 105, y: 20), radius: CGFloat(10), startAngle: CGFloat(M_PI), endAngle: CGFloat(-M_PI), clockwise: true)
+        rightPolePath.addLineToPoint(CGPoint(x: 125, y: 20))
+
+        
+        
 
         self.switchThrow.path = throwPath.CGPath
-        self.leftPole.path = polePath.CGPath
-        self.rightPole.path = flippedPolePath.CGPath
+        self.leftPole.path = leftPolePath.CGPath
+        self.rightPole.path = rightPolePath.CGPath
 
         let rect = CGRectMake(0, 0, 100, 90)
         super.init(frame: rect)
         
         self.layer.addSublayer(self.leftPole)
-//        self.layer.addSublayer(self.switchThrow)
-//        self.layer.addSublayer(self.rightPole)
+        self.layer.addSublayer(self.switchThrow)
+        self.layer.addSublayer(self.rightPole)
 
     }
     
