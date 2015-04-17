@@ -47,8 +47,8 @@ class GameStasticViewController: XViewController {
 
         self.totalGameUnlock.text = String(totalGameUnlock)
         self.totalPrefectHit.text = String(totalPrefect)
-        let total: CGFloat = CGFloat(totalPrefect) / CGFloat(totalGamePlayed) * CGFloat(100.0)
-        self.prefectRate.text = NSString(format: "%.2f %", total)
+        let total: Float = Float(totalPrefect) / Float(totalGamePlayed) * Float(100.0)
+        self.prefectRate.text = NSString(format: "%.2f%%", total)
     }
 
     @IBAction func dismissStatsView(sender: AnyObject) {

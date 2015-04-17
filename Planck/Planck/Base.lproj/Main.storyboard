@@ -748,9 +748,9 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="10" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Qg6-7b-4eG">
-                                <rect key="frame" x="336" y="156" width="180" height="42"/>
+                                <rect key="frame" x="435" y="154" width="81" height="42"/>
                                 <constraints>
-                                    <constraint firstAttribute="width" constant="180" id="CSi-al-mUK"/>
+                                    <constraint firstAttribute="width" constant="81" id="CSi-al-mUK"/>
                                     <constraint firstAttribute="height" constant="42" id="rCl-Jj-0AX"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" name="GillSans-Light" family="Gill Sans" pointSize="24"/>
@@ -758,19 +758,19 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="10" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Xg9-Rn-gLx">
-                                <rect key="frame" x="336" y="206" width="180" height="42"/>
+                                <rect key="frame" x="435" y="204" width="81" height="42"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="42" id="IT9-jj-95r"/>
-                                    <constraint firstAttribute="width" constant="180" id="ddJ-T4-dr2"/>
+                                    <constraint firstAttribute="width" constant="81" id="ddJ-T4-dr2"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" name="GillSans-Light" family="Gill Sans" pointSize="24"/>
                                 <color key="textColor" red="0.26274509800000001" green="0.36862745099999999" blue="0.46274509800000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="10" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="n7c-op-8al">
-                                <rect key="frame" x="336" y="256" width="180" height="42"/>
+                                <rect key="frame" x="435" y="254" width="81" height="42"/>
                                 <constraints>
-                                    <constraint firstAttribute="width" constant="180" id="aua-Ge-Qkk"/>
+                                    <constraint firstAttribute="width" constant="81" id="aua-Ge-Qkk"/>
                                     <constraint firstAttribute="height" constant="42" id="nwM-kQ-sHC"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" name="GillSans-Light" family="Gill Sans" pointSize="24"/>
@@ -778,20 +778,10 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="10" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="yWv-Kn-6eW">
-                                <rect key="frame" x="336" y="306" width="180" height="42"/>
+                                <rect key="frame" x="435" y="304" width="81" height="42"/>
                                 <constraints>
-                                    <constraint firstAttribute="width" constant="180" id="JeN-db-bll"/>
+                                    <constraint firstAttribute="width" constant="81" id="JeN-db-bll"/>
                                     <constraint firstAttribute="height" constant="42" id="fDr-j5-1WT"/>
-                                </constraints>
-                                <fontDescription key="fontDescription" name="GillSans-Light" family="Gill Sans" pointSize="24"/>
-                                <color key="textColor" red="0.26274509800000001" green="0.36862745099999999" blue="0.46274509800000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="10" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gfU-Rf-MAq">
-                                <rect key="frame" x="336" y="356" width="180" height="42"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="42" id="W5E-bk-Xxk"/>
-                                    <constraint firstAttribute="width" constant="180" id="ZbQ-I3-Oxv"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" name="GillSans-Light" family="Gill Sans" pointSize="24"/>
                                 <color key="textColor" red="0.26274509800000001" green="0.36862745099999999" blue="0.46274509800000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -848,9 +838,9 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="10" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="viR-Hz-Byh">
-                                <rect key="frame" x="336" y="406" width="180" height="42"/>
+                                <rect key="frame" x="435" y="404" width="81" height="42"/>
                                 <constraints>
-                                    <constraint firstAttribute="width" constant="180" id="TIc-YN-AuO"/>
+                                    <constraint firstAttribute="width" constant="81" id="TIc-YN-AuO"/>
                                     <constraint firstAttribute="height" constant="42" id="WIv-0K-1xM"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" name="GillSans-Light" family="Gill Sans" pointSize="24"/>
@@ -887,11 +877,21 @@
                                     <action selector="resetStats:" destination="dGj-R7-NpS" eventType="touchUpInside" id="MY2-Ty-7tF"/>
                                 </connections>
                             </button>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="10" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gfU-Rf-MAq">
+                                <rect key="frame" x="385" y="354" width="180" height="42"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="42" id="W5E-bk-Xxk"/>
+                                    <constraint firstAttribute="width" constant="180" id="ZbQ-I3-Oxv"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" name="GillSans-Light" family="Gill Sans" pointSize="24"/>
+                                <color key="textColor" red="0.26274509800000001" green="0.36862745099999999" blue="0.46274509800000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" red="0.93333333333333335" green="0.93333333333333335" blue="0.93333333333333335" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
                             <constraint firstItem="GW1-aA-Z6c" firstAttribute="top" secondItem="3EJ-OS-Qxg" secondAttribute="bottom" constant="8" id="0Jc-6X-d7f"/>
-                            <constraint firstAttribute="trailingMargin" secondItem="gfU-Rf-MAq" secondAttribute="trailing" constant="68" id="2AH-1W-Skh"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="gfU-Rf-MAq" secondAttribute="trailing" constant="19" id="2AH-1W-Skh"/>
                             <constraint firstItem="ILc-7X-KQ9" firstAttribute="leading" secondItem="jNI-zp-gF2" secondAttribute="leadingMargin" constant="63" id="31d-r1-NCO"/>
                             <constraint firstAttribute="trailingMargin" secondItem="yWv-Kn-6eW" secondAttribute="trailing" constant="68" id="3zs-pz-bWC"/>
                             <constraint firstAttribute="centerX" secondItem="eb3-tz-w7Q" secondAttribute="centerX" id="8JL-R0-WTt"/>
@@ -911,7 +911,7 @@
                             <constraint firstItem="7sm-zn-H8s" firstAttribute="leading" secondItem="jNI-zp-gF2" secondAttribute="leadingMargin" constant="38" id="h5j-Fw-ic0"/>
                             <constraint firstAttribute="centerX" secondItem="wkc-9L-7oQ" secondAttribute="centerX" id="hy0-U4-Ewi"/>
                             <constraint firstItem="viR-Hz-Byh" firstAttribute="top" secondItem="gfU-Rf-MAq" secondAttribute="bottom" constant="8" id="jHa-Pu-hut"/>
-                            <constraint firstItem="Qg6-7b-4eG" firstAttribute="top" secondItem="lEh-15-I2X" secondAttribute="bottom" constant="156" id="mrR-6A-57o"/>
+                            <constraint firstItem="Qg6-7b-4eG" firstAttribute="top" secondItem="lEh-15-I2X" secondAttribute="bottom" constant="154" id="mrR-6A-57o"/>
                             <constraint firstAttribute="trailingMargin" secondItem="n7c-op-8al" secondAttribute="trailing" constant="68" id="oSC-L1-95D"/>
                             <constraint firstAttribute="trailingMargin" secondItem="viR-Hz-Byh" secondAttribute="trailing" constant="68" id="rBq-MZ-YRP"/>
                             <constraint firstItem="enS-nF-az3" firstAttribute="top" secondItem="lEh-15-I2X" secondAttribute="bottom" constant="156" id="rJV-6o-Pt9"/>

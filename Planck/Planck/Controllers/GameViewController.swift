@@ -598,32 +598,30 @@ extension GameViewController: PauseMaskViewDelegate {
 
 extension GameViewController: LevelTransitionMaskViewDelegate {
     func viewDidDismiss(view: LevelTransitionMaskView, withButtonClickedAtIndex index: Int) {
+        // save current game if it is not preview mode
+        if !isPreview {
+            dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), {
+                StorageManager.defaultManager.saveCurrentLevel(self.originalLevel)
+            })
+            
+            if let nextLevel = GameLevel.loadGameWithIndex(self.gameLevel.index + 1) {
+                // unlock next level and save it
+                nextLevel.isUnlock = true
+                
+                dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), {
+                    StorageManager.defaultManager.saveCurrentLevel(nextLevel)
+                })
+            }
+        }
+        
         if index == 2 {
             if self.shouldShowNextLevel {
-                // save current game if it is not preview mode
-                if !isPreview {
-                    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), {
-                        StorageManager.defaultManager.saveCurrentLevel(self.originalLevel)
-                    })
-                }
-                
                 if let nextLevel = GameLevel.loadGameWithIndex(self.gameLevel.index + 1) {
-                    // in preview mode, can neve reach here
-                    // unlock next level and save it
-                    nextLevel.isUnlock = true
-
-                    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), {
-                        StorageManager.defaultManager.saveCurrentLevel(nextLevel)
-                    })
-                    
                     self.reloadLevel(nextLevel)
-                    self.view.addSubview(self.musicMask)
-                    self.musicMask.show(self.gameLevel.targetMusic)
                 } else {
                     // have finished all current game
                     self.dismissViewController()
                 }
-                println("nextLevel: \(self.gameLevel.index + 1)")
             }
         } else {
             self.buttonDidClickedAtIndex(index)
