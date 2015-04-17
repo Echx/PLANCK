@@ -618,14 +618,10 @@ extension GameViewController: LevelTransitionMaskViewDelegate {
             if self.shouldShowNextLevel {
                 if let nextLevel = GameLevel.loadGameWithIndex(self.gameLevel.index + 1) {
                     self.reloadLevel(nextLevel)
-                    self.view.addSubview(self.musicMask)
-                    self.musicMask.show(self.gameLevel.targetMusic)
                 } else {
                     // have finished all current game
                     self.dismissViewController()
                 }
-                
-                println("nextLevel: \(self.gameLevel.index + 1)")
             }
         } else {
             self.buttonDidClickedAtIndex(index)
