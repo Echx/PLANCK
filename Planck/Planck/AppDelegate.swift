@@ -18,7 +18,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
         let settingViewController = SettingViewController.getInstance()
         let systemLevelSelectVC = LevelSelectViewController.getInstance()
-        let userLevelSelectVC = LevelSelectViewController.getInstance()
+        let userLevelSelectVC = CustomizedLevelSelectViewController.getInstance()
         var scrollPageArray = [systemLevelSelectVC, userLevelSelectVC]
         let scrollPageViewController = ScrollPageViewController.getInstance(scrollPageArray)
         
