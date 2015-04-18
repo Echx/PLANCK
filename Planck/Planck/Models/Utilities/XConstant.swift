@@ -280,5 +280,9 @@ struct XFileConstant {
 }
 
 struct HomeViewDefaults {
-    static let emitterInitialPosition = CGPoint(x: 429.5, y: 291.5)
+    static let emitterPositionCenter = CGPointMake(429.5, 291.5)
+    static let emitterPositionStart = CGPointMake(0, 470)
+    static let emitterPositionEndRed = CGPointMake(1024, 152)
+    static let emitterPositionEndOrange = CGPointMake(1024, 185)
+    static let emitterPositionEndYellow = CGPointMake(1024, 215)
 }

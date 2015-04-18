@@ -25,11 +25,10 @@ class ParticleManager: NSObject {
         static let emitterVelocityRange:CGFloat = 0
         static let emitterEmissionRange:CGFloat = CGFloat(M_PI)
         static let buttonOffset:CGFloat = 1024.0
-//        static let sparkFile:String = "FireSpark"
-        static let sparkFile:String = "spark-circle"
+        static let sparkFile:String = "FireSpark"
     }
     
-    class func getHomeBackgroundParticles() -> CAEmitterLayer{
+    class func getHomeBackgroundParticles(textureFileName: String, longtitude: CGFloat) -> CAEmitterLayer{
         let rect = UIScreen.mainScreen().bounds
         let emitter = CAEmitterLayer()
         emitter.frame = rect
@@ -38,28 +37,28 @@ class ParticleManager: NSObject {
         emitter.emitterPosition = CGPoint(x: rect.width / 2, y: rect.height / 2)
         emitter.emitterSize = UIScreen.mainScreen().bounds.size
         emitter.renderMode = kCAEmitterLayerAdditive
+        emitter.seed = UInt32(random())
         
         let emitterCell = CAEmitterCell()
         emitterCell.scale = 0.05
-        emitterCell.contents = UIImage(named: EmitterDefaults.sparkFile)!.CGImage
+        emitterCell.contents = UIImage(named: textureFileName)!.CGImage
         emitter.emitterCells = [emitterCell]
         // define params here
-        emitterCell.birthRate = 50
-        emitterCell.lifetime = 16
+        emitterCell.birthRate = 20
+        emitterCell.lifetime = 1
         emitterCell.spin = 0
         emitterCell.spinRange = CGFloat(M_PI * 2)
-        
         // define speed
-        emitterCell.yAcceleration = 100
-        emitterCell.xAcceleration = 100
-        emitterCell.velocity = 100
-        emitterCell.velocityRange = 50
-        emitterCell.emissionRange = CGFloat(M_PI)
+        emitterCell.yAcceleration = 10
+        emitterCell.xAcceleration = 10
+        emitterCell.velocity = 40
+        emitterCell.velocityRange = 30
+        emitterCell.emissionRange = CGFloat(M_PI) * 0.6
+        emitterCell.emissionLongitude = longtitude
         
         emitterCell.alphaRange = 2
-        emitterCell.alphaSpeed = -2
+        emitterCell.alphaSpeed = -1.7
         emitterCell.lifetimeRange = 1
-        3.0
         
         return emitter
     }
