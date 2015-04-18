@@ -34,11 +34,13 @@ struct StoryboardIndentifier {
     static let DesignerLevelSelect = "DesignerLevelSelectViewController"
     static let GameStats = "GameStasticViewController"
     static let ScrollPage = "ScrollPageViewController"
+    static let CustomizedLevelSelect = "CustomizedLevelSelectViewController"
 }
 
 struct ReuseableID {
     static let LevelSelectCell = "LevelSelectCell"
     static let LevelSelectHeader = "LevelSelectHeader"
+    static let CustomizedLevelSelectCell = "CustomizedLevelCollectionViewCell"
 }
 
 struct StorageDefault {

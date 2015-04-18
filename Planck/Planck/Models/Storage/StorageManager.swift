@@ -13,6 +13,7 @@ private var isDirty:Bool = true
 
 /// cache the levels
 private var levelCache: [GameLevel] = [GameLevel]()
+private var userLevelCache: [GameLevel] = [GameLevel]()
 
 class StorageManager:NSObject {
     class var defaultManager : StorageManager {
@@ -60,9 +61,12 @@ class StorageManager:NSObject {
         setNeedsReload()
     }
         
-    // load the level based on the file name
-    func loadLevel(filename:NSString) -> GameLevel {
-        var filePath : NSString = XFileConstant.defaultLevelDir.stringByAppendingPathComponent(filename)
+    // load the level based on the file name and level type
+    func loadLevel(filename:NSString, isSystemLevel: Bool) -> GameLevel {
+        var filePath: NSString = XFileConstant.defaultLevelDir.stringByAppendingPathComponent(filename)
+        if !isSystemLevel {
+            filePath = XFileConstant.userLevelDir.stringByAppendingPathComponent(filename)
+        }
 
         let data = NSData(contentsOfFile: filePath)
         let unarchiver = NSKeyedUnarchiver(forReadingWithData: data!)
@@ -82,7 +86,7 @@ class StorageManager:NSObject {
                 let name = filename as NSString
                 // temp solution for dealing with file type
                 if name.pathExtension == levelDataFileType {
-                    let game = loadLevel(name)
+                    let game = loadLevel(name, isSystemLevel: true)
                     levelArray.append(game)
                 }
             }
@@ -93,14 +97,39 @@ class StorageManager:NSObject {
             // set up cache
             levelCache = levelArray
             
-            // update isDirty
-            isDirty = false
             return levelArray
         } else {
             // if the levels are not changed, just return the cache value
             return levelCache
         }
-        
+    }
+    
+    func loadAllUserLevel() -> [GameLevel] {
+        if isDirty {
+            var levelArray = [GameLevel]()
+            
+            let fileManager = NSFileManager.defaultManager()
+            let fileArray = fileManager.contentsOfDirectoryAtPath(XFileConstant.userLevelDir,
+                error: nil)! as NSArray
+            
+            // iterate each filename to add
+            for filename in fileArray {
+                let name = filename as NSString
+                // temp solution for dealing with file type
+                if name.pathExtension == levelDataFileType {
+                    let game = loadLevel(name, isSystemLevel: false)
+                    levelArray.append(game)
+                }
+            }
+            
+            // set up cache
+            userLevelCache = levelArray
+            
+            return levelArray
+        } else {
+            // if the levels are not changed, just return the cache value
+            return userLevelCache
+        }
     }
     
     func numOfLevel() -> Int {
@@ -118,9 +147,26 @@ class StorageManager:NSObject {
         return total
     }
     
+    func numOfUserLevel() -> Int {
+        let fileManager = NSFileManager.defaultManager()
+        let fileArray = fileManager.contentsOfDirectoryAtPath(XFileConstant.userLevelDir,
+            error: nil)! as NSArray
+        
+        var total:Int = 0
+        // iterate each filename to add
+        for filename in fileArray {
+            if filename.pathExtension == levelDataFileType {
+                total++
+            }
+        }
+        return total
+    }
+    
     func setNeedsReload() {
         // reload cache
         isDirty = true
         self.loadAllLevel()
+        self.loadAllUserLevel()
+        isDirty = false
     }
 }

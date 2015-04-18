@@ -292,6 +292,8 @@
 		98026E301ADC40B30092620B /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 98026E2F1ADC40B30092620B /* SystemConfiguration.framework */; };
 		98026E331ADC42FD0092620B /* GameKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 98026E321ADC42FD0092620B /* GameKit.framework */; };
 		980F5D641AE26A4000334B02 /* ScrollPageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 980F5D631AE26A4000334B02 /* ScrollPageViewController.swift */; };
+		980F5D661AE2812900334B02 /* CustomizedLevelSelectViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 980F5D651AE2812900334B02 /* CustomizedLevelSelectViewController.swift */; };
+		980F5D681AE282B800334B02 /* CustomizedLevelCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 980F5D671AE282B800334B02 /* CustomizedLevelCollectionViewCell.swift */; };
 		982495D81AD2ACC10039E75E /* DesignerLevelSelectViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 982495D71AD2ACC10039E75E /* DesignerLevelSelectViewController.swift */; };
 		9841A82E1AD987010095AEBB /* SettingViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9841A82D1AD987010095AEBB /* SettingViewCell.swift */; };
 		986E5DA31AC55604008EF3CE /* StorageManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 98D55F9D1ABF133000B3E86A /* StorageManager.swift */; };
@@ -581,6 +583,8 @@
 		98026E2F1ADC40B30092620B /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
 		98026E321ADC42FD0092620B /* GameKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = GameKit.framework; path = System/Library/Frameworks/GameKit.framework; sourceTree = SDKROOT; };
 		980F5D631AE26A4000334B02 /* ScrollPageViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ScrollPageViewController.swift; sourceTree = "<group>"; };
+		980F5D651AE2812900334B02 /* CustomizedLevelSelectViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomizedLevelSelectViewController.swift; sourceTree = "<group>"; };
+		980F5D671AE282B800334B02 /* CustomizedLevelCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomizedLevelCollectionViewCell.swift; sourceTree = "<group>"; };
 		982495D71AD2ACC10039E75E /* DesignerLevelSelectViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DesignerLevelSelectViewController.swift; sourceTree = "<group>"; };
 		9841A82D1AD987010095AEBB /* SettingViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SettingViewCell.swift; path = Setting/SettingViewCell.swift; sourceTree = "<group>"; };
 		988CF3471AD3C6580013D903 /* LevelSelectHeaderView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LevelSelectHeaderView.swift; sourceTree = "<group>"; };
@@ -808,6 +812,7 @@
 		6227FBEF1AAE28E7007F49EA /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
+				980F5D651AE2812900334B02 /* CustomizedLevelSelectViewController.swift */,
 				269D783F1AD30ECF00279EF3 /* XViewController.swift */,
 				982495D71AD2ACC10039E75E /* DesignerLevelSelectViewController.swift */,
 				26C8ADD91AD00437008ADACB /* LevelDesignerViewController.swift */,
@@ -1087,6 +1092,7 @@
 			isa = PBXGroup;
 			children = (
 				988CF3471AD3C6580013D903 /* LevelSelectHeaderView.swift */,
+				980F5D671AE282B800334B02 /* CustomizedLevelCollectionViewCell.swift */,
 				988CF3491AD3C6C70013D903 /* LevelSelectCollectionViewCell.swift */,
 			);
 			path = LevelSelect;
@@ -1443,6 +1449,7 @@
 				98D55F9E1ABF133000B3E86A /* StorageManager.swift in Sources */,
 				269D78381AD306F000279EF3 /* SettingViewController.swift in Sources */,
 				263B09AC1ACEEDD800E7C99E /* GOCoordinate.swift in Sources */,
+				980F5D681AE282B800334B02 /* CustomizedLevelCollectionViewCell.swift in Sources */,
 				621E1DE61AE1122C0035B4B5 /* SwitchView.swift in Sources */,
 				267EC2D41AB1DA01002FE745 /* CGVector+XUtility.swift in Sources */,
 				98CEFDF31AE139050060EE23 /* GameStasticViewController.swift in Sources */,
@@ -1453,6 +1460,7 @@
 				269D783A1AD3070100279EF3 /* LevelSelectViewController.swift in Sources */,
 				262F38271ADABEE500FA2177 /* OscillationManager.swift in Sources */,
 				263B09BC1ACEEDD800E7C99E /* GOFlatOpticRep.swift in Sources */,
+				980F5D661AE2812900334B02 /* CustomizedLevelSelectViewController.swift in Sources */,
 				62E323261ADAE83100CFD4CA /* XMusic.swift in Sources */,
 				6227FC1B1AAE28E7007F49EA /* XMedium.swift in Sources */,
 				26D9ABB11AD7CB1700D70D83 /* GOOverlapManager.swift in Sources */,

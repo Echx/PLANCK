@@ -7,8 +7,10 @@
     <customFonts key="customFonts">
         <mutableArray key="Akagi-BK.ttf">
             <string>Akagi-Book</string>
+            <string>Akagi-Book</string>
         </mutableArray>
         <mutableArray key="Akagi-SB.ttf">
+            <string>Akagi-SemiBold</string>
             <string>Akagi-SemiBold</string>
             <string>Akagi-SemiBold</string>
         </mutableArray>
@@ -621,7 +623,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="v15-4y-bMc" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="597" y="391"/>
+            <point key="canvasLocation" x="887" y="403"/>
         </scene>
         <!--Scroll Page View Controller-->
         <scene sceneID="mK8-yh-x6k">
@@ -654,7 +656,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="b53-uB-Rl1" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="957" y="391"/>
+            <point key="canvasLocation" x="559" y="403"/>
         </scene>
         <!--Setting View Controller-->
         <scene sceneID="3nx-KU-gzm">
@@ -969,6 +971,82 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="W7P-68-ek8" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="-763" y="1202"/>
+        </scene>
+        <!--Customized Level Select View Controller-->
+        <scene sceneID="YP3-L5-EW7">
+            <objects>
+                <viewController storyboardIdentifier="CustomizedLevelSelectViewController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="Q09-Og-ZrK" customClass="CustomizedLevelSelectViewController" customModule="Planck" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="C4B-xJ-ltk"/>
+                        <viewControllerLayoutGuide type="bottom" id="agg-Fz-SqH"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="4iE-Rd-bBG">
+                        <rect key="frame" x="0.0" y="0.0" width="290" height="768"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="fnJ-YS-hSu">
+                                <rect key="frame" x="0.0" y="20" width="290" height="696"/>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="15" minimumInteritemSpacing="15" id="OOd-6z-sxs">
+                                    <size key="itemSize" width="110" height="75"/>
+                                    <size key="headerReferenceSize" width="50" height="60"/>
+                                    <size key="footerReferenceSize" width="0.0" height="0.0"/>
+                                    <inset key="sectionInset" minX="20" minY="10" maxX="15" maxY="20"/>
+                                </collectionViewFlowLayout>
+                                <cells>
+                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="CustomizedLevelCollectionViewCell" id="GlQ-pT-1uD" customClass="CustomizedLevelCollectionViewCell" customModule="Planck" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="0.0" width="50" height="50"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
+                                            <rect key="frame" x="0.0" y="0.0" width="110" height="75"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="I" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="kYY-Ug-rUR">
+                                                    <rect key="frame" x="0.0" y="8" width="120" height="60"/>
+                                                    <fontDescription key="fontDescription" name="Akagi-Book" family="Akagi" pointSize="26"/>
+                                                    <color key="textColor" red="0.26274509800000001" green="0.36862745099999999" blue="0.46274509800000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                            </subviews>
+                                            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                        </view>
+                                        <color key="backgroundColor" red="0.93333333330000001" green="0.93333333330000001" blue="0.93333333330000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <connections>
+                                            <outlet property="title" destination="kYY-Ug-rUR" id="v2S-bm-bDO"/>
+                                        </connections>
+                                    </collectionViewCell>
+                                </cells>
+                                <collectionReusableView key="sectionHeaderView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="LevelSelectHeader" id="bDf-C0-u5N" customClass="LevelSelectHeaderView" customModule="Planck" customModuleProvider="target">
+                                    <rect key="frame" x="0.0" y="0.0" width="290" height="60"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                    <subviews>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Y4k-QL-vpf">
+                                            <rect key="frame" x="20" y="13" width="192" height="48"/>
+                                            <fontDescription key="fontDescription" name="Akagi-SemiBold" family="Akagi" pointSize="28"/>
+                                            <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                    </subviews>
+                                </collectionReusableView>
+                                <connections>
+                                    <outlet property="dataSource" destination="Q09-Og-ZrK" id="AbH-LB-Qhq"/>
+                                    <outlet property="delegate" destination="Q09-Og-ZrK" id="rIi-Oa-vrk"/>
+                                </connections>
+                            </collectionView>
+                        </subviews>
+                        <color key="backgroundColor" red="0.26274509800000001" green="0.36862745099999999" blue="0.46274509800000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                    </view>
+                    <nil key="simulatedStatusBarMetrics"/>
+                    <nil key="simulatedTopBarMetrics"/>
+                    <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+                    <size key="freeformSize" width="290" height="768"/>
+                    <connections>
+                        <outlet property="collectionView" destination="fnJ-YS-hSu" id="Wwl-Q2-5Cc"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="iZN-mz-RmJ" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1208" y="403"/>
         </scene>
     </scenes>
     <resources>
