@@ -12,7 +12,6 @@ class HomeViewController: XViewController {
     
     private let emitterLayer = ParticleManager.getHomeBackgroundParticles()
     
-    
     class func getInstance() -> HomeViewController {
         let storyboard = UIStoryboard(name: "Main", bundle: nil)
         let identifier = StoryboardIndentifier.Home
@@ -55,6 +54,17 @@ class HomeViewController: XViewController {
     @IBAction func viewDidTapped(sender: UITapGestureRecognizer) {
         var touchPoint = sender.locationInView(self.view)
         self.emitterLayer.emitterPosition = touchPoint
+    }
+    
+    @IBAction func playGame(sender: AnyObject) {
+        self.mm_drawerController()!.openDrawerSide(MMDrawerSide.Right,
+                                                    animated: true, completion: nil)
+    }
+    
+    
+    @IBAction func openSettingMenu(sender: AnyObject) {
+        self.mm_drawerController()!.openDrawerSide(MMDrawerSide.Left,
+                                                    animated: true, completion: nil)
     }
 
 }

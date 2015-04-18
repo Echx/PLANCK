@@ -523,6 +523,24 @@
                                 <rect key="frame" x="0.0" y="0.0" width="1024" height="768"/>
                                 <gestureRecognizers/>
                             </imageView>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="cds-up-gQG">
+                                <rect key="frame" x="65" y="583" width="120" height="120"/>
+                                <state key="normal" image="setting">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="openSettingMenu:" destination="Z3F-Q9-Qtd" eventType="touchUpInside" id="xHC-7e-V2B"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="AYy-mv-Ena">
+                                <rect key="frame" x="839" y="583" width="120" height="120"/>
+                                <state key="normal" image="play">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="playGame:" destination="Z3F-Q9-Qtd" eventType="touchUpInside" id="sM8-bv-Vv1"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" red="0.26274509800000001" green="0.36862745099999999" blue="0.46274509800000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <gestureRecognizers/>
@@ -1056,6 +1074,8 @@
         <image name="background" width="1024" height="768"/>
         <image name="pause-highlight" width="150" height="150"/>
         <image name="pause-normal" width="150" height="150"/>
+        <image name="play" width="138" height="138"/>
         <image name="play-music" width="150" height="150"/>
+        <image name="setting" width="138" height="138"/>
     </resources>
 </document>
