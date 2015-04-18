@@ -51,11 +51,6 @@ class HomeViewController: XViewController {
         GamiCent.delegate = self
     }
     
-    @IBAction func viewDidTapped(sender: UITapGestureRecognizer) {
-        var touchPoint = sender.locationInView(self.view)
-        self.emitterLayer.emitterPosition = touchPoint
-    }
-    
     @IBAction func playGame(sender: AnyObject) {
         self.mm_drawerController()!.openDrawerSide(MMDrawerSide.Right,
                                                     animated: true, completion: nil)
