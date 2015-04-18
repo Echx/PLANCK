@@ -549,6 +549,11 @@
                     <size key="freeformSize" width="1024" height="768"/>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="nhq-O5-paL" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <tapGestureRecognizer id="1Vw-Oe-AVt">
+                    <connections>
+                        <action selector="closeDrawerMenu:" destination="Z3F-Q9-Qtd" id="kJJ-TO-qdZ"/>
+                    </connections>
+                </tapGestureRecognizer>
             </objects>
             <point key="canvasLocation" x="-239" y="397"/>
         </scene>

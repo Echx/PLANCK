@@ -51,14 +51,18 @@ class HomeViewController: XViewController {
         GamiCent.delegate = self
     }
     
+    @IBAction func closeDrawerMenu(sender: AnyObject) {
+        self.mm_drawerController()!.closeDrawerAnimated(true, completion: nil)
+    }
+    
     @IBAction func playGame(sender: AnyObject) {
-        self.mm_drawerController()!.openDrawerSide(MMDrawerSide.Right,
+        self.mm_drawerController()!.toggleDrawerSide(MMDrawerSide.Right,
                                                     animated: true, completion: nil)
     }
     
     
     @IBAction func openSettingMenu(sender: AnyObject) {
-        self.mm_drawerController()!.openDrawerSide(MMDrawerSide.Left,
+        self.mm_drawerController()!.toggleDrawerSide(MMDrawerSide.Left,
                                                     animated: true, completion: nil)
     }
 
