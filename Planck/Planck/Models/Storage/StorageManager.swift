@@ -26,9 +26,16 @@ class StorageManager:NSObject {
     func initStorage() {
         /// create necessary folder if needed.
         let fileManager = NSFileManager.defaultManager()
-        if !fileManager.fileExistsAtPath(XFileConstant.defaultLevelDir) {
-            fileManager.createDirectoryAtPath(XFileConstant.defaultLevelDir,
+        if !fileManager.fileExistsAtPath(XFileConstant.libraryPath) {
+            // init Application Support folder
+            fileManager.createDirectoryAtPath(XFileConstant.libraryPath,
                 withIntermediateDirectories: false, attributes: nil, error: nil)
+            
+            if !fileManager.fileExistsAtPath(XFileConstant.defaultLevelDir) {
+                // init Application Support/com.echx.planck folder for saving levels
+                fileManager.createDirectoryAtPath(XFileConstant.defaultLevelDir,
+                    withIntermediateDirectories: false, attributes: nil, error: nil)
+            }
         }
         if !fileManager.fileExistsAtPath(XFileConstant.userLevelDir) {
             fileManager.createDirectoryAtPath(XFileConstant.userLevelDir,

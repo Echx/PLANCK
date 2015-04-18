@@ -259,13 +259,19 @@ struct XGameCenter {
 }
 
 struct XFileConstant {
-    static let systemLevelFolder = "planck"
+    static let systemLevelFolder = "com.echx.planck"
     static let userLevelFolder = "users"
-    /// Using which directory
+    // Using which directory
     static let documentsPath = NSSearchPathForDirectoriesInDomains(.DocumentDirectory,
         .UserDomainMask, true)[0] as NSString
     
-    static let defaultLevelDir = documentsPath.stringByAppendingPathComponent(systemLevelFolder)
+    static let libraryPath = NSSearchPathForDirectoriesInDomains(.ApplicationSupportDirectory,
+        .UserDomainMask, true)[0] as NSString
+    
+    // The pre-set levels are stored in 
+    // /Library/Application Support/com.echx.planck/
+    static let defaultLevelDir = libraryPath.stringByAppendingPathComponent(systemLevelFolder)
+    
     static let userLevelDir = documentsPath.stringByAppendingPathComponent(userLevelFolder)
 }
 

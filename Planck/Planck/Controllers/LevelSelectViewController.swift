@@ -77,7 +77,18 @@ class LevelSelectViewController: XViewController, UICollectionViewDataSource, UI
     }
     
     private func getSectionHeaderText(section : Int) -> String {
-        return "Echx Present"
+        switch section {
+        case 0:
+            return "Planck 101"
+        case 1:
+            return "Rock Hero"
+        case 2:
+            return "Piano Story"
+        case 3:
+            return "wow, such Pop"
+        default:
+            return "ECHX Present"
+        }
     }
     
     private func loadLevels() {
