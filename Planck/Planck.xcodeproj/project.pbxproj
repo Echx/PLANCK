@@ -291,6 +291,7 @@
 		908507565261D52FE46A7565 /* libPods-Planck.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 7C7D2BBE51F017F5A3BC172D /* libPods-Planck.a */; };
 		98026E301ADC40B30092620B /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 98026E2F1ADC40B30092620B /* SystemConfiguration.framework */; };
 		98026E331ADC42FD0092620B /* GameKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 98026E321ADC42FD0092620B /* GameKit.framework */; };
+		980F5D641AE26A4000334B02 /* ScrollPageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 980F5D631AE26A4000334B02 /* ScrollPageViewController.swift */; };
 		982495D81AD2ACC10039E75E /* DesignerLevelSelectViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 982495D71AD2ACC10039E75E /* DesignerLevelSelectViewController.swift */; };
 		9841A82E1AD987010095AEBB /* SettingViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9841A82D1AD987010095AEBB /* SettingViewCell.swift */; };
 		986E5DA31AC55604008EF3CE /* StorageManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 98D55F9D1ABF133000B3E86A /* StorageManager.swift */; };
@@ -579,6 +580,7 @@
 		8FAA2537BA840D27B293A4BB /* Pods-Planck.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Planck.release.xcconfig"; path = "Pods/Target Support Files/Pods-Planck/Pods-Planck.release.xcconfig"; sourceTree = "<group>"; };
 		98026E2F1ADC40B30092620B /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
 		98026E321ADC42FD0092620B /* GameKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = GameKit.framework; path = System/Library/Frameworks/GameKit.framework; sourceTree = SDKROOT; };
+		980F5D631AE26A4000334B02 /* ScrollPageViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ScrollPageViewController.swift; sourceTree = "<group>"; };
 		982495D71AD2ACC10039E75E /* DesignerLevelSelectViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DesignerLevelSelectViewController.swift; sourceTree = "<group>"; };
 		9841A82D1AD987010095AEBB /* SettingViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SettingViewCell.swift; path = Setting/SettingViewCell.swift; sourceTree = "<group>"; };
 		988CF3471AD3C6580013D903 /* LevelSelectHeaderView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LevelSelectHeaderView.swift; sourceTree = "<group>"; };
@@ -814,6 +816,7 @@
 				269D783D1AD3088300279EF3 /* HomeViewController.swift */,
 				269D78391AD3070100279EF3 /* LevelSelectViewController.swift */,
 				269D78411AD3128D00279EF3 /* GameViewController.swift */,
+				980F5D631AE26A4000334B02 /* ScrollPageViewController.swift */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -1474,6 +1477,7 @@
 				6227FB6E1AAE285C007F49EA /* AppDelegate.swift in Sources */,
 				261483C71AD9B42A001F4143 /* GameLevel.swift in Sources */,
 				263B09C81ACEEE1100E7C99E /* GOConstant.swift in Sources */,
+				980F5D641AE26A4000334B02 /* ScrollPageViewController.swift in Sources */,
 				9841A82E1AD987010095AEBB /* SettingViewCell.swift in Sources */,
 				261483CD1AD9B456001F4143 /* ParticleManager.swift in Sources */,
 				269D78401AD30ECF00279EF3 /* XViewController.swift in Sources */,

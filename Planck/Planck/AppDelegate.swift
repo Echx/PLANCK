@@ -17,10 +17,14 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
         let settingViewController = SettingViewController.getInstance()
-        let levelSelectViewController = LevelSelectViewController.getInstance()
+        let systemLevelSelectVC = LevelSelectViewController.getInstance()
+        let userLevelSelectVC = LevelSelectViewController.getInstance()
+        var scrollPageArray = [systemLevelSelectVC, userLevelSelectVC]
+        let scrollPageViewController = ScrollPageViewController.getInstance(scrollPageArray)
+        
         let homeViewController = HomeViewController.getInstance()
         
-        self.drawerController = MMDrawerController(centerViewController: homeViewController, leftDrawerViewController: settingViewController, rightDrawerViewController: levelSelectViewController)
+        self.drawerController = MMDrawerController(centerViewController: homeViewController, leftDrawerViewController: settingViewController, rightDrawerViewController: scrollPageViewController)
         self.drawerController!.maximumLeftDrawerWidth = 300
         self.drawerController!.maximumRightDrawerWidth = 290
         self.drawerController!.openDrawerGestureModeMask = MMOpenDrawerGestureMode.All

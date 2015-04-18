@@ -12,6 +12,9 @@ class LevelSelectViewController: XViewController, UICollectionViewDataSource, UI
     
     private let itemsInSection = 6
     
+    /// its parent ScrollPage VC
+    var parentScrollPageVC:ScrollPageViewController?
+    
     @IBOutlet weak var collectionView: UICollectionView!
     var levelArray:[GameLevel] = [GameLevel]()
     
@@ -27,8 +30,7 @@ class LevelSelectViewController: XViewController, UICollectionViewDataSource, UI
     }
     
     override func viewDidAppear(animated: Bool) {
-        self.loadLevels()
-        self.collectionView.reloadData()
+        reload()
     }
     
     func numberOfSectionsInCollectionView(collectionView: UICollectionView) -> Int {
@@ -70,10 +72,16 @@ class LevelSelectViewController: XViewController, UICollectionViewDataSource, UI
         if game.isUnlock {
             // load game to the game view
             var gameVC = GameViewController.getInstance(game.deepCopy(), isPreview: false)
-            self.mm_drawerController()!.closeDrawerAnimated(true, completion: { bool in
-                self.presentViewController(gameVC, animated: true, completion: {})
+            self.parentScrollPageVC!.mm_drawerController()!.closeDrawerAnimated(true, completion: {
+                bool in
+                    self.parentScrollPageVC!.presentViewController(gameVC, animated: true, completion: {})
             })
         }
+    }
+    
+    func reload() {
+        self.loadLevels()
+        self.collectionView.reloadData()
     }
     
     private func getSectionHeaderText(section : Int) -> String {
