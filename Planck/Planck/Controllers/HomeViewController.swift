@@ -20,7 +20,7 @@ class HomeViewController: XViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.view.addSubview(self.emitterView)
+        self.view.insertSubview(self.emitterView, atIndex: 1)
         self.emitterView.alpha = 0
         
         let gamiCent = GamiCent.sharedInstance({
@@ -115,11 +115,6 @@ class HomeViewController: XViewController {
         animation.repeatCount = MAXFLOAT
         animation.removedOnCompletion = false
         emitterLayerYellow.addAnimation(animation, forKey: "second-half-Yellow")
-    }
-    
-    @IBAction func viewDidTapped(sender: UITapGestureRecognizer) {
-//        playGame(nil)
-        println(sender.locationInView(self.view))
     }
     
     @IBAction func playGame(sender: AnyObject?) {
