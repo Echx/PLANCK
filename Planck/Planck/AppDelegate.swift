@@ -29,7 +29,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         self.window = UIWindow(frame: UIScreen.mainScreen().bounds)
         self.window!.rootViewController = self.drawerController
         
-        // initial the cache
+        // initial the storage folder
+        StorageManager.defaultManager.initStorage()
         StorageManager.defaultManager.setNeedsReload()
         
         return true

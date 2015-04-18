@@ -20,7 +20,21 @@ class StorageManager:NSObject {
     }
     
     private let keyForArchieve = "GAMELEVEL"
-    private let levelDataFileType = ".dat"
+    private let levelDataFileType = "dat"
+    private let levelDataFileExtension = ".dat"
+    
+    func initStorage() {
+        /// create necessary folder if needed.
+        let fileManager = NSFileManager.defaultManager()
+        if !fileManager.fileExistsAtPath(XFileConstant.defaultLevelDir) {
+            fileManager.createDirectoryAtPath(XFileConstant.defaultLevelDir,
+                withIntermediateDirectories: false, attributes: nil, error: nil)
+        }
+        if !fileManager.fileExistsAtPath(XFileConstant.userLevelDir) {
+            fileManager.createDirectoryAtPath(XFileConstant.userLevelDir,
+                withIntermediateDirectories: false, attributes: nil, error: nil)
+        }
+    }
     
     // save as {index}.dat
     func saveCurrentLevel(level:GameLevel) {
@@ -30,7 +44,7 @@ class StorageManager:NSObject {
 
         archiver.finishEncoding()
         
-        let levelName = level.name + levelDataFileType
+        let levelName = level.name + levelDataFileExtension
         // save to system levels folder
         var filePath : NSString = XFileConstant.defaultLevelDir.stringByAppendingPathComponent(levelName)
         data.writeToFile(filePath, atomically: true)
