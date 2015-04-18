@@ -47,7 +47,7 @@ class ScrollPageViewController: XViewController, UIScrollViewDelegate {
     
     override func viewDidAppear(animated: Bool) {
         // Refresh the level select view when it appears
-        (self.controllers[currentPage] as LevelSelectViewController).reload()
+        self.controllers[currentPage].reload()
     }
     
     func loadScrollViewWithPage(page: Int) {
@@ -73,6 +73,6 @@ class ScrollPageViewController: XViewController, UIScrollViewDelegate {
         self.currentPage = page
         
         // reload the level select after we have scrolled to it.
-        (self.controllers[currentPage] as LevelSelectViewController).reload()
+        self.controllers[currentPage].reload()
     }
 }

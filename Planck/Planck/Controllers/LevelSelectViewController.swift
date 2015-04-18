@@ -79,7 +79,7 @@ class LevelSelectViewController: XViewController, UICollectionViewDataSource, UI
         }
     }
     
-    func reload() {
+    override func reload() {
         self.loadLevels()
         self.collectionView.reloadData()
     }

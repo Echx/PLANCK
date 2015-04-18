@@ -25,6 +25,7 @@ class SettingViewController: XViewController, UITableViewDataSource, UITableView
     private let sectionIDForSupport = 3
     
     private let headerHeight:CGFloat = 50.0
+    private let footerHeight:CGFloat = 20.0
     
     @IBOutlet weak var tableView: UITableView!
     class func getInstance() -> SettingViewController {
@@ -98,7 +99,7 @@ class SettingViewController: XViewController, UITableViewDataSource, UITableView
     }
     
     func tableView(tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
-        return 20
+        return footerHeight
     }
     
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
