@@ -37,7 +37,7 @@ class HomeViewController: XViewController {
                         GameStats.setNotFirstTime()
                     }
                     GamiCent.reportScoreLeaderboard(leaderboardID: XGameCenter.leaderboardID, score: GameLevel.countTotalScore(), completion: { success in
-                        println(success)
+                        
                     })
                 })
                 
