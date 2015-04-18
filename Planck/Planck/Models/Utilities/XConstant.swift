@@ -258,6 +258,17 @@ struct XGameCenter {
     static let achi_nine = "planck.achievement2"
 }
 
+struct XFileConstant {
+    static let systemLevelFolder = "planck"
+    static let userLevelFolder = "users"
+    /// Using which directory
+    static let documentsPath = NSSearchPathForDirectoriesInDomains(.DocumentDirectory,
+        .UserDomainMask, true)[0] as NSString
+    
+    static let defaultLevelDir = documentsPath.stringByAppendingPathComponent(systemLevelFolder)
+    static let userLevelDir = documentsPath.stringByAppendingPathComponent(userLevelFolder)
+}
+
 struct HomeViewDefaults {
     static let emitterInitialPosition = CGPoint(x: 429.5, y: 291.5)
 }
