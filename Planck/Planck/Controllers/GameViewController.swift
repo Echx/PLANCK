@@ -106,10 +106,11 @@ class GameViewController: XViewController {
     
     private func setUpSwitchView() {
         self.gameSwitch = SwitchView()
+        self.gameSwitch!.frame = CGRectMake(0, 0, 1024, 90)
         self.switchView.addSubview(self.gameSwitch!)
     }
     
-    @IBAction func switchViewDIdTapped(sender: UITapGestureRecognizer) {
+    @IBAction func switchViewDidTapped(sender: UITapGestureRecognizer) {
         self.gameSwitch!.toggle()
         if self.gameSwitch!.isOn {
             if self.isVirgin == nil {
