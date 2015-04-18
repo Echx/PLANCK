@@ -1016,7 +1016,7 @@
                                         </connections>
                                     </collectionViewCell>
                                 </cells>
-                                <collectionReusableView key="sectionHeaderView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="LevelSelectHeader" id="bDf-C0-u5N" customClass="LevelSelectHeaderView" customModule="Planck" customModuleProvider="target">
+                                <collectionReusableView key="sectionHeaderView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="UserLevelSelectHeader" id="bDf-C0-u5N" customClass="LevelSelectHeaderView" customModule="Planck" customModuleProvider="target">
                                     <rect key="frame" x="0.0" y="0.0" width="290" height="60"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
@@ -1027,6 +1027,9 @@
                                             <nil key="highlightedColor"/>
                                         </label>
                                     </subviews>
+                                    <connections>
+                                        <outlet property="title" destination="Y4k-QL-vpf" id="aL6-gZ-ji0"/>
+                                    </connections>
                                 </collectionReusableView>
                                 <connections>
                                     <outlet property="dataSource" destination="Q09-Og-ZrK" id="AbH-LB-Qhq"/>

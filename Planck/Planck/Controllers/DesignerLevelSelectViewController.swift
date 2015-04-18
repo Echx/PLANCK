@@ -14,7 +14,6 @@ protocol LevelSelectDelegate {
 
 class DesignerLevelSelectViewController: UITableViewController {
     
-    private let levelDataFileType = "dat"
     private let cellID = "LevelCell"
     private let storyBoardID = "Main"
     private let gameViewID = "GameView"

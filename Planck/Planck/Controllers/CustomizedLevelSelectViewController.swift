@@ -47,7 +47,7 @@ class CustomizedLevelSelectViewController: ScrollPageContentViewController, UICo
     func collectionView(collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, atIndexPath indexPath: NSIndexPath) -> UICollectionReusableView {
         
         if kind == UICollectionElementKindSectionHeader {
-            let header = collectionView.dequeueReusableSupplementaryViewOfKind(kind, withReuseIdentifier: ReuseableID.LevelSelectHeader, forIndexPath: indexPath) as LevelSelectHeaderView
+            let header = collectionView.dequeueReusableSupplementaryViewOfKind(kind, withReuseIdentifier: ReuseableID.UserLevelSelectHeader, forIndexPath: indexPath) as LevelSelectHeaderView
             header.title.text = getSectionHeaderText(indexPath.section)
             return header
         } else {
