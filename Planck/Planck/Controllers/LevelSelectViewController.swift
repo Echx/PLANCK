@@ -8,12 +8,9 @@
 
 import UIKit
 
-class LevelSelectViewController: XViewController, UICollectionViewDataSource, UICollectionViewDelegate, UICollectionViewDelegateFlowLayout {
+class LevelSelectViewController: ScrollPageContentViewController, UICollectionViewDataSource, UICollectionViewDelegate, UICollectionViewDelegateFlowLayout {
     
     private let itemsInSection = 6
-    
-    /// its parent ScrollPage VC
-    var parentScrollPageVC:ScrollPageViewController?
     
     @IBOutlet weak var collectionView: UICollectionView!
     var levelArray:[GameLevel] = [GameLevel]()

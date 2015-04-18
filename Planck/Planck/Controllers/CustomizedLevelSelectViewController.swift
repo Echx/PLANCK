@@ -8,11 +8,8 @@
 
 import UIKit
 
-class CustomizedLevelSelectViewController: XViewController, UICollectionViewDataSource, UICollectionViewDelegate {
-    
-    /// its parent ScrollPage VC
-    var parentScrollPageVC:ScrollPageViewController?
-    
+class CustomizedLevelSelectViewController: ScrollPageContentViewController, UICollectionViewDataSource, UICollectionViewDelegate {
+        
     @IBOutlet weak var collectionView: UICollectionView!
     var levelArray:[GameLevel] = [GameLevel]()
     

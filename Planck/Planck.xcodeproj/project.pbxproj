@@ -294,6 +294,7 @@
 		980F5D641AE26A4000334B02 /* ScrollPageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 980F5D631AE26A4000334B02 /* ScrollPageViewController.swift */; };
 		980F5D661AE2812900334B02 /* CustomizedLevelSelectViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 980F5D651AE2812900334B02 /* CustomizedLevelSelectViewController.swift */; };
 		980F5D681AE282B800334B02 /* CustomizedLevelCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 980F5D671AE282B800334B02 /* CustomizedLevelCollectionViewCell.swift */; };
+		980F5D6A1AE28B7A00334B02 /* ScrollPageContentViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 980F5D691AE28B7A00334B02 /* ScrollPageContentViewController.swift */; };
 		982495D81AD2ACC10039E75E /* DesignerLevelSelectViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 982495D71AD2ACC10039E75E /* DesignerLevelSelectViewController.swift */; };
 		9841A82E1AD987010095AEBB /* SettingViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9841A82D1AD987010095AEBB /* SettingViewCell.swift */; };
 		986E5DA31AC55604008EF3CE /* StorageManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 98D55F9D1ABF133000B3E86A /* StorageManager.swift */; };
@@ -585,6 +586,7 @@
 		980F5D631AE26A4000334B02 /* ScrollPageViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ScrollPageViewController.swift; sourceTree = "<group>"; };
 		980F5D651AE2812900334B02 /* CustomizedLevelSelectViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomizedLevelSelectViewController.swift; sourceTree = "<group>"; };
 		980F5D671AE282B800334B02 /* CustomizedLevelCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomizedLevelCollectionViewCell.swift; sourceTree = "<group>"; };
+		980F5D691AE28B7A00334B02 /* ScrollPageContentViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ScrollPageContentViewController.swift; sourceTree = "<group>"; };
 		982495D71AD2ACC10039E75E /* DesignerLevelSelectViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DesignerLevelSelectViewController.swift; sourceTree = "<group>"; };
 		9841A82D1AD987010095AEBB /* SettingViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SettingViewCell.swift; path = Setting/SettingViewCell.swift; sourceTree = "<group>"; };
 		988CF3471AD3C6580013D903 /* LevelSelectHeaderView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LevelSelectHeaderView.swift; sourceTree = "<group>"; };
@@ -822,6 +824,7 @@
 				269D78391AD3070100279EF3 /* LevelSelectViewController.swift */,
 				269D78411AD3128D00279EF3 /* GameViewController.swift */,
 				980F5D631AE26A4000334B02 /* ScrollPageViewController.swift */,
+				980F5D691AE28B7A00334B02 /* ScrollPageContentViewController.swift */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -1493,6 +1496,7 @@
 				263B09BA1ACEEDD800E7C99E /* GOFlatLensRep.swift in Sources */,
 				62D2836E1AD1892400A583FA /* XConcaveLens.swift in Sources */,
 				269192B41AD817D8002F8590 /* XNode.swift in Sources */,
+				980F5D6A1AE28B7A00334B02 /* ScrollPageContentViewController.swift in Sources */,
 				26C8ADE01AD045D8008ADACB /* GOPath.swift in Sources */,
 				263B09AB1ACEEDD800E7C99E /* GOArcSegment.swift in Sources */,
 				98C2CBAA1ADD199000074127 /* GameStats.swift in Sources */,

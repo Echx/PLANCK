@@ -9,7 +9,7 @@
 import UIKit
 
 class ScrollPageViewController: XViewController, UIScrollViewDelegate {
-    class func getInstance(controllers:[XViewController]) -> ScrollPageViewController {
+    class func getInstance(controllers:[ScrollPageContentViewController]) -> ScrollPageViewController {
         let storyboard = UIStoryboard(name: StoryboardIndentifier.StoryBoardID, bundle: nil)
         let identifier = StoryboardIndentifier.ScrollPage
         let viewController = storyboard.instantiateViewControllerWithIdentifier(identifier) as ScrollPageViewController
@@ -21,7 +21,7 @@ class ScrollPageViewController: XViewController, UIScrollViewDelegate {
     @IBOutlet weak var myScrollView: UIScrollView!
     
     // store the VC to presented
-    private var controllers:[XViewController] = [XViewController]()
+    private var controllers:[ScrollPageContentViewController] = [ScrollPageContentViewController]()
     
     var currentPage = 0
     
@@ -29,7 +29,7 @@ class ScrollPageViewController: XViewController, UIScrollViewDelegate {
         super.viewDidLoad()
         
         for vc in controllers {
-            (vc as LevelSelectViewController).parentScrollPageVC = self
+            vc.parentScrollPageVC = self
         }
         
         // set up scroll view
