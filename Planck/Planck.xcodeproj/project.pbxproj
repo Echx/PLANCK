@@ -814,17 +814,17 @@
 		6227FBEF1AAE28E7007F49EA /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
-				980F5D651AE2812900334B02 /* CustomizedLevelSelectViewController.swift */,
 				269D783F1AD30ECF00279EF3 /* XViewController.swift */,
 				982495D71AD2ACC10039E75E /* DesignerLevelSelectViewController.swift */,
 				26C8ADD91AD00437008ADACB /* LevelDesignerViewController.swift */,
 				269D78371AD306F000279EF3 /* SettingViewController.swift */,
-				98CEFDF21AE139050060EE23 /* GameStasticViewController.swift */,
 				269D783D1AD3088300279EF3 /* HomeViewController.swift */,
-				269D78391AD3070100279EF3 /* LevelSelectViewController.swift */,
 				269D78411AD3128D00279EF3 /* GameViewController.swift */,
+				269D78391AD3070100279EF3 /* LevelSelectViewController.swift */,
+				980F5D651AE2812900334B02 /* CustomizedLevelSelectViewController.swift */,
 				980F5D631AE26A4000334B02 /* ScrollPageViewController.swift */,
 				980F5D691AE28B7A00334B02 /* ScrollPageContentViewController.swift */,
+				98CEFDF21AE139050060EE23 /* GameStasticViewController.swift */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";

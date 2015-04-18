@@ -244,7 +244,11 @@ class LevelDesignerViewController: XViewController {
             }
             return
         }
-
+        
+        if isSaving {
+            // it is saving now, cannot place new device
+            return
+        }
         
         let location = sender.locationInView(sender.view)
         let coordinate = self.grid.getGridCoordinateForPoint(location)
