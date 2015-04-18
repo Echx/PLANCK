@@ -46,6 +46,7 @@ class ScrollPageViewController: XViewController, UIScrollViewDelegate {
     }
     
     override func viewDidAppear(animated: Bool) {
+        // Refresh the level select view when it appears
         (self.controllers[currentPage] as LevelSelectViewController).reload()
     }
     
@@ -64,13 +65,14 @@ class ScrollPageViewController: XViewController, UIScrollViewDelegate {
         }
     }
     
-    
+    // - MARKS: ScrollView Delegate method
     func scrollViewDidEndDecelerating(scrollView: UIScrollView) {
         let pageWidth = CGRectGetWidth(self.myScrollView.frame)
-        // the page is decided when more than 50% of the page is visible
         let page = Int(floor(self.myScrollView.contentOffset.x / pageWidth))
         
         self.currentPage = page
-        println(self.currentPage)
+        
+        // reload the level select after we have scrolled to it.
+        (self.controllers[currentPage] as LevelSelectViewController).reload()
     }
 }
