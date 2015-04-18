@@ -2,7 +2,7 @@
 //  XNode.swift
 //  Planck
 //
-//  Created by NULL on 10/04/15.
+//  Created by Wang Jinghan on 10/04/15.
 //  Copyright (c) 2015 Echx. All rights reserved.
 //
 

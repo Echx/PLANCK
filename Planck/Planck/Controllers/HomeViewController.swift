@@ -48,12 +48,12 @@ class HomeViewController: XViewController {
         })
         /* Set delegate */
         GamiCent.delegate = self
-        NSTimer.scheduledTimerWithTimeInterval(0.4, target: self, selector: "setUpAnimation:", userInfo: nil, repeats: true)
+        NSTimer.scheduledTimerWithTimeInterval(0.5, target: self, selector: "setUpAnimation:", userInfo: nil, repeats: true)
     }
 
     private var count = 0;
     func setUpAnimation(timer: NSTimer) {
-        if count > 5 {
+        if count > 4 {
             timer.invalidate()
             UIView.animateWithDuration(2, animations: {
                 self.emitterView.alpha = 1

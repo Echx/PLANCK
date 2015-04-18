@@ -11,6 +11,7 @@
 		2602B91B1ADB06B200F8ABC0 /* PauseMaskView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2602B9191ADB032C00F8ABC0 /* PauseMaskView.swift */; };
 		26113FD61AE2F13000540529 /* OnboardingMaskView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26113FD41AE2F13000540529 /* OnboardingMaskView.swift */; };
 		26113FD71AE2F13000540529 /* SwitchView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26113FD51AE2F13000540529 /* SwitchView.swift */; };
+		26113FD81AE2FB2800540529 /* OnboardingMaskView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26113FD41AE2F13000540529 /* OnboardingMaskView.swift */; };
 		261483C71AD9B42A001F4143 /* GameLevel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 261483C51AD9B42A001F4143 /* GameLevel.swift */; };
 		261483C81AD9B42E001F4143 /* GameLevel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 261483C51AD9B42A001F4143 /* GameLevel.swift */; };
 		261483CD1AD9B456001F4143 /* ParticleManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 261483CC1AD9B456001F4143 /* ParticleManager.swift */; };
@@ -1573,6 +1574,7 @@
 				62988FF81AB2FA8800FD9AFF /* XMedium.swift in Sources */,
 				62E3232B1ADAF52000CFD4CA /* XViewController.swift in Sources */,
 				62E323331ADAF54800CFD4CA /* BadgeView.swift in Sources */,
+				26113FD81AE2FB2800540529 /* OnboardingMaskView.swift in Sources */,
 				62988FF91AB2FA8800FD9AFF /* XNote.swift in Sources */,
 				263B09CC1ACEEF9600E7C99E /* CGVector+GOUtilities.swift in Sources */,
 				98F63A971AD165070096A32E /* GOFlatOpticRep.swift in Sources */,
