@@ -649,6 +649,8 @@ extension GameViewController: PauseMaskViewDelegate {
         switch index {
         case 0:
             self.dismissViewController()
+            // play background music
+            NSNotificationCenter.defaultCenter().postNotificationName(HomeViewDefaults.startPlayingKey, object: nil)
             
         case 2:
             self.pauseMask.hide()
@@ -687,6 +689,9 @@ extension GameViewController: LevelTransitionMaskViewDelegate {
                 } else {
                     // have finished all current game
                     self.dismissViewController()
+                    
+                    // play background music
+                    NSNotificationCenter.defaultCenter().postNotificationName(HomeViewDefaults.startPlayingKey, object: nil)
                 }
             }
         } else {

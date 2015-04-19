@@ -69,6 +69,9 @@ class LevelSelectViewController: ScrollPageContentViewController, UICollectionVi
         if game.isUnlock {
             // load game to the game view
             var gameVC = GameViewController.getInstance(game.deepCopy(), isPreview: false)
+            // stop playing music
+            NSNotificationCenter.defaultCenter().postNotificationName(HomeViewDefaults.stopPlayingKey, object: nil)
+            
             self.parentScrollPageVC!.mm_drawerController()!.closeDrawerAnimated(true, completion: {
                 bool in
                     self.parentScrollPageVC!.presentViewController(gameVC, animated: true, completion: {})

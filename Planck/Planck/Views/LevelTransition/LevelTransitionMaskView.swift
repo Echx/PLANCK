@@ -124,6 +124,13 @@ class LevelTransitionMaskView: UIView {
                             selector: Selector("showButtons"),
                             userInfo: nil,
                             repeats: false)
+                    } else {
+                        let timer = NSTimer.scheduledTimerWithTimeInterval(
+                            self.showButtonDelay,
+                            target: self,
+                            selector: Selector("hide"),
+                            userInfo: nil,
+                            repeats: false)
                     }
                 })
         }

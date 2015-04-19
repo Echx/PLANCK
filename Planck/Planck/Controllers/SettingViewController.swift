@@ -131,7 +131,13 @@ class SettingViewController: XViewController, UITableViewDataSource, UITableView
     }
     
     func toggleSetting(sender:UIButton!) {
+        // better naming pls
         sender.selected = !sender.selected
+        if !sender.selected {
+            NSNotificationCenter.defaultCenter().postNotificationName(HomeViewDefaults.startPlayingKey, object: nil)
+        } else {
+            NSNotificationCenter.defaultCenter().postNotificationName(HomeViewDefaults.stopPlayingKey, object: nil)
+        }
     }
     
     
