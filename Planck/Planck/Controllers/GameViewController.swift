@@ -675,6 +675,9 @@ extension GameViewController: LevelTransitionMaskViewDelegate {
                 } else {
                     // have finished all current game
                     self.dismissViewController()
+                    
+                    // play background music
+                    NSNotificationCenter.defaultCenter().postNotificationName(HomeViewDefaults.startPlayingKey, object: nil)
                 }
             }
         } else {
