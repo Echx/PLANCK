@@ -35,6 +35,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         // initial the storage folder
         StorageManager.defaultManager.initStorage()
+        if !GameStats.isNotFirstTime() {
+            // load the predefined levels when the first time play the game
+            StorageManager.defaultManager.copyGameLevels()
+        }
         StorageManager.defaultManager.setNeedsReload()
         
         return true
