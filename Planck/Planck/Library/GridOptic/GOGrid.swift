@@ -321,7 +321,14 @@ class GOGrid: NSObject, NSCoding {
                 self.refractionEdgeParentStack.push(edge.parent)
             }
         }
-        return edge.getOutcomeRay(rayIn: ray, indexIn: indexIn, indexOut: indexOut)
+        if let outcomeRay = edge.getOutcomeRay(rayIn: ray, indexIn: indexIn, indexOut: indexOut) {
+            if outcomeRay.1 {
+                self.refractionEdgeParentStack.push(edge.parent)
+            }
+            return outcomeRay.0
+        } else {
+            return nil
+        }
     }
     
     //given a ray to start, return nearest edge on the ray's path, nil if no edge lies on the path

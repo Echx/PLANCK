@@ -139,7 +139,7 @@ class GOLineSegment: GOSegment {
         return nil
     }
     
-    override func getRefractionRay(#rayIn: GORay, indexIn: CGFloat, indexOut: CGFloat) -> GORay? {
+    override func getRefractionRay(#rayIn: GORay, indexIn: CGFloat, indexOut: CGFloat) -> (GORay, Bool)? {
         if let intersectionPoint = self.getIntersectionPoint(rayIn) {
             let l = rayIn.direction.normalised
             var n: CGVector
@@ -153,7 +153,11 @@ class GOLineSegment: GOSegment {
             
             // Total reflection
             if 1.0 - (indexIn / indexOut) * (indexIn / indexOut) * (1 - cosTheta1 * cosTheta1) < 0 {
-                return self.getReflectionRay(rayIn: rayIn)
+                if let reflectionRay = self.getReflectionRay(rayIn: rayIn) {
+                    return (reflectionRay, true)
+                } else {
+                    return nil
+                }
             }
             
             let cosTheta2 = sqrt(1 - (indexIn / indexOut) * (indexIn / indexOut) * (1 - cosTheta1 * cosTheta1))
@@ -161,7 +165,7 @@ class GOLineSegment: GOSegment {
             let x = (indexIn / indexOut) * l.dx + (indexIn / indexOut * cosTheta1 - cosTheta2) * n.dx
             let y = (indexIn / indexOut) * l.dy + (indexIn / indexOut * cosTheta1 - cosTheta2) * n.dy
             
-            return GORay(startPoint: intersectionPoint, direction: CGVectorMake(x, y))
+            return (GORay(startPoint: intersectionPoint, direction: CGVectorMake(x, y)), false)
         } else {
             return nil
         }

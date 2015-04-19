@@ -247,7 +247,7 @@ class GOArcSegment: GOSegment {
         }
     }
     
-    override func getRefractionRay(#rayIn: GORay, indexIn: CGFloat, indexOut: CGFloat) -> GORay? {
+    override func getRefractionRay(#rayIn: GORay, indexIn: CGFloat, indexOut: CGFloat) -> (GORay, Bool)? {
         if let intersectionPoint = self.getIntersectionPoint(rayIn) {
             let l = rayIn.direction.normalised
             let tangentNormal = CGVector(dx: intersectionPoint.x - self.center.x,
@@ -264,14 +264,19 @@ class GOArcSegment: GOSegment {
             let cosTheta1 = -CGVector.dot(n, v2: l)
             let cosTheta2 = sqrt(1 - (indexIn / indexOut) * (indexIn / indexOut) * (1 - cosTheta1 * cosTheta1))
             
+            // total reflection
             if 1 - (indexIn / indexOut) * (indexIn / indexOut) * (1 - cosTheta1 * cosTheta1) < 0 {
-                return self.getReflectionRay(rayIn: rayIn)
+                if let reflectionRay = self.getReflectionRay(rayIn: rayIn) {
+                    return (reflectionRay, true)
+                } else {
+                    return nil
+                }
             }
             
             let x = (indexIn / indexOut) * l.dx + (indexIn / indexOut * cosTheta1 - cosTheta2) * n.dx
             let y = (indexIn / indexOut) * l.dy + (indexIn / indexOut * cosTheta1 - cosTheta2) * n.dy
             
-            return GORay(startPoint: intersectionPoint, direction: CGVectorMake(x, y))
+            return (GORay(startPoint: intersectionPoint, direction: CGVectorMake(x, y)), false)
         } else {
             return nil
         }
