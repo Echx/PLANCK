@@ -25,9 +25,10 @@ class HomeViewController: XViewController {
         self.view.insertSubview(self.emitterView, atIndex: 1)
         self.emitterView.alpha = 0
         
-        self.startPlayingMusic()
+        self.playMusic()
         
         NSNotificationCenter.defaultCenter().addObserver(self, selector: "stopPlayingMusic:", name: HomeViewDefaults.stopPlayingKey, object: nil)
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: "startPlayingMusic:", name: HomeViewDefaults.startPlayingKey, object: nil)
         
         let gamiCent = GamiCent.sharedInstance({
             (isAuthentified) -> Void in
@@ -134,10 +135,14 @@ class HomeViewController: XViewController {
                                                     animated: true, completion: nil)
     }
     
-    private func startPlayingMusic() {
+    func playMusic() {
         self.backgroundMusicPlayer.prepareToPlay()
         self.backgroundMusicPlayer.numberOfLoops = -1
         self.backgroundMusicPlayer.play()
+    }
+    
+    func startPlayingMusic(notification: NSNotification) {
+        self.playMusic()
     }
     
     func stopPlayingMusic(notification: NSNotification) {
