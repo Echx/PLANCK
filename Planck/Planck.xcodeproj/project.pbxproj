@@ -72,6 +72,7 @@
 		26DAF6CB1AE4234500367887 /* SwitchView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26113FD51AE2F13000540529 /* SwitchView.swift */; };
 		26DFCF9C1AD8467000C97C5B /* XEmitter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26DFCF9B1AD8467000C97C5B /* XEmitter.swift */; };
 		620BD4461AB2E69800267C7B /* XNote.swift in Sources */ = {isa = PBXBuildFile; fileRef = 620BD4451AB2E69800267C7B /* XNote.swift */; };
+		621F40FC1AE3ED6C00335649 /* SwitchView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26113FD51AE2F13000540529 /* SwitchView.swift */; };
 		6227FB6E1AAE285C007F49EA /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6227FB6D1AAE285C007F49EA /* AppDelegate.swift */; };
 		6227FB771AAE285C007F49EA /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 6227FB751AAE285C007F49EA /* Main.storyboard */; };
 		6227FB791AAE285C007F49EA /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 6227FB781AAE285C007F49EA /* Images.xcassets */; };
