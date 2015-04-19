@@ -113,6 +113,11 @@ class GameViewController: XViewController {
     
     @IBAction func switchViewDidTapped(sender: UITapGestureRecognizer) {
         self.gameSwitch!.toggle()
+
+        if self.gameLevel.index == 0 {
+            self.onboardingMaskView.clear()
+        }
+        
         if self.gameSwitch!.isOn {
             if self.isVirgin == nil {
                 self.isVirgin = true
@@ -581,7 +586,14 @@ extension GameViewController {
             let welcomeLabel = self.onboardingMaskView.addLabelWithText(
                 "tap the switch to shoot the light",
                 position: self.view.center)
-            self.onboardingMaskView.drawMask(UIBezierPath(rect: CGRectMake(0, 668, 1024, 100)), animated: true)
+            var maskPath = UIBezierPath()
+            maskPath.moveToPoint(CGPointMake(0, 768))
+            maskPath.addLineToPoint(CGPointMake(0, 668))
+            maskPath.addLineToPoint(CGPointMake(100, 668))
+            maskPath.addLineToPoint(CGPointMake(150, 718))
+            maskPath.addLineToPoint(CGPointMake(150, 768))
+            maskPath.closePath()
+            self.onboardingMaskView.drawMask(maskPath, animated: true)
             self.onboardingMaskView.showTapGuidianceAtPoint(CGPoint(x: 80, y: 708), repeat: true)
             self.view.addSubview(self.onboardingMaskView)
         } else if self.gameLevel.index == 1{

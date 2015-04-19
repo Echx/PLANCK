@@ -18,6 +18,7 @@ class OnboardingMaskView: UIView {
     private var maskLayer = CAShapeLayer()
     private var mask = UIView()
     private var isMaskHidden = true
+    private var labels = [UILabel]()
     
     private var tapAnimationTimer: NSTimer?
     private var dragAnimationTimer: NSTimer?
@@ -66,6 +67,11 @@ class OnboardingMaskView: UIView {
             layer.removeAllAnimations()
             layer.removeFromSuperlayer()
         }
+        
+        for label in self.labels {
+            label.removeFromSuperview()
+        }
+        
         self.dragAnimationTimer?.invalidate()
         self.tapAnimationTimer?.invalidate()
     }
@@ -252,6 +258,7 @@ class OnboardingMaskView: UIView {
         label.font = UIFont(name: "Akagi-SemiBold", size: 22)
         label.center = position
         self.addSubview(label)
+        self.labels.append(label)
         return label
     }
     
