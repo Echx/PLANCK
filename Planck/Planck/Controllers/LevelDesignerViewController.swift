@@ -1236,7 +1236,6 @@ class LevelDesignerViewController: XViewController {
                         self.gameIndex = nextIndex
                         self.isSaving = false
                         
-                        self.dismissViewController()
                 } else {
                     // invalid
                     self.showWrongInputAlert()
