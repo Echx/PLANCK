@@ -380,7 +380,7 @@
                 </tapGestureRecognizer>
                 <tapGestureRecognizer numberOfTapsRequired="2" numberOfTouchesRequired="2" id="Bmb-Xb-qhm">
                     <connections>
-                        <action selector="dismissViewController" destination="ICT-TY-Uh1" id="yij-Re-BoB"/>
+                        <action selector="goBackToHomeView:" destination="ICT-TY-Uh1" id="Oqp-Zs-kTB"/>
                     </connections>
                 </tapGestureRecognizer>
                 <tapGestureRecognizer numberOfTouchesRequired="3" id="XwB-aM-G2A">

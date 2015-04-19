@@ -1172,6 +1172,11 @@ class LevelDesignerViewController: XViewController {
     }
     
     
+    @IBAction func goBackToHomeView(sender: AnyObject) {
+        // start playing music
+        NSNotificationCenter.defaultCenter().postNotificationName(HomeViewDefaults.startPlayingKey, object: nil)
+        self.dismissViewController()
+    }
     
     // MARK: - ALERT
     private func showSavePrompt() {

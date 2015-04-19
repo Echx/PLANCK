@@ -108,6 +108,8 @@ class SettingViewController: XViewController, UITableViewDataSource, UITableView
         if section == sectionIDForLevelDesigner {
             let viewController = LevelDesignerViewController.getInstance()
             self.presentViewController(viewController, animated: true, completion: nil)
+            // stop playing music
+            NSNotificationCenter.defaultCenter().postNotificationName(HomeViewDefaults.stopPlayingKey, object: nil)
         } else if section == sectionIDForGameCenter {
             if indexPath.item == 0 {
                 // item 1 : view achievements
