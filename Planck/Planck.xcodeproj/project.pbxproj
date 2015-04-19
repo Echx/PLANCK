@@ -71,6 +71,7 @@
 		26D9ABB21AD7D9CA00D70D83 /* GOOverlapManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26D9ABB01AD7CB1700D70D83 /* GOOverlapManager.swift */; };
 		26DFCF9C1AD8467000C97C5B /* XEmitter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26DFCF9B1AD8467000C97C5B /* XEmitter.swift */; };
 		620BD4461AB2E69800267C7B /* XNote.swift in Sources */ = {isa = PBXBuildFile; fileRef = 620BD4451AB2E69800267C7B /* XNote.swift */; };
+		621F40FC1AE3ED6C00335649 /* SwitchView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26113FD51AE2F13000540529 /* SwitchView.swift */; };
 		6227FB6E1AAE285C007F49EA /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6227FB6D1AAE285C007F49EA /* AppDelegate.swift */; };
 		6227FB771AAE285C007F49EA /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 6227FB751AAE285C007F49EA /* Main.storyboard */; };
 		6227FB791AAE285C007F49EA /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 6227FB781AAE285C007F49EA /* Images.xcassets */; };
@@ -1528,6 +1529,7 @@
 				98F63AA31AD1650F0096A32E /* GOSegment.swift in Sources */,
 				62988FF51AB2FA8800FD9AFF /* CGVector+XUtility.swift in Sources */,
 				98F63A9D1AD165070096A32E /* GOGrid.swift in Sources */,
+				621F40FC1AE3ED6C00335649 /* SwitchView.swift in Sources */,
 				98F63A991AD165070096A32E /* GOFlatMirrorRep.swift in Sources */,
 				98F63A9A1AD165070096A32E /* GOFlatWallRep.swift in Sources */,
 				263B09CA1ACEEF9600E7C99E /* CGFLoat+GOUtilities.swift in Sources */,
