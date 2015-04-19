@@ -25,9 +25,9 @@ class HomeViewController: XViewController {
         self.view.insertSubview(self.emitterView, atIndex: 1)
         self.emitterView.alpha = 0
         
-        self.backgroundMusicPlayer.prepareToPlay()
-        self.backgroundMusicPlayer.numberOfLoops = -1
-        self.backgroundMusicPlayer.play()
+        self.startPlayingMusic()
+        
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: ":stopPlayingMusic", name: HomeViewDefaults.stopPlayingKey, object: nil)
         
         let gamiCent = GamiCent.sharedInstance({
             (isAuthentified) -> Void in
@@ -132,6 +132,16 @@ class HomeViewController: XViewController {
     @IBAction func openSettingMenu(sender: AnyObject) {
         self.mm_drawerController()!.openDrawerSide(MMDrawerSide.Left,
                                                     animated: true, completion: nil)
+    }
+    
+    private func startPlayingMusic() {
+        self.backgroundMusicPlayer.prepareToPlay()
+        self.backgroundMusicPlayer.numberOfLoops = -1
+        self.backgroundMusicPlayer.play()
+    }
+    
+    private func stopPlayingMusic() {
+        self.backgroundMusicPlayer.stop()
     }
 
 }

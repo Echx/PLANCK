@@ -287,4 +287,6 @@ struct HomeViewDefaults {
     static let emitterPositionEndRed = CGPointMake(1024, 152)
     static let emitterPositionEndOrange = CGPointMake(1024, 185)
     static let emitterPositionEndYellow = CGPointMake(1024, 215)
+    
+    static let stopPlayingKey = "stop playing"
 }
