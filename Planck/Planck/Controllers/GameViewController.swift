@@ -650,8 +650,11 @@ extension GameViewController: PauseMaskViewDelegate {
         switch index {
         case 0:
             self.dismissViewController()
-            // play background music
-            NSNotificationCenter.defaultCenter().postNotificationName(HomeViewDefaults.startPlayingKey, object: nil)
+            
+            if !self.isPreview {
+                // play background music
+                NSNotificationCenter.defaultCenter().postNotificationName(HomeViewDefaults.startPlayingKey, object: nil)
+            }
             
         case 2:
             self.pauseMask.hide()
