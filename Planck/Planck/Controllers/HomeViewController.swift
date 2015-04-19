@@ -59,26 +59,26 @@ class HomeViewController: XViewController {
 
     private var count = 0;
     func setUpAnimation(timer: NSTimer) {
-        if count > 4 {
-            timer.invalidate()
-            UIView.animateWithDuration(2, animations: {
-                self.emitterView.alpha = 1
-            })
-            return
-        }
-        
-        count++
-        
-        setUpRestAnimation()
-        let emitterLayer = ParticleManager.getHomeBackgroundParticles("FireSpark", longtitude: CGFloat(M_PI * 0.8))
-        emitterView.layer.addSublayer(emitterLayer)
-        var animation = CABasicAnimation(keyPath: "emitterPosition")
-        animation.fromValue = NSValue(CGPoint: HomeViewDefaults.emitterPositionStart)
-        animation.toValue = NSValue(CGPoint: HomeViewDefaults.emitterPositionCenter)
-        animation.duration = CFTimeInterval(2)
-        animation.repeatCount = MAXFLOAT
-        animation.removedOnCompletion = false
-        emitterLayer.addAnimation(animation, forKey: "first-half")
+//        if count > 4 {
+//            timer.invalidate()
+//            UIView.animateWithDuration(2, animations: {
+//                self.emitterView.alpha = 1
+//            })
+//            return
+//        }
+//        
+//        count++
+//        
+//        setUpRestAnimation()
+//        let emitterLayer = ParticleManager.getHomeBackgroundParticles("FireSpark", longtitude: CGFloat(M_PI * 0.8))
+//        emitterView.layer.addSublayer(emitterLayer)
+//        var animation = CABasicAnimation(keyPath: "emitterPosition")
+//        animation.fromValue = NSValue(CGPoint: HomeViewDefaults.emitterPositionStart)
+//        animation.toValue = NSValue(CGPoint: HomeViewDefaults.emitterPositionCenter)
+//        animation.duration = CFTimeInterval(2)
+//        animation.repeatCount = MAXFLOAT
+//        animation.removedOnCompletion = false
+//        emitterLayer.addAnimation(animation, forKey: "first-half")
     }
     
     func setUpRestAnimation() {
