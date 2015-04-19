@@ -306,6 +306,12 @@
 		98C2CBAC1ADD19CE00074127 /* GamiCent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 98C2CBAB1ADD19CE00074127 /* GamiCent.swift */; };
 		98CEFDF31AE139050060EE23 /* GameStasticViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 98CEFDF21AE139050060EE23 /* GameStasticViewController.swift */; };
 		98D55F9E1ABF133000B3E86A /* StorageManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 98D55F9D1ABF133000B3E86A /* StorageManager.swift */; };
+		98E7F3EF1AE44253005AA6BE /* t0.dat in Resources */ = {isa = PBXBuildFile; fileRef = 98E7F3E91AE44253005AA6BE /* t0.dat */; };
+		98E7F3F01AE44253005AA6BE /* t1.dat in Resources */ = {isa = PBXBuildFile; fileRef = 98E7F3EA1AE44253005AA6BE /* t1.dat */; };
+		98E7F3F11AE44253005AA6BE /* t2.dat in Resources */ = {isa = PBXBuildFile; fileRef = 98E7F3EB1AE44253005AA6BE /* t2.dat */; };
+		98E7F3F21AE44253005AA6BE /* t3.dat in Resources */ = {isa = PBXBuildFile; fileRef = 98E7F3EC1AE44253005AA6BE /* t3.dat */; };
+		98E7F3F31AE44253005AA6BE /* t4.dat in Resources */ = {isa = PBXBuildFile; fileRef = 98E7F3ED1AE44253005AA6BE /* t4.dat */; };
+		98E7F3F41AE44253005AA6BE /* t5.dat in Resources */ = {isa = PBXBuildFile; fileRef = 98E7F3EE1AE44253005AA6BE /* t5.dat */; };
 		98F63A951AD165070096A32E /* GOConcaveLensRep.swift in Sources */ = {isa = PBXBuildFile; fileRef = 263B09A41ACEEDD800E7C99E /* GOConcaveLensRep.swift */; };
 		98F63A961AD165070096A32E /* GOConvexLensRep.swift in Sources */ = {isa = PBXBuildFile; fileRef = 263B09A51ACEEDD800E7C99E /* GOConvexLensRep.swift */; };
 		98F63A971AD165070096A32E /* GOFlatOpticRep.swift in Sources */ = {isa = PBXBuildFile; fileRef = 263B09A81ACEEDD800E7C99E /* GOFlatOpticRep.swift */; };
@@ -598,6 +604,12 @@
 		98C2CBAB1ADD19CE00074127 /* GamiCent.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GamiCent.swift; sourceTree = "<group>"; };
 		98CEFDF21AE139050060EE23 /* GameStasticViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GameStasticViewController.swift; sourceTree = "<group>"; };
 		98D55F9D1ABF133000B3E86A /* StorageManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = StorageManager.swift; path = Storage/StorageManager.swift; sourceTree = "<group>"; };
+		98E7F3E91AE44253005AA6BE /* t0.dat */ = {isa = PBXFileReference; lastKnownFileType = file.bplist; name = t0.dat; path = Levels/t0.dat; sourceTree = "<group>"; };
+		98E7F3EA1AE44253005AA6BE /* t1.dat */ = {isa = PBXFileReference; lastKnownFileType = file.bplist; name = t1.dat; path = Levels/t1.dat; sourceTree = "<group>"; };
+		98E7F3EB1AE44253005AA6BE /* t2.dat */ = {isa = PBXFileReference; lastKnownFileType = file.bplist; name = t2.dat; path = Levels/t2.dat; sourceTree = "<group>"; };
+		98E7F3EC1AE44253005AA6BE /* t3.dat */ = {isa = PBXFileReference; lastKnownFileType = file.bplist; name = t3.dat; path = Levels/t3.dat; sourceTree = "<group>"; };
+		98E7F3ED1AE44253005AA6BE /* t4.dat */ = {isa = PBXFileReference; lastKnownFileType = file.bplist; name = t4.dat; path = Levels/t4.dat; sourceTree = "<group>"; };
+		98E7F3EE1AE44253005AA6BE /* t5.dat */ = {isa = PBXFileReference; lastKnownFileType = file.bplist; name = t5.dat; path = Levels/t5.dat; sourceTree = "<group>"; };
 		D9EB5B984B678F09D432FC9D /* Pods-Planck.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Planck.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Planck/Pods-Planck.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -792,6 +804,7 @@
 		6227FB6B1AAE285C007F49EA /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				98E7F3E81AE441BB005AA6BE /* Levels */,
 				26290C9C1ADEB86900409FD8 /* Fonts */,
 				62E00C751AC466E800F10F10 /* Sound */,
 				6227FB6C1AAE285C007F49EA /* Info.plist */,
@@ -1113,6 +1126,19 @@
 			name = Storage;
 			sourceTree = "<group>";
 		};
+		98E7F3E81AE441BB005AA6BE /* Levels */ = {
+			isa = PBXGroup;
+			children = (
+				98E7F3E91AE44253005AA6BE /* t0.dat */,
+				98E7F3EA1AE44253005AA6BE /* t1.dat */,
+				98E7F3EB1AE44253005AA6BE /* t2.dat */,
+				98E7F3EC1AE44253005AA6BE /* t3.dat */,
+				98E7F3ED1AE44253005AA6BE /* t4.dat */,
+				98E7F3EE1AE44253005AA6BE /* t5.dat */,
+			);
+			name = Levels;
+			sourceTree = "<group>";
+		};
 		F96E4F7A924BA3503E92F4DC /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
@@ -1232,6 +1258,7 @@
 				629D39FF1AD9C29A00A8B3B7 /* harp-48.m4a in Resources */,
 				629D39371AD9844300A8B3B7 /* piano-49.m4a in Resources */,
 				629D39461AD9844300A8B3B7 /* piano-77.m4a in Resources */,
+				98E7F3F31AE44253005AA6BE /* t4.dat in Resources */,
 				629D3A0D1AD9C29A00A8B3B7 /* harp-34.m4a in Resources */,
 				629D39251AD9844300A8B3B7 /* piano-31.m4a in Resources */,
 				629D39301AD9844300A8B3B7 /* piano-42.m4a in Resources */,
@@ -1248,6 +1275,7 @@
 				629D3A101AD9C29A00A8B3B7 /* harp-31.m4a in Resources */,
 				629D39DF1AD9C29A00A8B3B7 /* harp-80.m4a in Resources */,
 				629D39551AD9844300A8B3B7 /* piano-92.m4a in Resources */,
+				98E7F3F41AE44253005AA6BE /* t5.dat in Resources */,
 				629D39181AD9844300A8B3B7 /* piano-18.m4a in Resources */,
 				629D3A061AD9C29A00A8B3B7 /* harp-41.m4a in Resources */,
 				629D3A0B1AD9C29A00A8B3B7 /* harp-36.m4a in Resources */,
@@ -1326,6 +1354,7 @@
 				629D39D01AD9C29A00A8B3B7 /* harp-95.m4a in Resources */,
 				629D39D71AD9C29A00A8B3B7 /* harp-88.m4a in Resources */,
 				629D3A211AD9C29A00A8B3B7 /* harp-14.m4a in Resources */,
+				98E7F3F11AE44253005AA6BE /* t2.dat in Resources */,
 				629D3A131AD9C29A00A8B3B7 /* harp-28.m4a in Resources */,
 				629D396D1AD9847A00A8B3B7 /* piano-67.m4a in Resources */,
 				629D39271AD9844300A8B3B7 /* piano-33.m4a in Resources */,
@@ -1342,6 +1371,7 @@
 				629D39521AD9844300A8B3B7 /* piano-89.m4a in Resources */,
 				629D39E51AD9C29A00A8B3B7 /* harp-74.m4a in Resources */,
 				629D39CD1AD9C29A00A8B3B7 /* harp-98.m4a in Resources */,
+				98E7F3F21AE44253005AA6BE /* t3.dat in Resources */,
 				629D39711AD9847A00A8B3B7 /* piano-71.m4a in Resources */,
 				629D39DD1AD9C29A00A8B3B7 /* harp-82.m4a in Resources */,
 				629D39F71AD9C29A00A8B3B7 /* harp-56.m4a in Resources */,
@@ -1355,7 +1385,9 @@
 				629D39D91AD9C29A00A8B3B7 /* harp-86.m4a in Resources */,
 				629D3A1A1AD9C29A00A8B3B7 /* harp-21.m4a in Resources */,
 				629D3A021AD9C29A00A8B3B7 /* harp-45.m4a in Resources */,
+				98E7F3F01AE44253005AA6BE /* t1.dat in Resources */,
 				629D39D51AD9C29A00A8B3B7 /* harp-90.m4a in Resources */,
+				98E7F3EF1AE44253005AA6BE /* t0.dat in Resources */,
 				629D39EF1AD9C29A00A8B3B7 /* harp-64.m4a in Resources */,
 				629D39FC1AD9C29A00A8B3B7 /* harp-51.m4a in Resources */,
 				629D39F81AD9C29A00A8B3B7 /* harp-55.m4a in Resources */,
