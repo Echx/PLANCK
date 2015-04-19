@@ -27,7 +27,7 @@ class HomeViewController: XViewController {
         
         self.startPlayingMusic()
         
-        NSNotificationCenter.defaultCenter().addObserver(self, selector: ":stopPlayingMusic", name: HomeViewDefaults.stopPlayingKey, object: nil)
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: "stopPlayingMusic:", name: HomeViewDefaults.stopPlayingKey, object: nil)
         
         let gamiCent = GamiCent.sharedInstance({
             (isAuthentified) -> Void in
@@ -140,7 +140,7 @@ class HomeViewController: XViewController {
         self.backgroundMusicPlayer.play()
     }
     
-    private func stopPlayingMusic() {
+    func stopPlayingMusic(notification: NSNotification) {
         self.backgroundMusicPlayer.stop()
     }
 
