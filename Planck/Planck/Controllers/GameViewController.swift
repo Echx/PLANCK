@@ -26,6 +26,7 @@ class GameViewController: XViewController {
     private var isFirstTimePlayMusic = true
     private var numberOfFinishedRay = 0
     private var audioPlayer: AVAudioPlayer?
+    private var onboardingMaskView = OnboardingMaskView()
     
     @IBOutlet var switchView: UIView!
     private var gameSwitch: SwitchView?
@@ -572,6 +573,32 @@ class GameViewController: XViewController {
 
 }
 
+//onboarding
+
+extension GameViewController {
+    func checkOnboarding() {
+        if self.gameLevel.index == 0 {
+            let welcomeLabel = self.onboardingMaskView.addLabelWithText(
+                "tap the switch to shoot the light",
+                position: self.view.center)
+            self.onboardingMaskView.drawMask(UIBezierPath(rect: CGRectMake(0, 668, 1024, 100)), animated: true)
+            self.onboardingMaskView.showTapGuidianceAtPoint(CGPoint(x: 80, y: 708), repeat: true)
+            self.view.addSubview(self.onboardingMaskView)
+        } else if self.gameLevel.index == 1{
+            
+        } else if self.gameLevel.index == 2{
+            
+        } else if self.gameLevel.index == 3{
+            
+        } else if self.gameLevel.index == 4{
+            
+        } else if self.gameLevel.index == 5{
+            
+        }
+    }
+}
+
+
 extension GameViewController: GOGridDelegate {
     func grid(grid: GOGrid, didProduceNewCriticalPoint point: CGPoint, onEdge edge: GOSegment?, forRayWithTag tag: String) {
         if self.rays.count == 0 {
@@ -628,6 +655,8 @@ extension GameViewController: LevelTransitionMaskViewDelegate {
         if index == 2 {
             if self.shouldShowNextLevel {
                 if let nextLevel = GameLevel.loadGameWithIndex(self.gameLevel.index + 1) {
+                    self.onboardingMaskView.clear()
+                    self.onboardingMaskView.removeFromSuperview()
                     self.reloadLevel(nextLevel)
                 } else {
                     // have finished all current game
@@ -652,6 +681,7 @@ extension GameViewController: TargetMusicMaskViewDelegate {
     
     func musicMaskViewDidDismiss(view: TargetMusicMaskView) {
         self.setUpGrid()
+        self.checkOnboarding();
         isFirstTimePlayMusic = false
     }
 }
