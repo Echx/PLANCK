@@ -604,7 +604,8 @@ extension GameViewController {
                 startAngle: 0,
                 endAngle: CGFloat(2 * M_PI),
                 clockwise: true)
-            self.onboardingMaskView.drawMask(maskPath, animated: true)
+            self.onboardingMaskView.drawMask(maskPath, animated: false)
+            self.onboardingMaskView.showMask(true)
             self.onboardingMaskView.drawDashedTarget(movableObjectPath!)
             self.onboardingMaskView.showTapGuidianceAtPoint(self.gameLevel.originalGrid.getCenterForGridCell(movableObject.center), repeat: true)
             self.onboardingMaskView.showTapGuidianceAtPoint(CGPointMake(500, 125), repeat: true)
