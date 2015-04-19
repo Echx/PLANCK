@@ -82,9 +82,9 @@ class HomeViewController: XViewController {
     }
     
     func setUpRestAnimation() {
-        setUpAnimationRed()
-        setUpAnimationOrange()
-        setUpAnimationYellow()
+//        setUpAnimationRed()
+//        setUpAnimationOrange()
+//        setUpAnimationYellow()
     }
 
     func setUpAnimationRed() {
