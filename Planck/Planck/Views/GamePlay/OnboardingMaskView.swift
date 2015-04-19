@@ -18,6 +18,7 @@ class OnboardingMaskView: UIView {
     private var maskLayer = CAShapeLayer()
     private var mask = UIView()
     private var isMaskHidden = true
+    private var labels = [UILabel]()
     
     private var tapAnimationTimer: NSTimer?
     private var dragAnimationTimer: NSTimer?
@@ -60,6 +61,20 @@ class OnboardingMaskView: UIView {
         self.drawMask(path, animated: true)
     }
     
+    func clear() {
+        self.hideMask(true)
+        for (key, layer) in self.layers {
+            layer.removeAllAnimations()
+            layer.removeFromSuperlayer()
+        }
+        
+        for label in self.labels {
+            label.removeFromSuperview()
+        }
+        
+        self.dragAnimationTimer?.invalidate()
+        self.tapAnimationTimer?.invalidate()
+    }
     
     
     //draw a dashed, vain object in the screen according to the given path
@@ -235,25 +250,37 @@ class OnboardingMaskView: UIView {
         })
     }
     
+    func addLabelWithText(text: String, position: CGPoint) -> UILabel{
+        var label = UILabel(frame: UIScreen.mainScreen().bounds);
+        label.text = text
+        label.textAlignment = NSTextAlignment.Center
+        label.textColor = UIColor.whiteColor()
+        label.font = UIFont(name: "Akagi-SemiBold", size: 22)
+        label.center = position
+        self.addSubview(label)
+        self.labels.append(label)
+        return label
+    }
+    
     func viewDidTapped(sender: UITapGestureRecognizer) {
-        println(sender.numberOfTouches())
-        if sender.numberOfTouches() == 2 {
-            self.toggleMask(true)
-        } else {
-            self.showTapGuidianceAtPoint(sender.locationInView(self), repeat: true)
-        }
-        
+//        println(sender.numberOfTouches())
+//        if sender.numberOfTouches() == 2 {
+//            self.toggleMask(true)
+//        } else {
+//            self.showTapGuidianceAtPoint(sender.locationInView(self), repeat: true)
+//        }
+//        
         self.delegate?.viewDidTapped(self, sender: sender)
     }
     
     var startPoint: CGPoint?
     func viewDidPanned(sender: UIPanGestureRecognizer) {
-        if sender.state == UIGestureRecognizerState.Began {
-            startPoint = sender.locationInView(self)
-        } else if sender.state == UIGestureRecognizerState.Ended {
-            let endPoint = sender.locationInView(self)
-            self.showDragGuidianceFromPoint(startPoint!, to: endPoint, repeat: true)
-        }
+//        if sender.state == UIGestureRecognizerState.Began {
+//            startPoint = sender.locationInView(self)
+//        } else if sender.state == UIGestureRecognizerState.Ended {
+//            let endPoint = sender.locationInView(self)
+//            self.showDragGuidianceFromPoint(startPoint!, to: endPoint, repeat: true)
+//        }
         self.delegate?.viewDidPanned(self, sender: sender)
     }
     
@@ -293,6 +320,7 @@ class OnboardingMaskView: UIView {
     private func setViewProperites() {
         self.backgroundColor = UIColor.clearColor()
         self.addSubview(self.mask)
-        self.mask.backgroundColor = UIColor.clearColor();
+        self.mask.backgroundColor = UIColor.clearColor()
+        self.userInteractionEnabled = false
     }
 }
