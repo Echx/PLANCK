@@ -41,7 +41,6 @@ class LevelTransitionMaskView: UIView {
     ]
     
     private let imageView = UIImageView(frame: UIScreen.mainScreen().bounds)
-    private var tapGestureRecognizer: UITapGestureRecognizer?
     private let audioPlayer = AVAudioPlayer(contentsOfURL: SoundFiles.levelUpSound, error: nil)
     var shouldShowButtons = true
     var delegate: LevelTransitionMaskViewDelegate?
@@ -86,9 +85,6 @@ class LevelTransitionMaskView: UIView {
             self.addSubview(button)
             self.buttons.append(button)
         }
-        self.tapGestureRecognizer = UITapGestureRecognizer(target: self, action: "hide")
-        self.addGestureRecognizer(tapGestureRecognizer!)
-        tapGestureRecognizer!.enabled = false
         self.audioPlayer.prepareToPlay()
     }
     
@@ -121,7 +117,6 @@ class LevelTransitionMaskView: UIView {
                 },
                 completion: {
                     finished in
-                    self.tapGestureRecognizer!.enabled = true
                     if self.shouldShowButtons {
                         let timer = NSTimer.scheduledTimerWithTimeInterval(
                             self.showButtonDelay,
@@ -135,7 +130,6 @@ class LevelTransitionMaskView: UIView {
     }
     
     func hide() {
-        self.tapGestureRecognizer?.enabled = false
         self.animationCount = 0
         for var i = 0; i < self.coinCount; i++ {
             UIView.animateWithDuration(
