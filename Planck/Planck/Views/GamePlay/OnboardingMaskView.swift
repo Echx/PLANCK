@@ -20,8 +20,8 @@ class OnboardingMaskView: UIView {
     private var isMaskHidden = true
     private var labels = [UILabel]()
     
-    private var tapAnimationTimer: NSTimer?
-    private var dragAnimationTimer: NSTimer?
+    private var tapAnimationTimers = [NSTimer]()
+    private var dragAnimationTimers = [NSTimer]()
     
     var delegate: OnboardingMaskViewDelegate?
     
@@ -71,9 +71,14 @@ class OnboardingMaskView: UIView {
         for label in self.labels {
             label.removeFromSuperview()
         }
+
+        for timer in self.dragAnimationTimers {
+            timer.invalidate()
+        }
         
-        self.dragAnimationTimer?.invalidate()
-        self.tapAnimationTimer?.invalidate()
+        for timer in self.tapAnimationTimers {
+            timer.invalidate()
+        }
     }
     
     
@@ -152,7 +157,7 @@ class OnboardingMaskView: UIView {
     }
     
     func showTapGuidianceAtPoint(point: CGPoint, repeat: Bool) {
-        self.tapAnimationTimer = NSTimer.scheduledTimerWithTimeInterval(
+        var timer = NSTimer.scheduledTimerWithTimeInterval(
             self.tapAnimatingDelay,
             target: self,
             selector: "showTapAnimation:",
@@ -160,7 +165,8 @@ class OnboardingMaskView: UIView {
             repeats: repeat
         )
         
-        self.tapAnimationTimer?.fire()
+        timer.fire()
+        self.tapAnimationTimers.append(timer)
     }
     
     func showTapAnimation(timer: NSTimer) {
@@ -211,7 +217,7 @@ class OnboardingMaskView: UIView {
     }
     
     func showDragGuidianceFromPoint(startPoint: CGPoint, to endPoint: CGPoint, repeat: Bool) {
-        self.dragAnimationTimer = NSTimer.scheduledTimerWithTimeInterval(
+        var timer = NSTimer.scheduledTimerWithTimeInterval(
             self.dragAnimatingDelay,
             target: self,
             selector: "showDragAnimation:",
@@ -219,7 +225,8 @@ class OnboardingMaskView: UIView {
             repeats: repeat
         )
         
-        self.dragAnimationTimer?.fire()
+        timer.fire()
+        self.dragAnimationTimers.append(timer)
     }
     
     func showDragAnimation(timer: NSTimer) {
