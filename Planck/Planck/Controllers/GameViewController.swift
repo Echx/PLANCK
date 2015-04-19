@@ -463,6 +463,16 @@ class GameViewController: XViewController {
         layer.shadowOffset = CGSizeZero
         layer.path = self.grid.getInstrumentDisplayPathForID(node.id)?.CGPath
         
+        if !isNodeFixed(node) {
+            var fillColorAnimation = CABasicAnimation(keyPath: "fillColor")
+            fillColorAnimation.duration = 1;
+            fillColorAnimation.fromValue = strokeColor.CGColor
+            fillColorAnimation.toValue = strokeColor.colorWithAlphaComponent(0.3).CGColor
+            fillColorAnimation.repeatCount = HUGE;
+            fillColorAnimation.autoreverses = true;
+            layer.addAnimation(fillColorAnimation, forKey: "fillColor")
+        }
+        
         if let emitter = node as? GOEmitterRep {
             let markView  = UIView(frame: CGRectMake(0, 0, Constant.rayWidth * 2, Constant.rayWidth * 2))
             markView.backgroundColor = UIColor.whiteColor()
@@ -476,22 +486,22 @@ class GameViewController: XViewController {
         
         view.layer.addSublayer(layer)
         
-        if !isNodeFixed(node) {
-            
-            let markView  = UIView(frame: CGRectMake(0, 0, Constant.rayWidth * 2, Constant.rayWidth))
-
-            if node.type == DeviceType.Mirror {
-                markView.backgroundColor = UIColor(white: 0, alpha: 0.2)
-            } else {
-                markView.backgroundColor = UIColor.whiteColor()
-            }
-            
-            markView.center = view.center
-            let degree = node.direction.angleFromXPlus
-            markView.transform = CGAffineTransformMakeRotation(degree)
-            
-            view.addSubview(markView)
-        }
+//        if !isNodeFixed(node) {
+//
+//            let markView  = UIView(frame: CGRectMake(0, 0, Constant.rayWidth * 2, Constant.rayWidth))
+//
+//            if node.type == DeviceType.Mirror {
+//                markView.backgroundColor = UIColor(white: 0, alpha: 0.2)
+//            } else {
+//                markView.backgroundColor = UIColor.whiteColor()
+//            }
+//            
+//            markView.center = view.center
+//            let degree = node.direction.angleFromXPlus
+//            markView.transform = CGAffineTransformMakeRotation(degree)
+//            
+//            view.addSubview(markView)
+//        }
         
         self.deviceViews[node.id] = view
         var offsetX = CGFloat(coordinateBackup.x - node.center.x) * self.grid.unitLength
