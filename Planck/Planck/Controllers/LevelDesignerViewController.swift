@@ -297,7 +297,7 @@ class LevelDesignerViewController: XViewController {
         
         if let node = self.selectedNode {
             if isSaving && isNodeFixed(node) {
-                // is saving and the selected node is not the moveable one
+                // is saving and the selected node is not the movable one
                 return
             }
             
@@ -338,7 +338,7 @@ class LevelDesignerViewController: XViewController {
                 touchedNode = self.grid.getInstrumentAtPoint(location)
                 if let node = touchedNode {
                     if isSaving && isNodeFixed(node) {
-                        // is saving and the selected node is not the moveable one
+                        // is saving and the selected node is not the movable one
                         return
                     }
                     firstViewCenter = self.deviceViews[node.id]!.center
@@ -348,7 +348,7 @@ class LevelDesignerViewController: XViewController {
             
             if let node = touchedNode {
                 if isSaving && isNodeFixed(node) {
-                    // is saving and the selected node is not the moveable one
+                    // is saving and the selected node is not the movable one
                     return
                 }
                 
@@ -1153,7 +1153,7 @@ class LevelDesignerViewController: XViewController {
         // 1. display save UI
         saveHintLabel.hidden = false
         confirmBar.hidden = false
-        // 2. cannot move devices other than moveable one, and deselect current node
+        // 2. cannot move devices other than movable one, and deselect current node
         deselectNode()
         // 3. movable device redraw
         for (id, xnode) in self.xNodes {
