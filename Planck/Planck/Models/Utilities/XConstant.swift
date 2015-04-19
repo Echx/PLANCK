@@ -226,6 +226,8 @@ struct SoundFiles {
     static let bassDrumSound = NSURL(fileURLWithPath: NSBundle.mainBundle().pathForResource("bass-drum", ofType: "m4a")!)
     static let cymbalSound = NSURL(fileURLWithPath: NSBundle.mainBundle().pathForResource("cymbal", ofType: "m4a")!)
     static let levelUpSound = NSURL(fileURLWithPath: NSBundle.mainBundle().pathForResource("levelup", ofType: "m4a")!)
+    
+    static let backgroundMusic = NSURL(fileURLWithPath: NSBundle.mainBundle().pathForResource("planck-background", ofType: "m4a")!)
 }
 
 struct PlanckControllPanel {

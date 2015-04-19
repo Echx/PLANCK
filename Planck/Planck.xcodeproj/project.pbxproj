@@ -72,7 +72,6 @@
 		26DAF6CB1AE4234500367887 /* SwitchView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26113FD51AE2F13000540529 /* SwitchView.swift */; };
 		26DFCF9C1AD8467000C97C5B /* XEmitter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26DFCF9B1AD8467000C97C5B /* XEmitter.swift */; };
 		620BD4461AB2E69800267C7B /* XNote.swift in Sources */ = {isa = PBXBuildFile; fileRef = 620BD4451AB2E69800267C7B /* XNote.swift */; };
-		621F40FC1AE3ED6C00335649 /* SwitchView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26113FD51AE2F13000540529 /* SwitchView.swift */; };
 		6227FB6E1AAE285C007F49EA /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6227FB6D1AAE285C007F49EA /* AppDelegate.swift */; };
 		6227FB771AAE285C007F49EA /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 6227FB751AAE285C007F49EA /* Main.storyboard */; };
 		6227FB791AAE285C007F49EA /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 6227FB781AAE285C007F49EA /* Images.xcassets */; };
@@ -80,6 +79,8 @@
 		6227FC191AAE28E7007F49EA /* XColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6227FC041AAE28E7007F49EA /* XColor.swift */; };
 		6227FC1A1AAE28E7007F49EA /* XConstant.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6227FC051AAE28E7007F49EA /* XConstant.swift */; };
 		6227FC1B1AAE28E7007F49EA /* XMedium.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6227FC061AAE28E7007F49EA /* XMedium.swift */; };
+		625864AB1AE4404000B24353 /* planck-background.m4a in Resources */ = {isa = PBXBuildFile; fileRef = 625864AA1AE4404000B24353 /* planck-background.m4a */; };
+		625864AC1AE4404000B24353 /* planck-background.m4a in Resources */ = {isa = PBXBuildFile; fileRef = 625864AA1AE4404000B24353 /* planck-background.m4a */; };
 		6291FBE31ADED1A3007464FC /* TargetMusicMaskView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6291FBE21ADED1A3007464FC /* TargetMusicMaskView.swift */; };
 		6291FBE41ADED89D007464FC /* TargetMusicMaskView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6291FBE21ADED1A3007464FC /* TargetMusicMaskView.swift */; };
 		62988FF51AB2FA8800FD9AFF /* CGVector+XUtility.swift in Sources */ = {isa = PBXBuildFile; fileRef = 267EC2D31AB1DA01002FE745 /* CGVector+XUtility.swift */; };
@@ -396,6 +397,7 @@
 		6227FC041AAE28E7007F49EA /* XColor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = XColor.swift; sourceTree = "<group>"; };
 		6227FC051AAE28E7007F49EA /* XConstant.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = XConstant.swift; sourceTree = "<group>"; };
 		6227FC061AAE28E7007F49EA /* XMedium.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = XMedium.swift; sourceTree = "<group>"; };
+		625864AA1AE4404000B24353 /* planck-background.m4a */ = {isa = PBXFileReference; lastKnownFileType = file; name = "planck-background.m4a"; path = "Sounds/planck-background.m4a"; sourceTree = "<group>"; };
 		6291FBE21ADED1A3007464FC /* TargetMusicMaskView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TargetMusicMaskView.swift; sourceTree = "<group>"; };
 		629D38CB1AD9844300A8B3B7 /* piano-12.m4a */ = {isa = PBXFileReference; lastKnownFileType = file; name = "piano-12.m4a"; path = "Sounds/Piano/piano-12.m4a"; sourceTree = "<group>"; };
 		629D38CC1AD9844300A8B3B7 /* piano-13.m4a */ = {isa = PBXFileReference; lastKnownFileType = file; name = "piano-13.m4a"; path = "Sounds/Piano/piano-13.m4a"; sourceTree = "<group>"; };
@@ -1080,6 +1082,7 @@
 		62E00C751AC466E800F10F10 /* Sound */ = {
 			isa = PBXGroup;
 			children = (
+				625864AA1AE4404000B24353 /* planck-background.m4a */,
 				26290C931ADE793300409FD8 /* levelup.m4a */,
 				629D39731AD9C28200A8B3B7 /* Harp */,
 				62D283481AD1852900A583FA /* Piano */,
@@ -1271,6 +1274,7 @@
 				629D39161AD9844300A8B3B7 /* piano-16.m4a in Resources */,
 				629D39681AD9847A00A8B3B7 /* piano-62.m4a in Resources */,
 				629D39FE1AD9C29A00A8B3B7 /* harp-49.m4a in Resources */,
+				625864AB1AE4404000B24353 /* planck-background.m4a in Resources */,
 				629D392B1AD9844300A8B3B7 /* piano-37.m4a in Resources */,
 				629D39561AD9844300A8B3B7 /* piano-93.m4a in Resources */,
 				629D39451AD9844300A8B3B7 /* piano-76.m4a in Resources */,
@@ -1406,6 +1410,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				625864AC1AE4404000B24353 /* planck-background.m4a in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

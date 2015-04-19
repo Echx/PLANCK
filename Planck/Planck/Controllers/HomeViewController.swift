@@ -7,9 +7,11 @@
 //
 
 import UIKit
+import AVFoundation
 
 class HomeViewController: XViewController {
     private let emitterView = UIView(frame: UIScreen.mainScreen().bounds)
+    private let backgroundMusicPlayer = AVAudioPlayer(contentsOfURL: SoundFiles.backgroundMusic, error: nil)
     
     class func getInstance() -> HomeViewController {
         let storyboard = UIStoryboard(name: "Main", bundle: nil)
@@ -22,6 +24,10 @@ class HomeViewController: XViewController {
         super.viewDidLoad()
         self.view.insertSubview(self.emitterView, atIndex: 1)
         self.emitterView.alpha = 0
+        
+        self.backgroundMusicPlayer.prepareToPlay()
+        self.backgroundMusicPlayer.numberOfLoops = -1
+        self.backgroundMusicPlayer.play()
         
         let gamiCent = GamiCent.sharedInstance({
             (isAuthentified) -> Void in
