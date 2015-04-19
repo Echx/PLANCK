@@ -101,6 +101,16 @@ class GameLevel: NSObject, NSCoding {
     func deepCopy() -> GameLevel {
         return NSKeyedUnarchiver.unarchiveObjectWithData(NSKeyedArchiver.archivedDataWithRootObject(self)) as GameLevel
     }
+    
+    func getMovableNodes() -> [GOOpticRep]{
+        var nodes = [GOOpticRep]()
+        for (key, xNodes) in self.xNodes {
+            if !xNodes.isFixed {
+                nodes.append(self.originalGrid.instruments[key]!)
+            }
+        }
+        return nodes
+    }
 }
 
 extension GameLevel:Comparable, Equatable {
