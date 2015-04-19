@@ -17,9 +17,7 @@ class OnboardingMaskView: UIView {
     private var layers = [String: CALayer]()
     private var maskLayer = CAShapeLayer()
     private var mask = UIView()
-    
-    private var tapGestureRecognizer: UITapGestureRecognizer?
-    private var panGestureRecognizer: UIPanGestureRecognizer?
+    private var isMaskHidden = true
     
     private var tapAnimationTimer: NSTimer?
     private var dragAnimationTimer: NSTimer?
@@ -114,6 +112,7 @@ class OnboardingMaskView: UIView {
         } else {
             self.mask.alpha = 1
         }
+        self.isMaskHidden = false
     }
     
     func hideMask(animated: Bool) {
@@ -124,13 +123,16 @@ class OnboardingMaskView: UIView {
         } else {
             self.mask.removeFromSuperview()
         }
+        
+        self.isMaskHidden = true
     }
     
     func toggleMask(animated: Bool) {
-        if self.mask.isDescendantOfView(self) {
-            self.hideMask(animated)
-        } else {
+        println("toggle")
+        if self.isMaskHidden {
             self.showMask(animated)
+        } else {
+            self.hideMask(animated)
         }
     }
     
@@ -234,6 +236,7 @@ class OnboardingMaskView: UIView {
     }
     
     func viewDidTapped(sender: UITapGestureRecognizer) {
+        println(sender.numberOfTouches())
         if sender.numberOfTouches() == 2 {
             self.toggleMask(true)
         } else {
@@ -277,10 +280,14 @@ class OnboardingMaskView: UIView {
     }
     
     private func setRecognizers() {
-        self.tapGestureRecognizer = UITapGestureRecognizer(target: self, action: "viewDidTapped:")
-        self.addGestureRecognizer(self.tapGestureRecognizer!)
-        self.panGestureRecognizer = UIPanGestureRecognizer(target: self, action: "viewDidPanned:")
-        self.addGestureRecognizer(self.panGestureRecognizer!)
+        for i in 1..<5 {
+            let tapGestureRecognizer = UITapGestureRecognizer(target: self, action: "viewDidTapped:")
+            tapGestureRecognizer.numberOfTouchesRequired = i
+            self.addGestureRecognizer(tapGestureRecognizer)
+        }
+        
+        let panGestureRecognizer = UIPanGestureRecognizer(target: self, action: "viewDidPanned:")
+        self.addGestureRecognizer(panGestureRecognizer)
     }
     
     private func setViewProperites() {
