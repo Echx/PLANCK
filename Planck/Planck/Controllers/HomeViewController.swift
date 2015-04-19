@@ -137,8 +137,36 @@ class HomeViewController: XViewController {
     
     func playMusic() {
         self.backgroundMusicPlayer.prepareToPlay()
+        self.backgroundMusicPlayer.volume = 0
         self.backgroundMusicPlayer.numberOfLoops = -1
         self.backgroundMusicPlayer.play()
+        self.fadeInMusic()
+    }
+    
+    func fadeOutMusic() {
+        if self.backgroundMusicPlayer.volume > 0.05 {
+            self.backgroundMusicPlayer.volume = self.backgroundMusicPlayer.volume - 0.05
+            
+            var dispatchTime: dispatch_time_t = dispatch_time(DISPATCH_TIME_NOW, Int64(0.05 * Double(NSEC_PER_SEC)))
+            dispatch_after(dispatchTime, dispatch_get_main_queue(), {
+                self.fadeOutMusic()
+            })
+            
+        } else {
+            self.backgroundMusicPlayer.volume = self.backgroundMusicPlayer.volume - 0.05
+            self.backgroundMusicPlayer.pause()
+        }
+    }
+    
+    func fadeInMusic() {
+        if self.backgroundMusicPlayer.volume < 1 {
+            self.backgroundMusicPlayer.volume = self.backgroundMusicPlayer.volume + 0.05
+            
+            var dispatchTime: dispatch_time_t = dispatch_time(DISPATCH_TIME_NOW, Int64(0.05 * Double(NSEC_PER_SEC)))
+            dispatch_after(dispatchTime, dispatch_get_main_queue(), {
+                self.fadeInMusic()
+            })
+        }
     }
     
     func startPlayingMusic(notification: NSNotification) {
@@ -146,7 +174,7 @@ class HomeViewController: XViewController {
     }
     
     func stopPlayingMusic(notification: NSNotification) {
-        self.backgroundMusicPlayer.stop()
+        self.fadeOutMusic()
     }
 
 }
