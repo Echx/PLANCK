@@ -668,6 +668,8 @@ extension GameViewController: PauseMaskViewDelegate {
 
 extension GameViewController: LevelTransitionMaskViewDelegate {
     func viewDidDismiss(view: LevelTransitionMaskView, withButtonClickedAtIndex index: Int) {
+        self.onboardingMaskView.clear()
+        self.onboardingMaskView.removeFromSuperview()
         // save current game if it is not preview mode
         if !isPreview {
             dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), {
@@ -687,8 +689,6 @@ extension GameViewController: LevelTransitionMaskViewDelegate {
         if index == 2 {
             if self.shouldShowNextLevel {
                 if let nextLevel = GameLevel.loadGameWithIndex(self.gameLevel.index + 1) {
-                    self.onboardingMaskView.clear()
-                    self.onboardingMaskView.removeFromSuperview()
                     self.reloadLevel(nextLevel)
                 } else {
                     // have finished all current game
