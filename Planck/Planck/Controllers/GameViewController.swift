@@ -390,14 +390,13 @@ class GameViewController: XViewController {
                             }
                             
                             self.shouldShowNextLevel = true
-                        } else if self.music.numberOfPlanck == self.gameLevel.targetMusic.numberOfPlanck {
+                        } else if (self.originalLevel.bestScore <= 1) && (self.music.numberOfPlanck == self.gameLevel.targetMusic.numberOfPlanck) {
                             dispatch_after(dispatch_time(DISPATCH_TIME_NOW, Int64(Float(NSEC_PER_SEC) * 1.5)), dispatch_get_main_queue()) {
                                 self.showBadgeMask(1)
                                 if self.originalLevel.bestScore < 1 {
                                     self.originalLevel.bestScore = 1
                                 }
                             }
-                            
                             self.shouldShowNextLevel = true
                         } else {
                             self.shouldShowNextLevel = false
