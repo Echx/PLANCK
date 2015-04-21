@@ -8,10 +8,8 @@
         <mutableArray key="Akagi-BK.ttf">
             <string>Akagi-Book</string>
             <string>Akagi-Book</string>
-            <string>Akagi-Book</string>
         </mutableArray>
         <mutableArray key="Akagi-SB.ttf">
-            <string>Akagi-SemiBold</string>
             <string>Akagi-SemiBold</string>
             <string>Akagi-SemiBold</string>
             <string>Akagi-SemiBold</string>
@@ -389,7 +387,7 @@
                     </connections>
                 </tapGestureRecognizer>
             </objects>
-            <point key="canvasLocation" x="-171" y="-517"/>
+            <point key="canvasLocation" x="-239" y="-481"/>
         </scene>
         <!--Designer Level Select View Controller-->
         <scene sceneID="ewF-Cs-yPt">
@@ -541,17 +539,6 @@
                                 </state>
                                 <connections>
                                     <action selector="openSettingMenu:" destination="Z3F-Q9-Qtd" eventType="touchUpInside" id="xHC-7e-V2B"/>
-                                </connections>
-                            </button>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Sv4-VG-48G">
-                                <rect key="frame" x="412" y="677" width="200" height="30"/>
-                                <fontDescription key="fontDescription" name="Akagi-Book" family="Akagi" pointSize="16"/>
-                                <state key="normal" title="OnboardingMask Playground">
-                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                </state>
-                                <connections>
-                                    <segue destination="cLc-gK-4y7" kind="presentation" id="Qnf-OM-g5W"/>
                                 </connections>
                             </button>
                         </subviews>
@@ -1073,38 +1060,6 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="iZN-mz-RmJ" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1208" y="403"/>
-        </scene>
-        <!--View Controller-->
-        <scene sceneID="dni-b9-Sgq">
-            <objects>
-                <viewController id="cLc-gK-4y7" sceneMemberID="viewController">
-                    <layoutGuides>
-                        <viewControllerLayoutGuide type="top" id="0Kg-40-KFT"/>
-                        <viewControllerLayoutGuide type="bottom" id="KX9-Ig-sDO"/>
-                    </layoutGuides>
-                    <view key="view" contentMode="scaleToFill" id="kcS-XU-fdj">
-                        <rect key="frame" x="0.0" y="0.0" width="1024" height="768"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="tap or drag to play around" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="zRJ-CG-hCI">
-                                <rect key="frame" x="0.0" y="0.0" width="1024" height="768"/>
-                                <fontDescription key="fontDescription" name="Akagi-SemiBold" family="Akagi" pointSize="24"/>
-                                <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="calibratedRGB"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="jMc-R9-N4T" customClass="OnboardingMaskView" customModule="Planck" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="0.0" width="1024" height="768"/>
-                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
-                            </view>
-                        </subviews>
-                        <color key="backgroundColor" red="0.26274509800000001" green="0.36862745099999999" blue="0.46274509800000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                    </view>
-                    <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
-                    <size key="freeformSize" width="1024" height="768"/>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="k2E-vd-3zp" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="511" y="1456"/>
         </scene>
     </scenes>
     <resources>
