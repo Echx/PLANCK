@@ -77,7 +77,7 @@ class XMusic: NSObject, NSCoding {
             return
         } else {
             for note in self.music.keys {
-                self.music[note]?.sort({$0 > $1})
+                self.music[note]?.sort({$0 < $1})
             }
             
             self.isArranged = true
