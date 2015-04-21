@@ -82,7 +82,7 @@ class GameViewController: XViewController {
     
     private func reloadLevel(gameLevel: GameLevel) {
         if gameLevel.index > 5 {
-            self.view.backgroundColor = UIColor(patternImage: UIImage(named: "background-1")!)
+             self.view.backgroundColor = UIColor(patternImage: UIImage(named: "background-1")!)
         }
         self.isVirgin = nil
         self.isFirstTimePlayMusic = true
