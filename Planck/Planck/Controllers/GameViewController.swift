@@ -592,7 +592,7 @@ extension GameViewController {
             self.onboardingMaskView.showTapGuidianceAtPoint(self.gameLevel.originalGrid.getCenterForGridCell(movableObject.center), repeat: true)
             self.onboardingMaskView.showTapGuidianceAtPoint(CGPointMake(500, 125), repeat: true)
             self.onboardingMaskView.addLabelWithText("tap a node to play its sound",position: CGPointMake(500, 185))
-            self.onboardingMaskView.addLabelWithText("tap a shining node to change its direction", position: CGPointMake(700, 530))
+            self.onboardingMaskView.addLabelWithText("shining node is moveable, tap a shining node to change its direction", position: CGPointMake(600, 530))
             self.onboardingMaskView.addLabelWithText("rotate the node to the dashed frame, and shoot the light", position: CGPointMake(512, 670))
             self.view.addSubview(self.onboardingMaskView)
         } else if self.gameLevel.index == 2 {
@@ -620,12 +620,33 @@ extension GameViewController {
             
             self.onboardingMaskView.showDragGuidianceFromPoint(startPoint, to: endPoint, repeat: true)
             
-            self.onboardingMaskView.addLabelWithText("drag an node to move it around",position: CGPointMake(635, 230))
+            self.onboardingMaskView.addLabelWithText("drag a moveable node to move it around",position: CGPointMake(635, 230))
             self.onboardingMaskView.addLabelWithText("move and rotate the node to fit the dashed frame, then shoot the light",position: CGPointMake(635, 700))
             
             self.view.addSubview(self.onboardingMaskView)
         } else if self.gameLevel.index == 3{
+            for (id, item) in self.grid.instruments {
+                println(gameLevel.grid.getCenterForGridCell(item.center))
+            }
             
+            var movableObject = self.gameLevel.getOriginalMovableNodes()[0]
+            var currentMovObject = self.gameLevel.getCurrentMovableNodes()[0]
+            
+            var movableObjectPath = self.gameLevel.originalGrid.getInstrumentDisplayPathForID(movableObject.id)
+            var maskPath = UIBezierPath()
+            maskPath.addArcWithCenter(
+                self.grid.getCenterForGridCell(movableObject.center),
+                radius: 200,
+                startAngle: 0,
+                endAngle: CGFloat(2 * M_PI),
+                clockwise: true)
+            self.onboardingMaskView.drawDashedTarget(movableObjectPath!)
+            
+            self.onboardingMaskView.addLabelWithText("convex lens - diverge light",position: CGPointMake(208, 490))
+            self.onboardingMaskView.addLabelWithText("flat mirror - reflect light",position: CGPointMake(528, 420))
+            self.onboardingMaskView.addLabelWithText("flat lens - light penetrate it",position: CGPointMake(704, 220))
+            
+            self.view.addSubview(self.onboardingMaskView)
         } else if self.gameLevel.index == 4{
             
         } else if self.gameLevel.index == 5{
