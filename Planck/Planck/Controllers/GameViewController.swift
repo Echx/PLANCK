@@ -614,7 +614,18 @@ extension GameViewController {
             self.onboardingMaskView.addLabelWithText("rotate the node to the dashed frame, and shoot the light", position: CGPointMake(512, 670))
             self.view.addSubview(self.onboardingMaskView)
         } else if self.gameLevel.index == 2{
-            
+            var movableObject = self.gameLevel.getMovableNodes()[0]
+            var movableObjectPath = self.gameLevel.originalGrid.getInstrumentDisplayPathForID(movableObject.id)
+            var maskPath = UIBezierPath()
+            maskPath.addArcWithCenter(
+                self.grid.getCenterForGridCell(movableObject.center),
+                radius: 100,
+                startAngle: 0,
+                endAngle: CGFloat(2 * M_PI),
+                clockwise: true)
+            self.onboardingMaskView.drawMask(maskPath, animated: false)
+            self.onboardingMaskView.showMask(true)
+            self.onboardingMaskView.drawDashedTarget(movableObjectPath!)
         } else if self.gameLevel.index == 3{
             
         } else if self.gameLevel.index == 4{
