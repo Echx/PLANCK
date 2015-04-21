@@ -18,6 +18,7 @@ class GameViewController: XViewController {
     private var music = XMusic()
     private var pathDistances = [String: CGFloat]()
     private var visitedPlanckList = [XNode]()
+    private var visitedNoteList = [XNote]()
     private var emitterLayers = [String: [CAEmitterLayer]]()
     private var deviceViews = [String: UIView]()
     private var transitionMask = LevelTransitionMaskView()
@@ -372,7 +373,7 @@ class GameViewController: XViewController {
                             }
                             
                             self.shouldShowNextLevel = true
-                        } else if (self.originalLevel.bestScore < 1) && (self.music.numberOfPlanck == self.gameLevel.targetMusic.numberOfPlanck) {
+                        } else if (self.originalLevel.bestScore < 1) && (self.music.numberOfPlanck == self.gameLevel.targetMusic.music.count) {
                             dispatch_after(dispatch_time(DISPATCH_TIME_NOW, Int64(Float(NSEC_PER_SEC) * 1.5)), dispatch_get_main_queue()) {
                                 self.showBadgeMask(1)
                                 if self.originalLevel.bestScore < 1 {
@@ -410,7 +411,8 @@ class GameViewController: XViewController {
                 if !contains(self.visitedPlanckList, device) {
                     self.visitedPlanckList.append(device)
                     if let note = device.getNote() {
-                        if contains(self.gameLevel.targetNotes, note) {
+                        if (contains(self.gameLevel.targetNotes, note)) && (!contains(self.visitedNoteList, note)) {
+                            self.visitedNoteList.append(note)
                             self.music.numberOfPlanck++
                         }
                     }
