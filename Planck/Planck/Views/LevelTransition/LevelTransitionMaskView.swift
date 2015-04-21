@@ -13,6 +13,7 @@ protocol LevelTransitionMaskViewDelegate {
 }
 
 class LevelTransitionMaskView: UIView {
+    private let congratulationLabel = UILabel(frame: CGRect(x: 0, y: 600, width: UIScreen.mainScreen().bounds.width, height: 50))
     
     private let badgeViews = [BadgeView]()
     private let buttons = [UIButton]()
@@ -70,6 +71,9 @@ class LevelTransitionMaskView: UIView {
         super.init(frame: UIScreen.mainScreen().bounds)
         self.imageView.image = UIImage(named: "mainbackground")
         self.addSubview(self.imageView)
+        self.congratulationLabel.text = "Congratulation! You have unlocked the next section! (*´╰╯`๓)♬"
+        self.congratulationLabel.textAlignment = NSTextAlignment.Center
+        self.congratulationLabel.textColor = UIColor.whiteColor()
         for var i = 0; i < self.coinCount; i++ {
             var badgeView = BadgeView(isOn: true)
             badgeView.center = self.hiddenCentersTop[i]
@@ -98,9 +102,11 @@ class LevelTransitionMaskView: UIView {
         self.selectedIndex = self.coinCount - 1
         if isSectionFinished {
             self.buttons[2].highlighted = true
+            self.addSubview(self.congratulationLabel)
         } else {
             self.buttons[2].highlighted = false
         }
+
         for var i = 0; i < self.coinCount; i++ {
             self.badgeViews[i].center = self.hiddenCentersTop[i]
             self.buttons[i].center = self.hiddenCentersTop[i]

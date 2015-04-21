@@ -577,7 +577,7 @@ extension GameViewController {
             self.onboardingMaskView.showTapGuidianceAtPoint(CGPoint(x: 80, y: 708), repeat: true)
             self.view.addSubview(self.onboardingMaskView)
         } else if self.gameLevel.index == 1{
-            var movableObject = self.gameLevel.getMovableNodes()[0]
+            var movableObject = self.gameLevel.getOriginalMovableNodes()[0]
             var movableObjectPath = self.gameLevel.originalGrid.getInstrumentDisplayPathForID(movableObject.id)
             var maskPath = UIBezierPath()
             maskPath.addArcWithCenter(
@@ -595,8 +595,35 @@ extension GameViewController {
             self.onboardingMaskView.addLabelWithText("tap a shining node to change its direction", position: CGPointMake(700, 530))
             self.onboardingMaskView.addLabelWithText("rotate the node to the dashed frame, and shoot the light", position: CGPointMake(512, 670))
             self.view.addSubview(self.onboardingMaskView)
-        } else if self.gameLevel.index == 2{
+        } else if self.gameLevel.index == 2 {
+            var movableObject = self.gameLevel.getOriginalMovableNodes()[0]
+            var currentMovObject = self.gameLevel.getCurrentMovableNodes()[0]
             
+            var movableObjectPath = self.gameLevel.originalGrid.getInstrumentDisplayPathForID(movableObject.id)
+            var maskPath = UIBezierPath()
+            maskPath.addArcWithCenter(
+                self.grid.getCenterForGridCell(movableObject.center),
+                radius: 200,
+                startAngle: 0,
+                endAngle: CGFloat(2 * M_PI),
+                clockwise: true)
+            self.onboardingMaskView.drawMask(maskPath, animated: false)
+            self.onboardingMaskView.showMask(true)
+            self.onboardingMaskView.drawDashedTarget(movableObjectPath!)
+            
+            
+            let fromCenterPoint = gameLevel.grid.getCenterForGridCell(currentMovObject.center)
+            let toCenterPoint = gameLevel.grid.getCenterForGridCell(movableObject.center)
+            
+            let startPoint = CGPoint(x: fromCenterPoint.x, y: fromCenterPoint.y + 20)
+            let endPoint = CGPoint(x: toCenterPoint.x, y: toCenterPoint.y - 20)
+            
+            self.onboardingMaskView.showDragGuidianceFromPoint(startPoint, to: endPoint, repeat: true)
+            
+            self.onboardingMaskView.addLabelWithText("drag an node to move it around",position: CGPointMake(635, 230))
+            self.onboardingMaskView.addLabelWithText("move and rotate the node to fit the dashed frame, then shoot the light",position: CGPointMake(635, 700))
+            
+            self.view.addSubview(self.onboardingMaskView)
         } else if self.gameLevel.index == 3{
             
         } else if self.gameLevel.index == 4{
