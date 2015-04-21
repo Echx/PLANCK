@@ -390,14 +390,13 @@ class GameViewController: XViewController {
                             }
                             
                             self.shouldShowNextLevel = true
-                        } else if self.music.numberOfPlanck == self.gameLevel.targetMusic.numberOfPlanck {
+                        } else if (self.originalLevel.bestScore < 1) && (self.music.numberOfPlanck == self.gameLevel.targetMusic.numberOfPlanck) {
                             dispatch_after(dispatch_time(DISPATCH_TIME_NOW, Int64(Float(NSEC_PER_SEC) * 1.5)), dispatch_get_main_queue()) {
                                 self.showBadgeMask(1)
                                 if self.originalLevel.bestScore < 1 {
                                     self.originalLevel.bestScore = 1
                                 }
                             }
-                            
                             self.shouldShowNextLevel = true
                         } else {
                             self.shouldShowNextLevel = false
@@ -428,7 +427,11 @@ class GameViewController: XViewController {
             if let device = xNodes[edge.parent] {
                 if !contains(self.visitedPlanckList, device) {
                     self.visitedPlanckList.append(device)
-                    self.music.numberOfPlanck++
+                    if let note = device.getNote() {
+                        if contains(self.gameLevel.targetNotes, note) {
+                            self.music.numberOfPlanck++
+                        }
+                    }
                 }
                 
                 if let sound = device.getSound() {

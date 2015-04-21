@@ -52,6 +52,12 @@ class GameLevel: NSObject, NSCoding {
     /// Whether this level is unlocked, default false
     var isUnlock:Bool = false
     
+    var targetNotes: [XNote] {
+        get {
+            return self.targetMusic.music.keys.array
+        }
+    }
+    
     init(levelName: String, levelIndex: Int, grid: GOGrid, solvedGrid: GOGrid, nodes: [String: XNode], targetMusic: XMusic) {
         self.name = levelName
         self.index = levelIndex

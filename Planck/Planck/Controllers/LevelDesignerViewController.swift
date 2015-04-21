@@ -1240,6 +1240,7 @@ class LevelDesignerViewController: XViewController {
                         self.gameName = inputName
                         self.gameIndex = nextIndex
                         self.isSaving = false
+                        NSNotificationCenter.defaultCenter().postNotificationName(HomeViewDefaults.startPlayingKey, object: nil)
                         self.dismissViewControllerAnimated(true, completion: nil)
                 } else {
                     // invalid
