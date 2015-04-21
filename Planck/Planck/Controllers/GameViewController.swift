@@ -628,10 +628,6 @@ extension GameViewController {
             
             self.view.addSubview(self.onboardingMaskView)
         } else if self.gameLevel.index == 3{
-            for (id, item) in self.grid.instruments {
-                println(gameLevel.grid.getCenterForGridCell(item.center))
-            }
-            
             var movableObject = self.gameLevel.getOriginalMovableNodes()[0]
             var currentMovObject = self.gameLevel.getCurrentMovableNodes()[0]
             
@@ -647,7 +643,7 @@ extension GameViewController {
             
             self.onboardingMaskView.addLabelWithText("convex lens - diverge light",position: CGPointMake(208, 490))
             self.onboardingMaskView.addLabelWithText("flat mirror - reflect light",position: CGPointMake(528, 420))
-            self.onboardingMaskView.addLabelWithText("flat lens - light penetrate it",position: CGPointMake(704, 220))
+            self.onboardingMaskView.addLabelWithText("flat lens - light penetrate it",position: CGPointMake(704, 230))
             
             self.view.addSubview(self.onboardingMaskView)
         } else if self.gameLevel.index == 4{
