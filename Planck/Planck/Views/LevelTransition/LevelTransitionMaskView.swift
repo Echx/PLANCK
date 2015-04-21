@@ -37,7 +37,8 @@ class LevelTransitionMaskView: UIView {
     private let buttonImages = [
         UIImage(named: "back"),
         UIImage(named: "replay"),
-        UIImage(named: "continue")
+        UIImage(named: "continue"),
+        UIImage(named: "next-section")
     ]
     
     private let imageView = UIImageView(frame: UIScreen.mainScreen().bounds)
@@ -78,22 +79,28 @@ class LevelTransitionMaskView: UIView {
             var button = UIButton(frame: CGRectMake(0, 0, 150, 150))
             button.center = self.hiddenCentersTop[i]
             button.tag = i
-            button.alpha =  0
+            button.alpha = 0
             button.setImage(self.buttonImages[i], forState: UIControlState.Normal)
             button.addTarget(self, action: "buttonDidClicked:", forControlEvents: UIControlEvents.TouchUpInside)
             self.addSubview(button)
             self.addSubview(button)
             self.buttons.append(button)
         }
+        self.buttons[2].setImage(self.buttonImages[3], forState: UIControlState.Highlighted)
         self.audioPlayer.prepareToPlay()
     }
     
     
     //show n normal and 3-n empty coin
-    func show(n: Int) {
+    func show(n: Int, isSectionFinished: Bool) {
         self.alpha = 1
         self.audioPlayer.play()
         self.selectedIndex = self.coinCount - 1
+        if isSectionFinished {
+            self.buttons[2].highlighted = true
+        } else {
+            self.buttons[2].highlighted = false
+        }
         for var i = 0; i < self.coinCount; i++ {
             self.badgeViews[i].center = self.hiddenCentersTop[i]
             self.buttons[i].center = self.hiddenCentersTop[i]
