@@ -29,6 +29,7 @@ class GameViewController: XViewController {
     private var audioPlayer: AVAudioPlayer?
     private var onboardingMaskView = OnboardingMaskView()
     
+    @IBOutlet weak var musicReplayView: UIButton!
     @IBOutlet var switchView: UIView!
     private var gameSwitch: SwitchView?
     
@@ -567,6 +568,7 @@ class GameViewController: XViewController {
 
 extension GameViewController {
     func checkOnboarding() {
+        // TODO: refactoring
         if self.gameLevel.index == 0 {
             let welcomeLabel = self.onboardingMaskView.addLabelWithText(
                 "tap the switch to shoot the light",
@@ -631,7 +633,6 @@ extension GameViewController {
             self.view.addSubview(self.onboardingMaskView)
         } else if self.gameLevel.index == 3{
             var movableObject = self.gameLevel.getOriginalMovableNodes()[0]
-            var currentMovObject = self.gameLevel.getCurrentMovableNodes()[0]
             
             var movableObjectPath = self.gameLevel.originalGrid.getInstrumentDisplayPathForID(movableObject.id)
             var maskPath = UIBezierPath()
@@ -643,15 +644,38 @@ extension GameViewController {
                 clockwise: true)
             self.onboardingMaskView.drawDashedTarget(movableObjectPath!)
             
-            self.onboardingMaskView.addLabelWithText("convex lens - diverge light",position: CGPointMake(208, 490))
+            self.onboardingMaskView.addLabelWithText("get familiar with devices in Planck",position: CGPointMake(self.view.center.x, 30))
+            self.onboardingMaskView.addLabelWithText("concave lens - diverge light",position: CGPointMake(208, 490))
             self.onboardingMaskView.addLabelWithText("flat mirror - reflect light",position: CGPointMake(528, 420))
             self.onboardingMaskView.addLabelWithText("flat lens - light penetrate it",position: CGPointMake(704, 230))
+            self.onboardingMaskView.addLabelWithText("convex lens - converge light",position: CGPointMake(750, 610))
+            self.onboardingMaskView.addLabelWithText("wall - stop light",position: CGPointMake(944, 420))
             
             self.view.addSubview(self.onboardingMaskView)
         } else if self.gameLevel.index == 4{
+            var movableObject = self.gameLevel.getOriginalMovableNodes()[0]
             
+            var movableObjectPath = self.gameLevel.originalGrid.getInstrumentDisplayPathForID(movableObject.id)
+            var maskPath = UIBezierPath()
+            maskPath.addArcWithCenter(
+                self.grid.getCenterForGridCell(movableObject.center),
+                radius: 200,
+                startAngle: 0,
+                endAngle: CGFloat(2 * M_PI),
+                clockwise: true)
+            self.onboardingMaskView.drawDashedTarget(movableObjectPath!)
+            let guidancePoint = CGPoint(x: musicReplayView.center.x - 10, y: musicReplayView.center.y + 10)
+            self.onboardingMaskView.showTapGuidianceAtPoint(guidancePoint, repeat: true)
+            
+            let textPoint1 = CGPointMake(650, musicReplayView.center.y)
+            let textPoint2 = CGPointMake(680, musicReplayView.center.y + 50)
+            self.onboardingMaskView.addLabelWithText("target music can be hard",position: textPoint1)
+            self.onboardingMaskView.addLabelWithText("but you can always tap music button to replay it",position: textPoint2)
+            
+            self.view.addSubview(self.onboardingMaskView)
         } else if self.gameLevel.index == 5{
-            
+            self.onboardingMaskView.addLabelWithText("it's your turn, try to solve this simple level",position: CGPointMake(self.view.center.x, 30))
+            self.view.addSubview(self.onboardingMaskView)
         }
     }
 }
