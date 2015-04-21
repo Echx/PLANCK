@@ -52,9 +52,10 @@ class PauseMaskView: UIView {
     
     override init() {
         super.init(frame: UIScreen.mainScreen().bounds)
-        self.imageView.image = UIImage(named: "mainbackground")
-        self.imageView.alpha = 0.8
-        self.addSubview(self.imageView)
+        let blurView = UIVisualEffectView(effect: UIBlurEffect(style: UIBlurEffectStyle.Dark))
+        blurView.frame = self.bounds
+        self.addSubview(blurView)
+        
         for var i = 0; i < self.buttonCount; i++ {
             var button = UIButton(frame: CGRectMake(0, 0, 150, 150))
             button.center = self.hiddenCenters[i]

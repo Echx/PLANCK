@@ -42,7 +42,6 @@ class LevelTransitionMaskView: UIView {
         UIImage(named: "next-section")
     ]
     
-    private let imageView = UIImageView(frame: UIScreen.mainScreen().bounds)
     private let audioPlayer = AVAudioPlayer(contentsOfURL: SoundFiles.levelUpSound, error: nil)
     var shouldShowButtons = true
     var delegate: LevelTransitionMaskViewDelegate?
@@ -69,8 +68,9 @@ class LevelTransitionMaskView: UIView {
     
     override init() {
         super.init(frame: UIScreen.mainScreen().bounds)
-        self.imageView.image = UIImage(named: "mainbackground")
-        self.addSubview(self.imageView)
+        let blurView = UIVisualEffectView(effect: UIBlurEffect(style: UIBlurEffectStyle.Dark))
+        blurView.frame = self.bounds
+        self.addSubview(blurView)
         self.congratulationLabel.text = "Congratulation! You have unlocked the next section! (*´╰╯`๓)♬"
         self.congratulationLabel.textAlignment = NSTextAlignment.Center
         self.congratulationLabel.textColor = UIColor.whiteColor()
