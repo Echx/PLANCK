@@ -105,6 +105,7 @@ class LevelTransitionMaskView: UIView {
             self.addSubview(self.congratulationLabel)
         } else {
             self.buttons[2].highlighted = false
+            self.congratulationLabel.removeFromSuperview()
         }
 
         for var i = 0; i < self.coinCount; i++ {
