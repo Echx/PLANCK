@@ -428,7 +428,11 @@ class GameViewController: XViewController {
             if let device = xNodes[edge.parent] {
                 if !contains(self.visitedPlanckList, device) {
                     self.visitedPlanckList.append(device)
-                    self.music.numberOfPlanck++
+                    if let note = device.getNote() {
+                        if contains(self.gameLevel.targetNotes, note) {
+                            self.music.numberOfPlanck++
+                        }
+                    }
                 }
                 
                 if let sound = device.getSound() {
