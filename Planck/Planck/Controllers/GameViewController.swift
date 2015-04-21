@@ -467,7 +467,7 @@ class GameViewController: XViewController {
         
         if !isNodeFixed(node) {
             var fillColorAnimation = CABasicAnimation(keyPath: "fillColor")
-            fillColorAnimation.duration = 1;
+            fillColorAnimation.duration = 0.4;
             fillColorAnimation.fromValue = strokeColor.CGColor
             fillColorAnimation.toValue = strokeColor.colorWithAlphaComponent(0.3).CGColor
             fillColorAnimation.repeatCount = HUGE;
