@@ -737,6 +737,12 @@ extension GameViewController: LevelTransitionMaskViewDelegate {
         self.onboardingMaskView.removeFromSuperview()
         // save current game if it is not preview mode
         if !isPreview {
+            if (self.gameLevel.index + 1) % 6 == 0 { // at the end of one level
+                dispatch_async(dispatch_get_main_queue(), {
+                    GamiCent.reportAchievements(percent: 100.0, achievementID: XGameCenter.achi_newbie, isShowBanner: true, completion: nil)
+                })
+            }
+            
             dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), {
                 StorageManager.defaultManager.saveCurrentLevel(self.originalLevel)
             })

@@ -262,6 +262,11 @@ struct XGameCenter {
     static let achi_newbie = "planck.achievement0"
     static let achi_firstblood = "planck.achievement1"
     static let achi_nine = "planck.achievement2"
+    static let achi_finish1 = "planck.achievement3"
+    static let achi_finish2 = "planck.achievement4"
+    static let achi_finish3 = "planck.achievement5"
+    static let achi_finish4 = "planck.achievement6"
+    static let achi_first_perfect = "planck.achievement8"
 }
 
 struct XFileConstant {
