@@ -737,9 +737,30 @@ extension GameViewController: LevelTransitionMaskViewDelegate {
         self.onboardingMaskView.removeFromSuperview()
         // save current game if it is not preview mode
         if !isPreview {
-            if (self.gameLevel.index + 1) % 6 == 0 { // at the end of one level
+            if self.gameLevel.index == 0 {
+                // first blood
                 dispatch_async(dispatch_get_main_queue(), {
-                    GamiCent.reportAchievements(percent: 100.0, achievementID: XGameCenter.achi_newbie, isShowBanner: true, completion: nil)
+                    GamiCent.reportAchievements(percent: 100.0, achievementID: XGameCenter.achi_firstblood, isShowBanner: true, completion: nil)
+                })
+            } else if self.gameLevel.index == 5 {
+                dispatch_async(dispatch_get_main_queue(), {
+                    GamiCent.reportAchievements(percent: 100.0, achievementID: XGameCenter.achi_finish1, isShowBanner: true, completion: nil)
+                })
+            } else if self.gameLevel.index == 11 {
+                dispatch_async(dispatch_get_main_queue(), {
+                    GamiCent.reportAchievements(percent: 100.0, achievementID: XGameCenter.achi_finish2, isShowBanner: true, completion: nil)
+                })
+            } else if self.gameLevel.index == 17 {
+                dispatch_async(dispatch_get_main_queue(), {
+                    GamiCent.reportAchievements(percent: 100.0, achievementID: XGameCenter.achi_finish3, isShowBanner: true, completion: nil)
+                })
+            } else if self.gameLevel.index == 23 {
+                dispatch_async(dispatch_get_main_queue(), {
+                    GamiCent.reportAchievements(percent: 100.0, achievementID: XGameCenter.achi_finish4, isShowBanner: true, completion: nil)
+                })
+            } else if self.gameLevel.index == 29 {
+                dispatch_async(dispatch_get_main_queue(), {
+                    GamiCent.reportAchievements(percent: 100.0, achievementID: XGameCenter.achi_finish5, isShowBanner: true, completion: nil)
                 })
             }
             

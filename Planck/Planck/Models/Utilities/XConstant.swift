@@ -266,6 +266,7 @@ struct XGameCenter {
     static let achi_finish2 = "planck.achievement4"
     static let achi_finish3 = "planck.achievement5"
     static let achi_finish4 = "planck.achievement6"
+    static let achi_finish5 = "planck.achievement9"
     static let achi_first_perfect = "planck.achievement8"
 }
 
