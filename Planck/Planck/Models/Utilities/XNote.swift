@@ -230,6 +230,16 @@ class XNote: NSObject, NSCoding {
             return nil
         }
     }
+    
+    func isIn(noteList: [XNote]) -> Bool {
+        for note in noteList {
+            if self == note {
+                return true
+            }
+        }
+        
+        return false
+    }
 }
 
 enum XNoteName: Int {

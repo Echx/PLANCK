@@ -18,6 +18,7 @@ class GameViewController: XViewController {
     private var music = XMusic()
     private var pathDistances = [String: CGFloat]()
     private var visitedPlanckList = [XNode]()
+    private var visitedNoteList = [XNote]()
     private var emitterLayers = [String: [CAEmitterLayer]]()
     private var deviceViews = [String: UIView]()
     private var transitionMask = LevelTransitionMaskView()
@@ -68,7 +69,7 @@ class GameViewController: XViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.view.backgroundColor = UIColor(patternImage: UIImage(named: "mainbackground")!)
+        self.setUpBackground()
         self.setUpSwitchView()
         self.pauseMask.delegate = self
         self.transitionMask.delegate = self
@@ -81,20 +82,20 @@ class GameViewController: XViewController {
     }
     
     private func reloadLevel(gameLevel: GameLevel) {
-        if gameLevel.index > 5 {
-             self.view.backgroundColor = UIColor(patternImage: UIImage(named: "background-1")!)
-        }
         self.isVirgin = nil
         self.isFirstTimePlayMusic = true
         self.clear()
         self.gameLevel = gameLevel
         self.originalLevel = gameLevel.deepCopy()
+        self.visitedNoteList = [XNote]()
+        self.visitedPlanckList = [XNode]()
         self.gameSwitch?.setOff()
         // increase game stats
         if !isPreview {
             GameStats.increaseTotalGamePlay()
         }
         self.showTargetMusicMask()
+        self.setUpBackground()
     }
     
     private func clear() {
@@ -200,6 +201,17 @@ class GameViewController: XViewController {
                 touchedNode = nil
             }
         }
+    }
+    
+    private func setUpBackground() {
+        var patternImage = UIImage()
+        if gameLevel.index < 6 {
+            patternImage = UIImage(named: "mainbackground")!
+        } else {
+            patternImage = UIImage(named: "background-\(gameLevel.index / 6)")!
+        }
+        
+        self.view.backgroundColor = UIColor(patternImage: patternImage)
     }
     
     private func updateDirection(node: GOOpticRep) {
@@ -373,7 +385,7 @@ class GameViewController: XViewController {
                             }
                             
                             self.shouldShowNextLevel = true
-                        } else if (self.originalLevel.bestScore < 1) && (self.music.numberOfPlanck == self.gameLevel.targetMusic.numberOfPlanck) {
+                        } else if (self.originalLevel.bestScore < 1) && (self.visitedNoteList.count == self.gameLevel.targetMusic.music.count) {
                             dispatch_after(dispatch_time(DISPATCH_TIME_NOW, Int64(Float(NSEC_PER_SEC) * 1.5)), dispatch_get_main_queue()) {
                                 self.showBadgeMask(1)
                                 if self.originalLevel.bestScore < 1 {
@@ -411,8 +423,8 @@ class GameViewController: XViewController {
                 if !contains(self.visitedPlanckList, device) {
                     self.visitedPlanckList.append(device)
                     if let note = device.getNote() {
-                        if contains(self.gameLevel.targetNotes, note) {
-                            self.music.numberOfPlanck++
+                        if (note.isIn(self.gameLevel.targetNotes)) && (!note.isIn(self.visitedNoteList)) {
+                            self.visitedNoteList.append(note)
                         }
                     }
                 }
@@ -455,7 +467,7 @@ class GameViewController: XViewController {
         
         if !isNodeFixed(node) {
             var fillColorAnimation = CABasicAnimation(keyPath: "fillColor")
-            fillColorAnimation.duration = 1;
+            fillColorAnimation.duration = 0.4;
             fillColorAnimation.fromValue = strokeColor.CGColor
             fillColorAnimation.toValue = strokeColor.colorWithAlphaComponent(0.3).CGColor
             fillColorAnimation.repeatCount = HUGE;
