@@ -341,6 +341,15 @@
 		98B052751AE720D200484EBD /* 15.dat in Resources */ = {isa = PBXBuildFile; fileRef = 98B0526F1AE720D200484EBD /* 15.dat */; };
 		98B052761AE720D200484EBD /* 16.dat in Resources */ = {isa = PBXBuildFile; fileRef = 98B052701AE720D200484EBD /* 16.dat */; };
 		98B052771AE720D200484EBD /* 17.dat in Resources */ = {isa = PBXBuildFile; fileRef = 98B052711AE720D200484EBD /* 17.dat */; };
+		98B052791AE728B500484EBD /* FileModifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = 98B052781AE728B500484EBD /* FileModifier.swift */; };
+		98B0527F1AE72B1100484EBD /* 26.dat in Resources */ = {isa = PBXBuildFile; fileRef = 98B0527B1AE72B1100484EBD /* 26.dat */; };
+		98B052801AE72B1100484EBD /* 26.dat in Resources */ = {isa = PBXBuildFile; fileRef = 98B0527B1AE72B1100484EBD /* 26.dat */; };
+		98B052811AE72B1100484EBD /* 27.dat in Resources */ = {isa = PBXBuildFile; fileRef = 98B0527C1AE72B1100484EBD /* 27.dat */; };
+		98B052821AE72B1100484EBD /* 27.dat in Resources */ = {isa = PBXBuildFile; fileRef = 98B0527C1AE72B1100484EBD /* 27.dat */; };
+		98B052831AE72B1100484EBD /* 28.dat in Resources */ = {isa = PBXBuildFile; fileRef = 98B0527D1AE72B1100484EBD /* 28.dat */; };
+		98B052841AE72B1100484EBD /* 28.dat in Resources */ = {isa = PBXBuildFile; fileRef = 98B0527D1AE72B1100484EBD /* 28.dat */; };
+		98B052851AE72B1100484EBD /* 29.dat in Resources */ = {isa = PBXBuildFile; fileRef = 98B0527E1AE72B1100484EBD /* 29.dat */; };
+		98B052861AE72B1100484EBD /* 29.dat in Resources */ = {isa = PBXBuildFile; fileRef = 98B0527E1AE72B1100484EBD /* 29.dat */; };
 		98C2CBAA1ADD199000074127 /* GameStats.swift in Sources */ = {isa = PBXBuildFile; fileRef = 98C2CBA91ADD199000074127 /* GameStats.swift */; };
 		98C2CBAC1ADD19CE00074127 /* GamiCent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 98C2CBAB1ADD19CE00074127 /* GamiCent.swift */; };
 		98CEFDF31AE139050060EE23 /* GameStasticViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 98CEFDF21AE139050060EE23 /* GameStasticViewController.swift */; };
@@ -654,6 +663,11 @@
 		98B0526F1AE720D200484EBD /* 15.dat */ = {isa = PBXFileReference; lastKnownFileType = file.bplist; name = 15.dat; path = Levels/15.dat; sourceTree = "<group>"; };
 		98B052701AE720D200484EBD /* 16.dat */ = {isa = PBXFileReference; lastKnownFileType = file.bplist; name = 16.dat; path = Levels/16.dat; sourceTree = "<group>"; };
 		98B052711AE720D200484EBD /* 17.dat */ = {isa = PBXFileReference; lastKnownFileType = file.bplist; name = 17.dat; path = Levels/17.dat; sourceTree = "<group>"; };
+		98B052781AE728B500484EBD /* FileModifier.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FileModifier.swift; sourceTree = "<group>"; };
+		98B0527B1AE72B1100484EBD /* 26.dat */ = {isa = PBXFileReference; lastKnownFileType = file.bplist; name = 26.dat; path = Levels/26.dat; sourceTree = "<group>"; };
+		98B0527C1AE72B1100484EBD /* 27.dat */ = {isa = PBXFileReference; lastKnownFileType = file.bplist; name = 27.dat; path = Levels/27.dat; sourceTree = "<group>"; };
+		98B0527D1AE72B1100484EBD /* 28.dat */ = {isa = PBXFileReference; lastKnownFileType = file.bplist; name = 28.dat; path = Levels/28.dat; sourceTree = "<group>"; };
+		98B0527E1AE72B1100484EBD /* 29.dat */ = {isa = PBXFileReference; lastKnownFileType = file.bplist; name = 29.dat; path = Levels/29.dat; sourceTree = "<group>"; };
 		98C2CBA91ADD199000074127 /* GameStats.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GameStats.swift; sourceTree = "<group>"; };
 		98C2CBAB1ADD19CE00074127 /* GamiCent.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GamiCent.swift; sourceTree = "<group>"; };
 		98CEFDF21AE139050060EE23 /* GameStasticViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GameStasticViewController.swift; sourceTree = "<group>"; };
@@ -864,6 +878,7 @@
 			isa = PBXGroup;
 			children = (
 				6227FB851AAE285C007F49EA /* Supporting Files */,
+				98B052781AE728B500484EBD /* FileModifier.swift */,
 			);
 			path = PlanckTests;
 			sourceTree = "<group>";
@@ -1178,6 +1193,10 @@
 		98E7F3E81AE441BB005AA6BE /* Levels */ = {
 			isa = PBXGroup;
 			children = (
+				98B0527B1AE72B1100484EBD /* 26.dat */,
+				98B0527C1AE72B1100484EBD /* 27.dat */,
+				98B0527D1AE72B1100484EBD /* 28.dat */,
+				98B0527E1AE72B1100484EBD /* 29.dat */,
 				98B0526C1AE720D200484EBD /* 12.dat */,
 				98B0526D1AE720D200484EBD /* 13.dat */,
 				98B0526E1AE720D200484EBD /* 14.dat */,
@@ -1302,6 +1321,7 @@
 			files = (
 				629D3A231AD9C29A00A8B3B7 /* harp-12.m4a in Resources */,
 				629D3A1D1AD9C29A00A8B3B7 /* harp-18.m4a in Resources */,
+				98B052831AE72B1100484EBD /* 28.dat in Resources */,
 				629D3A031AD9C29A00A8B3B7 /* harp-44.m4a in Resources */,
 				629D39D11AD9C29A00A8B3B7 /* harp-94.m4a in Resources */,
 				629D39171AD9844300A8B3B7 /* piano-17.m4a in Resources */,
@@ -1372,6 +1392,7 @@
 				629D3A191AD9C29A00A8B3B7 /* harp-22.m4a in Resources */,
 				629D39511AD9844300A8B3B7 /* piano-88.m4a in Resources */,
 				629D39421AD9844300A8B3B7 /* piano-73.m4a in Resources */,
+				98B0527F1AE72B1100484EBD /* 26.dat in Resources */,
 				626B46811AE705110050AC19 /* 10.dat in Resources */,
 				629D394A1AD9844300A8B3B7 /* piano-81.m4a in Resources */,
 				629D393C1AD9844300A8B3B7 /* piano-54.m4a in Resources */,
@@ -1442,6 +1463,7 @@
 				629D392E1AD9844300A8B3B7 /* piano-40.m4a in Resources */,
 				626B469D1AE705110050AC19 /* t4.dat in Resources */,
 				629D3A241AD9C29A00A8B3B7 /* harp-11.m4a in Resources */,
+				98B052851AE72B1100484EBD /* 29.dat in Resources */,
 				629D3A2D1AD9C2B000A8B3B7 /* piano-10.m4a in Resources */,
 				629D39521AD9844300A8B3B7 /* piano-89.m4a in Resources */,
 				629D39E51AD9C29A00A8B3B7 /* harp-74.m4a in Resources */,
@@ -1449,6 +1471,7 @@
 				626B46911AE705110050AC19 /* 18.dat in Resources */,
 				629D39711AD9847A00A8B3B7 /* piano-71.m4a in Resources */,
 				629D39DD1AD9C29A00A8B3B7 /* harp-82.m4a in Resources */,
+				98B052811AE72B1100484EBD /* 27.dat in Resources */,
 				629D39F71AD9C29A00A8B3B7 /* harp-56.m4a in Resources */,
 				629D3A111AD9C29A00A8B3B7 /* harp-30.m4a in Resources */,
 				629D39141AD9844300A8B3B7 /* piano-14.m4a in Resources */,
@@ -1520,16 +1543,20 @@
 				626B469E1AE705110050AC19 /* t4.dat in Resources */,
 				626B46821AE705110050AC19 /* 10.dat in Resources */,
 				626B46841AE705110050AC19 /* 11.dat in Resources */,
+				98B052801AE72B1100484EBD /* 26.dat in Resources */,
 				626B46801AE705110050AC19 /* 9.dat in Resources */,
+				98B052861AE72B1100484EBD /* 29.dat in Resources */,
 				626B46921AE705110050AC19 /* 18.dat in Resources */,
 				626B469C1AE705110050AC19 /* t3.dat in Resources */,
 				626B467E1AE705110050AC19 /* 8.dat in Resources */,
+				98B052821AE72B1100484EBD /* 27.dat in Resources */,
 				626B467C1AE705110050AC19 /* 7.dat in Resources */,
 				626B467A1AE705110050AC19 /* 6.dat in Resources */,
 				626B46981AE705110050AC19 /* t1.dat in Resources */,
 				625864AC1AE4404000B24353 /* planck-background.m4a in Resources */,
 				626B469A1AE705110050AC19 /* t2.dat in Resources */,
 				626B46A01AE705110050AC19 /* t5.dat in Resources */,
+				98B052841AE72B1100484EBD /* 28.dat in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1674,6 +1701,7 @@
 				262F382F1ADAFB4300FA2177 /* LevelTransitionMaskView.swift in Sources */,
 				62E323301ADAF52D00CFD4CA /* GameViewController.swift in Sources */,
 				62E3232D1ADAF52700CFD4CA /* SettingViewController.swift in Sources */,
+				98B052791AE728B500484EBD /* FileModifier.swift in Sources */,
 				625864AE1AE4426F00B24353 /* ScrollPageContentViewController.swift in Sources */,
 				98F63A9E1AD1650F0096A32E /* GOArcSegment.swift in Sources */,
 				62E323351ADAF54E00CFD4CA /* SettingViewCell.swift in Sources */,
