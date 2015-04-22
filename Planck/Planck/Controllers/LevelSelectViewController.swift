@@ -94,6 +94,8 @@ class LevelSelectViewController: ScrollPageContentViewController, UICollectionVi
             return "Piano Story"
         case 3:
             return "wow, such Pop"
+        case 4:
+            return "Baroque & Romantic"
         default:
             return "ECHX Present"
         }
