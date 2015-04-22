@@ -606,7 +606,7 @@
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hG1-YG-Ave">
-                                            <rect key="frame" x="20" y="13" width="192" height="48"/>
+                                            <rect key="frame" x="20" y="13" width="262" height="48"/>
                                             <fontDescription key="fontDescription" name="Akagi-SemiBold" family="Akagi" pointSize="28"/>
                                             <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                             <nil key="highlightedColor"/>
@@ -1032,7 +1032,7 @@
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Y4k-QL-vpf">
-                                            <rect key="frame" x="20" y="13" width="192" height="48"/>
+                                            <rect key="frame" x="20" y="13" width="262" height="48"/>
                                             <fontDescription key="fontDescription" name="Akagi-SemiBold" family="Akagi" pointSize="28"/>
                                             <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                             <nil key="highlightedColor"/>
