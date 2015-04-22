@@ -96,18 +96,6 @@
 		626B46821AE705110050AC19 /* 10.dat in Resources */ = {isa = PBXBuildFile; fileRef = 626B46691AE705110050AC19 /* 10.dat */; };
 		626B46831AE705110050AC19 /* 11.dat in Resources */ = {isa = PBXBuildFile; fileRef = 626B466A1AE705110050AC19 /* 11.dat */; };
 		626B46841AE705110050AC19 /* 11.dat in Resources */ = {isa = PBXBuildFile; fileRef = 626B466A1AE705110050AC19 /* 11.dat */; };
-		626B46851AE705110050AC19 /* 12.dat in Resources */ = {isa = PBXBuildFile; fileRef = 626B466B1AE705110050AC19 /* 12.dat */; };
-		626B46861AE705110050AC19 /* 12.dat in Resources */ = {isa = PBXBuildFile; fileRef = 626B466B1AE705110050AC19 /* 12.dat */; };
-		626B46871AE705110050AC19 /* 13.dat in Resources */ = {isa = PBXBuildFile; fileRef = 626B466C1AE705110050AC19 /* 13.dat */; };
-		626B46881AE705110050AC19 /* 13.dat in Resources */ = {isa = PBXBuildFile; fileRef = 626B466C1AE705110050AC19 /* 13.dat */; };
-		626B46891AE705110050AC19 /* 14.dat in Resources */ = {isa = PBXBuildFile; fileRef = 626B466D1AE705110050AC19 /* 14.dat */; };
-		626B468A1AE705110050AC19 /* 14.dat in Resources */ = {isa = PBXBuildFile; fileRef = 626B466D1AE705110050AC19 /* 14.dat */; };
-		626B468B1AE705110050AC19 /* 15.dat in Resources */ = {isa = PBXBuildFile; fileRef = 626B466E1AE705110050AC19 /* 15.dat */; };
-		626B468C1AE705110050AC19 /* 15.dat in Resources */ = {isa = PBXBuildFile; fileRef = 626B466E1AE705110050AC19 /* 15.dat */; };
-		626B468D1AE705110050AC19 /* 16.dat in Resources */ = {isa = PBXBuildFile; fileRef = 626B466F1AE705110050AC19 /* 16.dat */; };
-		626B468E1AE705110050AC19 /* 16.dat in Resources */ = {isa = PBXBuildFile; fileRef = 626B466F1AE705110050AC19 /* 16.dat */; };
-		626B468F1AE705110050AC19 /* 17.dat in Resources */ = {isa = PBXBuildFile; fileRef = 626B46701AE705110050AC19 /* 17.dat */; };
-		626B46901AE705110050AC19 /* 17.dat in Resources */ = {isa = PBXBuildFile; fileRef = 626B46701AE705110050AC19 /* 17.dat */; };
 		626B46911AE705110050AC19 /* 18.dat in Resources */ = {isa = PBXBuildFile; fileRef = 626B46711AE705110050AC19 /* 18.dat */; };
 		626B46921AE705110050AC19 /* 18.dat in Resources */ = {isa = PBXBuildFile; fileRef = 626B46711AE705110050AC19 /* 18.dat */; };
 		626B46931AE705110050AC19 /* 19.dat in Resources */ = {isa = PBXBuildFile; fileRef = 626B46721AE705110050AC19 /* 19.dat */; };
@@ -347,6 +335,12 @@
 		986E5DA31AC55604008EF3CE /* StorageManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 98D55F9D1ABF133000B3E86A /* StorageManager.swift */; };
 		988CF3481AD3C6580013D903 /* LevelSelectHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 988CF3471AD3C6580013D903 /* LevelSelectHeaderView.swift */; };
 		988CF34A1AD3C6C70013D903 /* LevelSelectCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 988CF3491AD3C6C70013D903 /* LevelSelectCollectionViewCell.swift */; };
+		98B052721AE720D200484EBD /* 12.dat in Resources */ = {isa = PBXBuildFile; fileRef = 98B0526C1AE720D200484EBD /* 12.dat */; };
+		98B052731AE720D200484EBD /* 13.dat in Resources */ = {isa = PBXBuildFile; fileRef = 98B0526D1AE720D200484EBD /* 13.dat */; };
+		98B052741AE720D200484EBD /* 14.dat in Resources */ = {isa = PBXBuildFile; fileRef = 98B0526E1AE720D200484EBD /* 14.dat */; };
+		98B052751AE720D200484EBD /* 15.dat in Resources */ = {isa = PBXBuildFile; fileRef = 98B0526F1AE720D200484EBD /* 15.dat */; };
+		98B052761AE720D200484EBD /* 16.dat in Resources */ = {isa = PBXBuildFile; fileRef = 98B052701AE720D200484EBD /* 16.dat */; };
+		98B052771AE720D200484EBD /* 17.dat in Resources */ = {isa = PBXBuildFile; fileRef = 98B052711AE720D200484EBD /* 17.dat */; };
 		98C2CBAA1ADD199000074127 /* GameStats.swift in Sources */ = {isa = PBXBuildFile; fileRef = 98C2CBA91ADD199000074127 /* GameStats.swift */; };
 		98C2CBAC1ADD19CE00074127 /* GamiCent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 98C2CBAB1ADD19CE00074127 /* GamiCent.swift */; };
 		98CEFDF31AE139050060EE23 /* GameStasticViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 98CEFDF21AE139050060EE23 /* GameStasticViewController.swift */; };
@@ -447,12 +441,6 @@
 		626B46681AE705110050AC19 /* 9.dat */ = {isa = PBXFileReference; lastKnownFileType = file.bplist; name = 9.dat; path = Levels/9.dat; sourceTree = "<group>"; };
 		626B46691AE705110050AC19 /* 10.dat */ = {isa = PBXFileReference; lastKnownFileType = file.bplist; name = 10.dat; path = Levels/10.dat; sourceTree = "<group>"; };
 		626B466A1AE705110050AC19 /* 11.dat */ = {isa = PBXFileReference; lastKnownFileType = file.bplist; name = 11.dat; path = Levels/11.dat; sourceTree = "<group>"; };
-		626B466B1AE705110050AC19 /* 12.dat */ = {isa = PBXFileReference; lastKnownFileType = file.bplist; name = 12.dat; path = Levels/12.dat; sourceTree = "<group>"; };
-		626B466C1AE705110050AC19 /* 13.dat */ = {isa = PBXFileReference; lastKnownFileType = file.bplist; name = 13.dat; path = Levels/13.dat; sourceTree = "<group>"; };
-		626B466D1AE705110050AC19 /* 14.dat */ = {isa = PBXFileReference; lastKnownFileType = file.bplist; name = 14.dat; path = Levels/14.dat; sourceTree = "<group>"; };
-		626B466E1AE705110050AC19 /* 15.dat */ = {isa = PBXFileReference; lastKnownFileType = file.bplist; name = 15.dat; path = Levels/15.dat; sourceTree = "<group>"; };
-		626B466F1AE705110050AC19 /* 16.dat */ = {isa = PBXFileReference; lastKnownFileType = file.bplist; name = 16.dat; path = Levels/16.dat; sourceTree = "<group>"; };
-		626B46701AE705110050AC19 /* 17.dat */ = {isa = PBXFileReference; lastKnownFileType = file.bplist; name = 17.dat; path = Levels/17.dat; sourceTree = "<group>"; };
 		626B46711AE705110050AC19 /* 18.dat */ = {isa = PBXFileReference; lastKnownFileType = file.bplist; name = 18.dat; path = Levels/18.dat; sourceTree = "<group>"; };
 		626B46721AE705110050AC19 /* 19.dat */ = {isa = PBXFileReference; lastKnownFileType = file.bplist; name = 19.dat; path = Levels/19.dat; sourceTree = "<group>"; };
 		626B46731AE705110050AC19 /* t0.dat */ = {isa = PBXFileReference; lastKnownFileType = file.bplist; name = t0.dat; path = Levels/t0.dat; sourceTree = "<group>"; };
@@ -660,6 +648,12 @@
 		9841A82D1AD987010095AEBB /* SettingViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SettingViewCell.swift; path = Setting/SettingViewCell.swift; sourceTree = "<group>"; };
 		988CF3471AD3C6580013D903 /* LevelSelectHeaderView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LevelSelectHeaderView.swift; sourceTree = "<group>"; };
 		988CF3491AD3C6C70013D903 /* LevelSelectCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LevelSelectCollectionViewCell.swift; sourceTree = "<group>"; };
+		98B0526C1AE720D200484EBD /* 12.dat */ = {isa = PBXFileReference; lastKnownFileType = file.bplist; name = 12.dat; path = Levels/12.dat; sourceTree = "<group>"; };
+		98B0526D1AE720D200484EBD /* 13.dat */ = {isa = PBXFileReference; lastKnownFileType = file.bplist; name = 13.dat; path = Levels/13.dat; sourceTree = "<group>"; };
+		98B0526E1AE720D200484EBD /* 14.dat */ = {isa = PBXFileReference; lastKnownFileType = file.bplist; name = 14.dat; path = Levels/14.dat; sourceTree = "<group>"; };
+		98B0526F1AE720D200484EBD /* 15.dat */ = {isa = PBXFileReference; lastKnownFileType = file.bplist; name = 15.dat; path = Levels/15.dat; sourceTree = "<group>"; };
+		98B052701AE720D200484EBD /* 16.dat */ = {isa = PBXFileReference; lastKnownFileType = file.bplist; name = 16.dat; path = Levels/16.dat; sourceTree = "<group>"; };
+		98B052711AE720D200484EBD /* 17.dat */ = {isa = PBXFileReference; lastKnownFileType = file.bplist; name = 17.dat; path = Levels/17.dat; sourceTree = "<group>"; };
 		98C2CBA91ADD199000074127 /* GameStats.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GameStats.swift; sourceTree = "<group>"; };
 		98C2CBAB1ADD19CE00074127 /* GamiCent.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GamiCent.swift; sourceTree = "<group>"; };
 		98CEFDF21AE139050060EE23 /* GameStasticViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GameStasticViewController.swift; sourceTree = "<group>"; };
@@ -1184,18 +1178,18 @@
 		98E7F3E81AE441BB005AA6BE /* Levels */ = {
 			isa = PBXGroup;
 			children = (
+				98B0526C1AE720D200484EBD /* 12.dat */,
+				98B0526D1AE720D200484EBD /* 13.dat */,
+				98B0526E1AE720D200484EBD /* 14.dat */,
+				98B0526F1AE720D200484EBD /* 15.dat */,
+				98B052701AE720D200484EBD /* 16.dat */,
+				98B052711AE720D200484EBD /* 17.dat */,
 				626B46651AE705110050AC19 /* 6.dat */,
 				626B46661AE705110050AC19 /* 7.dat */,
 				626B46671AE705110050AC19 /* 8.dat */,
 				626B46681AE705110050AC19 /* 9.dat */,
 				626B46691AE705110050AC19 /* 10.dat */,
 				626B466A1AE705110050AC19 /* 11.dat */,
-				626B466B1AE705110050AC19 /* 12.dat */,
-				626B466C1AE705110050AC19 /* 13.dat */,
-				626B466D1AE705110050AC19 /* 14.dat */,
-				626B466E1AE705110050AC19 /* 15.dat */,
-				626B466F1AE705110050AC19 /* 16.dat */,
-				626B46701AE705110050AC19 /* 17.dat */,
 				626B46711AE705110050AC19 /* 18.dat */,
 				626B46721AE705110050AC19 /* 19.dat */,
 				626B46731AE705110050AC19 /* t0.dat */,
@@ -1315,12 +1309,12 @@
 				629D39581AD9844300A8B3B7 /* piano-95.m4a in Resources */,
 				629D3A071AD9C29A00A8B3B7 /* harp-40.m4a in Resources */,
 				6227FB7C1AAE285C007F49EA /* LaunchScreen.xib in Resources */,
+				98B052731AE720D200484EBD /* 13.dat in Resources */,
 				629D3A251AD9C29A00A8B3B7 /* harp-10.m4a in Resources */,
 				629D3A2C1AD9C2B000A8B3B7 /* piano-11.m4a in Resources */,
 				629D393E1AD9844300A8B3B7 /* piano-56.m4a in Resources */,
 				629D39EB1AD9C29A00A8B3B7 /* harp-68.m4a in Resources */,
 				629D394C1AD9844300A8B3B7 /* piano-83.m4a in Resources */,
-				626B46891AE705110050AC19 /* 14.dat in Resources */,
 				629D393F1AD9844300A8B3B7 /* piano-57.m4a in Resources */,
 				629D39CE1AD9C29A00A8B3B7 /* harp-97.m4a in Resources */,
 				629D39351AD9844300A8B3B7 /* piano-47.m4a in Resources */,
@@ -1349,8 +1343,8 @@
 				629D39181AD9844300A8B3B7 /* piano-18.m4a in Resources */,
 				629D3A061AD9C29A00A8B3B7 /* harp-41.m4a in Resources */,
 				629D3A0B1AD9C29A00A8B3B7 /* harp-36.m4a in Resources */,
+				98B052751AE720D200484EBD /* 15.dat in Resources */,
 				629D39341AD9844300A8B3B7 /* piano-46.m4a in Resources */,
-				626B468B1AE705110050AC19 /* 15.dat in Resources */,
 				629D39F61AD9C29A00A8B3B7 /* harp-57.m4a in Resources */,
 				629D39FD1AD9C29A00A8B3B7 /* harp-50.m4a in Resources */,
 				629D39DE1AD9C29A00A8B3B7 /* harp-81.m4a in Resources */,
@@ -1396,7 +1390,6 @@
 				629D39571AD9844300A8B3B7 /* piano-94.m4a in Resources */,
 				629D39EE1AD9C29A00A8B3B7 /* harp-65.m4a in Resources */,
 				629D39391AD9844300A8B3B7 /* piano-51.m4a in Resources */,
-				626B468D1AE705110050AC19 /* 16.dat in Resources */,
 				629D391A1AD9844300A8B3B7 /* piano-20.m4a in Resources */,
 				629D39F31AD9C29A00A8B3B7 /* harp-60.m4a in Resources */,
 				629D3A0C1AD9C29A00A8B3B7 /* harp-35.m4a in Resources */,
@@ -1424,6 +1417,7 @@
 				629D39DB1AD9C29A00A8B3B7 /* harp-84.m4a in Resources */,
 				629D39EA1AD9C29A00A8B3B7 /* harp-69.m4a in Resources */,
 				629D392D1AD9844300A8B3B7 /* piano-39.m4a in Resources */,
+				98B052771AE720D200484EBD /* 17.dat in Resources */,
 				629D39491AD9844300A8B3B7 /* piano-80.m4a in Resources */,
 				629D3A081AD9C29A00A8B3B7 /* harp-39.m4a in Resources */,
 				629D3A201AD9C29A00A8B3B7 /* harp-15.m4a in Resources */,
@@ -1434,17 +1428,16 @@
 				629D39D01AD9C29A00A8B3B7 /* harp-95.m4a in Resources */,
 				629D39D71AD9C29A00A8B3B7 /* harp-88.m4a in Resources */,
 				629D3A211AD9C29A00A8B3B7 /* harp-14.m4a in Resources */,
-				626B46871AE705110050AC19 /* 13.dat in Resources */,
 				629D3A131AD9C29A00A8B3B7 /* harp-28.m4a in Resources */,
 				629D396D1AD9847A00A8B3B7 /* piano-67.m4a in Resources */,
 				629D39271AD9844300A8B3B7 /* piano-33.m4a in Resources */,
 				629D39671AD9847A00A8B3B7 /* piano-61.m4a in Resources */,
 				629D3A1F1AD9C29A00A8B3B7 /* harp-16.m4a in Resources */,
 				629D39CF1AD9C29A00A8B3B7 /* harp-96.m4a in Resources */,
+				98B052721AE720D200484EBD /* 12.dat in Resources */,
 				629D39D21AD9C29A00A8B3B7 /* harp-93.m4a in Resources */,
 				629D392A1AD9844300A8B3B7 /* piano-36.m4a in Resources */,
 				6227FB771AAE285C007F49EA /* Main.storyboard in Resources */,
-				626B46851AE705110050AC19 /* 12.dat in Resources */,
 				26290CA01ADEB86900409FD8 /* Akagi-BK.ttf in Resources */,
 				629D392E1AD9844300A8B3B7 /* piano-40.m4a in Resources */,
 				626B469D1AE705110050AC19 /* t4.dat in Resources */,
@@ -1467,6 +1460,7 @@
 				629D393A1AD9844300A8B3B7 /* piano-52.m4a in Resources */,
 				629D39D91AD9C29A00A8B3B7 /* harp-86.m4a in Resources */,
 				629D3A1A1AD9C29A00A8B3B7 /* harp-21.m4a in Resources */,
+				98B052761AE720D200484EBD /* 16.dat in Resources */,
 				629D3A021AD9C29A00A8B3B7 /* harp-45.m4a in Resources */,
 				629D39D51AD9C29A00A8B3B7 /* harp-90.m4a in Resources */,
 				629D39EF1AD9C29A00A8B3B7 /* harp-64.m4a in Resources */,
@@ -1478,7 +1472,6 @@
 				629D39721AD9847A00A8B3B7 /* piano-72.m4a in Resources */,
 				629D394E1AD9844300A8B3B7 /* piano-85.m4a in Resources */,
 				629D39DC1AD9C29A00A8B3B7 /* harp-83.m4a in Resources */,
-				626B468F1AE705110050AC19 /* 17.dat in Resources */,
 				629D3A041AD9C29A00A8B3B7 /* harp-43.m4a in Resources */,
 				629D39ED1AD9C29A00A8B3B7 /* harp-66.m4a in Resources */,
 				629D396A1AD9847A00A8B3B7 /* piano-64.m4a in Resources */,
@@ -1500,6 +1493,7 @@
 				629D391E1AD9844300A8B3B7 /* piano-24.m4a in Resources */,
 				629D3A0E1AD9C29A00A8B3B7 /* harp-33.m4a in Resources */,
 				629D39FA1AD9C29A00A8B3B7 /* harp-53.m4a in Resources */,
+				98B052741AE720D200484EBD /* 14.dat in Resources */,
 				629D39D31AD9C29A00A8B3B7 /* harp-92.m4a in Resources */,
 				629D394D1AD9844300A8B3B7 /* piano-84.m4a in Resources */,
 				629D39501AD9844300A8B3B7 /* piano-87.m4a in Resources */,
@@ -1523,12 +1517,7 @@
 			files = (
 				626B46941AE705110050AC19 /* 19.dat in Resources */,
 				626B46961AE705110050AC19 /* t0.dat in Resources */,
-				626B46901AE705110050AC19 /* 17.dat in Resources */,
-				626B468E1AE705110050AC19 /* 16.dat in Resources */,
-				626B468A1AE705110050AC19 /* 14.dat in Resources */,
 				626B469E1AE705110050AC19 /* t4.dat in Resources */,
-				626B46881AE705110050AC19 /* 13.dat in Resources */,
-				626B46861AE705110050AC19 /* 12.dat in Resources */,
 				626B46821AE705110050AC19 /* 10.dat in Resources */,
 				626B46841AE705110050AC19 /* 11.dat in Resources */,
 				626B46801AE705110050AC19 /* 9.dat in Resources */,
@@ -1539,7 +1528,6 @@
 				626B467A1AE705110050AC19 /* 6.dat in Resources */,
 				626B46981AE705110050AC19 /* t1.dat in Resources */,
 				625864AC1AE4404000B24353 /* planck-background.m4a in Resources */,
-				626B468C1AE705110050AC19 /* 15.dat in Resources */,
 				626B469A1AE705110050AC19 /* t2.dat in Resources */,
 				626B46A01AE705110050AC19 /* t5.dat in Resources */,
 			);
