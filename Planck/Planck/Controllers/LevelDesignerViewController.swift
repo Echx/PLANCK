@@ -394,7 +394,7 @@ class LevelDesignerViewController: XViewController {
         for (id, view) in self.deviceViews {
             view.removeFromSuperview()
         }
-        
+        self.deviceViews = [String: UIView]()
         self.clearRay()
         self.updateTextFieldInformation()
         self.updatePickerInformation()
