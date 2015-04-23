@@ -77,7 +77,7 @@ class XMusic: NSObject, NSCoding {
             return
         } else {
             for note in self.music.keys {
-                self.music[note]?.sort({$0 > $1})
+                self.music[note]?.sort({$0 < $1})
             }
             
             self.isArranged = true
@@ -98,8 +98,11 @@ class XMusic: NSObject, NSCoding {
         
         for noteOccurence in self.music {
             for i in 0...noteOccurence.1.count - 1 {
-                let anotherPathDistances = anotherMusic.music[noteOccurence.0]!
-                if fabs((Double)(noteOccurence.1[i] - anotherPathDistances[i])) > MusicDefaults.distanceTolerance {
+                if let anotherPathDistances = anotherMusic.music[noteOccurence.0] {
+                    if fabs((Double)(noteOccurence.1[i] - anotherPathDistances[i])) > MusicDefaults.distanceTolerance {
+                        return false
+                    }
+                } else {
                     return false
                 }
             }

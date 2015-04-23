@@ -18,6 +18,7 @@ class GameViewController: XViewController {
     private var music = XMusic()
     private var pathDistances = [String: CGFloat]()
     private var visitedPlanckList = [XNode]()
+    private var visitedNoteList = [XNote]()
     private var emitterLayers = [String: [CAEmitterLayer]]()
     private var deviceViews = [String: UIView]()
     private var transitionMask = LevelTransitionMaskView()
@@ -28,6 +29,7 @@ class GameViewController: XViewController {
     private var audioPlayer: AVAudioPlayer?
     private var onboardingMaskView = OnboardingMaskView()
     
+    @IBOutlet weak var musicReplayView: UIButton!
     @IBOutlet var switchView: UIView!
     private var gameSwitch: SwitchView?
     
@@ -67,7 +69,7 @@ class GameViewController: XViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.view.backgroundColor = UIColor(patternImage: UIImage(named: "mainbackground")!)
+        self.setUpBackground()
         self.setUpSwitchView()
         self.pauseMask.delegate = self
         self.transitionMask.delegate = self
@@ -85,12 +87,15 @@ class GameViewController: XViewController {
         self.clear()
         self.gameLevel = gameLevel
         self.originalLevel = gameLevel.deepCopy()
+        self.visitedNoteList = [XNote]()
+        self.visitedPlanckList = [XNode]()
         self.gameSwitch?.setOff()
         // increase game stats
         if !isPreview {
             GameStats.increaseTotalGamePlay()
         }
         self.showTargetMusicMask()
+        self.setUpBackground()
     }
     
     private func clear() {
@@ -196,6 +201,17 @@ class GameViewController: XViewController {
                 touchedNode = nil
             }
         }
+    }
+    
+    private func setUpBackground() {
+        var patternImage = UIImage()
+        if gameLevel.index < 6 {
+            patternImage = UIImage(named: "mainbackground")!
+        } else {
+            patternImage = UIImage(named: "background-\(gameLevel.index / 6)")!
+        }
+        
+        self.view.backgroundColor = UIColor(patternImage: patternImage)
     }
     
     private func updateDirection(node: GOOpticRep) {
@@ -316,27 +332,6 @@ class GameViewController: XViewController {
                 
                 let delay = distance / Constant.lightSpeedBase
                 
-                //emitter
-//                let emitterLayer = ParticleManager.getParticleLayer()
-//                if self.emitterLayers[tag] == nil {
-//                    self.emitterLayers[tag] = [CAEmitterLayer]()
-//                }
-//                self.emitterLayers[tag]?.append(emitterLayer)
-//                self.view.layer.addSublayer(emitterLayer)
-//                emitterLayer.emitterPosition = prevPoint.0
-//                var emitterPath = CGPathCreateCopy(path.CGPath)
-//                //                CGContextSetStrokeColorWithColor(context, UIColor.whiteColor().CGColor)
-//                
-//                var animation = CABasicAnimation(keyPath: "emitterPosition")
-//                animation.fromValue = NSValue(CGPoint: prevPoint.0)
-//                animation.toValue = NSValue(CGPoint: currentPoint.0)
-//                animation.duration = CFTimeInterval(delay)
-//                animation.repeatCount = 1.0
-//                animation.removedOnCompletion = true
-//                emitterLayer.addAnimation(animation, forKey: "test")
-                
-                //end of emitter
-                
                 let pathAnimation = CABasicAnimation(keyPath: "strokeEnd")
                 pathAnimation.fromValue = 0.0
                 pathAnimation.toValue = 1.0
@@ -390,14 +385,13 @@ class GameViewController: XViewController {
                             }
                             
                             self.shouldShowNextLevel = true
-                        } else if self.music.numberOfPlanck == self.gameLevel.targetMusic.numberOfPlanck {
+                        } else if (self.originalLevel.bestScore < 1) && (self.visitedNoteList.count == self.gameLevel.targetMusic.music.count) {
                             dispatch_after(dispatch_time(DISPATCH_TIME_NOW, Int64(Float(NSEC_PER_SEC) * 1.5)), dispatch_get_main_queue()) {
                                 self.showBadgeMask(1)
                                 if self.originalLevel.bestScore < 1 {
                                     self.originalLevel.bestScore = 1
                                 }
                             }
-                            
                             self.shouldShowNextLevel = true
                         } else {
                             self.shouldShowNextLevel = false
@@ -410,7 +404,7 @@ class GameViewController: XViewController {
     
     private func showBadgeMask(numberOfBadge: Int) {
         self.view.addSubview(self.transitionMask)
-        self.transitionMask.show(numberOfBadge)
+        self.transitionMask.show(numberOfBadge, isSectionFinished: self.originalLevel.index % 6 == 5)
     }
     
     private func showTargetMusicMask() {
@@ -428,7 +422,11 @@ class GameViewController: XViewController {
             if let device = xNodes[edge.parent] {
                 if !contains(self.visitedPlanckList, device) {
                     self.visitedPlanckList.append(device)
-                    self.music.numberOfPlanck++
+                    if let note = device.getNote() {
+                        if (note.isIn(self.gameLevel.targetNotes)) && (!note.isIn(self.visitedNoteList)) {
+                            self.visitedNoteList.append(note)
+                        }
+                    }
                 }
                 
                 if let sound = device.getSound() {
@@ -469,7 +467,7 @@ class GameViewController: XViewController {
         
         if !isNodeFixed(node) {
             var fillColorAnimation = CABasicAnimation(keyPath: "fillColor")
-            fillColorAnimation.duration = 1;
+            fillColorAnimation.duration = 0.4;
             fillColorAnimation.fromValue = strokeColor.CGColor
             fillColorAnimation.toValue = strokeColor.colorWithAlphaComponent(0.3).CGColor
             fillColorAnimation.repeatCount = HUGE;
@@ -580,6 +578,7 @@ class GameViewController: XViewController {
 
 extension GameViewController {
     func checkOnboarding() {
+        // TODO: refactoring
         if self.gameLevel.index == 0 {
             let welcomeLabel = self.onboardingMaskView.addLabelWithText(
                 "tap the switch to shoot the light",
@@ -595,7 +594,7 @@ extension GameViewController {
             self.onboardingMaskView.showTapGuidianceAtPoint(CGPoint(x: 80, y: 708), repeat: true)
             self.view.addSubview(self.onboardingMaskView)
         } else if self.gameLevel.index == 1{
-            var movableObject = self.gameLevel.getMovableNodes()[0]
+            var movableObject = self.gameLevel.getOriginalMovableNodes()[0]
             var movableObjectPath = self.gameLevel.originalGrid.getInstrumentDisplayPathForID(movableObject.id)
             var maskPath = UIBezierPath()
             maskPath.addArcWithCenter(
@@ -610,17 +609,83 @@ extension GameViewController {
             self.onboardingMaskView.showTapGuidianceAtPoint(self.gameLevel.originalGrid.getCenterForGridCell(movableObject.center), repeat: true)
             self.onboardingMaskView.showTapGuidianceAtPoint(CGPointMake(500, 125), repeat: true)
             self.onboardingMaskView.addLabelWithText("tap a node to play its sound",position: CGPointMake(500, 185))
-            self.onboardingMaskView.addLabelWithText("tap a shining node to change its direction", position: CGPointMake(700, 530))
+            self.onboardingMaskView.addLabelWithText("shining node is moveable, tap a shining node to change its direction", position: CGPointMake(600, 530))
             self.onboardingMaskView.addLabelWithText("rotate the node to the dashed frame, and shoot the light", position: CGPointMake(512, 670))
             self.view.addSubview(self.onboardingMaskView)
-        } else if self.gameLevel.index == 2{
+        } else if self.gameLevel.index == 2 {
+            var movableObject = self.gameLevel.getOriginalMovableNodes()[0]
+            var currentMovObject = self.gameLevel.getCurrentMovableNodes()[0]
             
+            var movableObjectPath = self.gameLevel.originalGrid.getInstrumentDisplayPathForID(movableObject.id)
+            var maskPath = UIBezierPath()
+            maskPath.addArcWithCenter(
+                self.grid.getCenterForGridCell(movableObject.center),
+                radius: 200,
+                startAngle: 0,
+                endAngle: CGFloat(2 * M_PI),
+                clockwise: true)
+            self.onboardingMaskView.drawMask(maskPath, animated: false)
+            self.onboardingMaskView.showMask(true)
+            self.onboardingMaskView.drawDashedTarget(movableObjectPath!)
+            
+            
+            let fromCenterPoint = gameLevel.grid.getCenterForGridCell(currentMovObject.center)
+            let toCenterPoint = gameLevel.grid.getCenterForGridCell(movableObject.center)
+            
+            let startPoint = CGPoint(x: fromCenterPoint.x, y: fromCenterPoint.y + 20)
+            let endPoint = CGPoint(x: toCenterPoint.x, y: toCenterPoint.y - 20)
+            
+            self.onboardingMaskView.showDragGuidianceFromPoint(startPoint, to: endPoint, repeat: true)
+            
+            self.onboardingMaskView.addLabelWithText("drag a moveable node to move it around",position: CGPointMake(635, 230))
+            self.onboardingMaskView.addLabelWithText("move and rotate the node to fit the dashed frame, then shoot the light",position: CGPointMake(635, 700))
+            
+            self.view.addSubview(self.onboardingMaskView)
         } else if self.gameLevel.index == 3{
+            var movableObject = self.gameLevel.getOriginalMovableNodes()[0]
             
+            var movableObjectPath = self.gameLevel.originalGrid.getInstrumentDisplayPathForID(movableObject.id)
+            var maskPath = UIBezierPath()
+            maskPath.addArcWithCenter(
+                self.grid.getCenterForGridCell(movableObject.center),
+                radius: 200,
+                startAngle: 0,
+                endAngle: CGFloat(2 * M_PI),
+                clockwise: true)
+            self.onboardingMaskView.drawDashedTarget(movableObjectPath!)
+            
+            self.onboardingMaskView.addLabelWithText("get familiar with devices in Planck",position: CGPointMake(self.view.center.x, 30))
+            self.onboardingMaskView.addLabelWithText("concave lens - diverge light",position: CGPointMake(208, 490))
+            self.onboardingMaskView.addLabelWithText("flat mirror - reflect light",position: CGPointMake(528, 420))
+            self.onboardingMaskView.addLabelWithText("flat lens - light penetrate it",position: CGPointMake(704, 230))
+            self.onboardingMaskView.addLabelWithText("convex lens - converge light",position: CGPointMake(750, 610))
+            self.onboardingMaskView.addLabelWithText("wall - stop light",position: CGPointMake(944, 420))
+            
+            self.view.addSubview(self.onboardingMaskView)
         } else if self.gameLevel.index == 4{
+            var movableObject = self.gameLevel.getOriginalMovableNodes()[0]
             
+            var movableObjectPath = self.gameLevel.originalGrid.getInstrumentDisplayPathForID(movableObject.id)
+            var maskPath = UIBezierPath()
+            maskPath.addArcWithCenter(
+                self.grid.getCenterForGridCell(movableObject.center),
+                radius: 200,
+                startAngle: 0,
+                endAngle: CGFloat(2 * M_PI),
+                clockwise: true)
+            self.onboardingMaskView.drawDashedTarget(movableObjectPath!)
+            let guidancePoint = CGPoint(x: musicReplayView.center.x - 10, y: musicReplayView.center.y + 10)
+            self.onboardingMaskView.showTapGuidianceAtPoint(guidancePoint, repeat: true)
+            
+            let textPoint1 = CGPointMake(650, musicReplayView.center.y)
+            let textPoint2 = CGPointMake(680, musicReplayView.center.y + 50)
+            self.onboardingMaskView.addLabelWithText("target music can be hard",position: textPoint1)
+            self.onboardingMaskView.addLabelWithText("but you can always tap music button to replay it",position: textPoint2)
+            
+            self.view.addSubview(self.onboardingMaskView)
         } else if self.gameLevel.index == 5{
-            
+            self.onboardingMaskView.addLabelWithText("it's your turn, try to solve this simple level",position: CGPointMake(self.view.center.x, 30))
+            self.view.addSubview(self.onboardingMaskView)
         }
     }
 }
@@ -672,6 +737,33 @@ extension GameViewController: LevelTransitionMaskViewDelegate {
         self.onboardingMaskView.removeFromSuperview()
         // save current game if it is not preview mode
         if !isPreview {
+            if self.gameLevel.index == 0 {
+                // first blood
+                dispatch_async(dispatch_get_main_queue(), {
+                    GamiCent.reportAchievements(percent: 100.0, achievementID: XGameCenter.achi_firstblood, isShowBanner: true, completion: nil)
+                })
+            } else if self.gameLevel.index == 5 {
+                dispatch_async(dispatch_get_main_queue(), {
+                    GamiCent.reportAchievements(percent: 100.0, achievementID: XGameCenter.achi_finish1, isShowBanner: true, completion: nil)
+                })
+            } else if self.gameLevel.index == 11 {
+                dispatch_async(dispatch_get_main_queue(), {
+                    GamiCent.reportAchievements(percent: 100.0, achievementID: XGameCenter.achi_finish2, isShowBanner: true, completion: nil)
+                })
+            } else if self.gameLevel.index == 17 {
+                dispatch_async(dispatch_get_main_queue(), {
+                    GamiCent.reportAchievements(percent: 100.0, achievementID: XGameCenter.achi_finish3, isShowBanner: true, completion: nil)
+                })
+            } else if self.gameLevel.index == 23 {
+                dispatch_async(dispatch_get_main_queue(), {
+                    GamiCent.reportAchievements(percent: 100.0, achievementID: XGameCenter.achi_finish4, isShowBanner: true, completion: nil)
+                })
+            } else if self.gameLevel.index == 29 {
+                dispatch_async(dispatch_get_main_queue(), {
+                    GamiCent.reportAchievements(percent: 100.0, achievementID: XGameCenter.achi_finish5, isShowBanner: true, completion: nil)
+                })
+            }
+            
             dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), {
                 StorageManager.defaultManager.saveCurrentLevel(self.originalLevel)
             })

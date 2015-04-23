@@ -52,6 +52,12 @@ class GameLevel: NSObject, NSCoding {
     /// Whether this level is unlocked, default false
     var isUnlock:Bool = false
     
+    var targetNotes: [XNote] {
+        get {
+            return self.targetMusic.music.keys.array
+        }
+    }
+    
     init(levelName: String, levelIndex: Int, grid: GOGrid, solvedGrid: GOGrid, nodes: [String: XNode], targetMusic: XMusic) {
         self.name = levelName
         self.index = levelIndex
@@ -102,11 +108,21 @@ class GameLevel: NSObject, NSCoding {
         return NSKeyedUnarchiver.unarchiveObjectWithData(NSKeyedArchiver.archivedDataWithRootObject(self)) as GameLevel
     }
     
-    func getMovableNodes() -> [GOOpticRep]{
+    func getOriginalMovableNodes() -> [GOOpticRep]{
         var nodes = [GOOpticRep]()
         for (key, xNodes) in self.xNodes {
             if !xNodes.isFixed {
                 nodes.append(self.originalGrid.instruments[key]!)
+            }
+        }
+        return nodes
+    }
+    
+    func getCurrentMovableNodes() -> [GOOpticRep]{
+        var nodes = [GOOpticRep]()
+        for (key, xNodes) in self.xNodes {
+            if !xNodes.isFixed {
+                nodes.append(self.grid.instruments[key]!)
             }
         }
         return nodes

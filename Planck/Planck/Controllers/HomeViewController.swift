@@ -38,12 +38,8 @@ class HomeViewController: XViewController {
                 
                 // report the first achievement here
                 dispatch_async(dispatch_get_main_queue(), {
-                    if !GameStats.isNotFirstTime() {
-                        GamiCent.reportAchievements(percent: 100.0, achievementID: XGameCenter.achi_newbie, isShowBanner: true, completion: nil)
-                        GameStats.setNotFirstTime()
-                    }
-                    GamiCent.reportScoreLeaderboard(leaderboardID: XGameCenter.leaderboardID, score: GameLevel.countTotalScore(), completion: { success in
-                        
+                    GamiCent.reportAchievements(percent: 100.0, achievementID: XGameCenter.achi_newbie, isShowBanner: true, completion: nil)
+                    GamiCent.reportScoreLeaderboard(leaderboardID: XGameCenter.leaderboardID, score: GameLevel.countTotalScore(), completion: { success in  
                     })
                 })
                 

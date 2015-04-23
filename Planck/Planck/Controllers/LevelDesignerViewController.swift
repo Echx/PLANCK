@@ -1156,8 +1156,9 @@ class LevelDesignerViewController: XViewController {
         // 2. cannot move devices other than movable one, and deselect current node
         deselectNode()
         // 3. movable device redraw
+        
         for (id, xnode) in self.xNodes {
-            let nodeView = deviceViews[id]! as UIView
+            let nodeView = deviceViews[id]! as UIView            
             if xnode.isFixed {
                 nodeView.layer.opacity = 0.3
             }
@@ -1240,7 +1241,8 @@ class LevelDesignerViewController: XViewController {
                         self.gameName = inputName
                         self.gameIndex = nextIndex
                         self.isSaving = false
-                        
+                        NSNotificationCenter.defaultCenter().postNotificationName(HomeViewDefaults.startPlayingKey, object: nil)
+                        self.dismissViewControllerAnimated(true, completion: nil)
                 } else {
                     // invalid
                     self.showWrongInputAlert()
