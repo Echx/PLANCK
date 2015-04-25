@@ -350,6 +350,7 @@
 		62E3233A1ADAF56400CFD4CA /* XEmitter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26DFCF9B1AD8467000C97C5B /* XEmitter.swift */; };
 		62E3233B1ADAF57600CFD4CA /* String+XUtility.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26C8ADDB1AD01A52008ADACB /* String+XUtility.swift */; };
 		908507565261D52FE46A7565 /* libPods-Planck.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 7C7D2BBE51F017F5A3BC172D /* libPods-Planck.a */; };
+		980203721AEBA00400136497 /* GameLevelTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 980203711AEBA00400136497 /* GameLevelTest.swift */; };
 		98026E301ADC40B30092620B /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 98026E2F1ADC40B30092620B /* SystemConfiguration.framework */; };
 		98026E331ADC42FD0092620B /* GameKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 98026E321ADC42FD0092620B /* GameKit.framework */; };
 		980F5D641AE26A4000334B02 /* ScrollPageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 980F5D631AE26A4000334B02 /* ScrollPageViewController.swift */; };
@@ -367,7 +368,6 @@
 		98B052751AE720D200484EBD /* 15.dat in Resources */ = {isa = PBXBuildFile; fileRef = 98B0526F1AE720D200484EBD /* 15.dat */; };
 		98B052761AE720D200484EBD /* 16.dat in Resources */ = {isa = PBXBuildFile; fileRef = 98B052701AE720D200484EBD /* 16.dat */; };
 		98B052771AE720D200484EBD /* 17.dat in Resources */ = {isa = PBXBuildFile; fileRef = 98B052711AE720D200484EBD /* 17.dat */; };
-		98B052791AE728B500484EBD /* FileModifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = 98B052781AE728B500484EBD /* FileModifier.swift */; };
 		98B0527F1AE72B1100484EBD /* 26.dat in Resources */ = {isa = PBXBuildFile; fileRef = 98B0527B1AE72B1100484EBD /* 26.dat */; };
 		98B052801AE72B1100484EBD /* 26.dat in Resources */ = {isa = PBXBuildFile; fileRef = 98B0527B1AE72B1100484EBD /* 26.dat */; };
 		98B052811AE72B1100484EBD /* 27.dat in Resources */ = {isa = PBXBuildFile; fileRef = 98B0527C1AE72B1100484EBD /* 27.dat */; };
@@ -686,6 +686,7 @@
 		62E323251ADAE83100CFD4CA /* XMusic.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = XMusic.swift; sourceTree = "<group>"; };
 		7C7D2BBE51F017F5A3BC172D /* libPods-Planck.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-Planck.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		8FAA2537BA840D27B293A4BB /* Pods-Planck.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Planck.release.xcconfig"; path = "Pods/Target Support Files/Pods-Planck/Pods-Planck.release.xcconfig"; sourceTree = "<group>"; };
+		980203711AEBA00400136497 /* GameLevelTest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GameLevelTest.swift; sourceTree = "<group>"; };
 		98026E2F1ADC40B30092620B /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
 		98026E321ADC42FD0092620B /* GameKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = GameKit.framework; path = System/Library/Frameworks/GameKit.framework; sourceTree = SDKROOT; };
 		980F5D631AE26A4000334B02 /* ScrollPageViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ScrollPageViewController.swift; sourceTree = "<group>"; };
@@ -702,7 +703,6 @@
 		98B0526F1AE720D200484EBD /* 15.dat */ = {isa = PBXFileReference; lastKnownFileType = file.bplist; name = 15.dat; path = Levels/15.dat; sourceTree = "<group>"; };
 		98B052701AE720D200484EBD /* 16.dat */ = {isa = PBXFileReference; lastKnownFileType = file.bplist; name = 16.dat; path = Levels/16.dat; sourceTree = "<group>"; };
 		98B052711AE720D200484EBD /* 17.dat */ = {isa = PBXFileReference; lastKnownFileType = file.bplist; name = 17.dat; path = Levels/17.dat; sourceTree = "<group>"; };
-		98B052781AE728B500484EBD /* FileModifier.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FileModifier.swift; sourceTree = "<group>"; };
 		98B0527B1AE72B1100484EBD /* 26.dat */ = {isa = PBXFileReference; lastKnownFileType = file.bplist; name = 26.dat; path = Levels/26.dat; sourceTree = "<group>"; };
 		98B0527C1AE72B1100484EBD /* 27.dat */ = {isa = PBXFileReference; lastKnownFileType = file.bplist; name = 27.dat; path = Levels/27.dat; sourceTree = "<group>"; };
 		98B0527D1AE72B1100484EBD /* 28.dat */ = {isa = PBXFileReference; lastKnownFileType = file.bplist; name = 28.dat; path = Levels/28.dat; sourceTree = "<group>"; };
@@ -916,8 +916,8 @@
 		6227FB841AAE285C007F49EA /* PlanckTests */ = {
 			isa = PBXGroup;
 			children = (
+				980203711AEBA00400136497 /* GameLevelTest.swift */,
 				6227FB851AAE285C007F49EA /* Supporting Files */,
-				98B052781AE728B500484EBD /* FileModifier.swift */,
 			);
 			path = PlanckTests;
 			sourceTree = "<group>";
@@ -1751,6 +1751,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				980203721AEBA00400136497 /* GameLevelTest.swift in Sources */,
 				62E323391ADAF56400CFD4CA /* XFlatWall.swift in Sources */,
 				986E5DA31AC55604008EF3CE /* StorageManager.swift in Sources */,
 				62E3232C1ADAF52300CFD4CA /* DesignerLevelSelectViewController.swift in Sources */,
@@ -1779,7 +1780,6 @@
 				262F382F1ADAFB4300FA2177 /* LevelTransitionMaskView.swift in Sources */,
 				62E323301ADAF52D00CFD4CA /* GameViewController.swift in Sources */,
 				62E3232D1ADAF52700CFD4CA /* SettingViewController.swift in Sources */,
-				98B052791AE728B500484EBD /* FileModifier.swift in Sources */,
 				625864AE1AE4426F00B24353 /* ScrollPageContentViewController.swift in Sources */,
 				98F63A9E1AD1650F0096A32E /* GOArcSegment.swift in Sources */,
 				62E323351ADAF54E00CFD4CA /* SettingViewCell.swift in Sources */,
