@@ -12,11 +12,15 @@ class CustomizedLevelSelectViewController: ScrollPageContentViewController, UICo
         
     @IBOutlet weak var collectionView: UICollectionView!
     var levelArray:[GameLevel] = [GameLevel]()
+    private let numberOfSection = 1
+    private let headerText = "Customized"
     
     class func getInstance() -> CustomizedLevelSelectViewController {
-        let storyboard = UIStoryboard(name: StoryboardIdentifier.StoryBoardID, bundle: nil)
+        let storyboard = UIStoryboard(
+            name: StoryboardIdentifier.StoryBoardID, bundle: nil)
         let identifier = StoryboardIdentifier.CustomizedLevelSelect
-        let viewController = storyboard.instantiateViewControllerWithIdentifier(identifier) as CustomizedLevelSelectViewController
+        let viewController = storyboard.instantiateViewControllerWithIdentifier(
+            identifier) as CustomizedLevelSelectViewController
         return viewController
     }
     
@@ -28,26 +32,50 @@ class CustomizedLevelSelectViewController: ScrollPageContentViewController, UICo
         reload()
     }
     
-    func numberOfSectionsInCollectionView(collectionView: UICollectionView) -> Int {
-        return 1
+    override func reload() {
+        self.loadLevels()
+        self.collectionView.reloadData()
     }
     
-    func collectionView(collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+    //retrieve the header text for different sections
+    private func getSectionHeaderText(section : Int) -> String {
+        return self.headerText
+    }
+    
+    //load all user defined levels
+    private func loadLevels() {
+        self.levelArray = StorageManager.defaultManager.loadAllUserLevel()
+    }
+    
+    //MARK -UICollectionViewDataSource
+    func numberOfSectionsInCollectionView(collectionView: UICollectionView) -> Int {
+        return self.numberOfSection
+    }
+    
+    func collectionView(collectionView: UICollectionView,
+        numberOfItemsInSection section: Int) -> Int {
         return levelArray.count
     }
     
-    func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell {
-        let cell = collectionView.dequeueReusableCellWithReuseIdentifier(ReuseableID.CustomizedLevelSelectCell , forIndexPath: indexPath) as CustomizedLevelCollectionViewCell
+    func collectionView(collectionView: UICollectionView,
+        cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell {
+        let cell = collectionView.dequeueReusableCellWithReuseIdentifier(
+            ReuseableID.CustomizedLevelSelectCell , forIndexPath: indexPath)
+            as CustomizedLevelCollectionViewCell
         let game = levelArray[indexPath.item]
         
         cell.title.text = game.name
         return cell
     }
     
-    func collectionView(collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, atIndexPath indexPath: NSIndexPath) -> UICollectionReusableView {
+    func collectionView(collectionView: UICollectionView,
+        viewForSupplementaryElementOfKind kind: String,
+        atIndexPath indexPath: NSIndexPath) -> UICollectionReusableView {
         
         if kind == UICollectionElementKindSectionHeader {
-            let header = collectionView.dequeueReusableSupplementaryViewOfKind(kind, withReuseIdentifier: ReuseableID.UserLevelSelectHeader, forIndexPath: indexPath) as LevelSelectHeaderView
+            let header = collectionView.dequeueReusableSupplementaryViewOfKind(
+                kind, withReuseIdentifier: ReuseableID.UserLevelSelectHeader,
+                forIndexPath: indexPath) as LevelSelectHeaderView
             header.title.text = getSectionHeaderText(indexPath.section)
             return header
         } else {
@@ -55,28 +83,20 @@ class CustomizedLevelSelectViewController: ScrollPageContentViewController, UICo
         }
     }
     
-    func collectionView(collectionView: UICollectionView, didSelectItemAtIndexPath indexPath: NSIndexPath) {
+    //MARK -UICollectionViewDelegate
+    func collectionView(collectionView: UICollectionView,
+        didSelectItemAtIndexPath indexPath: NSIndexPath) {
         let game = levelArray[indexPath.item]
         if game.isUnlock {
             // load game to the game view
-            var gameVC = GameViewController.getInstance(game.deepCopy(), isPreview: false)
-            self.parentScrollPageVC!.mm_drawerController()!.closeDrawerAnimated(true, completion: {
+            var gameVC = GameViewController.getInstance(
+                game.deepCopy(), isPreview: false)
+            self.parentScrollPageVC!.mm_drawerController()!.closeDrawerAnimated(
+                true, completion: {
                 bool in
-                    self.parentScrollPageVC!.presentViewController(gameVC, animated: true, completion: {})
+                    self.parentScrollPageVC!.presentViewController(
+                        gameVC, animated: true, completion: nil)
             })
         }
-    }
-    
-    override func reload() {
-        self.loadLevels()
-        self.collectionView.reloadData()
-    }
-    
-    private func getSectionHeaderText(section : Int) -> String {
-        return "Customized"
-    }
-    
-    private func loadLevels() {
-        self.levelArray = StorageManager.defaultManager.loadAllUserLevel()
     }
 }
