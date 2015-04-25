@@ -16,6 +16,10 @@ struct Constant {
     static let vectorUnitLength: CGFloat = 1
 }
 
+struct Image {
+    static let mainBackground = UIImage(named: "mainbackground")!
+}
+
 struct DeviceColor {
     static let mirror = UIColor.whiteColor()
     static let lens = UIColor(red: 190/255.0, green: 1, blue: 1, alpha: 1)

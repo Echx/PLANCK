@@ -9,12 +9,8 @@
 import UIKit
 
 private let SingletonSharedInstance = StorageManager()
-private var isDirty:Bool = true
 
-/// cache the levels
-private var levelCache: [GameLevel] = [GameLevel]()
-private var userLevelCache: [GameLevel] = [GameLevel]()
-
+//This class manages consistant data storage
 class StorageManager:NSObject {
     class var defaultManager : StorageManager {
         return SingletonSharedInstance
@@ -23,6 +19,12 @@ class StorageManager:NSObject {
     private let keyForArchieve = "GAMELEVEL"
     private let levelDataFileType = "dat"
     private let levelDataFileExtension = ".dat"
+
+    private var isDirty:Bool = true
+    
+    /// cache the levels
+    private var levelCache: [GameLevel] = [GameLevel]()
+    private var userLevelCache: [GameLevel] = [GameLevel]()
     
     func initStorage() {
         /// create necessary folder if needed.
