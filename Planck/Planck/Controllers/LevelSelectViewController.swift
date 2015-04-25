@@ -34,6 +34,24 @@ class LevelSelectViewController: ScrollPageContentViewController, UICollectionVi
         reload()
     }
     
+    override func reload() {
+        self.loadLevels()
+        self.collectionView.reloadData()
+    }
+    
+    private func getSectionHeaderText(section : Int) -> String {
+        if section < self.headerTexts.count {
+            return self.headerTexts[section]
+        } else {
+            return self.defaultHeaderText
+        }
+    }
+    
+    private func loadLevels() {
+        self.levelArray = StorageManager.defaultManager.loadAllLevel()
+    }
+    
+    //MARK UICollectionViewDataSource
     func numberOfSectionsInCollectionView(collectionView: UICollectionView) -> Int {
         return (levelArray.count + Constant.levelInSection - 1) / Constant.levelInSection
     }
@@ -80,6 +98,8 @@ class LevelSelectViewController: ScrollPageContentViewController, UICollectionVi
         }
     }
     
+    
+    //MARK -UICollectionViewDelegate
     func collectionView(collectionView: UICollectionView,
         didSelectItemAtIndexPath indexPath: NSIndexPath) {
         let game = levelArray[
@@ -107,22 +127,5 @@ class LevelSelectViewController: ScrollPageContentViewController, UICollectionVi
                         completion: nil)
             })
         }
-    }
-    
-    override func reload() {
-        self.loadLevels()
-        self.collectionView.reloadData()
-    }
-    
-    private func getSectionHeaderText(section : Int) -> String {
-        if section < self.headerTexts.count {
-            return self.headerTexts[section]
-        } else {
-            return self.defaultHeaderText
-        }
-    }
-    
-    private func loadLevels() {
-        self.levelArray = StorageManager.defaultManager.loadAllLevel()
     }
 }
