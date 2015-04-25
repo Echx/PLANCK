@@ -11,12 +11,18 @@ import UIKit
 class LevelSelectViewController: ScrollPageContentViewController, UICollectionViewDataSource, UICollectionViewDelegate, UICollectionViewDelegateFlowLayout {
     
     @IBOutlet weak var collectionView: UICollectionView!
+    private let nameChar = ["I", "II", "III", "IV", "V", "VI"]
+    private let headerTexts = ["Planck 101", "Rock Hero", "Piano Story",
+        "wow, such Pop", "Baroque & Romantic", "The Games", "S$900!!!"]
+    private let defaultHeaderText = "Echx Presents"
     var levelArray:[GameLevel] = [GameLevel]()
     
     class func getInstance() -> LevelSelectViewController {
-        let storyboard = UIStoryboard(name: StoryboardIdentifier.StoryBoardID, bundle: nil)
+        let storyboard = UIStoryboard(
+            name: StoryboardIdentifier.StoryBoardID, bundle: nil)
         let identifier = StoryboardIdentifier.LevelSelect
-        let viewController = storyboard.instantiateViewControllerWithIdentifier(identifier) as LevelSelectViewController
+        let viewController = storyboard.instantiateViewControllerWithIdentifier(
+            identifier) as LevelSelectViewController
         return viewController
     }
     
@@ -32,7 +38,8 @@ class LevelSelectViewController: ScrollPageContentViewController, UICollectionVi
         return (levelArray.count + Constant.levelInSection - 1) / Constant.levelInSection
     }
     
-    func collectionView(collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+    func collectionView(collectionView: UICollectionView,
+        numberOfItemsInSection section: Int) -> Int {
         if levelArray.count >= (section + 1) * Constant.levelInSection {
             // can afford #itemsInSection
             return Constant.levelInSection
@@ -41,20 +48,31 @@ class LevelSelectViewController: ScrollPageContentViewController, UICollectionVi
         }
     }
     
-    func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell {
-        let cell = collectionView.dequeueReusableCellWithReuseIdentifier(ReuseableID.LevelSelectCell , forIndexPath: indexPath) as LevelSelectCollectionViewCell
-        let game = levelArray[indexPath.section * Constant.levelInSection + indexPath.item]
-        let nameChar = ["I", "II", "III", "IV", "V", "VI"]
+    func collectionView(collectionView: UICollectionView,
+        cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell {
+        let cell = collectionView.dequeueReusableCellWithReuseIdentifier(
+            ReuseableID.LevelSelectCell , forIndexPath: indexPath)
+            as LevelSelectCollectionViewCell
+        let game = levelArray[
+            indexPath.section * Constant.levelInSection + indexPath.item
+        ]
+
         
         cell.title.text = nameChar[indexPath.item]
         cell.setUpStatus(game.bestScore, isUnlock: game.isUnlock)
         return cell
     }
     
-    func collectionView(collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, atIndexPath indexPath: NSIndexPath) -> UICollectionReusableView {
+    func collectionView(collectionView: UICollectionView,
+        viewForSupplementaryElementOfKind kind: String,
+        atIndexPath indexPath: NSIndexPath) -> UICollectionReusableView {
         
         if kind == UICollectionElementKindSectionHeader {
-            let header = collectionView.dequeueReusableSupplementaryViewOfKind(kind, withReuseIdentifier: ReuseableID.LevelSelectHeader, forIndexPath: indexPath) as LevelSelectHeaderView
+            let header = collectionView.dequeueReusableSupplementaryViewOfKind(
+                kind,
+                withReuseIdentifier: ReuseableID.LevelSelectHeader,
+                forIndexPath: indexPath
+            ) as LevelSelectHeaderView
             header.title.text = getSectionHeaderText(indexPath.section)
             return header
         } else {
@@ -62,17 +80,31 @@ class LevelSelectViewController: ScrollPageContentViewController, UICollectionVi
         }
     }
     
-    func collectionView(collectionView: UICollectionView, didSelectItemAtIndexPath indexPath: NSIndexPath) {
-        let game = levelArray[indexPath.section * Constant.levelInSection + indexPath.item]
+    func collectionView(collectionView: UICollectionView,
+        didSelectItemAtIndexPath indexPath: NSIndexPath) {
+        let game = levelArray[
+            indexPath.section * Constant.levelInSection + indexPath.item
+        ]
         if game.isUnlock {
             // load game to the game view
-            var gameVC = GameViewController.getInstance(game.deepCopy(), isPreview: false)
+            var gameVC = GameViewController.getInstance(
+                game.deepCopy(),
+                isPreview: false
+            )
             // stop playing music
-            NSNotificationCenter.defaultCenter().postNotificationName(HomeViewDefaults.stopPlayingKey, object: nil)
+            NSNotificationCenter.defaultCenter().postNotificationName(
+                HomeViewDefaults.stopPlayingKey,
+                object: nil
+            )
             
-            self.parentScrollPageVC!.mm_drawerController()!.closeDrawerAnimated(true, completion: {
-                bool in 
-                    self.parentScrollPageVC!.presentViewController(gameVC, animated: true, completion: {})
+            self.parentScrollPageVC!.mm_drawerController()!.closeDrawerAnimated(
+                true,
+                completion: {
+                    bool in
+                    self.parentScrollPageVC!.presentViewController(
+                        gameVC,
+                        animated: true,
+                        completion: nil)
             })
         }
     }
@@ -83,23 +115,10 @@ class LevelSelectViewController: ScrollPageContentViewController, UICollectionVi
     }
     
     private func getSectionHeaderText(section : Int) -> String {
-        switch section {
-        case 0:
-            return "Planck 101"
-        case 1:
-            return "Rock Hero"
-        case 2:
-            return "Piano Story"
-        case 3:
-            return "wow, such Pop"
-        case 4:
-            return "Baroque & Romantic"
-        case 5:
-            return "The Games"
-        case 6:
-            return "S$900!!!"
-        default:
-            return "ECHX Present"
+        if section < self.headerTexts.count {
+            return self.headerTexts[section]
+        } else {
+            return self.defaultHeaderText
         }
     }
     
