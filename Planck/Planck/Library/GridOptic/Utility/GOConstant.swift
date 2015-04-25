@@ -97,3 +97,7 @@ struct GridDefaults {
     static let unitDegree: CGFloat = CGFloat(M_PI / 12)
     static let calculationQueueIdentifier = "CALCULATION_SERIAL_QUEUE"
 }
+
+struct SegmentDefaults {
+    static let defaultTag = 0
+}

@@ -14,7 +14,7 @@ class GORay: NSObject, Printable {
     var startPoint: CGPoint
     var direction: CGVector
     
-    //return the embeded GOLine
+    // return the embeded GOLine
     var line: GOLine {
         get {
             return GOLine(anyPoint: self.startPoint, direction: self.direction)
