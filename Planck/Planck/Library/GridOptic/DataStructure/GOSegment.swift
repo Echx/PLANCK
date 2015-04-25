@@ -1,5 +1,5 @@
 //
-//  GO2DRepresentation.swift
+//  GOSegment
 //  GridOptic
 //
 //  Created by Wang Jinghan on 30/03/15.
@@ -8,6 +8,7 @@
 
 import UIKit
 
+// GOSegment is the parent class of line segment and arc segment in GO library
 class GOSegment : NSObject, NSCoding {
     //if both are true, only take refract (ignore the reflect ray)
     var willRefract: Bool = false

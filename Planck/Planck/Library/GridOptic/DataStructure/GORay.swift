@@ -8,6 +8,8 @@
 
 import UIKit
 
+// GORay is the representation of ray in GO library
+// i.e. a line with one end
 class GORay: NSObject, Printable {
     var startPoint: CGPoint
     var direction: CGVector
