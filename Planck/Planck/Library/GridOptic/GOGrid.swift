@@ -235,7 +235,7 @@ class GOGrid: NSObject, NSCoding {
         return GOPath(bezierPath: path, criticalPoints: points)
     }
     
-    private func stopSubsequentCalculation() {
+    func stopSubsequentCalculation() {
         self.shouldContinueCalculation = false
     }
 
