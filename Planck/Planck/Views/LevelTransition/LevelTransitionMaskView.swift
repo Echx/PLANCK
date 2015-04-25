@@ -57,6 +57,8 @@ class LevelTransitionMaskView: UIView {
     // count the number of animation executed
     private var animationCount = 0
     
+    
+    //public properties which user can modify outside the class
     var shouldShowButtons = true
     var delegate: LevelTransitionMaskViewDelegate?
     var autoHide = false
@@ -68,6 +70,10 @@ class LevelTransitionMaskView: UIView {
             return self.animationDuration * 0.15
         }
     }
+    var animationDelays = [0.1, 0, 0.05]
+    var showButtonUnitDelay = 0.1
+    var showButtonDuration = 0.3
+    var showButtonDelay: NSTimeInterval = 0.5
     
     var coinCount: Int {
         get {
@@ -75,12 +81,8 @@ class LevelTransitionMaskView: UIView {
         }
     }
     
-    let animationDelays = [0.1, 0, 0.05]
-    let showButtonUnitDelay = 0.1
-    let showButtonDuration = 0.3
-    var showButtonDelay: NSTimeInterval = 0.5
     // the index of the button selected
-    var selectedIndex = 2
+    private var selectedIndex = 2
     
     override init() {
         super.init(frame: UIScreen.mainScreen().bounds)
