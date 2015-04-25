@@ -46,7 +46,7 @@ class StorageManager:NSObject {
     
     // init game levels by copying pre-defined game levels to the directory
     func copyGameLevels() {
-        let preloadGames = NSBundle.mainBundle().pathsForResourcesOfType(StorageDefault.levelDataType, inDirectory: nil)
+        let preloadGames = NSBundle.mainBundle().pathsForResourcesOfType(SystemDefault.levelDataType, inDirectory: nil)
         let fileManager = NSFileManager.defaultManager()
         for levelPath in preloadGames {
             let levelPath = levelPath as NSString

@@ -20,7 +20,7 @@ class GORay: NSObject, Printable {
     }
     
     init(startPoint: CGPoint, direction: CGVector) {
-        self.startPoint = startPoint;
+        self.startPoint = startPoint
         self.direction = direction
     }
     

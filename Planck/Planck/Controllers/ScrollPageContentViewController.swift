@@ -11,12 +11,6 @@ import UIKit
 class ScrollPageContentViewController: XViewController {
     /// its parent ScrollPage VC
     var parentScrollPageVC:ScrollPageViewController?
-
-    override func viewDidLoad() {
-        super.viewDidLoad()
-
-        // Do any additional setup after loading the view.
-    }
     
     /// To be overrided : reload view data
     func reload() {

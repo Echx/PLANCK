@@ -99,7 +99,7 @@ extension CGVector {
         let magnitude = v1.length * v2.length
         
         if (magnitude == 0) {
-            return 0;
+            return 0
         }
         
         var temp = dotProduct / magnitude
@@ -118,7 +118,7 @@ extension CGVector {
     }
     
     func makePerpendicularVector() -> CGVector {
-        return CGVectorMake(-self.dy, self.dx);
+        return CGVectorMake(-self.dy, self.dx)
     }
     
     func normalize() -> CGVector {

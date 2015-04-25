@@ -11,11 +11,11 @@ import UIKit
 class BadgeView: UIView {
     
     private struct CoinImage {
-        static let normal = UIImage(named: "coin");
+        static let normal = UIImage(named: "coin")
         static let empty = UIImage(named: "emptycoin")
     }
     
-    let defaultWidth: CGFloat = 150;
+    let defaultWidth: CGFloat = 150
     var imageView: UIImageView
     init(isOn: Bool, width: CGFloat = 150) {
         let rect = CGRectMake(0, 0, width, width)
