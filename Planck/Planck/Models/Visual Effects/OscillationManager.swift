@@ -24,7 +24,7 @@ class OscillationManager: NSObject {
     class func oscillateView(view: UIView, direction: CGVector) {
         
         //calculate the animation offset
-        let movement = direction.normalize().scaleTo(OscillateDefaults.scale)
+        let movement = direction.normalised.scaleTo(OscillateDefaults.scale)
         let center = view.center
         let newCenter = CGPointMake(center.x + movement.dx, center.y + movement.dy)
         
