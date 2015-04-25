@@ -14,6 +14,6 @@ class ScrollPageContentViewController: XViewController {
     
     /// To be overrided : reload view data
     func reload() {
-        
+        fatalError("reload must be overriden by subclasses")
     }
 }

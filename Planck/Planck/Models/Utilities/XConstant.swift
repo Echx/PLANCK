@@ -31,7 +31,7 @@ struct DeviceColor {
     static let emitter = UIColor.blackColor()
 }
 
-struct StoryboardIndentifier {
+struct StoryboardIdentifier {
     static let StoryBoardID = "Main"
     static let Home = "HomeViewController"
     static let LevelDesigner = "LevelDesignerViewController"

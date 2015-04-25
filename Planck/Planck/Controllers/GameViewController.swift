@@ -52,8 +52,8 @@ class GameViewController: XViewController {
     private var isPreview:Bool = false
     
     class func getInstance(gameLevel: GameLevel, isPreview:Bool) -> GameViewController {
-        let storyboard = UIStoryboard(name: "Main", bundle: nil)
-        let identifier = StoryboardIndentifier.Game
+        let storyboard = UIStoryboard(name: StoryboardIdentifier.StoryBoardID, bundle: nil)
+        let identifier = StoryboardIdentifier.Game
         let viewController = storyboard.instantiateViewControllerWithIdentifier(identifier) as GameViewController
         viewController.gameLevel = gameLevel
         viewController.originalLevel = gameLevel.deepCopy()
