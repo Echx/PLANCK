@@ -9,15 +9,19 @@
 import UIKit
 
 class LevelSelectCollectionViewCell: UICollectionViewCell {
-    
+    // the title label of the cell
     @IBOutlet weak var title: UILabel!
+    
+    // a UI view indicating if the result of status
     @IBOutlet weak var status: UIImageView!
     
+    // This method clears the UIImage content and prepare the 
+    // cell for reuse
     override func prepareForReuse() {
         self.status.image = nil
     }
     
-    /// set the level status based on the given infomation
+    /// set the level status image based on the given infomation
     func setUpStatus(score: Int, isUnlock: Bool) {
         if !isUnlock {
             self.alpha = 0.5
@@ -25,11 +29,11 @@ class LevelSelectCollectionViewCell: UICollectionViewCell {
         
         switch score {
             case 1:
-                self.status.image = UIImage(named: "onestar")
+                self.status.image = UIImage(named: XImageName.statusRed)
             case 2:
-                self.status.image = UIImage(named: "twostar")
+                self.status.image = UIImage(named: XImageName.statusOrange)
             case 3:
-                self.status.image = UIImage(named: "clear")
+                self.status.image = UIImage(named: XImageName.statusGreen)
             default:
                 self.status.image = nil
         }

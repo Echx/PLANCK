@@ -9,9 +9,10 @@
 import UIKit
 
 class SettingViewCell: UITableViewCell {
-
+    // the title label of the cell
     @IBOutlet weak var title: UILabel!
     
+    // a toggle button of the cell
     @IBOutlet weak var toggle: UIButton!
 
 }

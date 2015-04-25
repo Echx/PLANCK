@@ -9,6 +9,6 @@
 import UIKit
 
 class LevelSelectHeaderView: UICollectionReusableView {
-        
+    // the title label of the header view
     @IBOutlet weak var title: UILabel!
 }

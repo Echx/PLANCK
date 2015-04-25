@@ -55,6 +55,10 @@ struct XImageName {
     static let replayImage = "replay"
     static let nextImage = "continue"
     static let nextSectionImage = "next-section"
+    
+    static let statusGreen = "clear"
+    static let statusOrange = "twostar"
+    static let statusRed = "onestar"
 }
 
 struct NSCodingKey {
