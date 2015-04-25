@@ -57,7 +57,7 @@ class ParticleManager: NSObject {
         static let emitterCellAlphaSpeed: Float = -1.7
     }
     
-    //returns a CAEmitterLayer which represents the particle effects inside a light ray
+    // :returns: a CAEmitterLayer which represents the particle effects inside a light ray
     class func getParticleLayer() -> CAEmitterLayer {
         let emitterCell = CAEmitterCell()
     
@@ -93,7 +93,10 @@ class ParticleManager: NSObject {
         return emitter
     }
     
-    //returns a CAEmitterLayer which represents the particle effects for home view
+    
+    // :param: the file name of the texture
+    // :param: the longtitude of the emitterCell
+    // :returns: a CAEmitterLayer which represents the particle effects for home view
     class func getHomeBackgroundParticles(textureFileName: String, longtitude: CGFloat) -> CAEmitterLayer{
         let emitterCell = CAEmitterCell()
         
