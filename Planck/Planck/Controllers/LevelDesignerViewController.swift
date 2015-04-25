@@ -855,7 +855,6 @@ class LevelDesignerViewController: XViewController {
             if let index = i {
                 let originalDirection = node.direction
                 let effectDirection = CGVector.vectorFromXPlusRadius(CGFloat(index) * self.grid.unitDegree)
-//                self.updateDirection(node, startVector: originalDirection, currentVector: effectDirection)
                 node.direction = effectDirection
             }
         }
@@ -1341,7 +1340,12 @@ class LevelDesignerViewController: XViewController {
                         var savedGrid = self.grid.deepCopy() // this is the puzzle grid
                         var savedNodes = NSKeyedUnarchiver.unarchiveObjectWithData(NSKeyedArchiver.archivedDataWithRootObject(self.xNodes)) as Dictionary<String, XNode>
                         
-                        let game = GameLevel(levelName: inputName, levelIndex: nextIndex, grid: savedGrid, solvedGrid: self.gridCopy!, nodes: savedNodes, targetMusic: self.musicCopy!)
+                        let game = GameLevel(levelName: inputName,
+                            levelIndex: nextIndex,
+                            grid: savedGrid,
+                            solvedGrid: self.gridCopy!,
+                            nodes: savedNodes,
+                            targetMusic: self.musicCopy!)
                         
                         if nextIndex == 0 {
                             game.isUnlock = true // unlock first level
