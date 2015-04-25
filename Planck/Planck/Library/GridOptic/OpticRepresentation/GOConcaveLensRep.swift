@@ -11,7 +11,7 @@ import UIKit
 class GOConcaveLensRep: GOOpticRep {
     var thicknessCenter: CGFloat = ConcaveLensRepDefaults.defaultThicknessCenter
     var thicknessEdge: CGFloat = ConcaveLensRepDefaults.defaultThicknessEdge
-    var curvatureRadius: CGFloat = ConcaveLensRepDeafaults.defaultCurvatureRadius
+    var curvatureRadius: CGFloat = ConcaveLensRepDefaults.defaultCurvatureRadius
     
     var thicknessDifference: CGFloat {
         get {
@@ -42,7 +42,7 @@ class GOConcaveLensRep: GOOpticRep {
             var path1 = UIBezierPath()
             path1.appendPath(self.edges[ConcaveLensRepDefaults.rightArcTag].bezierPath)
             path1.addLineToPoint(self.edges[ConcaveLensRepDefaults.topEdgeTag].center)
-            path1.addLineToPoint(self.edges[ConcaveLensRepDefaults.bottomArcTag].center)
+            path1.addLineToPoint(self.edges[ConcaveLensRepDefaults.bottomEdgeTag].center)
             path1.closePath()
             
             var path2 = UIBezierPath()
