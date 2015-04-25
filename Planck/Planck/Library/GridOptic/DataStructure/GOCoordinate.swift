@@ -9,6 +9,8 @@
 import UIKit
 
 // GOCoordinate is the scaled coordinate in a GOGrid
+// every vertex in GOGrid is represented in GOCoordinate, the scale factor
+// should be defined as unit length in grid's defaults
 class GOCoordinate: NSObject, NSCoding {
     let x: NSInteger
     let y: NSInteger
