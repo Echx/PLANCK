@@ -9,12 +9,11 @@
 import UIKit
 
 class GOEmitterRep: GOFlatOpticRep {
-    
+    // initialization
     override init(center: GOCoordinate, thickness: CGFloat, length: CGFloat, direction: CGVector, id: String) {
         super.init(center: center, thickness: thickness, length: length, direction: direction, id: id)
         self.setDeviceType(DeviceType.Emitter)
     }
-    
     
     required convenience init(coder aDecoder: NSCoder) {
         let id = aDecoder.decodeObjectForKey(GOCodingKey.optic_id) as String
@@ -43,9 +42,10 @@ class GOEmitterRep: GOFlatOpticRep {
         aCoder.encodeObject(refractionIndex, forKey: GOCodingKey.optic_refractionIndex)
     }
     
-    func getRay() -> GORay {
-        let angle = self.direction.angleFromXPlus - CGFloat(M_PI)/2
-        let initialPoint = CGPointMake(0, self.length/2 + 0.1)
+    // public method
+    public func getRay() -> GORay {
+        let angle = self.direction.angleFromXPlus - CGFloat(M_PI) / 2
+        let initialPoint = CGPointMake(0, self.length / 2 + EmitterDefaults.initialPointOffset)
         var startPoint = CGPoint.getPointAfterRotation(angle, from: initialPoint, translate: CGPointMake(CGFloat(self.center.x), CGFloat(self.center.y)))
         return GORay(startPoint: startPoint, direction: self.direction)
     }

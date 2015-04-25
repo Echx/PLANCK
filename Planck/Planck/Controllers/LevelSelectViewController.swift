@@ -71,7 +71,7 @@ class LevelSelectViewController: ScrollPageContentViewController, UICollectionVi
             NSNotificationCenter.defaultCenter().postNotificationName(HomeViewDefaults.stopPlayingKey, object: nil)
             
             self.parentScrollPageVC!.mm_drawerController()!.closeDrawerAnimated(true, completion: {
-                bool in
+                bool in 
                     self.parentScrollPageVC!.presentViewController(gameVC, animated: true, completion: {})
             })
         }
@@ -93,7 +93,7 @@ class LevelSelectViewController: ScrollPageContentViewController, UICollectionVi
         case 3:
             return "wow, such Pop"
         case 4:
-            return "Baroc & Romantic"
+            return "Baroque & Romantic"
         case 5:
             return "The Games"
         case 6:
