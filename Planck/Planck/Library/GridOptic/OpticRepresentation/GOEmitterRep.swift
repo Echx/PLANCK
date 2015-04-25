@@ -9,7 +9,6 @@
 import UIKit
 
 class GOEmitterRep: GOFlatOpticRep {
-    // initialization
     override init(center: GOCoordinate, thickness: CGFloat, length: CGFloat, direction: CGVector, id: String) {
         super.init(center: center, thickness: thickness, length: length, direction: direction, id: id)
         self.setDeviceType(DeviceType.Emitter)
@@ -45,7 +44,8 @@ class GOEmitterRep: GOFlatOpticRep {
     func getRay() -> GORay {
         let angle = self.direction.angleFromXPlus - CGFloat(M_PI) / 2
         let initialPoint = CGPointMake(0, self.length / 2 + EmitterDefaults.initialPointOffset)
-        var startPoint = CGPoint.getPointAfterRotation(angle, from: initialPoint, translate: CGPointMake(CGFloat(self.center.x), CGFloat(self.center.y)))
+        var startPoint = CGPoint.getPointAfterRotation(angle, from: initialPoint,
+            translate: CGPointMake(CGFloat(self.center.x), CGFloat(self.center.y)))
         return GORay(startPoint: startPoint, direction: self.direction)
     }
 }
