@@ -67,15 +67,28 @@ struct EmitterDefaults {
 struct FlatOpticRepDefaults {
     static let defaultThickness: CGFloat = 1
     static let defaultLength: CGFloat = 6
+    
     static let topEdgeTag = 0
     static let rightEdgeTag = 1
     static let bottomEdgeTag = 2
     static let leftEdgeTag = 3
 }
 
-struct ConvexLensRep {
+struct ConvexLensRepDefaults {
     static let defaultThickness: CGFloat = 1
     static let defaultLength: CGFloat = 5
+    
     static let leftArcTag = 0
     static let rightArcTag = 1
+}
+
+struct ConcaveLensRepDefaults {
+    static let defaultThicknessCenter: CGFloat = 1
+    static let defaultThicknessEdge: CGFloat = 2
+    static let defaultCurvatureRadius: CGFloat = 5
+
+    static let topEdgeTag = 0
+    static let rightArcTag = 1
+    static let bottomEdgeTag = 2
+    static let leftArcTag = 3
 }

@@ -9,14 +9,16 @@
 import UIKit
 
 class GOConcaveLensRep: GOOpticRep {
-    var thicknessCenter: CGFloat = 1
-    var thicknessEdge: CGFloat = 2
+    var thicknessCenter: CGFloat = ConcaveLensRepDefaults.defaultThicknessCenter
+    var thicknessEdge: CGFloat = ConcaveLensRepDefaults.defaultThicknessEdge
+    var curvatureRadius: CGFloat = ConcaveLensRepDeafaults.defaultCurvatureRadius
+    
     var thicknessDifference: CGFloat {
         get {
             return self.thicknessEdge - self.thicknessCenter
         }
     }
-    var curvatureRadius: CGFloat = 5
+    
     var normalDirection: CGVector {
         get {
             return CGVectorMake(self.direction.dy, -self.direction.dx)
@@ -30,37 +32,27 @@ class GOConcaveLensRep: GOOpticRep {
     
     var length: CGFloat {
         get {
-            return 2 * sqrt(self.curvatureRadius * self.curvatureRadius - (self.curvatureRadius - self.thicknessDifference/2) * (self.curvatureRadius - self.thicknessDifference/2))
+            return 2 * sqrt(self.curvatureRadius * self.curvatureRadius - (self.curvatureRadius - self.thicknessDifference / 2) *
+                (self.curvatureRadius - self.thicknessDifference / 2))
         }
     }
     
     override var bezierPath: UIBezierPath {
         get {
             var path1 = UIBezierPath()
-            path1.appendPath(self.edges[1].bezierPath)
-            path1.addLineToPoint(self.edges[0].center)
-            path1.addLineToPoint(self.edges[2].center)
+            path1.appendPath(self.edges[ConcaveLensRepDefaults.rightArcTag].bezierPath)
+            path1.addLineToPoint(self.edges[ConcaveLensRepDefaults.topEdgeTag].center)
+            path1.addLineToPoint(self.edges[ConcaveLensRepDefaults.bottomArcTag].center)
             path1.closePath()
             
             var path2 = UIBezierPath()
-            path2.appendPath(self.edges[3].bezierPath)
-            path2.addLineToPoint(self.edges[2].center)
-            path2.addLineToPoint(self.edges[0].center)
+            path2.appendPath(self.edges[ConcaveLensRepDefaults.leftArcTag].bezierPath)
+            path2.addLineToPoint(self.edges[ConcaveLensRepDefaults.bottomEdgeTag].center)
+            path2.addLineToPoint(self.edges[ConcaveLensRepDefaults.topEdgeTag].center)
             path2.closePath()
             
             path1.appendPath(path2)
 
-//            path.addLineToPoint(self.edges[2].bezierPath.bezierPathByReversingPath().currentPoint)
-//            path.appendPath(self.edges[2].bezierPath)
-            
-//            path.addLineToPoint(self.edges[3].bezierPath.currentPoint)
-//            println(path.currentPoint)
-//            
-//            path.appendPath(self.edges[3].bezierPath.bezierPathByReversingPath())
-//            println(path.currentPoint)
-//            path.addLineToPoint(self.edges[0].bezierPath.bezierPathByReversingPath().currentPoint)
-//            println(path.currentPoint)
-//            path.closePath()
             return path1
         }
     }
@@ -79,14 +71,16 @@ class GOConcaveLensRep: GOOpticRep {
             
             var finalPoints = [CGPoint]()
             for point in originalPoints {
-                finalPoints.append(CGPoint.getPointAfterRotation(angle, from: point, translate: CGPointMake(CGFloat(self.center.x), CGFloat(self.center.y))))
+                finalPoints.append(CGPoint.getPointAfterRotation(angle, from: point,
+                    translate: CGPointMake(CGFloat(self.center.x), CGFloat(self.center.y))))
             }
             
             return finalPoints
         }
     }
     
-    init(center: GOCoordinate, direction: CGVector, thicknessCenter: CGFloat, thicknessEdge: CGFloat, curvatureRadius: CGFloat, id: String, refractionIndex: CGFloat) {
+    init(center: GOCoordinate, direction: CGVector, thicknessCenter: CGFloat, thicknessEdge: CGFloat,
+        curvatureRadius: CGFloat, id: String, refractionIndex: CGFloat) {
         self.thicknessCenter = thicknessCenter
         self.thicknessEdge = thicknessEdge
         self.curvatureRadius = curvatureRadius
@@ -154,71 +148,50 @@ class GOConcaveLensRep: GOOpticRep {
     
     override func setUpEdges() {
         self.edges = [GOSegment]()
-        let radianSpan = acos((self.curvatureRadius - self.thicknessDifference/2) / self.curvatureRadius) * 2
+        let radianSpan = acos((self.curvatureRadius - self.thicknessDifference / 2) / self.curvatureRadius) * 2
         
         //top line segment
         let centerTopEdge = CGPointMake(CGFloat(self.center.x), CGFloat(self.center.y) + CGFloat(self.length)/2)
         let topEdge = GOLineSegment(center: centerTopEdge, length: self.thicknessEdge, direction: self.normalDirection)
-        topEdge.tag = 2
+        topEdge.tag = ConcaveLensRepDefaults.topEdgeTag
         self.edges.append(topEdge)
         
         //right arc
         let centerRightArc = CGPointMake(CGFloat(self.center.x) + CGFloat(self.thicknessCenter)/2 + self.curvatureRadius, CGFloat(self.center.y))
         let rightArc = GOArcSegment(center: centerRightArc, radius: self.curvatureRadius, radian: radianSpan, normalDirection: self.inverseNormalDirection)
-        rightArc.tag = 1
+        rightArc.tag = ConcaveLensRepDefaults.rightArcTag
         self.edges.append(rightArc)
         
         
         //bottom line segment
         let centerBottomEdge = CGPointMake(CGFloat(self.center.x), CGFloat(self.center.y) - CGFloat(self.length)/2)
         let bottomEdge = GOLineSegment(center: centerBottomEdge, length: self.thicknessEdge, direction: self.normalDirection)
-        bottomEdge.tag = 2
+        bottomEdge.tag = ConcaveLensRepDefaults.bottomEdgeTag
         bottomEdge.revert()
         self.edges.append(bottomEdge)
         
         //left arc
         let centerLeftArc = CGPointMake(CGFloat(self.center.x) - CGFloat(self.thicknessCenter)/2 - self.curvatureRadius, CGFloat(self.center.y))
         let leftArc = GOArcSegment(center: centerLeftArc, radius: self.curvatureRadius, radian: radianSpan, normalDirection: self.normalDirection)
-        leftArc.tag = 0
+        leftArc.tag = ConcaveLensRepDefaults.leftArcTag
         self.edges.append(leftArc)
     }
-    
-//    override func containsPoint(point: CGPoint) -> Bool {
-//        for edge in self.edges {
-//            if let arcEdge = edge as? GOArcSegment {
-//                if edge.center.getDistanceToPoint(point) < arcEdge.radius {
-//                    return false
-//                }
-//            }
-//        }
-//        
-//        let areaHalfRect = self.length * self.thicknessEdge * 0.5
-//        for edge in self.edges {
-//            let vertexA = edge.startPoint
-//            let vertexB = edge.endPoint
-//            let vertexC = point
-//            let areaABC = GOUtilities.areaOfTriangle(first: vertexA, second: vertexB, third: vertexC)
-//            if areaABC > areaHalfRect {
-//                return false
-//            }
-//        }
-//
-//        
-//        return true
-//    }
     
     override func setDirection(direction: CGVector) {
         let directionDifference = direction.angleFromXPlus - self.direction.angleFromXPlus
         self.direction = direction
         
         for edge in self.edges {
-            if edge.tag == 0 {
+            if edge.tag == ConcaveLensRepDefaults.leftArcTag {
+                // left arc
                 edge.center = edge.center.getPointAfterRotation(about: self.center.point, byAngle: directionDifference)
                 edge.normalDirection = self.normalDirection
-            } else if edge.tag == 1 {
+            } else if edge.tag == ConcaveLensRepDefaults.rightArcTag {
+                // right arc
                 edge.center = edge.center.getPointAfterRotation(about: self.center.point, byAngle: directionDifference)
                 edge.normalDirection = self.inverseNormalDirection
             } else {
+                // top/bottom
                 edge.center = edge.center.getPointAfterRotation(about: self.center.point, byAngle: directionDifference)
                 edge.direction = self.normalDirection
             }
