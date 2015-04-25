@@ -9,7 +9,7 @@
 import UIKit
 
 class GOOpticRep: NSObject, NSCoding {
-    private var id: String
+    var id: String
     var center: GOCoordinate
     var edges = [GOSegment]()
     var type = DeviceType.Mirror
