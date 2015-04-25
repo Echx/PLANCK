@@ -8,24 +8,50 @@
 
 import UIKit
 
+//This class manages the touch feedback oscillation in the project
 class OscillationManager: NSObject {
+    
+    //default parameters for the oscillation
+    struct OscillateDefaults {
+        static let scale: CGFloat = 1.5
+        static let duration: NSTimeInterval = 0.05
+        static let delay: NSTimeInterval = 0
+        static let springDamping: CGFloat = 0.6
+        static let springInitialVelocity: CGFloat = 20
+    }
+    
+    //This method will oscillate the view passed in, with the specified initial direction.
     class func oscillateView(view: UIView, direction: CGVector) {
         
-        let scale: CGFloat = 1.5
-        let duration: NSTimeInterval = 0.05
-        
-        let movement = direction.normalize().scaleTo(scale)
+        //calculate the animation offset
+        let movement = direction.normalize().scaleTo(OscillateDefaults.scale)
         let center = view.center
         let newCenter = CGPointMake(center.x + movement.dx, center.y + movement.dy)
         
-        UIView.animateWithDuration(duration, delay: 0, usingSpringWithDamping: 0.6, initialSpringVelocity: 20, options: UIViewAnimationOptions.CurveEaseInOut, animations: {
-            view.center = newCenter
+        //animate the view
+        UIView.animateWithDuration(
+            OscillateDefaults.duration,
+            delay: OscillateDefaults.delay,
+            usingSpringWithDamping: OscillateDefaults.springDamping,
+            initialSpringVelocity: OscillateDefaults.springInitialVelocity,
+            options: UIViewAnimationOptions.CurveEaseInOut,
+            animations: {
+                view.center = newCenter
             }, completion: {
                 finished in
-                UIView.animateWithDuration(duration, delay: 0, usingSpringWithDamping: 0.6, initialSpringVelocity: 20, options: UIViewAnimationOptions.CurveEaseInOut, animations: {
-                    view.center = center
-                    }, completion: nil)
-        })
+                
+                //animate the view back
+                UIView.animateWithDuration(
+                    OscillateDefaults.duration,
+                    delay: OscillateDefaults.delay,
+                    usingSpringWithDamping: OscillateDefaults.springDamping,
+                    initialSpringVelocity: OscillateDefaults.springInitialVelocity,
+                    options: UIViewAnimationOptions.CurveEaseInOut,
+                    animations: {
+                        view.center = center
+                    }, completion: nil
+                )
+            }
+        )
     }
-
 }
