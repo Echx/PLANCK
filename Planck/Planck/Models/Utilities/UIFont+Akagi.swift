@@ -6,8 +6,6 @@
 //  Copyright (c) 2015 Echx. All rights reserved.
 //
 
-import UIKit
-
 extension UIFont {
     class func systemFontOfSize(fontSize: CGFloat) -> UIFont {
         return UIFont(name: SystemDefault.planckFont, size: fontSize)!

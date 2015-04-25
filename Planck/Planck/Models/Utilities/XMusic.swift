@@ -6,9 +6,6 @@
 //  Copyright (c) 2015 Echx. All rights reserved.
 //
 
-import UIKit
-import Foundation
-
 class XMusic: NSObject, NSCoding {
     var music: [XNote: [CGFloat]]
     var isArranged: Bool // whether the distances are sorted

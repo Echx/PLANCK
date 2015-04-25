@@ -6,8 +6,8 @@
 //  Copyright (c) 2015 Echx. All rights reserved.
 //
 
-import UIKit
-
+// This class is not used in current project, but it is developed for future use
+// This class defined the color used in the project, including the color of rays and xnodes
 class XColor : NSObject, Hashable, NSCoding {
     
     let displayColors = [UIColor(red: 0, green: 0, blue: 0, alpha: 1),
@@ -31,14 +31,17 @@ class XColor : NSObject, Hashable, NSCoding {
             var index = 0
             
             if self.containsRed {
+                //the third binary bit
                 index += 4
             }
             
             if self.containsGreen {
+                //the second binary bit
                 index += 2
             }
             
             if self.containsBlue {
+                //the first binary bit
                 index += 1
             }
             
@@ -78,6 +81,7 @@ class XColor : NSObject, Hashable, NSCoding {
         aCoder.encodeBool(self.containsBlue, forKey: NSCodingKey.ColorBlue)
     }
     
+    //check if self contains the given color components
     func containsColor(color: XColor) -> Bool {
         let containsRed = self.containsRed || !color.containsRed
         let containsGreen = self.containsGreen || !color.containsGreen

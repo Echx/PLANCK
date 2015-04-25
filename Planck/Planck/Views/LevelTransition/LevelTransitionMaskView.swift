@@ -15,8 +15,8 @@ protocol LevelTransitionMaskViewDelegate {
 class LevelTransitionMaskView: UIView {
     private struct MethodSelector {
         static let buttonDidClicked = Selector("buttonDidClicked:")
-        static let showButtons = Selector("showButtons:")
-        static let hide = Selector("hide:")
+        static let showButtons = Selector("showButtons")
+        static let hide = Selector("hide")
     }
     
     private let congratulationLabelFrame = CGRect(x: 0, y: 600, width: UIScreen.mainScreen().bounds.width, height: 50)
