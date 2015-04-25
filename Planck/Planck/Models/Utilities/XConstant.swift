@@ -18,6 +18,7 @@ struct Constant {
     static let rightDrawerWidth: CGFloat = 290
     
     static let levelInSection = 6
+    static let fullScore = 3
 }
 
 struct Image {
