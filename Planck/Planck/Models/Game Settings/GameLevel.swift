@@ -5,10 +5,12 @@
 //  Created by Jiang Sheng on 5/4/15.
 //  Copyright (c) 2015 Echx. All rights reserved.
 
-import UIKit
-import Foundation
-
-class GameLevel: NSObject, NSCoding {
+//This class defines the data structure which stores each of the game levels
+class GameLevel: NSObject, NSCoding, Comparable, Equatable {
+    
+    //get a game level from the given index
+    // :param: the index of the game level needed to be retrieved
+    // returns: the GameLevel objects for that particular level
     class func loadGameWithIndex(index:Int) -> GameLevel? {
         let totalGame = StorageManager.defaultManager.numOfLevel()
         if index < 0 || index >= totalGame {
@@ -17,6 +19,7 @@ class GameLevel: NSObject, NSCoding {
         return StorageManager.defaultManager.loadAllLevel()[index]
     }
     
+    //count the total star the player has ever got
     class func countTotalScore() -> Int {
         let allLevels = StorageManager.defaultManager.loadAllLevel()
         var total:Int = 0
@@ -59,12 +62,12 @@ class GameLevel: NSObject, NSCoding {
     }
     
     init(levelName: String, levelIndex: Int, grid: GOGrid, solvedGrid: GOGrid, nodes: [String: XNode], targetMusic: XMusic) {
-        self.name = levelName
-        self.index = levelIndex
-        self.grid = grid
-        self.originalGrid = solvedGrid
-        self.xNodes = nodes
-        self.targetMusic = targetMusic
+        self.name           = levelName
+        self.index          = levelIndex
+        self.grid           = grid
+        self.originalGrid   = solvedGrid
+        self.xNodes         = nodes
+        self.targetMusic    = targetMusic
     }
     
     override init() {
@@ -76,14 +79,14 @@ class GameLevel: NSObject, NSCoding {
     }
     
     required convenience init(coder aDecoder: NSCoder) {
-        var levelName = aDecoder.decodeObjectForKey(NSCodingKey.GameName) as String
-        var index = aDecoder.decodeObjectForKey(NSCodingKey.GameIndex) as Int
-        var grid = aDecoder.decodeObjectForKey(NSCodingKey.GameGrid) as GOGrid
-        var originalGrid = aDecoder.decodeObjectForKey(NSCodingKey.GameGridCopy) as GOGrid
-        var xNodes = aDecoder.decodeObjectForKey(NSCodingKey.GameNodes) as [String: XNode]
-        var music = aDecoder.decodeObjectForKey(NSCodingKey.GameTargetMusic) as XMusic
-        var bestScore = aDecoder.decodeObjectForKey(NSCodingKey.GameBestScore) as Int
-        var isUnlock = aDecoder.decodeBoolForKey(NSCodingKey.GameUnlock)
+        var levelName       = aDecoder.decodeObjectForKey(NSCodingKey.GameName)         as String
+        var index           = aDecoder.decodeObjectForKey(NSCodingKey.GameIndex)        as Int
+        var grid            = aDecoder.decodeObjectForKey(NSCodingKey.GameGrid)         as GOGrid
+        var originalGrid    = aDecoder.decodeObjectForKey(NSCodingKey.GameGridCopy)     as GOGrid
+        var xNodes          = aDecoder.decodeObjectForKey(NSCodingKey.GameNodes)        as [String: XNode]
+        var music           = aDecoder.decodeObjectForKey(NSCodingKey.GameTargetMusic)  as XMusic
+        var bestScore       = aDecoder.decodeObjectForKey(NSCodingKey.GameBestScore)    as Int
+        var isUnlock        = aDecoder.decodeBoolForKey(NSCodingKey.GameUnlock)
         
         self.init(levelName:levelName, levelIndex: index,
                     grid:grid, solvedGrid: originalGrid,
@@ -94,20 +97,22 @@ class GameLevel: NSObject, NSCoding {
     }
     
     func encodeWithCoder(aCoder: NSCoder) {
-        aCoder.encodeObject(self.name, forKey: NSCodingKey.GameName)
-        aCoder.encodeObject(self.index, forKey: NSCodingKey.GameIndex)
-        aCoder.encodeObject(self.grid, forKey: NSCodingKey.GameGrid)
-        aCoder.encodeObject(self.originalGrid, forKey: NSCodingKey.GameGridCopy)
-        aCoder.encodeObject(self.xNodes, forKey: NSCodingKey.GameNodes)
-        aCoder.encodeObject(self.targetMusic, forKey: NSCodingKey.GameTargetMusic)
-        aCoder.encodeObject(self.bestScore, forKey: NSCodingKey.GameBestScore)
-        aCoder.encodeBool(self.isUnlock, forKey: NSCodingKey.GameUnlock)
+        aCoder.encodeObject(self.name,          forKey: NSCodingKey.GameName)
+        aCoder.encodeObject(self.index,         forKey: NSCodingKey.GameIndex)
+        aCoder.encodeObject(self.grid,          forKey: NSCodingKey.GameGrid)
+        aCoder.encodeObject(self.originalGrid,  forKey: NSCodingKey.GameGridCopy)
+        aCoder.encodeObject(self.xNodes,        forKey: NSCodingKey.GameNodes)
+        aCoder.encodeObject(self.targetMusic,   forKey: NSCodingKey.GameTargetMusic)
+        aCoder.encodeObject(self.bestScore,     forKey: NSCodingKey.GameBestScore)
+        aCoder.encodeBool(self.isUnlock,        forKey: NSCodingKey.GameUnlock)
     }
     
+    //make a deep copy of the current gamelevel
     func deepCopy() -> GameLevel {
         return NSKeyedUnarchiver.unarchiveObjectWithData(NSKeyedArchiver.archivedDataWithRootObject(self)) as GameLevel
     }
     
+    //get the movable nodes in original grid
     func getOriginalMovableNodes() -> [GOOpticRep]{
         var nodes = [GOOpticRep]()
         for (key, xNodes) in self.xNodes {
@@ -118,6 +123,7 @@ class GameLevel: NSObject, NSCoding {
         return nodes
     }
     
+    //get the movable nodes in grid
     func getCurrentMovableNodes() -> [GOOpticRep]{
         var nodes = [GOOpticRep]()
         for (key, xNodes) in self.xNodes {
@@ -127,10 +133,6 @@ class GameLevel: NSObject, NSCoding {
         }
         return nodes
     }
-}
-
-extension GameLevel:Comparable, Equatable {
-    
 }
 
 func ==(lhs: GameLevel, rhs: GameLevel) -> Bool {
