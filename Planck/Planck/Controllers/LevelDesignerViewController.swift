@@ -138,10 +138,34 @@ class LevelDesignerViewController: XViewController {
         static let wrong_confirm = "OK"
     }
     
+    struct TapTimes {
+        static let control = 1
+        static let add = 2
+    }
+    
+    struct TapTouchNumber {
+        static let toggleMusicPanel = 3
+        static let toggleStandardPanel = 2
+    }
+    
     struct InputModeSegmentIndex {
         static let add = 0 
         static let edit = 1 
     }
+    
+    struct InputPanelDefaults {
+        static let initialAlpha: CGFloat = 0
+        static let initialUserInteractionEnabled = false
+        static let cornerRadius: CGFloat = 20
+        static let shownAlpha: CGFloat = 1
+        static let disableAlpha: CGFloat = 0.5
+    }
+    
+    struct DummyLevel {
+        static let name = "Current Game Level"
+        static let index = -2
+    }
+
 
     class func getInstance() -> LevelDesignerViewController {
         let storyboard = UIStoryboard(name: StoryboardIdentifier.StoryBoardID, bundle: nil)
@@ -160,13 +184,13 @@ class LevelDesignerViewController: XViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        self.inputPanel.alpha = 0
-        self.inputPanel.userInteractionEnabled = false
-        self.inputPanel.layer.cornerRadius = 20
+        self.inputPanel.alpha = InputPanelDefaults.initialAlpha
+        self.inputPanel.userInteractionEnabled = InputPanelDefaults.initialUserInteractionEnabled
+        self.inputPanel.layer.cornerRadius = InputPanelDefaults.cornerRadius
         
-        self.planckInputPanel.alpha = 0
-        self.planckInputPanel.userInteractionEnabled = false
-        self.planckInputPanel.layer.cornerRadius = 20
+        self.planckInputPanel.alpha = InputPanelDefaults.initialAlpha
+        self.planckInputPanel.userInteractionEnabled = InputPanelDefaults.initialUserInteractionEnabled
+        self.planckInputPanel.layer.cornerRadius = InputPanelDefaults.cornerRadius
     }
     
     override func viewDidAppear(animated: Bool) {
@@ -184,14 +208,14 @@ class LevelDesignerViewController: XViewController {
         for var i = 0; i < self.paramenterFields.count; i++ {
             if self.paramenterFields[i].enabled {
                 self.paramenterFields[i].layer.borderColor = UIColor.blackColor().CGColor
-                self.paramenterFields[i].alpha = 1
+                self.paramenterFields[i].alpha = InputPanelDefaults.shownAlpha
                 self.parameterLabels[i].textColor = UIColor.blackColor()
-                self.parameterLabels[i].alpha = 1
+                self.parameterLabels[i].alpha = InputPanelDefaults.shownAlpha
             } else {
                 self.paramenterFields[i].layer.borderColor = UIColor.grayColor().CGColor
-                self.paramenterFields[i].alpha = 0.5
+                self.paramenterFields[i].alpha = InputPanelDefaults.disableAlpha
                 self.parameterLabels[i].textColor = UIColor.grayColor()
-                self.parameterLabels[i].alpha = 0.5
+                self.parameterLabels[i].alpha = InputPanelDefaults.disableAlpha
             }
         }
     }
@@ -210,31 +234,131 @@ class LevelDesignerViewController: XViewController {
         }
         
         // create a dummy value for preview
-        let currentGameLevel = GameLevel(levelName: "Current Game Level", levelIndex: -2, grid: self.grid, solvedGrid: self.gridCopy!, nodes: self.xNodes, targetMusic: self.music)
+        let currentGameLevel = GameLevel(
+            levelName: DummyLevel.name,
+            levelIndex: DummyLevel.index,
+            grid: self.grid,
+            solvedGrid: self.gridCopy!,
+            nodes: self.xNodes,
+            targetMusic: self.music
+        )
         
-        let gameViewController = GameViewController.getInstance(currentGameLevel.deepCopy(), isPreview: true)
-        self.presentViewController(gameViewController, animated: true, completion: nil)
+        let gameViewController = GameViewController.getInstance(
+            currentGameLevel.deepCopy(),
+            isPreview: true
+        )
+        
+        self.presentViewController(
+            gameViewController,
+            animated: true,
+            completion: nil
+        )
+    }
+    
+
+    
+    private func toggleMusicPanel() {
+        if !isSaving {
+            if self.inputPanel.userInteractionEnabled {
+                self.toggleInputPanel()
+            }
+            self.togglePlanckInputPanel()
+        }
+    }
+    
+    private func toggleStandardPanel() {
+        if !isSaving {
+            if self.planckInputPanel.userInteractionEnabled {
+                self.togglePlanckInputPanel()
+            }
+            self.toggleInputPanel()
+        }
+    }
+    
+    private func addDeviceAt(coordinate: GOCoordinate) {
+        switch(self.deviceSegment.selectedSegmentIndex) {
+        case DeviceSegmentIndex.emitter:
+            let emitterPhysicsBody = GOEmitterRep(
+                center:     coordinate,
+                thickness:  NodeDefaults.emitterThickness,
+                length:     NodeDefaults.emitterLength,
+                direction:  NodeDefaults.emitterDirection,
+                id:         String.generateRandomString(self.identifierLength)
+            )
+            
+            self.addDevice(emitterPhysicsBody)
+            
+        case DeviceSegmentIndex.flatMirror:
+            let mirrorPhysicsBody = GOFlatMirrorRep(
+                center:     coordinate,
+                thickness:  NodeDefaults.flatMirrorThickness,
+                length:     NodeDefaults.flatMirrorLength,
+                direction:  NodeDefaults.flatMirrorDirection,
+                id:         String.generateRandomString(self.identifierLength)
+            )
+            
+            self.addDevice(mirrorPhysicsBody)
+            
+        case DeviceSegmentIndex.flatLens:
+            let flatLensPhysicsBody = GOFlatLensRep(
+                center:             coordinate,
+                thickness:          NodeDefaults.flatLensThickness,
+                length:             NodeDefaults.flatLensLength,
+                direction:          NodeDefaults.flatLensDirection,
+                refractionIndex:    NodeDefaults.flatLensRefractionIndex,
+                id:                 String.generateRandomString(self.identifierLength)
+            )
+            
+            self.addDevice(flatLensPhysicsBody)
+            
+        case DeviceSegmentIndex.flatWall:
+            let flatWallPhysicsBody = GOFlatWallRep(
+                center:     coordinate,
+                thickness:  NodeDefaults.flatWallThickness,
+                length:     NodeDefaults.flatWallLength,
+                direction:  NodeDefaults.flatWallDirection,
+                id:         String.generateRandomString(self.identifierLength)
+            )
+            
+            self.addDevice(flatWallPhysicsBody)
+            
+        case DeviceSegmentIndex.concaveLens:
+            let concaveLensPhysicsBody = GOConcaveLensRep(
+                center: coordinate,
+                direction:          NodeDefaults.concaveLensDirection,
+                thicknessCenter:    NodeDefaults.concaveLensThicknessCenter,
+                thicknessEdge:      NodeDefaults.concaveLensThicknessEdge,
+                curvatureRadius:    NodeDefaults.concaveLensCurvatureRadius,
+                id:                 String.generateRandomString(self.identifierLength),
+                refractionIndex:    NodeDefaults.concaveLensRefractionIndex
+            )
+            
+            self.addDevice(concaveLensPhysicsBody)
+            
+        case DeviceSegmentIndex.convexLens:
+            let convexLensPhysicsBody = GOConvexLensRep(
+                center: coordinate,
+                direction:          NodeDefaults.convexLensDirection,
+                thickness:          NodeDefaults.convexLensThickness,
+                curvatureRadius:    NodeDefaults.convexLensCurvatureRadius,
+                id:                 String.generateRandomString(self.identifierLength),
+                refractionIndex:    NodeDefaults.convexLensRefractionIndex
+            )
+            
+            self.addDevice(convexLensPhysicsBody)
+            
+        default:
+            fatalError(ErrorMsg.segmentInvalid)
+        }
     }
     
     //MARK - tap gesture handler
     @IBAction func viewDidTapped(sender: UITapGestureRecognizer) {
-        if sender.numberOfTapsRequired == 1 {
-            if sender.numberOfTouches() == 3 {
-                if !isSaving {
-                    if self.inputPanel.userInteractionEnabled {
-                        self.toggleInputPanel()
-                    }
-                    self.togglePlanckInputPanel()
-                    return
-                }
-            }
-            if sender.numberOfTouches() == 2 {
-                if !isSaving {
-                    if self.planckInputPanel.userInteractionEnabled {
-                        self.togglePlanckInputPanel()
-                    }
-                    self.toggleInputPanel()
-                }
+        if sender.numberOfTapsRequired == TapTimes.control {
+            if sender.numberOfTouches() == TapTouchNumber.toggleMusicPanel {
+                self.toggleMusicPanel()
+            } else if sender.numberOfTouches() == TapTouchNumber.toggleStandardPanel {
+                self.toggleStandardPanel()
             } else if self.selectedNode != nil {
                 self.deselectNode()
             } else {
@@ -245,42 +369,14 @@ class LevelDesignerViewController: XViewController {
             return
         }
         
+        // if it is saving now, disallow the placement of new device
         if isSaving {
-            // it is saving now, cannot place new device
             return
         }
         
         let location = sender.locationInView(sender.view)
         let coordinate = self.grid.getGridCoordinateForPoint(location)
-        
-        switch(self.deviceSegment.selectedSegmentIndex) {
-        case DeviceSegmentIndex.emitter:
-            let emitterPhysicsBody = GOEmitterRep(center: coordinate, thickness: 1, length: 4, direction: CGVectorMake(1, 0), id: String.generateRandomString(self.identifierLength))
-            self.addDevice(emitterPhysicsBody)
-            
-        case DeviceSegmentIndex.flatMirror:
-            let mirrorPhysicsBody = GOFlatMirrorRep(center: coordinate, thickness: 2, length: 8, direction: CGVectorMake(0, 1), id: String.generateRandomString(self.identifierLength))
-            self.addDevice(mirrorPhysicsBody)
-            
-        case DeviceSegmentIndex.flatLens:
-            let flatLensPhysicsBody = GOFlatLensRep(center: coordinate, thickness: 2, length: 8, direction: CGVectorMake(0, 1), refractionIndex: 1.5, id: String.generateRandomString(self.identifierLength))
-            self.addDevice(flatLensPhysicsBody)
-            
-        case DeviceSegmentIndex.flatWall:
-            let flatWallPhysicsBody = GOFlatWallRep(center: coordinate, thickness: 2, length: 8, direction: CGVectorMake(0, 1), id: String.generateRandomString(self.identifierLength))
-            self.addDevice(flatWallPhysicsBody)
-            
-        case DeviceSegmentIndex.concaveLens:
-            let concaveLensPhysicsBody = GOConcaveLensRep(center: coordinate, direction: CGVectorMake(0, 1), thicknessCenter: 1, thicknessEdge: 3, curvatureRadius: 10, id: String.generateRandomString(self.identifierLength), refractionIndex: 1.5)
-            self.addDevice(concaveLensPhysicsBody)
-            
-        case DeviceSegmentIndex.convexLens:
-            let convexLensPhysicsBody = GOConvexLensRep(center: coordinate, direction: CGVectorMake(0, 1), thickness: 2, curvatureRadius: 10, id: String.generateRandomString(self.identifierLength), refractionIndex: 1.5)
-            self.addDevice(convexLensPhysicsBody)
-            
-        default:
-            fatalError(ErrorMsg.segmentInvalid)
-        }
+        self.addDeviceAt(coordinate)
         self.shootRay()
     }
     
@@ -296,6 +392,7 @@ class LevelDesignerViewController: XViewController {
         let location = sender.locationInView(self.view)
         
         if let node = self.selectedNode {
+            //rotate
             if isSaving && isNodeFixed(node) {
                 // is saving and the selected node is not the movable one
                 return
@@ -328,10 +425,13 @@ class LevelDesignerViewController: XViewController {
                         return
                     }
                 }
+                
+                //rotate about z-axis
                 var layerTransform = CATransform3DRotate(firstViewTransform!, angle, 0, 0, 1)
                 view.layer.transform = layerTransform
             }
         } else {
+            //move
             if sender.state == UIGestureRecognizerState.Began || touchedNode == nil {
                 firstLocation = location
                 lastLocation = location
@@ -382,6 +482,7 @@ class LevelDesignerViewController: XViewController {
     @IBAction func viewDidLongPressed(sender: UILongPressGestureRecognizer) {
         let location = sender.locationInView(sender.view)
         if let node = self.grid.getInstrumentAtPoint(location) {
+            //remove node
             self.updateTextFieldInformation()
             self.updatePickerInformation()
             self.removeNode(node)

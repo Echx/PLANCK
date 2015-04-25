@@ -119,6 +119,34 @@ struct NodeDefaults {
     static let instrumentNil = PlanckControllPanel.instrumentNilRow
     static let instrumentPiano = PlanckControllPanel.instrumentPianoRow
     static let instrumentHarp = PlanckControllPanel.instrumentHarpRow
+    
+    static let emitterThickness: CGFloat = 1
+    static let emitterLength: CGFloat = 4
+    static let emitterDirection = CGVectorMake(1, 0)
+    
+    static let flatMirrorThickness: CGFloat = 2
+    static let flatMirrorLength: CGFloat = 8
+    static let flatMirrorDirection = CGVectorMake(0, 1)
+    
+    static let flatWallThickness: CGFloat = 2
+    static let flatWallLength: CGFloat = 8
+    static let flatWallDirection = CGVectorMake(0, 1)
+    
+    static let flatLensThickness: CGFloat = 2
+    static let flatLensLength: CGFloat = 8
+    static let flatLensDirection = CGVectorMake(0, 1)
+    static let flatLensRefractionIndex: CGFloat = 1.5
+    
+    static let concaveLensThicknessCenter: CGFloat = 1
+    static let concaveLensThicknessEdge: CGFloat = 3
+    static let concaveLensCurvatureRadius: CGFloat = 10
+    static let concaveLensDirection = CGVectorMake(0, 1)
+    static let concaveLensRefractionIndex: CGFloat = 1.5
+    
+    static let convexLensThickness: CGFloat = 2
+    static let convexLensCurvatureRadius: CGFloat = 10
+    static let convexLensDirection = CGVectorMake(0, 1)
+    static let convexLensRefractionIndex: CGFloat = 1.5
 }
 
 struct InstrumentDefaults {
