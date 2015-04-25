@@ -75,7 +75,6 @@ class GOOpticRep: NSObject, NSCoding {
         aCoder.encodeObject(refractionIndex, forKey: GOCodingKey.optic_refractionIndex)
     }
     
-    // public method
     func refresh() {
         let direction = self.direction
         self.direction = OpticRepDefaults.defaultDirection
@@ -108,7 +107,6 @@ class GOOpticRep: NSObject, NSCoding {
         fatalError("setDirection must be overridden by child classes")
     }
     
-    // private method
     func setCenter(center: GOCoordinate) {
         self.center = center
         self.refresh()
