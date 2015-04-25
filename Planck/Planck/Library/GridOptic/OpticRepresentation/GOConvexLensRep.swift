@@ -9,8 +9,8 @@
 import UIKit
 
 class GOConvexLensRep: GOOpticRep {
-    var thickness: CGFloat = ConvexLensRep.defaultThickness
-    var curvatureRadius: CGFloat = ConvexLensRep.defaultLength
+    var thickness: CGFloat = ConvexLensRepDefaults.defaultThickness
+    var curvatureRadius: CGFloat = ConvexLensRepDefaults.defaultLength
     var normalDirection: CGVector {
         get {
             return CGVectorMake(self.direction.dy, -self.direction.dx)
@@ -132,13 +132,13 @@ class GOConvexLensRep: GOOpticRep {
         //left arc
         let centerLeftArc = CGPointMake(CGFloat(self.center.x) + CGFloat(self.thickness) / 2 - self.curvatureRadius, CGFloat(self.center.y))
         let leftArc = GOArcSegment(center: centerLeftArc, radius: self.curvatureRadius, radian: radianSpan, normalDirection: self.normalDirection)
-        leftArc.tag = ConvexLensRep.leftArcTag
+        leftArc.tag = ConvexLensRepDefaults.leftArcTag
         self.edges.append(leftArc)
         
         //right arc
         let centerRightArc = CGPointMake(CGFloat(self.center.x) - CGFloat(self.thickness) / 2 + self.curvatureRadius, CGFloat(self.center.y))
         let rightArc = GOArcSegment(center: centerRightArc, radius: self.curvatureRadius, radian: radianSpan, normalDirection: self.inverseNormalDirection)
-        rightArc.tag = ConvexLensRep.rightArcTag
+        rightArc.tag = ConvexLensRepDefaults.rightArcTag
         self.edges.append(rightArc)
     }
     
@@ -147,10 +147,10 @@ class GOConvexLensRep: GOOpticRep {
         self.direction = direction
         
         for edge in self.edges {
-            if edge.tag == ConvexLensRep.leftArcTag {
+            if edge.tag == ConvexLensRepDefaults.leftArcTag {
                 edge.center = edge.center.getPointAfterRotation(about: self.center.point, byAngle: directionDifference)
                 edge.normalDirection = self.normalDirection
-            } else if edge.tag == ConvexLensRep.rightArcTag {
+            } else if edge.tag == ConvexLensRepDefaults.rightArcTag {
                 edge.center = edge.center.getPointAfterRotation(about: self.center.point, byAngle: directionDifference)
                 edge.normalDirection = self.inverseNormalDirection
             } else {
