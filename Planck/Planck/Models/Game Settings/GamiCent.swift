@@ -10,7 +10,14 @@ import Foundation
 import GameKit
 import SystemConfiguration
 
+//This class manages the game center behaviors in this project
 class GamiCent : NSObject, GKGameCenterControllerDelegate {
+    
+    struct ErrorMessages {
+        static let delegateNotSet = "Error : Delegate for Easy Game Center not set."
+        static let invalidLeaderBoardID = "Error: Invalid LeaderBoard ID"
+        static let gameCenterNotAccessible = "Error: GameCenter not accessible"
+    }
     
     private var delegateViewController:UIViewController?
     
@@ -85,7 +92,7 @@ class GamiCent : NSObject, GKGameCenterControllerDelegate {
                         if let delegateVC = GamiCent.delegate {
                             delegateVC.presentViewController(gameCenterVC, animated: true, completion: nil)
                         } else {
-                            println("Error : Delegate for Easy Game Center not set.")
+                            println(ErrorMessages.delegateNotSet)
                             if completion != nil {
                                 completion!(result: false)
                             }
@@ -109,7 +116,7 @@ class GamiCent : NSObject, GKGameCenterControllerDelegate {
     /// :param: completion completion handler
     class func showLeaderboard(#leaderboardID: String, completion: ((isShow:Bool) -> Void)?) {
         if (leaderboardID == "") {
-            println("Invalid leaderboard ID")
+            println(ErrorMessages.invalidLeaderBoardID)
             if completion != nil {
                 completion!(isShow:false)
             }
@@ -127,7 +134,7 @@ class GamiCent : NSObject, GKGameCenterControllerDelegate {
                     }
                 })
             } else {
-                println("Delegate is not set")
+                println(ErrorMessages.delegateNotSet)
                 if completion != nil {
                     completion!(isShow:false)
                 }
@@ -157,7 +164,7 @@ class GamiCent : NSObject, GKGameCenterControllerDelegate {
                     }
                 })
             } else {
-                println("Delegate is not set")
+                println(ErrorMessages.delegateNotSet)
                 if completion != nil {
                     completion!(isShow:false)
                 }
@@ -194,7 +201,7 @@ class GamiCent : NSObject, GKGameCenterControllerDelegate {
                 }
             }
         } else {
-            println("Fail to get leaderboards")
+            println(ErrorMessages.gameCenterNotAccessible)
         }
     }
     
@@ -222,7 +229,7 @@ class GamiCent : NSObject, GKGameCenterControllerDelegate {
                 }
             }
         } else {
-            println("Fail to get leaderboards")
+            println(ErrorMessages.gameCenterNotAccessible)
         }
     }
     
@@ -253,7 +260,7 @@ class GamiCent : NSObject, GKGameCenterControllerDelegate {
                 }
             })
         } else {
-            println("Fail to report scores")
+            println(ErrorMessages.gameCenterNotAccessible)
         }
     }
     
@@ -268,7 +275,6 @@ class GamiCent : NSObject, GKGameCenterControllerDelegate {
             GKAchievement.loadAchievementsWithCompletionHandler({
                 (var achievements:[AnyObject]!, error:NSError!) -> Void in
                 if error != nil {
-                    println("Game Center: could not load achievements, error: \(error)")
                     completion(result: nil, error: error)
                 } else {
                     println(achievements)
@@ -276,7 +282,7 @@ class GamiCent : NSObject, GKGameCenterControllerDelegate {
                 }
             })
         } else {
-            println("Fail to load")
+            println(ErrorMessages.gameCenterNotAccessible)
         }
     }
     
@@ -290,7 +296,6 @@ class GamiCent : NSObject, GKGameCenterControllerDelegate {
                 println(error)
                 return
             } else if result != nil {
-                println("No result!")
                 completion(result: nil, error: nil)
                 return
             } else {
@@ -300,7 +305,6 @@ class GamiCent : NSObject, GKGameCenterControllerDelegate {
                         return
                     }
                 }
-                println("No identifier found!")
                 completion(result: nil, error: nil)
             }
         }
@@ -314,7 +318,6 @@ class GamiCent : NSObject, GKGameCenterControllerDelegate {
             GKAchievementDescription.loadAchievementDescriptionsWithCompletionHandler {
                 (var descriptions:[AnyObject]!, error:NSError!) -> Void in
                 if error != nil {
-                    println("Game Center: couldn't load achievementInformation, error: \(error)")
                     completion(descArrays: nil, error: error)
                 } else {
                     if let achievementDesc = descriptions as? [GKAchievementDescription] {
