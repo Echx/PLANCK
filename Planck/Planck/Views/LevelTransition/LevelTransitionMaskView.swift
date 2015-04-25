@@ -127,6 +127,7 @@ class LevelTransitionMaskView: UIView {
     
     */
     func show(n: Int, isSectionFinished: Bool) {
+        // REQUIRES: 0 <= n <= 3
         self.alpha = 1
         self.audioPlayer.play()
         self.selectedIndex = self.coinCount - 1

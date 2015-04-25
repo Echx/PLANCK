@@ -8,6 +8,7 @@
 
 import UIKit
 
+/// A singleton object
 private let SingletonSharedInstance = StorageManager()
 
 //This class manages consistant data storage
@@ -16,16 +17,14 @@ class StorageManager:NSObject {
         return SingletonSharedInstance
     }
     
-    private let keyForArchieve = "GAMELEVEL"
-    private let levelDataFileType = "dat"
-    private let levelDataFileExtension = ".dat"
-
+    /// A boolean indicating if the storage manager needs to reload data
     private var isDirty:Bool = true
     
-    /// cache the levels
+    /// cache the stored levels
     private var levelCache: [GameLevel] = [GameLevel]()
     private var userLevelCache: [GameLevel] = [GameLevel]()
     
+    /// Initialize storage folder
     func initStorage() {
         /// create necessary folder if needed.
         let fileManager = NSFileManager.defaultManager()
@@ -46,7 +45,7 @@ class StorageManager:NSObject {
         }
     }
     
-    // init game levels by copying pre-defined game levels to the directory
+    /// Initialize game levels by copying pre-defined game levels to the directory
     func copyGameLevels() {
         let preloadGames = NSBundle.mainBundle().pathsForResourcesOfType(SystemDefault.levelDataType, inDirectory: nil)
         let fileManager = NSFileManager.defaultManager()
@@ -58,15 +57,18 @@ class StorageManager:NSObject {
         }
     }
     
-    // save as {index}.dat
+    /// Save a level to a file
+    /// :param: level the game level to be saved
     func saveCurrentLevel(level:GameLevel) {
+        // REQUIRES: level is not nil
+        
         let data = NSMutableData()
         let archiver = NSKeyedArchiver(forWritingWithMutableData: data)
-        archiver.encodeObject(level, forKey: keyForArchieve)
+        archiver.encodeObject(level, forKey: NSCodingKey.Game)
 
         archiver.finishEncoding()
         
-        let levelName = level.name + levelDataFileExtension
+        let levelName = level.name + SystemDefault.levelDataFileExtension
         // save to system levels folder
         var filePath : NSString = XFileConstant.defaultLevelDir.stringByAppendingPathComponent(levelName)
         data.writeToFile(filePath, atomically: true)
@@ -75,8 +77,13 @@ class StorageManager:NSObject {
         setNeedsReload()
     }
         
-    // load the level based on the file name and level type
+    /// Load the level based on the file name and level type
+    /// :param: filename the name of the file to be load
+    /// :param: isSystemLevel a boolean indicating the location of the file
+    /// :returns: a single game level loaded
     func loadLevel(filename:NSString, isSystemLevel: Bool) -> GameLevel {
+        // REQUIRES: filename is valid (english chars only with non-zero length)
+        
         var filePath: NSString = XFileConstant.defaultLevelDir.stringByAppendingPathComponent(filename)
         if !isSystemLevel {
             filePath = XFileConstant.userLevelDir.stringByAppendingPathComponent(filename)
@@ -84,9 +91,11 @@ class StorageManager:NSObject {
 
         let data = NSData(contentsOfFile: filePath)
         let unarchiver = NSKeyedUnarchiver(forReadingWithData: data!)
-        return unarchiver.decodeObjectForKey(keyForArchieve) as GameLevel
+        return unarchiver.decodeObjectForKey(NSCodingKey.Game) as GameLevel
     }
     
+    /// Load all system levels
+    /// :returns: an array of game levels
     func loadAllLevel() -> [GameLevel] {
         if isDirty {
             var levelArray = [GameLevel]()
@@ -99,7 +108,7 @@ class StorageManager:NSObject {
             for filename in fileArray {
                 let name = filename as NSString
                 // temp solution for dealing with file type
-                if name.pathExtension == levelDataFileType {
+                if name.pathExtension == SystemDefault.levelDataType {
                     let game = loadLevel(name, isSystemLevel: true)
                     levelArray.append(game)
                 }
@@ -118,6 +127,8 @@ class StorageManager:NSObject {
         }
     }
     
+    /// Load all user created levels
+    /// :returns: an array of game levels
     func loadAllUserLevel() -> [GameLevel] {
         if isDirty {
             var levelArray = [GameLevel]()
@@ -130,7 +141,7 @@ class StorageManager:NSObject {
             for filename in fileArray {
                 let name = filename as NSString
                 // temp solution for dealing with file type
-                if name.pathExtension == levelDataFileType {
+                if name.pathExtension == SystemDefault.levelDataType  {
                     let game = loadLevel(name, isSystemLevel: false)
                     levelArray.append(game)
                 }
@@ -146,6 +157,8 @@ class StorageManager:NSObject {
         }
     }
     
+    /// Count number of system levels in total
+    /// :returns: a total count
     func numOfLevel() -> Int {
         let fileManager = NSFileManager.defaultManager()
         let fileArray = fileManager.contentsOfDirectoryAtPath(XFileConstant.defaultLevelDir,
@@ -154,13 +167,15 @@ class StorageManager:NSObject {
         var total:Int = 0
         // iterate each filename to add
         for filename in fileArray {
-            if filename.pathExtension == levelDataFileType {
+            if filename.pathExtension == SystemDefault.levelDataType  {
                 total++
             }
         }
         return total
     }
     
+    /// Count number of user created levels in total
+    /// :returns: a total count
     func numOfUserLevel() -> Int {
         let fileManager = NSFileManager.defaultManager()
         let fileArray = fileManager.contentsOfDirectoryAtPath(XFileConstant.userLevelDir,
@@ -169,13 +184,15 @@ class StorageManager:NSObject {
         var total:Int = 0
         // iterate each filename to add
         for filename in fileArray {
-            if filename.pathExtension == levelDataFileType {
+            if filename.pathExtension == SystemDefault.levelDataType  {
                 total++
             }
         }
         return total
     }
     
+    /// Reload the levels
+    /// :returns: a total count
     func setNeedsReload() {
         // reload cache
         isDirty = true

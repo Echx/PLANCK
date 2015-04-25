@@ -8,6 +8,7 @@
 
 import Foundation
 
+/// This class serves as a game statistics recorder
 class GameStats: NSObject {
     /// Try set up basic game statistic if necessary
     class func reset() {

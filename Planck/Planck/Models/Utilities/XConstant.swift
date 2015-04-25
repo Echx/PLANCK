@@ -54,6 +54,8 @@ struct ReuseableID {
 
 struct SystemDefault {
     static let levelDataType = "dat"
+    static let levelDataFileExtension = ".dat"
+    
     static let planckFont = "Akagi-Book"
     static let planckFontBold = "Akagi-SemiBold"
 }
@@ -106,6 +108,7 @@ struct NSCodingKey {
     static let GameBestScore = "score"
     static let GameUnlock = "unlock"
     static let GameGridCopy = "gridcopy"
+    static let Game = "GAMELEVEL"
     
     static let XNodeBody = "phyBody"
     static let XNodeFixed = "isFixed"

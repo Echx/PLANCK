@@ -8,6 +8,7 @@
 
 import UIKit
 
+/// This view controller presents a game stastic table to the user
 class GameStasticViewController: XViewController {
     class func getInstance() -> GameStasticViewController {
         let storyboard = UIStoryboard(
@@ -24,11 +25,13 @@ class GameStasticViewController: XViewController {
     @IBOutlet weak var totalPrefectHit: UILabel!
     @IBOutlet weak var prefectRate: UILabel!
     @IBOutlet weak var totalGameUnlock: UILabel!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         self.setUp()
     }
     
+    /// This method calculate data and populate the table
     private func setUp() {
         let totalGamePlayed = GameStats.getTotalGamePlay()
         self.totalGamePlayed.text = String(totalGamePlayed)

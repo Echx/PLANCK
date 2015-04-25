@@ -19,8 +19,8 @@ class BadgeView: UIView {
     let defaultWidth: CGFloat = 150
     var imageView: UIImageView
     
-    init(isOn: Bool, width: CGFloat = 150) {
-        let rect = CGRectMake(0, 0, width, width)
+    init(isOn: Bool) {
+        let rect = CGRectMake(0, 0, defaultWidth, defaultWidth)
         self.imageView = UIImageView(frame: rect)
         super.init(frame: rect)
         if isOn {
@@ -32,7 +32,7 @@ class BadgeView: UIView {
     }
 
     required init(coder aDecoder: NSCoder) {
-        let rect = CGRectMake(0, 0, self.defaultWidth, self.defaultWidth)
+        let rect = CGRectMake(0, 0, defaultWidth, defaultWidth)
         self.imageView = UIImageView(frame: rect)
         super.init(coder: aDecoder)
         self.imageView.image = CoinImage.normal

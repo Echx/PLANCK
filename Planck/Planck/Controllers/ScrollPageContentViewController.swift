@@ -8,6 +8,7 @@
 
 import UIKit
 
+/// This is the scroll content view controller for the right drawer
 class ScrollPageContentViewController: XViewController {
     /// its parent ScrollPage VC
     var parentScrollPageVC:ScrollPageViewController?

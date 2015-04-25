@@ -50,7 +50,8 @@ class XMusic: NSObject, NSCoding {
     }
     
     func deepCopy() -> XMusic {
-        return NSKeyedUnarchiver.unarchiveObjectWithData(NSKeyedArchiver.archivedDataWithRootObject(self)) as XMusic
+        return NSKeyedUnarchiver.unarchiveObjectWithData(
+                    NSKeyedArchiver.archivedDataWithRootObject(self)) as XMusic
     }
     
     func reset() {
@@ -60,6 +61,9 @@ class XMusic: NSObject, NSCoding {
     }
     
     func appendDistance(distance: CGFloat, forNote note: XNote) {
+        // REQUIRES: distance >= 0
+        // EFFECTS: add a note in to the music dictionary with a distance
+        
         self.isArranged = false
         
         if self.music[note] == nil {
@@ -70,9 +74,9 @@ class XMusic: NSObject, NSCoding {
     }
     
     private func arrangeDistances() {
-        if self.isArranged {
-            return
-        } else {
+        // EFFECTS: sort the note according to their distance
+        
+        if !self.isArranged {
             for note in self.music.keys {
                 self.music[note]?.sort({$0 < $1})
             }
@@ -81,7 +85,10 @@ class XMusic: NSObject, NSCoding {
         }
     }
     
+    /// Compare two music and return if they are similiar
+    /// :param: anotherMusic another music to compare
     func isSimilarTo(anotherMusic: XMusic) -> Bool {
+        
         if self.numberOfNotes != anotherMusic.numberOfNotes {
             return false
         }

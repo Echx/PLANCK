@@ -41,6 +41,7 @@ class TargetMusicMaskView: UIView {
         super.init(coder: aDecoder)
     }
     
+    /// Play the music and show the mask view
     func show(targetMusic: XMusic) {
         self.alpha = 1
         let noteSequence = targetMusic.flattenMapping()

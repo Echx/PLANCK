@@ -8,6 +8,7 @@
 
 import UIKit
 
+/// This is the scroll view controller for the right drawer
 class ScrollPageViewController: XViewController, UIScrollViewDelegate {
     class func getInstance(controllers:[ScrollPageContentViewController])
         -> ScrollPageViewController {
@@ -44,8 +45,7 @@ class ScrollPageViewController: XViewController, UIScrollViewDelegate {
         self.myScrollView.scrollsToTop = false
         
         // load init two pages
-        var i: Int
-        for i = 0; i < controllers.count; i++ {
+        for var i = 0; i < controllers.count; i++ {
             loadScrollViewWithPage(i)
         }
     }
