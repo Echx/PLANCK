@@ -15,7 +15,7 @@ class GOLine: NSObject {
     var direction: CGVector
     var slope: CGFloat {
         get {
-            if self.direction.dx.abs < GOConstant.overallPrecision {
+            if self.direction.dx.equalWithPrecision(CGFloat(0)) {
                 return CGFloat.max
             }
             
@@ -81,7 +81,7 @@ class GOLine: NSObject {
     
     class func getIntersection(#line1: GOLine, line2: GOLine) -> CGPoint? {
         // return the intersection point of two GOLine, if there is
-        if abs(line1.slope - line2.slope) < GOConstant.overallPrecision {
+        if line1.slope.equalWithPrecision(line2.slope) {
             // those two lines are parallel to each other
             return nil
         } else if line1.slope == CGFloat.max {

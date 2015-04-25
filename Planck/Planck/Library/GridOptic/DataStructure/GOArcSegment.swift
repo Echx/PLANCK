@@ -129,7 +129,7 @@ class GOArcSegment: GOSegment {
         
         // handle dy=0 separatel
         // in this case, the slope is not calculatable
-        if fabs(lineOfRay.direction.dx - 0) < GOConstant.overallPrecision {
+        if lineOfRay.direction.dx.equalWithPrecision(CGFloat(0)) {
             let x = ray.startPoint.x
             let squareSide = r * r - (x - r1) * (x - r1)
             if squareSide < 0 {
@@ -360,7 +360,7 @@ class GOArcSegment: GOSegment {
 
     
     func containsPoint(point: CGPoint) -> Bool {
-        if ((point.getDistanceToPoint(self.center) - self.radius).abs <= GOConstant.overallPrecision) {
+        if point.getDistanceToPoint(self.center).equalWithPrecision(self.radius) {
             let pointRadian = point.getRadiusFrom(self.center).restrictWithin2Pi
             let normalRadian = self.normalDirection.angleFromXPlus
             let maxRadian = max(self.startRadian, self.endRadian)

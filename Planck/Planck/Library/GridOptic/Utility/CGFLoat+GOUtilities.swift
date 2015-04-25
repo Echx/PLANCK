@@ -14,6 +14,7 @@ extension CGFloat {
     }
     
     var restrictWithin2Pi: CGFloat {
+        // convert every radian to [0, 2pi)
         var result = self
         if result < 0 {
             result = CGFloat(M_PI * 2.0) + result
@@ -27,7 +28,8 @@ extension CGFloat {
     }
     
     func equalWithPrecision(f: CGFloat) -> Bool{
-        if self - f < GOConstant.overallPrecision {
+        // check whether two CGFloat are equal with the defined precision
+        if (self - f).abs < GOConstant.overallPrecision {
             return true
         } else {
             return false
