@@ -33,6 +33,7 @@ class GameStasticViewController: XViewController {
         self.totalLightFired.text = String(GameStats.getTotalLightFire())
         self.totalMusicPlayed.text = String(GameStats.getTotalMusicPlayed())
         
+        /// load all levels and calculate
         let games = StorageManager.defaultManager.loadAllLevel()
         var totalPrefect:Int = 0
         var totalGameUnlock:Int = 0
@@ -40,7 +41,7 @@ class GameStasticViewController: XViewController {
             if game.isUnlock {
                 totalGameUnlock++
             }
-            if game.bestScore == 3 {
+            if game.bestScore == Constant.fullScore {
                 totalPrefect++
             }
         }

@@ -54,6 +54,20 @@ struct GOCodingKey {
     static let optic_thickCenter = "OPTIC_THICK_CENTER"
     static let optic_thickEdge = "OPTIC_THICK_EDGE"
     static let optic_curvatureRadius = "OPTIC_CUR_RADIUS"
-    
+}
 
+struct OpticRepDefaults {
+    static let defaultDirection = CGVectorMake(0, 1)
+}
+
+struct EmitterDefaults {
+    static let initialPointOffset: CGFloat = 0.1
+}
+
+struct FlatOpticRepDefaults {
+    static let defaultThickness: CGFloat = 1
+    static let defaultLength: CGFloat = 6
+    static let topEdgeTag = 0
+    static let topEdgeTag = 0
+    
 }

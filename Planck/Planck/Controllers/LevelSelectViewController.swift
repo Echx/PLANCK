@@ -10,8 +10,6 @@ import UIKit
 
 class LevelSelectViewController: ScrollPageContentViewController, UICollectionViewDataSource, UICollectionViewDelegate, UICollectionViewDelegateFlowLayout {
     
-    private let itemsInSection = 6
-    
     @IBOutlet weak var collectionView: UICollectionView!
     var levelArray:[GameLevel] = [GameLevel]()
     
@@ -31,21 +29,21 @@ class LevelSelectViewController: ScrollPageContentViewController, UICollectionVi
     }
     
     func numberOfSectionsInCollectionView(collectionView: UICollectionView) -> Int {
-        return (levelArray.count + itemsInSection - 1) / itemsInSection
+        return (levelArray.count + Constant.levelInSection - 1) / Constant.levelInSection
     }
     
     func collectionView(collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        if levelArray.count >= (section + 1) * itemsInSection {
+        if levelArray.count >= (section + 1) * Constant.levelInSection {
             // can afford #itemsInSection
-            return itemsInSection
+            return Constant.levelInSection
         } else {
-            return levelArray.count - section * itemsInSection
+            return levelArray.count - section * Constant.levelInSection
         }
     }
     
     func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCellWithReuseIdentifier(ReuseableID.LevelSelectCell , forIndexPath: indexPath) as LevelSelectCollectionViewCell
-        let game = levelArray[indexPath.section * itemsInSection + indexPath.item]
+        let game = levelArray[indexPath.section * Constant.levelInSection + indexPath.item]
         let nameChar = ["I", "II", "III", "IV", "V", "VI"]
         
         cell.title.text = nameChar[indexPath.item]
@@ -65,7 +63,7 @@ class LevelSelectViewController: ScrollPageContentViewController, UICollectionVi
     }
     
     func collectionView(collectionView: UICollectionView, didSelectItemAtIndexPath indexPath: NSIndexPath) {
-        let game = levelArray[indexPath.section * itemsInSection + indexPath.item]
+        let game = levelArray[indexPath.section * Constant.levelInSection + indexPath.item]
         if game.isUnlock {
             // load game to the game view
             var gameVC = GameViewController.getInstance(game.deepCopy(), isPreview: false)
@@ -73,7 +71,7 @@ class LevelSelectViewController: ScrollPageContentViewController, UICollectionVi
             NSNotificationCenter.defaultCenter().postNotificationName(HomeViewDefaults.stopPlayingKey, object: nil)
             
             self.parentScrollPageVC!.mm_drawerController()!.closeDrawerAnimated(true, completion: {
-                bool in
+                bool in 
                     self.parentScrollPageVC!.presentViewController(gameVC, animated: true, completion: {})
             })
         }
@@ -95,7 +93,7 @@ class LevelSelectViewController: ScrollPageContentViewController, UICollectionVi
         case 3:
             return "wow, such Pop"
         case 4:
-            return "Baroc & Romantic"
+            return "Baroque & Romantic"
         case 5:
             return "The Games"
         case 6:

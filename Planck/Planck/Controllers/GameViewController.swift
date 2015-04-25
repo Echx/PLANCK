@@ -571,6 +571,21 @@ class GameViewController: XViewController {
         let offset = CGPointMake(offsetX, offsetY)
         return self.moveNode(node, from: originalCenter, offset: offset)
     }
+    
+    private func reportAchievements(levelIndex: Int) {
+        let achievements = [XGameCenter.achi_firstblood, XGameCenter.achi_finish1, XGameCenter.achi_finish2, XGameCenter.achi_finish3, XGameCenter.achi_finish4, XGameCenter.achi_finish5]
+        
+        if levelIndex == 0 {
+            GamiCent.reportAchievements(percent: 100.0, achievementID: XGameCenter.achi_firstblood, isShowBanner: true, completion: nil)
+        } else if (levelIndex + 1) % Constant.levelInSection == 0  {
+            // since there are 6 levels in a section, then the last (level + 1) 
+            // divide by 6 will be the section number
+            let section = (levelIndex + 1) / Constant.levelInSection
+            
+            // finished the last level in a section
+            GamiCent.reportAchievements(percent: 100.0, achievementID: achievements[section], isShowBanner: true, completion: nil)
+        }
+    }
 
 }
 
@@ -737,38 +752,14 @@ extension GameViewController: LevelTransitionMaskViewDelegate {
         self.onboardingMaskView.removeFromSuperview()
         // save current game if it is not preview mode
         if !isPreview {
-            if self.gameLevel.index == 0 {
-                // first blood
-                dispatch_async(dispatch_get_main_queue(), {
-                    GamiCent.reportAchievements(percent: 100.0, achievementID: XGameCenter.achi_firstblood, isShowBanner: true, completion: nil)
-                })
-            } else if self.gameLevel.index == 5 {
-                dispatch_async(dispatch_get_main_queue(), {
-                    GamiCent.reportAchievements(percent: 100.0, achievementID: XGameCenter.achi_finish1, isShowBanner: true, completion: nil)
-                })
-            } else if self.gameLevel.index == 11 {
-                dispatch_async(dispatch_get_main_queue(), {
-                    GamiCent.reportAchievements(percent: 100.0, achievementID: XGameCenter.achi_finish2, isShowBanner: true, completion: nil)
-                })
-            } else if self.gameLevel.index == 17 {
-                dispatch_async(dispatch_get_main_queue(), {
-                    GamiCent.reportAchievements(percent: 100.0, achievementID: XGameCenter.achi_finish3, isShowBanner: true, completion: nil)
-                })
-            } else if self.gameLevel.index == 23 {
-                dispatch_async(dispatch_get_main_queue(), {
-                    GamiCent.reportAchievements(percent: 100.0, achievementID: XGameCenter.achi_finish4, isShowBanner: true, completion: nil)
-                })
-            } else if self.gameLevel.index == 29 {
-                dispatch_async(dispatch_get_main_queue(), {
-                    GamiCent.reportAchievements(percent: 100.0, achievementID: XGameCenter.achi_finish5, isShowBanner: true, completion: nil)
-                })
-            }
+            
+            reportAchievements(self.gameLevel.index)
             
             dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), {
                 StorageManager.defaultManager.saveCurrentLevel(self.originalLevel)
             })
             
-            if let nextLevel = GameLevel.loadGameWithIndex(self.gameLevel.index + 1) {
+            if let nextLevel = GameLevel.loadGameWithIndex(self.gameLevel.indexForNextLevel) {
                 // unlock next level and save it
                 nextLevel.isUnlock = true
                 
@@ -780,7 +771,7 @@ extension GameViewController: LevelTransitionMaskViewDelegate {
         
         if index == 2 {
             if self.shouldShowNextLevel {
-                if let nextLevel = GameLevel.loadGameWithIndex(self.gameLevel.index + 1) {
+                if let nextLevel = GameLevel.loadGameWithIndex(self.gameLevel.indexForNextLevel) {
                     self.reloadLevel(nextLevel)
                 } else {
                     // have finished all current game

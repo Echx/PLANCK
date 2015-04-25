@@ -13,7 +13,9 @@ class GOOpticRep: NSObject, NSCoding {
     var center: GOCoordinate
     var edges = [GOSegment]()
     var type = DeviceType.Mirror
-    var direction: CGVector = CGVectorMake(0, 1)
+    var direction: CGVector = OpticRepDefaults.defaultDirection
+    var refractionIndex : CGFloat = GOConstant.vacuumRefractionIndex
+    
     var bezierPath: UIBezierPath {
         get {
             var path = UIBezierPath()
@@ -30,14 +32,11 @@ class GOOpticRep: NSObject, NSCoding {
         }
     }
     
-    var refractionIndex : CGFloat = GOConstant.vacuumRefractionIndex
-
     var vertices: [CGPoint] {
         get {
             fatalError("The computational variable vertices must be overriden by subclasses")
         }
     }
-    
     
     init(id: String, center: GOCoordinate) {
         self.id = id
@@ -51,24 +50,6 @@ class GOOpticRep: NSObject, NSCoding {
         self.center = center
         super.init()
         self.updateEdgesParent()
-    }
-    
-    func setCenter(center: GOCoordinate) {
-        self.center = center
-        self.refresh()
-    }
-    
-    func refresh() {
-        let direction = self.direction
-        self.direction = CGVectorMake(0, 1)
-        self.setUpEdges()
-        self.setDirection(direction)
-        self.updateEdgesParent()
-        self.updateEdgesType()
-    }
-    
-    func setUpEdges() {
-        fatalError("setUpEdges must be overridden by child classes")
     }
     
     required convenience init(coder aDecoder: NSCoder) {
@@ -90,16 +71,16 @@ class GOOpticRep: NSObject, NSCoding {
         aCoder.encodeObject(edges, forKey: GOCodingKey.optic_edges)
         aCoder.encodeObject(type.rawValue, forKey: GOCodingKey.optic_type)
         aCoder.encodeObject(center, forKey: GOCodingKey.optic_center)
-
+        
         aCoder.encodeObject(refractionIndex, forKey: GOCodingKey.optic_refractionIndex)
     }
     
-    func setDirection(direction: CGVector) {
-        fatalError("setDirection must be overridden by child classes")
-    }
-    
-    func setDeviceType(type: DeviceType) {
-        self.type = type
+    func refresh() {
+        let direction = self.direction
+        self.direction = OpticRepDefaults.defaultDirection
+        self.setUpEdges()
+        self.setDirection(direction)
+        self.updateEdgesParent()
         self.updateEdgesType()
     }
     
@@ -118,13 +99,31 @@ class GOOpticRep: NSObject, NSCoding {
         return framePath.containsPoint(point)
     }
     
+    func setUpEdges() {
+        fatalError("setUpEdges must be overridden by child classes")
+    }
+    
+    func setDirection(direction: CGVector) {
+        fatalError("setDirection must be overridden by child classes")
+    }
+    
+    func setCenter(center: GOCoordinate) {
+        self.center = center
+        self.refresh()
+    }
+    
+    func setDeviceType(type: DeviceType) {
+        self.type = type
+        self.updateEdgesType()
+    }
+    
     func updateEdgesParent() {
         for edge in self.edges {
             edge.parent = self.id
         }
     }
     
-    private func updateEdgesType() {
+    func updateEdgesType() {
         for edge in self.edges {
             switch self.type {
             case DeviceType.Mirror:

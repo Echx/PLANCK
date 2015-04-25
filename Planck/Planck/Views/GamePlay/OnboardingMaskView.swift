@@ -47,9 +47,7 @@ class OnboardingMaskView: UIView {
     var dragAnimatingDuration: NSTimeInterval = 1
     var dragAnimatingDelay:NSTimeInterval = 2
     var defaultFadeDuration: NSTimeInterval = 0.5
-    var labelFontSize: NSInteger = 22
-    
-    
+    var labelFontSize: CGFloat = 22
     
     
     override init() {
