@@ -92,3 +92,8 @@ struct ConcaveLensRepDefaults {
     static let bottomEdgeTag = 2
     static let leftArcTag = 3
 }
+
+struct GridDefaults {
+    static let unitDegree: CGFloat = CGFloat(M_PI / 12)
+    static let calculationQueueIdentifier = "CALCULATION_SERIAL_QUEUE"
+}
