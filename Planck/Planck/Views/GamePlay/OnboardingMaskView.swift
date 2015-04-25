@@ -8,6 +8,8 @@
 
 import UIKit
 
+/// This class serve as the mask view for game tutorial appear in the
+/// first 6 levels
 class OnboardingMaskView: UIView {
     private struct MethodSelector {
         static let showTapAnimation = Selector("showTapAnimation:")
@@ -28,6 +30,7 @@ class OnboardingMaskView: UIView {
     private var tapAnimationTimers = [NSTimer]()
     private var dragAnimationTimers = [NSTimer]()
     
+    // config parameters
     var dashPattern = [8, 8]
     var dashLineWidth: CGFloat = 3
     var dashStrokeColor = UIColor.whiteColor()
@@ -59,6 +62,9 @@ class OnboardingMaskView: UIView {
         self.init()
     }
     
+    /**
+    Remove and clear the mask view
+    */
     func clear() {
         self.hideMask(true)
         for (key, layer) in self.layers {
@@ -79,10 +85,14 @@ class OnboardingMaskView: UIView {
         }
     }
     
+    /**
+    Draw a dashed, vain object in the screen according to the given path 
     
-    //draw a dashed, vain object in the screen according to the given path
-    //return the key for the layer, which might be useful when the caller
-    //want to retrieve or remove the layer
+    :param: path the path for drawing the dashed target
+    
+    :returns: the key for the layer, which might be useful when the caller
+                want to retrieve or remove the layer
+    */
     func drawDashedTarget(path: UIBezierPath) -> String {
         
         //initialize and set the properties of the shape layer
@@ -106,8 +116,14 @@ class OnboardingMaskView: UIView {
     }
     
     
-    //draw mask, the area between the given path and the screen bounds will be filled
-    //with self.maskColor
+    /**
+    Draw a mask.
+    The area between the given path and the screen bounds will be filled with
+    self.maskColor
+    
+    :param: path the path for drawing the dashed target
+    :param: animated is the drawing animated or not
+    */
     func drawMask(path: UIBezierPath?, animated: Bool) {
         if let bezierPath = path {
             let path = UIBezierPath(rect: self.bounds)
@@ -120,14 +136,19 @@ class OnboardingMaskView: UIView {
             self.maskLayer.path = bezierPath.CGPath
             self.maskLayer.fillRule = kCAFillRuleNonZero
         }
-        
         self.maskLayer.fillColor = self.maskColor.CGColor
         self.maskLayer.opacity = self.maskOpacity
         self.mask.layer.addSublayer(self.maskLayer)
     }
     
     
-    //show the mask
+    /**
+    Draw a mask.
+    The area between the given path and the screen bounds will be filled with
+    self.maskColor
+    
+    :param: animated a true value means the drawing is animated
+    */
     func showMask(animated: Bool) {
         self.addSubview(self.mask)
         if animated {
@@ -139,7 +160,11 @@ class OnboardingMaskView: UIView {
     }
     
     
-    //hide the mask
+    /**
+    Hide the mask view.
+    
+    :param: animated a true value means the drawing is animated
+    */
     func hideMask(animated: Bool) {
         if animated {
             self.fadeView(self.defaultFadeDuration, view: self.mask, fadeIn: false, completion: {
@@ -153,7 +178,11 @@ class OnboardingMaskView: UIView {
     }
     
     
-    //toggle the mask on and off
+    /**
+    Toggle the mask view.
+    
+    :param: animated a true value means the drawing is animated
+    */
     func toggleMask(animated: Bool) {
         if self.isMaskHidden {
             self.showMask(animated)
@@ -162,9 +191,12 @@ class OnboardingMaskView: UIView {
         }
     }
     
-    //show tap animation at the given point
-    // :param: a CGPoint indicating the position
-    // :param: a boolean indicating whether the animation should repeat
+    /**
+    Show tap animation at the given point
+    
+    :param: point a CGPoint indicating the position
+    :param: repeat a boolean indicating whether the animation should repeat
+    */
     func showTapGuidianceAtPoint(point: CGPoint, repeat: Bool) {
         var timer = NSTimer.scheduledTimerWithTimeInterval(
             self.tapAnimatingDelay,
@@ -178,8 +210,11 @@ class OnboardingMaskView: UIView {
         self.tapAnimationTimers.append(timer)
     }
     
-    //perform the animation
-    // :param: a timer with user info set to the tap position
+    /**
+    Perform the animation
+    
+    :param: timer a timer with user info set to the tap position
+    */
     func showTapAnimation(timer: NSTimer) {
         //get the position from userInfo
         let point = (timer.userInfo as NSValue).CGPointValue()
@@ -228,11 +263,13 @@ class OnboardingMaskView: UIView {
         })
     }
     
+    /**
+    Show Drag animation from the start point to the end point
     
-    //Show Drag animation from the start point to the end point
-    // :param: a point where the animation start
-    // :param: a point where the animation end
-    // :param: a boolean whether the animatino should repeat
+    :param: startPoint a point where the animation start
+    :param: endPoint a point where the animation end
+    :param: repeat a boolean whether the animatino should repeat
+    */
     func showDragGuidianceFromPoint(startPoint: CGPoint, to endPoint: CGPoint, repeat: Bool) {
         var timer = NSTimer.scheduledTimerWithTimeInterval(
             self.dragAnimatingDelay,
@@ -246,8 +283,11 @@ class OnboardingMaskView: UIView {
         self.dragAnimationTimers.append(timer)
     }
     
-    //perfrom the drag animation
-    // :param: a timer with userInfo set as a Dictionary containing the necessary information
+    /**
+    Perfrom the drag animation
+    
+    :param: timer a timer with userInfo set as a Dictionary containing the necessary information
+    */
     func showDragAnimation(timer: NSTimer) {
         let points = timer.userInfo as Dictionary<String, AnyObject>
         let startPoint = (points[keyForStartPoint] as NSValue).CGPointValue()
@@ -280,11 +320,15 @@ class OnboardingMaskView: UIView {
     }
     
     
-    //add a label and set the center of it to the position given
-    //the label will be added to self as a subview immediately
-    //:param: a string which will be the label's text
-    //:param: a CGPoint which will be the label's position
-    //returns: the UILabel Object
+    /**
+    Add a label and set the center of it to the position given,
+    the label will be added to self as a subview immediately
+    
+    :param: text a string which will be the label's text
+    :param: position a CGPoint which will be the label's position
+    
+    :returns: the UILabel Object
+    */
     func addLabelWithText(text: String, position: CGPoint) -> UILabel{
         var label = UILabel(frame: UIScreen.mainScreen().bounds)
         label.text = text
@@ -298,12 +342,17 @@ class OnboardingMaskView: UIView {
     }
     
     
-    //perform a fading transition to a view, either fadeIn or fadeOut
-    //will execute the completion block when the animation finished
-    //:param: a double indicating the animation duration
-    //:param: a target view
-    //:param: a booleane indicating whether it's fade in or fade out
-    //:param: a completion closure(block)
+    /**
+    Perform a fading transition to a view, either fadeIn or fadeOut
+    will execute the completion block when the animation finished
+    
+    :param: duration a double indicating the animation duration
+    :param: view a target view
+    :param: fadeIn a booleane indicating whether it's fade in or fade out
+    :param: completion a CGPoint which will be the label's position
+    
+    */
+    
     private func fadeView(duration: NSTimeInterval, view: UIView, fadeIn: Bool, completion: (() -> Void)?) {
         
         UIView.animateWithDuration(
@@ -321,15 +370,14 @@ class OnboardingMaskView: UIView {
         )
     }
 
-    //set up the view properites
+    /**
+    Setup view properities
+    */
     private func setUp() {
-        self.setViewProperites()
-    }
-    
-    private func setViewProperites() {
         self.backgroundColor = UIColor.clearColor()
         self.addSubview(self.mask)
         self.mask.backgroundColor = UIColor.clearColor()
         self.userInteractionEnabled = false
     }
+    
 }

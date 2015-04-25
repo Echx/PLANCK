@@ -8,14 +8,20 @@
 
 import UIKit
 
+/// The delegate will be notified when the music is end or the view is dismissed
 protocol TargetMusicMaskViewDelegate {
     func didFinishPlaying()
     func musicMaskViewDidDismiss(view: TargetMusicMaskView)
 }
 
+/// This class is shown when the target music is playing
 class TargetMusicMaskView: UIView {
-    private let headphoneImage = UIImage(named: "headphone")
+    private let headphoneIconFrame = CGRect(x: 452, y: 324, width: 120, height: 120)
+    // The headphone icon image
+    private let headphoneImage = UIImage(named: XImageName.headePhone)
     private var audioPlayerList = [AVAudioPlayer]()
+    
+    // the delegte
     var delegate: TargetMusicMaskViewDelegate?
     
     override init() {
@@ -26,16 +32,21 @@ class TargetMusicMaskView: UIView {
         self.addSubview(blurView)
         
         let headphoneView = UIImageView(image: self.headphoneImage)
-        headphoneView.frame = CGRect(x: 452, y: 324, width: 120, height: 120)
+        
+        headphoneView.frame = headphoneIconFrame
         self.addSubview(headphoneView)
     }
     
+    required init(coder aDecoder: NSCoder) {
+        super.init(coder: aDecoder)
+    }
     
     func show(targetMusic: XMusic) {
         self.alpha = 1
         let noteSequence = targetMusic.flattenMapping()
-        if noteSequence.count != 0 {
+        if !noteSequence.isEmpty {
             dispatch_after(dispatch_time(DISPATCH_TIME_NOW, Int64(Float(NSEC_PER_SEC) * Float(MusicDefaults.musicBuffer))), dispatch_get_main_queue()) {
+                // play the music note by note
                 for (note, distance) in noteSequence {
                     let audioPlayer = AVAudioPlayer(contentsOfURL: note.getAudioFile(), error: nil)
                     self.audioPlayerList.append(audioPlayer)
@@ -59,10 +70,9 @@ class TargetMusicMaskView: UIView {
                 return
             }
         }
-        
-        
     }
     
+    /// Hide the view and notify the delegate
     func hide() {
         UIView.animateWithDuration(0.3, animations: {
                 self.alpha = 0
@@ -71,10 +81,6 @@ class TargetMusicMaskView: UIView {
                 self.removeFromSuperview()
                 self.delegate?.musicMaskViewDidDismiss(self)
             })
-    }
-    
-    required init(coder aDecoder: NSCoder) {
-        super.init(coder: aDecoder)
     }
 }
 

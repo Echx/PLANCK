@@ -8,6 +8,7 @@
 
 import UIKit
 
+/// This is a table cell serve as an setting view (with a switch)
 class SettingViewCell: UITableViewCell {
     // the title label of the cell
     @IBOutlet weak var title: UILabel!
