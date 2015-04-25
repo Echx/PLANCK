@@ -182,7 +182,7 @@ class OnboardingMaskView: UIView {
     
     //perform the animation
     // :param: a timer with user info set to the tap position
-    private func showTapAnimation(timer: NSTimer) {
+    func showTapAnimation(timer: NSTimer) {
         //get the position from userInfo
         let point = (timer.userInfo as NSValue).CGPointValue()
         var containerView = UIView(frame: CGRectMake(0, 0, 2 * self.tapFinalRadius, 2 * self.tapFinalRadius))
