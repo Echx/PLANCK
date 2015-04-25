@@ -19,6 +19,8 @@ class OscillationManager: NSObject {
     }
     
     //This method will oscillate the view passed in, with the specified initial direction.
+    // :param: a view to animate
+    // :param: the initial direction of the animation
     class func oscillateView(view: UIView, direction: CGVector) {
         
         //calculate the animation offset
