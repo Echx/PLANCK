@@ -10,7 +10,7 @@
 class ParticleManager: NSObject {
 
     //Particle effects specifics for light ray
-    struct ParticleDefaults {
+    private struct ParticleDefaults {
         static let emitterLayerFrame = UIScreen.mainScreen().bounds
         static let emitterLayerEmitterSize = CGSizeMake(5, 5)
         static let emitterLayerEmitterShape = kCAEmitterLayerPoints
@@ -35,7 +35,7 @@ class ParticleManager: NSObject {
     }
 
     //Particle effects specifics for home view
-    struct HomeParticleDefaults {
+    private struct HomeParticleDefaults {
         static let emitterLayerFrame = UIScreen.mainScreen().bounds
         static let emitterLayerEmitterSize = UIScreen.mainScreen().bounds.size
         static let emitterLayerEmitterShape = kCAEmitterLayerPoints

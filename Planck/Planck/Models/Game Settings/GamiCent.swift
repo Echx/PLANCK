@@ -12,7 +12,7 @@ import SystemConfiguration
 //This class manages the game center behaviors in this project
 class GamiCent : NSObject, GKGameCenterControllerDelegate {
     
-    struct ErrorMessages {
+    private struct ErrorMessages {
         static let delegateNotSet = "Error : Delegate for Easy Game Center not set."
         static let invalidLeaderBoardID = "Error: Invalid LeaderBoard ID"
         static let gameCenterNotAccessible = "Error: GameCenter not accessible"
