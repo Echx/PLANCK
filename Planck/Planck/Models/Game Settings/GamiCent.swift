@@ -6,7 +6,6 @@
 //  Copyright (c) 2015 Gison. All rights reserved.
 //
 
-import Foundation
 import GameKit
 import SystemConfiguration
 
