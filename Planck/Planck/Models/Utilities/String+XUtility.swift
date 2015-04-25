@@ -6,8 +6,6 @@
 //  Copyright (c) 2015 Echx. All rights reserved.
 //
 
-import UIKit
-
 extension String {
     static func generateRandomString(len: Int) -> String {
         let letters = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789"

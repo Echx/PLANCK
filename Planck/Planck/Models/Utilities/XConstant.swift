@@ -6,8 +6,6 @@
 //  Copyright (c) 2015 Echx. All rights reserved.
 //
 
-import UIKit
-
 struct Constant {
     static let lightSpeedBase: CGFloat = 600 //points per second
     static let audioDelay: CGFloat = 0.1
