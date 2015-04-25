@@ -622,153 +622,6 @@ class GameViewController: XViewController {
 
 }
 
-struct OnboardingSpecifics {
-    static let levelZeroIndex = 0
-    static let levelZeroText = "tap the switch to shoot the light"
-    static let levelZeroMaskPathPoints = [CGPointMake(0, 768), CGPointMake(0, 668), CGPointMake(100, 668), CGPointMake(150, 718), CGPointMake(150, 768)]
-    static let levelZeroTapPosition = CGPoint(x: 80, y: 708)
-
-    static let levelOneIndex = 1
-    static let levelOneMaskPathRadius: CGFloat = 100
-    static let levelOneTapPosition = CGPointMake(500, 125)
-    static let levelOneLabelSpecifics = [
-        ("tap a node to play its sound", CGPointMake(500, 185)),
-        ("shining node is moveable, tap a shining node to change its direction", CGPointMake(600, 530)),
-        ("rotate the node to the dashed frame, and shoot the light", CGPointMake(512, 670))
-    ]
-    
-    static let levelTwoIndex = 2
-    static let levelTwoMaskPathRadius: CGFloat = 200
-    static let levelTwoStartPointYOffset: CGFloat = 20
-    static let levelTwoEndPointYOffset: CGFloat = -20
-    static let levelTwoLabelSpecifics = [
-        ("drag a moveable node to move it around", CGPointMake(635, 230)),
-        ("move and rotate the node to fit the dashed frame, then shoot the light", CGPointMake(635, 700))
-    ]
-    
-    static let levelThreeIndex = 3
-    static let levelThreeMaskPathRadius: CGFloat = 200
-    static let levelThreeLabelSpecifics = [
-        ("get familiar with devices in Planck", CGPointMake(512, 30)),
-        ("concave lens - diverge light", CGPointMake(208, 490)),
-        ("flat mirror - reflect light", CGPointMake(528, 420)),
-        ("flat lens - light penetrate it", CGPointMake(704, 230)),
-        ("convex lens - converge light", CGPointMake(750, 610)),
-        ("wall - stop light", CGPointMake(944, 420))
-    ]
-}
-
-//onboarding
-
-extension GameViewController {
-    func checkOnboarding() {
-        // TODO: refactoring
-        if self.gameLevel.index == OnboardingSpecifics.levelZeroIndex {
-            let welcomeLabel = self.onboardingMaskView.addLabelWithText(OnboardingSpecifics.levelZeroText, position: self.view.center)
-            var maskPath = UIBezierPath()
-            maskPath.moveToPoint(OnboardingSpecifics.levelZeroMaskPathPoints[0])
-            for var i = 1; i < OnboardingSpecifics.levelZeroMaskPathPoints.count; i++ {
-                maskPath.addLineToPoint(OnboardingSpecifics.levelZeroMaskPathPoints[i])
-            }
-            maskPath.closePath()
-            self.onboardingMaskView.drawMask(maskPath, animated: true)
-            self.onboardingMaskView.showTapGuidianceAtPoint(OnboardingSpecifics.levelZeroTapPosition, repeat: true)
-            self.view.addSubview(self.onboardingMaskView)
-        } else if self.gameLevel.index == OnboardingSpecifics.levelOneIndex {
-            var movableObject = self.gameLevel.getOriginalMovableNodes()[0]
-            var movableObjectPath = self.gameLevel.originalGrid.getInstrumentDisplayPathForID(movableObject.id)
-            var maskPath = UIBezierPath()
-            maskPath.addArcWithCenter(
-                self.grid.getCenterForGridCell(movableObject.center),
-                radius: OnboardingSpecifics.levelOneMaskPathRadius,
-                startAngle: 0,
-                endAngle: CGFloat(2 * M_PI),
-                clockwise: true)
-            self.onboardingMaskView.drawMask(maskPath, animated: false)
-            self.onboardingMaskView.showMask(true)
-            self.onboardingMaskView.drawDashedTarget(movableObjectPath!)
-            self.onboardingMaskView.showTapGuidianceAtPoint(self.gameLevel.originalGrid.getCenterForGridCell(movableObject.center), repeat: true)
-            self.onboardingMaskView.showTapGuidianceAtPoint(OnboardingSpecifics.levelOneTapPosition, repeat: true)
-            
-            for (text, position) in OnboardingSpecifics.levelOneLabelSpecifics {
-                self.onboardingMaskView.addLabelWithText(text, position: position)
-            }
-            self.view.addSubview(self.onboardingMaskView)
-        } else if self.gameLevel.index == OnboardingSpecifics.levelTwoIndex {
-            var movableObject = self.gameLevel.getOriginalMovableNodes()[0]
-            var currentMovObject = self.gameLevel.getCurrentMovableNodes()[0]
-            
-            var movableObjectPath = self.gameLevel.originalGrid.getInstrumentDisplayPathForID(movableObject.id)
-            var maskPath = UIBezierPath()
-            maskPath.addArcWithCenter(
-                self.grid.getCenterForGridCell(movableObject.center),
-                radius: OnboardingSpecifics.levelTwoMaskPathRadius,
-                startAngle: 0,
-                endAngle: CGFloat(2 * M_PI),
-                clockwise: true)
-            self.onboardingMaskView.drawMask(maskPath, animated: false)
-            self.onboardingMaskView.showMask(true)
-            self.onboardingMaskView.drawDashedTarget(movableObjectPath!)
-            
-            
-            let fromCenterPoint = gameLevel.grid.getCenterForGridCell(currentMovObject.center)
-            let toCenterPoint = gameLevel.grid.getCenterForGridCell(movableObject.center)
-            
-            let startPoint = CGPoint(x: fromCenterPoint.x, y: fromCenterPoint.y + OnboardingSpecifics.levelTwoStartPointYOffset)
-            let endPoint = CGPoint(x: toCenterPoint.x, y: toCenterPoint.y + OnboardingSpecifics.levelTwoEndPointYOffset)
-            
-            self.onboardingMaskView.showDragGuidianceFromPoint(startPoint, to: endPoint, repeat: true)
-            
-            for (text, position) in OnboardingSpecifics.levelTwoLabelSpecifics {
-                self.onboardingMaskView.addLabelWithText(text, position: position)
-            }
-            
-            self.view.addSubview(self.onboardingMaskView)
-        } else if self.gameLevel.index == OnboardingSpecifics.levelThreeIndex{
-            var movableObject = self.gameLevel.getOriginalMovableNodes()[0]
-            
-            var movableObjectPath = self.gameLevel.originalGrid.getInstrumentDisplayPathForID(movableObject.id)
-            var maskPath = UIBezierPath()
-            maskPath.addArcWithCenter(
-                self.grid.getCenterForGridCell(movableObject.center),
-                radius: OnboardingSpecifics.levelThreeMaskPathRadius,
-                startAngle: 0,
-                endAngle: CGFloat(2 * M_PI),
-                clockwise: true)
-            self.onboardingMaskView.drawDashedTarget(movableObjectPath!)
-            for (text, position) in OnboardingSpecifics.levelThreeLabelSpecifics {
-                self.onboardingMaskView.addLabelWithText(text, position: position)
-            }
-            self.view.addSubview(self.onboardingMaskView)
-        } else if self.gameLevel.index == 4{
-            var movableObject = self.gameLevel.getOriginalMovableNodes()[0]
-            
-            var movableObjectPath = self.gameLevel.originalGrid.getInstrumentDisplayPathForID(movableObject.id)
-            var maskPath = UIBezierPath()
-            maskPath.addArcWithCenter(
-                self.grid.getCenterForGridCell(movableObject.center),
-                radius: 200,
-                startAngle: 0,
-                endAngle: CGFloat(2 * M_PI),
-                clockwise: true)
-            self.onboardingMaskView.drawDashedTarget(movableObjectPath!)
-            let guidancePoint = CGPoint(x: musicReplayView.center.x - 10, y: musicReplayView.center.y + 10)
-            self.onboardingMaskView.showTapGuidianceAtPoint(guidancePoint, repeat: true)
-            
-            let textPoint1 = CGPointMake(650, musicReplayView.center.y)
-            let textPoint2 = CGPointMake(680, musicReplayView.center.y + 50)
-            self.onboardingMaskView.addLabelWithText("target music can be hard",position: textPoint1)
-            self.onboardingMaskView.addLabelWithText("but you can always tap music button to replay it",position: textPoint2)
-            
-            self.view.addSubview(self.onboardingMaskView)
-        } else if self.gameLevel.index == 5{
-            self.onboardingMaskView.addLabelWithText("it's your turn, try to solve this simple level",position: CGPointMake(self.view.center.x, 30))
-            self.view.addSubview(self.onboardingMaskView)
-        }
-    }
-}
-
-
 extension GameViewController: GOGridDelegate {
     func grid(grid: GOGrid, didProduceNewCriticalPoint point: CGPoint, onEdge edge: GOSegment?, forRayWithTag tag: String) {
         if self.rays.count == 0 {
@@ -866,3 +719,142 @@ extension GameViewController: TargetMusicMaskViewDelegate {
         isFirstTimePlayMusic = false
     }
 }
+
+//onboarding
+
+extension GameViewController {
+    private struct OnboardingSpecifics {
+        static let levelZeroIndex = 0
+        static let levelZeroText = "tap the switch to shoot the light"
+        static let levelZeroMaskPathPoints = [CGPointMake(0, 768), CGPointMake(0, 668), CGPointMake(100, 668), CGPointMake(150, 718), CGPointMake(150, 768)]
+        static let levelZeroTapPosition = CGPoint(x: 80, y: 708)
+        
+        static let levelOneIndex = 1
+        static let levelOneMaskPathRadius: CGFloat = 100
+        static let levelOneTapPosition = CGPointMake(500, 125)
+        static let levelOneLabelSpecifics = [
+            ("tap a node to play its sound", CGPointMake(500, 185)),
+            ("shining node is moveable, tap a shining node to change its direction", CGPointMake(600, 530)),
+            ("rotate the node to the dashed frame, and shoot the light", CGPointMake(512, 670))
+        ]
+        
+        static let levelTwoIndex = 2
+        static let levelTwoMaskPathRadius: CGFloat = 200
+        static let levelTwoStartPointYOffset: CGFloat = 20
+        static let levelTwoEndPointYOffset: CGFloat = -20
+        static let levelTwoLabelSpecifics = [
+            ("drag a moveable node to move it around", CGPointMake(635, 230)),
+            ("move and rotate the node to fit the dashed frame, then shoot the light", CGPointMake(635, 700))
+        ]
+        
+        static let levelThreeIndex = 3
+        static let levelThreeLabelSpecifics = [
+            ("get familiar with devices in Planck", CGPointMake(512, 30)),
+            ("concave lens - diverge light", CGPointMake(208, 490)),
+            ("flat mirror - reflect light", CGPointMake(528, 420)),
+            ("flat lens - light penetrate it", CGPointMake(704, 230)),
+            ("convex lens - converge light", CGPointMake(750, 610)),
+            ("wall - stop light", CGPointMake(944, 420))
+        ]
+        
+        static let levelFourIndex = 4
+        static let levelFourLabelSpecifics = [
+            ("target music can be hard", CGPointMake(650, 39.5)),
+            ("but you can always tap music button to replay it", CGPointMake(680, 89.5)),
+        ]
+        static let levelFourTapPosition = CGPointMake(913.5, 49.5)
+        
+        static let levelFiveIndex = 5
+        static let levelFiveLabelText = "it's your turn, try to solve this simple level"
+        static let levelFiveLabelPosition = CGPointMake(512, 60)
+    }
+    
+    func checkOnboarding() {
+        if self.gameLevel.index == OnboardingSpecifics.levelZeroIndex {
+            let welcomeLabel = self.onboardingMaskView.addLabelWithText(OnboardingSpecifics.levelZeroText, position: self.view.center)
+            var maskPath = UIBezierPath()
+            maskPath.moveToPoint(OnboardingSpecifics.levelZeroMaskPathPoints[0])
+            for var i = 1; i < OnboardingSpecifics.levelZeroMaskPathPoints.count; i++ {
+                maskPath.addLineToPoint(OnboardingSpecifics.levelZeroMaskPathPoints[i])
+            }
+            maskPath.closePath()
+            self.onboardingMaskView.drawMask(maskPath, animated: true)
+            self.onboardingMaskView.showTapGuidianceAtPoint(OnboardingSpecifics.levelZeroTapPosition, repeat: true)
+            self.view.addSubview(self.onboardingMaskView)
+        } else if self.gameLevel.index == OnboardingSpecifics.levelOneIndex {
+            var movableObject = self.gameLevel.getOriginalMovableNodes()[0]
+            var movableObjectPath = self.gameLevel.originalGrid.getInstrumentDisplayPathForID(movableObject.id)
+            var maskPath = UIBezierPath()
+            maskPath.addArcWithCenter(
+                self.grid.getCenterForGridCell(movableObject.center),
+                radius: OnboardingSpecifics.levelOneMaskPathRadius,
+                startAngle: 0,
+                endAngle: CGFloat(2 * M_PI),
+                clockwise: true)
+            self.onboardingMaskView.drawMask(maskPath, animated: false)
+            self.onboardingMaskView.showMask(true)
+            self.onboardingMaskView.drawDashedTarget(movableObjectPath!)
+            self.onboardingMaskView.showTapGuidianceAtPoint(self.gameLevel.originalGrid.getCenterForGridCell(movableObject.center), repeat: true)
+            self.onboardingMaskView.showTapGuidianceAtPoint(OnboardingSpecifics.levelOneTapPosition, repeat: true)
+            
+            for (text, position) in OnboardingSpecifics.levelOneLabelSpecifics {
+                self.onboardingMaskView.addLabelWithText(text, position: position)
+            }
+            self.view.addSubview(self.onboardingMaskView)
+        } else if self.gameLevel.index == OnboardingSpecifics.levelTwoIndex {
+            var movableObject = self.gameLevel.getOriginalMovableNodes()[0]
+            var currentMovObject = self.gameLevel.getCurrentMovableNodes()[0]
+            
+            var movableObjectPath = self.gameLevel.originalGrid.getInstrumentDisplayPathForID(movableObject.id)
+            var maskPath = UIBezierPath()
+            maskPath.addArcWithCenter(
+                self.grid.getCenterForGridCell(movableObject.center),
+                radius: OnboardingSpecifics.levelTwoMaskPathRadius,
+                startAngle: 0,
+                endAngle: CGFloat(2 * M_PI),
+                clockwise: true)
+            self.onboardingMaskView.drawMask(maskPath, animated: false)
+            self.onboardingMaskView.showMask(true)
+            self.onboardingMaskView.drawDashedTarget(movableObjectPath!)
+            
+            
+            let fromCenterPoint = gameLevel.grid.getCenterForGridCell(currentMovObject.center)
+            let toCenterPoint = gameLevel.grid.getCenterForGridCell(movableObject.center)
+            
+            let startPoint = CGPoint(x: fromCenterPoint.x, y: fromCenterPoint.y + OnboardingSpecifics.levelTwoStartPointYOffset)
+            let endPoint = CGPoint(x: toCenterPoint.x, y: toCenterPoint.y + OnboardingSpecifics.levelTwoEndPointYOffset)
+            
+            self.onboardingMaskView.showDragGuidianceFromPoint(startPoint, to: endPoint, repeat: true)
+            
+            for (text, position) in OnboardingSpecifics.levelTwoLabelSpecifics {
+                self.onboardingMaskView.addLabelWithText(text, position: position)
+            }
+            
+            self.view.addSubview(self.onboardingMaskView)
+        } else if self.gameLevel.index == OnboardingSpecifics.levelThreeIndex{
+            var movableObject = self.gameLevel.getOriginalMovableNodes()[0]
+            
+            var movableObjectPath = self.gameLevel.originalGrid.getInstrumentDisplayPathForID(movableObject.id)
+            self.onboardingMaskView.drawDashedTarget(movableObjectPath!)
+            for (text, position) in OnboardingSpecifics.levelThreeLabelSpecifics {
+                self.onboardingMaskView.addLabelWithText(text, position: position)
+            }
+            self.view.addSubview(self.onboardingMaskView)
+        } else if self.gameLevel.index == OnboardingSpecifics.levelFourIndex{
+            var movableObject = self.gameLevel.getOriginalMovableNodes()[0]
+            var movableObjectPath = self.gameLevel.originalGrid.getInstrumentDisplayPathForID(movableObject.id)
+            self.onboardingMaskView.drawDashedTarget(movableObjectPath!)
+            self.onboardingMaskView.showTapGuidianceAtPoint(OnboardingSpecifics.levelFourTapPosition, repeat: true)
+            
+            for (text, position) in OnboardingSpecifics.levelFourLabelSpecifics {
+                self.onboardingMaskView.addLabelWithText(text, position: position)
+            }
+            
+            self.view.addSubview(self.onboardingMaskView)
+        } else if self.gameLevel.index == OnboardingSpecifics.levelFiveIndex {
+            self.onboardingMaskView.addLabelWithText(OnboardingSpecifics.levelFiveLabelText, position: OnboardingSpecifics.levelFiveLabelPosition)
+            self.view.addSubview(self.onboardingMaskView)
+        }
+    }
+}
+
