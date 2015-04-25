@@ -8,6 +8,7 @@
 
 import UIKit
 
+// GOPath is used to store the bezierPath as well as all the critical points in it
 class GOPath {
     var criticalPoints = [CGPoint]()
     var bezierPath: UIBezierPath
@@ -27,6 +28,7 @@ class GOPath {
             }
         }
     }
+    
     init(bezierPath: UIBezierPath, criticalPoints: [CGPoint]) {
         self.bezierPath = bezierPath
         self.criticalPoints = criticalPoints

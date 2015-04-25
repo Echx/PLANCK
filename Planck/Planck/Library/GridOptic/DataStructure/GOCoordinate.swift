@@ -8,6 +8,7 @@
 
 import UIKit
 
+// GOCoordinate is the scaled coordinate in a GOGrid
 class GOCoordinate: NSObject, NSCoding {
     let x: NSInteger
     let y: NSInteger

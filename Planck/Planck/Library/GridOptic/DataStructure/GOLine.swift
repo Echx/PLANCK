@@ -10,7 +10,7 @@ import UIKit
 
 class GOLine: NSObject {
     var anyPoint: CGPoint
-    //angle in [0, PI)
+    // angle should be in [0, PI)
     var direction: CGVector
     var slope: CGFloat {
         get {
@@ -22,6 +22,7 @@ class GOLine: NSObject {
         }
     }
     
+    // y Intercept for mathematical calculation
     var yIntercept: CGFloat? {
         get {
             return self.getY(x: 0)
