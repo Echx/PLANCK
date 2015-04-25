@@ -6,8 +6,6 @@
 //  Copyright (c) 2015 Echx. All rights reserved.
 //
 
-import UIKit
-
 //This class manages the touch feedback oscillation in the project
 class OscillationManager: NSObject {
     
