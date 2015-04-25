@@ -9,6 +9,9 @@
 import UIKit
 
 // GOLineSegment is the representation of line segment in GO library
+// it subclasses GOSegment, and override the calculation for starting point and 
+// end point, as well as the method related to the calculation of geometric 
+// property
 class GOLineSegment: GOSegment {
     var length: CGFloat
     // return the embeded GOLine

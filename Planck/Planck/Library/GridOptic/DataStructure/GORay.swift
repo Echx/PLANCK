@@ -10,6 +10,8 @@ import UIKit
 
 // GORay is the representation of ray in GO library
 // i.e. a line with one end
+// in GORay, we also store the embeded line of the ray (which is a instance of 
+// GOLine), and this will be used for intersection point calculation
 class GORay: NSObject, Printable {
     var startPoint: CGPoint
     var direction: CGVector

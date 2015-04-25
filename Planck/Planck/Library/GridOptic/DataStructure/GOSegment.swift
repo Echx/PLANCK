@@ -9,6 +9,11 @@
 import UIKit
 
 // GOSegment is the parent class of line segment and arc segment in GO library
+// besides the basic property of a segment in geometry, GOSegment also stores the
+// information necessary for optic calculation like the center, and whether it
+// the edge will cause reflection or refraction.
+// it also supports generation of new outcome if the segment is hit by a incident
+// ray
 class GOSegment : NSObject, NSCoding {
     //if both are true, only take refract (ignore the reflect ray)
     var willRefract: Bool = false
