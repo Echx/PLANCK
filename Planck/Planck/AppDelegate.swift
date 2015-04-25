@@ -18,19 +18,23 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
         let settingViewController = SettingViewController.getInstance()
         
-        /// initialize the right scroll page view here
+        // initialize the right scroll page view here
         let systemLevelSelectVC = LevelSelectViewController.getInstance()
         let userLevelSelectVC = CustomizedLevelSelectViewController.getInstance()
         let scrollPageArray = [systemLevelSelectVC, userLevelSelectVC]
         let scrollPageViewController = ScrollPageViewController.getInstance(scrollPageArray)
         let homeViewController = HomeViewController.getInstance()
         
-        /// initialize the drawer view controllers
-        self.drawerController = MMDrawerController(centerViewController: homeViewController, leftDrawerViewController: settingViewController, rightDrawerViewController: scrollPageViewController)
+        // initialize the drawer view controllers
+        self.drawerController = MMDrawerController(centerViewController: homeViewController,
+                                                    leftDrawerViewController: settingViewController,
+                                                    rightDrawerViewController: scrollPageViewController)
+        
         self.drawerController!.maximumLeftDrawerWidth = Constant.leftDrawerWidth
         self.drawerController!.maximumRightDrawerWidth = Constant.rightDrawerWidth
         self.drawerController!.openDrawerGestureModeMask = MMOpenDrawerGestureMode.All
-        self.drawerController!.closeDrawerGestureModeMask = MMCloseDrawerGestureMode.PanningCenterView | MMCloseDrawerGestureMode.TapCenterView
+        self.drawerController!.closeDrawerGestureModeMask = MMCloseDrawerGestureMode.PanningCenterView
+                                                            | MMCloseDrawerGestureMode.TapCenterView
         self.drawerController?.shouldStretchDrawer = false
         self.window = UIWindow(frame: UIScreen.mainScreen().bounds)
         self.window!.rootViewController = self.drawerController

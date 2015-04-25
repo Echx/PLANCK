@@ -73,18 +73,6 @@ class XMusic: NSObject, NSCoding {
         self.music[note]?.append(distance)
     }
     
-    private func arrangeDistances() {
-        // EFFECTS: sort the note according to their distance
-        
-        if !self.isArranged {
-            for note in self.music.keys {
-                self.music[note]?.sort({$0 < $1})
-            }
-            
-            self.isArranged = true
-        }
-    }
-    
     /// Compare two music and return if they are similiar
     /// :param: anotherMusic another music to compare
     func isSimilarTo(anotherMusic: XMusic) -> Bool {
@@ -125,5 +113,17 @@ class XMusic: NSObject, NSCoding {
         notesArray.sort({$0.1 <= $1.1})
         
         return notesArray
+    }
+    
+    private func arrangeDistances() {
+        // EFFECTS: sort the note according to their distance
+        
+        if !self.isArranged {
+            for note in self.music.keys {
+                self.music[note]?.sort({$0 < $1})
+            }
+            
+            self.isArranged = true
+        }
     }
 }
