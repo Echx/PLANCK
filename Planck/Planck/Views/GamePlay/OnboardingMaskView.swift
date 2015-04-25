@@ -14,6 +14,13 @@ protocol OnboardingMaskViewDelegate {
 }
 
 class OnboardingMaskView: UIView {
+    private struct MethodSelector {
+        static let showTapAnimation = Selector("showTapAnimation:")
+        static let showDragAnimation = Selector("showDragAnimation:")
+        static let viewDidTapped = Selector("viewDidTapped:")
+        static let viewDidPanned = Selector("viewDidPanned:")
+    }
+    
     private let keyForStartPoint = "startPoint"
     private let keyForEndPoint = "endPoint"
     
@@ -166,7 +173,7 @@ class OnboardingMaskView: UIView {
         var timer = NSTimer.scheduledTimerWithTimeInterval(
             self.tapAnimatingDelay,
             target: self,
-            selector: "showTapAnimation:",
+            selector: MethodSelector.showTapAnimation,
             userInfo: NSValue(CGPoint: point),
             repeats: repeat
         )
@@ -226,7 +233,7 @@ class OnboardingMaskView: UIView {
         var timer = NSTimer.scheduledTimerWithTimeInterval(
             self.dragAnimatingDelay,
             target: self,
-            selector: "showDragAnimation:",
+            selector: MethodSelector.showDragAnimation,
             userInfo: [keyForStartPoint: NSValue(CGPoint: startPoint), keyForEndPoint: NSValue(CGPoint: endPoint)],
             repeats: repeat
         )
@@ -310,12 +317,12 @@ class OnboardingMaskView: UIView {
     
     private func setRecognizers() {
         for i in 1..<5 {
-            let tapGestureRecognizer = UITapGestureRecognizer(target: self, action: "viewDidTapped:")
+            let tapGestureRecognizer = UITapGestureRecognizer(target: self, action: MethodSelector.viewDidTapped)
             tapGestureRecognizer.numberOfTouchesRequired = i
             self.addGestureRecognizer(tapGestureRecognizer)
         }
         
-        let panGestureRecognizer = UIPanGestureRecognizer(target: self, action: "viewDidPanned:")
+        let panGestureRecognizer = UIPanGestureRecognizer(target: self, action: MethodSelector.viewDidPanned)
         self.addGestureRecognizer(panGestureRecognizer)
     }
     
