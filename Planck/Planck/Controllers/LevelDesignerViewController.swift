@@ -372,11 +372,13 @@ class LevelDesignerViewController: XViewController {
                 }
                 
                 let view = self.deviceViews[node.id]!
-                view.center = CGPointMake(view.center.x + location.x - lastLocation!.x, view.center.y + location.y - lastLocation!.y)
+                view.center = CGPointMake(view.center.x + location.x - lastLocation!.x,
+                    view.center.y + location.y - lastLocation!.y)
                 lastLocation = location
                 if sender.state == UIGestureRecognizerState.Ended {
                     
-                    let offset = CGPointMake(location.x - firstLocation!.x, location.y - firstLocation!.y)
+                    let offset = CGPointMake(location.x - firstLocation!.x,
+                        location.y - firstLocation!.y)
                     
                     self.moveNode(node, from: firstViewCenter!, offset: offset)
                     
@@ -434,7 +436,10 @@ class LevelDesignerViewController: XViewController {
                     self.deselectNode()
                     self.selectNode(node)
                 }
-                let alertView = UIAlertView(title: AlertViewMessage.title, message: AlertViewMessage.message, delegate: nil, cancelButtonTitle: AlertViewMessage.cancelButtonTitle)
+                let alertView = UIAlertView(title: AlertViewMessage.title,
+                    message: AlertViewMessage.message,
+                    delegate: nil,
+                    cancelButtonTitle: AlertViewMessage.cancelButtonTitle)
                 alertView.show()
             }
         }
@@ -451,7 +456,8 @@ class LevelDesignerViewController: XViewController {
                 if node.isPlanck {
                     let noteName: Int = self.notePicker.selectedRowInComponent(0)
                     let noteAccidental: Int = self.accidentalPicker.selectedRowInComponent(0)
-                    let xNoteName: XNoteName = XNoteName(rawValue: noteName * 5 + noteAccidental)!
+                    let xNoteName: XNoteName = XNoteName(rawValue: noteName *
+                        MusicDefaults.numberOfAccidentalsPerNote + noteAccidental)!
                     
                     let noteGroup: Int = self.groupPicker.selectedRowInComponent(0)
                     
