@@ -8,10 +8,17 @@
 
 import UIKit
 
+//This class is the parent class of all X-devices
 class XNode: NSObject, NSCoding {
-    var physicsBody: GOOpticRep
-    var instrument: Int = NodeDefaults.instrumentInherit
     
+    //physicsBody defines the physics property of the xnode
+    //it determines how it behaviors towards the light ray
+    var physicsBody: GOOpticRep
+    
+    //an integer indicating the intrument type of the node
+    var instrument: Int = NodeDefaults.instrumentInherit
+
+    //a boolean indicating whether the node has a customized sound (i.e. piano or harp)
     var isPlanck: Bool {
         get {
             if (self.instrument == NodeDefaults.instrumentInherit) || (self.instrument == NodeDefaults.instrumentNil) {
@@ -21,6 +28,8 @@ class XNode: NSObject, NSCoding {
             }
         }
     }
+    
+    //a boolean indicating whether the node should play sound when getting hit
     var shouldPlaySound: Bool {
         get {
             if self.instrument == NodeDefaults.instrumentNil {
@@ -31,11 +40,19 @@ class XNode: NSObject, NSCoding {
         }
     }
     
+    //the appearance color of the node
     var strokeColor = UIColor.whiteColor()
+    
+    //the sound in normal state
     var normalNote: XNote?
+    
+    //the cutomized sound set by the designer
     var planckNote: XNote?
+    
+    //a boolean indicating whether the node can be moved in game mode
     var isFixed = true
     
+    //the id for the node, which is the same its physicsBody id
     var id: String {
         get {
             return self.physicsBody.id
@@ -47,6 +64,8 @@ class XNode: NSObject, NSCoding {
         super.init()
     }
     
+    
+    //returns: the url of its corresponding sound file
     func getSound() -> NSURL? {
         if !self.shouldPlaySound {
             return nil
@@ -55,6 +74,8 @@ class XNode: NSObject, NSCoding {
         }
     }
     
+    //returns: a xnote object representing its sound
+    //         nil if the node should not play sound
     func getNote() -> XNote? {
         if !self.shouldPlaySound {
             return nil

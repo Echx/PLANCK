@@ -10,7 +10,7 @@
 class OscillationManager: NSObject {
     
     //default parameters for the oscillation
-    struct OscillateDefaults {
+    private struct OscillateDefaults {
         static let scale: CGFloat = 1.5
         static let duration: NSTimeInterval = 0.05
         static let delay: NSTimeInterval = 0
