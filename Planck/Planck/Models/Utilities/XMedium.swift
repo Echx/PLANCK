@@ -6,6 +6,8 @@
 //  Copyright (c) 2015 Echx. All rights reserved.
 //
 
+//This enumeration is not used in current project, but it is developed for future use
+//This enum defines the different medium for light, each medium carries a different refraction index
 enum XMedium: Int {
     case Vacuum = 0
     case Air, Water, OliveOil, CrownGlass, FlintGlass
