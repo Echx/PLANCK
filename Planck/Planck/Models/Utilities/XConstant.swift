@@ -50,6 +50,13 @@ struct SystemDefault {
     static let planckFontBold = "Akagi-SemiBold"
 }
 
+struct XImageName {
+    static let backImage = "back"
+    static let replayImage = "replay"
+    static let nextImage = "continue"
+    static let nextSectionImage = "next-section"
+}
+
 struct NSCodingKey {
     static let ColorRed = "RED"
     static let ColorGreen = "GREEN"

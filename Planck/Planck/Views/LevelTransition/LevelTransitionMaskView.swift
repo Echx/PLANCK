@@ -13,7 +13,17 @@ protocol LevelTransitionMaskViewDelegate {
 }
 
 class LevelTransitionMaskView: UIView {
-    private let congratulationLabel = UILabel(frame: CGRect(x: 0, y: 600, width: UIScreen.mainScreen().bounds.width, height: 50))
+    private struct MethodSelector {
+        static let buttonDidClicked = Selector("buttonDidClicked:")
+        static let showButtons = Selector("showButtons:")
+        static let hide = Selector("hide:")
+    }
+    
+    private let congratulationLabelFrame = CGRect(x: 0, y: 600, width: UIScreen.mainScreen().bounds.width, height: 50)
+    private let congratulationText = "Congratulation! You have unlocked the next section! (*´╰╯`๓)♬"
+    private let congratulationLabel = UILabel()
+    
+    private let buttonFrame = CGRectMake(0, 0, 150, 150)
     
     private let badgeViews = [BadgeView]()
     private let buttons = [UIButton]()
@@ -36,13 +46,17 @@ class LevelTransitionMaskView: UIView {
     ]
     
     private let buttonImages = [
-        UIImage(named: "back"),
-        UIImage(named: "replay"),
-        UIImage(named: "continue"),
-        UIImage(named: "next-section")
+        UIImage(named: XImageName.backImage),
+        UIImage(named: XImageName.replayImage),
+        UIImage(named: XImageName.nextImage),
+        UIImage(named: XImageName.nextSectionImage)
     ]
     
     private let audioPlayer = AVAudioPlayer(contentsOfURL: SoundFiles.levelUpSound, error: nil)
+    
+    // count the number of animation executed
+    private var animationCount = 0
+    
     var shouldShowButtons = true
     var delegate: LevelTransitionMaskViewDelegate?
     var autoHide = false
@@ -65,37 +79,42 @@ class LevelTransitionMaskView: UIView {
     let showButtonUnitDelay = 0.1
     let showButtonDuration = 0.3
     var showButtonDelay: NSTimeInterval = 0.5
+    // the index of the button selected
+    var selectedIndex = 2
     
     override init() {
         super.init(frame: UIScreen.mainScreen().bounds)
         let blurView = UIVisualEffectView(effect: UIBlurEffect(style: UIBlurEffectStyle.Dark))
         blurView.frame = self.bounds
         self.addSubview(blurView)
-        self.congratulationLabel.text = "Congratulation! You have unlocked the next section! (*´╰╯`๓)♬"
+        self.congratulationLabel = UILabel(frame: congratulationLabelFrame)
+        self.congratulationLabel.text = congratulationText
         self.congratulationLabel.textAlignment = NSTextAlignment.Center
         self.congratulationLabel.textColor = UIColor.whiteColor()
+        
         for var i = 0; i < self.coinCount; i++ {
             var badgeView = BadgeView(isOn: true)
             badgeView.center = self.hiddenCentersTop[i]
             self.addSubview(badgeView)
             self.badgeViews.append(badgeView)
             
-            var button = UIButton(frame: CGRectMake(0, 0, 150, 150))
+            var button = UIButton(frame: buttonFrame)
             button.center = self.hiddenCentersTop[i]
             button.tag = i
             button.alpha = 0
             button.setImage(self.buttonImages[i], forState: UIControlState.Normal)
-            button.addTarget(self, action: "buttonDidClicked:", forControlEvents: UIControlEvents.TouchUpInside)
+            button.addTarget(self, action: MethodSelector.buttonDidClicked, forControlEvents: UIControlEvents.TouchUpInside)
             self.addSubview(button)
             self.addSubview(button)
             self.buttons.append(button)
         }
+        
         self.buttons[2].setImage(self.buttonImages[3], forState: UIControlState.Highlighted)
         self.audioPlayer.prepareToPlay()
     }
     
     
-    //show n normal and 3-n empty coin
+    //show n normal and 3 - n empty coin
     func show(n: Int, isSectionFinished: Bool) {
         self.alpha = 1
         self.audioPlayer.play()
@@ -135,14 +154,14 @@ class LevelTransitionMaskView: UIView {
                         let timer = NSTimer.scheduledTimerWithTimeInterval(
                             self.showButtonDelay,
                             target: self,
-                            selector: Selector("showButtons"),
+                            selector: MethodSelector.showButtons,
                             userInfo: nil,
                             repeats: false)
                     } else {
                         let timer = NSTimer.scheduledTimerWithTimeInterval(
                             self.showButtonDelay,
                             target: self,
-                            selector: Selector("hide"),
+                            selector: MethodSelector.hide,
                             userInfo: nil,
                             repeats: false)
                     }
@@ -182,13 +201,11 @@ class LevelTransitionMaskView: UIView {
         }
     }
     
-    var selectedIndex = 2;
     func buttonDidClicked(sender: UIButton) {
         self.selectedIndex = sender.tag
         self.hide()
     }
     
-    private var animationCount = 0
     private func animationComplete() {
         self.animationCount++
         if self.animationCount == self.coinCount {
