@@ -16,7 +16,7 @@ protocol PauseMaskViewDelegate {
 /// This view will be presented when user pause the game
 class PauseMaskView: UIView {
     private struct MethodSelector {
-        static let buttonDidClicked = Selector("buttonDidClicked")
+        static let buttonDidClicked = Selector("buttonDidClicked:")
     }
     
     private let buttons = [UIButton]()
