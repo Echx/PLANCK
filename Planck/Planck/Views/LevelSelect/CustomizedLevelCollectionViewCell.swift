@@ -9,6 +9,6 @@
 import UIKit
 
 class CustomizedLevelCollectionViewCell: UICollectionViewCell {
-    
+    // the title label of the cell
     @IBOutlet weak var title: UILabel!
 }
