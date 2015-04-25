@@ -14,10 +14,6 @@ protocol LevelSelectDelegate {
 
 class DesignerLevelSelectViewController: UITableViewController {
     
-    private let cellID = "LevelCell"
-    private let storyBoardID = "Main"
-    private let gameViewID = "GameView"
-    
     // holding level names
     private var levelArray = [GameLevel]()
     
@@ -25,26 +21,25 @@ class DesignerLevelSelectViewController: UITableViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
         loadFiles()
-
-        // Display an Edit button        
-        self.navigationItem.rightBarButtonItem = self.editButtonItem()
     }
 
     // MARK: - Table view data source
+    
+    /// Return the number of sections.
     override func numberOfSectionsInTableView(tableView: UITableView) -> Int {
-        // Return the number of sections.
+        
         return 1
     }
 
+    /// Return the number of row in a sections.
     override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         // Return the number of rows in the section.
         return self.levelArray.count
     }
 
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCellWithIdentifier(cellID, forIndexPath: indexPath) as UITableViewCell
+        let cell = tableView.dequeueReusableCellWithIdentifier(ReuseableID.DesignerLevelCell, forIndexPath: indexPath) as UITableViewCell
 
         let game = self.levelArray[indexPath.item]
         cell.textLabel?.text = String(game.index)
@@ -58,7 +53,6 @@ class DesignerLevelSelectViewController: UITableViewController {
     }
 
     private func loadFiles() {
-        // make sure read the original level
         StorageManager.defaultManager.setNeedsReload()
         self.levelArray = StorageManager.defaultManager.loadAllLevel()
     }
