@@ -109,23 +109,23 @@ class GOOpticRep: NSObject, NSCoding {
     }
     
     // private method
-    private func setCenter(center: GOCoordinate) {
+    func setCenter(center: GOCoordinate) {
         self.center = center
         self.refresh()
     }
     
-    private func setDeviceType(type: DeviceType) {
+    func setDeviceType(type: DeviceType) {
         self.type = type
         self.updateEdgesType()
     }
     
-    private func updateEdgesParent() {
+    func updateEdgesParent() {
         for edge in self.edges {
             edge.parent = self.id
         }
     }
     
-    private func updateEdgesType() {
+    func updateEdgesType() {
         for edge in self.edges {
             switch self.type {
             case DeviceType.Mirror:
