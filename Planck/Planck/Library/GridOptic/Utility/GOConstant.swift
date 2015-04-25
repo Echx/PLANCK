@@ -72,3 +72,10 @@ struct FlatOpticRepDefaults {
     static let bottomEdgeTag = 2
     static let leftEdgeTag = 3
 }
+
+struct ConvexLensRep {
+    static let defaultThickness: CGFloat = 1
+    static let defaultLength: CGFloat = 5
+    static let leftArcTag = 0
+    static let rightArcTag = 1
+}
