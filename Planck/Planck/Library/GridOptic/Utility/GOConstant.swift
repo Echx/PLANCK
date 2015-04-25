@@ -68,6 +68,7 @@ struct FlatOpticRepDefaults {
     static let defaultThickness: CGFloat = 1
     static let defaultLength: CGFloat = 6
     static let topEdgeTag = 0
-    static let topEdgeTag = 0
-    
+    static let rightEdgeTag = 1
+    static let bottomEdgeTag = 2
+    static let leftEdgeTag = 3
 }

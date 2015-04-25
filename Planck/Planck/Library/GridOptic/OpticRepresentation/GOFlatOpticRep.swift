@@ -122,25 +122,25 @@ class GOFlatOpticRep: GOOpticRep {
         // top edge
         let centerTopEdge = CGPointMake(CGFloat(self.center.x), CGFloat(self.center.y) + CGFloat(self.length) / 2)
         let topEdge = GOLineSegment(center: centerTopEdge, length: self.thickness, direction: self.inversedNormalDirection)
-        topEdge.tag = 0
+        topEdge.tag = FlatOpticRepDefaults.topEdgeTag
         self.edges.append(topEdge)
         
         // right edge
         let centerRightEdge = CGPointMake(CGFloat(self.center.x) + CGFloat(self.thickness) / 2, CGFloat(self.center.y))
         let rightEdge = GOLineSegment(center: centerRightEdge, length: self.length, direction: self.inversedDirection)
-        rightEdge.tag = 1
+        rightEdge.tag = FlatOpticRepDefaults.rightEdgeTag
         self.edges.append(rightEdge)
         
         // bottom edge
         let centerBottomEdge = CGPointMake(CGFloat(self.center.x), CGFloat(self.center.y) - CGFloat(self.length) / 2)
         let bottomEdge = GOLineSegment(center: centerBottomEdge, length: self.thickness, direction: self.normalDirection)
-        bottomEdge.tag = 2
+        bottomEdge.tag = FlatOpticRepDefaults.bottomEdgeTag
         self.edges.append(bottomEdge)
         
         // left edge
         let centerLeftEdge = CGPointMake(CGFloat(self.center.x) - CGFloat(self.thickness) / 2, CGFloat(self.center.y))
         let leftEdge = GOLineSegment(center: centerLeftEdge, length: self.length, direction: self.direction)
-        leftEdge.tag = 3
+        leftEdge.tag = FlatOpticRepDefaults.leftEdgeTag
         self.edges.append(leftEdge)
     }
     
@@ -149,16 +149,16 @@ class GOFlatOpticRep: GOOpticRep {
         self.direction = direction
         
         for edge in self.edges {
-            if edge.tag == 0 {
+            if edge.tag == FlatOpticRepDefaults.topEdgeTag {
                 edge.center = edge.center.getPointAfterRotation(about: self.center.point, byAngle: directionDifference)
                 edge.direction = self.inversedNormalDirection
-            } else if edge.tag == 1{
+            } else if edge.tag == FlatOpticRepDefaults.rightEdgeTag {
                 edge.center = edge.center.getPointAfterRotation(about: self.center.point, byAngle: directionDifference)
                 edge.direction = self.inversedDirection
-            } else if edge.tag == 2{
+            } else if edge.tag == FlatOpticRepDefaults.bottomEdgeTag {
                 edge.center = edge.center.getPointAfterRotation(about: self.center.point, byAngle: directionDifference)
                 edge.direction = self.normalDirection
-            } else if edge.tag == 3{
+            } else if edge.tag == FlatOpticRepDefaults.leftEdgeTag {
                 edge.center = edge.center.getPointAfterRotation(about: self.center.point, byAngle: directionDifference)
                 edge.direction = self.direction
             }
