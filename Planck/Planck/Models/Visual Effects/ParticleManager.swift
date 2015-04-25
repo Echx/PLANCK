@@ -6,9 +6,6 @@
 //  Copyright (c) 2015 Echx. All rights reserved.
 //
 
-import UIKit
-
-
 //This class manages the behaviors of all the particle effects in the project
 class ParticleManager: NSObject {
 
