@@ -76,7 +76,6 @@ class HomeViewController: XViewController {
                 
             }
         })
-        
         GamiCent.delegate = self
     }
 

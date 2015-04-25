@@ -8,6 +8,7 @@
 
 import UIKit
 
+/// This is the collection header to divide the section
 class LevelSelectHeaderView: UICollectionReusableView {
     // the title label of the header view
     @IBOutlet weak var title: UILabel!

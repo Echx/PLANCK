@@ -8,15 +8,17 @@
 
 import UIKit
 
+/// This is the view component to display the badge that user has achieved
 class BadgeView: UIView {
     
     private struct CoinImage {
-        static let normal = UIImage(named: "coin")
-        static let empty = UIImage(named: "emptycoin")
+        static let normal = UIImage(named: XImageName.normal)
+        static let empty = UIImage(named: XImageName.empty)
     }
     
     let defaultWidth: CGFloat = 150
     var imageView: UIImageView
+    
     init(isOn: Bool, width: CGFloat = 150) {
         let rect = CGRectMake(0, 0, width, width)
         self.imageView = UIImageView(frame: rect)
@@ -37,6 +39,8 @@ class BadgeView: UIView {
         self.addSubview(self.imageView)
     }
     
+    /// Toggle the badge image based on the given boolean value
+    /// :params: booleanValue a boolean indicating whether to show the bade
     func setEmpty(booleanValue: Bool) {
         if booleanValue {
             self.imageView.image = CoinImage.empty

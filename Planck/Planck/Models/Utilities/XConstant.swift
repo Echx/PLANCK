@@ -67,6 +67,10 @@ struct XImageName {
     static let statusGreen = "clear"
     static let statusOrange = "twostar"
     static let statusRed = "onestar"
+    
+    static let normal = "normal"
+    static let empty = "empty"
+    static let headePhone = "headphone"
 }
 
 struct NSCodingKey {

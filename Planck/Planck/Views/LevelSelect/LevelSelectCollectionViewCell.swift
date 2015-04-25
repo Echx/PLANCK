@@ -8,6 +8,7 @@
 
 import UIKit
 
+/// This is the collection cell shows the pre-defined level
 class LevelSelectCollectionViewCell: UICollectionViewCell {
     // the title label of the cell
     @IBOutlet weak var title: UILabel!

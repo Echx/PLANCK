@@ -8,6 +8,7 @@
 
 import UIKit
 
+/// This is the switch view appear at the bottom of the game view
 class SwitchView: UIView {
     var isOn = false
     

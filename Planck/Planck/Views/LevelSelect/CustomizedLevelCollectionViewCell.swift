@@ -8,6 +8,7 @@
 
 import UIKit
 
+/// This is the collection cell shows the user customized level
 class CustomizedLevelCollectionViewCell: UICollectionViewCell {
     // the title label of the cell
     @IBOutlet weak var title: UILabel!

@@ -8,11 +8,16 @@
 
 import UIKit
 
+/// LevelTransitionMaskView will notify its delegate which button was clicked
+/// and present itself when it get dismissed
 protocol LevelTransitionMaskViewDelegate {
     func viewDidDismiss(view: LevelTransitionMaskView, withButtonClickedAtIndex index: Int)
 }
 
+/// This is a view to be shown after user successfully finish a level
+/// It will present the badge the user achieved, then display three button options
 class LevelTransitionMaskView: UIView {
+    // define some constant
     private struct MethodSelector {
         static let buttonDidClicked = Selector("buttonDidClicked:")
         static let showButtons = Selector("showButtons")
@@ -56,6 +61,8 @@ class LevelTransitionMaskView: UIView {
     
     // count the number of animation executed
     private var animationCount = 0
+    // the index of the button selected
+    private var selectedIndex = 2
     
     
     //public properties which user can modify outside the class
@@ -80,9 +87,6 @@ class LevelTransitionMaskView: UIView {
             return normalCenters.count
         }
     }
-    
-    // the index of the button selected
-    private var selectedIndex = 2
     
     override init() {
         super.init(frame: UIScreen.mainScreen().bounds)
@@ -115,8 +119,13 @@ class LevelTransitionMaskView: UIView {
         self.audioPlayer.prepareToPlay()
     }
     
+    /**
+    Show n filled and 3 - n empty badge
     
-    //show n normal and 3 - n empty coin
+    :param: n the number of fulfill badge
+    :param: isSectionFinished a boolean indicating whether the section is finished
+    
+    */
     func show(n: Int, isSectionFinished: Bool) {
         self.alpha = 1
         self.audioPlayer.play()
@@ -171,6 +180,9 @@ class LevelTransitionMaskView: UIView {
         }
     }
     
+    /**
+    Hide the trainisition view
+    */
     func hide() {
         self.animationCount = 0
         for var i = 0; i < self.coinCount; i++ {
@@ -189,6 +201,9 @@ class LevelTransitionMaskView: UIView {
         }
     }
     
+    /**
+    Display buttons
+    */
     func showButtons() {
         for var i = 0; i < self.coinCount; i++ {
             UIView.animateWithDuration(
@@ -203,11 +218,17 @@ class LevelTransitionMaskView: UIView {
         }
     }
     
+    /**
+    A method to record which button has been clicked
+    */
     func buttonDidClicked(sender: UIButton) {
         self.selectedIndex = sender.tag
         self.hide()
     }
     
+    /**
+    This method is used to finish displaying badge and show the button options
+    */
     private func animationComplete() {
         self.animationCount++
         if self.animationCount == self.coinCount {
