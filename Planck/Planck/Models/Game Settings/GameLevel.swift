@@ -5,8 +5,12 @@
 //  Created by Jiang Sheng on 5/4/15.
 //  Copyright (c) 2015 Echx. All rights reserved.
 
-
-class GameLevel: NSObject, NSCoding {
+//This class defines the data structure which stores each of the game levels
+class GameLevel: NSObject, NSCoding, Comparable, Equatable {
+    
+    //get a game level from the given index
+    // :param: the index of the game level needed to be retrieved
+    // returns: the GameLevel objects for that particular level
     class func loadGameWithIndex(index:Int) -> GameLevel? {
         let totalGame = StorageManager.defaultManager.numOfLevel()
         if index < 0 || index >= totalGame {
@@ -15,6 +19,7 @@ class GameLevel: NSObject, NSCoding {
         return StorageManager.defaultManager.loadAllLevel()[index]
     }
     
+    //count the total star the player has ever got
     class func countTotalScore() -> Int {
         let allLevels = StorageManager.defaultManager.loadAllLevel()
         var total:Int = 0
@@ -102,10 +107,12 @@ class GameLevel: NSObject, NSCoding {
         aCoder.encodeBool(self.isUnlock,        forKey: NSCodingKey.GameUnlock)
     }
     
+    //make a deep copy of the current gamelevel
     func deepCopy() -> GameLevel {
         return NSKeyedUnarchiver.unarchiveObjectWithData(NSKeyedArchiver.archivedDataWithRootObject(self)) as GameLevel
     }
     
+    //get the movable nodes in original grid
     func getOriginalMovableNodes() -> [GOOpticRep]{
         var nodes = [GOOpticRep]()
         for (key, xNodes) in self.xNodes {
@@ -116,6 +123,7 @@ class GameLevel: NSObject, NSCoding {
         return nodes
     }
     
+    //get the movable nodes in grid
     func getCurrentMovableNodes() -> [GOOpticRep]{
         var nodes = [GOOpticRep]()
         for (key, xNodes) in self.xNodes {
@@ -125,10 +133,6 @@ class GameLevel: NSObject, NSCoding {
         }
         return nodes
     }
-}
-
-extension GameLevel:Comparable, Equatable {
-    
 }
 
 func ==(lhs: GameLevel, rhs: GameLevel) -> Bool {
