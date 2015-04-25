@@ -8,94 +8,131 @@
 
 import UIKit
 
+
+//This class manages the behaviors of all the particle effects in the project
 class ParticleManager: NSObject {
-    
-    struct EmitterDefaults {
-        static let emitterBirthRate:Float = 19
-        static let emitterLifetime:Float = 1
-        static let emitterX:CGFloat = 0
-        static let emitterY:CGFloat = 0
-        static let emitterWidth:CGFloat = 1024
-        static let emitterHeight:CGFloat = 768
-        static let emitterSize:CGSize = CGSizeMake(5, 5)
-        static let emitterXAcceleration:CGFloat = 0.0
-        static let emitterYAcceleration:CGFloat = 0.0
-        static let emitterSpeed:CGFloat = 0.0
-        static let emitterLocation:CGFloat = CGFloat(-M_PI)
-        static let emitterVelocityRange:CGFloat = 0
-        static let emitterEmissionRange:CGFloat = CGFloat(M_PI)
-        static let buttonOffset:CGFloat = 1024.0
-        static let sparkFile:String = "FireSpark"
+
+    //Particle effects specifics for light ray
+    struct ParticleDefaults {
+        static let emitterLayerFrame = UIScreen.mainScreen().bounds
+        static let emitterLayerEmitterSize = CGSizeMake(5, 5)
+        static let emitterLayerEmitterShape = kCAEmitterLayerPoints
+        static let emitterLayerPosition = CGPoint(x: -emitterLayerFrame.width / 2, y: -emitterLayerFrame.height / 2)
+        static let emitterLayerRenderMode = kCAEmitterLayerAdditive
+        
+        static let emitterCellScale: CGFloat = 0.03
+        static let emitterCellContent = UIImage(named: "FireSpark")!.CGImage
+        static let emitterCellBirthRate: Float = 19
+        static let emitterCellLifeTime: Float = 1
+        static let emitterCellLifeTimeRange: Float = 1
+        static let emitterCellSpin: CGFloat = 0
+        static let emitterCellSpinRange: CGFloat = CGFloat(M_PI * 2)
+        static let emitterCellXAcceleration: CGFloat = 0
+        static let emitterCellYAcceleration: CGFloat = 0
+        static let emitterCellVelocity: CGFloat = 0
+        static let emitterCellVelocityRange: CGFloat = 0
+        static let emitterCellEmissionRange: CGFloat = CGFloat(M_PI)
+        static let emitterCellAlphaRange: Float = 2
+        static let emitterCellAlphaSpeed: Float = -2
+        static let emitterCellEmissionLongtitude: CGFloat = CGFloat(-M_PI)
+    }
+
+    //Particle effects specifics for home view
+    struct HomeParticleDefaults {
+        static let emitterLayerFrame = UIScreen.mainScreen().bounds
+        static let emitterLayerEmitterSize = UIScreen.mainScreen().bounds.size
+        static let emitterLayerEmitterShape = kCAEmitterLayerPoints
+        static let emitterLayerPosition = CGPoint(x: emitterLayerFrame.width / 2, y: emitterLayerFrame.height / 2)
+        static let emitterLayerRenderMode = kCAEmitterLayerAdditive
+        
+        static let emitterCellScale: CGFloat = 0.05
+        static let emitterCellBirthRate: Float = 20
+        static let emitterCellLifeTime: Float = 1
+        static let emitterCellLifeTimeRange: Float = 1
+        static let emitterCellSpin: CGFloat = 0
+        static let emitterCellSpinRange: CGFloat = CGFloat(M_PI * 2)
+        static let emitterCellXAcceleration: CGFloat = 10
+        static let emitterCellYAcceleration: CGFloat = 10
+        static let emitterCellVelocity: CGFloat = 40
+        static let emitterCellVelocityRange: CGFloat = 30
+        static let emitterCellEmissionRange: CGFloat = CGFloat(M_PI) * 0.6
+        static let emitterCellAlphaRange: Float = 2
+        static let emitterCellAlphaSpeed: Float = -1.7
     }
     
-    class func getHomeBackgroundParticles(textureFileName: String, longtitude: CGFloat) -> CAEmitterLayer{
-        let rect = UIScreen.mainScreen().bounds
-        let emitter = CAEmitterLayer()
-        emitter.frame = rect
-        
-        emitter.emitterShape = kCAEmitterLayerPoints
-        emitter.emitterPosition = CGPoint(x: rect.width / 2, y: rect.height / 2)
-        emitter.emitterSize = UIScreen.mainScreen().bounds.size
-        emitter.renderMode = kCAEmitterLayerAdditive
-        emitter.seed = UInt32(random())
-        
+    //returns a CAEmitterLayer which represents the particle effects inside a light ray
+    class func getParticleLayer() -> CAEmitterLayer {
         let emitterCell = CAEmitterCell()
-        emitterCell.scale = 0.05
-        emitterCell.contents = UIImage(named: textureFileName)!.CGImage
-        emitter.emitterCells = [emitterCell]
-        // define params here
-        emitterCell.birthRate = 20
-        emitterCell.lifetime = 1
-        emitterCell.spin = 0
-        emitterCell.spinRange = CGFloat(M_PI * 2)
-        // define speed
-        emitterCell.yAcceleration = 10
-        emitterCell.xAcceleration = 10
-        emitterCell.velocity = 40
-        emitterCell.velocityRange = 30
-        emitterCell.emissionRange = CGFloat(M_PI) * 0.6
-        emitterCell.emissionLongitude = longtitude
+    
+        //register default properties for CAEmitterCell
+        emitterCell.scale               = ParticleDefaults.emitterCellScale
+        emitterCell.contents            = ParticleDefaults.emitterCellContent
+        emitterCell.birthRate           = ParticleDefaults.emitterCellBirthRate
+        emitterCell.lifetime            = ParticleDefaults.emitterCellLifeTime
+        emitterCell.lifetimeRange       = ParticleDefaults.emitterCellLifeTimeRange
+        emitterCell.spin                = ParticleDefaults.emitterCellSpin
+        emitterCell.spinRange           = ParticleDefaults.emitterCellSpinRange
+        emitterCell.xAcceleration       = ParticleDefaults.emitterCellXAcceleration
+        emitterCell.yAcceleration       = ParticleDefaults.emitterCellYAcceleration
+        emitterCell.velocity            = ParticleDefaults.emitterCellVelocity
+        emitterCell.velocityRange       = ParticleDefaults.emitterCellVelocityRange
+        emitterCell.emissionLongitude   = ParticleDefaults.emitterCellEmissionLongtitude
+        emitterCell.emissionRange       = ParticleDefaults.emitterCellEmissionRange
+        emitterCell.alphaRange          = ParticleDefaults.emitterCellAlphaRange
+        emitterCell.alphaSpeed          = ParticleDefaults.emitterCellAlphaSpeed
+
         
-        emitterCell.alphaRange = 2
-        emitterCell.alphaSpeed = -1.7
-        emitterCell.lifetimeRange = 1
+        let emitter = CAEmitterLayer()
         
+        //register default properities for CAEmitterLayer
+        emitter.frame           = ParticleDefaults.emitterLayerFrame
+        emitter.emitterShape    = ParticleDefaults.emitterLayerEmitterShape
+        emitter.emitterPosition = ParticleDefaults.emitterLayerPosition
+        emitter.emitterSize     = ParticleDefaults.emitterLayerEmitterSize
+        emitter.renderMode      = ParticleDefaults.emitterLayerRenderMode
+    
+        //link the cell and the layer and return
+        emitter.emitterCells    = [emitterCell]
         return emitter
     }
     
-    class func getParticleLayer() -> CAEmitterLayer {
-        let rect = CGRect(x: EmitterDefaults.emitterX, y: EmitterDefaults.emitterY,
-            width: EmitterDefaults.emitterWidth, height: EmitterDefaults.emitterHeight)
-        let emitter = CAEmitterLayer()
-        emitter.frame = rect
-        
-        emitter.emitterShape = kCAEmitterLayerPoints
-        emitter.emitterPosition = CGPoint(x: -rect.width / 2, y: -rect.height / 2)
-        emitter.emitterSize = EmitterDefaults.emitterSize
-        emitter.renderMode = kCAEmitterLayerAdditive
-        
+    //returns a CAEmitterLayer which represents the particle effects for home view
+    class func getHomeBackgroundParticles(textureFileName: String, longtitude: CGFloat) -> CAEmitterLayer{
         let emitterCell = CAEmitterCell()
-        emitterCell.scale = 0.03
-        emitterCell.contents = UIImage(named: EmitterDefaults.sparkFile)!.CGImage
+        
+        //register default properties for CAEmitterCell
+        emitterCell.scale           = HomeParticleDefaults.emitterCellScale
+        emitterCell.birthRate       = HomeParticleDefaults.emitterCellBirthRate
+        emitterCell.lifetime        = HomeParticleDefaults.emitterCellLifeTime
+        emitterCell.lifetimeRange   = HomeParticleDefaults.emitterCellLifeTimeRange
+        emitterCell.spin            = HomeParticleDefaults.emitterCellSpin
+        emitterCell.spinRange       = HomeParticleDefaults.emitterCellSpinRange
+        emitterCell.xAcceleration   = HomeParticleDefaults.emitterCellXAcceleration
+        emitterCell.yAcceleration   = HomeParticleDefaults.emitterCellYAcceleration
+        emitterCell.velocity        = HomeParticleDefaults.emitterCellVelocity
+        emitterCell.velocityRange   = HomeParticleDefaults.emitterCellVelocityRange
+        emitterCell.emissionRange   = HomeParticleDefaults.emitterCellEmissionRange
+        emitterCell.alphaRange      = HomeParticleDefaults.emitterCellAlphaRange
+        emitterCell.alphaSpeed      = HomeParticleDefaults.emitterCellAlphaSpeed
+        
+        //register variable properties for CAEmitterCell
+        emitterCell.emissionLongitude = longtitude
+        if let image = UIImage(named: textureFileName) {
+            emitterCell.contents = image.CGImage
+        }
+
+        let emitter = CAEmitterLayer()
+
+        //register default properities for CAEmitterLayer
+        emitter.frame               = HomeParticleDefaults.emitterLayerFrame
+        emitter.emitterSize         = HomeParticleDefaults.emitterLayerEmitterSize
+        emitter.emitterShape        = HomeParticleDefaults.emitterLayerEmitterShape
+        emitter.emitterPosition     = HomeParticleDefaults.emitterLayerPosition
+        emitter.renderMode          = HomeParticleDefaults.emitterLayerRenderMode
+        emitter.seed                = UInt32(random())
+        
+        //link the cell and the layer and return
         emitter.emitterCells = [emitterCell]
-        // define params here
-        emitterCell.birthRate = EmitterDefaults.emitterBirthRate
-        emitterCell.lifetime = EmitterDefaults.emitterLifetime
-        emitterCell.spin = 0
-        emitterCell.spinRange = CGFloat(M_PI * 2)
-        
-        // define speed
-        emitterCell.yAcceleration = EmitterDefaults.emitterYAcceleration
-        emitterCell.xAcceleration = EmitterDefaults.emitterXAcceleration
-        emitterCell.velocity = EmitterDefaults.emitterSpeed
-        emitterCell.emissionLongitude = EmitterDefaults.emitterLocation
-        emitterCell.velocityRange = EmitterDefaults.emitterVelocityRange
-        emitterCell.emissionRange = EmitterDefaults.emitterEmissionRange
-        
-        emitterCell.alphaRange = 2
-        emitterCell.alphaSpeed = -2
-        emitterCell.lifetimeRange = 1.0
-        
         return emitter
     }
 }
