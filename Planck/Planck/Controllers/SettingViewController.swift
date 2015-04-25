@@ -123,10 +123,10 @@ class SettingViewController: XViewController, UITableViewDataSource, UITableView
                 })
             } else {
                 // item 3 : view statstic
-                self.mm_drawerController()!.closeDrawerAnimated(true, completion: { (bool) -> Void in
+                self.getDrawerController()!.closeDrawerAnimated(true, completion: { (bool) -> Void in
                     let viewController = GameStasticViewController.getInstance()
                     viewController.modalPresentationStyle = .FormSheet
-                    self.mm_drawerController()!.presentViewController(viewController, animated: true, completion: nil)
+                    self.getDrawerController()!.presentViewController(viewController, animated: true, completion: nil)
                 })
             }
         }

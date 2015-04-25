@@ -8,6 +8,7 @@
 
 import UIKit
 
+//This class is the parent class for most of the view controllers in this project
 class XViewController: UIViewController {
 
     override func viewDidLoad() {
@@ -28,7 +29,7 @@ class XViewController: UIViewController {
 }
 
 extension XViewController {
-    func mm_drawerController() -> MMDrawerController? {
+    func getDrawerController() -> MMDrawerController? {
         var parentViewController = self.parentViewController
         while (parentViewController != nil) {
             if parentViewController!.isKindOfClass(MMDrawerController) {

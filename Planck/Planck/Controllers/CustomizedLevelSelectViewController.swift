@@ -91,7 +91,7 @@ class CustomizedLevelSelectViewController: ScrollPageContentViewController, UICo
             // load game to the game view
             var gameVC = GameViewController.getInstance(
                 game.deepCopy(), isPreview: false)
-            self.parentScrollPageVC!.mm_drawerController()!.closeDrawerAnimated(
+            self.parentScrollPageVC!.getDrawerController()!.closeDrawerAnimated(
                 true, completion: {
                 bool in
                     self.parentScrollPageVC!.presentViewController(

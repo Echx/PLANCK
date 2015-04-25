@@ -117,7 +117,7 @@ class LevelSelectViewController: ScrollPageContentViewController, UICollectionVi
                 object: nil
             )
             
-            self.parentScrollPageVC!.mm_drawerController()!.closeDrawerAnimated(
+            self.parentScrollPageVC!.getDrawerController()!.closeDrawerAnimated(
                 true,
                 completion: {
                     bool in

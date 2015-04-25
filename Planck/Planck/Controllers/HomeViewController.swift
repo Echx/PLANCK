@@ -79,13 +79,13 @@ class HomeViewController: XViewController {
 
     
     @IBAction func playGame(sender: AnyObject?) {
-        self.mm_drawerController()!.openDrawerSide(MMDrawerSide.Right,
+        self.getDrawerController()!.openDrawerSide(MMDrawerSide.Right,
                                                     animated: true, completion: nil)
     }
     
     
     @IBAction func openSettingMenu(sender: AnyObject) {
-        self.mm_drawerController()!.openDrawerSide(MMDrawerSide.Left,
+        self.getDrawerController()!.openDrawerSide(MMDrawerSide.Left,
                                                     animated: true, completion: nil)
     }
     
