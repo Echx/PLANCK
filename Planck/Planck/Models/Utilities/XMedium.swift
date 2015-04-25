@@ -6,8 +6,6 @@
 //  Copyright (c) 2015 Echx. All rights reserved.
 //
 
-import UIKit
-
 enum XMedium: Int {
     case Vacuum = 0
     case Air, Water, OliveOil, CrownGlass, FlintGlass

@@ -6,9 +6,6 @@
 //  Copyright (c) 2015 Echx. All rights reserved.
 //
 
-import UIKit
-import Foundation
-
 class XNote: NSObject, NSCoding {
     var noteName: XNoteName
     var noteGroup: Int?
