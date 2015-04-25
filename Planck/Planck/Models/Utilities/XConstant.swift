@@ -14,6 +14,10 @@ struct Constant {
     static let angleCalculationPrecision: CGFloat = 1000 //1000 is 3 bit precision
     static let rayWidth: CGFloat = 5
     static let vectorUnitLength: CGFloat = 1
+    static let leftDrawerWidth: CGFloat = 300
+    static let rightDrawerWidth: CGFloat = 290
+    
+    static let levelInSection = 6
 }
 
 struct Image {
