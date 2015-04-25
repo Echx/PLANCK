@@ -32,7 +32,8 @@ class GOConcaveLensRep: GOOpticRep {
     
     var length: CGFloat {
         get {
-            return 2 * sqrt(self.curvatureRadius * self.curvatureRadius - (self.curvatureRadius - self.thicknessDifference / 2) *
+            return 2 * sqrt(self.curvatureRadius * self.curvatureRadius -
+                (self.curvatureRadius - self.thicknessDifference / 2) *
                 (self.curvatureRadius - self.thicknessDifference / 2))
         }
     }
@@ -150,29 +151,42 @@ class GOConcaveLensRep: GOOpticRep {
         self.edges = [GOSegment]()
         let radianSpan = acos((self.curvatureRadius - self.thicknessDifference / 2) / self.curvatureRadius) * 2
         
-        //top line segment
-        let centerTopEdge = CGPointMake(CGFloat(self.center.x), CGFloat(self.center.y) + CGFloat(self.length)/2)
-        let topEdge = GOLineSegment(center: centerTopEdge, length: self.thicknessEdge, direction: self.normalDirection)
+        // set up top line segment
+        let centerTopEdge = CGPointMake(CGFloat(self.center.x),
+            CGFloat(self.center.y) + CGFloat(self.length)/2)
+        let topEdge = GOLineSegment(center: centerTopEdge,
+            length: self.thicknessEdge,
+            direction: self.normalDirection)
         topEdge.tag = ConcaveLensRepDefaults.topEdgeTag
         self.edges.append(topEdge)
         
-        //right arc
-        let centerRightArc = CGPointMake(CGFloat(self.center.x) + CGFloat(self.thicknessCenter)/2 + self.curvatureRadius, CGFloat(self.center.y))
-        let rightArc = GOArcSegment(center: centerRightArc, radius: self.curvatureRadius, radian: radianSpan, normalDirection: self.inverseNormalDirection)
+        // set up right arc
+        let centerRightArc = CGPointMake(CGFloat(self.center.x) +
+            CGFloat(self.thicknessCenter)/2 + self.curvatureRadius, CGFloat(self.center.y))
+        let rightArc = GOArcSegment(center: centerRightArc,
+            radius: self.curvatureRadius,
+            radian: radianSpan,
+            normalDirection: self.inverseNormalDirection)
         rightArc.tag = ConcaveLensRepDefaults.rightArcTag
         self.edges.append(rightArc)
         
-        
-        //bottom line segment
-        let centerBottomEdge = CGPointMake(CGFloat(self.center.x), CGFloat(self.center.y) - CGFloat(self.length)/2)
-        let bottomEdge = GOLineSegment(center: centerBottomEdge, length: self.thicknessEdge, direction: self.normalDirection)
+        // set up bottom line segment
+        let centerBottomEdge = CGPointMake(CGFloat(self.center.x),
+            CGFloat(self.center.y) - CGFloat(self.length)/2)
+        let bottomEdge = GOLineSegment(center: centerBottomEdge,
+            length: self.thicknessEdge,
+            direction: self.normalDirection)
         bottomEdge.tag = ConcaveLensRepDefaults.bottomEdgeTag
         bottomEdge.revert()
         self.edges.append(bottomEdge)
         
-        //left arc
-        let centerLeftArc = CGPointMake(CGFloat(self.center.x) - CGFloat(self.thicknessCenter)/2 - self.curvatureRadius, CGFloat(self.center.y))
-        let leftArc = GOArcSegment(center: centerLeftArc, radius: self.curvatureRadius, radian: radianSpan, normalDirection: self.normalDirection)
+        // set up left arc
+        let centerLeftArc = CGPointMake(CGFloat(self.center.x) -
+            CGFloat(self.thicknessCenter)/2 - self.curvatureRadius, CGFloat(self.center.y))
+        let leftArc = GOArcSegment(center: centerLeftArc,
+            radius: self.curvatureRadius,
+            radian: radianSpan,
+            normalDirection: self.normalDirection)
         leftArc.tag = ConcaveLensRepDefaults.leftArcTag
         self.edges.append(leftArc)
     }
@@ -183,15 +197,12 @@ class GOConcaveLensRep: GOOpticRep {
         
         for edge in self.edges {
             if edge.tag == ConcaveLensRepDefaults.leftArcTag {
-                // left arc
                 edge.center = edge.center.getPointAfterRotation(about: self.center.point, byAngle: directionDifference)
                 edge.normalDirection = self.normalDirection
             } else if edge.tag == ConcaveLensRepDefaults.rightArcTag {
-                // right arc
                 edge.center = edge.center.getPointAfterRotation(about: self.center.point, byAngle: directionDifference)
                 edge.normalDirection = self.inverseNormalDirection
             } else {
-                // top/bottom
                 edge.center = edge.center.getPointAfterRotation(about: self.center.point, byAngle: directionDifference)
                 edge.direction = self.normalDirection
             }

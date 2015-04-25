@@ -119,25 +119,25 @@ class GOFlatOpticRep: GOOpticRep {
     
     override func setUpEdges() {
         self.edges = [GOSegment]()
-        // top edge
+        // set up top edge
         let centerTopEdge = CGPointMake(CGFloat(self.center.x), CGFloat(self.center.y) + CGFloat(self.length) / 2)
         let topEdge = GOLineSegment(center: centerTopEdge, length: self.thickness, direction: self.inversedNormalDirection)
         topEdge.tag = FlatOpticRepDefaults.topEdgeTag
         self.edges.append(topEdge)
         
-        // right edge
+        // set up right edge
         let centerRightEdge = CGPointMake(CGFloat(self.center.x) + CGFloat(self.thickness) / 2, CGFloat(self.center.y))
         let rightEdge = GOLineSegment(center: centerRightEdge, length: self.length, direction: self.inversedDirection)
         rightEdge.tag = FlatOpticRepDefaults.rightEdgeTag
         self.edges.append(rightEdge)
         
-        // bottom edge
+        // set up bottom edge
         let centerBottomEdge = CGPointMake(CGFloat(self.center.x), CGFloat(self.center.y) - CGFloat(self.length) / 2)
         let bottomEdge = GOLineSegment(center: centerBottomEdge, length: self.thickness, direction: self.normalDirection)
         bottomEdge.tag = FlatOpticRepDefaults.bottomEdgeTag
         self.edges.append(bottomEdge)
         
-        // left edge
+        // set up left edge
         let centerLeftEdge = CGPointMake(CGFloat(self.center.x) - CGFloat(self.thickness) / 2, CGFloat(self.center.y))
         let leftEdge = GOLineSegment(center: centerLeftEdge, length: self.length, direction: self.direction)
         leftEdge.tag = FlatOpticRepDefaults.leftEdgeTag
@@ -148,6 +148,7 @@ class GOFlatOpticRep: GOOpticRep {
         let directionDifference = direction.angleFromXPlus - self.direction.angleFromXPlus
         self.direction = direction
         
+        // set up the correct direction for the edges
         for edge in self.edges {
             if edge.tag == FlatOpticRepDefaults.topEdgeTag {
                 edge.center = edge.center.getPointAfterRotation(about: self.center.point, byAngle: directionDifference)

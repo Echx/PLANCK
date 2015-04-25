@@ -24,7 +24,8 @@ class GOConvexLensRep: GOOpticRep {
     
     var length: CGFloat {
         get {
-            return 2 * sqrt(self.curvatureRadius * self.curvatureRadius - (self.curvatureRadius - self.thickness / 2) *
+            return 2 * sqrt(self.curvatureRadius * self.curvatureRadius -
+                (self.curvatureRadius - self.thickness / 2) *
                 (self.curvatureRadius - self.thickness / 2))
         }
     }
@@ -61,7 +62,8 @@ class GOConvexLensRep: GOOpticRep {
         }
     }
     
-    init(center: GOCoordinate, direction: CGVector, thickness: CGFloat, curvatureRadius: CGFloat, id: String, refractionIndex: CGFloat) {
+    init(center: GOCoordinate, direction: CGVector, thickness: CGFloat,
+        curvatureRadius: CGFloat, id: String, refractionIndex: CGFloat) {
         self.thickness = thickness
         self.curvatureRadius = curvatureRadius
         super.init(id: id, center: center)
@@ -129,29 +131,40 @@ class GOConvexLensRep: GOOpticRep {
         self.edges = [GOSegment]()
         let radianSpan = acos((self.curvatureRadius - self.thickness / 2) / self.curvatureRadius) * 2
         
-        //left arc
-        let centerLeftArc = CGPointMake(CGFloat(self.center.x) + CGFloat(self.thickness) / 2 - self.curvatureRadius, CGFloat(self.center.y))
-        let leftArc = GOArcSegment(center: centerLeftArc, radius: self.curvatureRadius, radian: radianSpan, normalDirection: self.normalDirection)
+        // set up left arc
+        let centerLeftArc = CGPointMake(CGFloat(self.center.x) +
+            CGFloat(self.thickness) / 2 - self.curvatureRadius, CGFloat(self.center.y))
+        let leftArc = GOArcSegment(center: centerLeftArc,
+            radius: self.curvatureRadius,
+            radian: radianSpan,
+            normalDirection: self.normalDirection)
         leftArc.tag = ConvexLensRepDefaults.leftArcTag
         self.edges.append(leftArc)
         
-        //right arc
-        let centerRightArc = CGPointMake(CGFloat(self.center.x) - CGFloat(self.thickness) / 2 + self.curvatureRadius, CGFloat(self.center.y))
-        let rightArc = GOArcSegment(center: centerRightArc, radius: self.curvatureRadius, radian: radianSpan, normalDirection: self.inverseNormalDirection)
+        // set up right arc
+        let centerRightArc = CGPointMake(CGFloat(self.center.x) -
+            CGFloat(self.thickness) / 2 + self.curvatureRadius, CGFloat(self.center.y))
+        let rightArc = GOArcSegment(center: centerRightArc,
+            radius: self.curvatureRadius,
+            radian: radianSpan,
+            normalDirection: self.inverseNormalDirection)
         rightArc.tag = ConvexLensRepDefaults.rightArcTag
         self.edges.append(rightArc)
     }
     
     override func setDirection(direction: CGVector) {
+        // set up the correct direction for each edge
         let directionDifference = direction.angleFromXPlus - self.direction.angleFromXPlus
         self.direction = direction
         
         for edge in self.edges {
             if edge.tag == ConvexLensRepDefaults.leftArcTag {
-                edge.center = edge.center.getPointAfterRotation(about: self.center.point, byAngle: directionDifference)
+                edge.center = edge.center.getPointAfterRotation(about: self.center.point,
+                    byAngle: directionDifference)
                 edge.normalDirection = self.normalDirection
             } else if edge.tag == ConvexLensRepDefaults.rightArcTag {
-                edge.center = edge.center.getPointAfterRotation(about: self.center.point, byAngle: directionDifference)
+                edge.center = edge.center.getPointAfterRotation(about: self.center.point,
+                    byAngle: directionDifference)
                 edge.normalDirection = self.inverseNormalDirection
             } else {
                 fatalError("invalid tag")

@@ -17,6 +17,7 @@ class GOOpticRep: NSObject, NSCoding {
     var refractionIndex : CGFloat = GOConstant.vacuumRefractionIndex
     
     var bezierPath: UIBezierPath {
+        // the bezier path representation of the optic instrument for drawing
         get {
             var path = UIBezierPath()
             for edge in self.edges {
@@ -85,6 +86,7 @@ class GOOpticRep: NSObject, NSCoding {
     }
     
     func containsPoint(point: CGPoint) -> Bool {
+        // check whether the point is contained with in the optic representation
         var framePath = UIBezierPath()
         let vertices = self.vertices
         framePath.moveToPoint(vertices[0])
@@ -124,6 +126,7 @@ class GOOpticRep: NSObject, NSCoding {
     }
     
     func updateEdgesType() {
+        // udpate the type of edge according to the property of the device
         for edge in self.edges {
             switch self.type {
             case DeviceType.Mirror:
