@@ -47,6 +47,7 @@ struct StoryboardIndentifier {
 }
 
 struct ReuseableID {
+    static let DesignerLevelCell = "LevelCell"
     static let LevelSelectCell = "LevelSelectCell"
     static let LevelSelectHeader = "LevelSelectHeader"
     static let UserLevelSelectHeader = "UserLevelSelectHeader"
