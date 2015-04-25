@@ -17,13 +17,15 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
         let settingViewController = SettingViewController.getInstance()
+        
+        /// initialize the right scroll page view here
         let systemLevelSelectVC = LevelSelectViewController.getInstance()
         let userLevelSelectVC = CustomizedLevelSelectViewController.getInstance()
-        var scrollPageArray = [systemLevelSelectVC, userLevelSelectVC]
+        let scrollPageArray = [systemLevelSelectVC, userLevelSelectVC]
         let scrollPageViewController = ScrollPageViewController.getInstance(scrollPageArray)
-        
         let homeViewController = HomeViewController.getInstance()
         
+        /// initialize the drawer view controllers
         self.drawerController = MMDrawerController(centerViewController: homeViewController, leftDrawerViewController: settingViewController, rightDrawerViewController: scrollPageViewController)
         self.drawerController!.maximumLeftDrawerWidth = Constant.leftDrawerWidth
         self.drawerController!.maximumRightDrawerWidth = Constant.rightDrawerWidth
@@ -33,7 +35,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         self.window = UIWindow(frame: UIScreen.mainScreen().bounds)
         self.window!.rootViewController = self.drawerController
         
-        // initial the storage folder
+        // initialize the storage folder
         StorageManager.defaultManager.initStorage()
         if !GameStats.isNotFirstTime() {
             // load the predefined levels when the first time play the game
