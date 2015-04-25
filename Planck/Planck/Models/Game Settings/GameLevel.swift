@@ -8,7 +8,7 @@
 //This class defines the data structure which stores each of the game levels
 class GameLevel: NSObject, NSCoding, Comparable, Equatable {
     
-    //get a game level from the given index
+    // Get a game level from the given index
     // :param: the index of the game level needed to be retrieved
     // returns: the GameLevel objects for that particular level
     class func loadGameWithIndex(index:Int) -> GameLevel? {
@@ -19,7 +19,8 @@ class GameLevel: NSObject, NSCoding, Comparable, Equatable {
         return StorageManager.defaultManager.loadAllLevel()[index]
     }
     
-    //count the total star the player has ever got
+    // Count the total scores (tokens) user has achieved
+    // returns: the total score
     class func countTotalScore() -> Int {
         let allLevels = StorageManager.defaultManager.loadAllLevel()
         var total:Int = 0
