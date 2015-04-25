@@ -29,7 +29,7 @@ class GOLine: NSObject {
     }
     
     init(anyPoint: CGPoint, direction: CGVector) {
-        self.anyPoint = anyPoint;
+        self.anyPoint = anyPoint
         if direction.dy < 0 || (direction.dy == 0 && direction.dx < 0){
             self.direction = CGVectorMake(-direction.dx, -direction.dy)
         } else {

@@ -14,6 +14,9 @@ protocol OnboardingMaskViewDelegate {
 }
 
 class OnboardingMaskView: UIView {
+    private let keyForStartPoint = "startPoint"
+    private let keyForEndPoint = "endPoint"
+    
     private var layers = [String: CALayer]()
     private var maskLayer = CAShapeLayer()
     private var mask = UIView()
@@ -34,12 +37,16 @@ class OnboardingMaskView: UIView {
     var maskColor = UIColor.blackColor()
     var maskOpacity: Float = 0.5
     
+    var startPoint: CGPoint?
+    
     var indicatorColor: UIColor = UIColor.whiteColor()
     var tapFinalRadius: CGFloat = 50
     var tapInitialRadius: CGFloat = 20
+    
     var tapRadiusScale: CGFloat {
         return self.tapFinalRadius / self.tapInitialRadius
     }
+    
     var tapAnimatingDuration: NSTimeInterval = 0.8
     var tapAnimatingDelay: NSTimeInterval = 1.5
     
@@ -56,7 +63,7 @@ class OnboardingMaskView: UIView {
 
     required convenience init(coder aDecoder: NSCoder) {
         self.init()
-        var path = UIBezierPath(rect: CGRectMake(312, 334, 400, 100))
+        var path = UIBezierPath()
         self.drawDashedTarget(path)
         self.drawMask(path, animated: true)
     }
@@ -148,7 +155,6 @@ class OnboardingMaskView: UIView {
     }
     
     func toggleMask(animated: Bool) {
-        println("toggle")
         if self.isMaskHidden {
             self.showMask(animated)
         } else {
@@ -221,7 +227,7 @@ class OnboardingMaskView: UIView {
             self.dragAnimatingDelay,
             target: self,
             selector: "showDragAnimation:",
-            userInfo: ["startPoint": NSValue(CGPoint: startPoint), "endPoint": NSValue(CGPoint: endPoint)],
+            userInfo: [keyForStartPoint: NSValue(CGPoint: startPoint), keyForEndPoint: NSValue(CGPoint: endPoint)],
             repeats: repeat
         )
         
@@ -231,9 +237,11 @@ class OnboardingMaskView: UIView {
     
     func showDragAnimation(timer: NSTimer) {
         let points = timer.userInfo as Dictionary<String, AnyObject>
-        let startPoint = (points["startPoint"] as NSValue).CGPointValue()
-        let endPoint = (points["endPoint"] as NSValue).CGPointValue()
-        var animatingView = UIView(frame: CGRectMake(0, 0, 2 * self.dragInidicatorRadius, 2 * self.dragInidicatorRadius))
+        let startPoint = (points[keyForStartPoint] as NSValue).CGPointValue()
+        let endPoint = (points[keyForEndPoint] as NSValue).CGPointValue()
+        var animatingView = UIView(frame: CGRectMake(0, 0,
+                                    2 * self.dragInidicatorRadius, 2 * self.dragInidicatorRadius))
+        
         animatingView.backgroundColor = self.indicatorColor
         animatingView.layer.cornerRadius = self.dragInidicatorRadius
         animatingView.center = startPoint
@@ -248,8 +256,9 @@ class OnboardingMaskView: UIView {
                     animatingView.center = endPoint
                 }, completion: {
                     finished in
-                    self.fadeView(self.defaultFadeDuration, view: animatingView, fadeIn: false, completion: {
-                        animatingView.removeFromSuperview()
+                    self.fadeView(self.defaultFadeDuration, view: animatingView,
+                        fadeIn: false, completion: {
+                            animatingView.removeFromSuperview()
                         }
                     )
                 }
@@ -258,11 +267,11 @@ class OnboardingMaskView: UIView {
     }
     
     func addLabelWithText(text: String, position: CGPoint) -> UILabel{
-        var label = UILabel(frame: UIScreen.mainScreen().bounds);
+        var label = UILabel(frame: UIScreen.mainScreen().bounds)
         label.text = text
         label.textAlignment = NSTextAlignment.Center
         label.textColor = UIColor.whiteColor()
-        label.font = UIFont(name: "Akagi-SemiBold", size: 22)
+        label.font = UIFont(name: SystemDefault.planckFontBold, size: 22)
         label.center = position
         self.addSubview(label)
         self.labels.append(label)
@@ -270,24 +279,10 @@ class OnboardingMaskView: UIView {
     }
     
     func viewDidTapped(sender: UITapGestureRecognizer) {
-//        println(sender.numberOfTouches())
-//        if sender.numberOfTouches() == 2 {
-//            self.toggleMask(true)
-//        } else {
-//            self.showTapGuidianceAtPoint(sender.locationInView(self), repeat: true)
-//        }
-//        
         self.delegate?.viewDidTapped(self, sender: sender)
     }
     
-    var startPoint: CGPoint?
     func viewDidPanned(sender: UIPanGestureRecognizer) {
-//        if sender.state == UIGestureRecognizerState.Began {
-//            startPoint = sender.locationInView(self)
-//        } else if sender.state == UIGestureRecognizerState.Ended {
-//            let endPoint = sender.locationInView(self)
-//            self.showDragGuidianceFromPoint(startPoint!, to: endPoint, repeat: true)
-//        }
         self.delegate?.viewDidPanned(self, sender: sender)
     }
     

@@ -26,9 +26,9 @@ class GOLineSegment: GOSegment {
     }
     
     init(center: CGPoint, length: CGFloat, direction: CGVector) {
-        self.length = length;
+        self.length = length
         super.init()
-        self.center = center;
+        self.center = center
         self.direction = direction
     }
     

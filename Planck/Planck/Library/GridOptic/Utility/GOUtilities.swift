@@ -13,7 +13,7 @@ class GOUtilities {
     class func solveQuadraticEquation(a: CGFloat, b: CGFloat, c: CGFloat) -> (CGFloat?, CGFloat?) {
         let sqrtTerm = b * b - 4 * a * c
         if a == 0 {
-            return (nil, nil);
+            return (nil, nil)
         } else if sqrtTerm < 0 {
             return (nil, nil)
         } else if sqrtTerm == 0 {

@@ -12,7 +12,7 @@ struct Constant {
     static let lightSpeedBase: CGFloat = 600 //points per second
     static let audioDelay: CGFloat = 0.1
     static let angleCalculationPrecision: CGFloat = 1000 //1000 is 3 bit precision
-    static let rayWidth: CGFloat = 5;
+    static let rayWidth: CGFloat = 5
     static let vectorUnitLength: CGFloat = 1
 }
 
@@ -44,8 +44,10 @@ struct ReuseableID {
     static let CustomizedLevelSelectCell = "CustomizedLevelCollectionViewCell"
 }
 
-struct StorageDefault {
+struct SystemDefault {
     static let levelDataType = "dat"
+    static let planckFont = "Akagi-Book"
+    static let planckFontBold = "Akagi-SemiBold"
 }
 
 struct NSCodingKey {
@@ -196,11 +198,11 @@ struct LevelDesignerDefaults {
     static let selectorButtonClicked: Selector = "buttonDidClicked:"
     static let selectorFunctionalButtonClicked: Selector = "functionalButtonDidClicked:"
     
-    static let buttonHeight: CGFloat = 60;
+    static let buttonHeight: CGFloat = 60
     static let buttonBackgroundColor: UIColor = UIColor.darkGrayColor()
     static let buttonLabelColor: UIColor = UIColor.lightGrayColor()
     
-    static let interButtonSpace: CGFloat = 5;
+    static let interButtonSpace: CGFloat = 5
     
     static let buttonNames = ["flat mirror", "emitter", "wall", "planck", "interface", "eraser", "clear", "save", "load"]
     static let buttonNameFlatMirror = LevelDesignerDefaults.buttonNames[0]
@@ -217,8 +219,8 @@ struct LevelDesignerDefaults {
     static let functionalButtonNames = ["add item"]
     static let functionalButtonNameAddItem = LevelDesignerDefaults.functionalButtonNames[0]
     
-    static let eraserSize: CGFloat = 20;
-    static let selectionAreaSize: CGFloat = 20;
+    static let eraserSize: CGFloat = 20
+    static let selectionAreaSize: CGFloat = 20
 }
 
 struct SoundFiles {
@@ -243,7 +245,6 @@ struct PlanckControllPanel {
     static let instrumentHarpRow = 3
     
     static let notePickerTitle = ["C", "D", "E", "F", "G", "A", "B"]
-//    static let accidentalPickerTitle = ["♮", "♯", "♭", "𝄪", "𝄫"]
     static let accidentalPickerTitle = ["♮", "♭", "♭♭", "♯", "x"]
     static let groupPickerTitle = ["0", "1", "2", "3", "4", "5", "6"]
 }

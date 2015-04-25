@@ -19,7 +19,7 @@ struct GOStack<T> {
     //  If the stack is empty, return nil.
     mutating func pop() -> T? {
         if items.isEmpty {
-            return nil;
+            return nil
         } else {
             return items.removeAtIndex(0)
         }

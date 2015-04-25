@@ -104,13 +104,13 @@ class LevelDesignerViewController: XViewController {
     }
     
     struct DeviceSegmentIndex {
-        static let emitter = 0;
-        static let flatMirror = 1;
-        static let flatLens = 2;
-        static let flatWall = 3;
-        static let concaveLens = 4;
-        static let convexLens = 5;
-        static let planck = 6;
+        static let emitter = 0
+        static let flatMirror = 1 
+        static let flatLens = 2 
+        static let flatWall = 3 
+        static let concaveLens = 4 
+        static let convexLens = 5 
+        static let planck = 6 
     }
     
     struct InputTextFieldIndex {
@@ -139,8 +139,8 @@ class LevelDesignerViewController: XViewController {
     }
     
     struct InputModeSegmentIndex {
-        static let add = 0;
-        static let edit = 1;
+        static let add = 0 
+        static let edit = 1 
     }
 
     class func getInstance() -> LevelDesignerViewController {
@@ -1043,9 +1043,9 @@ class LevelDesignerViewController: XViewController {
                 let delay = distance / Constant.lightSpeedBase
                 
                 let pathAnimation = CABasicAnimation(keyPath: "strokeEnd")
-                pathAnimation.fromValue = 0.0;
-                pathAnimation.toValue = 1.0;
-                pathAnimation.duration = CFTimeInterval(delay);
+                pathAnimation.fromValue = 0.0
+                pathAnimation.toValue = 1.0
+                pathAnimation.duration = CFTimeInterval(delay)
                 pathAnimation.repeatCount = 1.0
                 pathAnimation.fillMode = kCAFillModeForwards
                 pathAnimation.timingFunction = CAMediaTimingFunction(name: kCAMediaTimingFunctionLinear)
@@ -1060,7 +1060,7 @@ class LevelDesignerViewController: XViewController {
                 
                 self.pathDistances[tag]! += distance
                 
-                let delayInNanoSeconds = 0.9 * delay * CGFloat(NSEC_PER_SEC);
+                let delayInNanoSeconds = 0.9 * delay * CGFloat(NSEC_PER_SEC)
                 dispatch_after(dispatch_time(DISPATCH_TIME_NOW, Int64(delayInNanoSeconds)), dispatch_get_main_queue()) {
                     self.drawRay(tag, currentIndex: currentIndex + 1)
                 }
@@ -1362,7 +1362,7 @@ extension LevelDesignerViewController: UIPickerViewDataSource, UIPickerViewDeleg
         // iterate each filename to add
         for filename in fileArray {
             if (filename.pathExtension) != nil {
-                if (filename.pathExtension == StorageDefault.levelDataType) {
+                if (filename.pathExtension == SystemDefault.levelDataType) {
                     total++
                 }
             }

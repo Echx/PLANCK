@@ -42,7 +42,7 @@ class XColor : NSObject, Hashable, NSCoding {
                 index += 1
             }
             
-            return displayColors[index];
+            return displayColors[index]
         }
     }
     

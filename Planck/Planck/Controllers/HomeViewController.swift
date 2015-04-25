@@ -54,7 +54,7 @@ class HomeViewController: XViewController {
         NSTimer.scheduledTimerWithTimeInterval(0.5, target: self, selector: "setUpAnimation:", userInfo: nil, repeats: true)
     }
 
-    private var count = 0;
+    private var count = 0
     func setUpAnimation(timer: NSTimer) {
 //        if count > 4 {
 //            timer.invalidate()

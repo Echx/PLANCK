@@ -355,7 +355,7 @@ class GameViewController: XViewController {
                 }
                 
                 self.pathDistances[tag]! += distance
-                let delayInNanoSeconds = 0.9 * delay * CGFloat(NSEC_PER_SEC);
+                let delayInNanoSeconds = 0.9 * delay * CGFloat(NSEC_PER_SEC)
                 dispatch_after(dispatch_time(DISPATCH_TIME_NOW, Int64(delayInNanoSeconds)), dispatch_get_main_queue()) {
                     self.drawRay(tag, currentIndex: currentIndex + 1)
                 }
@@ -467,11 +467,11 @@ class GameViewController: XViewController {
         
         if !isNodeFixed(node) {
             var fillColorAnimation = CABasicAnimation(keyPath: "fillColor")
-            fillColorAnimation.duration = 0.4;
+            fillColorAnimation.duration = 0.4
             fillColorAnimation.fromValue = strokeColor.CGColor
             fillColorAnimation.toValue = strokeColor.colorWithAlphaComponent(0.3).CGColor
-            fillColorAnimation.repeatCount = HUGE;
-            fillColorAnimation.autoreverses = true;
+            fillColorAnimation.repeatCount = HUGE
+            fillColorAnimation.autoreverses = true
             layer.addAnimation(fillColorAnimation, forKey: "fillColor")
         }
         
@@ -516,7 +516,7 @@ class GameViewController: XViewController {
             return false
         }
         
-        view.alpha = 0;
+        view.alpha = 0
         self.view.insertSubview(view, atIndex: 0)
         UIView.animateWithDuration(0.3,
             delay: 0.1 * Double(nodeCount),
@@ -808,7 +808,7 @@ extension GameViewController: TargetMusicMaskViewDelegate {
     
     func musicMaskViewDidDismiss(view: TargetMusicMaskView) {
         self.setUpGrid()
-        self.checkOnboarding();
+        self.checkOnboarding()
         isFirstTimePlayMusic = false
     }
 }

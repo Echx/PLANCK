@@ -10,10 +10,10 @@ import UIKit
 
 extension UIFont {
     class func systemFontOfSize(fontSize: CGFloat) -> UIFont {
-        return UIFont(name: "Akagi-Book", size: fontSize)!
+        return UIFont(name: SystemDefault.planckFont, size: fontSize)!
     }
     
     class func boldSystemFontOfSize(fontSize: CGFloat) -> UIFont {
-        return UIFont(name: "Akagi-SemiBold", size: fontSize)!
+        return UIFont(name: SystemDefault.planckFontBold, size: fontSize)!
     }
 }
