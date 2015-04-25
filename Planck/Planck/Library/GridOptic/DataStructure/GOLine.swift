@@ -9,6 +9,11 @@
 import UIKit
 
 // GOLine is the representation of a line in GO library
+// GOLine stores the direction of the line, which is pointing towards the
+// Y-plus axis, slope and y-intercept for representing the formula.
+// this class also supports calculating the intersection point of two line with
+// slope and y-intercept respectively.
+
 class GOLine: NSObject {
     var anyPoint: CGPoint
     // angle should be in [0, PI)
