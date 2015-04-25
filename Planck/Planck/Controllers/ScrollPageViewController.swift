@@ -41,6 +41,7 @@ class ScrollPageViewController: XViewController, UIScrollViewDelegate {
         self.myScrollView.scrollsToTop = false
         
         // load init two pages
+        var i: Int
         for i = 0; i < controllers.count; i++ {
             loadScrollViewWithPage(i)
         }
