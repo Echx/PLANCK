@@ -238,6 +238,7 @@ struct MediumDescription {
 struct MusicDefaults {
     static let distanceTolerance: Double = 50
     static let musicBuffer: CGFloat = 0.5
+    static let numberOfAccidentalsPerNote = 5
 }
 
 struct ErrorMsg {

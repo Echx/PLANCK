@@ -15,7 +15,8 @@ class GOArcSegment: GOSegment {
     override var bezierPath: UIBezierPath {
         get {
             var path = UIBezierPath()
-            path.addArcWithCenter(self.center, radius: self.radius, startAngle: self.endRadian, endAngle: self.startRadian, clockwise: false)
+            path.addArcWithCenter(self.center, radius: self.radius,
+                startAngle: self.endRadian, endAngle: self.startRadian, clockwise: false)
             return path
         }
     }
@@ -126,7 +127,8 @@ class GOArcSegment: GOSegment {
         let r2 = CGFloat(self.center.y)
         let r = self.radius
         
-        // handle dy=0 separately
+        // handle dy=0 separatel
+        // in this case, the slope is not calculatable
         if fabs(lineOfRay.direction.dx - 0) < GOConstant.overallPrecision {
             let x = ray.startPoint.x
             let squareSide = r * r - (x - r1) * (x - r1)
@@ -139,24 +141,66 @@ class GOArcSegment: GOSegment {
                 let point1 = CGPoint(x: x, y: y1)
                 let point2 = CGPoint(x: x, y: y2)
                 
-                if GOUtilities.getDistanceBetweenPoint(ray.startPoint, andPoint: point1) >
-                    GOUtilities.getDistanceBetweenPoint(ray.startPoint, andPoint: point2) {
+                // check if point 1 is on ray
+                if let xOnRay = ray.getX(y: y1) {
+                    if let xOnRay = ray.getX(y: y2) {
+                        // both point1 and point2 are on the ray
+                        if GOUtilities.getDistanceBetweenPoint(ray.startPoint, andPoint: point1) >
+                            GOUtilities.getDistanceBetweenPoint(ray.startPoint, andPoint: point2) {
+                                // point 2 is nearer, i.e contact earlier
+                                if self.containsPoint(point2) {
+                                    // confirm that point 2 is on the arc
+                                    if point2.isNearEnough(ray.startPoint) {
+                                        // this is the case that the intersection point is exactly the contact point
+                                        return nil
+                                    } else {
+                                        return point2
+                                    }
+                                }
+                        }
+                        
+                        // point 1 is nearer
+                        if self.containsPoint(point1) {
+                            // point 1 is on the arc
+                            if point1.isNearEnough(ray.startPoint) {
+                                return nil
+                            } else {
+                                return point1
+                            }
+                        } else {
+                            return nil
+                        }
+                    } else {
+                        // point 2 is not on the ray
+                        if self.containsPoint(point1) {
+                            // point 1 is on the arc {
+                            if point1.isNearEnough(ray.startPoint) {
+                                return nil
+                            } else {
+                                return point1
+                            }
+                        } else {
+                            return nil
+                        }
+                    }
+                } else {
+                    // point 1 is not on the ray
+                    if let xOnRay = ray.getX(y: y2) {
+                        // only point 2 is on the ray
                         if self.containsPoint(point2) {
+                            // point 2 is on the arc {
                             if point2.isNearEnough(ray.startPoint) {
                                 return nil
                             } else {
                                 return point2
                             }
+                        } else {
+                            return nil
                         }
-                }
-                if self.containsPoint(point1) {
-                    if point1.isNearEnough(ray.startPoint) {
-                        return nil
                     } else {
-                        return point1
+                        // no point is eligible to be the intersection point
+                        return nil
                     }
-                } else {
-                    return nil
                 }
             }
         } else {
@@ -167,6 +211,8 @@ class GOArcSegment: GOSegment {
                 return nil
             }
             
+            // from the equation, generate the term for the quadratic equation
+            
             let termA = 1 + k * k
             let termB = 2 * ((c! - r2) * k - r1)
             let termC = r1 * r1 + (r2 - c!) * (r2 - c!) - r * r
@@ -174,28 +220,35 @@ class GOArcSegment: GOSegment {
             let xs = GOUtilities.solveQuadraticEquation(termA, b: termB, c: termC)
             
             if xs.0 == nil {
+                // no solution
                 return nil
             } else if xs.1 == nil {
-                // tangent
+                // only one intersection point, tangent
                 if let y = ray.getY(x: xs.0!) {
+                    // the point is on the ray
                     let point = CGPoint(x: xs.0!, y: y)
                     if self.containsPoint(point) {
+                        // the point is on the arc
                         if point.isNearEnough(ray.startPoint) {
                             return nil
                         } else {
                             return point
                         }
                     } else {
+                        // the point is not valid
                         return nil
                     }
                 } else {
+                    // the point is not on the ray
                     return nil
                 }
             } else {
+                // we have two solutions for the equation, validate both of the points
                 if let y0 = ray.getY(x: xs.0!) {
                     if let y1 = ray.getY(x: xs.1!) {
                         if GOUtilities.getDistanceBetweenPoint(ray.startPoint, andPoint: CGPoint(x: xs.0!, y: y0)) >
                             GOUtilities.getDistanceBetweenPoint(ray.startPoint, andPoint: CGPoint(x: xs.1!, y: y1)) {
+                                // the second point is nearer to the contact point
                                 let point = CGPoint(x: xs.1!, y: y1)
                                 if self.containsPoint(point) {
                                     if point.isNearEnough(ray.startPoint) {
@@ -205,6 +258,8 @@ class GOArcSegment: GOSegment {
                                     }
                                 }
                         }
+                        
+                        // the first point is nearer
                         let point = CGPoint(x: xs.0!, y: y0)
                         if self.containsPoint(point) {
                             if point.isNearEnough(ray.startPoint) {
@@ -228,6 +283,7 @@ class GOArcSegment: GOSegment {
                         }
                     }
                 } else {
+                    // the first point is invalid, we just check y1
                     if let y1 = ray.getY(x: xs.1!) {
                         let point = CGPoint(x: xs.1!, y: y1)
                         if self.containsPoint(point) {
@@ -247,6 +303,7 @@ class GOArcSegment: GOSegment {
         }
     }
     
+    // the GORay is the refraction ray, the boolean value marks whether the ray is caused by total reflection
     override func getRefractionRay(#rayIn: GORay, indexIn: CGFloat, indexOut: CGFloat) -> (GORay, Bool)? {
         if let intersectionPoint = self.getIntersectionPoint(rayIn) {
             let l = rayIn.direction.normalised
@@ -303,7 +360,7 @@ class GOArcSegment: GOSegment {
 
     
     func containsPoint(point: CGPoint) -> Bool {
-        if ((point.getDistanceToPoint(self.center) - self.radius).abs <= CGFloat(0.0001)) {
+        if ((point.getDistanceToPoint(self.center) - self.radius).abs <= GOConstant.overallPrecision) {
             let pointRadian = point.getRadiusFrom(self.center).restrictWithin2Pi
             let normalRadian = self.normalDirection.angleFromXPlus
             let maxRadian = max(self.startRadian, self.endRadian)
