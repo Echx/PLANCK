@@ -8,11 +8,6 @@
 
 import UIKit
 
-protocol OnboardingMaskViewDelegate {
-    func viewDidTapped(view: OnboardingMaskView, sender: UITapGestureRecognizer)
-    func viewDidPanned(view: OnboardingMaskView, sender: UIPanGestureRecognizer)
-}
-
 class OnboardingMaskView: UIView {
     private struct MethodSelector {
         static let showTapAnimation = Selector("showTapAnimation:")
@@ -33,35 +28,29 @@ class OnboardingMaskView: UIView {
     private var tapAnimationTimers = [NSTimer]()
     private var dragAnimationTimers = [NSTimer]()
     
-    var delegate: OnboardingMaskViewDelegate?
-    
     var dashPattern = [8, 8]
     var dashLineWidth: CGFloat = 3
     var dashStrokeColor = UIColor.whiteColor()
     var dashFillColor = UIColor.clearColor()
-    
-    
     var maskColor = UIColor.blackColor()
     var maskOpacity: Float = 0.5
-    
     var startPoint: CGPoint?
-    
     var indicatorColor: UIColor = UIColor.whiteColor()
     var tapFinalRadius: CGFloat = 50
     var tapInitialRadius: CGFloat = 20
-    
     var tapRadiusScale: CGFloat {
         return self.tapFinalRadius / self.tapInitialRadius
     }
-    
     var tapAnimatingDuration: NSTimeInterval = 0.8
     var tapAnimatingDelay: NSTimeInterval = 1.5
-    
     var dragInidicatorRadius: CGFloat = 30
     var dragAnimatingDuration: NSTimeInterval = 1
     var dragAnimatingDelay:NSTimeInterval = 2
-    
     var defaultFadeDuration: NSTimeInterval = 0.5
+    var labelFontSize: NSInteger = 22
+    
+    
+    
     
     override init() {
         super.init(frame: UIScreen.mainScreen().bounds)
@@ -70,9 +59,6 @@ class OnboardingMaskView: UIView {
 
     required convenience init(coder aDecoder: NSCoder) {
         self.init()
-        var path = UIBezierPath()
-        self.drawDashedTarget(path)
-        self.drawMask(path, animated: true)
     }
     
     func clear() {
@@ -121,6 +107,9 @@ class OnboardingMaskView: UIView {
         return randomKey
     }
     
+    
+    //draw mask, the area between the given path and the screen bounds will be filled
+    //with self.maskColor
     func drawMask(path: UIBezierPath?, animated: Bool) {
         if let bezierPath = path {
             let path = UIBezierPath(rect: self.bounds)
@@ -139,6 +128,8 @@ class OnboardingMaskView: UIView {
         self.mask.layer.addSublayer(self.maskLayer)
     }
     
+    
+    //show the mask
     func showMask(animated: Bool) {
         self.addSubview(self.mask)
         if animated {
@@ -149,6 +140,8 @@ class OnboardingMaskView: UIView {
         self.isMaskHidden = false
     }
     
+    
+    //hide the mask
     func hideMask(animated: Bool) {
         if animated {
             self.fadeView(self.defaultFadeDuration, view: self.mask, fadeIn: false, completion: {
@@ -161,6 +154,8 @@ class OnboardingMaskView: UIView {
         self.isMaskHidden = true
     }
     
+    
+    //toggle the mask on and off
     func toggleMask(animated: Bool) {
         if self.isMaskHidden {
             self.showMask(animated)
@@ -169,6 +164,9 @@ class OnboardingMaskView: UIView {
         }
     }
     
+    //show tap animation at the given point
+    // :param: a CGPoint indicating the position
+    // :param: a boolean indicating whether the animation should repeat
     func showTapGuidianceAtPoint(point: CGPoint, repeat: Bool) {
         var timer = NSTimer.scheduledTimerWithTimeInterval(
             self.tapAnimatingDelay,
@@ -182,7 +180,10 @@ class OnboardingMaskView: UIView {
         self.tapAnimationTimers.append(timer)
     }
     
-    func showTapAnimation(timer: NSTimer) {
+    //perform the animation
+    // :param: a timer with user info set to the tap position
+    private func showTapAnimation(timer: NSTimer) {
+        //get the position from userInfo
         let point = (timer.userInfo as NSValue).CGPointValue()
         var containerView = UIView(frame: CGRectMake(0, 0, 2 * self.tapFinalRadius, 2 * self.tapFinalRadius))
         var animatingView = UIView(frame: CGRectMake(0, 0, 2 * self.tapInitialRadius, 2 * self.tapInitialRadius))
@@ -229,6 +230,11 @@ class OnboardingMaskView: UIView {
         })
     }
     
+    
+    //Show Drag animation from the start point to the end point
+    // :param: a point where the animation start
+    // :param: a point where the animation end
+    // :param: a boolean whether the animatino should repeat
     func showDragGuidianceFromPoint(startPoint: CGPoint, to endPoint: CGPoint, repeat: Bool) {
         var timer = NSTimer.scheduledTimerWithTimeInterval(
             self.dragAnimatingDelay,
@@ -242,6 +248,8 @@ class OnboardingMaskView: UIView {
         self.dragAnimationTimers.append(timer)
     }
     
+    //perfrom the drag animation
+    // :param: a timer with userInfo set as a Dictionary containing the necessary information
     func showDragAnimation(timer: NSTimer) {
         let points = timer.userInfo as Dictionary<String, AnyObject>
         let startPoint = (points[keyForStartPoint] as NSValue).CGPointValue()
@@ -254,7 +262,7 @@ class OnboardingMaskView: UIView {
         animatingView.center = startPoint
         animatingView.alpha = 0
         self.addSubview(animatingView)
-        self.fadeView(0.5, view: animatingView, fadeIn: true, completion: {
+        self.fadeView(self.defaultFadeDuration, view: animatingView, fadeIn: true, completion: {
             UIView.animateWithDuration(
                 self.dragAnimatingDuration,
                 delay: 0,
@@ -273,26 +281,31 @@ class OnboardingMaskView: UIView {
         })
     }
     
+    
+    //add a label and set the center of it to the position given
+    //the label will be added to self as a subview immediately
+    //:param: a string which will be the label's text
+    //:param: a CGPoint which will be the label's position
+    //returns: the UILabel Object
     func addLabelWithText(text: String, position: CGPoint) -> UILabel{
         var label = UILabel(frame: UIScreen.mainScreen().bounds)
         label.text = text
         label.textAlignment = NSTextAlignment.Center
         label.textColor = UIColor.whiteColor()
-        label.font = UIFont(name: SystemDefault.planckFontBold, size: 22)
+        label.font = UIFont(name: SystemDefault.planckFontBold, size: self.labelFontSize)
         label.center = position
         self.addSubview(label)
         self.labels.append(label)
         return label
     }
     
-    func viewDidTapped(sender: UITapGestureRecognizer) {
-        self.delegate?.viewDidTapped(self, sender: sender)
-    }
     
-    func viewDidPanned(sender: UIPanGestureRecognizer) {
-        self.delegate?.viewDidPanned(self, sender: sender)
-    }
-    
+    //perform a fading transition to a view, either fadeIn or fadeOut
+    //will execute the completion block when the animation finished
+    //:param: a double indicating the animation duration
+    //:param: a target view
+    //:param: a booleane indicating whether it's fade in or fade out
+    //:param: a completion closure(block)
     private func fadeView(duration: NSTimeInterval, view: UIView, fadeIn: Bool, completion: (() -> Void)?) {
         
         UIView.animateWithDuration(
@@ -310,20 +323,9 @@ class OnboardingMaskView: UIView {
         )
     }
 
+    //set up the view properites
     private func setUp() {
         self.setViewProperites()
-        self.setRecognizers()
-    }
-    
-    private func setRecognizers() {
-        for i in 1..<5 {
-            let tapGestureRecognizer = UITapGestureRecognizer(target: self, action: MethodSelector.viewDidTapped)
-            tapGestureRecognizer.numberOfTouchesRequired = i
-            self.addGestureRecognizer(tapGestureRecognizer)
-        }
-        
-        let panGestureRecognizer = UIPanGestureRecognizer(target: self, action: MethodSelector.viewDidPanned)
-        self.addGestureRecognizer(panGestureRecognizer)
     }
     
     private func setViewProperites() {
