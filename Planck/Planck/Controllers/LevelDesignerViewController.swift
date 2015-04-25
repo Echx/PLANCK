@@ -98,6 +98,7 @@ class LevelDesignerViewController: XViewController {
     
     private let validNamePattern = "^[a-zA-Z0-9]+$"
     private var isSaving: Bool = false
+    private var backupNode: GOOpticRep?
     
     struct Selectors {
         static let segmentValueDidChangeAction: Selector = "segmentValueDidChange:"
@@ -166,6 +167,22 @@ class LevelDesignerViewController: XViewController {
         static let index = -2
     }
 
+    struct AlertViewMessage {
+        static let title = "Update Failed"
+        static let message = "The updated node may overlap with other nodes"
+        static let cancelButtonTitle = "I See"
+    }
+    
+    struct RayDefaults {
+        static let lineWidth: CGFloat = 2.0
+        static let strokeColor = UIColor.whiteColor().CGColor
+        static let fillColor = UIColor.clearColor().CGColor
+        static let initialStrokeEnd: CGFloat = 1.0
+        static let animationKeyPath = "strokeEnd"
+        static let animationFromValue: CGFloat = 0.0
+        static let animationToValue: CGFloat = 1.0
+        static let delayCoefficient: CGFloat = 0.9
+    }
 
     class func getInstance() -> LevelDesignerViewController {
         let storyboard = UIStoryboard(name: StoryboardIdentifier.StoryBoardID, bundle: nil)
@@ -255,7 +272,338 @@ class LevelDesignerViewController: XViewController {
         )
     }
     
+    //MARK - tap gesture handler
+    @IBAction func viewDidTapped(sender: UITapGestureRecognizer) {
+        if sender.numberOfTapsRequired == TapTimes.control {
+            if sender.numberOfTouches() == TapTouchNumber.toggleMusicPanel {
+                self.toggleMusicPanel()
+            } else if sender.numberOfTouches() == TapTouchNumber.toggleStandardPanel {
+                self.toggleStandardPanel()
+            } else if self.selectedNode != nil {
+                self.deselectNode()
+            } else {
+                let location = sender.locationInView(sender.view)
+                self.deselectNode()
+                self.selectNode(self.grid.getInstrumentAtPoint(location))
+            }
+            return
+        }
+        
+        // if it is saving now, disallow the placement of new device
+        if isSaving {
+            return
+        }
+        
+        let location = sender.locationInView(sender.view)
+        let coordinate = self.grid.getGridCoordinateForPoint(location)
+        self.addDeviceAt(coordinate)
+        self.shootRay()
+    }
+    
+    //MARK - pan gesture handler
+    private var firstLocation: CGPoint?
+    private var lastLocation: CGPoint?
+    private var firstViewCenter: CGPoint?
+    private var firstViewTransform: CATransform3D?
+    private var firstDirection: CGVector?
+    private var touchedNode: GOOpticRep?
+    @IBAction func viewDidPanned(sender: UIPanGestureRecognizer) {
+        let location = sender.locationInView(self.view)
+        
+        if let node = self.selectedNode {
+            //rotate
+            if isSaving && isNodeFixed(node) {
+                // is saving and the selected node is not the movable one
+                return
+            }
+            
+            let view = self.deviceViews[node.id]!
+            if sender.state == UIGestureRecognizerState.Began {
+                firstLocation = location
+                lastLocation = location
+                firstDirection = node.direction
+                firstViewTransform = view.layer.transform
+            } else {
+                let startVector = CGVectorMake(firstLocation!.x - self.grid.getCenterForGridCell(node.center).x,
+                                               firstLocation!.y - self.grid.getCenterForGridCell(node.center).y)
+                let currentVector = CGVectorMake(location.x - self.grid.getCenterForGridCell(node.center).x,
+                                                 location.y - self.grid.getCenterForGridCell(node.center).y)
+                var angle = CGVector.angleFrom(startVector, to: currentVector)
+                if sender.state == UIGestureRecognizerState.Ended {
+                    let nodeAngle = node.direction.angleFromXPlus
+                    let effectAngle = angle + nodeAngle
+                    let count = round(effectAngle / self.grid.unitDegree)
+                    let finalAngle = self.grid.unitDegree * count
+                    angle = finalAngle - nodeAngle
+                    
+                    //check whether the node will overlap with others with the new direction
+                    node.setDirection(CGVector.vectorFromXPlusRadius(finalAngle))
+                    if self.grid.isInstrumentOverlappedWidthOthers(node) {
+                        node.setDirection(firstDirection!)
+                        view.layer.transform = firstViewTransform!
+                        return
+                    }
+                }
+                
+                //rotate about z-axis
+                var layerTransform = CATransform3DRotate(firstViewTransform!, angle, 0, 0, 1)
+                view.layer.transform = layerTransform
+            }
+        } else {
+            //move
+            if sender.state == UIGestureRecognizerState.Began || touchedNode == nil {
+                firstLocation = location
+                lastLocation = location
+                touchedNode = self.grid.getInstrumentAtPoint(location)
+                if let node = touchedNode {
+                    if isSaving && isNodeFixed(node) {
+                        // is saving and the selected node is not the movable one
+                        return
+                    }
+                    firstViewCenter = self.deviceViews[node.id]!.center
+                    self.clearRay()
+                }
+            }
+            
+            if let node = touchedNode {
+                if isSaving && isNodeFixed(node) {
+                    // is saving and the selected node is not the movable one
+                    return
+                }
+                
+                let view = self.deviceViews[node.id]!
+                view.center = CGPointMake(view.center.x + location.x - lastLocation!.x, view.center.y + location.y - lastLocation!.y)
+                lastLocation = location
+                if sender.state == UIGestureRecognizerState.Ended {
+                    
+                    let offset = CGPointMake(location.x - firstLocation!.x, location.y - firstLocation!.y)
+                    
+                    self.moveNode(node, from: firstViewCenter!, offset: offset)
+                    
+                    lastLocation = nil
+                    firstLocation = nil
+                    firstViewCenter = nil
+                }
+            }
+        }
+        
+        if sender.state == UIGestureRecognizerState.Ended {
+            self.updateTextFieldInformation()
+            self.updatePickerInformation()
+            self.shootRay()
+        }
+    }
+    
+    //MARK - long press gesture handler
+    @IBAction func viewDidLongPressed(sender: UILongPressGestureRecognizer) {
+        let location = sender.locationInView(sender.view)
+        if let node = self.grid.getInstrumentAtPoint(location) {
+            //remove node
+            self.updateTextFieldInformation()
+            self.updatePickerInformation()
+            self.removeNode(node)
+        }
+    }
+    
+    //MARK - bar button handler
+    @IBAction func clearButtonDidClicked(sender: UIBarButtonItem) {
+        self.grid.clearInstruments()
+        for (id, view) in self.deviceViews {
+            view.removeFromSuperview()
+        }
+        self.deviceViews = [String: UIView]()
+        self.clearRay()
+        self.updateTextFieldInformation()
+        self.updatePickerInformation()
+    }
+    
+    @IBAction func updateSelectedNode() {
+        if let node = self.selectedNode {
+            self.backupNode(node)
+            self.updateThicknessFromInput()
+            self.updateLengthFromInput()
+            self.updateCenterFromInput()
+            self.updateDirectionFromInput()
+            self.updateRefractionIndexFromInput()
+            self.updateCurvatureRadiusFromInput()
+            self.updateIsFixed()
+            if !self.refreshSelectedNode() {
+                self.removeNode(node)
+                if let node = self.backupNode {
+                    self.addDevice(node)
+                    self.deselectNode()
+                    self.selectNode(node)
+                }
+                let alertView = UIAlertView(title: AlertViewMessage.title, message: AlertViewMessage.message, delegate: nil, cancelButtonTitle: AlertViewMessage.cancelButtonTitle)
+                alertView.show()
+            }
+        }
+        
+        self.shootRay()
+    }
+    
+    @IBAction func updateSelectedNodePlanck() {
+        if let selectedNode = self.selectedNode {
+            if let node = self.xNodes[selectedNode.id] {
+                let instrument = self.instrumentPicker.selectedRowInComponent(0)
+                node.instrument = instrument
+                
+                if node.isPlanck {
+                    let noteName: Int = self.notePicker.selectedRowInComponent(0)
+                    let noteAccidental: Int = self.accidentalPicker.selectedRowInComponent(0)
+                    let xNoteName: XNoteName = XNoteName(rawValue: noteName * 5 + noteAccidental)!
+                    
+                    let noteGroup: Int = self.groupPicker.selectedRowInComponent(0)
+                    
+                    let xNote = XNote(noteName: xNoteName, noteGroup: noteGroup, instrument: node.instrument)
+                    node.planckNote = xNote
+                }
+                self.updatePickerInformation()
+            }
+        }
+        self.shootRay()
+    }
+    
+    @IBAction func saveButtonDidClicked(sender: AnyObject) {
+        initSaving()
+    }
 
+    @IBAction func loadButtonDidClicked(sender: AnyObject) {
+        // Create a level select VC instance
+        var storyBoard = UIStoryboard(name: StoryboardIdentifier.StoryBoardID, bundle: nil)
+        var levelVC = storyBoard.instantiateViewControllerWithIdentifier(StoryboardIdentifier.DesignerLevelSelect)
+            as DesignerLevelSelectViewController
+        levelVC.modalPresentationStyle = UIModalPresentationStyle.Popover
+        levelVC.delegate = self
+        self.presentViewController(levelVC, animated: true, completion: nil)
+        levelVC.popoverPresentationController?.barButtonItem = self.loadButton
+    }
+    
+    @IBAction func cancelSaveBtnDidClicked(sender: AnyObject) {
+        isSaving = false
+        saveHintLabel.hidden = true
+        confirmBar.hidden = true
+        deselectNode()
+        for (id, xnode) in self.xNodes {
+            let nodeView = deviceViews[id]! as UIView
+            if xnode.isFixed {
+                nodeView.layer.opacity = 1.0
+            }
+        }
+        // 4. clear ray
+        clearRay()
+        
+        // 5. reload the designer with the grid we have saved
+        self.grid.clearInstruments()
+        for (id, view) in self.deviceViews {
+            view.removeFromSuperview()
+        }
+        self.clearRay()
+        
+        for (id, opticNode) in self.gridCopy!.instruments {
+            self.addNode(opticNode, strokeColor: getColorForNode(opticNode))
+        }
+        
+        self.grid = self.gridCopy!
+        self.grid.delegate = self
+        self.shootRay()
+    }
+    
+    @IBAction func confirmSaveBtnDidClicked(sender: AnyObject) {
+        showSavePrompt()
+    }
+    
+//------------------------------------------------------------------------------
+//    Private Methods
+//------------------------------------------------------------------------------
+    private func addNode(node: GOOpticRep) -> Bool {
+        return self.addNode(node, strokeColor: self.getColorForNode(node))
+    }
+    
+    private func addDevice(physicsBody: GOOpticRep) -> Bool {
+        var node: XNode
+        var nodePhysicsBody: GOOpticRep
+        if let nodePhysicsBody = physicsBody as? GOEmitterRep {
+            let node = XEmitter(emitter: nodePhysicsBody)
+            if self.addNode(nodePhysicsBody) {
+                self.xNodes[nodePhysicsBody.id] = node
+                return true
+            } else {
+                return false
+            }
+        } else if let nodePhysicsBody = physicsBody as? GOFlatMirrorRep {
+            let node = XFlatMirror(flatMirror: nodePhysicsBody)
+            if self.addNode(nodePhysicsBody) {
+                self.xNodes[nodePhysicsBody.id] = node
+                return true
+            } else {
+                return false
+            }
+        } else if let nodePhysicsBody = physicsBody as? GOFlatLensRep {
+            let node = XFlatLens(flatLens: nodePhysicsBody)
+            if self.addNode(nodePhysicsBody) {
+                self.xNodes[nodePhysicsBody.id] = node
+                return true
+            } else {
+                return false
+            }
+        } else if let nodePhysicsBody = physicsBody as? GOFlatWallRep {
+            let node = XFlatWall(flatWall: nodePhysicsBody)
+            if self.addNode(nodePhysicsBody) {
+                self.xNodes[nodePhysicsBody.id] = node
+                return true
+            } else {
+                return false
+            }
+        } else if let nodePhysicsBody = physicsBody as? GOConvexLensRep {
+            let node = XConvexLens(convexLens: nodePhysicsBody)
+            if self.addNode(nodePhysicsBody) {
+                self.xNodes[nodePhysicsBody.id] = node
+                return true
+            } else {
+                return false
+            }
+        } else if let nodePhysicsBody = physicsBody as? GOConcaveLensRep {
+            let node = XConcaveLens(concaveRep: nodePhysicsBody)
+            if self.addNode(nodePhysicsBody) {
+                self.xNodes[nodePhysicsBody.id] = node
+                return true
+            } else {
+                return false
+            }
+        } else {
+            fatalError(ErrorMsg.nodeInvalid)
+        }
+    }
+    
+
+    
+    private func backupNode(generalNode: GOOpticRep) {
+        if let node = generalNode as? GOFlatLensRep {
+            self.backupNode = GOFlatLensRep(center: node.center, thickness: node.thickness, length: node.length, direction: node.direction, refractionIndex: node.refractionIndex, id: node.id)
+            return
+        }
+        
+        if let node = generalNode as? GOFlatMirrorRep {
+            self.backupNode = GOFlatMirrorRep(center: node.center, thickness: node.thickness, length: node.length, direction: node.direction, id: node.id)
+            return
+        }
+        
+        if let node = generalNode as? GOFlatWallRep {
+            self.backupNode = GOFlatWallRep(center: node.center, thickness: node.thickness, length: node.length, direction: node.direction, id: node.id)
+            return
+        }
+        
+        if let node = generalNode as? GOConvexLensRep {
+            self.backupNode = GOConvexLensRep(center: node.center, direction: node.direction, id: node.id, refractionIndex: node.refractionIndex)
+            return
+        }
+        
+        if let node = generalNode as? GOConcaveLensRep {
+            self.backupNode = GOConcaveLensRep(center: node.center, direction: node.direction, id: node.id, refractionIndex: node.refractionIndex)
+            return
+        }
+    }
     
     private func toggleMusicPanel() {
         if !isSaving {
@@ -352,345 +700,7 @@ class LevelDesignerViewController: XViewController {
         }
     }
     
-    //MARK - tap gesture handler
-    @IBAction func viewDidTapped(sender: UITapGestureRecognizer) {
-        if sender.numberOfTapsRequired == TapTimes.control {
-            if sender.numberOfTouches() == TapTouchNumber.toggleMusicPanel {
-                self.toggleMusicPanel()
-            } else if sender.numberOfTouches() == TapTouchNumber.toggleStandardPanel {
-                self.toggleStandardPanel()
-            } else if self.selectedNode != nil {
-                self.deselectNode()
-            } else {
-                let location = sender.locationInView(sender.view)
-                self.deselectNode()
-                self.selectNode(self.grid.getInstrumentAtPoint(location))
-            }
-            return
-        }
-        
-        // if it is saving now, disallow the placement of new device
-        if isSaving {
-            return
-        }
-        
-        let location = sender.locationInView(sender.view)
-        let coordinate = self.grid.getGridCoordinateForPoint(location)
-        self.addDeviceAt(coordinate)
-        self.shootRay()
-    }
     
-    //MARK - pan gesture handler
-    private var firstLocation: CGPoint?
-    private var lastLocation: CGPoint?
-    private var firstViewCenter: CGPoint?
-    private var firstViewTransform: CATransform3D?
-    private var firstDirection: CGVector?
-    private var touchedNode: GOOpticRep?
-    
-    @IBAction func viewDidPanned(sender: UIPanGestureRecognizer) {
-        let location = sender.locationInView(self.view)
-        
-        if let node = self.selectedNode {
-            //rotate
-            if isSaving && isNodeFixed(node) {
-                // is saving and the selected node is not the movable one
-                return
-            }
-            
-            let view = self.deviceViews[node.id]!
-            if sender.state == UIGestureRecognizerState.Began {
-                firstLocation = location
-                lastLocation = location
-                firstDirection = node.direction
-                firstViewTransform = view.layer.transform
-            } else {
-                let startVector = CGVectorMake(firstLocation!.x - self.grid.getCenterForGridCell(node.center).x,
-                                               firstLocation!.y - self.grid.getCenterForGridCell(node.center).y)
-                let currentVector = CGVectorMake(location.x - self.grid.getCenterForGridCell(node.center).x,
-                                                 location.y - self.grid.getCenterForGridCell(node.center).y)
-                var angle = CGVector.angleFrom(startVector, to: currentVector)
-                if sender.state == UIGestureRecognizerState.Ended {
-                    let nodeAngle = node.direction.angleFromXPlus
-                    let effectAngle = angle + nodeAngle
-                    let count = round(effectAngle / self.grid.unitDegree)
-                    let finalAngle = self.grid.unitDegree * count
-                    angle = finalAngle - nodeAngle
-                    
-                    //check whether the node will overlap with others with the new direction
-                    node.setDirection(CGVector.vectorFromXPlusRadius(finalAngle))
-                    if self.grid.isInstrumentOverlappedWidthOthers(node) {
-                        node.setDirection(firstDirection!)
-                        view.layer.transform = firstViewTransform!
-                        return
-                    }
-                }
-                
-                //rotate about z-axis
-                var layerTransform = CATransform3DRotate(firstViewTransform!, angle, 0, 0, 1)
-                view.layer.transform = layerTransform
-            }
-        } else {
-            //move
-            if sender.state == UIGestureRecognizerState.Began || touchedNode == nil {
-                firstLocation = location
-                lastLocation = location
-                touchedNode = self.grid.getInstrumentAtPoint(location)
-                if let node = touchedNode {
-                    if isSaving && isNodeFixed(node) {
-                        // is saving and the selected node is not the movable one
-                        return
-                    }
-                    firstViewCenter = self.deviceViews[node.id]!.center
-                    self.clearRay()
-                }
-            }
-            
-            if let node = touchedNode {
-                if isSaving && isNodeFixed(node) {
-                    // is saving and the selected node is not the movable one
-                    return
-                }
-                
-                let view = self.deviceViews[node.id]!
-                view.center = CGPointMake(view.center.x + location.x - lastLocation!.x, view.center.y + location.y - lastLocation!.y)
-                lastLocation = location
-                if sender.state == UIGestureRecognizerState.Ended {
-                    
-                    let offset = CGPointMake(location.x - firstLocation!.x, location.y - firstLocation!.y)
-                    
-                    self.moveNode(node, from: firstViewCenter!, offset: offset)
-                    
-                    lastLocation = nil
-                    firstLocation = nil
-                    firstViewCenter = nil
-                }
-            }
-        }
-        
-        if sender.state == UIGestureRecognizerState.Ended {
-            self.updateTextFieldInformation()
-            self.updatePickerInformation()
-            self.shootRay()
-        }
-    }
-    
-
-    
-    
-    //MARK - long press gesture handler
-    @IBAction func viewDidLongPressed(sender: UILongPressGestureRecognizer) {
-        let location = sender.locationInView(sender.view)
-        if let node = self.grid.getInstrumentAtPoint(location) {
-            //remove node
-            self.updateTextFieldInformation()
-            self.updatePickerInformation()
-            self.removeNode(node)
-        }
-    }
-    
-    //MARK - bar button handler
-    @IBAction func clearButtonDidClicked(sender: UIBarButtonItem) {
-        self.grid.clearInstruments()
-        for (id, view) in self.deviceViews {
-            view.removeFromSuperview()
-        }
-        self.deviceViews = [String: UIView]()
-        self.clearRay()
-        self.updateTextFieldInformation()
-        self.updatePickerInformation()
-    }
-    
-    @IBAction func updateSelectedNode() {
-        if let node = self.selectedNode {
-            self.backupNode(node)
-            self.updateThicknessFromInput()
-            self.updateLengthFromInput()
-            self.updateCenterFromInput()
-            self.updateDirectionFromInput()
-            self.updateRefractionIndexFromInput()
-            self.updateCurvatureRadiusFromInput()
-            self.updateIsFixed()
-            if !self.refreshSelectedNode() {
-                self.removeNode(node)
-                if let node = self.backupNode {
-                    self.addDevice(node)
-                    self.deselectNode()
-                    self.selectNode(node)
-                }
-                let alertView = UIAlertView(title: "Update Failed", message: "The updated node may overlap with other nodes", delegate: nil, cancelButtonTitle: "OK")
-                alertView.show()
-            }
-        }
-        
-        self.shootRay()
-    }
-    
-
-    private func addNode(node: GOOpticRep) -> Bool {
-        return self.addNode(node, strokeColor: self.getColorForNode(node))
-    }
-    
-    private func addDevice(physicsBody: GOOpticRep) -> Bool {
-        var node: XNode
-        var nodePhysicsBody: GOOpticRep
-        if let nodePhysicsBody = physicsBody as? GOEmitterRep {
-            let node = XEmitter(emitter: nodePhysicsBody)
-            if self.addNode(nodePhysicsBody) {
-                self.xNodes[nodePhysicsBody.id] = node
-                return true
-            } else {
-                return false
-            }
-        } else if let nodePhysicsBody = physicsBody as? GOFlatMirrorRep {
-            let node = XFlatMirror(flatMirror: nodePhysicsBody)
-            if self.addNode(nodePhysicsBody) {
-                self.xNodes[nodePhysicsBody.id] = node
-                return true
-            } else {
-                return false
-            }
-        } else if let nodePhysicsBody = physicsBody as? GOFlatLensRep {
-            let node = XFlatLens(flatLens: nodePhysicsBody)
-            if self.addNode(nodePhysicsBody) {
-                self.xNodes[nodePhysicsBody.id] = node
-                return true
-            } else {
-                return false
-            }
-        } else if let nodePhysicsBody = physicsBody as? GOFlatWallRep {
-            let node = XFlatWall(flatWall: nodePhysicsBody)
-            if self.addNode(nodePhysicsBody) {
-                self.xNodes[nodePhysicsBody.id] = node
-                return true
-            } else {
-                return false
-            }
-        } else if let nodePhysicsBody = physicsBody as? GOConvexLensRep {
-            let node = XConvexLens(convexLens: nodePhysicsBody)
-            if self.addNode(nodePhysicsBody) {
-                self.xNodes[nodePhysicsBody.id] = node
-                return true
-            } else {
-                return false
-            }
-        } else if let nodePhysicsBody = physicsBody as? GOConcaveLensRep {
-            let node = XConcaveLens(concaveRep: nodePhysicsBody)
-            if self.addNode(nodePhysicsBody) {
-                self.xNodes[nodePhysicsBody.id] = node
-                return true
-            } else {
-                return false
-            }
-        } else {
-            fatalError(ErrorMsg.nodeInvalid)
-        }
-    }
-    
-    
-    @IBAction func updateSelectedNodePlanck() {
-        if let selectedNode = self.selectedNode {
-            if let node = self.xNodes[selectedNode.id] {
-                let instrument = self.instrumentPicker.selectedRowInComponent(0)
-                node.instrument = instrument
-                
-                if node.isPlanck {
-                    let noteName: Int = self.notePicker.selectedRowInComponent(0)
-                    let noteAccidental: Int = self.accidentalPicker.selectedRowInComponent(0)
-                    let xNoteName: XNoteName = XNoteName(rawValue: noteName * 5 + noteAccidental)!
-                    
-                    let noteGroup: Int = self.groupPicker.selectedRowInComponent(0)
-                    
-                    let xNote = XNote(noteName: xNoteName, noteGroup: noteGroup, instrument: node.instrument)
-                    node.planckNote = xNote
-                }
-                self.updatePickerInformation()
-            }
-        }
-        self.shootRay()
-    }
-    
-    private var backupNode: GOOpticRep?
-    
-    private func backupNode(generalNode: GOOpticRep) {
-        if let node = generalNode as? GOFlatLensRep {
-            self.backupNode = GOFlatLensRep(center: node.center, thickness: node.thickness, length: node.length, direction: node.direction, refractionIndex: node.refractionIndex, id: node.id)
-            return
-        }
-        
-        if let node = generalNode as? GOFlatMirrorRep {
-            self.backupNode = GOFlatMirrorRep(center: node.center, thickness: node.thickness, length: node.length, direction: node.direction, id: node.id)
-            return
-        }
-
-        if let node = generalNode as? GOFlatWallRep {
-            self.backupNode = GOFlatWallRep(center: node.center, thickness: node.thickness, length: node.length, direction: node.direction, id: node.id)
-            return
-        }
-
-        if let node = generalNode as? GOConvexLensRep {
-            self.backupNode = GOConvexLensRep(center: node.center, direction: node.direction, id: node.id, refractionIndex: node.refractionIndex)
-            return
-        }
-
-        if let node = generalNode as? GOConcaveLensRep {
-            self.backupNode = GOConcaveLensRep(center: node.center, direction: node.direction, id: node.id, refractionIndex: node.refractionIndex)
-            return
-        }
-    }
-    
-    @IBAction func saveButtonDidClicked(sender: AnyObject) {
-        initSaving()
-    }
-
-    @IBAction func loadButtonDidClicked(sender: AnyObject) {
-        // Create a level select VC instance
-        var storyBoard = UIStoryboard(name: StoryboardIdentifier.StoryBoardID, bundle: nil)
-        var levelVC = storyBoard.instantiateViewControllerWithIdentifier(StoryboardIdentifier.DesignerLevelSelect)
-            as DesignerLevelSelectViewController
-        levelVC.modalPresentationStyle = UIModalPresentationStyle.Popover
-        levelVC.delegate = self
-        self.presentViewController(levelVC, animated: true, completion: nil)
-        levelVC.popoverPresentationController?.barButtonItem = self.loadButton
-    }
-    
-    @IBAction func cancelSaveBtnDidClicked(sender: AnyObject) {
-        isSaving = false
-        saveHintLabel.hidden = true
-        confirmBar.hidden = true
-        deselectNode()
-        for (id, xnode) in self.xNodes {
-            let nodeView = deviceViews[id]! as UIView
-            if xnode.isFixed {
-                nodeView.layer.opacity = 1.0
-            }
-        }
-        // 4. clear ray
-        clearRay()
-        
-        // 5. reload the designer with the grid we have saved
-        self.grid.clearInstruments()
-        for (id, view) in self.deviceViews {
-            view.removeFromSuperview()
-        }
-        self.clearRay()
-        
-        for (id, opticNode) in self.gridCopy!.instruments {
-            self.addNode(opticNode, strokeColor: getColorForNode(opticNode))
-        }
-        
-        self.grid = self.gridCopy!
-        self.grid.delegate = self
-        self.shootRay()
-    }
-    
-    @IBAction func confirmSaveBtnDidClicked(sender: AnyObject) {
-        showSavePrompt()
-    }
-    
-//------------------------------------------------------------------------------
-//    Private Methods
-//------------------------------------------------------------------------------
     private func refreshSelectedNode() -> Bool {
         if let node = self.selectedNode {
             if var view = self.deviceViews[node.id] {
@@ -958,7 +968,8 @@ class LevelDesignerViewController: XViewController {
         if let selectedNode = self.selectedNode {
             if let node = self.xNodes[selectedNode.id] {
                 self.instrumentPicker.selectRow(node.instrument, inComponent: 0, animated: false)
-                if (node.instrument == NodeDefaults.instrumentInherit) || (node.instrument == NodeDefaults.instrumentNil) {
+                if (node.instrument == NodeDefaults.instrumentInherit) ||
+                    (node.instrument == NodeDefaults.instrumentNil) {
                     self.notePicker.selectRow(0, inComponent: 0, animated: false)
                     self.accidentalPicker.selectRow(0, inComponent: 0, animated: false)
                     self.groupPicker.selectRow(0, inComponent: 0, animated: false)
@@ -1048,7 +1059,8 @@ class LevelDesignerViewController: XViewController {
         let offsetY = offset.y
         
         let originalDisplayPoint = self.grid.getCenterForGridCell(node.center)
-        let effectDisplayPoint = CGPointMake(originalDisplayPoint.x + offsetX, originalDisplayPoint.y + offsetY)
+        let effectDisplayPoint = CGPointMake(originalDisplayPoint.x + offsetX,
+            originalDisplayPoint.y + offsetY)
         
         let centerBackup = node.center
         
@@ -1124,10 +1136,10 @@ class LevelDesignerViewController: XViewController {
             
             if currentIndex < self.rays[tag]?.count {
                 let layer = CAShapeLayer()
-                layer.strokeEnd = 1.0
-                layer.strokeColor = UIColor.whiteColor().CGColor
-                layer.fillColor = UIColor.clearColor().CGColor
-                layer.lineWidth = 2.0
+                layer.strokeEnd = RayDefaults.initialStrokeEnd
+                layer.strokeColor = RayDefaults.strokeColor
+                layer.fillColor = RayDefaults.fillColor
+                layer.lineWidth = RayDefaults.lineWidth
                 
                 self.rayLayers[tag]?.append(layer)
                 
@@ -1143,15 +1155,15 @@ class LevelDesignerViewController: XViewController {
                 
                 let delay = distance / Constant.lightSpeedBase
                 
-                let pathAnimation = CABasicAnimation(keyPath: "strokeEnd")
-                pathAnimation.fromValue = 0.0
-                pathAnimation.toValue = 1.0
+                let pathAnimation = CABasicAnimation(keyPath: RayDefaults.animationKeyPath)
+                pathAnimation.fromValue = RayDefaults.animationFromValue
+                pathAnimation.toValue = RayDefaults.animationToValue
                 pathAnimation.duration = CFTimeInterval(delay)
-                pathAnimation.repeatCount = 1.0
                 pathAnimation.fillMode = kCAFillModeForwards
-                pathAnimation.timingFunction = CAMediaTimingFunction(name: kCAMediaTimingFunctionLinear)
+                pathAnimation.timingFunction = CAMediaTimingFunction(
+                    name: kCAMediaTimingFunctionLinear)
                 
-                layer.addAnimation(pathAnimation, forKey: "strokeEnd")
+                layer.addAnimation(pathAnimation, forKey: pathAnimation.keyPath)
                 
                 self.playNote(prevPoint.1, tag: tag)
                 
@@ -1161,7 +1173,7 @@ class LevelDesignerViewController: XViewController {
                 
                 self.pathDistances[tag]! += distance
                 
-                let delayInNanoSeconds = 0.9 * delay * CGFloat(NSEC_PER_SEC)
+                let delayInNanoSeconds = RayDefaults.delayCoefficient * delay * CGFloat(NSEC_PER_SEC)
                 dispatch_after(dispatch_time(DISPATCH_TIME_NOW, Int64(delayInNanoSeconds)), dispatch_get_main_queue()) {
                     self.drawRay(tag, currentIndex: currentIndex + 1)
                 }
