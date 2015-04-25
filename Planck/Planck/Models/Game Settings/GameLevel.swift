@@ -61,6 +61,13 @@ class GameLevel: NSObject, NSCoding, Comparable, Equatable {
         }
     }
     
+    /// The index for next level
+    var indexForNextLevel: Int {
+        get {
+            return index + 1
+        }
+    }
+    
     init(levelName: String, levelIndex: Int, grid: GOGrid, solvedGrid: GOGrid, nodes: [String: XNode], targetMusic: XMusic) {
         self.name           = levelName
         self.index          = levelIndex
