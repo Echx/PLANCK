@@ -144,8 +144,8 @@ class LevelDesignerViewController: XViewController {
     }
 
     class func getInstance() -> LevelDesignerViewController {
-        let storyboard = UIStoryboard(name: "Main", bundle: nil)
-        let identifier = StoryboardIndentifier.LevelDesigner
+        let storyboard = UIStoryboard(name: StoryboardIdentifier.StoryBoardID, bundle: nil)
+        let identifier = StoryboardIdentifier.LevelDesigner
         let viewController = storyboard.instantiateViewControllerWithIdentifier(identifier) as LevelDesignerViewController
         viewController.modalTransitionStyle = UIModalTransitionStyle.CrossDissolve
         return viewController
@@ -544,8 +544,8 @@ class LevelDesignerViewController: XViewController {
 
     @IBAction func loadButtonDidClicked(sender: AnyObject) {
         // Create a level select VC instance
-        var storyBoard = UIStoryboard(name: StoryboardIndentifier.StoryBoardID, bundle: nil)
-        var levelVC = storyBoard.instantiateViewControllerWithIdentifier(StoryboardIndentifier.DesignerLevelSelect)
+        var storyBoard = UIStoryboard(name: StoryboardIdentifier.StoryBoardID, bundle: nil)
+        var levelVC = storyBoard.instantiateViewControllerWithIdentifier(StoryboardIdentifier.DesignerLevelSelect)
             as DesignerLevelSelectViewController
         levelVC.modalPresentationStyle = UIModalPresentationStyle.Popover
         levelVC.delegate = self

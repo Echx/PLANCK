@@ -10,8 +10,8 @@ import UIKit
 
 class GameStasticViewController: XViewController {
     class func getInstance() -> GameStasticViewController {
-        let storyboard = UIStoryboard(name: "Main", bundle: nil)
-        let identifier = StoryboardIndentifier.GameStats
+        let storyboard = UIStoryboard(name: StoryboardIdentifier.StoryBoardID, bundle: nil)
+        let identifier = StoryboardIdentifier.GameStats
         let viewController = storyboard.instantiateViewControllerWithIdentifier(identifier) as GameStasticViewController
         return viewController
     }

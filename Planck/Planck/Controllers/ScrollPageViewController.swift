@@ -10,8 +10,8 @@ import UIKit
 
 class ScrollPageViewController: XViewController, UIScrollViewDelegate {
     class func getInstance(controllers:[ScrollPageContentViewController]) -> ScrollPageViewController {
-        let storyboard = UIStoryboard(name: StoryboardIndentifier.StoryBoardID, bundle: nil)
-        let identifier = StoryboardIndentifier.ScrollPage
+        let storyboard = UIStoryboard(name: StoryboardIdentifier.StoryBoardID, bundle: nil)
+        let identifier = StoryboardIdentifier.ScrollPage
         let viewController = storyboard.instantiateViewControllerWithIdentifier(identifier) as ScrollPageViewController
         viewController.controllers = controllers
         

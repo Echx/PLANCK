@@ -14,8 +14,8 @@ class LevelSelectViewController: ScrollPageContentViewController, UICollectionVi
     var levelArray:[GameLevel] = [GameLevel]()
     
     class func getInstance() -> LevelSelectViewController {
-        let storyboard = UIStoryboard(name: "Main", bundle: nil)
-        let identifier = StoryboardIndentifier.LevelSelect
+        let storyboard = UIStoryboard(name: StoryboardIdentifier.StoryBoardID, bundle: nil)
+        let identifier = StoryboardIdentifier.LevelSelect
         let viewController = storyboard.instantiateViewControllerWithIdentifier(identifier) as LevelSelectViewController
         return viewController
     }

@@ -14,8 +14,8 @@ class CustomizedLevelSelectViewController: ScrollPageContentViewController, UICo
     var levelArray:[GameLevel] = [GameLevel]()
     
     class func getInstance() -> CustomizedLevelSelectViewController {
-        let storyboard = UIStoryboard(name: "Main", bundle: nil)
-        let identifier = StoryboardIndentifier.CustomizedLevelSelect
+        let storyboard = UIStoryboard(name: StoryboardIdentifier.StoryBoardID, bundle: nil)
+        let identifier = StoryboardIdentifier.CustomizedLevelSelect
         let viewController = storyboard.instantiateViewControllerWithIdentifier(identifier) as CustomizedLevelSelectViewController
         return viewController
     }

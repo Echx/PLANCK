@@ -29,8 +29,8 @@ class SettingViewController: XViewController, UITableViewDataSource, UITableView
     
     @IBOutlet weak var tableView: UITableView!
     class func getInstance() -> SettingViewController {
-        let storyboard = UIStoryboard(name: "Main", bundle: nil)
-        let identifier = StoryboardIndentifier.Setting
+        let storyboard = UIStoryboard(name: StoryboardIdentifier.StoryBoardID, bundle: nil)
+        let identifier = StoryboardIdentifier.Setting
         let viewController = storyboard.instantiateViewControllerWithIdentifier(identifier) as SettingViewController
         return viewController
     }
