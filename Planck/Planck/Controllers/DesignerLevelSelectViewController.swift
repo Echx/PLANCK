@@ -12,10 +12,11 @@ protocol LevelSelectDelegate {
     func loadSelectLevel(level:GameLevel)
 }
 
+//This controller controls the level select view in level designer
 class DesignerLevelSelectViewController: UITableViewController {
     
-    // holding level names
     private var levelArray = [GameLevel]()
+    private let numberOfSectionInTableView = 1
     
     var delegate: LevelSelectDelegate?
     
@@ -24,15 +25,11 @@ class DesignerLevelSelectViewController: UITableViewController {
         loadFiles()
     }
 
-    // MARK: - Table view data source
-    
-    /// Return the number of sections.
+    // MARK: - UITableViewDataSource
     override func numberOfSectionsInTableView(tableView: UITableView) -> Int {
-        
-        return 1
+        return self.numberOfSectionInTableView
     }
 
-    /// Return the number of row in a sections.
     override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         // Return the number of rows in the section.
         return self.levelArray.count
@@ -47,6 +44,7 @@ class DesignerLevelSelectViewController: UITableViewController {
         return cell
     }
     
+    // MARK: - UITableViewDelegate
     override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         let game = self.levelArray[indexPath.item]
         self.delegate!.loadSelectLevel(game)
