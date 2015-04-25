@@ -8,6 +8,8 @@
 
 import UIKit
 
+//This controller controls the system level select view (where player can choose
+//a level provided by the game when it is first install to play)
 class LevelSelectViewController: ScrollPageContentViewController, UICollectionViewDataSource, UICollectionViewDelegate, UICollectionViewDelegateFlowLayout {
     
     @IBOutlet weak var collectionView: UICollectionView!
@@ -34,11 +36,13 @@ class LevelSelectViewController: ScrollPageContentViewController, UICollectionVi
         reload()
     }
     
+    //reload levels
     override func reload() {
         self.loadLevels()
         self.collectionView.reloadData()
     }
     
+    //get the header text for each section
     private func getSectionHeaderText(section : Int) -> String {
         if section < self.headerTexts.count {
             return self.headerTexts[section]
@@ -47,6 +51,7 @@ class LevelSelectViewController: ScrollPageContentViewController, UICollectionVi
         }
     }
     
+    //load levels from storage manager
     private func loadLevels() {
         self.levelArray = StorageManager.defaultManager.loadAllLevel()
     }
