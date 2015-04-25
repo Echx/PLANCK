@@ -921,9 +921,9 @@
 			isa = PBXGroup;
 			children = (
 				980203711AEBA00400136497 /* GameLevelTest.swift */,
-				6227FB851AAE285C007F49EA /* Supporting Files */,
 				980203731AEBA79D00136497 /* XMusicTest.swift */,
 				980203751AEBA7C700136497 /* XNoteTest.swift */,
+				6227FB851AAE285C007F49EA /* Supporting Files */,
 			);
 			path = PlanckTests;
 			sourceTree = "<group>";
