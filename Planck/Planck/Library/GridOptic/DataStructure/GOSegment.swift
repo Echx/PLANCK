@@ -1,5 +1,5 @@
 //
-//  GO2DRepresentation.swift
+//  GOSegment
 //  GridOptic
 //
 //  Created by Wang Jinghan on 30/03/15.
@@ -8,12 +8,13 @@
 
 import UIKit
 
+// GOSegment is the parent class of line segment and arc segment in GO library
 class GOSegment : NSObject, NSCoding {
     //if both are true, only take refract (ignore the reflect ray)
     var willRefract: Bool = false
     var willReflect: Bool = false
     var center: CGPoint = CGPointZero
-    var tag: NSInteger = 0
+    var tag: NSInteger = SegmentDefaults.defaultTag
     var isReversed: Bool = false
     
     var bezierPath: UIBezierPath {
@@ -22,18 +23,9 @@ class GOSegment : NSObject, NSCoding {
         }
     }
     
-    var drawingPath: UIBezierPath {
-        get {
-            if self.isReversed {
-                return self.bezierPath.bezierPathByReversingPath()
-            } else {
-                return self.bezierPath
-            }
-        }
-    }
     var parent: String = ""
     
-    //angle should be within [0, 2PI) from
+    // angle should be within [0, 2PI) from
     var direction: CGVector = CGVector(dx: 0, dy: 1)
     var normalDirection: CGVector {
         set {
@@ -67,6 +59,7 @@ class GOSegment : NSObject, NSCoding {
         let direction = aDecoder.decodeCGVectorForKey(GOCodingKey.segment_direction)
         
         self.init()
+            
         self.willReflect = willReflect
         self.willRefract = willRefract
         self.center = center
@@ -116,6 +109,7 @@ class GOSegment : NSObject, NSCoding {
     }
     
     func revert() {
+        // revert the segment
         self.isReversed = !self.isReversed
     }
 }

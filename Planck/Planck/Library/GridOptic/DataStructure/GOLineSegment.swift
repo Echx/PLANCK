@@ -8,11 +8,14 @@
 
 import UIKit
 
+// GOLineSegment is the representation of line segment in GO library
 class GOLineSegment: GOSegment {
     var length: CGFloat
+    // return the embeded GOLine
     var line: GOLine {
         get {
-            return GOLine(anyPoint: CGPointMake(CGFloat(self.center.x), CGFloat(self.center.y)), direction: self.direction)
+            return GOLine(anyPoint: CGPointMake(CGFloat(self.center.x),
+                CGFloat(self.center.y)), direction: self.direction)
         }
     }
     override var bezierPath: UIBezierPath {
@@ -20,7 +23,6 @@ class GOLineSegment: GOSegment {
             var path = UIBezierPath()
             path.moveToPoint(self.startPoint)
             path.addLineToPoint(self.endPoint)
-//            path.closePath()
             return path
         }
     }
