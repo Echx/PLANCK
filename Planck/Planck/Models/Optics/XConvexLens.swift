@@ -8,6 +8,9 @@
 
 import UIKit
 
+// XConvexLens represents the convex lens in this game. A convex lens will
+// concentrate the incident light and if the angle exceed a certain limit, 
+// total reflection will occur
 class XConvexLens: XNode {
     init(convexLens: GOConvexLensRep) {
         super.init(physicsBody: convexLens)
