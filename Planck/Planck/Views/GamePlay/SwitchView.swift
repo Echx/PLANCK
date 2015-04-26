@@ -9,6 +9,9 @@
 import UIKit
 
 /// This is the switch view appear at the bottom of the game view
+/// when the player tap the switch, the status of the switch will be toggle,
+/// if the switch is changed to on, all the emitter present on screen will 
+/// shoot the light beam
 class SwitchView: UIView {
     var isOn = false
     
