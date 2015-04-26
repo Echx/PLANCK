@@ -42,7 +42,7 @@ class XColorTest: XCTestCase {
         let blueColor2 = XColor(containsRed: false, containsGreen: false, containsBlue: true)
         
         let resultedColor = blueColor1 + blueColor2
-
+        
         XCTAssertEqual(resultedColor, pureBlue, "Blue + Blue should be Blue!")
     }
     
@@ -53,15 +53,15 @@ class XColorTest: XCTestCase {
         let resultedYellow = redColor + greenColor
         
         XCTAssertEqual(resultedYellow, pureYellow,
-                        "green + red should be yellow!")
+            "green + red should be yellow!")
         
         XCTAssertEqual(resultedYellow + resultedYellow, pureYellow,
-                        "yellow + yellow should be yellow!")
+            "yellow + yellow should be yellow!")
         
         XCTAssertEqual(pureYellow + pureRed, pureYellow,
-                        "yellow + red should be yellow!")
+            "yellow + red should be yellow!")
         XCTAssertEqual(pureYellow + pureGreen, pureYellow,
-                        "yellow + green should be yellow!")
+            "yellow + green should be yellow!")
     }
     
     func testCyan() {
@@ -71,16 +71,16 @@ class XColorTest: XCTestCase {
         let resultedCyan = greenColor + blueColor
         
         XCTAssertEqual(resultedCyan, pureCyan,
-                        "green + blue should be cyan!")
+            "green + blue should be cyan!")
         
         XCTAssertEqual(resultedCyan + resultedCyan, pureCyan,
-                        "cyan + cyan should be cyan!")
+            "cyan + cyan should be cyan!")
         
         XCTAssertEqual(pureBlue + pureCyan, pureCyan,
-                        "cyan + blue should be cyan!")
-
+            "cyan + blue should be cyan!")
+        
         XCTAssertEqual(pureCyan + pureGreen, pureCyan,
-                        "cyan + green should be cyan!")
+            "cyan + green should be cyan!")
     }
     
     func testMagenta() {
@@ -90,16 +90,16 @@ class XColorTest: XCTestCase {
         let resultedMagenta = redColor + blueColor
         
         XCTAssertEqual(resultedMagenta, pureMagenta,
-                        "red + blue should be Magenta!")
+            "red + blue should be Magenta!")
         
         XCTAssertEqual(resultedMagenta + resultedMagenta, pureMagenta,
-                        "Magenta + Magenta should be Magenta!")
+            "Magenta + Magenta should be Magenta!")
         
         XCTAssertEqual(pureBlue + pureMagenta, pureMagenta,
-                        "Magenta + blue should be Magenta!")
+            "Magenta + blue should be Magenta!")
         
         XCTAssertEqual(pureRed + pureMagenta, pureMagenta,
-                        "Magenta + green should be Magenta!")
+            "Magenta + green should be Magenta!")
     }
     
     func testWhite() {

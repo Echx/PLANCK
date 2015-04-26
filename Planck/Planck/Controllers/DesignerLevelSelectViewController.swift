@@ -12,7 +12,7 @@ protocol LevelSelectDelegate {
     func loadSelectLevel(level:GameLevel)
 }
 
-//This controller controls the level select view in level designer
+// This controller controls the level select view in level designer
 class DesignerLevelSelectViewController: UITableViewController {
     
     private var levelArray = [GameLevel]()
@@ -30,13 +30,16 @@ class DesignerLevelSelectViewController: UITableViewController {
         return self.numberOfSectionInTableView
     }
 
-    override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+    override func tableView(tableView: UITableView, numberOfRowsInSection
+        section: Int) -> Int {
         // Return the number of rows in the section.
         return self.levelArray.count
     }
 
-    override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCellWithIdentifier(ReuseableID.DesignerLevelCell, forIndexPath: indexPath) as UITableViewCell
+    override func tableView(tableView: UITableView, cellForRowAtIndexPath
+        indexPath: NSIndexPath) -> UITableViewCell {
+        let cell = tableView.dequeueReusableCellWithIdentifier(
+            ReuseableID.DesignerLevelCell, forIndexPath: indexPath) as UITableViewCell
 
         let game = self.levelArray[indexPath.item]
         cell.textLabel?.text = String(game.index)
@@ -45,7 +48,8 @@ class DesignerLevelSelectViewController: UITableViewController {
     }
     
     // MARK: - UITableViewDelegate
-    override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+    override func tableView(tableView: UITableView,
+        didSelectRowAtIndexPath indexPath: NSIndexPath) {
         let game = self.levelArray[indexPath.item]
         self.delegate!.loadSelectLevel(game)
     }

@@ -11,16 +11,19 @@ import XCTest
 
 class XNoteTest: XCTestCase {
     func testGetMIDINote() {
-        let notPitchNote = XNote(noteName: XNoteName.bassDrum, noteGroup: nil, instrument: nil)
+        let notPitchNote = XNote(noteName: XNoteName.bassDrum,
+            noteGroup: nil, instrument: nil)
         
-        XCTAssertEqual(notPitchNote.getMIDINote(), -1, "A non-pitch note should return -1")
+        XCTAssertEqual(notPitchNote.getMIDINote(), -1,
+            "A non-pitch note should return -1")
         
         let noteA = XNote(noteName: XNoteName.A, noteGroup: 2, instrument: nil)
         XCTAssertEqual(noteA.getMIDINote(), 45, "note A should return -1")
     }
     
     func testEquatable() {
-        let notPitchNote = XNote(noteName: XNoteName.bassDrum, noteGroup: nil, instrument: nil)
+        let notPitchNote = XNote(noteName: XNoteName.bassDrum,
+            noteGroup: nil, instrument: nil)
         
         let noteA = XNote(noteName: XNoteName.A, noteGroup: 2, instrument: nil)
         let noteAprime = XNote(noteName: XNoteName.A, noteGroup: 2, instrument: nil)

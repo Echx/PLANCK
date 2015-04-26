@@ -8,6 +8,8 @@
 
 import UIKit
 
+// this controller is currently unsupported, we will implement customized level
+// in the next iteration
 class CustomizedLevelSelectViewController: ScrollPageContentViewController, UICollectionViewDataSource, UICollectionViewDelegate {
         
     @IBOutlet weak var collectionView: UICollectionView!

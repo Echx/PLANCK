@@ -8,7 +8,8 @@
 
 import UIKit
 
-//This class is the parent class for most of the view controllers in this project
+// This class is the parent class for most of the view controllers 
+// in this project
 class XViewController: UIViewController {
     
     @IBAction func dismissViewController() {

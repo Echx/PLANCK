@@ -8,9 +8,10 @@
 
 import UIKit
 
-//This controller controls the system level select view (where player can choose
-//a level provided by the game when it is first install to play)
-class LevelSelectViewController: ScrollPageContentViewController, UICollectionViewDataSource, UICollectionViewDelegate, UICollectionViewDelegateFlowLayout {
+// This controller controls the system level select view (where player can choose
+// a level provided by the game when it is first install to play)
+class LevelSelectViewController: ScrollPageContentViewController,
+    UICollectionViewDataSource, UICollectionViewDelegate, UICollectionViewDelegateFlowLayout {
     
     @IBOutlet weak var collectionView: UICollectionView!
     private let nameChar = ["I", "II", "III", "IV", "V", "VI"]

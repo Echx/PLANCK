@@ -11,7 +11,6 @@ import XCTest
 import Foundation
 
 class ArchiveTest : XCTestCase {
-
     struct Default {
         static let center = GOCoordinate(x: 60, y: 35)
         static let thick  = CGFloat(2)
@@ -29,15 +28,24 @@ class ArchiveTest : XCTestCase {
         static let VexLenKey2 = "CONVEX_LENS_2"
     }
     
-    let mirror = GOFlatMirrorRep(center: Default.center , thickness: Default.thick, length: Default.length, direction: Default.direction, id: Default.MirrorKey)
+    let mirror = GOFlatMirrorRep(center: Default.center, thickness: Default.thick,
+        length: Default.length, direction: Default.direction, id: Default.MirrorKey)
     
-    let flatLens = GOFlatLensRep(center: Default.center, thickness: Default.thick, length: Default.length, direction: Default.direction, refractionIndex: Default.index, id: Default.FlatLenKey)
+    let flatLens = GOFlatLensRep(center: Default.center, thickness: Default.thick,
+        length: Default.length, direction: Default.direction, refractionIndex: Default.index,
+        id: Default.FlatLenKey)
     
-    let concaveLens = GOConcaveLensRep(center: GOCoordinate(x: 44, y: 33), direction: CGVectorMake(0, 1), thicknessCenter: 1, thicknessEdge: 4, curvatureRadius: 5, id: "CONCAVE_LENS_1", refractionIndex: 1.50)
+    let concaveLens = GOConcaveLensRep(center: GOCoordinate(x: 44, y: 33),
+        direction: CGVectorMake(0, 1), thicknessCenter: 1, thicknessEdge: 4,
+        curvatureRadius: 5, id: "CONCAVE_LENS_1", refractionIndex: 1.50)
     
-    let convexLens = GOConvexLensRep(center: GOCoordinate(x: 35, y: 26), direction: CGVectorMake(0, -1), thickness: 3, curvatureRadius: 20, id: "CONVEX_LENS_1", refractionIndex: 1.50)
+    let convexLens = GOConvexLensRep(center: GOCoordinate(x: 35, y: 26),
+        direction: CGVectorMake(0, -1), thickness: 3, curvatureRadius: 20,
+        id: "CONVEX_LENS_1", refractionIndex: 1.50)
     
-    let convexLens1 = GOConvexLensRep(center: GOCoordinate(x: 15, y: 25), direction: CGVectorMake(1, -1), thickness: 3, curvatureRadius: 8, id: "CONVEX_LENS_2", refractionIndex: 1.50)
+    let convexLens1 = GOConvexLensRep(center: GOCoordinate(x: 15, y: 25),
+        direction: CGVectorMake(1, -1), thickness: 3, curvatureRadius: 8,
+        id: "CONVEX_LENS_2", refractionIndex: 1.50)
     
     func testArchiveGOGrid() {
         let data = NSMutableData();
@@ -82,33 +90,4 @@ class ArchiveTest : XCTestCase {
         XCTAssertEqual(recoverObj.direction, Default.direction, "Error Recovering")
         XCTAssertEqual(recoverObj.id, Default.MirrorKey, "Error Recovering")
     }
-    
-//    func testArchiveGameLevel() {
-//        let data = NSMutableData();
-//        let archiver = NSKeyedArchiver(forWritingWithMutableData: data)
-//        
-//        var grid:GOGrid = GOGrid(width: 64, height: 48, andUnitLength: 16)
-//        
-//        grid.addInstrument(mirror)
-//        
-//        grid.addInstrument(flatLens)
-//        
-//        grid.addInstrument(concaveLens)
-//        
-//        grid.addInstrument(convexLens)
-//        
-//        grid.addInstrument(convexLens1)
-//
-//        let gameLevel = GameLevel(levelName: "haha", levelIndex: 12, grid: grid)
-//        archiver.encodeObject(gameLevel, forKey: "game")
-//        archiver.finishEncoding()
-//        
-//        let unarchiver = NSKeyedUnarchiver(forReadingWithData: data)
-//        let recoverObj = unarchiver.decodeObjectForKey("game")! as GameLevel
-//        XCTAssertEqual(recoverObj.name, "haha", "Error Recovering")
-//        XCTAssertEqual(recoverObj.index, 12, "Error Recovering")
-//        XCTAssertEqual(recoverObj.grid.instruments.count, grid.instruments.count, "Error Recovering")
-//    }
-
-
 }
