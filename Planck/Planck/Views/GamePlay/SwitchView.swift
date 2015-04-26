@@ -12,43 +12,51 @@ import UIKit
 class SwitchView: UIView {
     var isOn = false
     
+    /// this three layers comprise the poles and throw
     let switchThrow = CAShapeLayer()
     let leftPole = CAShapeLayer()
     let rightPole = CAShapeLayer()
     
-    let switchThrowView = UIView(frame: CGRect(x: 0, y: 0, width: 67, height: 40))
+    let switchThrowView = UIView(frame: SwitchDefaults.switchViewThrowFrame)
     
     override init() {
-        self.switchThrowView.center = CGPoint(x: 20 + SwitchDefaults.circleRadius, y: 20)
+        self.switchThrowView.center = SwitchDefaults.switchThrowCenter
         
         var throwPath = UIBezierPath()
         throwPath.lineJoinStyle = kCGLineJoinBevel
         throwPath.lineCapStyle = kCGLineCapRound
-        throwPath.moveToPoint(CGPoint(x: 20 + 3 * SwitchDefaults.circleRadius, y: 18))
-        throwPath.addLineToPoint(CGPoint(x: 62 + 3 * SwitchDefaults.circleRadius, y: -3.5))
+        throwPath.moveToPoint(SwitchDefaults.switchThrowStartPoint)
+        throwPath.addLineToPoint(SwitchDefaults.switchThrowEndPoint)
         
         var leftPolePath = UIBezierPath()
         
         leftPolePath.lineJoinStyle = kCGLineJoinBevel
         leftPolePath.lineCapStyle = kCGLineCapRound
         
-        leftPolePath.moveToPoint(CGPoint(x: -20, y: 20))
-        leftPolePath.addLineToPoint(CGPoint(x: 20, y: 20))
-        leftPolePath.addArcWithCenter(CGPoint(x: 20 + SwitchDefaults.circleRadius, y: 20), radius: CGFloat(SwitchDefaults.circleRadius), startAngle: CGFloat(-M_PI), endAngle: CGFloat(M_PI), clockwise: true)
+        leftPolePath.moveToPoint(SwitchDefaults.switchLeftPoleStartPoint)
+        leftPolePath.addLineToPoint(SwitchDefaults.switchLeftPoleEndPoint)
+        leftPolePath.addArcWithCenter(SwitchDefaults.switchLeftPoleCircleStartPoint,
+            radius: CGFloat(SwitchDefaults.circleRadius),
+            startAngle: CGFloat(-M_PI),
+            endAngle: CGFloat(M_PI),
+            clockwise: true)
         
         var rightPolePath = UIBezierPath()
         
         rightPolePath.lineJoinStyle = kCGLineJoinBevel
         rightPolePath.lineCapStyle = kCGLineCapRound
-        rightPolePath.addArcWithCenter(CGPoint(x: 65 + 2 * SwitchDefaults.circleRadius, y: 20), radius: CGFloat(SwitchDefaults.circleRadius), startAngle: CGFloat(0), endAngle: CGFloat(2 * M_PI), clockwise: true)
-        rightPolePath.addLineToPoint(CGPoint(x: 1024 + 5 * SwitchDefaults.circleRadius, y: 20))
+        rightPolePath.addArcWithCenter(SwitchDefaults.switchRightPoleCircleStartPoint,
+            radius: CGFloat(SwitchDefaults.circleRadius),
+            startAngle: CGFloat(0),
+            endAngle: CGFloat(2 * M_PI),
+            clockwise: true)
+        rightPolePath.addLineToPoint(SwitchDefaults.switchRightPoleEndPoint)
 
         self.switchThrow.path = throwPath.CGPath
         self.leftPole.path = leftPolePath.CGPath
         self.rightPole.path = rightPolePath.CGPath
 
-        let rect = CGRectMake(0, 0, 1024, 90)
-        super.init(frame: rect)
+        super.init(frame: SwitchDefaults.switchFrame)
         self.setLayer(self.leftPole)
         self.setLayer(self.rightPole)
         self.setLayer(self.switchThrow)
@@ -81,11 +89,12 @@ class SwitchView: UIView {
     func setOn() {
         if !self.isOn {
             self.isOn = true
-            UIView.animateWithDuration(0.15,
+            UIView.animateWithDuration(SwitchDefaults.animationDuration,
                 delay: 0.0,
                 options: UIViewAnimationOptions.CurveLinear,
                 animations: {
-                    self.switchThrowView.transform = CGAffineTransformMakeRotation(CGFloat(M_PI / 9))
+                    self.switchThrowView.transform = CGAffineTransformMakeRotation(
+                        SwitchDefaults.switchRotateDegree)
                 }, completion: nil
             )
         }
@@ -94,11 +103,12 @@ class SwitchView: UIView {
     func setOff() {
         if self.isOn {
             self.isOn = false
-            UIView.animateWithDuration(0.15,
+            UIView.animateWithDuration(SwitchDefaults.animationDuration,
                 delay: 0.0,
                 options: UIViewAnimationOptions.CurveLinear,
                 animations: {
-                    self.switchThrowView.transform = CGAffineTransformMakeRotation(CGFloat(0))
+                    self.switchThrowView.transform = CGAffineTransformMakeRotation(
+                        CGFloat(0))
                 }, completion: nil
             )
         }

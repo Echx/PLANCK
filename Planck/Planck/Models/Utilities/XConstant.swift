@@ -205,13 +205,44 @@ struct PlanckDefaults {
     static let textureImageName = "planck-c5"
     static let planckRadius: CGFloat = 40
     static let planckPhisicsRadius: CGFloat = 30
-    static let planckSize = CGSizeMake(PlanckDefaults.planckRadius * 2, PlanckDefaults.planckRadius * 2)
+    static let planckSize = CGSizeMake(PlanckDefaults.planckRadius * 2,
+        PlanckDefaults.planckRadius * 2)
     static let textureColor = UIColor.blackColor()
 }
 
 struct SwitchDefaults {
     static let lineWidth = CGFloat(3.0)
     static let circleRadius = CGFloat(6.0)
+    
+    static let switchViewThrowFrame = CGRect(x: 0, y: 0, width: 67, height: 40)
+    
+    static let switchThrowXOffset: CGFloat = 20
+    static let switchThrowYOffset: CGFloat = 20
+    
+    static let switchThrowCenter = CGPoint(x: SwitchDefaults.switchThrowXOffset
+        + SwitchDefaults.circleRadius, y: SwitchDefaults.switchThrowYOffset)
+    static let switchThrowStartPoint = CGPoint(x: 20 + 3 * SwitchDefaults.circleRadius,
+        y: 18)
+    static let switchThrowEndPoint = CGPoint(x: 62 + 3 * SwitchDefaults.circleRadius,
+        y: -3.5)
+    
+    static let switchLeftPoleStartPoint = CGPoint(x: -20,
+        y: SwitchDefaults.switchThrowYOffset)
+    static let switchLeftPoleEndPoint = CGPoint(x: 20,
+        y: SwitchDefaults.switchThrowYOffset)
+    static let switchLeftPoleCircleStartPoint = CGPoint(x: 20 + SwitchDefaults.circleRadius,
+        y: SwitchDefaults.switchThrowYOffset)
+    
+    static let switchRightPoleCircleStartPoint = CGPoint(x: 65 + 2 * SwitchDefaults.circleRadius,
+        y: SwitchDefaults.switchThrowYOffset)
+    static let switchRightPoleEndPoint = CGPoint(x: 1024 + 5 * SwitchDefaults.circleRadius,
+        y: SwitchDefaults.switchThrowYOffset)
+    
+    static let switchFrame = CGRectMake(0, 0, 1024, 90)
+    
+    static let switchRotateDegree = CGFloat(M_PI / 9)
+    
+    static let animationDuration = 0.15
 }
 
 struct PhysicsCategory {
@@ -259,7 +290,8 @@ struct LevelDesignerDefaults {
     
     static let interButtonSpace: CGFloat = 5
     
-    static let buttonNames = ["flat mirror", "emitter", "wall", "planck", "interface", "eraser", "clear", "save", "load"]
+    static let buttonNames = ["flat mirror", "emitter", "wall", "planck",
+        "interface", "eraser", "clear", "save", "load"]
     static let buttonNameFlatMirror = LevelDesignerDefaults.buttonNames[0]
     static let buttonNameEmitter = LevelDesignerDefaults.buttonNames[1]
     static let buttonNameWall = LevelDesignerDefaults.buttonNames[2]
@@ -279,12 +311,17 @@ struct LevelDesignerDefaults {
 }
 
 struct SoundFiles {
-    static let snareDrumSound = NSURL(fileURLWithPath: NSBundle.mainBundle().pathForResource("snare-drum", ofType: "m4a")!)
-    static let bassDrumSound = NSURL(fileURLWithPath: NSBundle.mainBundle().pathForResource("bass-drum", ofType: "m4a")!)
-    static let cymbalSound = NSURL(fileURLWithPath: NSBundle.mainBundle().pathForResource("cymbal", ofType: "m4a")!)
-    static let levelUpSound = NSURL(fileURLWithPath: NSBundle.mainBundle().pathForResource("levelup", ofType: "m4a")!)
+    static let snareDrumSound = NSURL(fileURLWithPath:
+        NSBundle.mainBundle().pathForResource("snare-drum", ofType: "m4a")!)
+    static let bassDrumSound = NSURL(fileURLWithPath:
+        NSBundle.mainBundle().pathForResource("bass-drum", ofType: "m4a")!)
+    static let cymbalSound = NSURL(fileURLWithPath:
+        NSBundle.mainBundle().pathForResource("cymbal", ofType: "m4a")!)
+    static let levelUpSound = NSURL(fileURLWithPath:
+        NSBundle.mainBundle().pathForResource("levelup", ofType: "m4a")!)
     
-    static let backgroundMusic = NSURL(fileURLWithPath: NSBundle.mainBundle().pathForResource("planck-background", ofType: "m4a")!)
+    static let backgroundMusic = NSURL(fileURLWithPath:
+        NSBundle.mainBundle().pathForResource("planck-background", ofType: "m4a")!)
 }
 
 struct PlanckControllPanel {
