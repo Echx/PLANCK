@@ -5,31 +5,8 @@
 //  Created by Jiang Sheng on 5/4/15.
 //  Copyright (c) 2015 Echx. All rights reserved.
 
-//This class defines the data structure which stores each of the game levels
+// This class defines the data structure which stores each of the game levels
 class GameLevel: NSObject, NSCoding, Comparable, Equatable {
-    
-    // Get a game level from the given index
-    // :param: the index of the game level needed to be retrieved
-    // returns: the GameLevel objects for that particular level
-    class func loadGameWithIndex(index:Int) -> GameLevel? {
-        let totalGame = StorageManager.defaultManager.numOfLevel()
-        if index < 0 || index >= totalGame {
-            return nil
-        }
-        return StorageManager.defaultManager.loadAllLevel()[index]
-    }
-    
-    // Count the total scores (tokens) user has achieved
-    // returns: the total score
-    class func countTotalScore() -> Int {
-        let allLevels = StorageManager.defaultManager.loadAllLevel()
-        var total:Int = 0
-        for level in allLevels {
-            total += level.bestScore
-        }
-        return total
-    }
-    
     private let defaultName = "Deadline"
     
     /// The puzzle grid contained in this level
@@ -69,7 +46,8 @@ class GameLevel: NSObject, NSCoding, Comparable, Equatable {
         }
     }
     
-    init(levelName: String, levelIndex: Int, grid: GOGrid, solvedGrid: GOGrid, nodes: [String: XNode], targetMusic: XMusic) {
+    init(levelName: String, levelIndex: Int, grid: GOGrid, solvedGrid: GOGrid,
+        nodes: [String: XNode], targetMusic: XMusic) {
         self.name           = levelName
         self.index          = levelIndex
         self.grid           = grid
@@ -87,13 +65,13 @@ class GameLevel: NSObject, NSCoding, Comparable, Equatable {
     }
     
     required convenience init(coder aDecoder: NSCoder) {
-        var levelName       = aDecoder.decodeObjectForKey(NSCodingKey.GameName)         as String
-        var index           = aDecoder.decodeObjectForKey(NSCodingKey.GameIndex)        as Int
-        var grid            = aDecoder.decodeObjectForKey(NSCodingKey.GameGrid)         as GOGrid
-        var originalGrid    = aDecoder.decodeObjectForKey(NSCodingKey.GameGridCopy)     as GOGrid
-        var xNodes          = aDecoder.decodeObjectForKey(NSCodingKey.GameNodes)        as [String: XNode]
-        var music           = aDecoder.decodeObjectForKey(NSCodingKey.GameTargetMusic)  as XMusic
-        var bestScore       = aDecoder.decodeObjectForKey(NSCodingKey.GameBestScore)    as Int
+        var levelName       = aDecoder.decodeObjectForKey(NSCodingKey.GameName) as String
+        var index           = aDecoder.decodeObjectForKey(NSCodingKey.GameIndex) as Int
+        var grid            = aDecoder.decodeObjectForKey(NSCodingKey.GameGrid) as GOGrid
+        var originalGrid    = aDecoder.decodeObjectForKey(NSCodingKey.GameGridCopy) as GOGrid
+        var xNodes          = aDecoder.decodeObjectForKey(NSCodingKey.GameNodes) as [String: XNode]
+        var music           = aDecoder.decodeObjectForKey(NSCodingKey.GameTargetMusic) as XMusic
+        var bestScore       = aDecoder.decodeObjectForKey(NSCodingKey.GameBestScore) as Int
         var isUnlock        = aDecoder.decodeBoolForKey(NSCodingKey.GameUnlock)
         
         self.init(levelName:levelName, levelIndex: index,
@@ -113,6 +91,28 @@ class GameLevel: NSObject, NSCoding, Comparable, Equatable {
         aCoder.encodeObject(self.targetMusic,   forKey: NSCodingKey.GameTargetMusic)
         aCoder.encodeObject(self.bestScore,     forKey: NSCodingKey.GameBestScore)
         aCoder.encodeBool(self.isUnlock,        forKey: NSCodingKey.GameUnlock)
+    }
+    
+    // Get a game level from the given index
+    // :param: the index of the game level needed to be retrieved
+    // returns: the GameLevel objects for that particular level
+    class func loadGameWithIndex(index:Int) -> GameLevel? {
+        let totalGame = StorageManager.defaultManager.numOfLevel()
+        if index < 0 || index >= totalGame {
+            return nil
+        }
+        return StorageManager.defaultManager.loadAllLevel()[index]
+    }
+    
+    // Count the total scores (tokens) user has achieved
+    // returns: the total score
+    class func countTotalScore() -> Int {
+        let allLevels = StorageManager.defaultManager.loadAllLevel()
+        var total:Int = 0
+        for level in allLevels {
+            total += level.bestScore
+        }
+        return total
     }
     
     //make a deep copy of the current gamelevel
