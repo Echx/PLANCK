@@ -8,17 +8,17 @@
 
 import UIKit
 
-/// A singleton object
+// A singleton object
 private let SingletonSharedInstance = StorageManager()
 
-//This class manages consistant data storage
+// This class manages consistant data storage
 class StorageManager:NSObject {
-    class var defaultManager : StorageManager {
+    class var defaultManager: StorageManager {
         return SingletonSharedInstance
     }
     
     /// A boolean indicating if the storage manager needs to reload data
-    private var isDirty:Bool = true
+    private var isDirty: Bool = true
     
     /// cache the stored levels
     private var levelCache: [GameLevel] = [GameLevel]()
@@ -47,7 +47,8 @@ class StorageManager:NSObject {
     
     /// Initialize game levels by copying pre-defined game levels to the directory
     func copyGameLevels() {
-        let preloadGames = NSBundle.mainBundle().pathsForResourcesOfType(SystemDefault.levelDataType, inDirectory: nil)
+        let preloadGames = NSBundle.mainBundle().pathsForResourcesOfType(
+            SystemDefault.levelDataType, inDirectory: nil)
         let fileManager = NSFileManager.defaultManager()
         for levelPath in preloadGames {
             let levelPath = levelPath as NSString
@@ -101,8 +102,8 @@ class StorageManager:NSObject {
             var levelArray = [GameLevel]()
 
             let fileManager = NSFileManager.defaultManager()
-            let fileArray = fileManager.contentsOfDirectoryAtPath(XFileConstant.defaultLevelDir,
-                error: nil)! as NSArray
+            let fileArray = fileManager.contentsOfDirectoryAtPath(
+                XFileConstant.defaultLevelDir, error: nil)! as NSArray
             
             // iterate each filename to add
             for filename in fileArray {
@@ -134,8 +135,8 @@ class StorageManager:NSObject {
             var levelArray = [GameLevel]()
             
             let fileManager = NSFileManager.defaultManager()
-            let fileArray = fileManager.contentsOfDirectoryAtPath(XFileConstant.userLevelDir,
-                error: nil)! as NSArray
+            let fileArray = fileManager.contentsOfDirectoryAtPath(
+                XFileConstant.userLevelDir, error: nil)! as NSArray
             
             // iterate each filename to add
             for filename in fileArray {
@@ -161,8 +162,8 @@ class StorageManager:NSObject {
     /// :returns: a total count
     func numOfLevel() -> Int {
         let fileManager = NSFileManager.defaultManager()
-        let fileArray = fileManager.contentsOfDirectoryAtPath(XFileConstant.defaultLevelDir,
-            error: nil)! as NSArray
+        let fileArray = fileManager.contentsOfDirectoryAtPath(
+            XFileConstant.defaultLevelDir, error: nil)! as NSArray
         
         var total:Int = 0
         // iterate each filename to add
@@ -178,8 +179,8 @@ class StorageManager:NSObject {
     /// :returns: a total count
     func numOfUserLevel() -> Int {
         let fileManager = NSFileManager.defaultManager()
-        let fileArray = fileManager.contentsOfDirectoryAtPath(XFileConstant.userLevelDir,
-            error: nil)! as NSArray
+        let fileArray = fileManager.contentsOfDirectoryAtPath(
+            XFileConstant.userLevelDir, error: nil)! as NSArray
         
         var total:Int = 0
         // iterate each filename to add

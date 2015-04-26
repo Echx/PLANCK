@@ -6,6 +6,10 @@
 //  Copyright (c) 2015 Echx. All rights reserved.
 //
 
+// XNote represents the musical notes as well as the percussion sound that will 
+// be played in our game. 
+// Each notes are specified by the note name, note group and instrument.
+// We will use the MIDI note name to store the sound files
 class XNote: NSObject, NSCoding {
     var noteName: XNoteName
     var noteGroup: Int?
