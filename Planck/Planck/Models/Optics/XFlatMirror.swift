@@ -8,6 +8,9 @@
 
 import UIKit
 
+// XFlatMirror represent the mirro with flat surface. All the 4 edges will cause
+// reflection and the physical property of this class will be just like the 
+// real mirrors'
 class XFlatMirror: XNode {
     init(flatMirror: GOFlatMirrorRep) {
         super.init(physicsBody: flatMirror)

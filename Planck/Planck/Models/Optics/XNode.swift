@@ -8,7 +8,11 @@
 
 import UIKit
 
-//This class is the parent class of all X-devices
+// This class is the parent class of all X-devices
+// it provides the common api for instrument-related operation and interaction
+// like getting the sound of the instrument, and stores the common property for 
+// the nodes, like whether the instrument is tagged as 'Planck', and whether it
+// is fixed
 class XNode: NSObject, NSCoding {
     
     //physicsBody defines the physics property of the xnode

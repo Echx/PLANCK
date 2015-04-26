@@ -8,6 +8,10 @@
 
 import UIKit
 
+// This class is a subclass of XNode. 
+// a emitter is the device that generate light for the game play; however, there
+// is no much attribute associated with this kind of device, when light hit the
+// emitter, the light will disappear just like hitting the wall
 class XEmitter: XNode {
     init(emitter: GOEmitterRep) {
         super.init(physicsBody: emitter)

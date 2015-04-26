@@ -8,6 +8,8 @@
 
 import UIKit
 
+// XFlatWall represents the wall in this game. When the light hit the wall,
+// it will be stopped and the sound of the wall will be played.
 class XFlatWall: XNode {
     init(flatWall: GOFlatWallRep) {
         super.init(physicsBody: flatWall)

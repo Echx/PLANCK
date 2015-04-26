@@ -8,6 +8,9 @@
 
 import UIKit
 
+// XFlatLens represents the flat lens in this game. Flat lens is a transparent 
+// device which allows the light to traverse through its physic body. Unlike the 
+// curved lens, flat lens has four stright edges.
 class XFlatLens: XNode {
     init(flatLens: GOFlatLensRep) {
         super.init(physicsBody: flatLens)

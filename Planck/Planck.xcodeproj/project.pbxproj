@@ -1091,13 +1091,13 @@
 		62D2833D1AD17D0300A583FA /* Optics */ = {
 			isa = PBXGroup;
 			children = (
-				62D2836B1AD1892400A583FA /* XConvexLens.swift */,
-				62D2836C1AD1892400A583FA /* XConcaveLens.swift */,
+				269192B31AD817D8002F8590 /* XNode.swift */,
+				26DFCF9B1AD8467000C97C5B /* XEmitter.swift */,
 				62D2833E1AD17D3C00A583FA /* XFlatMirror.swift */,
 				62D283691AD1890900A583FA /* XFlatWall.swift */,
 				269192B01AD8120F002F8590 /* XFlatLens.swift */,
-				26DFCF9B1AD8467000C97C5B /* XEmitter.swift */,
-				269192B31AD817D8002F8590 /* XNode.swift */,
+				62D2836B1AD1892400A583FA /* XConvexLens.swift */,
+				62D2836C1AD1892400A583FA /* XConcaveLens.swift */,
 			);
 			name = Optics;
 			sourceTree = "<group>";
