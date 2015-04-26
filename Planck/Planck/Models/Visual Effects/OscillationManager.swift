@@ -6,7 +6,7 @@
 //  Copyright (c) 2015 Echx. All rights reserved.
 //
 
-//This class manages the touch feedback oscillation in the project
+// This class manages the touch feedback oscillation in the project
 class OscillationManager: NSObject {
     
     //default parameters for the oscillation

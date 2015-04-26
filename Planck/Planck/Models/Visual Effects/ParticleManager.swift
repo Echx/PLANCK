@@ -6,7 +6,7 @@
 //  Copyright (c) 2015 Echx. All rights reserved.
 //
 
-//This class manages the behaviors of all the particle effects in the project
+// This class manages the behaviors of all the particle effects in the project
 class ParticleManager: NSObject {
 
     //Particle effects specifics for light ray

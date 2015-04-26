@@ -9,7 +9,7 @@
 import GameKit
 import SystemConfiguration
 
-//This class manages the game center behaviors in this project
+// This class manages the game center behaviors in this project
 class GamiCent : NSObject, GKGameCenterControllerDelegate {
     
     private struct ErrorMessages {
@@ -89,7 +89,8 @@ class GamiCent : NSObject, GKGameCenterControllerDelegate {
                     /* open the game center login view */
                     if gameCenterVC != nil {
                         if let delegateVC = GamiCent.delegate {
-                            delegateVC.presentViewController(gameCenterVC, animated: true, completion: nil)
+                            delegateVC.presentViewController(gameCenterVC,
+                                animated: true, completion: nil)
                         } else {
                             println(ErrorMessages.delegateNotSet)
                             if completion != nil {
@@ -181,7 +182,8 @@ class GamiCent : NSObject, GKGameCenterControllerDelegate {
     /// Get all leaderboard informations
     ///
     /// :param: completion the completion handler
-    class func getLeaderboards(#completion: (resultArrayGKLeaderboard:[GKLeaderboard]?, error:NSError?) -> Void) {
+    class func getLeaderboards(#completion: (resultArrayGKLeaderboard:[GKLeaderboard]?,
+        error:NSError?) -> Void) {
         
         if GamiCent.isGameCenterAccessible() {
             
@@ -209,7 +211,8 @@ class GamiCent : NSObject, GKGameCenterControllerDelegate {
     /// :param: leaderboardID the leaderboard ID
     /// :param: completion the completion handler
     class func getLeaderboardWithID(#leaderboardID:String,
-                        completion: (scoreList:[GKScore]?, localScore: GKScore?, error:NSError?) -> Void) {
+                        completion: (scoreList:[GKScore]?, localScore: GKScore?,
+        error:NSError?) -> Void) {
                             
         if GamiCent.isGameCenterAccessible() {
             let request = GKLeaderboard()
@@ -239,7 +242,7 @@ class GamiCent : NSObject, GKGameCenterControllerDelegate {
     /// :param: score the score to be reported
     /// :param: completion the completion handler
     class func reportScoreLeaderboard(#leaderboardID:String, score: Int,
-                                        completion: ((isSuccessful: Bool, error:NSError?) -> Void)?) {
+        completion: ((isSuccessful: Bool, error:NSError?) -> Void)?) {
             
         if GamiCent.isGameCenterAccessible() {
             let newScore = GKScore(leaderboardIdentifier: leaderboardID,
@@ -289,7 +292,8 @@ class GamiCent : NSObject, GKGameCenterControllerDelegate {
     ///
     /// :param: achievementID the achievement to be fetched
     /// :param: completion the completion handler
-    class func getAchievementWithID(#achievementID:String, completion: (result:GKAchievement?, error:NSError?) -> Void) {
+    class func getAchievementWithID(#achievementID:String,
+        completion: (result:GKAchievement?, error:NSError?) -> Void) {
         GamiCent.getAllAchievements { (result, error) -> Void in
             if error != nil {
                 println(error)
@@ -312,7 +316,8 @@ class GamiCent : NSObject, GKGameCenterControllerDelegate {
     /// Get all achievements description
     ///
     /// :param: completion the completion handler
-    class func getAllAchievementDescription(#completion: (descArrays:[GKAchievementDescription]?, error: NSError?) -> Void) {
+    class func getAllAchievementDescription(#completion: (descArrays:[GKAchievementDescription]?,
+        error: NSError?) -> Void) {
         if GamiCent.isGameCenterAccessible() {
             GKAchievementDescription.loadAchievementDescriptionsWithCompletionHandler {
                 (var descriptions:[AnyObject]!, error:NSError!) -> Void in
@@ -340,7 +345,8 @@ class GamiCent : NSObject, GKGameCenterControllerDelegate {
     /// :param: achievementID The ID of the achievement
     /// :param: showBanner show the banner if the achievement is successful?
     /// :param: completion the completion handler
-    class func reportAchievements( #percent : Double, achievementID : String, isShowBanner : Bool, completion: ((success:Bool) -> Void)? ) {
+    class func reportAchievements( #percent : Double, achievementID : String,
+        isShowBanner : Bool, completion: ((success:Bool) -> Void)? ) {
         var achievement = GKAchievement(identifier: achievementID)
         if achievement != nil {
             achievement.percentComplete = percent
@@ -350,7 +356,8 @@ class GamiCent : NSObject, GKGameCenterControllerDelegate {
                 achievement.showsCompletionBanner = true
             }
             
-            GKAchievement.reportAchievements([achievement], withCompletionHandler: { (error) -> Void in
+            GKAchievement.reportAchievements([achievement],
+                withCompletionHandler: { (error) -> Void in
                 if completion != nil {
                     if error != nil {
                         completion!(success: false)
@@ -383,7 +390,8 @@ class GamiCent : NSObject, GKGameCenterControllerDelegate {
     */
     class func isConnectedToNetwork() -> Bool {
         
-        var zeroAddress = sockaddr_in(sin_len: 0, sin_family: 0, sin_port: 0, sin_addr: in_addr(s_addr: 0), sin_zero: (0, 0, 0, 0, 0, 0, 0, 0))
+        var zeroAddress = sockaddr_in(sin_len: 0, sin_family: 0, sin_port: 0,
+            sin_addr: in_addr(s_addr: 0), sin_zero: (0, 0, 0, 0, 0, 0, 0, 0))
         zeroAddress.sin_len = UInt8(sizeofValue(zeroAddress))
         zeroAddress.sin_family = sa_family_t(AF_INET)
         
