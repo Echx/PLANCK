@@ -9,6 +9,7 @@
 import UIKit
 import AVFoundation
 
+// this is the main controller controlling the level designer part
 class LevelDesignerViewController: XViewController {
 
     @IBOutlet var deviceSegment: UISegmentedControl!
@@ -185,15 +186,18 @@ class LevelDesignerViewController: XViewController {
     }
 
     class func getInstance() -> LevelDesignerViewController {
-        let storyboard = UIStoryboard(name: StoryboardIdentifier.StoryBoardID, bundle: nil)
+        let storyboard = UIStoryboard(name: StoryboardIdentifier.StoryBoardID,
+            bundle: nil)
         let identifier = StoryboardIdentifier.LevelDesigner
-        let viewController = storyboard.instantiateViewControllerWithIdentifier(identifier) as LevelDesignerViewController
+        let viewController = storyboard.instantiateViewControllerWithIdentifier(identifier)
+            as LevelDesignerViewController
         viewController.modalTransitionStyle = UIModalTransitionStyle.CrossDissolve
         return viewController
     }
     
     required override init(coder aDecoder: NSCoder) {
-        self.grid = GOGrid(width: self.gridWidth, height: self.gridHeight, andUnitLength: self.gridUnitLength)
+        self.grid = GOGrid(width: self.gridWidth, height: self.gridHeight,
+            andUnitLength: self.gridUnitLength)
         super.init(coder: aDecoder)
         self.grid.delegate = self
     }
@@ -311,7 +315,7 @@ class LevelDesignerViewController: XViewController {
         let location = sender.locationInView(self.view)
         
         if let node = self.selectedNode {
-            //rotate
+            // rotate
             if isSaving && isNodeFixed(node) {
                 // is saving and the selected node is not the movable one
                 return
@@ -324,10 +328,12 @@ class LevelDesignerViewController: XViewController {
                 firstDirection = node.direction
                 firstViewTransform = view.layer.transform
             } else {
-                let startVector = CGVectorMake(firstLocation!.x - self.grid.getCenterForGridCell(node.center).x,
-                                               firstLocation!.y - self.grid.getCenterForGridCell(node.center).y)
-                let currentVector = CGVectorMake(location.x - self.grid.getCenterForGridCell(node.center).x,
-                                                 location.y - self.grid.getCenterForGridCell(node.center).y)
+                let startVector = CGVectorMake(
+                    firstLocation!.x - self.grid.getCenterForGridCell(node.center).x,
+                    firstLocation!.y - self.grid.getCenterForGridCell(node.center).y)
+                let currentVector = CGVectorMake(
+                    location.x - self.grid.getCenterForGridCell(node.center).x,
+                    location.y - self.grid.getCenterForGridCell(node.center).y)
                 var angle = CGVector.angleFrom(startVector, to: currentVector)
                 if sender.state == UIGestureRecognizerState.Ended {
                     let nodeAngle = node.direction.angleFromXPlus
@@ -336,7 +342,7 @@ class LevelDesignerViewController: XViewController {
                     let finalAngle = self.grid.unitDegree * count
                     angle = finalAngle - nodeAngle
                     
-                    //check whether the node will overlap with others with the new direction
+                    // check whether the node will overlap with others with the new direction
                     node.setDirection(CGVector.vectorFromXPlusRadius(finalAngle))
                     if self.grid.isInstrumentOverlappedWidthOthers(node) {
                         node.setDirection(firstDirection!)
@@ -345,7 +351,7 @@ class LevelDesignerViewController: XViewController {
                     }
                 }
                 
-                //rotate about z-axis
+                // rotate about z-axis
                 var layerTransform = CATransform3DRotate(firstViewTransform!, angle, 0, 0, 1)
                 view.layer.transform = layerTransform
             }
@@ -477,8 +483,8 @@ class LevelDesignerViewController: XViewController {
     @IBAction func loadButtonDidClicked(sender: AnyObject) {
         // Create a level select VC instance
         var storyBoard = UIStoryboard(name: StoryboardIdentifier.StoryBoardID, bundle: nil)
-        var levelVC = storyBoard.instantiateViewControllerWithIdentifier(StoryboardIdentifier.DesignerLevelSelect)
-            as DesignerLevelSelectViewController
+        var levelVC = storyBoard.instantiateViewControllerWithIdentifier(
+            StoryboardIdentifier.DesignerLevelSelect) as DesignerLevelSelectViewController
         levelVC.modalPresentationStyle = UIModalPresentationStyle.Popover
         levelVC.delegate = self
         self.presentViewController(levelVC, animated: true, completion: nil)
@@ -586,27 +592,36 @@ class LevelDesignerViewController: XViewController {
     
     private func backupNode(generalNode: GOOpticRep) {
         if let node = generalNode as? GOFlatLensRep {
-            self.backupNode = GOFlatLensRep(center: node.center, thickness: node.thickness, length: node.length, direction: node.direction, refractionIndex: node.refractionIndex, id: node.id)
+            self.backupNode = GOFlatLensRep(center: node.center,
+                thickness: node.thickness, length: node.length,
+                direction: node.direction, refractionIndex: node.refractionIndex, id: node.id)
             return
         }
         
         if let node = generalNode as? GOFlatMirrorRep {
-            self.backupNode = GOFlatMirrorRep(center: node.center, thickness: node.thickness, length: node.length, direction: node.direction, id: node.id)
+            self.backupNode = GOFlatMirrorRep(center: node.center,
+                thickness: node.thickness, length: node.length,
+                direction: node.direction, id: node.id)
             return
         }
         
         if let node = generalNode as? GOFlatWallRep {
-            self.backupNode = GOFlatWallRep(center: node.center, thickness: node.thickness, length: node.length, direction: node.direction, id: node.id)
+            self.backupNode = GOFlatWallRep(center: node.center,
+                thickness: node.thickness, length: node.length,
+                direction: node.direction, id: node.id)
             return
         }
         
         if let node = generalNode as? GOConvexLensRep {
-            self.backupNode = GOConvexLensRep(center: node.center, direction: node.direction, id: node.id, refractionIndex: node.refractionIndex)
+            self.backupNode = GOConvexLensRep(center: node.center,
+                direction: node.direction, id: node.id,
+                refractionIndex: node.refractionIndex)
             return
         }
         
         if let node = generalNode as? GOConcaveLensRep {
-            self.backupNode = GOConcaveLensRep(center: node.center, direction: node.direction, id: node.id, refractionIndex: node.refractionIndex)
+            self.backupNode = GOConcaveLensRep(center: node.center,
+                direction: node.direction, id: node.id, refractionIndex: node.refractionIndex)
             return
         }
     }
@@ -735,7 +750,8 @@ class LevelDesignerViewController: XViewController {
             if let lens = node as? GOConcaveLensRep {
                 let r: CGFloat? = CGFloat((self.textFieldCurvatureRadius.text as NSString).floatValue)
                 if let curvatureRadius = r {
-                    if curvatureRadius > 0 && curvatureRadius < CGFloat(self.grid.width) && curvatureRadius < CGFloat(self.grid.width) {
+                    if curvatureRadius > 0 && curvatureRadius < CGFloat(self.grid.width)
+                        && curvatureRadius < CGFloat(self.grid.width) {
                         lens.curvatureRadius = curvatureRadius
                     }
                 }
@@ -744,7 +760,8 @@ class LevelDesignerViewController: XViewController {
             if let lens = node as? GOConvexLensRep {
                 let r: CGFloat? = CGFloat((self.textFieldCurvatureRadius.text as NSString).floatValue)
                 if let curvatureRadius = r {
-                    if curvatureRadius > 0 && curvatureRadius < CGFloat(self.grid.width) && curvatureRadius < CGFloat(self.grid.width) {
+                    if curvatureRadius > 0 && curvatureRadius < CGFloat(self.grid.width)
+                        && curvatureRadius < CGFloat(self.grid.width) {
                         lens.curvatureRadius = curvatureRadius
                     }
                 }
@@ -757,7 +774,8 @@ class LevelDesignerViewController: XViewController {
             if let lens = node as? GOConcaveLensRep {
                 let i: CGFloat? = CGFloat((self.textFieldRefractionIndex.text as NSString).floatValue)
                 if let refractionIndex = i {
-                    if refractionIndex > 0 && refractionIndex < CGFloat(self.grid.width) && refractionIndex < CGFloat(self.grid.width) {
+                    if refractionIndex > 0 && refractionIndex < CGFloat(self.grid.width)
+                        && refractionIndex < CGFloat(self.grid.width) {
                         lens.refractionIndex = refractionIndex
                     }
                 }
@@ -766,7 +784,8 @@ class LevelDesignerViewController: XViewController {
             if let lens = node as? GOFlatLensRep {
                 let i: CGFloat? = CGFloat((self.textFieldRefractionIndex.text as NSString).floatValue)
                 if let refractionIndex = i {
-                    if refractionIndex > 0 && refractionIndex < CGFloat(self.grid.width) && refractionIndex < CGFloat(self.grid.width) {
+                    if refractionIndex > 0 && refractionIndex < CGFloat(self.grid.width)
+                        && refractionIndex < CGFloat(self.grid.width) {
                         lens.refractionIndex = refractionIndex
                     }
                 }
@@ -775,7 +794,8 @@ class LevelDesignerViewController: XViewController {
             if let lens = node as? GOConvexLensRep {
                 let i: CGFloat? = CGFloat((self.textFieldRefractionIndex.text as NSString).floatValue)
                 if let refractionIndex = i {
-                    if refractionIndex > 0 && refractionIndex < CGFloat(self.grid.width) && refractionIndex < CGFloat(self.grid.width) {
+                    if refractionIndex > 0 && refractionIndex < CGFloat(self.grid.width)
+                        && refractionIndex < CGFloat(self.grid.width) {
                         lens.refractionIndex = refractionIndex
                     }
                 }
@@ -788,7 +808,8 @@ class LevelDesignerViewController: XViewController {
             if let flatNode = node as? GOFlatOpticRep {
                 let l: CGFloat? = CGFloat((self.textFieldLength.text as NSString).floatValue)
                 if let length = l {
-                    if length > 0 && length < CGFloat(self.grid.width) && length < CGFloat(self.grid.width) {
+                    if length > 0 && length < CGFloat(self.grid.width)
+                        && length < CGFloat(self.grid.width) {
                         flatNode.length = length
                     }
                 }
@@ -804,7 +825,8 @@ class LevelDesignerViewController: XViewController {
             
             if let flatNode = node as? GOFlatOpticRep {
                 if let thickness = f {
-                    if thickness > 0 && thickness < CGFloat(self.grid.width) && thickness < CGFloat(self.grid.height) {
+                    if thickness > 0 && thickness < CGFloat(self.grid.width)
+                        && thickness < CGFloat(self.grid.height) {
                         flatNode.thickness = thickness
                     }
                 }
@@ -812,7 +834,8 @@ class LevelDesignerViewController: XViewController {
             
             if let convexNode = node as? GOConvexLensRep {
                 if let thickness = f {
-                    if thickness > 0 && thickness < CGFloat(self.grid.width) && thickness < CGFloat(self.grid.height) {
+                    if thickness > 0 && thickness < CGFloat(self.grid.width)
+                        && thickness < CGFloat(self.grid.height) {
                         convexNode.thickness = thickness
                     }
                 }
@@ -842,7 +865,8 @@ class LevelDesignerViewController: XViewController {
             let y: Int? = self.textFieldCenterY.text.toInt()
             
             if x != nil && y != nil {
-                if x! >= 0 && x! <= self.grid.width && y! >= 0 && y! <= self.grid.height {
+                if x! >= 0 && x! <= self.grid.width && y! >= 0 && y!
+                    <= self.grid.height {
                     node.center = GOCoordinate(x: x!, y: y!)
                 }
             }
@@ -854,13 +878,15 @@ class LevelDesignerViewController: XViewController {
             let i: Int? = self.textFieldDirection.text.toInt()
             if let index = i {
                 let originalDirection = node.direction
-                let effectDirection = CGVector.vectorFromXPlusRadius(CGFloat(index) * self.grid.unitDegree)
+                let effectDirection = CGVector.vectorFromXPlusRadius(CGFloat(index) *
+                    self.grid.unitDegree)
                 node.direction = effectDirection
             }
         }
     }
     
-    private func updateDirection(node: GOOpticRep, startVector: CGVector, currentVector: CGVector) {
+    private func updateDirection(node: GOOpticRep, startVector: CGVector,
+        currentVector: CGVector) {
         var angle = CGVector.angleFrom(startVector, to: currentVector)
         let nodeAngle = node.direction.angleFromXPlus
         let effectAngle = angle + nodeAngle
@@ -869,7 +895,8 @@ class LevelDesignerViewController: XViewController {
         angle = finalAngle - nodeAngle
         node.setDirection(CGVector.vectorFromXPlusRadius(finalAngle))
         if let view = self.deviceViews[node.id] {
-            var layerTransform = CATransform3DRotate(view.layer.transform, angle, 0, 0, 1)
+            var layerTransform = CATransform3DRotate(view.layer.transform,
+                angle, 0, 0, 1)
             view.layer.transform = layerTransform
         }
     }
@@ -972,7 +999,8 @@ class LevelDesignerViewController: XViewController {
     private func updatePickerInformation() {
         if let selectedNode = self.selectedNode {
             if let node = self.xNodes[selectedNode.id] {
-                self.instrumentPicker.selectRow(node.instrument, inComponent: 0, animated: false)
+                self.instrumentPicker.selectRow(node.instrument, inComponent: 0,
+                    animated: false)
                 if (node.instrument == NodeDefaults.instrumentInherit) ||
                     (node.instrument == NodeDefaults.instrumentNil) {
                     self.notePicker.selectRow(0, inComponent: 0, animated: false)
@@ -980,9 +1008,12 @@ class LevelDesignerViewController: XViewController {
                     self.groupPicker.selectRow(0, inComponent: 0, animated: false)
                 } else {
                     if let note = node.planckNote {
-                        self.notePicker.selectRow(note.noteName.rawValue / 5, inComponent: 0, animated: false)
-                        self.accidentalPicker.selectRow(note.noteName.rawValue % 5, inComponent: 0, animated: false)
-                        self.groupPicker.selectRow(note.noteGroup!, inComponent: 0, animated: false)
+                        self.notePicker.selectRow(note.noteName.rawValue / 5,
+                            inComponent: 0, animated: false)
+                        self.accidentalPicker.selectRow(note.noteName.rawValue % 5,
+                            inComponent: 0, animated: false)
+                        self.groupPicker.selectRow(note.noteGroup!,
+                            inComponent: 0, animated: false)
                     } else {
                         self.notePicker.selectRow(0, inComponent: 0, animated: false)
                         self.accidentalPicker.selectRow(0, inComponent: 0, animated: false)
@@ -1040,7 +1071,8 @@ class LevelDesignerViewController: XViewController {
         layer.opacity = 0.4
         layer.path = self.grid.getInstrumentDisplayPathForID(node.id)?.CGPath
         
-        let view = UIView(frame: CGRectMake(0, 0, self.view.frame.width, self.view.frame.height))
+        let view = UIView(frame: CGRectMake(0, 0, self.view.frame.width,
+            self.view.frame.height))
         view.backgroundColor = UIColor.clearColor()
         view.layer.addSublayer(layer)
         self.deviceViews[node.id] = view
@@ -1179,7 +1211,8 @@ class LevelDesignerViewController: XViewController {
                 self.pathDistances[tag]! += distance
                 
                 let delayInNanoSeconds = RayDefaults.delayCoefficient * delay * CGFloat(NSEC_PER_SEC)
-                dispatch_after(dispatch_time(DISPATCH_TIME_NOW, Int64(delayInNanoSeconds)), dispatch_get_main_queue()) {
+                dispatch_after(dispatch_time(DISPATCH_TIME_NOW, Int64(delayInNanoSeconds)),
+                    dispatch_get_main_queue()) {
                     self.drawRay(tag, currentIndex: currentIndex + 1)
                 }
             } else if currentIndex == self.rays[tag]?.count {
@@ -1300,7 +1333,8 @@ class LevelDesignerViewController: XViewController {
     // MARK: - ALERT
     private func showSavePrompt() {
         // 1.Initialze an alert
-        var alert = UIAlertController(title: AlertViewText.save_title, message: AlertViewText.save_msg, preferredStyle: .Alert)
+        var alert = UIAlertController(title: AlertViewText.save_title,
+            message: AlertViewText.save_msg, preferredStyle: .Alert)
         
         // 2. Add the text field
         alert.addTextFieldWithConfigurationHandler{ (textField) in
@@ -1338,7 +1372,8 @@ class LevelDesignerViewController: XViewController {
                         
                         // create deep copy
                         var savedGrid = self.grid.deepCopy() // this is the puzzle grid
-                        var savedNodes = NSKeyedUnarchiver.unarchiveObjectWithData(NSKeyedArchiver.archivedDataWithRootObject(self.xNodes)) as Dictionary<String, XNode>
+                        var savedNodes = NSKeyedUnarchiver.unarchiveObjectWithData(NSKeyedArchiver.archivedDataWithRootObject(self.xNodes))
+                            as Dictionary<String, XNode>
                         
                         let game = GameLevel(levelName: inputName,
                             levelIndex: nextIndex,
@@ -1412,7 +1447,8 @@ extension LevelDesignerViewController: LevelSelectDelegate {
 }
 
 extension LevelDesignerViewController: GOGridDelegate {
-    func grid(grid: GOGrid, didProduceNewCriticalPoint point: CGPoint, onEdge edge: GOSegment?, forRayWithTag tag: String) {
+    func grid(grid: GOGrid, didProduceNewCriticalPoint point: CGPoint,
+        onEdge edge: GOSegment?, forRayWithTag tag: String) {
         if self.rays.count == 0 {
             // waiting for thread to complete
             return
@@ -1454,7 +1490,8 @@ extension LevelDesignerViewController: UIPickerViewDataSource, UIPickerViewDeleg
         }
     }
     
-    func pickerView(pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String! {
+    func pickerView(pickerView: UIPickerView, titleForRow row: Int,
+        forComponent component: Int) -> String! {
         switch pickerView.tag {
         case PlanckControllPanel.instrumentPickerTag:
             return PlanckControllPanel.instrumentPickerTitle[row]
