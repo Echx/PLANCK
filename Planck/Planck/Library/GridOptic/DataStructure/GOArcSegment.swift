@@ -8,7 +8,7 @@
 
 import UIKit
 
-// GOLineSegment is the representation of an arc segment in GO library
+// GOArcSegment is the representation of an arc segment in GO library
 // it subclasses GOSegment, and override the calculation for starting point and
 // end point, as well as the method related to the calculation of geometric
 // property.
