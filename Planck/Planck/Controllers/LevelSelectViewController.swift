@@ -56,7 +56,7 @@ class LevelSelectViewController: ScrollPageContentViewController, UICollectionVi
         self.levelArray = StorageManager.defaultManager.loadAllLevel()
     }
     
-    //MARK UICollectionViewDataSource
+    //MARKS: UICollectionViewDataSource
     func numberOfSectionsInCollectionView(collectionView: UICollectionView) -> Int {
         return (levelArray.count + Constant.levelInSection - 1) / Constant.levelInSection
     }
