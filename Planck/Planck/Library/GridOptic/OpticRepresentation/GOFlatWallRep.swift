@@ -8,6 +8,9 @@
 
 import UIKit
 
+// Wall will stop the light once hit. A flat wall is a subclass of falt optic, 
+// and it basically supports and only supports the method provided by its 
+// parent class
 class GOFlatWallRep: GOFlatOpticRep {
     override init(center: GOCoordinate, thickness: CGFloat, length: CGFloat, direction: CGVector, id: String) {
         super.init(center: center, thickness: thickness, length: length, direction: direction, id: id)

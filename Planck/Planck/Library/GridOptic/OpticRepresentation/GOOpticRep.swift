@@ -8,13 +8,18 @@
 
 import UIKit
 
+// GOOpticRep is the parent class of all the optic representation
+// it contains the information of the center of the optic instrument, the edges.
+// the type, the vertices and so on.
+// this class supports verifying whether a given point is located within the 
+// optic representaion, which will be supported by all the subclass as well.
 class GOOpticRep: NSObject, NSCoding {
     var id: String
     var center: GOCoordinate
     var edges = [GOSegment]()
     var type = DeviceType.Mirror
     var direction: CGVector = OpticRepDefaults.defaultDirection
-    var refractionIndex : CGFloat = GOConstant.vacuumRefractionIndex
+    var refractionIndex: CGFloat = GOConstant.vacuumRefractionIndex
     
     var bezierPath: UIBezierPath {
         // the bezier path representation of the optic instrument for drawing

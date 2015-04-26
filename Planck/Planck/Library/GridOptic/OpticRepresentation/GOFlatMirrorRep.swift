@@ -8,6 +8,9 @@
 
 import UIKit
 
+// unlike lens, the edge of a mirror will not refract the light but reflect it
+// instead. A flat mirror is the subclass of flat optic, and it supports and 
+// only supports the method provided by its parent class
 class GOFlatMirrorRep: GOFlatOpticRep, NSCoding {
     override init(center: GOCoordinate, thickness: CGFloat, length: CGFloat, direction: CGVector, id: String) {
         super.init(center: center, thickness: thickness, length: length, direction: direction, id: id)

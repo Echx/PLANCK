@@ -8,6 +8,9 @@
 
 import UIKit
 
+// GOConvexLensRep represents the physics body of a concave lens.
+// A concave lens is formed by two arc segments, and we store the shape of the 
+// convex lens by the thickess and the curvature radius of the arc
 class GOConvexLensRep: GOOpticRep {
     var thickness: CGFloat = ConvexLensRepDefaults.defaultThickness
     var curvatureRadius: CGFloat = ConvexLensRepDefaults.defaultLength

@@ -8,6 +8,9 @@
 
 import UIKit
 
+// Lens is the kind of optic instrument that light can penetreate through. Flat 
+// lens is a subclass of flat optic and basically it supports and only supports 
+// the method provided by its parent class
 class GOFlatLensRep: GOFlatOpticRep {
     override init(center: GOCoordinate, thickness: CGFloat, length: CGFloat, direction: CGVector, refractionIndex: CGFloat, id: String) {
         super.init(center: center, thickness: thickness, length: length, direction: direction, refractionIndex: refractionIndex, id: id)

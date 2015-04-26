@@ -8,6 +8,9 @@
 
 import UIKit
 
+// GOEmitterRep is the representation of the physics body of an emitter
+// a emitter cannot reflect/refract light, but it can generate a new light
+// originate from the right edge of the emitter
 class GOEmitterRep: GOFlatOpticRep {
     override init(center: GOCoordinate, thickness: CGFloat, length: CGFloat, direction: CGVector, id: String) {
         super.init(center: center, thickness: thickness, length: length, direction: direction, id: id)

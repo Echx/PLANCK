@@ -825,14 +825,14 @@
 		263B09A31ACEEDD800E7C99E /* OpticRepresentation */ = {
 			isa = PBXGroup;
 			children = (
+				263B09AA1ACEEDD800E7C99E /* GOOpticRep.swift */,
+				263B09A81ACEEDD800E7C99E /* GOFlatOpticRep.swift */,
+				629F42521AD046C600EFBABD /* GOEmitterRep.swift */,
+				263B09A61ACEEDD800E7C99E /* GOFlatLensRep.swift */,
+				263B09A91ACEEDD800E7C99E /* GOFlatWallRep.swift */,
+				263B09A71ACEEDD800E7C99E /* GOFlatMirrorRep.swift */,
 				263B09A41ACEEDD800E7C99E /* GOConcaveLensRep.swift */,
 				263B09A51ACEEDD800E7C99E /* GOConvexLensRep.swift */,
-				263B09A81ACEEDD800E7C99E /* GOFlatOpticRep.swift */,
-				263B09A61ACEEDD800E7C99E /* GOFlatLensRep.swift */,
-				263B09A71ACEEDD800E7C99E /* GOFlatMirrorRep.swift */,
-				263B09A91ACEEDD800E7C99E /* GOFlatWallRep.swift */,
-				263B09AA1ACEEDD800E7C99E /* GOOpticRep.swift */,
-				629F42521AD046C600EFBABD /* GOEmitterRep.swift */,
 			);
 			path = OpticRepresentation;
 			sourceTree = "<group>";

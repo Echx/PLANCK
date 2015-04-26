@@ -8,6 +8,10 @@
 
 import UIKit
 
+// GOFlatOpticRep is a special type of GOOpticRep with flat surface only
+// hence the property describing the object is the thickness and the length
+// the direction is defined along the 'length' while the normal direction is
+// perpendicular to the direction
 class GOFlatOpticRep: GOOpticRep {
     var thickness: CGFloat = FlatOpticRepDefaults.defaultThickness
     var length: CGFloat = FlatOpticRepDefaults.defaultLength
