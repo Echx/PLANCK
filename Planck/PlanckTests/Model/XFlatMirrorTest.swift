@@ -10,23 +10,41 @@ import UIKit
 import XCTest
 
 class XFlatMirrorTest: XCTestCase {
-
     let precision: CGFloat = 1000
     
-    var inAngles = [CGVectorMake(0, 1), CGVectorMake(0, -1), CGVectorMake(1, 0), CGVectorMake(-1, 0), CGVectorMake(1, 1), CGVectorMake(-1, -1), CGVectorMake(1, -1), CGVectorMake(-1, 1)]
-    var mirrorsAngle = [CGVectorMake(1, 0), CGVectorMake(-1, 0), CGVectorMake(0, 1), CGVectorMake(0, -1), CGVectorMake(1, 1), CGVectorMake(1, -1), CGVectorMake(-1, -1), CGVectorMake(-1, 1)]
+    var inAngles = [CGVectorMake(0, 1), CGVectorMake(0, -1), CGVectorMake(1, 0),
+        CGVectorMake(-1, 0), CGVectorMake(1, 1), CGVectorMake(-1, -1),
+        CGVectorMake(1, -1), CGVectorMake(-1, 1)]
+    var mirrorsAngle = [CGVectorMake(1, 0), CGVectorMake(-1, 0), CGVectorMake(0, 1),
+        CGVectorMake(0, -1), CGVectorMake(1, 1), CGVectorMake(1, -1),
+        CGVectorMake(-1, -1), CGVectorMake(-1, 1)]
     
     //one row has the same mirror, one column has the same inAngle
     //expectedOutAngles[inAngle][mirror]
     var expectedOutAngles = [
-        [CGVectorMake(0, -1), CGVectorMake(0, -1), CGVectorMake(0, -1), CGVectorMake(0, -1), CGVectorMake(1, 0), CGVectorMake(-1, 0), CGVectorMake(1, 0), CGVectorMake(-1, 0)],
-        [CGVectorMake(0, 1), CGVectorMake(0, 1), CGVectorMake(0, 1), CGVectorMake(0, 1), CGVectorMake(-1, 0), CGVectorMake(1, 0), CGVectorMake(-1, 0), CGVectorMake(1, 0)],
-        [CGVectorMake(-1, 0), CGVectorMake(-1, 0), CGVectorMake(-1, 0), CGVectorMake(-1, 0), CGVectorMake(0, 1), CGVectorMake(0, -1), CGVectorMake(0, 1), CGVectorMake(0, -1)],
-        [CGVectorMake(1, 0), CGVectorMake(1, 0), CGVectorMake(1, 0), CGVectorMake(1, 0), CGVectorMake(0, -1), CGVectorMake(0, 1), CGVectorMake(0, -1), CGVectorMake(0, 1)],
-        [CGVectorMake(1, -1), CGVectorMake(1, -1), CGVectorMake(-1, 1), CGVectorMake(-1, 1), CGVectorMake(-1, -1), CGVectorMake(-1, -1), CGVectorMake(-1, -1), CGVectorMake(-1, -1)],
-        [CGVectorMake(-1, 1), CGVectorMake(-1, 1), CGVectorMake(1, -1), CGVectorMake(1, -1), CGVectorMake(1, 1), CGVectorMake(1, 1), CGVectorMake(1, 1), CGVectorMake(1, 1)],
-        [CGVectorMake(1, 1), CGVectorMake(1, 1), CGVectorMake(-1, -1), CGVectorMake(-1, -1), CGVectorMake(-1, 1), CGVectorMake(-1, 1), CGVectorMake(-1, 1), CGVectorMake(-1, 1)],
-        [CGVectorMake(-1, -1), CGVectorMake(-1, -1), CGVectorMake(1, 1), CGVectorMake(1, 1), CGVectorMake(1, -1), CGVectorMake(1, -1), CGVectorMake(1, -1), CGVectorMake(1, -1)],
+        [CGVectorMake(0, -1), CGVectorMake(0, -1), CGVectorMake(0, -1),
+            CGVectorMake(0, -1), CGVectorMake(1, 0), CGVectorMake(-1, 0),
+            CGVectorMake(1, 0), CGVectorMake(-1, 0)],
+        [CGVectorMake(0, 1), CGVectorMake(0, 1), CGVectorMake(0, 1),
+            CGVectorMake(0, 1), CGVectorMake(-1, 0), CGVectorMake(1, 0), CGVectorMake(-1, 0), CGVectorMake(1, 0)],
+        [CGVectorMake(-1, 0), CGVectorMake(-1, 0), CGVectorMake(-1, 0),
+            CGVectorMake(-1, 0), CGVectorMake(0, 1), CGVectorMake(0, -1),
+            CGVectorMake(0, 1), CGVectorMake(0, -1)],
+        [CGVectorMake(1, 0), CGVectorMake(1, 0), CGVectorMake(1, 0),
+            CGVectorMake(1, 0), CGVectorMake(0, -1), CGVectorMake(0, 1),
+            CGVectorMake(0, -1), CGVectorMake(0, 1)],
+        [CGVectorMake(1, -1), CGVectorMake(1, -1), CGVectorMake(-1, 1),
+            CGVectorMake(-1, 1), CGVectorMake(-1, -1), CGVectorMake(-1, -1),
+            CGVectorMake(-1, -1), CGVectorMake(-1, -1)],
+        [CGVectorMake(-1, 1), CGVectorMake(-1, 1), CGVectorMake(1, -1),
+            CGVectorMake(1, -1), CGVectorMake(1, 1), CGVectorMake(1, 1),
+            CGVectorMake(1, 1), CGVectorMake(1, 1)],
+        [CGVectorMake(1, 1), CGVectorMake(1, 1), CGVectorMake(-1, -1),
+            CGVectorMake(-1, -1), CGVectorMake(-1, 1), CGVectorMake(-1, 1),
+            CGVectorMake(-1, 1), CGVectorMake(-1, 1)],
+        [CGVectorMake(-1, -1), CGVectorMake(-1, -1), CGVectorMake(1, 1),
+            CGVectorMake(1, 1), CGVectorMake(1, -1), CGVectorMake(1, -1),
+            CGVectorMake(1, -1), CGVectorMake(1, -1)],
     ]
     
 

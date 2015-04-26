@@ -17,9 +17,12 @@ class GameLevelTest: XCTestCase {
         let music = XMusic()
         
         // things to be tested
-        let game1 = GameLevel(levelName: "game1", levelIndex: 1, grid: grid, solvedGrid: grid, nodes: nodes, targetMusic: music)
-        let game2 = GameLevel(levelName: "game1", levelIndex: 1, grid: grid, solvedGrid: grid, nodes: nodes, targetMusic: music)
-        let game3 = GameLevel(levelName: "game1", levelIndex: 10, grid: grid, solvedGrid: grid, nodes: nodes, targetMusic: music)
+        let game1 = GameLevel(levelName: "game1", levelIndex: 1, grid: grid,
+            solvedGrid: grid, nodes: nodes, targetMusic: music)
+        let game2 = GameLevel(levelName: "game1", levelIndex: 1, grid: grid,
+            solvedGrid: grid, nodes: nodes, targetMusic: music)
+        let game3 = GameLevel(levelName: "game1", levelIndex: 10, grid: grid,
+            solvedGrid: grid, nodes: nodes, targetMusic: music)
         
         XCTAssertEqual(game1 == game2, true, "Equatable not implemented correctly")
         XCTAssertEqual(game1 < game2, false, "Comparable not implemented correctly")
@@ -33,9 +36,11 @@ class GameLevelTest: XCTestCase {
         let music = XMusic()
         
         // things to be tested
-        let game = GameLevel(levelName: "game1", levelIndex: 50, grid: grid, solvedGrid: grid, nodes: nodes, targetMusic: music)
+        let game = GameLevel(levelName: "game1", levelIndex: 50, grid: grid,
+            solvedGrid: grid, nodes: nodes, targetMusic: music)
         
-        XCTAssertEqual(game.indexForNextLevel, 51, "Get next level not implemented correctly")
+        XCTAssertEqual(game.indexForNextLevel, 51,
+            "Get next level not implemented correctly")
     }
     
     func testDeepcopy() {
@@ -45,7 +50,8 @@ class GameLevelTest: XCTestCase {
         let music = XMusic()
         
         // things to be tested
-        let game = GameLevel(levelName: "game1", levelIndex: 50, grid: grid, solvedGrid: grid, nodes: nodes, targetMusic: music)
+        let game = GameLevel(levelName: "game1", levelIndex: 50, grid: grid,
+            solvedGrid: grid, nodes: nodes, targetMusic: music)
         
         let copy = game.deepCopy()
         
@@ -54,7 +60,8 @@ class GameLevelTest: XCTestCase {
         
         XCTAssertEqual(copy.index, 20, "Deep copy not implemented correctly")
         
-        XCTAssertNotEqual(game.index, copy.index, "Deep copy not implemented correctly")
+        XCTAssertNotEqual(game.index, copy.index,
+            "Deep copy not implemented correctly")
     }
     
     func testEncodeAndDecode() {
@@ -64,7 +71,8 @@ class GameLevelTest: XCTestCase {
         let music = XMusic()
         
         // things to be tested
-        let game = GameLevel(levelName: "game1", levelIndex: 50, grid: grid, solvedGrid: grid, nodes: nodes, targetMusic: music)
+        let game = GameLevel(levelName: "game1", levelIndex: 50, grid: grid,
+            solvedGrid: grid, nodes: nodes, targetMusic: music)
         
         let data = NSMutableData();
         let archiver = NSKeyedArchiver(forWritingWithMutableData: data)
@@ -75,12 +83,13 @@ class GameLevelTest: XCTestCase {
         let unarchiver = NSKeyedUnarchiver(forReadingWithData: data)
         let recoverObj = unarchiver.decodeObjectForKey("test")! as GameLevel
         
-        XCTAssertEqual(recoverObj.index, game.index, "NSCoding not implemented correctly")
+        XCTAssertEqual(recoverObj.index, game.index,
+            "NSCoding not implemented correctly")
         
-        XCTAssertEqual(recoverObj.name, game.name, "NSCoding not implemented correctly")
+        XCTAssertEqual(recoverObj.name, game.name,
+            "NSCoding not implemented correctly")
         
-        XCTAssertEqual(recoverObj.targetMusic, game.targetMusic, "NSCoding not implemented correctly")
+        XCTAssertEqual(recoverObj.targetMusic, game.targetMusic,
+            "NSCoding not implemented correctly")
     }
-    
-
 }
