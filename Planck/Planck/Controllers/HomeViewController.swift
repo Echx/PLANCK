@@ -10,7 +10,8 @@ import UIKit
 import AVFoundation
 
 
-//This class controls the home view which will be presented when player first get into the game
+// This class controls the home view which will be presented when player 
+// first get into the game
 class HomeViewController: XViewController {
     private let backgroundMusicPlayer = AVAudioPlayer(
         contentsOfURL: SoundFiles.backgroundMusic, error: nil

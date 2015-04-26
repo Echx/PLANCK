@@ -8,6 +8,8 @@
 
 import UIKit
 
+// this is the main controller controlling the game play, handling the 
+// interaction between the game engine and the player
 class GameViewController: XViewController {
     var gameLevel: GameLevel = GameLevel()
     // keep a copy of original level
@@ -42,14 +44,13 @@ class GameViewController: XViewController {
             return gameLevel.grid
         }
     }
-    private var xNodes : [String: XNode] {
+    private var xNodes: [String: XNode] {
         get {
             return gameLevel.xNodes
         }
     }
-    
     /// a boolean value indicate if the game play is in preview mode or not
-    private var isPreview:Bool = false
+    private var isPreview: Bool = false
     
     struct RayDefaults {
         static let initialStrokeEnd: CGFloat = 1.0
@@ -77,7 +78,8 @@ class GameViewController: XViewController {
         static let fadeInAnimationDuration: NSTimeInterval = 0.3
         static let fadeInAnimationUnitDelay: NSTimeInterval = 0.1
         
-        static let emitterMarkViewFrame = CGRectMake(0, 0, Constant.rayWidth * 2, Constant.rayWidth * 2)
+        static let emitterMarkViewFrame = CGRectMake(0, 0, Constant.rayWidth * 2,
+            Constant.rayWidth * 2)
         static let emitterMarkViewBackgroundColor = UIColor.whiteColor()
         static let emitterMarkViewCornerRadius = Constant.rayWidth
     }
@@ -96,7 +98,8 @@ class GameViewController: XViewController {
     class func getInstance(gameLevel: GameLevel, isPreview:Bool) -> GameViewController {
         let storyboard = UIStoryboard(name: StoryboardIdentifier.StoryBoardID, bundle: nil)
         let identifier = StoryboardIdentifier.Game
-        let viewController = storyboard.instantiateViewControllerWithIdentifier(identifier) as GameViewController
+        let viewController = storyboard.instantiateViewControllerWithIdentifier(identifier)
+            as GameViewController
         viewController.gameLevel = gameLevel
         viewController.originalLevel = gameLevel.deepCopy()
         viewController.modalTransitionStyle = UIModalTransitionStyle.CrossDissolve
@@ -229,11 +232,13 @@ class GameViewController: XViewController {
         
         if let node = touchedNode {
             let view = self.deviceViews[node.id]!
-            view.center = CGPointMake(view.center.x + location.x - lastLocation!.x, view.center.y + location.y - lastLocation!.y)
+            view.center = CGPointMake(view.center.x + location.x - lastLocation!.x,
+                view.center.y + location.y - lastLocation!.y)
             lastLocation = location
             if sender.state == UIGestureRecognizerState.Ended {
                 
-                let offset = CGPointMake(location.x - firstLocation!.x, location.y - firstLocation!.y)
+                let offset = CGPointMake(location.x - firstLocation!.x,
+                    location.y - firstLocation!.y)
                 
                 self.moveNode(node, from: firstViewCenter!, offset: offset)
                 
@@ -257,13 +262,17 @@ class GameViewController: XViewController {
     }
     
     private func updateDirection(node: GOOpticRep) {
-        let newDirectionIndex = Int(round(node.direction.angleFromXPlus / self.grid.unitDegree)) + 1
+        let newDirectionIndex = Int(round(node.direction.angleFromXPlus /
+            self.grid.unitDegree)) + 1
         let originalDirection = node.direction
-        let effectDirection = CGVector.vectorFromXPlusRadius(CGFloat(newDirectionIndex) * self.grid.unitDegree)
-        self.updateDirection(node, startVector: originalDirection, currentVector: effectDirection)
+        let effectDirection = CGVector.vectorFromXPlusRadius(CGFloat(newDirectionIndex) *
+            self.grid.unitDegree)
+        self.updateDirection(node, startVector: originalDirection,
+            currentVector: effectDirection)
     }
     
-    private func updateDirection(node: GOOpticRep, startVector: CGVector, currentVector: CGVector) {
+    private func updateDirection(node: GOOpticRep, startVector: CGVector,
+        currentVector: CGVector) {
         var angle = CGVector.angleFrom(startVector, to: currentVector)
         let nodeAngle = node.direction.angleFromXPlus
         let effectAngle = angle + nodeAngle
@@ -272,7 +281,8 @@ class GameViewController: XViewController {
         angle = finalAngle - nodeAngle
         node.setDirection(CGVector.vectorFromXPlusRadius(finalAngle))
         if let view = self.deviceViews[node.id] {
-            var layerTransform = CATransform3DRotate(view.layer.transform, angle, 0, 0, 1)
+            var layerTransform = CATransform3DRotate(view.layer.transform,
+                angle, 0, 0, 1)
             view.layer.transform = layerTransform
         }
     }
@@ -379,7 +389,8 @@ class GameViewController: XViewController {
                 pathAnimation.toValue = RayDefaults.animationToValue
                 pathAnimation.duration = CFTimeInterval(delay)
                 pathAnimation.fillMode = kCAFillModeForwards
-                pathAnimation.timingFunction = CAMediaTimingFunction(name: kCAMediaTimingFunctionLinear)
+                pathAnimation.timingFunction = CAMediaTimingFunction(name:
+                    kCAMediaTimingFunctionLinear)
                 
                 layer.addAnimation(pathAnimation, forKey: pathAnimation.keyPath)
                 if currentIndex > 1 {
@@ -396,8 +407,10 @@ class GameViewController: XViewController {
                 }
                 
                 self.pathDistances[tag]! += distance
-                let delayInNanoSeconds = RayDefaults.delayCoefficient * delay * CGFloat(NSEC_PER_SEC)
-                dispatch_after(dispatch_time(DISPATCH_TIME_NOW, Int64(delayInNanoSeconds)), dispatch_get_main_queue()) {
+                let delayInNanoSeconds = RayDefaults.delayCoefficient *
+                    delay * CGFloat(NSEC_PER_SEC)
+                dispatch_after(dispatch_time(DISPATCH_TIME_NOW,
+                    Int64(delayInNanoSeconds)), dispatch_get_main_queue()) {
                     self.drawRay(tag, currentIndex: currentIndex + 1)
                 }
             } else {
@@ -412,7 +425,9 @@ class GameViewController: XViewController {
                 if self.numberOfFinishedRay == self.rays.count {
                     dispatch_async(self.queue, {
                         if self.music.isSimilarTo(self.originalLevel.targetMusic) {
-                            dispatch_after(dispatch_time(DISPATCH_TIME_NOW, Int64(Float(NSEC_PER_SEC) * Defaults.successCheckDelayCoefficient)), dispatch_get_main_queue()) {
+                            dispatch_after(dispatch_time(DISPATCH_TIME_NOW,
+                                Int64(Float(NSEC_PER_SEC) * Defaults.successCheckDelayCoefficient)),
+                                dispatch_get_main_queue()) {
                                 if self.isVirgin! {
                                     //3 means three star
                                     self.showBadgeMask(3)
@@ -429,8 +444,10 @@ class GameViewController: XViewController {
                             }
                             
                             self.shouldShowNextLevel = true
-                        } else if (self.originalLevel.bestScore < 1) && (self.visitedNoteList.count == self.gameLevel.targetMusic.music.count) {
-                            dispatch_after(dispatch_time(DISPATCH_TIME_NOW, Int64(Float(NSEC_PER_SEC) * 1.5)), dispatch_get_main_queue()) {
+                        } else if (self.originalLevel.bestScore < 1)
+                            && (self.visitedNoteList.count == self.gameLevel.targetMusic.music.count) {
+                            dispatch_after(dispatch_time(DISPATCH_TIME_NOW,
+                                Int64(Float(NSEC_PER_SEC) * 1.5)), dispatch_get_main_queue()) {
                                 //1 means one star
                                 self.showBadgeMask(1)
                                 if self.originalLevel.bestScore < 1 {
@@ -449,7 +466,8 @@ class GameViewController: XViewController {
     
     private func showBadgeMask(numberOfBadge: Int) {
         self.view.addSubview(self.transitionMask)
-        self.transitionMask.show(numberOfBadge, isSectionFinished: self.originalLevel.index % Defaults.numberOfGameLevelPerSection == Defaults.lastGameLevelIndexRemainder)
+        self.transitionMask.show(numberOfBadge, isSectionFinished: self.originalLevel.index %
+            Defaults.numberOfGameLevelPerSection == Defaults.lastGameLevelIndexRemainder)
     }
     
     private func showTargetMusicMask() {
@@ -468,7 +486,8 @@ class GameViewController: XViewController {
                 if !contains(self.visitedPlanckList, device) {
                     self.visitedPlanckList.append(device)
                     if let note = device.getNote() {
-                        if (note.isIn(self.gameLevel.targetNotes)) && (!note.isIn(self.visitedNoteList)) {
+                        if (note.isIn(self.gameLevel.targetNotes)) &&
+                            (!note.isIn(self.visitedNoteList)) {
                             self.visitedNoteList.append(note)
                         }
                     }
@@ -510,7 +529,8 @@ class GameViewController: XViewController {
             var fillColorAnimation = CABasicAnimation(keyPath: GameNodeDefaults.animationKeyPath)
             fillColorAnimation.duration = GameNodeDefaults.animationDuration
             fillColorAnimation.fromValue = strokeColor.CGColor
-            fillColorAnimation.toValue = strokeColor.colorWithAlphaComponent(GameNodeDefaults.movableObjectAlpha).CGColor
+            fillColorAnimation.toValue = strokeColor.colorWithAlphaComponent(
+                GameNodeDefaults.movableObjectAlpha).CGColor
             fillColorAnimation.repeatCount = HUGE
             fillColorAnimation.autoreverses = true
             layer.addAnimation(fillColorAnimation, forKey: fillColorAnimation.keyPath)
@@ -522,7 +542,8 @@ class GameViewController: XViewController {
             markView.layer.cornerRadius = GameNodeDefaults.emitterMarkViewCornerRadius
             markView.center = view.center
             let degree = node.direction.angleFromXPlus
-            markView.transform = CGAffineTransformTranslate(CGAffineTransformMakeRotation(degree), emitter.length * self.grid.unitLength / 2, 0)
+            markView.transform = CGAffineTransformTranslate(CGAffineTransformMakeRotation(degree),
+                emitter.length * self.grid.unitLength / 2, 0)
             
             view.addSubview(markView)
         }
@@ -562,7 +583,8 @@ class GameViewController: XViewController {
         let offsetY = offset.y
         
         let originalDisplayPoint = self.grid.getCenterForGridCell(node.center)
-        let effectDisplayPoint = CGPointMake(originalDisplayPoint.x + offsetX, originalDisplayPoint.y + offsetY)
+        let effectDisplayPoint = CGPointMake(originalDisplayPoint.x + offsetX,
+            originalDisplayPoint.y + offsetY)
         
         let centerBackup = node.center
         
@@ -616,14 +638,16 @@ class GameViewController: XViewController {
             let section = (levelIndex + 1) / Constant.levelInSection
             
             // finished the last level in a section
-            GamiCent.reportAchievements(percent: Defaults.gameCenterPercentageFull, achievementID: achievements[section], isShowBanner: true, completion: nil)
+            GamiCent.reportAchievements(percent: Defaults.gameCenterPercentageFull,
+                achievementID: achievements[section], isShowBanner: true, completion: nil)
         }
     }
 
 }
 
 extension GameViewController: GOGridDelegate {
-    func grid(grid: GOGrid, didProduceNewCriticalPoint point: CGPoint, onEdge edge: GOSegment?, forRayWithTag tag: String) {
+    func grid(grid: GOGrid, didProduceNewCriticalPoint point: CGPoint,
+        onEdge edge: GOSegment?, forRayWithTag tag: String) {
         if self.rays.count == 0 {
             // waiting for thread to complete
             return
@@ -649,7 +673,8 @@ extension GameViewController: PauseMaskViewDelegate {
             
             if !self.isPreview {
                 // play background music
-                NSNotificationCenter.defaultCenter().postNotificationName(HomeViewDefaults.startPlayingKey, object: nil)
+                NSNotificationCenter.defaultCenter().postNotificationName(
+                    HomeViewDefaults.startPlayingKey, object: nil)
             }
             
         case 2:
@@ -663,7 +688,8 @@ extension GameViewController: PauseMaskViewDelegate {
 }
 
 extension GameViewController: LevelTransitionMaskViewDelegate {
-    func viewDidDismiss(view: LevelTransitionMaskView, withButtonClickedAtIndex index: Int) {
+    func viewDidDismiss(view: LevelTransitionMaskView, withButtonClickedAtIndex
+        index: Int) {
         self.onboardingMaskView.clear()
         self.onboardingMaskView.removeFromSuperview()
         // save current game if it is not preview mode
@@ -694,7 +720,8 @@ extension GameViewController: LevelTransitionMaskViewDelegate {
                     self.dismissViewController()
                     
                     // play background music
-                    NSNotificationCenter.defaultCenter().postNotificationName(HomeViewDefaults.startPlayingKey, object: nil)
+                    NSNotificationCenter.defaultCenter().postNotificationName(
+                        HomeViewDefaults.startPlayingKey, object: nil)
                 }
             }
         } else {

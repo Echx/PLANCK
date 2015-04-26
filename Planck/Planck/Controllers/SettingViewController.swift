@@ -8,6 +8,7 @@
 
 import UIKit
 
+// this controller will handle the setting section, configurate the whole game
 class SettingViewController: XViewController, UITableViewDataSource, UITableViewDelegate {
     
     private let settingCellID = "SettingViewCell"
@@ -31,7 +32,8 @@ class SettingViewController: XViewController, UITableViewDataSource, UITableView
     class func getInstance() -> SettingViewController {
         let storyboard = UIStoryboard(name: StoryboardIdentifier.StoryBoardID, bundle: nil)
         let identifier = StoryboardIdentifier.Setting
-        let viewController = storyboard.instantiateViewControllerWithIdentifier(identifier) as SettingViewController
+        let viewController = storyboard.instantiateViewControllerWithIdentifier(identifier)
+            as SettingViewController
         return viewController
     }
     
@@ -50,23 +52,29 @@ class SettingViewController: XViewController, UITableViewDataSource, UITableView
         return 4
     }
     
-    func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
+    func tableView(tableView: UITableView, cellForRowAtIndexPath
+        indexPath: NSIndexPath) -> UITableViewCell {
         if indexPath.section == sectionIDForLevelDesigner {
-            let cell = tableView.dequeueReusableCellWithIdentifier(textCellId, forIndexPath: indexPath) as UITableViewCell
+            let cell = tableView.dequeueReusableCellWithIdentifier(textCellId,
+                forIndexPath: indexPath) as UITableViewCell
             cell.textLabel?.text = "level designer"
             return cell
         } else if indexPath.section == sectionIDForSupport {
-            let cell = tableView.dequeueReusableCellWithIdentifier(textCellId, forIndexPath: indexPath) as UITableViewCell
+            let cell = tableView.dequeueReusableCellWithIdentifier(textCellId,
+                forIndexPath: indexPath) as UITableViewCell
             cell.textLabel?.text = getStaticSupportItems()[indexPath.row]
             return cell
         } else if indexPath.section == sectionIDForGameCenter {
-            let cell = tableView.dequeueReusableCellWithIdentifier(textCellId, forIndexPath: indexPath) as UITableViewCell
+            let cell = tableView.dequeueReusableCellWithIdentifier(textCellId,
+                forIndexPath: indexPath) as UITableViewCell
             cell.textLabel?.text = getStaticGameCenterSupportItems()[indexPath.row]
             return cell
         } else {
-            let cell = tableView.dequeueReusableCellWithIdentifier(settingCellID, forIndexPath: indexPath) as SettingViewCell
+            let cell = tableView.dequeueReusableCellWithIdentifier(settingCellID,
+                forIndexPath: indexPath) as SettingViewCell
             cell.title.text = "background music"
-            cell.toggle.addTarget(self, action: "toggleSetting:", forControlEvents: UIControlEvents.TouchUpInside)
+            cell.toggle.addTarget(self, action: "toggleSetting:",
+                forControlEvents: UIControlEvents.TouchUpInside)
             cell.toggle.tag = indexPath.item
             return cell
         }
@@ -88,7 +96,8 @@ class SettingViewController: XViewController, UITableViewDataSource, UITableView
         var header = UIView(frame: CGRectMake(0, 0, 300, 50))
         let textLabel = UILabel(frame: CGRectMake(5, 5, 300, 40))
         textLabel.text = getSectionHeader(section)
-        textLabel.textColor = UIColor(red: 67/255, green: 94/255, blue: 118/255, alpha: 1.0)
+        textLabel.textColor = UIColor(red: 67/255, green: 94/255,
+            blue: 118/255, alpha: 1.0)
         textLabel.font = UIFont.systemFontOfSize(28.0)
         header.addSubview(textLabel)
         return header
@@ -102,14 +111,16 @@ class SettingViewController: XViewController, UITableViewDataSource, UITableView
         return footerHeight
     }
     
-    func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+    func tableView(tableView: UITableView, didSelectRowAtIndexPath
+        indexPath: NSIndexPath) {
         tableView.deselectRowAtIndexPath(indexPath, animated: false)
         let section = indexPath.section
         if section == sectionIDForLevelDesigner {
             let viewController = LevelDesignerViewController.getInstance()
             self.presentViewController(viewController, animated: true, completion: nil)
             // stop playing music
-            NSNotificationCenter.defaultCenter().postNotificationName(HomeViewDefaults.stopPlayingKey, object: nil)
+            NSNotificationCenter.defaultCenter().postNotificationName(HomeViewDefaults.stopPlayingKey,
+                object: nil)
         } else if section == sectionIDForGameCenter {
             if indexPath.item == 0 {
                 // item 1 : view achievements
@@ -119,14 +130,17 @@ class SettingViewController: XViewController, UITableViewDataSource, UITableView
             } else if indexPath.item == 1 {
                 // item 2 : view leaderboard
                 dispatch_async(dispatch_get_main_queue(), {
-                    GamiCent.showLeaderboard(leaderboardID: XGameCenter.leaderboardID, completion: nil)
+                    GamiCent.showLeaderboard(leaderboardID: XGameCenter.leaderboardID,
+                        completion: nil)
                 })
             } else {
                 // item 3 : view statstic
-                self.getDrawerController()!.closeDrawerAnimated(true, completion: { (bool) -> Void in
+                self.getDrawerController()!.closeDrawerAnimated(true,
+                    completion: { (bool) -> Void in
                     let viewController = GameStasticViewController.getInstance()
                     viewController.modalPresentationStyle = .FormSheet
-                    self.getDrawerController()!.presentViewController(viewController, animated: true, completion: nil)
+                    self.getDrawerController()!.presentViewController(viewController,
+                        animated: true, completion: nil)
                 })
             }
         }
@@ -136,9 +150,11 @@ class SettingViewController: XViewController, UITableViewDataSource, UITableView
         // better naming pls
         sender.selected = !sender.selected
         if !sender.selected {
-            NSNotificationCenter.defaultCenter().postNotificationName(HomeViewDefaults.startPlayingKey, object: nil)
+            NSNotificationCenter.defaultCenter().postNotificationName(
+                HomeViewDefaults.startPlayingKey, object: nil)
         } else {
-            NSNotificationCenter.defaultCenter().postNotificationName(HomeViewDefaults.stopPlayingKey, object: nil)
+            NSNotificationCenter.defaultCenter().postNotificationName(
+                HomeViewDefaults.stopPlayingKey, object: nil)
         }
     }
     
