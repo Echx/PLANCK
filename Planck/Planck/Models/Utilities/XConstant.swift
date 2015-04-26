@@ -70,8 +70,8 @@ struct XImageName {
     static let statusOrange = "twostar"
     static let statusRed = "onestar"
     
-    static let normal = "normal"
-    static let empty = "empty"
+    static let normal = "coin"
+    static let empty = "emptycoin"
     static let headePhone = "headphone"
 }
 
@@ -238,6 +238,7 @@ struct MediumDescription {
 struct MusicDefaults {
     static let distanceTolerance: Double = 50
     static let musicBuffer: CGFloat = 0.5
+    static let numberOfAccidentalsPerNote = 5
 }
 
 struct ErrorMsg {

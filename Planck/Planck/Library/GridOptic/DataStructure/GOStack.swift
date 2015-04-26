@@ -8,6 +8,9 @@
 
 import UIKit
 
+// GOStack is an auxiliary data structure for facilitating some operation in
+// the grid calculation. This is a typical implementation of a stack data
+// structure with push, peek, and pop operation
 struct GOStack<T> {
     var items = [T]()
     //  Adds an element to the top of the stack.

@@ -15,6 +15,12 @@ protocol GOGridDelegate {
     func gridDidFinishCalculation(grid: GOGrid, forRayWithTag tag: String)
 }
 
+// GOGrid is the main playground for this library, every instrument should be 
+// appended to the instrument list of the grid and the displaying of each
+// instrument is supported by this class
+// GOGrid is responsible to most of the calculation of this optic library and 
+// it also keeps track of the geometric information of each instrument lcated
+// within the grid
 class GOGrid: NSObject, NSCoding {
     let unitLength: CGFloat
     let width: NSInteger

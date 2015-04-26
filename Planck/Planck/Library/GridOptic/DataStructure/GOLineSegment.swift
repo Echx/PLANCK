@@ -9,6 +9,9 @@
 import UIKit
 
 // GOLineSegment is the representation of line segment in GO library
+// it subclasses GOSegment, and override the calculation for starting point and 
+// end point, as well as the method related to the calculation of geometric 
+// property
 class GOLineSegment: GOSegment {
     var length: CGFloat
     // return the embeded GOLine
@@ -73,6 +76,7 @@ class GOLineSegment: GOSegment {
     }
     
     override var startPoint: CGPoint {
+        // return the starting point of the line segment
         get {
             let radDirection = self.directionInRadianFromXPlus
             let deltaX = -0.5 * self.length * cos(radDirection)
@@ -82,6 +86,7 @@ class GOLineSegment: GOSegment {
     }
     
     override var endPoint: CGPoint {
+        // return the ending point of the line segment
         get {
             let radDirection = self.directionInRadianFromXPlus
             let deltaX = 0.5 * self.length * cos(radDirection)
@@ -102,8 +107,8 @@ class GOLineSegment: GOSegment {
             let bottomY = start.y < end.y ? end.y : start.y
             
             //if the intersection point is not within [leftX, rightX], then there is no intersection point
-            if abs(lineIntersection.x - ray.startPoint.x) < GOConstant.overallPrecision &&
-                abs(lineIntersection.y - ray.startPoint.y) < GOConstant.overallPrecision {
+            if lineIntersection.x.equalWithPrecision(ray.startPoint.x) &&
+                lineIntersection.y.equalWithPrecision(ray.startPoint.y) {
                 return nil
             } else if lineIntersection.x < leftX ||
                 lineIntersection.x > rightX ||
@@ -180,7 +185,8 @@ class GOLineSegment: GOSegment {
             if CGVector.dot(rayIn.direction, v2: self.normalDirection) < 0 {
                 n = self.normalDirection.normalised
             } else {
-                n = CGVectorMake(-self.normalDirection.dx, -self.normalDirection.dy).normalised
+                n = CGVectorMake(-self.normalDirection.dx,
+                    -self.normalDirection.dy).normalised
             }
             let cosTheta1 = -CGVector.dot(n, v2: l)
             
@@ -192,6 +198,7 @@ class GOLineSegment: GOSegment {
             
             return GORay(startPoint: intersectionPoint, direction: reflectDirection)
         } else {
+            // no intersecion point, thus no reflection ray
             return nil
         }
     }

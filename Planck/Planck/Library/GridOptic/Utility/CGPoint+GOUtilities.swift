@@ -41,8 +41,8 @@ extension CGPoint {
     }
     
     func isNearEnough(point: CGPoint) -> Bool {
-        return (self.x - point.x).abs < GOConstant.overallPrecision &&
-            (self.y - point.y).abs < GOConstant.overallPrecision
+        return self.x.equalWithPrecision(point.x) &&
+            self.y.equalWithPrecision(point.y)
     }
     
     static func getPointAfterRotation(angle: CGFloat, from originalPoint: CGPoint, translate: CGPoint) -> CGPoint {
