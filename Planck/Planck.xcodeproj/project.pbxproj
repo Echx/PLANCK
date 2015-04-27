@@ -82,7 +82,6 @@
 		623930B31AED4D8400F2A685 /* ArchiveTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 623930AD1AED4D8400F2A685 /* ArchiveTest.swift */; };
 		623930B41AED4D8400F2A685 /* CGVector+XUtilityTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 623930AE1AED4D8400F2A685 /* CGVector+XUtilityTest.swift */; };
 		623930B51AED4D8400F2A685 /* XColorTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 623930AF1AED4D8400F2A685 /* XColorTest.swift */; };
-		623930B61AED4D8400F2A685 /* XFlatMirrorTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 623930B01AED4D8400F2A685 /* XFlatMirrorTest.swift */; };
 		623930B71AED4D8400F2A685 /* XMusicTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 623930B11AED4D8400F2A685 /* XMusicTest.swift */; };
 		623930B81AED4D8400F2A685 /* PlanckTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 623930B21AED4D8400F2A685 /* PlanckTests.swift */; };
 		623930BA1AED4DF500F2A685 /* GOArcSegmentTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 623930B91AED4DF500F2A685 /* GOArcSegmentTest.swift */; };
@@ -482,7 +481,6 @@
 		623930AD1AED4D8400F2A685 /* ArchiveTest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ArchiveTest.swift; path = Model/ArchiveTest.swift; sourceTree = "<group>"; };
 		623930AE1AED4D8400F2A685 /* CGVector+XUtilityTest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "CGVector+XUtilityTest.swift"; path = "Model/CGVector+XUtilityTest.swift"; sourceTree = "<group>"; };
 		623930AF1AED4D8400F2A685 /* XColorTest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = XColorTest.swift; path = Model/XColorTest.swift; sourceTree = "<group>"; };
-		623930B01AED4D8400F2A685 /* XFlatMirrorTest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = XFlatMirrorTest.swift; path = Model/XFlatMirrorTest.swift; sourceTree = "<group>"; };
 		623930B11AED4D8400F2A685 /* XMusicTest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = XMusicTest.swift; path = Model/XMusicTest.swift; sourceTree = "<group>"; };
 		623930B21AED4D8400F2A685 /* PlanckTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PlanckTests.swift; sourceTree = "<group>"; };
 		623930B91AED4DF500F2A685 /* GOArcSegmentTest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GOArcSegmentTest.swift; sourceTree = "<group>"; };
@@ -942,7 +940,6 @@
 				623930AD1AED4D8400F2A685 /* ArchiveTest.swift */,
 				623930AE1AED4D8400F2A685 /* CGVector+XUtilityTest.swift */,
 				623930AF1AED4D8400F2A685 /* XColorTest.swift */,
-				623930B01AED4D8400F2A685 /* XFlatMirrorTest.swift */,
 				623930B11AED4D8400F2A685 /* XMusicTest.swift */,
 				623930B21AED4D8400F2A685 /* PlanckTests.swift */,
 				980203711AEBA00400136497 /* GameLevelTest.swift */,
@@ -1819,7 +1816,6 @@
 				98F63A9E1AD1650F0096A32E /* GOArcSegment.swift in Sources */,
 				62E323351ADAF54E00CFD4CA /* SettingViewCell.swift in Sources */,
 				62E323371ADAF56400CFD4CA /* XConcaveLens.swift in Sources */,
-				623930B61AED4D8400F2A685 /* XFlatMirrorTest.swift in Sources */,
 				26290CA31ADEB9CD00409FD8 /* UIFont+Akagi.swift in Sources */,
 				623930B71AED4D8400F2A685 /* XMusicTest.swift in Sources */,
 				269192B51AD81A7D002F8590 /* XNode.swift in Sources */,

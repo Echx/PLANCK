@@ -38,7 +38,7 @@ class XMusicTest: XCTestCase {
         XCTAssertTrue(music1.isSimilarTo(music2), "they should be similar")
         
         music1.appendDistance(CGFloat(800), forNote: note1)
-        music2.appendDistance(CGFloat(810), forNote: note1)
+        music2.appendDistance(CGFloat(1810), forNote: note1)
         
         XCTAssertFalse(music1.isSimilarTo(music2), "they should be different")
         

@@ -89,7 +89,7 @@ class GameLevelTest: XCTestCase {
         XCTAssertEqual(recoverObj.name, game.name,
             "NSCoding not implemented correctly")
         
-        XCTAssertEqual(recoverObj.targetMusic, game.targetMusic,
+        XCTAssertEqual(recoverObj.targetMusic.isSimilarTo(game.targetMusic), true,
             "NSCoding not implemented correctly")
     }
 }
