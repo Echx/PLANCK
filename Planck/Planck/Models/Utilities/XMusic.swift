@@ -40,7 +40,7 @@ class XMusic: NSObject, NSCoding {
     }
     
     required convenience init(coder aDecoder: NSCoder) {
-        let music = aDecoder.decodeObjectForKey(NSCodingKey.MusicDic) as [XNote: [CGFloat]]
+        let music = aDecoder.decodeObjectForKey(NSCodingKey.MusicDic) as! [XNote: [CGFloat]]
         let isArranged = aDecoder.decodeBoolForKey(NSCodingKey.MusicIsArranged)
         let numberOfPlanck = aDecoder.decodeIntForKey(NSCodingKey.MusicNumberOfPlanck)
         self.init()
@@ -57,7 +57,7 @@ class XMusic: NSObject, NSCoding {
     
     func deepCopy() -> XMusic {
         return NSKeyedUnarchiver.unarchiveObjectWithData(
-                    NSKeyedArchiver.archivedDataWithRootObject(self)) as XMusic
+                    NSKeyedArchiver.archivedDataWithRootObject(self)) as! XMusic
     }
     
     func reset() {

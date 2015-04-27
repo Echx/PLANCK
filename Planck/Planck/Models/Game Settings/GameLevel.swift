@@ -65,13 +65,13 @@ class GameLevel: NSObject, NSCoding, Comparable, Equatable {
     }
     
     required convenience init(coder aDecoder: NSCoder) {
-        var levelName       = aDecoder.decodeObjectForKey(NSCodingKey.GameName) as String
-        var index           = aDecoder.decodeObjectForKey(NSCodingKey.GameIndex) as Int
-        var grid            = aDecoder.decodeObjectForKey(NSCodingKey.GameGrid) as GOGrid
-        var originalGrid    = aDecoder.decodeObjectForKey(NSCodingKey.GameGridCopy) as GOGrid
-        var xNodes          = aDecoder.decodeObjectForKey(NSCodingKey.GameNodes) as [String: XNode]
-        var music           = aDecoder.decodeObjectForKey(NSCodingKey.GameTargetMusic) as XMusic
-        var bestScore       = aDecoder.decodeObjectForKey(NSCodingKey.GameBestScore) as Int
+        var levelName       = aDecoder.decodeObjectForKey(NSCodingKey.GameName) as! String
+        var index           = aDecoder.decodeObjectForKey(NSCodingKey.GameIndex) as! Int
+        var grid            = aDecoder.decodeObjectForKey(NSCodingKey.GameGrid) as! GOGrid
+        var originalGrid    = aDecoder.decodeObjectForKey(NSCodingKey.GameGridCopy) as! GOGrid
+        var xNodes          = aDecoder.decodeObjectForKey(NSCodingKey.GameNodes) as! [String: XNode]
+        var music           = aDecoder.decodeObjectForKey(NSCodingKey.GameTargetMusic) as! XMusic
+        var bestScore       = aDecoder.decodeObjectForKey(NSCodingKey.GameBestScore) as! Int
         var isUnlock        = aDecoder.decodeBoolForKey(NSCodingKey.GameUnlock)
         
         self.init(levelName:levelName, levelIndex: index,
@@ -117,7 +117,7 @@ class GameLevel: NSObject, NSCoding, Comparable, Equatable {
     
     //make a deep copy of the current gamelevel
     func deepCopy() -> GameLevel {
-        return NSKeyedUnarchiver.unarchiveObjectWithData(NSKeyedArchiver.archivedDataWithRootObject(self)) as GameLevel
+        return NSKeyedUnarchiver.unarchiveObjectWithData(NSKeyedArchiver.archivedDataWithRootObject(self)) as! GameLevel
     }
     
     //get the movable nodes in original grid

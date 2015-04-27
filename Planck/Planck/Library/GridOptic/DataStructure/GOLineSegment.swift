@@ -42,11 +42,11 @@ class GOLineSegment: GOSegment {
         let willReflect = aDecoder.decodeBoolForKey(GOCodingKey.segment_willRel)
         
         let center = aDecoder.decodeCGPointForKey(GOCodingKey.segment_center)
-        let tag = aDecoder.decodeObjectForKey(GOCodingKey.segment_tag) as NSInteger
+        let tag = aDecoder.decodeObjectForKey(GOCodingKey.segment_tag) as! NSInteger
         
-        let parent = aDecoder.decodeObjectForKey(GOCodingKey.segment_parent) as String
+        let parent = aDecoder.decodeObjectForKey(GOCodingKey.segment_parent) as! String
         
-        let length = aDecoder.decodeObjectForKey(GOCodingKey.segment_length) as CGFloat
+        let length = aDecoder.decodeObjectForKey(GOCodingKey.segment_length) as! CGFloat
         
         let direction = aDecoder.decodeCGVectorForKey(GOCodingKey.segment_direction)
         

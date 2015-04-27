@@ -18,15 +18,15 @@ class GOFlatMirrorRep: GOFlatOpticRep, NSCoding {
     }
     
     required convenience init(coder aDecoder: NSCoder) {
-        let id = aDecoder.decodeObjectForKey(GOCodingKey.optic_id) as String
-        let edges = aDecoder.decodeObjectForKey(GOCodingKey.optic_edges) as [GOSegment]
-        let typeRaw = aDecoder.decodeObjectForKey(GOCodingKey.optic_type) as Int
+        let id = aDecoder.decodeObjectForKey(GOCodingKey.optic_id) as! String
+        let edges = aDecoder.decodeObjectForKey(GOCodingKey.optic_edges) as! [GOSegment]
+        let typeRaw = aDecoder.decodeObjectForKey(GOCodingKey.optic_type) as! Int
         let type = DeviceType(rawValue: typeRaw)
-        let thick = aDecoder.decodeObjectForKey(GOCodingKey.optic_thickness) as CGFloat
-        let length = aDecoder.decodeObjectForKey(GOCodingKey.optic_length) as CGFloat
-        let center = aDecoder.decodeObjectForKey(GOCodingKey.optic_center) as GOCoordinate
+        let thick = aDecoder.decodeObjectForKey(GOCodingKey.optic_thickness) as! CGFloat
+        let length = aDecoder.decodeObjectForKey(GOCodingKey.optic_length) as! CGFloat
+        let center = aDecoder.decodeObjectForKey(GOCodingKey.optic_center) as! GOCoordinate
         let direction = aDecoder.decodeCGVectorForKey(GOCodingKey.optic_direction)
-        let refIndex = aDecoder.decodeObjectForKey(GOCodingKey.optic_refractionIndex) as CGFloat
+        let refIndex = aDecoder.decodeObjectForKey(GOCodingKey.optic_refractionIndex) as! CGFloat
         
         self.init(center: center, thickness: thick, length: length, direction: direction, id: id)
         self.type = type!

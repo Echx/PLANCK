@@ -16,7 +16,7 @@ class ScrollPageViewController: XViewController, UIScrollViewDelegate {
             name: StoryboardIdentifier.StoryBoardID, bundle: nil)
         let identifier = StoryboardIdentifier.ScrollPage
         let viewController = storyboard.instantiateViewControllerWithIdentifier(
-            identifier) as ScrollPageViewController
+            identifier) as! ScrollPageViewController
         viewController.controllers = controllers
         
         return viewController

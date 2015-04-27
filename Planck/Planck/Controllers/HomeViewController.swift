@@ -34,7 +34,7 @@ class HomeViewController: XViewController {
             name: StoryboardIdentifier.StoryBoardID, bundle: nil)
         let identifier = StoryboardIdentifier.Home
         let viewController = storyboard.instantiateViewControllerWithIdentifier(
-            identifier) as HomeViewController
+            identifier) as! HomeViewController
         return viewController
     }
     
@@ -57,7 +57,7 @@ class HomeViewController: XViewController {
             object: nil
         )
         
-        let gamiCent = GamiCent.sharedInstance({
+        let gamiCent = GamiCent.sharedInstance(completion: {
             (isAuthentified) -> Void in
             if isAuthentified {
                 let player = GamiCent.getPlayer()

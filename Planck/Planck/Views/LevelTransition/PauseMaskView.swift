@@ -19,7 +19,6 @@ class PauseMaskView: UIView {
         static let buttonDidClicked = Selector("buttonDidClicked:")
     }
     
-    private let buttons = [UIButton]()
     private let hiddenCenters = [
         CGPointMake(337, -200),
         CGPointMake(512, -200),
@@ -43,6 +42,8 @@ class PauseMaskView: UIView {
     // The animation that has been executed
     private var animationCount = 0
     
+    private var buttons = [UIButton]()
+    
     var animationSpringDamping: CGFloat = 0.5
     var animationInitialSpringVelocity: CGFloat = 10
     var animationDurationIn = 1.0
@@ -56,7 +57,9 @@ class PauseMaskView: UIView {
     /// The delegate of this view
     var delegate: PauseMaskViewDelegate?
     
-    override init() {
+    
+    
+    override init(frame: CGRect) {
         super.init(frame: UIScreen.mainScreen().bounds)
         let blurView = UIVisualEffectView(effect: UIBlurEffect(style: UIBlurEffectStyle.Dark))
         blurView.frame = self.bounds

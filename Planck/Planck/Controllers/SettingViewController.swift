@@ -33,7 +33,7 @@ class SettingViewController: XViewController, UITableViewDataSource, UITableView
         let storyboard = UIStoryboard(name: StoryboardIdentifier.StoryBoardID, bundle: nil)
         let identifier = StoryboardIdentifier.Setting
         let viewController = storyboard.instantiateViewControllerWithIdentifier(identifier)
-            as SettingViewController
+            as! SettingViewController
         return viewController
     }
     
@@ -56,22 +56,22 @@ class SettingViewController: XViewController, UITableViewDataSource, UITableView
         indexPath: NSIndexPath) -> UITableViewCell {
         if indexPath.section == sectionIDForLevelDesigner {
             let cell = tableView.dequeueReusableCellWithIdentifier(textCellId,
-                forIndexPath: indexPath) as UITableViewCell
+                forIndexPath: indexPath) as! UITableViewCell
             cell.textLabel?.text = "level designer"
             return cell
         } else if indexPath.section == sectionIDForSupport {
             let cell = tableView.dequeueReusableCellWithIdentifier(textCellId,
-                forIndexPath: indexPath) as UITableViewCell
+                forIndexPath: indexPath) as! UITableViewCell
             cell.textLabel?.text = getStaticSupportItems()[indexPath.row]
             return cell
         } else if indexPath.section == sectionIDForGameCenter {
             let cell = tableView.dequeueReusableCellWithIdentifier(textCellId,
-                forIndexPath: indexPath) as UITableViewCell
+                forIndexPath: indexPath) as! UITableViewCell
             cell.textLabel?.text = getStaticGameCenterSupportItems()[indexPath.row]
             return cell
         } else {
             let cell = tableView.dequeueReusableCellWithIdentifier(settingCellID,
-                forIndexPath: indexPath) as SettingViewCell
+                forIndexPath: indexPath) as! SettingViewCell
             cell.title.text = "background music"
             cell.toggle.addTarget(self, action: "toggleSetting:",
                 forControlEvents: UIControlEvents.TouchUpInside)
@@ -98,7 +98,7 @@ class SettingViewController: XViewController, UITableViewDataSource, UITableView
         textLabel.text = getSectionHeader(section)
         textLabel.textColor = UIColor(red: 67/255, green: 94/255,
             blue: 118/255, alpha: 1.0)
-        textLabel.font = UIFont.systemFontOfSize(28.0)
+        textLabel.font = UIFont(name: SystemDefault.planckFont, size: 28.0)
         header.addSubview(textLabel)
         return header
     }

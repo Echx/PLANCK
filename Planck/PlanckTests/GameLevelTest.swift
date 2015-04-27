@@ -81,7 +81,7 @@ class GameLevelTest: XCTestCase {
         archiver.finishEncoding()
         
         let unarchiver = NSKeyedUnarchiver(forReadingWithData: data)
-        let recoverObj = unarchiver.decodeObjectForKey("test")! as GameLevel
+        let recoverObj = unarchiver.decodeObjectForKey("test")! as! GameLevel
         
         XCTAssertEqual(recoverObj.index, game.index,
             "NSCoding not implemented correctly")

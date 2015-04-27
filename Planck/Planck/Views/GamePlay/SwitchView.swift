@@ -22,7 +22,9 @@ class SwitchView: UIView {
     
     let switchThrowView = UIView(frame: SwitchDefaults.switchViewThrowFrame)
     
-    override init() {
+    override init(frame: CGRect) {
+        super.init(frame: SwitchDefaults.switchFrame)
+
         self.switchThrowView.center = SwitchDefaults.switchThrowCenter
         
         var throwPath = UIBezierPath()
@@ -59,7 +61,6 @@ class SwitchView: UIView {
         self.leftPole.path = leftPolePath.CGPath
         self.rightPole.path = rightPolePath.CGPath
 
-        super.init(frame: SwitchDefaults.switchFrame)
         self.setLayer(self.leftPole)
         self.setLayer(self.rightPole)
         self.setLayer(self.switchThrow)

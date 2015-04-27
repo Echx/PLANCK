@@ -39,7 +39,7 @@ class DesignerLevelSelectViewController: UITableViewController {
     override func tableView(tableView: UITableView, cellForRowAtIndexPath
         indexPath: NSIndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCellWithIdentifier(
-            ReuseableID.DesignerLevelCell, forIndexPath: indexPath) as UITableViewCell
+            ReuseableID.DesignerLevelCell, forIndexPath: indexPath) as! UITableViewCell
 
         let game = self.levelArray[indexPath.item]
         cell.textLabel?.text = String(game.index)

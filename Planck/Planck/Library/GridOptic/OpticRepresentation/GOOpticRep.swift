@@ -59,13 +59,13 @@ class GOOpticRep: NSObject, NSCoding {
     }
     
     required convenience init(coder aDecoder: NSCoder) {
-        let id = aDecoder.decodeObjectForKey(GOCodingKey.optic_id) as String
-        let edges = aDecoder.decodeObjectForKey(GOCodingKey.optic_edges) as [GOSegment]
-        let typeRaw = aDecoder.decodeObjectForKey(GOCodingKey.optic_type) as Int
+        let id = aDecoder.decodeObjectForKey(GOCodingKey.optic_id) as! String
+        let edges = aDecoder.decodeObjectForKey(GOCodingKey.optic_edges) as! [GOSegment]
+        let typeRaw = aDecoder.decodeObjectForKey(GOCodingKey.optic_type) as! Int
         let type = DeviceType(rawValue: typeRaw)
-        let center = aDecoder.decodeObjectForKey(GOCodingKey.optic_center) as GOCoordinate
+        let center = aDecoder.decodeObjectForKey(GOCodingKey.optic_center) as! GOCoordinate
         
-        let refIndex = aDecoder.decodeObjectForKey(GOCodingKey.optic_refractionIndex) as CGFloat
+        let refIndex = aDecoder.decodeObjectForKey(GOCodingKey.optic_refractionIndex) as! CGFloat
         
         self.init(refractionIndex: refIndex, id: id, center: center)
         self.type = type!
@@ -85,7 +85,7 @@ class GOOpticRep: NSObject, NSCoding {
         let direction = self.direction
         self.direction = OpticRepDefaults.defaultDirection
         self.setUpEdges()
-        self.setDirection(direction)
+        self.setNodeDirection(direction)
         self.updateEdgesParent()
         self.updateEdgesType()
     }
@@ -110,11 +110,11 @@ class GOOpticRep: NSObject, NSCoding {
         fatalError("setUpEdges must be overridden by child classes")
     }
     
-    func setDirection(direction: CGVector) {
-        fatalError("setDirection must be overridden by child classes")
+    func setNodeDirection(direction: CGVector) {
+        fatalError("setNodeDirection must be overridden by child classes")
     }
     
-    func setCenter(center: GOCoordinate) {
+    func setNodeCenter(center: GOCoordinate) {
         self.center = center
         self.refresh()
     }

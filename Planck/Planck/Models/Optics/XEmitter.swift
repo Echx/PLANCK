@@ -20,7 +20,7 @@ class XEmitter: XNode {
     }
     
     required convenience init(coder aDecoder: NSCoder) {
-        let body = aDecoder.decodeObjectForKey(NSCodingKey.XNodeBody) as GOEmitterRep
+        let body = aDecoder.decodeObjectForKey(NSCodingKey.XNodeBody) as! GOEmitterRep
         let isFixed = aDecoder.decodeBoolForKey(NSCodingKey.XNodeFixed)
         
         self.init(emitter: body)

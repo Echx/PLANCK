@@ -11,7 +11,7 @@ extension String {
     static func generateRandomString(length: Int) -> String {
         //possible letters in the random string
         let possibleChars = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789"
-        let numberOfChars = UInt32(countElements(possibleChars))
+        let numberOfChars = UInt32(count(possibleChars))
         let result = (0..<length).map { _ -> String in
             let randomDistance = Int(arc4random_uniform(numberOfChars))
             //retrieve and return the character

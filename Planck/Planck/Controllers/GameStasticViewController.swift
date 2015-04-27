@@ -15,7 +15,7 @@ class GameStasticViewController: XViewController {
             name: StoryboardIdentifier.StoryBoardID, bundle: nil)
         let identifier = StoryboardIdentifier.GameStats
         let viewController = storyboard.instantiateViewControllerWithIdentifier(
-            identifier) as GameStasticViewController
+            identifier) as! GameStasticViewController
         return viewController
     }
     
@@ -54,7 +54,7 @@ class GameStasticViewController: XViewController {
         self.totalGameUnlock.text = String(totalGameUnlock)
         self.totalPrefectHit.text = String(totalPrefect)
         let total: Float = Float(totalPrefect) / Float(games.count) * Float(100.0)
-        self.prefectRate.text = NSString(format: "%.2f%%", total)
+        self.prefectRate.text = NSString(format: "%.2f%%", total) as String
     }
 
     @IBAction func dismissStatsView(sender: AnyObject) {

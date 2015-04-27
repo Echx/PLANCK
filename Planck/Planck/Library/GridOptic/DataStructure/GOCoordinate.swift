@@ -26,8 +26,8 @@ class GOCoordinate: NSObject, NSCoding {
     }
     
     required convenience init(coder aDecoder: NSCoder) {
-        let x = aDecoder.decodeObjectForKey(GOCodingKey.coord_x) as NSInteger
-        let y = aDecoder.decodeObjectForKey(GOCodingKey.coord_y) as NSInteger
+        let x = aDecoder.decodeObjectForKey(GOCodingKey.coord_x) as! NSInteger
+        let y = aDecoder.decodeObjectForKey(GOCodingKey.coord_y) as! NSInteger
         self.init(x: x, y: y)
     }
     

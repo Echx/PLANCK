@@ -51,15 +51,15 @@ class OnboardingMaskView: UIView {
     var dragAnimatingDelay:NSTimeInterval = 2
     var defaultFadeDuration: NSTimeInterval = 0.5
     var labelFontSize: CGFloat = 22
+
     
-    
-    override init() {
+    internal init() {
         super.init(frame: UIScreen.mainScreen().bounds)
         self.setUp()
     }
-
-    required convenience init(coder aDecoder: NSCoder) {
-        self.init()
+    
+    internal required init(coder aDecoder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
     }
     
     /**
@@ -217,7 +217,7 @@ class OnboardingMaskView: UIView {
     */
     func showTapAnimation(timer: NSTimer) {
         //get the position from userInfo
-        let point = (timer.userInfo as NSValue).CGPointValue()
+        let point = (timer.userInfo as! NSValue).CGPointValue()
         var containerView = UIView(frame: CGRectMake(0, 0, 2 * self.tapFinalRadius, 2 * self.tapFinalRadius))
         var animatingView = UIView(frame: CGRectMake(0, 0, 2 * self.tapInitialRadius, 2 * self.tapInitialRadius))
         containerView.layer.cornerRadius = self.tapFinalRadius
@@ -289,9 +289,9 @@ class OnboardingMaskView: UIView {
     :param: timer a timer with userInfo set as a Dictionary containing the necessary information
     */
     func showDragAnimation(timer: NSTimer) {
-        let points = timer.userInfo as Dictionary<String, AnyObject>
-        let startPoint = (points[keyForStartPoint] as NSValue).CGPointValue()
-        let endPoint = (points[keyForEndPoint] as NSValue).CGPointValue()
+        let points = timer.userInfo as! Dictionary<String, AnyObject>
+        let startPoint = (points[keyForStartPoint] as! NSValue).CGPointValue()
+        let endPoint = (points[keyForEndPoint] as! NSValue).CGPointValue()
         var animatingView = UIView(frame: CGRectMake(0, 0,
                                     2 * self.dragInidicatorRadius, 2 * self.dragInidicatorRadius))
         

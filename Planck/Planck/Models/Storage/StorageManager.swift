@@ -51,7 +51,7 @@ class StorageManager:NSObject {
             SystemDefault.levelDataType, inDirectory: nil)
         let fileManager = NSFileManager.defaultManager()
         for levelPath in preloadGames {
-            let levelPath = levelPath as NSString
+            let levelPath = levelPath as! String
             let levelName = levelPath.lastPathComponent
             let destPath = XFileConstant.defaultLevelDir.stringByAppendingPathComponent(levelName)
             fileManager.copyItemAtPath(levelPath, toPath: destPath, error: nil)
@@ -71,7 +71,7 @@ class StorageManager:NSObject {
         
         let levelName = level.name + SystemDefault.levelDataFileExtension
         // save to system levels folder
-        var filePath : NSString = XFileConstant.defaultLevelDir.stringByAppendingPathComponent(levelName)
+        var filePath : String = XFileConstant.defaultLevelDir.stringByAppendingPathComponent(levelName)
         data.writeToFile(filePath, atomically: true)
         
         // reload the cache after saving the games
@@ -82,17 +82,17 @@ class StorageManager:NSObject {
     /// :param: filename the name of the file to be load
     /// :param: isSystemLevel a boolean indicating the location of the file
     /// :returns: a single game level loaded
-    func loadLevel(filename:NSString, isSystemLevel: Bool) -> GameLevel {
+    func loadLevel(filename:String, isSystemLevel: Bool) -> GameLevel {
         // REQUIRES: filename is valid (english chars only with non-zero length)
         
-        var filePath: NSString = XFileConstant.defaultLevelDir.stringByAppendingPathComponent(filename)
+        var filePath: String = XFileConstant.defaultLevelDir.stringByAppendingPathComponent(filename)
         if !isSystemLevel {
             filePath = XFileConstant.userLevelDir.stringByAppendingPathComponent(filename)
         }
 
         let data = NSData(contentsOfFile: filePath)
         let unarchiver = NSKeyedUnarchiver(forReadingWithData: data!)
-        return unarchiver.decodeObjectForKey(NSCodingKey.Game) as GameLevel
+        return unarchiver.decodeObjectForKey(NSCodingKey.Game) as! GameLevel
     }
     
     /// Load all system levels
@@ -107,7 +107,7 @@ class StorageManager:NSObject {
             
             // iterate each filename to add
             for filename in fileArray {
-                let name = filename as NSString
+                let name = filename as! String
                 // temp solution for dealing with file type
                 if name.pathExtension == SystemDefault.levelDataType {
                     let game = loadLevel(name, isSystemLevel: true)
@@ -140,7 +140,7 @@ class StorageManager:NSObject {
             
             // iterate each filename to add
             for filename in fileArray {
-                let name = filename as NSString
+                let name = filename as! String
                 // temp solution for dealing with file type
                 if name.pathExtension == SystemDefault.levelDataType  {
                     let game = loadLevel(name, isSystemLevel: false)

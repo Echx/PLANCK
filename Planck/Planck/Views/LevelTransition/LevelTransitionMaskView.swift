@@ -26,12 +26,12 @@ class LevelTransitionMaskView: UIView {
     
     private let congratulationLabelFrame = CGRect(x: 0, y: 600, width: UIScreen.mainScreen().bounds.width, height: 50)
     private let congratulationText = "Congratulation! You have unlocked the next section! (*´╰╯`๓)♬"
-    private let congratulationLabel = UILabel()
+    private var congratulationLabel = UILabel()
     
     private let buttonFrame = CGRectMake(0, 0, 150, 150)
     
-    private let badgeViews = [BadgeView]()
-    private let buttons = [UIButton]()
+    private var badgeViews = [BadgeView]()
+    private var buttons = [UIButton]()
     private let hiddenCentersTop = [
         CGPointMake(337, -200),
         CGPointMake(512, -200),
@@ -88,7 +88,7 @@ class LevelTransitionMaskView: UIView {
         }
     }
     
-    override init() {
+    override init(frame: CGRect) {
         super.init(frame: UIScreen.mainScreen().bounds)
         let blurView = UIVisualEffectView(effect: UIBlurEffect(style: UIBlurEffectStyle.Dark))
         blurView.frame = self.bounds
@@ -246,6 +246,6 @@ class LevelTransitionMaskView: UIView {
     
     
     required init(coder aDecoder: NSCoder) {
-        super.init(coder: aDecoder)
+        fatalError("init(coder:) has not been implemented")
     }
 }

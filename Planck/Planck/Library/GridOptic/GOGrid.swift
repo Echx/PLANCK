@@ -113,11 +113,11 @@ class GOGrid: NSObject, NSCoding {
     }
     
     required convenience init(coder aDecoder: NSCoder) {
-        let unitLength = aDecoder.decodeObjectForKey(GOCodingKey.grid_unitLength) as CGFloat
-        let width = aDecoder.decodeObjectForKey(GOCodingKey.grid_width) as NSInteger
-        let height = aDecoder.decodeObjectForKey(GOCodingKey.grid_height) as NSInteger
+        let unitLength = aDecoder.decodeObjectForKey(GOCodingKey.grid_unitLength) as! CGFloat
+        let width = aDecoder.decodeObjectForKey(GOCodingKey.grid_width) as! NSInteger
+        let height = aDecoder.decodeObjectForKey(GOCodingKey.grid_height) as! NSInteger
         self.init(width: width, height: height, andUnitLength: unitLength)
-        self.instruments = aDecoder.decodeObjectForKey(GOCodingKey.grid_instruments) as [String : GOOpticRep]
+        self.instruments = aDecoder.decodeObjectForKey(GOCodingKey.grid_instruments) as! [String : GOOpticRep]
     }
     
     func encodeWithCoder(aCoder: NSCoder) {
@@ -162,7 +162,7 @@ class GOGrid: NSObject, NSCoding {
     
     func getInstrumentDisplayPathForID(id: String) -> UIBezierPath? {
         if let instrument = self.getInstrumentForID(id) {
-            let bezierPath = instrument.bezierPath.copy() as UIBezierPath
+            let bezierPath = instrument.bezierPath.copy() as! UIBezierPath
             bezierPath.applyTransform(self.transformToDisplay)
             return bezierPath
         } else {
@@ -442,7 +442,7 @@ class GOGrid: NSObject, NSCoding {
     }
     
     func deepCopy() -> GOGrid {
-        return NSKeyedUnarchiver.unarchiveObjectWithData(NSKeyedArchiver.archivedDataWithRootObject(self)) as GOGrid
+        return NSKeyedUnarchiver.unarchiveObjectWithData(NSKeyedArchiver.archivedDataWithRootObject(self)) as! GOGrid
     }
     
     private func getIntersectionWithBoundary(#ray:GORay) -> CGPoint? {

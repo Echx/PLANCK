@@ -91,10 +91,10 @@ class XNode: NSObject, NSCoding {
     }
     
     required convenience init(coder aDecoder: NSCoder) {
-        let body = aDecoder.decodeObjectForKey(NSCodingKey.XNodeBody) as GOOpticRep
+        let body = aDecoder.decodeObjectForKey(NSCodingKey.XNodeBody) as! GOOpticRep
         let isFixed = aDecoder.decodeBoolForKey(NSCodingKey.XNodeFixed)
-        let planckNote = aDecoder.decodeObjectForKey(NSCodingKey.XNodePlanck) as XNote?
-        let instrument = aDecoder.decodeObjectForKey(NSCodingKey.XNodeInstrument) as Int
+        let planckNote = aDecoder.decodeObjectForKey(NSCodingKey.XNodePlanck) as! XNote?
+        let instrument = aDecoder.decodeObjectForKey(NSCodingKey.XNodeInstrument) as! Int
 
         self.init(physicsBody: body)
         self.isFixed = isFixed

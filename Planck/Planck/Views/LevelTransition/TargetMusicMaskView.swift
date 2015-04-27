@@ -24,7 +24,7 @@ class TargetMusicMaskView: UIView {
     // the delegte
     var delegate: TargetMusicMaskViewDelegate?
     
-    override init() {
+    init() {
         super.init(frame: UIScreen.mainScreen().bounds)
         
         let blurView = UIVisualEffectView(effect: UIBlurEffect(style: UIBlurEffectStyle.Dark))

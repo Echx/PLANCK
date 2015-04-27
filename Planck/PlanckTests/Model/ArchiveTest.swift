@@ -67,7 +67,7 @@ class ArchiveTest : XCTestCase {
         archiver.finishEncoding()
         
         let unarchiver = NSKeyedUnarchiver(forReadingWithData: data)
-        let recoverObj = unarchiver.decodeObjectForKey(Default.GridKey)! as GOGrid
+        let recoverObj = unarchiver.decodeObjectForKey(Default.GridKey)! as! GOGrid
         XCTAssertEqual(recoverObj.width , 64, "Error Recovering")
         XCTAssertEqual(recoverObj.height, 48, "Error Recovering")
         XCTAssertEqual(recoverObj.instruments.count , 5, "Error Recovering")
@@ -82,7 +82,7 @@ class ArchiveTest : XCTestCase {
         archiver.finishEncoding()
         
         let unarchiver = NSKeyedUnarchiver(forReadingWithData: data)
-        let recoverObj = unarchiver.decodeObjectForKey(Default.MirrorKey)! as GOFlatMirrorRep
+        let recoverObj = unarchiver.decodeObjectForKey(Default.MirrorKey)! as! GOFlatMirrorRep
         XCTAssertEqual(recoverObj.center.x, Default.center.x, "Error Recovering")
         XCTAssertEqual(recoverObj.center.y, Default.center.y, "Error Recovering")
         XCTAssertEqual(recoverObj.thickness, Default.thick, "Error Recovering")

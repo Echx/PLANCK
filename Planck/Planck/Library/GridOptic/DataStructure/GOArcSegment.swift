@@ -36,16 +36,16 @@ class GOArcSegment: GOSegment {
     }
     
     required convenience init(coder aDecoder: NSCoder) {
-        let radius = aDecoder.decodeObjectForKey(GOCodingKey.segment_radius) as CGFloat
-        let radian = aDecoder.decodeObjectForKey(GOCodingKey.segment_radian) as CGFloat
+        let radius = aDecoder.decodeObjectForKey(GOCodingKey.segment_radius) as! CGFloat
+        let radian = aDecoder.decodeObjectForKey(GOCodingKey.segment_radian) as! CGFloat
         
         let willRefract = aDecoder.decodeBoolForKey(GOCodingKey.segment_willRef)
         let willReflect = aDecoder.decodeBoolForKey(GOCodingKey.segment_willRel)
         
         let center = aDecoder.decodeCGPointForKey(GOCodingKey.segment_center)
-        let tag = aDecoder.decodeObjectForKey(GOCodingKey.segment_tag) as NSInteger
+        let tag = aDecoder.decodeObjectForKey(GOCodingKey.segment_tag) as! NSInteger
         
-        let parent = aDecoder.decodeObjectForKey(GOCodingKey.segment_parent) as String
+        let parent = aDecoder.decodeObjectForKey(GOCodingKey.segment_parent) as! String
         
         let direction = aDecoder.decodeCGVectorForKey(GOCodingKey.segment_direction)
         let normalDirection = aDecoder.decodeCGVectorForKey(GOCodingKey.segment_normalDir)

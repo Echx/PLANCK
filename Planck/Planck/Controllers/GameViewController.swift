@@ -99,7 +99,7 @@ class GameViewController: XViewController {
         let storyboard = UIStoryboard(name: StoryboardIdentifier.StoryBoardID, bundle: nil)
         let identifier = StoryboardIdentifier.Game
         let viewController = storyboard.instantiateViewControllerWithIdentifier(identifier)
-            as GameViewController
+            as! GameViewController
         viewController.gameLevel = gameLevel
         viewController.originalLevel = gameLevel.deepCopy()
         viewController.modalTransitionStyle = UIModalTransitionStyle.CrossDissolve
@@ -279,7 +279,7 @@ class GameViewController: XViewController {
         let count = round(effectAngle / self.grid.unitDegree)
         let finalAngle = self.grid.unitDegree * count
         angle = finalAngle - nodeAngle
-        node.setDirection(CGVector.vectorFromXPlusRadius(finalAngle))
+        node.setNodeDirection(CGVector.vectorFromXPlusRadius(finalAngle))
         if let view = self.deviceViews[node.id] {
             var layerTransform = CATransform3DRotate(view.layer.transform,
                 angle, 0, 0, 1)
@@ -510,7 +510,7 @@ class GameViewController: XViewController {
     
     private func addNode(node: GOOpticRep, strokeColor: UIColor) -> Bool{
         var coordinateBackup = node.center
-        node.setCenter(GOCoordinate(x: self.grid.width/2, y: self.grid.height/2))
+        node.setNodeCenter(GOCoordinate(x: self.grid.width/2, y: self.grid.height/2))
         self.grid.addInstrument(node)
         let view = UIView(frame: self.view.bounds)
         view.backgroundColor = UIColor.clearColor()
@@ -589,10 +589,10 @@ class GameViewController: XViewController {
         let centerBackup = node.center
         
         //check whether the node will overlap with other nodes with the new center
-        node.setCenter(self.grid.getGridCoordinateForPoint(effectDisplayPoint))
+        node.setNodeCenter(self.grid.getGridCoordinateForPoint(effectDisplayPoint))
         if self.grid.isInstrumentOverlappedWidthOthers(node) {
             //overlapped recover the center and view
-            node.setCenter(centerBackup)
+            node.setNodeCenter(centerBackup)
             //recover the view
             let view = self.deviceViews[node.id]!
             view.center = originalDisplayPoint

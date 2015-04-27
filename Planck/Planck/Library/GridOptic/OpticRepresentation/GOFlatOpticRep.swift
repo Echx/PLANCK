@@ -74,7 +74,7 @@ class GOFlatOpticRep: GOOpticRep {
         self.length = length
         super.init(refractionIndex: refractionIndex, id: id, center: center)
         self.setUpEdges()
-        self.setDirection(direction)
+        self.setNodeDirection(direction)
         self.updateEdgesParent()
     }
     
@@ -83,27 +83,27 @@ class GOFlatOpticRep: GOOpticRep {
         self.length = length
         super.init(id: id, center: center)
         self.setUpEdges()
-        self.setDirection(direction)
+        self.setNodeDirection(direction)
         self.updateEdgesParent()
     }
     
     init(center: GOCoordinate, id: String) {
         super.init(id: id, center: center)
         self.setUpEdges()
-        self.setDirection(self.direction)
+        self.setNodeDirection(self.direction)
         self.updateEdgesParent()
     }
     
     required convenience init(coder aDecoder: NSCoder) {
-        let id = aDecoder.decodeObjectForKey(GOCodingKey.optic_id) as String
-        let edges = aDecoder.decodeObjectForKey(GOCodingKey.optic_edges) as [GOSegment]
-        let typeRaw = aDecoder.decodeObjectForKey(GOCodingKey.optic_type) as Int
+        let id = aDecoder.decodeObjectForKey(GOCodingKey.optic_id) as! String
+        let edges = aDecoder.decodeObjectForKey(GOCodingKey.optic_edges) as! [GOSegment]
+        let typeRaw = aDecoder.decodeObjectForKey(GOCodingKey.optic_type) as! Int
         let type = DeviceType(rawValue: typeRaw)
-        let thick = aDecoder.decodeObjectForKey(GOCodingKey.optic_thickness) as CGFloat
-        let length = aDecoder.decodeObjectForKey(GOCodingKey.optic_length) as CGFloat
-        let center = aDecoder.decodeObjectForKey(GOCodingKey.optic_center) as GOCoordinate
+        let thick = aDecoder.decodeObjectForKey(GOCodingKey.optic_thickness) as! CGFloat
+        let length = aDecoder.decodeObjectForKey(GOCodingKey.optic_length) as! CGFloat
+        let center = aDecoder.decodeObjectForKey(GOCodingKey.optic_center) as! GOCoordinate
         let direction = aDecoder.decodeCGVectorForKey(GOCodingKey.optic_direction)
-        let refIndex = aDecoder.decodeObjectForKey(GOCodingKey.optic_refractionIndex) as CGFloat
+        let refIndex = aDecoder.decodeObjectForKey(GOCodingKey.optic_refractionIndex) as! CGFloat
         
         self.init(center: center, thickness: thick, length: length, direction: direction, id: id)
         self.type = type!
@@ -148,7 +148,7 @@ class GOFlatOpticRep: GOOpticRep {
         self.edges.append(leftEdge)
     }
     
-    override func setDirection(direction: CGVector) {
+    override func setNodeDirection(direction: CGVector) {
         let directionDifference = direction.angleFromXPlus - self.direction.angleFromXPlus
         self.direction = direction
         

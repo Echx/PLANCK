@@ -368,16 +368,16 @@ struct XFileConstant {
     static let userLevelFolder = "users"
     // Using which directory
     static let documentsPath = NSSearchPathForDirectoriesInDomains(.DocumentDirectory,
-        .UserDomainMask, true)[0] as NSString
+        .UserDomainMask, true)[0] as! String
     
     static let libraryPath = NSSearchPathForDirectoriesInDomains(.ApplicationSupportDirectory,
-        .UserDomainMask, true)[0] as NSString
+        .UserDomainMask, true)[0] as! String
     
     // The pre-set levels are stored in 
     // /Library/Application Support/com.echx.planck/
-    static let defaultLevelDir = libraryPath.stringByAppendingPathComponent(systemLevelFolder)
+    static let defaultLevelDir: String = libraryPath.stringByAppendingPathComponent(systemLevelFolder)
     
-    static let userLevelDir = documentsPath.stringByAppendingPathComponent(userLevelFolder)
+    static let userLevelDir: String = documentsPath.stringByAppendingPathComponent(userLevelFolder)
 }
 
 struct HomeViewDefaults {

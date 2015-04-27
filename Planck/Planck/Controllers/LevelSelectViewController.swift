@@ -25,7 +25,7 @@ class LevelSelectViewController: ScrollPageContentViewController,
             name: StoryboardIdentifier.StoryBoardID, bundle: nil)
         let identifier = StoryboardIdentifier.LevelSelect
         let viewController = storyboard.instantiateViewControllerWithIdentifier(
-            identifier) as LevelSelectViewController
+            identifier) as! LevelSelectViewController
         return viewController
     }
     
@@ -76,7 +76,7 @@ class LevelSelectViewController: ScrollPageContentViewController,
         cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCellWithReuseIdentifier(
             ReuseableID.LevelSelectCell , forIndexPath: indexPath)
-            as LevelSelectCollectionViewCell
+            as! LevelSelectCollectionViewCell
         let game = levelArray[
             indexPath.section * Constant.levelInSection + indexPath.item
         ]
@@ -96,7 +96,7 @@ class LevelSelectViewController: ScrollPageContentViewController,
                 kind,
                 withReuseIdentifier: ReuseableID.LevelSelectHeader,
                 forIndexPath: indexPath
-            ) as LevelSelectHeaderView
+            ) as! LevelSelectHeaderView
             header.title.text = getSectionHeaderText(indexPath.section)
             return header
         } else {

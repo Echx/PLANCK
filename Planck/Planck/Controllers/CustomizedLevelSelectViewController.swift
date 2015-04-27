@@ -22,7 +22,7 @@ class CustomizedLevelSelectViewController: ScrollPageContentViewController, UICo
             name: StoryboardIdentifier.StoryBoardID, bundle: nil)
         let identifier = StoryboardIdentifier.CustomizedLevelSelect
         let viewController = storyboard.instantiateViewControllerWithIdentifier(
-            identifier) as CustomizedLevelSelectViewController
+            identifier) as! CustomizedLevelSelectViewController
         return viewController
     }
     
@@ -63,7 +63,7 @@ class CustomizedLevelSelectViewController: ScrollPageContentViewController, UICo
         cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCellWithReuseIdentifier(
             ReuseableID.CustomizedLevelSelectCell , forIndexPath: indexPath)
-            as CustomizedLevelCollectionViewCell
+            as! CustomizedLevelCollectionViewCell
         let game = levelArray[indexPath.item]
         
         cell.title.text = game.name
@@ -77,7 +77,7 @@ class CustomizedLevelSelectViewController: ScrollPageContentViewController, UICo
         if kind == UICollectionElementKindSectionHeader {
             let header = collectionView.dequeueReusableSupplementaryViewOfKind(
                 kind, withReuseIdentifier: ReuseableID.UserLevelSelectHeader,
-                forIndexPath: indexPath) as LevelSelectHeaderView
+                forIndexPath: indexPath) as! LevelSelectHeaderView
             header.title.text = getSectionHeaderText(indexPath.section)
             return header
         } else {

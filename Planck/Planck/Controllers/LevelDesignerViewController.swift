@@ -190,12 +190,12 @@ class LevelDesignerViewController: XViewController {
             bundle: nil)
         let identifier = StoryboardIdentifier.LevelDesigner
         let viewController = storyboard.instantiateViewControllerWithIdentifier(identifier)
-            as LevelDesignerViewController
+            as! LevelDesignerViewController
         viewController.modalTransitionStyle = UIModalTransitionStyle.CrossDissolve
         return viewController
     }
     
-    required override init(coder aDecoder: NSCoder) {
+    required init(coder aDecoder: NSCoder) {
         self.grid = GOGrid(width: self.gridWidth, height: self.gridHeight,
             andUnitLength: self.gridUnitLength)
         super.init(coder: aDecoder)
@@ -343,9 +343,9 @@ class LevelDesignerViewController: XViewController {
                     angle = finalAngle - nodeAngle
                     
                     // check whether the node will overlap with others with the new direction
-                    node.setDirection(CGVector.vectorFromXPlusRadius(finalAngle))
+                    node.setNodeDirection(CGVector.vectorFromXPlusRadius(finalAngle))
                     if self.grid.isInstrumentOverlappedWidthOthers(node) {
-                        node.setDirection(firstDirection!)
+                        node.setNodeDirection(firstDirection!)
                         view.layer.transform = firstViewTransform!
                         return
                     }
@@ -484,7 +484,7 @@ class LevelDesignerViewController: XViewController {
         // Create a level select VC instance
         var storyBoard = UIStoryboard(name: StoryboardIdentifier.StoryBoardID, bundle: nil)
         var levelVC = storyBoard.instantiateViewControllerWithIdentifier(
-            StoryboardIdentifier.DesignerLevelSelect) as DesignerLevelSelectViewController
+            StoryboardIdentifier.DesignerLevelSelect) as! DesignerLevelSelectViewController
         levelVC.modalPresentationStyle = UIModalPresentationStyle.Popover
         levelVC.delegate = self
         self.presentViewController(levelVC, animated: true, completion: nil)
@@ -893,7 +893,7 @@ class LevelDesignerViewController: XViewController {
         let count = round(effectAngle / self.grid.unitDegree)
         let finalAngle = self.grid.unitDegree * count
         angle = finalAngle - nodeAngle
-        node.setDirection(CGVector.vectorFromXPlusRadius(finalAngle))
+        node.setNodeDirection(CGVector.vectorFromXPlusRadius(finalAngle))
         if let view = self.deviceViews[node.id] {
             var layerTransform = CATransform3DRotate(view.layer.transform,
                 angle, 0, 0, 1)
@@ -1061,7 +1061,7 @@ class LevelDesignerViewController: XViewController {
     private func addNode(node: GOOpticRep, strokeColor: UIColor) -> Bool{
         self.clearRay()
         var coordinateBackup = node.center
-        node.setCenter(GOCoordinate(x: self.grid.width/2, y: self.grid.height/2))
+        node.setNodeCenter(GOCoordinate(x: self.grid.width/2, y: self.grid.height/2))
         
         self.grid.addInstrument(node)
         let layer = CAShapeLayer()
@@ -1102,10 +1102,10 @@ class LevelDesignerViewController: XViewController {
         let centerBackup = node.center
         
         //check whether the node will overlap with other nodes with the new center
-        node.setCenter(self.grid.getGridCoordinateForPoint(effectDisplayPoint))
+        node.setNodeCenter(self.grid.getGridCoordinateForPoint(effectDisplayPoint))
         if self.grid.isInstrumentOverlappedWidthOthers(node) {
             //overlapped recover the center and view
-            node.setCenter(centerBackup)
+            node.setNodeCenter(centerBackup)
             //recover the view
             let view = self.deviceViews[node.id]!
             view.center = originalDisplayPoint
@@ -1352,7 +1352,7 @@ class LevelDesignerViewController: XViewController {
         
         alert.addAction(UIAlertAction(title: AlertViewText.btn_save, style: .Default,
             handler: { action in
-                let textField = alert.textFields![0] as UITextField
+                let textField = alert.textFields![0] as! UITextField
                 // validate textField input (non-empty)
                 let whitespace = NSCharacterSet.whitespaceAndNewlineCharacterSet
                 let inputName = textField.text.stringByTrimmingCharactersInSet(whitespace())
@@ -1362,7 +1362,7 @@ class LevelDesignerViewController: XViewController {
                     error: nil)!
                 
                 if let match = regEx.firstMatchInString(inputName, options: nil,
-                    range: NSRange(location: 0, length: inputName.utf16Count)) {
+                    range: NSRange(location: 0, length: count(inputName.utf16))) {
                         // valid
                         var nextIndex = StorageManager.defaultManager.numOfLevel()
                         if self.gameIndex != nil && inputName == self.gameName {
@@ -1373,7 +1373,7 @@ class LevelDesignerViewController: XViewController {
                         // create deep copy
                         var savedGrid = self.grid.deepCopy() // this is the puzzle grid
                         var savedNodes = NSKeyedUnarchiver.unarchiveObjectWithData(NSKeyedArchiver.archivedDataWithRootObject(self.xNodes))
-                            as Dictionary<String, XNode>
+                            as! Dictionary<String, XNode>
                         
                         let game = GameLevel(levelName: inputName,
                             levelIndex: nextIndex,
@@ -1513,7 +1513,7 @@ extension LevelDesignerViewController: UIPickerViewDataSource, UIPickerViewDeleg
     private func numOfLevel() -> Int {
         // find out the document path
         let path = NSSearchPathForDirectoriesInDomains(.DocumentDirectory,
-            .UserDomainMask, true)[0] as NSString
+            .UserDomainMask, true)[0] as! String
         let fileManager = NSFileManager.defaultManager()
         let fileArray = fileManager.contentsOfDirectoryAtPath(path,
             error: nil)! as NSArray

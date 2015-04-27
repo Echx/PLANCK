@@ -72,7 +72,7 @@ class GOConvexLensRep: GOOpticRep {
         super.init(id: id, center: center)
         self.refractionIndex = refractionIndex
         self.setUpEdges()
-        self.setDirection(direction)
+        self.setNodeDirection(direction)
         self.updateEdgesParent()
         self.setDeviceType(DeviceType.Lens)
     }
@@ -81,7 +81,7 @@ class GOConvexLensRep: GOOpticRep {
         super.init(id: id, center: center)
         self.refractionIndex = refractionIndex
         self.setUpEdges()
-        self.setDirection(direction)
+        self.setNodeDirection(direction)
         self.setDeviceType(DeviceType.Lens)
         self.updateEdgesParent()
     }
@@ -90,24 +90,24 @@ class GOConvexLensRep: GOOpticRep {
         super.init(id: id, center: center)
         self.refractionIndex = refractionIndex
         self.setUpEdges()
-        self.setDirection(self.direction)
+        self.setNodeDirection(self.direction)
         self.setDeviceType(DeviceType.Lens)
         self.updateEdgesParent()
     }
     
     required convenience init(coder aDecoder: NSCoder) {
-        let id = aDecoder.decodeObjectForKey(GOCodingKey.optic_id) as String
-        let edges = aDecoder.decodeObjectForKey(GOCodingKey.optic_edges) as [GOSegment]
-        let typeRaw = aDecoder.decodeObjectForKey(GOCodingKey.optic_type) as Int
+        let id = aDecoder.decodeObjectForKey(GOCodingKey.optic_id) as! String
+        let edges = aDecoder.decodeObjectForKey(GOCodingKey.optic_edges) as! [GOSegment]
+        let typeRaw = aDecoder.decodeObjectForKey(GOCodingKey.optic_type) as! Int
         let type = DeviceType(rawValue: typeRaw)
         
-        let thickness = aDecoder.decodeObjectForKey(GOCodingKey.optic_thickness) as CGFloat
-        let curvatureRadius = aDecoder.decodeObjectForKey(GOCodingKey.optic_curvatureRadius) as CGFloat
+        let thickness = aDecoder.decodeObjectForKey(GOCodingKey.optic_thickness) as! CGFloat
+        let curvatureRadius = aDecoder.decodeObjectForKey(GOCodingKey.optic_curvatureRadius) as! CGFloat
         
-        let length = aDecoder.decodeObjectForKey(GOCodingKey.optic_length) as CGFloat
-        let center = aDecoder.decodeObjectForKey(GOCodingKey.optic_center) as GOCoordinate
+        let length = aDecoder.decodeObjectForKey(GOCodingKey.optic_length) as! CGFloat
+        let center = aDecoder.decodeObjectForKey(GOCodingKey.optic_center) as! GOCoordinate
         let direction = aDecoder.decodeCGVectorForKey(GOCodingKey.optic_direction)
-        let refIndex = aDecoder.decodeObjectForKey(GOCodingKey.optic_refractionIndex) as CGFloat
+        let refIndex = aDecoder.decodeObjectForKey(GOCodingKey.optic_refractionIndex) as! CGFloat
         
         self.init(center: center, direction: direction, thickness: thickness,
                     curvatureRadius: curvatureRadius, id: id, refractionIndex: refIndex)
@@ -155,7 +155,7 @@ class GOConvexLensRep: GOOpticRep {
         self.edges.append(rightArc)
     }
     
-    override func setDirection(direction: CGVector) {
+    override func setNodeDirection(direction: CGVector) {
         // set up the correct direction for each edge
         let directionDifference = direction.angleFromXPlus - self.direction.angleFromXPlus
         self.direction = direction

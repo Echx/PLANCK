@@ -39,7 +39,7 @@ class GamiCent : NSObject, GKGameCenterControllerDelegate {
         if Static.instance == nil {
             // have not yet, initilize and login
             Static.instance = GamiCent()
-            GamiCent.loginToGameCenter(nil)
+            GamiCent.loginToGameCenter(completion: nil)
         }
 
         return Static.instance!
@@ -52,7 +52,7 @@ class GamiCent : NSObject, GKGameCenterControllerDelegate {
         if Static.instance == nil {
             // have not yet, initilize and login
             Static.instance = GamiCent()
-            GamiCent.loginToGameCenter({
+            GamiCent.loginToGameCenter(completion: {
                 (result) in
                 if completion != nil {
                     completion!(isAuthentified: result)

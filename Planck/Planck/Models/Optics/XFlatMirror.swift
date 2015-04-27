@@ -19,10 +19,10 @@ class XFlatMirror: XNode {
     }
 
     required convenience init(coder aDecoder: NSCoder) {
-        let body = aDecoder.decodeObjectForKey(NSCodingKey.XNodeBody) as GOFlatMirrorRep
+        let body = aDecoder.decodeObjectForKey(NSCodingKey.XNodeBody) as! GOFlatMirrorRep
         let isFixed = aDecoder.decodeBoolForKey(NSCodingKey.XNodeFixed)
-        let planckNote = aDecoder.decodeObjectForKey(NSCodingKey.XNodePlanck) as XNote?
-        let instrument = aDecoder.decodeObjectForKey(NSCodingKey.XNodeInstrument) as Int
+        let planckNote = aDecoder.decodeObjectForKey(NSCodingKey.XNodePlanck) as! XNote?
+        let instrument = aDecoder.decodeObjectForKey(NSCodingKey.XNodeInstrument) as! Int
         
         self.init(flatMirror: body)
         self.isFixed = isFixed
