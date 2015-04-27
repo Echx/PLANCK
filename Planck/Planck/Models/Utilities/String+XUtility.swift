@@ -11,11 +11,11 @@ extension String {
     static func generateRandomString(len: Int) -> String {
         //possible letters in the random string
         let letters = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789"
-        let lettersLength = UInt32(countElements(letters))
+        let numberOfLetters = UInt32(countElements(letters))
         let result = (0..<len).map { _ -> String in
-            let randomIndex = Int(arc4random_uniform(lettersLength))
+            let randomDistance = Int(arc4random_uniform(numberOfLetters))
             //retrieve and return the character
-            return String(letters[advance(letters.startIndex, randomIndex)])
+            return String(letters[advance(letters.startIndex, randomDistance)])
         }
         
         //join the result array into a new string and return
