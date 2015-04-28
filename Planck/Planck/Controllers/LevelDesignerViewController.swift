@@ -1462,7 +1462,7 @@ extension LevelDesignerViewController: GOGridDelegate {
     }
     
     func gridDidFinishCalculation(grid: GOGrid, forRayWithTag tag: String) {
-        // TODO: re-enable save/preview here
+
     }
 }
 

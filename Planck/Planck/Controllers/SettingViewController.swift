@@ -19,6 +19,15 @@ class SettingViewController: XViewController, UITableViewDataSource, UITableView
     private let sectionTitleForLevelDesigner = "design"
 
     private let numOfExtraSection = 2
+    private let numOfSectionInTable = 4
+    
+    private let numOfItemForLevelDesigner = 1
+    private let numOfItemForSupport = 3
+    private let numOfItemForGameCenter = 3
+    private let numOfItemForSetting = 1
+    
+    private let achievementsIndex = 0
+    private let leaderboardIndex = 1
     
     private let sectionIDForLevelDesigner = 0
     private let sectionIDForAudio = 1
@@ -49,7 +58,7 @@ class SettingViewController: XViewController, UITableViewDataSource, UITableView
     }
     
     func numberOfSectionsInTableView(tableView: UITableView) -> Int {
-        return 4
+        return numOfSectionInTable
     }
     
     func tableView(tableView: UITableView, cellForRowAtIndexPath
@@ -82,13 +91,13 @@ class SettingViewController: XViewController, UITableViewDataSource, UITableView
     
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         if section == sectionIDForLevelDesigner {
-            return 1
+            return numOfItemForLevelDesigner
         } else if section == sectionIDForSupport {
-            return 3
+            return numOfItemForSupport
         } else if section == sectionIDForGameCenter {
-            return 3
+            return numOfItemForGameCenter
         } else {
-            return 1
+            return numOfItemForSetting
         }
     }
     
@@ -111,6 +120,7 @@ class SettingViewController: XViewController, UITableViewDataSource, UITableView
         return footerHeight
     }
     
+    
     func tableView(tableView: UITableView, didSelectRowAtIndexPath
         indexPath: NSIndexPath) {
         tableView.deselectRowAtIndexPath(indexPath, animated: false)
@@ -122,12 +132,12 @@ class SettingViewController: XViewController, UITableViewDataSource, UITableView
             NSNotificationCenter.defaultCenter().postNotificationName(HomeViewDefaults.stopPlayingKey,
                 object: nil)
         } else if section == sectionIDForGameCenter {
-            if indexPath.item == 0 {
+            if indexPath.item == achievementsIndex {
                 // item 1 : view achievements
                 dispatch_async(dispatch_get_main_queue(), {
                     GamiCent.showAchievements(completion: nil)
                 })
-            } else if indexPath.item == 1 {
+            } else if indexPath.item == leaderboardIndex {
                 // item 2 : view leaderboard
                 dispatch_async(dispatch_get_main_queue(), {
                     GamiCent.showLeaderboard(leaderboardID: XGameCenter.leaderboardID,
