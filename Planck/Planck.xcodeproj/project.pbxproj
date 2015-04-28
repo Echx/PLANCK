@@ -994,13 +994,13 @@
 			isa = PBXGroup;
 			children = (
 				267EC2D31AB1DA01002FE745 /* CGVector+XUtility.swift */,
-				6227FC041AAE28E7007F49EA /* XColor.swift */,
-				6227FC051AAE28E7007F49EA /* XConstant.swift */,
-				6227FC061AAE28E7007F49EA /* XMedium.swift */,
-				620BD4451AB2E69800267C7B /* XNote.swift */,
 				26C8ADDB1AD01A52008ADACB /* String+XUtility.swift */,
-				62E323251ADAE83100CFD4CA /* XMusic.swift */,
 				26290C9A1ADEB5A400409FD8 /* UIFont+Akagi.swift */,
+				6227FC051AAE28E7007F49EA /* XConstant.swift */,
+				620BD4451AB2E69800267C7B /* XNote.swift */,
+				62E323251ADAE83100CFD4CA /* XMusic.swift */,
+				6227FC041AAE28E7007F49EA /* XColor.swift */,
+				6227FC061AAE28E7007F49EA /* XMedium.swift */,
 			);
 			path = Utilities;
 			sourceTree = "<group>";
