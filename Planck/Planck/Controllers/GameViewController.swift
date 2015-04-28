@@ -353,35 +353,49 @@ class GameViewController: XViewController {
     private func drawRay(tag: String, currentIndex: Int) {
         dispatch_async(dispatch_get_main_queue()) {
             if self.rays.count == 0 {
+                // there is no rays to draw
+                // this typically happens after user clear the scene
+                // but the last round of calculation still does not stop
                 return
             }
             
             if currentIndex < self.rays[tag]?.count {
-                let layer = CAShapeLayer()
-                layer.strokeEnd = RayDefaults.initialStrokeEnd
-                layer.strokeColor = RayDefaults.strokeColor
-                layer.fillColor = RayDefaults.fillColor
-                layer.lineWidth = RayDefaults.lineWidth
+                // the ray is drawn while the calculation is going on
+                // if currently the drawing is not finished, we continue
+                let rayLayer = CAShapeLayer()
+                rayLayer.strokeEnd = RayDefaults.initialStrokeEnd
+                rayLayer.strokeColor = RayDefaults.strokeColor
+                rayLayer.fillColor = RayDefaults.fillColor
+                rayLayer.lineWidth = RayDefaults.lineWidth
                 
-                self.rayLayers[tag]?.append(layer)
+                // rayLayers stores all the layers of ray
+                // each segment of the ray is represent as a shapelayer,
+                // hence we append the layer to the corresponding slot.
+                self.rayLayers[tag]?.append(rayLayer)
                 
                 var path = UIBezierPath()
+                // rayPath is the collection of each turning (critical) point
                 let rayPath = self.rays[tag]!
+                
+                // getting the two end of the path that is currently drawing
                 let prevPoint = rayPath[currentIndex - 1]
                 let currentPoint = rayPath[currentIndex]
                 path.lineJoinStyle = kCGLineJoinBevel
                 path.lineCapStyle = kCGLineCapRound
                 path.moveToPoint(prevPoint.0)
                 path.addLineToPoint(currentPoint.0)
+                
+                // distance is used to calculate the delay between the two notes
                 let distance = prevPoint.0.getDistanceToPoint(currentPoint.0)
-                layer.path = path.CGPath
-                layer.shadowOffset = CGSizeZero
-                layer.shadowRadius = RayDefaults.shadowRadius
-                layer.shadowColor = RayDefaults.shadowColor
-                layer.shadowOpacity = RayDefaults.shadowOpacity
+                rayLayer.path = path.CGPath
+                rayLayer.shadowOffset = CGSizeZero
+                rayLayer.shadowRadius = RayDefaults.shadowRadius
+                rayLayer.shadowColor = RayDefaults.shadowColor
+                rayLayer.shadowOpacity = RayDefaults.shadowOpacity
                 
-                self.view.layer.addSublayer(layer)
+                self.view.layer.addSublayer(rayLayer)
                 
+                // the duration of the drawing animation
                 let delay = distance / Constant.lightSpeedBase
                 
                 let pathAnimation = CABasicAnimation(keyPath: RayDefaults.animationKeyPath)
@@ -392,9 +406,13 @@ class GameViewController: XViewController {
                 pathAnimation.timingFunction = CAMediaTimingFunction(name:
                     kCAMediaTimingFunctionLinear)
                 
-                layer.addAnimation(pathAnimation, forKey: pathAnimation.keyPath)
+                rayLayer.addAnimation(pathAnimation, forKey: pathAnimation.keyPath)
                 if currentIndex > 1 {
+                    // this happen after the last delay, we can play the previous
+                    // note already
                     self.playNote(prevPoint.1, tag: tag)
+                    
+                    // handle the oscillation of the instrument
                     OscillationManager.oscillateView(
                         self.deviceViews[prevPoint.1!.parent]!,
                         direction: CGVectorMake(
@@ -402,40 +420,50 @@ class GameViewController: XViewController {
                             currentPoint.0.y - prevPoint.0.y))
                 }
                 
+                // keep track of the length of the current path
                 if self.pathDistances[tag] == nil {
                     self.pathDistances[tag] = CGFloat(0)
                 }
                 
+                // add the newly drawn path distance to the total distance
                 self.pathDistances[tag]! += distance
                 let delayInNanoSeconds = RayDefaults.delayCoefficient *
                     delay * CGFloat(NSEC_PER_SEC)
                 dispatch_after(dispatch_time(DISPATCH_TIME_NOW,
                     Int64(delayInNanoSeconds)), dispatch_get_main_queue()) {
-                    self.drawRay(tag, currentIndex: currentIndex + 1)
+                        // wait for the animation to complete, then start 
+                        // the next drawing and playing
+                        self.drawRay(tag, currentIndex: currentIndex + 1)
                 }
             } else {
-                //already finish one ray
+                // we have already finished one ray
                 self.numberOfFinishedRay++
                 
+                // remember to play the last note
                 if let rayPath = self.rays[tag] {
                     let prevPoint = rayPath[currentIndex - 1]
                     self.playNote(prevPoint.1, tag: tag)
                 }
                 
+                // if every rays are finished, we can start checking whether
+                // the player fulfil the winning condition for this level
                 if self.numberOfFinishedRay == self.rays.count {
                     dispatch_async(self.queue, {
+                        // if the music is similar in terms of rhythm and melody
                         if self.music.isSimilarTo(self.originalLevel.targetMusic) {
                             dispatch_after(dispatch_time(DISPATCH_TIME_NOW,
                                 Int64(Float(NSEC_PER_SEC) * Defaults.successCheckDelayCoefficient)),
                                 dispatch_get_main_queue()) {
                                 if self.isVirgin! {
-                                    //3 means three star
+                                    // in this case, the user achieve the target
+                                    // at the first time of trial, 3 stars
                                     self.showBadgeMask(3)
                                     if self.originalLevel.bestScore < 3 {
                                         self.originalLevel.bestScore = 3
                                     }
                                 } else {
-                                    //2 means two star
+                                    // the player might have tried many times
+                                    // 2 stars
                                     self.showBadgeMask(2)
                                     if self.originalLevel.bestScore < 2 {
                                         self.originalLevel.bestScore = 2
@@ -443,9 +471,18 @@ class GameViewController: XViewController {
                                 }
                             }
                             
+                            // navigating the user to the level trasition mask
                             self.shouldShowNextLevel = true
                         } else if (self.originalLevel.bestScore < 1)
                             && (self.visitedNoteList.count == self.gameLevel.targetMusic.music.count) {
+                            // we only show the 1 star result if the user haven't 
+                            // achieved it. If the user already finished 1 star
+                            // we won't disturbing him by show the mask again 
+                            // and again
+                                
+                            // one star is achieved if the user hit every notes
+                            // in the target music (not necessary the same number)
+                            // or rhythm
                             dispatch_after(dispatch_time(DISPATCH_TIME_NOW,
                                 Int64(Float(NSEC_PER_SEC) * 1.5)), dispatch_get_main_queue()) {
                                 //1 means one star
@@ -464,22 +501,6 @@ class GameViewController: XViewController {
         }
     }
     
-    private func showBadgeMask(numberOfBadge: Int) {
-        self.view.addSubview(self.transitionMask)
-        self.transitionMask.show(numberOfBadge, isSectionFinished: self.originalLevel.index %
-            Defaults.numberOfGameLevelPerSection == Defaults.lastGameLevelIndexRemainder)
-    }
-    
-    private func showTargetMusicMask() {
-        self.view.addSubview(self.musicMask)
-        self.musicMask.show(self.gameLevel.targetMusic)
-        self.view.userInteractionEnabled = false
-    }
-    
-    @IBAction func playMusic(sender: UIButton) {
-        showTargetMusicMask()
-    }
-    
     private func playNote(segment: GOSegment?, tag: String) {
         if let edge = segment {
             if let device = xNodes[edge.parent] {
@@ -488,7 +509,7 @@ class GameViewController: XViewController {
                     if let note = device.getNote() {
                         if (note.isIn(self.gameLevel.targetNotes)) &&
                             (!note.isIn(self.visitedNoteList)) {
-                            self.visitedNoteList.append(note)
+                                self.visitedNoteList.append(note)
                         }
                     }
                 }
@@ -506,6 +527,22 @@ class GameViewController: XViewController {
                 fatalError(ErrorMsg.nodeNotExist)
             }
         }
+    }
+    
+    private func showBadgeMask(numberOfBadge: Int) {
+        self.view.addSubview(self.transitionMask)
+        self.transitionMask.show(numberOfBadge, isSectionFinished: self.originalLevel.index %
+            Defaults.numberOfGameLevelPerSection == Defaults.lastGameLevelIndexRemainder)
+    }
+    
+    private func showTargetMusicMask() {
+        self.view.addSubview(self.musicMask)
+        self.musicMask.show(self.gameLevel.targetMusic)
+        self.view.userInteractionEnabled = false
+    }
+    
+    @IBAction func playMusic(sender: UIButton) {
+        showTargetMusicMask()
     }
     
     private func addNode(node: GOOpticRep, strokeColor: UIColor) -> Bool{

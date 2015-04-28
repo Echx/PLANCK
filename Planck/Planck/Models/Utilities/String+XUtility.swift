@@ -13,9 +13,11 @@ extension String {
         let possibleChars = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789"
         let numberOfChars = UInt32(count(possibleChars))
         let result = (0..<length).map { _ -> String in
+			//get a random number in [0, numberOfChars)
             let randomDistance = Int(arc4random_uniform(numberOfChars))
-            //retrieve and return the character
-            return String(possibleChars[advance(possibleChars.startIndex, randomDistance)])
+			let index = advance(possibleChars.startIndex, randomDistance)
+			//return as a String
+            return String(possibleChars[index])
         }
         
         //join the result array into a new string and return
