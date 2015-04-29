@@ -384,7 +384,7 @@ class GameViewController: XViewController {
                 path.lineCapStyle = kCGLineCapRound
                 path.moveToPoint(prevPoint.0)
                 path.addLineToPoint(currentPoint.0)
-                
+
                 // distance is used to calculate the delay between the two notes
                 let distance = prevPoint.0.getDistanceToPoint(currentPoint.0)
                 rayLayer.path = path.CGPath
